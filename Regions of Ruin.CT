@@ -1,0 +1,1410 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="29">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>32</ID>
+      <Description>"HP"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Regions of Ruin.exe
+  Version: 
+  Date   : 2020-04-14
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_PT_HP,D9 00 D9 E8 DF F1 DD D8 76 07) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+label(pt_hp)
+
+newmem:
+  mov [pt_hp],eax
+  jmp code
+
+pt_hp:
+  dq 0
+registersymbol(pt_hp)
+
+code:
+  fld dword ptr [eax]
+  fld1 
+  fcomip st(0),st(1)
+  jmp return
+
+INJ_PT_HP:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_PT_HP)
+
+[DISABLE]
+
+INJ_PT_HP:
+  db D9 00 D9 E8 DF F1
+
+unregistersymbol(pt_hp)
+unregistersymbol(INJ_PT_HP)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 1D4AC6E8
+
+1D4AC6C6: D9 00                 -  fld dword ptr [eax]
+1D4AC6C8: D9 87 58 02 00 00     -  fld dword ptr [edi+00000258]
+1D4AC6CE: DF F1                 -  fcomip st(0),st(1)
+1D4AC6D0: DD D8                 -  fstp st(0)
+1D4AC6D2: 7A 0F                 -  jp 1D4AC6E3
+1D4AC6D4: 73 0D                 -  jae 1D4AC6E3
+1D4AC6D6: D9 87 58 02 00 00     -  fld dword ptr [edi+00000258]
+1D4AC6DC: B8 E0 82 BF 0B        -  mov eax,0BBF82E0
+1D4AC6E1: D9 18                 -  fstp dword ptr [eax]
+1D4AC6E3: B8 E0 82 BF 0B        -  mov eax,0BBF82E0
+// ---------- INJECTING HERE ----------
+1D4AC6E8: D9 00                 -  fld dword ptr [eax]
+1D4AC6EA: D9 E8                 -  fld1 
+1D4AC6EC: DF F1                 -  fcomip st(0),st(1)
+// ---------- DONE INJECTING  ----------
+1D4AC6EE: DD D8                 -  fstp st(0)
+1D4AC6F0: 76 07                 -  jna 1D4AC6F9
+1D4AC6F2: C6 87 70 02 00 00 01  -  mov byte ptr [edi+00000270],01
+1D4AC6F9: 8B 05 F8 83 BF 0B     -  mov eax,[0BBF83F8]
+1D4AC6FF: 8B 0D 10 84 BF 0B     -  mov ecx,[0BBF8410]
+1D4AC705: 3B C1                 -  cmp eax,ecx
+1D4AC707: 75 0A                 -  jne 1D4AC713
+1D4AC709: B8 29 84 BF 0B        -  mov eax,0BBF8429
+1D4AC70E: C6 00 01              -  mov byte ptr [eax],01
+1D4AC711: EB 08                 -  jmp 1D4AC71B
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>33</ID>
+          <Description>"HP"</Description>
+          <VariableType>Float</VariableType>
+          <Address>pt_hp</Address>
+          <Offsets>
+            <Offset>0</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"Stamina"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Regions of Ruin.exe
+  Version: 
+  Date   : 2020-04-13
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_STAMINA,04 00 00 8B 47 08 D9 80 F8 01 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+label(pt_stamina)
+
+newmem:
+  mov [pt_stamina],eax
+  jmp code
+
+pt_stamina:
+  dq 0
+registersymbol(pt_stamina)
+
+code:
+  fld dword ptr [eax+000001F8]
+  jmp return
+
+INJ_STAMINA+06:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_STAMINA)
+
+[DISABLE]
+
+INJ_STAMINA+06:
+  db D9 80 F8 01 00 00
+
+unregistersymbol(pt_stamina)
+unregistersymbol(INJ_STAMINA)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 2082482F
+
+20824802: D9 9D 2C FF FF FF     -  fstp dword ptr [ebp-000000D4]
+20824808: D9 85 2C FF FF FF     -  fld dword ptr [ebp-000000D4]
+2082480E: D9 58 08              -  fstp dword ptr [eax+08]
+20824811: 89 47 0C              -  mov [edi+0C],eax
+20824814: 0F B6 47 10           -  movzx eax,byte ptr [edi+10]
+20824818: 85 C0                 -  test eax,eax
+2082481A: 0F 85 39 04 00 00     -  jne 20824C59
+20824820: C7 47 14 01 00 00 00  -  mov [edi+14],00000001
+20824827: E9 2D 04 00 00        -  jmp 20824C59
+2082482C: 8B 47 08              -  mov eax,[edi+08]
+// ---------- INJECTING HERE ----------
+2082482F: D9 80 F8 01 00 00     -  fld dword ptr [eax+000001F8]
+// ---------- DONE INJECTING  ----------
+20824835: 8B 47 08              -  mov eax,[edi+08]
+20824838: D9 80 FC 01 00 00     -  fld dword ptr [eax+000001FC]
+2082483E: DF F1                 -  fcomip st(0),st(1)
+20824840: DD D8                 -  fstp st(0)
+20824842: 0F 86 99 02 00 00     -  jbe 20824AE1
+20824848: 8B 05 D0 83 8D 0D     -  mov eax,[0D8D83D0]
+2082484E: 8D 8D 3C FF FF FF     -  lea ecx,[ebp-000000C4]
+20824854: 83 EC 08              -  sub esp,08
+20824857: 50                    -  push eax
+20824858: 51                    -  push ecx
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>3</ID>
+          <Description>"Stamina"</Description>
+          <VariableType>Float</VariableType>
+          <Address>pt_stamina</Address>
+          <Offsets>
+            <Offset>1F8</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"Gold (open &amp; close inventory)"</Description>
+      <Options moHideChildren="1"/>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Regions of Ruin.exe
+  Version: 
+  Date   : 2020-04-14
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_GOLD,8B 00 83 EC 08 6A 00 50 E8 22) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+label(pt_gold)
+label(pt_rss)
+label(L1)
+
+newmem:
+  cmp ebx,0
+  je L1
+  mov [pt_gold],eax
+  jmp code
+
+L1:
+  mov [pt_rss],eax
+  jmp code
+
+pt_gold:
+  dq 0
+registersymbol(pt_gold)
+
+pt_rss:
+  dq 0
+registersymbol(pt_rss)
+
+code:
+  mov eax,[eax]
+  sub esp,08
+  jmp return
+
+INJ_GOLD:
+  jmp newmem
+return:
+registersymbol(INJ_GOLD)
+
+[DISABLE]
+
+INJ_GOLD:
+  db 8B 00 83 EC 08
+
+unregistersymbol(pt_rss)
+unregistersymbol(pt_gold)
+unregistersymbol(INJ_GOLD)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 05E20D61
+
+05E20D4A: EC                    -  in al,dx
+05E20D4B: 83 EC 08              -  sub esp,08
+05E20D4E: 8B 45 08              -  mov eax,[ebp+08]
+05E20D51: 0F B6 40 18           -  movzx eax,byte ptr [eax+18]
+05E20D55: C9                    -  leave 
+05E20D56: C3                    -  ret 
+05E20D57: 00 55 8B              -  add [ebp-75],dl
+05E20D5A: EC                    -  in al,dx
+05E20D5B: 83 EC 08              -  sub esp,08
+05E20D5E: 8B 45 08              -  mov eax,[ebp+08]
+// ---------- INJECTING HERE ----------
+05E20D61: 8B 00                 -  mov eax,[eax]
+05E20D63: 83 EC 08              -  sub esp,08
+// ---------- DONE INJECTING  ----------
+05E20D66: 6A 00                 -  push 00
+05E20D68: 50                    -  push eax
+05E20D69: E8 22 00 00 00        -  call 05E20D90
+05E20D6E: 83 C4 10              -  add esp,10
+05E20D71: C9                    -  leave 
+05E20D72: C3                    -  ret 
+05E20D73: 00 68 10              -  add [eax+10],ch
+05E20D76: B3 27                 -  mov bl,27
+05E20D78: 0F E9 AA F2 B5 FF 00  -  psubsw mm5,[edx+00FFB5F2]
+05E20D7F: 00 83 44 24 04 08     -  add [ebx+08042444],al
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>6</ID>
+          <Description>"Gold"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_gold</Address>
+          <Offsets>
+            <Offset>0</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>15</ID>
+      <Description>"Travern Mine"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>13</ID>
+          <Description>"Instant Dig"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Regions of Ruin.exe
+  Version: 
+  Date   : 2020-04-14
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_TARVERN_DIG,89 87 50 01 00 00 8B 87) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov eax,64
+  jmp code
+code:
+  mov [edi+00000150],eax
+  jmp return
+
+INJ_TARVERN_DIG:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_TARVERN_DIG)
+
+[DISABLE]
+
+INJ_TARVERN_DIG:
+  db 89 87 50 01 00 00
+
+unregistersymbol(INJ_TARVERN_DIG)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 1D5696AD
+
+1D56968C: 0D E9 96 6A 4C                 -  or eax,4C6A96E9
+1D569691: E8 00 00 00 00                 -  call 1D569696
+1D569696: 00 00                          -  add [eax],al
+1D569698: 55                             -  push ebp
+1D569699: 8B EC                          -  mov ebp,esp
+1D56969B: 57                             -  push edi
+1D56969C: 83 EC 04                       -  sub esp,04
+1D56969F: 8B 7D 08                       -  mov edi,[ebp+08]
+1D5696A2: 8B 87 50 01 00 00              -  mov eax,[edi+00000150]
+1D5696A8: 05 05 00 00 00                 -  add eax,00000005
+// ---------- INJECTING HERE ----------
+1D5696AD: 89 87 50 01 00 00              -  mov [edi+00000150],eax
+// ---------- DONE INJECTING  ----------
+1D5696B3: 8B 87 2C 01 00 00              -  mov eax,[edi+0000012C]
+1D5696B9: 05 05 00 00 00                 -  add eax,00000005
+1D5696BE: 89 87 2C 01 00 00              -  mov [edi+0000012C],eax
+1D5696C4: 8B 87 50 01 00 00              -  mov eax,[edi+00000150]
+1D5696CA: 3D 63 00 00 00                 -  cmp eax,00000063
+1D5696CF: 7E 23                          -  jle 1D5696F4
+1D5696D1: C7 87 50 01 00 00 00 00 00 00  -  mov [edi+00000150],00000000
+1D5696DB: 83 EC 0C                       -  sub esp,0C
+1D5696DE: 57                             -  push edi
+1D5696DF: E8 D4 09 00 00                 -  call 1D56A0B8
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>17</ID>
+          <Description>"Current Ingot"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Regions of Ruin.exe
+  Version: 
+  Date   : 2020-04-14
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_TARVEN_INGOT,89 08 8B 05 C4 5F 15 0C 39 70 0C 0F 86 7B) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+label(pt_travern_ingot)
+
+newmem:
+  mov [pt_travern_ingot],eax
+  jmp code
+
+pt_travern_ingot:
+  dq 0
+registersymbol(pt_travern_ingot)
+
+code:
+  mov [eax],ecx
+  mov eax,[0C155FC4]
+  jmp return
+
+INJ_TARVEN_INGOT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJ_TARVEN_INGOT)
+
+[DISABLE]
+
+INJ_TARVEN_INGOT:
+  db 89 08 8B 05 C4 5F 15 0C
+
+unregistersymbol(pt_travern_ingot)
+unregistersymbol(INJ_TARVEN_INGOT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 1D56E9A1
+
+1D56E988: 89 45 C4              -  mov [ebp-3C],eax
+1D56E98B: 8B 08                 -  mov ecx,[eax]
+1D56E98D: 83 FF FF              -  cmp edi,-01
+1D56E990: 0F 9F C0              -  setg al
+1D56E993: 0F B6 C0              -  movzx eax,al
+1D56E996: 48                    -  dec eax
+1D56E997: 03 CF                 -  add ecx,edi
+1D56E999: 13 D0                 -  adc edx,eax
+1D56E99B: 8B 45 C4              -  mov eax,[ebp-3C]
+1D56E99E: 89 50 04              -  mov [eax+04],edx
+// ---------- INJECTING HERE ----------
+1D56E9A1: 89 08                 -  mov [eax],ecx
+1D56E9A3: 8B 05 C4 5F 15 0C     -  mov eax,[0C155FC4]
+// ---------- DONE INJECTING  ----------
+1D56E9A9: 39 70 0C              -  cmp [eax+0C],esi
+1D56E9AC: 0F 86 7B 03 00 00     -  jbe 1D56ED2D
+1D56E9B2: 8D 4C F0 10           -  lea ecx,[eax+esi*8+10]
+1D56E9B6: 8B 41 04              -  mov eax,[ecx+04]
+1D56E9B9: 89 45 EC              -  mov [ebp-14],eax
+1D56E9BC: 8B 09                 -  mov ecx,[ecx]
+1D56E9BE: 89 4D E0              -  mov [ebp-20],ecx
+1D56E9C1: C7 45 DC 00 00 00 00  -  mov [ebp-24],00000000
+1D56E9C8: C7 45 D8 00 00 00 00  -  mov [ebp-28],00000000
+1D56E9CF: 85 C0                 -  test eax,eax
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>18</ID>
+              <Description>"Amount"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>pt_travern_ingot</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>20</ID>
+      <Description>"Inf Resources Deposite"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Regions of Ruin.exe
+  Version: 
+  Date   : 2020-04-14
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_INF_WORKER_RSS,89 08 85 FF 7E 32) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov ecx,1869F
+  jmp code
+
+code:
+  mov [eax],ecx
+  test edi,edi
+  jle INJ_INF_WORKER_RSS+38
+  jmp return
+
+INJ_INF_WORKER_RSS:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_INF_WORKER_RSS)
+
+[DISABLE]
+
+INJ_INF_WORKER_RSS:
+  db 89 08 85 FF 7E 32
+
+unregistersymbol(INJ_INF_WORKER_RSS)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 1D4A9D3E
+
+1D4A9D1D: 8D 44 98 10        -  lea eax,[eax+ebx*4+10]
+1D4A9D21: 8B 08              -  mov ecx,[eax]
+1D4A9D23: 03 CF              -  add ecx,edi
+1D4A9D25: 89 08              -  mov [eax],ecx
+1D4A9D27: 8B 05 B8 EE 87 05  -  mov eax,[0587EEB8]
+1D4A9D2D: 39 70 0C           -  cmp [eax+0C],esi
+1D4A9D30: 0F 86 B3 00 00 00  -  jbe 1D4A9DE9
+1D4A9D36: 8D 44 B0 10        -  lea eax,[eax+esi*4+10]
+1D4A9D3A: 8B 08              -  mov ecx,[eax]
+1D4A9D3C: 2B CF              -  sub ecx,edi
+// ---------- INJECTING HERE ----------
+1D4A9D3E: 89 08              -  mov [eax],ecx
+1D4A9D40: 85 FF              -  test edi,edi
+1D4A9D42: 7E 32              -  jle 1D4A9D76
+// ---------- DONE INJECTING  ----------
+1D4A9D44: 8B 05 58 EF 86 05  -  mov eax,[0586EF58]
+1D4A9D4A: 8B 80 88 00 00 00  -  mov eax,[eax+00000088]
+1D4A9D50: 83 EC 0C           -  sub esp,0C
+1D4A9D53: 50                 -  push eax
+1D4A9D54: 39 00              -  cmp [eax],eax
+1D4A9D56: E8 6D B5 00 00     -  call 1D4B52C8
+1D4A9D5B: 83 C4 10           -  add esp,10
+1D4A9D5E: 85 C0              -  test eax,eax
+1D4A9D60: 74 14              -  je 1D4A9D76
+1D4A9D62: 8B 05 58 EF 86 05  -  mov eax,[0586EF58]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>35</ID>
+      <Description>"Inf Workers"</Description>
+      <Options moHideChildren="1"/>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Regions of Ruin.exe
+  Version: 
+  Date   : 2020-04-14
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_INF_WORKER,08 49 89 08 8B 45 08) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+label(pt_idle_worker)
+
+newmem:
+  mov [pt_idle_worker],eax
+  inc ecx
+  jmp code
+
+pt_idle_worker:
+  dq 0
+registersymbol(pt_idle_worker)
+
+code:
+  mov [eax],ecx
+  mov eax,[ebp+08]
+  jmp return
+
+INJ_INF_WORKER+02:
+  jmp newmem
+return:
+registersymbol(INJ_INF_WORKER)
+
+[DISABLE]
+
+INJ_INF_WORKER+02:
+  db 89 08 8B 45 08
+
+unregistersymbol(pt_idle_worker)
+unregistersymbol(INJ_INF_WORKER)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 1D5742C0
+
+1D574297: C7 45 D8 00 00 00 00  -  mov [ebp-28],00000000
+1D57429E: E9 92 00 00 00        -  jmp 1D574335
+1D5742A3: 8D 64 24 00           -  lea esp,[esp+00]
+1D5742A7: 90                    -  nop 
+1D5742A8: 8B 05 00 3E 87 05     -  mov eax,[05873E00]
+1D5742AE: 83 78 0C 01           -  cmp dword ptr [eax+0C],01
+1D5742B2: 0F 86 BC 00 00 00     -  jbe 1D574374
+1D5742B8: 05 14 00 00 00        -  add eax,00000014
+1D5742BD: 8B 08                 -  mov ecx,[eax]
+1D5742BF: 49                    -  dec ecx
+// ---------- INJECTING HERE ----------
+1D5742C0: 89 08                 -  mov [eax],ecx
+1D5742C2: 8B 45 08              -  mov eax,[ebp+08]
+// ---------- DONE INJECTING  ----------
+1D5742C5: 8B 80 84 00 00 00     -  mov eax,[eax+00000084]
+1D5742CB: 83 EC 08              -  sub esp,08
+1D5742CE: FF 75 E8              -  push [ebp-18]
+1D5742D1: 50                    -  push eax
+1D5742D2: 39 00                 -  cmp [eax],eax
+1D5742D4: E8 8F B4 87 E8        -  call 05DEF768
+1D5742D9: 83 C4 10              -  add esp,10
+1D5742DC: 8B 48 44              -  mov ecx,[eax+44]
+1D5742DF: 8B 05 00 3E 87 05     -  mov eax,[05873E00]
+1D5742E5: 39 48 0C              -  cmp [eax+0C],ecx
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>36</ID>
+          <Description>"Idle Workers"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_idle_worker</Address>
+          <Offsets>
+            <Offset>0</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>38</ID>
+      <Description>"Inf Skill Points"</Description>
+      <Options moHideChildren="1"/>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Regions of Ruin.exe
+  Version: 
+  Date   : 2020-04-14
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+
+aobscan(INJ_INF_SKILL_PTS2,89 08 83 EC 0C 56 E8 C7) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+label(pt_skill_pts2)
+
+newmem:
+  mov [pt_skill_pts2],eax
+  inc ecx
+  jmp code
+
+pt_skill_pts2:
+  dq 0
+registersymbol(pt_skill_pts2)
+
+code:
+  mov [eax],ecx
+  sub esp,0C
+  jmp return
+
+INJ_INF_SKILL_PTS2:
+  jmp newmem
+return:
+registersymbol(INJ_INF_SKILL_PTS2)
+
+[DISABLE]
+
+INJ_INF_SKILL_PTS2:
+  db 89 08 83 EC 0C
+
+unregistersymbol(pt_skill_pts2)
+unregistersymbol(INJ_INF_SKILL_PTS2)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 1D57860E
+
+1D5785F0: 8B 4E 28           -  mov ecx,[esi+28]
+1D5785F3: 83 EC 08           -  sub esp,08
+1D5785F6: 51                 -  push ecx
+1D5785F7: 50                 -  push eax
+1D5785F8: 39 00              -  cmp [eax],eax
+1D5785FA: E8 59 1B 92 E8     -  call 05E9A158
+1D5785FF: 83 C4 10           -  add esp,10
+1D578602: 8B 0D 88 82 BF 0B  -  mov ecx,[0BBF8288]
+1D578608: 49                 -  dec ecx
+1D578609: B8 88 82 BF 0B     -  mov eax,0BBF8288
+// ---------- INJECTING HERE ----------
+1D57860E: 89 08              -  mov [eax],ecx
+1D578610: 83 EC 0C           -  sub esp,0C
+// ---------- DONE INJECTING  ----------
+1D578613: 56                 -  push esi
+1D578614: E8 C7 96 F4 FF     -  call 1D4C1CE0
+1D578619: 83 C4 10           -  add esp,10
+1D57861C: 8B 86 B0 00 00 00  -  mov eax,[esi+000000B0]
+1D578622: 3D 01 00 00 00     -  cmp eax,00000001
+1D578627: 0F 85 C7 00 00 00  -  jne 1D5786F4
+1D57862D: 85 FF              -  test edi,edi
+1D57862F: 0F 85 BF 00 00 00  -  jne 1D5786F4
+1D578635: 8B 05 88 EE 86 05  -  mov eax,[0586EE88]
+1D57863B: 83 78 0C 43        -  cmp dword ptr [eax+0C],43
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>39</ID>
+          <Description>"Skill Point"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_skill_pts2</Address>
+          <Offsets>
+            <Offset>0</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>56</ID>
+      <Description>"Resources"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Regions of Ruin.exe
+  Version: 
+  Date   : 2020-04-15
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_RSS,8B 00 2B C8 89 4D E4) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+label(pt_rss)
+
+newmem:
+  cmp [pt_rss],eax
+  jbe code
+  mov [pt_rss],eax
+  jmp code
+
+pt_rss:
+  db 7F FF FF FF
+registersymbol(pt_rss)
+
+code:
+  mov eax,[eax]
+  sub ecx,eax
+  mov [ebp-1C],ecx
+  jmp return
+
+INJ_RSS:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJ_RSS)
+
+[DISABLE]
+
+INJ_RSS:
+  db 8B 00 2B C8 89 4D E4
+
+unregistersymbol(pt_rss)
+unregistersymbol(INJ_RSS)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 1B0C4808
+
+1B0C47DE: 8B 38              -  mov edi,[eax]
+1B0C47E0: 8B 05 54 EF 9B 05  -  mov eax,[059BEF54]
+1B0C47E6: 39 58 0C           -  cmp [eax+0C],ebx
+1B0C47E9: 0F 86 1F 01 00 00  -  jbe 1B0C490E
+1B0C47EF: 8D 44 98 10        -  lea eax,[eax+ebx*4+10]
+1B0C47F3: 8B 08              -  mov ecx,[eax]
+1B0C47F5: 8B 05 50 EF 9B 05  -  mov eax,[059BEF50]
+1B0C47FB: 39 58 0C           -  cmp [eax+0C],ebx
+1B0C47FE: 0F 86 03 01 00 00  -  jbe 1B0C4907
+1B0C4804: 8D 44 98 10        -  lea eax,[eax+ebx*4+10]
+// ---------- INJECTING HERE ----------
+1B0C4808: 8B 00              -  mov eax,[eax]
+1B0C480A: 2B C8              -  sub ecx,eax
+1B0C480C: 89 4D E4           -  mov [ebp-1C],ecx
+// ---------- DONE INJECTING  ----------
+1B0C480F: 8B C1              -  mov eax,ecx
+1B0C4811: 3B F9              -  cmp edi,ecx
+1B0C4813: 0F 4F F8           -  cmovg edi,eax
+1B0C4816: 8B 05 50 EF 9B 05  -  mov eax,[059BEF50]
+1B0C481C: 39 58 0C           -  cmp [eax+0C],ebx
+1B0C481F: 0F 86 DB 00 00 00  -  jbe 1B0C4900
+1B0C4825: 8D 44 98 10        -  lea eax,[eax+ebx*4+10]
+1B0C4829: 8B 08              -  mov ecx,[eax]
+1B0C482B: 03 CF              -  add ecx,edi
+1B0C482D: 89 08              -  mov [eax],ecx
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>57</ID>
+          <Description>"Wood"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_rss</Address>
+          <Offsets>
+            <Offset>0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>60</ID>
+          <Description>"Food"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_rss</Address>
+          <Offsets>
+            <Offset>8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>61</ID>
+          <Description>"Hide"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_rss</Address>
+          <Offsets>
+            <Offset>4</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>59</ID>
+          <Description>"Stone"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_rss</Address>
+          <Offsets>
+            <Offset>C</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>58</ID>
+          <Description>"Cotton"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_rss</Address>
+          <Offsets>
+            <Offset>10</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>62</ID>
+          <Description>"Coal"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_rss</Address>
+          <Offsets>
+            <Offset>14</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>63</ID>
+          <Description>"Ore"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_rss</Address>
+          <Offsets>
+            <Offset>24</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>68</ID>
+          <Description>"Copper"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_rss</Address>
+          <Offsets>
+            <Offset>18</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>65</ID>
+          <Description>"Iron"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_rss</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>69</ID>
+          <Description>"Bronze"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_rss</Address>
+          <Offsets>
+            <Offset>20</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>70</ID>
+          <Description>"Silver"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_rss</Address>
+          <Offsets>
+            <Offset>28</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>71</ID>
+          <Description>"Adamantine"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_rss</Address>
+          <Offsets>
+            <Offset>2C</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>78</ID>
+      <Description>"Inf Storage"</Description>
+      <Options moHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+      <LastState Value="" Activated="1" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>67</ID>
+          <Description>"Script 1"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Regions of Ruin.exe
+  Version:
+  Date   : 2020-04-15
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_INF_STORAGE,8B 09 3B C1 0F 8C 24 01 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov [ecx],3B9AC9FF
+  jmp code
+
+code:
+  mov ecx,[ecx]
+  cmp eax,ecx
+  jl INJ_INF_STORAGE+12E
+  jmp return
+
+INJ_INF_STORAGE:
+  jmp newmem
+  nop 5
+return:
+registersymbol(INJ_INF_STORAGE)
+
+[DISABLE]
+
+INJ_INF_STORAGE:
+  db 8B 09 3B C1 0F 8C 24 01 00 00
+
+unregistersymbol(INJ_INF_STORAGE)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 1A6806C3
+
+1A680695: 8B 05 50 EF C3 05  -  mov eax,[05C3EF50]
+1A68069B: 8B 95 F0 FE FF FF  -  mov edx,[ebp-00000110]
+1A6806A1: 39 50 0C           -  cmp [eax+0C],edx
+1A6806A4: 0F 86 C8 08 00 00  -  jbe 1A680F72
+1A6806AA: 8D 44 90 10        -  lea eax,[eax+edx*4+10]
+1A6806AE: 8B 00              -  mov eax,[eax]
+1A6806B0: 8B 0D 54 EF C3 05  -  mov ecx,[05C3EF54]
+1A6806B6: 39 51 0C           -  cmp [ecx+0C],edx
+1A6806B9: 0F 86 A9 08 00 00  -  jbe 1A680F68
+1A6806BF: 8D 4C 91 10        -  lea ecx,[ecx+edx*4+10]
+// ---------- INJECTING HERE ----------
+1A6806C3: 8B 09              -  mov ecx,[ecx]
+1A6806C5: 3B C1              -  cmp eax,ecx
+1A6806C7: 0F 8C 24 01 00 00  -  jl 1A6807F1
+// ---------- DONE INJECTING  ----------
+1A6806CD: 8B 85 D0 FE FF FF  -  mov eax,[ebp-00000130]
+1A6806D3: 85 C0              -  test eax,eax
+1A6806D5: 0F 8E 16 01 00 00  -  jng 1A6807F1
+1A6806DB: 8B 45 08           -  mov eax,[ebp+08]
+1A6806DE: 8B 40 40           -  mov eax,[eax+40]
+1A6806E1: 39 78 0C           -  cmp [eax+0C],edi
+1A6806E4: 0F 86 74 08 00 00  -  jbe 1A680F5E
+1A6806EA: 8D 44 B8 10        -  lea eax,[eax+edi*4+10]
+1A6806EE: 8B 00              -  mov eax,[eax]
+1A6806F0: 83 EC 08           -  sub esp,08
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>77</ID>
+          <Description>"Script 2"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Regions of Ruin.exe
+  Version: 
+  Date   : 2020-04-15
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_INF_STORAGE2,8B 09 3B C1 0F 8C 86 00 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov [ecx],3B9AC9FF
+  jmp code
+
+code:
+  mov ecx,[ecx]
+  cmp eax,ecx
+  jl INJ_INF_STORAGE2+90
+  jmp return
+
+INJ_INF_STORAGE2:
+  jmp newmem
+  nop 5
+return:
+registersymbol(INJ_INF_STORAGE2)
+
+[DISABLE]
+
+INJ_INF_STORAGE2:
+  db 8B 09 3B C1 0F 8C 86 00 00 00
+
+unregistersymbol(INJ_INF_STORAGE2)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 1A65BDA7
+
+1A65BD7C: 83 C4 20           -  add esp,20
+1A65BD7F: 8B 05 50 EF C3 05  -  mov eax,[05C3EF50]
+1A65BD85: 39 70 0C           -  cmp [eax+0C],esi
+1A65BD88: 0F 86 39 01 00 00  -  jbe 1A65BEC7
+1A65BD8E: 8D 44 B0 10        -  lea eax,[eax+esi*4+10]
+1A65BD92: 8B 00              -  mov eax,[eax]
+1A65BD94: 8B 0D 54 EF C3 05  -  mov ecx,[05C3EF54]
+1A65BD9A: 39 71 0C           -  cmp [ecx+0C],esi
+1A65BD9D: 0F 86 1D 01 00 00  -  jbe 1A65BEC0
+1A65BDA3: 8D 4C B1 10        -  lea ecx,[ecx+esi*4+10]
+// ---------- INJECTING HERE ----------
+1A65BDA7: 8B 09              -  mov ecx,[ecx]
+1A65BDA9: 3B C1              -  cmp eax,ecx
+1A65BDAB: 0F 8C 86 00 00 00  -  jl 1A65BE37
+// ---------- DONE INJECTING  ----------
+1A65BDB1: 8B 05 50 EF C3 05  -  mov eax,[05C3EF50]
+1A65BDB7: 8B 0D 54 EF C3 05  -  mov ecx,[05C3EF54]
+1A65BDBD: 39 71 0C           -  cmp [ecx+0C],esi
+1A65BDC0: 0F 86 F3 00 00 00  -  jbe 1A65BEB9
+1A65BDC6: 8D 4C B1 10        -  lea ecx,[ecx+esi*4+10]
+1A65BDCA: 8B 09              -  mov ecx,[ecx]
+1A65BDCC: 39 70 0C           -  cmp [eax+0C],esi
+1A65BDCF: 0F 86 DD 00 00 00  -  jbe 1A65BEB2
+1A65BDD5: 8D 44 B0 10        -  lea eax,[eax+esi*4+10]
+1A65BDD9: 89 08              -  mov [eax],ecx
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>48</ID>
+      <Description>"Storage Size"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Regions of Ruin.exe
+  Version:
+  Date   : 2020-04-15
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_RSS_MAX,8B 09 3B C1 0F 8D 5A 01 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+label(pt_max_rss)
+
+newmem:
+  cmp [pt_max_rss],ecx
+  jbe code
+  mov [pt_max_rss],ecx
+  jmp code
+
+pt_max_rss:
+  dq 7FFFFFFF
+registersymbol(pt_max_rss)
+
+code:
+  mov ecx,[ecx]
+  cmp eax,ecx
+  jnl INJ_RSS_MAX+164
+  jmp return
+
+INJ_RSS_MAX:
+  jmp newmem
+  nop 5
+return:
+registersymbol(INJ_RSS_MAX)
+
+[DISABLE]
+
+INJ_RSS_MAX:
+  db 8B 09 3B C1 0F 8D 5A 01 00 00
+
+unregistersymbol(pt_max_rss)
+unregistersymbol(INJ_RSS_MAX)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 1B0C471A
+
+1B0C46F0: 8B 18                 -  mov ebx,[eax]
+1B0C46F2: 8B 05 50 EF 9B 05     -  mov eax,[059BEF50]
+1B0C46F8: 39 58 0C              -  cmp [eax+0C],ebx
+1B0C46FB: 0F 86 30 02 00 00     -  jbe 1B0C4931
+1B0C4701: 8D 44 98 10           -  lea eax,[eax+ebx*4+10]
+1B0C4705: 8B 00                 -  mov eax,[eax]
+1B0C4707: 8B 0D 54 EF 9B 05     -  mov ecx,[059BEF54]
+1B0C470D: 39 59 0C              -  cmp [ecx+0C],ebx
+1B0C4710: 0F 86 14 02 00 00     -  jbe 1B0C492A
+1B0C4716: 8D 4C 99 10           -  lea ecx,[ecx+ebx*4+10]
+// ---------- INJECTING HERE ----------
+1B0C471A: 8B 09                 -  mov ecx,[ecx]
+1B0C471C: 3B C1                 -  cmp eax,ecx
+1B0C471E: 0F 8D 5A 01 00 00     -  jnl 1B0C487E
+// ---------- DONE INJECTING  ----------
+1B0C4724: 8B 05 00 3E 9C 05     -  mov eax,[059C3E00]
+1B0C472A: 39 70 0C              -  cmp [eax+0C],esi
+1B0C472D: 0F 86 F0 01 00 00     -  jbe 1B0C4923
+1B0C4733: 8D 44 B0 10           -  lea eax,[eax+esi*4+10]
+1B0C4737: 8B 38                 -  mov edi,[eax]
+1B0C4739: 8B C7                 -  mov eax,edi
+1B0C473B: 3D 09 00 00 00        -  cmp eax,00000009
+1B0C4740: 7E 2D                 -  jle 1B0C476F
+1B0C4742: D9 05 F8 14 C6 19     -  fld dword ptr [19C614F8]
+1B0C4748: 57                    -  push edi
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>49</ID>
+          <Description>"Wood"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_max_rss</Address>
+          <Offsets>
+            <Offset>0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>54</ID>
+          <Description>"Hide"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_max_rss</Address>
+          <Offsets>
+            <Offset>4</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>53</ID>
+          <Description>"Food"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_max_rss</Address>
+          <Offsets>
+            <Offset>8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>52</ID>
+          <Description>"Stone"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_max_rss</Address>
+          <Offsets>
+            <Offset>C</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>51</ID>
+          <Description>"Cotton"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_max_rss</Address>
+          <Offsets>
+            <Offset>10</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>50</ID>
+          <Description>"Coal"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_max_rss</Address>
+          <Offsets>
+            <Offset>14</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>64</ID>
+          <Description>"Ore"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_max_rss</Address>
+          <Offsets>
+            <Offset>24</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>66</ID>
+          <Description>"Iron"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_max_rss</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>76</ID>
+      <Description>"Perfect Forging"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Regions of Ruin.exe
+  Version: 
+  Date   : 2020-04-15
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_PERFECT_FORGE,03 C1 89 87 A0 00 00 00 EB) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov eax,0E1
+  jmp code
+
+code:
+  mov [edi+000000A0],eax
+  jmp return
+
+INJ_PERFECT_FORGE+02:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_PERFECT_FORGE)
+
+[DISABLE]
+
+INJ_PERFECT_FORGE+02:
+  db 89 87 A0 00 00 00
+
+unregistersymbol(INJ_PERFECT_FORGE)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 1B0D1BBA
+
+1B0D1B92: 74 2E                          -  je 1B0D1BC2
+1B0D1B94: 8B 87 A0 00 00 00              -  mov eax,[edi+000000A0]
+1B0D1B9A: 3D C2 01 00 00                 -  cmp eax,000001C2
+1B0D1B9F: 7D 21                          -  jnl 1B0D1BC2
+1B0D1BA1: 8B 87 A0 00 00 00              -  mov eax,[edi+000000A0]
+1B0D1BA7: 8B 0D B4 5F DF 0D              -  mov ecx,[0DDF5FB4]
+1B0D1BAD: 8B 97 A4 00 00 00              -  mov edx,[edi+000000A4]
+1B0D1BB3: 2B CA                          -  sub ecx,edx
+1B0D1BB5: 83 C1 03                       -  add ecx,03
+1B0D1BB8: 03 C1                          -  add eax,ecx
+// ---------- INJECTING HERE ----------
+1B0D1BBA: 89 87 A0 00 00 00              -  mov [edi+000000A0],eax
+// ---------- DONE INJECTING  ----------
+1B0D1BC0: EB 12                          -  jmp 1B0D1BD4
+1B0D1BC2: 0F B6 87 B8 00 00 00           -  movzx eax,byte ptr [edi+000000B8]
+1B0D1BC9: 85 C0                          -  test eax,eax
+1B0D1BCB: 74 07                          -  je 1B0D1BD4
+1B0D1BCD: C6 87 B8 00 00 00 00           -  mov byte ptr [edi+000000B8],00
+1B0D1BD4: 0F B6 87 B8 00 00 00           -  movzx eax,byte ptr [edi+000000B8]
+1B0D1BDB: 85 C0                          -  test eax,eax
+1B0D1BDD: 75 2B                          -  jne 1B0D1C0A
+1B0D1BDF: 8B 87 A0 00 00 00              -  mov eax,[edi+000000A0]
+1B0D1BE5: 85 C0                          -  test eax,eax
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>73</ID>
+      <Description>"Forge Bonus"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Regions of Ruin.exe
+  Version: 
+  Date   : 2020-04-15
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_FORGE,89 87 A8 00 00 00 83 EC 08 6A 0A) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+label(pt_forge)
+
+newmem:
+  mov [pt_forge],edi
+  jmp code
+
+pt_forge:
+  dq 0
+registersymbol(pt_forge)
+
+code:
+  mov [edi+000000A8],eax
+  jmp return
+
+INJ_FORGE:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_FORGE)
+
+[DISABLE]
+
+INJ_FORGE:
+  db 89 87 A8 00 00 00
+
+unregistersymbol(pt_forge)
+unregistersymbol(INJ_FORGE)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 1B0D1971
+
+1B0D1944: 83 C4 10           -  add esp,10
+1B0D1947: E9 51 01 00 00     -  jmp 1B0D1A9D
+1B0D194C: 8B 87 A0 00 00 00  -  mov eax,[edi+000000A0]
+1B0D1952: 3D BE 00 00 00     -  cmp eax,000000BE
+1B0D1957: 7E 3E              -  jle 1B0D1997
+1B0D1959: 8B 87 A0 00 00 00  -  mov eax,[edi+000000A0]
+1B0D195F: 3D 04 01 00 00     -  cmp eax,00000104
+1B0D1964: 7D 31              -  jnl 1B0D1997
+1B0D1966: 8B 87 A8 00 00 00  -  mov eax,[edi+000000A8]
+1B0D196C: 05 05 00 00 00     -  add eax,00000005
+// ---------- INJECTING HERE ----------
+1B0D1971: 89 87 A8 00 00 00  -  mov [edi+000000A8],eax
+// ---------- DONE INJECTING  ----------
+1B0D1977: 83 EC 08           -  sub esp,08
+1B0D197A: 6A 05              -  push 05
+1B0D197C: 57                 -  push edi
+1B0D197D: E8 76 69 16 F8     -  call 132382F8
+1B0D1982: 83 C4 10           -  add esp,10
+1B0D1985: 83 EC 08           -  sub esp,08
+1B0D1988: 50                 -  push eax
+1B0D1989: 57                 -  push edi
+1B0D198A: E8 21 50 E0 EA     -  call 05ED69B0
+1B0D198F: 83 C4 10           -  add esp,10
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>74</ID>
+          <Description>"Plused"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_forge</Address>
+          <Offsets>
+            <Offset>A8</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>79</ID>
+      <Description>"No description"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>16C70558</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

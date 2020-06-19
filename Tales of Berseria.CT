@@ -1,0 +1,859 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="28">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>85</ID>
+      <Description>"GALD"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>"Tales of Berseria.exe"+00F1D210</Address>
+      <Offsets>
+        <Offset>0</Offset>
+        <Offset>10</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>53</ID>
+      <Description>"Inf Item Use"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Tales of Berseria.exe
+  Version: 
+  Date   : 2019-12-01
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(InfItem,Tales of Berseria.exe,44 89 04 30 45 84 C9) // should be unique
+alloc(newmem,$200,"Tales of Berseria.exe"+13F2235)
+
+label(code)
+label(return)
+
+newmem:
+  push r15
+  mov r15,[rax+rsi]
+  cmp r15d,r8d
+  pop r15
+  jle code
+  jmp return
+
+code:
+  mov [rax+rsi],r8d
+  test r9l,r9l
+  jmp return
+
+InfItem:
+  jmp newmem
+  nop
+  nop
+return:
+registersymbol(InfItem)
+
+[DISABLE]
+
+InfItem:
+  db 44 89 04 30 45 84 C9
+
+unregistersymbol(InfItem)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "Tales of Berseria.exe"+13F2235
+
+"Tales of Berseria.exe"+13F220F: 81 E2 FF FF FF 00        -  and edx,00FFFFFF
+"Tales of Berseria.exe"+13F2215: 83 F8 0A                 -  cmp eax,0A
+"Tales of Berseria.exe"+13F2218: 74 5B                    -  je "Tales of Berseria.exe"+13F2275
+"Tales of Berseria.exe"+13F221A: 48 63 C8                 -  movsxd  rcx,eax
+"Tales of Berseria.exe"+13F221D: 48 63 C2                 -  movsxd  rax,edx
+"Tales of Berseria.exe"+13F2220: 48 C1 E1 0A              -  shl rcx,0A
+"Tales of Berseria.exe"+13F2224: 48 01 C1                 -  add rcx,rax
+"Tales of Berseria.exe"+13F2227: 48 8B 03                 -  mov rax,[rbx]
+"Tales of Berseria.exe"+13F222A: 48 8D 34 8D 00 00 00 00  -  lea rsi,[rcx*4+00000000]
+"Tales of Berseria.exe"+13F2232: 8B 0C 88                 -  mov ecx,[rax+rcx*4]
+// ---------- INJECTING HERE ----------
+"Tales of Berseria.exe"+13F2235: 44 89 04 30              -  mov [rax+rsi],r8d
+"Tales of Berseria.exe"+13F2239: 45 84 C9                 -  test r9l,r9l
+// ---------- DONE INJECTING  ----------
+"Tales of Berseria.exe"+13F223C: 74 0F                    -  je "Tales of Berseria.exe"+13F224D
+"Tales of Berseria.exe"+13F223E: 41 39 C8                 -  cmp r8d,ecx
+"Tales of Berseria.exe"+13F2241: 7E 0A                    -  jle "Tales of Berseria.exe"+13F224D
+"Tales of Berseria.exe"+13F2243: 89 FA                    -  mov edx,edi
+"Tales of Berseria.exe"+13F2245: 48 89 D9                 -  mov rcx,rbx
+"Tales of Berseria.exe"+13F2248: E8 63 01 00 00           -  call "Tales of Berseria.exe"+13F23B0
+"Tales of Berseria.exe"+13F224D: 48 8B 03                 -  mov rax,[rbx]
+"Tales of Berseria.exe"+13F2250: 83 3C 06 00              -  cmp dword ptr [rsi+rax],00
+"Tales of Berseria.exe"+13F2254: 7E 0D                    -  jle "Tales of Berseria.exe"+13F2263
+"Tales of Berseria.exe"+13F2256: 41 B0 01                 -  mov r8l,01
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>29</ID>
+      <Description>"Stop Minigame Timer"</Description>
+      <Options moHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>28</ID>
+          <Description>"Stop Ballon Timer"</Description>
+          <Options moHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+          <LastState Value="" RealAddress="00000000"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>26</ID>
+              <Description>"Stop Ballon Timer"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : Tales of Berseria.exe
+  Version: 
+  Date   : 2019-12-01
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(Ballon,Tales of Berseria.exe,F3 0F 11 73 38 74) // should be unique
+alloc(newmem,$1000,"Tales of Berseria.exe"+1533045)
+
+label(code)
+label(return)
+
+newmem:
+  nop
+  nop
+  nop
+  nop
+  jmp return
+
+code:
+  movss [rbx+38],xmm6
+  jmp return
+
+Ballon:
+  jmp newmem
+
+return:
+registersymbol(Ballon)
+
+[DISABLE]
+
+Ballon:
+  db F3 0F 11 73 38
+
+
+unregistersymbol(Ballon)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "Tales of Berseria.exe"+1533045
+
+"Tales of Berseria.exe"+1533018: 0F 2F C6                 -  comiss xmm0,xmm6
+"Tales of Berseria.exe"+153301B: F3 0F 11 73 38           -  movss [rbx+38],xmm6
+"Tales of Berseria.exe"+1533020: 77 03                    -  ja "Tales of Berseria.exe"+1533025
+"Tales of Berseria.exe"+1533022: 0F 28 F0                 -  movaps xmm6,xmm0
+"Tales of Berseria.exe"+1533025: 80 3D 6B A6 9E FF 00     -  cmp byte ptr ["Tales of Berseria.exe"+F1D697],00
+"Tales of Berseria.exe"+153302C: 40 0F B6 FF              -  movzx edi,dil
+"Tales of Berseria.exe"+1533030: B8 0F A2 4E C3           -  mov eax,C34EA20F
+"Tales of Berseria.exe"+1533035: 8D 80 F2 5D B1 3C        -  lea eax,[rax+3CB15DF2]
+"Tales of Berseria.exe"+153303B: 0F 45 F8                 -  cmovne edi,eax
+"Tales of Berseria.exe"+153303E: 80 3D C3 A6 9E FF 00     -  cmp byte ptr ["Tales of Berseria.exe"+F1D708],00
+// ---------- INJECTING HERE ----------
+"Tales of Berseria.exe"+1533045: F3 0F 11 73 38           -  movss [rbx+38],xmm6
+// ---------- DONE INJECTING  ----------
+"Tales of Berseria.exe"+153304A: 74 09                    -  je "Tales of Berseria.exe"+1533055
+"Tales of Berseria.exe"+153304C: 88 83 CA 01 00 00        -  mov [rbx+000001CA],al
+"Tales of Berseria.exe"+1533052: 0F B6 F8                 -  movzx edi,al
+"Tales of Berseria.exe"+1533055: 48 8B 0D AC 3B AD FF     -  mov rcx,["Tales of Berseria.exe"+1006C08]
+"Tales of Berseria.exe"+153305C: 8B 05 AE 3B AD FF        -  mov eax,["Tales of Berseria.exe"+1006C10]
+"Tales of Berseria.exe"+1533062: 48 85 C9                 -  test rcx,rcx
+"Tales of Berseria.exe"+1533065: 75 06                    -  jne "Tales of Berseria.exe"+153306D
+"Tales of Berseria.exe"+1533067: 85 C0                    -  test eax,eax
+"Tales of Berseria.exe"+1533069: 75 59                    -  jne "Tales of Berseria.exe"+15330C4
+"Tales of Berseria.exe"+153306B: EB 04                    -  jmp "Tales of Berseria.exe"+1533071
+}
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>27</ID>
+              <Description>"Stop Ballon Timer 2"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : Tales of Berseria.exe
+  Version: 
+  Date   : 2019-12-01
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(Ballon2,Tales of Berseria.exe,F3 0F 11 73 38) // should be unique
+alloc(newmem,$1000,"Tales of Berseria.exe"+153301B)
+
+label(code)
+label(return)
+
+newmem:
+  nop
+  nop
+  nop
+  nop
+  jmp return
+
+code:
+  movss [rbx+38],xmm6
+  jmp return
+
+Ballon2:
+  jmp newmem
+return:
+registersymbol(Ballon2)
+
+[DISABLE]
+
+Ballon2:
+  db F3 0F 11 73 38
+
+unregistersymbol(Ballon2)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "Tales of Berseria.exe"+153301B
+
+"Tales of Berseria.exe"+1532FEB: F3 0F 10 83 70 01 00 00  -  movss xmm0,[rbx+00000170]
+"Tales of Berseria.exe"+1532FF3: F3 0F 59 FA              -  mulss xmm7,xmm2
+"Tales of Berseria.exe"+1532FF7: F3 0F 5C C7              -  subss xmm0,xmm7
+"Tales of Berseria.exe"+1532FFB: 0F 2F C1                 -  comiss xmm0,xmm1
+"Tales of Berseria.exe"+1532FFE: 77 03                    -  ja "Tales of Berseria.exe"+1533003
+"Tales of Berseria.exe"+1533000: 0F 28 C1                 -  movaps xmm0,xmm1
+"Tales of Berseria.exe"+1533003: F3 0F 11 83 70 01 00 00  -  movss [rbx+00000170],xmm0
+"Tales of Berseria.exe"+153300B: F3 0F 58 73 38           -  addss xmm6,dword ptr [rbx+38]
+"Tales of Berseria.exe"+1533010: F3 0F 10 05 90 36 49 FF  -  movss xmm0,["Tales of Berseria.exe"+9C66A8]
+"Tales of Berseria.exe"+1533018: 0F 2F C6                 -  comiss xmm0,xmm6
+// ---------- INJECTING HERE ----------
+"Tales of Berseria.exe"+153301B: F3 0F 11 73 38           -  movss [rbx+38],xmm6
+// ---------- DONE INJECTING  ----------
+"Tales of Berseria.exe"+1533020: 77 03                    -  ja "Tales of Berseria.exe"+1533025
+"Tales of Berseria.exe"+1533022: 0F 28 F0                 -  movaps xmm6,xmm0
+"Tales of Berseria.exe"+1533025: 80 3D 6B A6 9E FF 00     -  cmp byte ptr ["Tales of Berseria.exe"+F1D697],00
+"Tales of Berseria.exe"+153302C: 40 0F B6 FF              -  movzx edi,dil
+"Tales of Berseria.exe"+1533030: B8 0F A2 4E C3           -  mov eax,C34EA20F
+"Tales of Berseria.exe"+1533035: 8D 80 F2 5D B1 3C        -  lea eax,[rax+3CB15DF2]
+"Tales of Berseria.exe"+153303B: 0F 45 F8                 -  cmovne edi,eax
+"Tales of Berseria.exe"+153303E: 80 3D C3 A6 9E FF 00     -  cmp byte ptr ["Tales of Berseria.exe"+F1D708],00
+"Tales of Berseria.exe"+1533045: E9 B6 CF AB FE           -  jmp 13FFF0000
+"Tales of Berseria.exe"+153304A: 74 09                    -  je "Tales of Berseria.exe"+1533055
+}
+</AssemblerScript>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>6</ID>
+          <Description>"Stop Flash Beat Timer"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Tales of Berseria.exe
+  Version: 
+  Date   : 2019-12-01
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(InfTime,Tales of Berseria.exe,F3 0F 11 53 58) // should be unique
+alloc(newmem,$1000,"Tales of Berseria.exe"+1537A3B)
+
+label(code)
+label(return)
+
+newmem:
+  nop
+  nop
+  nop
+  nop
+  jmp return
+
+code:
+  movss [rbx+58],xmm2
+  jmp return
+
+InfTime:
+  jmp newmem
+return:
+registersymbol(InfTime)
+
+[DISABLE]
+
+InfTime:
+  db F3 0F 11 53 58
+
+unregistersymbol(InfTime)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "Tales of Berseria.exe"+1537A3B
+
+"Tales of Berseria.exe"+1537A17: F3 0F 5C D1                                   -  subss xmm2,xmm1
+"Tales of Berseria.exe"+1537A1B: 0F 2F C2                                      -  comiss xmm0,xmm2
+"Tales of Berseria.exe"+1537A1E: 72 0E                                         -  jb "Tales of Berseria.exe"+1537A2E
+"Tales of Berseria.exe"+1537A20: 0F 28 05 29 FA 48 FF                          -  movaps xmm0,["Tales of Berseria.exe"+9C7450]
+"Tales of Berseria.exe"+1537A27: 0F 11 83 08 03 00 00                          -  movups [rbx+00000308],xmm0
+"Tales of Berseria.exe"+1537A2E: 0F 57 C0                                      -  xorps xmm0,xmm0
+"Tales of Berseria.exe"+1537A31: 0F 2F C2                                      -  comiss xmm0,xmm2
+"Tales of Berseria.exe"+1537A34: 72 05                                         -  jb "Tales of Berseria.exe"+1537A3B
+"Tales of Berseria.exe"+1537A36: 0F 28 D0                                      -  movaps xmm2,xmm0
+"Tales of Berseria.exe"+1537A39: B1 01                                         -  mov cl,01
+// ---------- INJECTING HERE ----------
+"Tales of Berseria.exe"+1537A3B: F3 0F 11 53 58                                -  movss [rbx+58],xmm2
+// ---------- DONE INJECTING  ----------
+"Tales of Berseria.exe"+1537A40: 48 8B 05 D1 F1 AC FF                          -  mov rax,["Tales of Berseria.exe"+1006C18]
+"Tales of Berseria.exe"+1537A47: 30 D2                                         -  xor dl,dl
+"Tales of Berseria.exe"+1537A49: 38 90 48 03 00 00                             -  cmp [rax+00000348],dl
+"Tales of Berseria.exe"+1537A4F: 75 7C                                         -  jne "Tales of Berseria.exe"+1537ACD
+"Tales of Berseria.exe"+1537A51: 80 3D 3F 5C 9E FF 00                          -  cmp byte ptr ["Tales of Berseria.exe"+F1D697],00
+"Tales of Berseria.exe"+1537A58: 0F B6 C2                                      -  movzx eax,dl
+"Tales of Berseria.exe"+1537A5B: BA 0F A2 46 C3                                -  mov edx,C346A20F
+"Tales of Berseria.exe"+1537A60: 8D 92 F2 5D B9 3C                             -  lea edx,[rdx+3CB95DF2]
+"Tales of Berseria.exe"+1537A66: 0F 45 C2                                      -  cmovne eax,edx
+"Tales of Berseria.exe"+1537A69: 80 3D 98 5C 9E FF 00                          -  cmp byte ptr ["Tales of Berseria.exe"+F1D708],00
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>88</ID>
+      <Description>"Inf Arte"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Tales of Berseria.exe
+  Version: 
+  Date   : 2019-12-06
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(InfArte,Tales of Berseria.exe,FF 86 68 05 00 00 48) // should be unique
+alloc(newmem,$200,"Tales of Berseria.exe"+136CA9E)
+
+label(code)
+label(return)
+label(reset_step)
+
+newmem:
+  push eax
+  mov eax,[rsi+568]
+  inc eax
+  cmp eax,4
+  jge reset_step
+  mov [rsi+568],eax
+  pop eax
+  jmp return
+
+reset_step:
+  mov [rsi+568],0
+  pop eax
+  jmp return
+
+code:
+  inc [rsi+00000568]
+  jmp return
+
+InfArte:
+  jmp newmem
+  nop
+return:
+registersymbol(InfArte)
+
+[DISABLE]
+
+InfArte:
+  db FF 86 68 05 00 00
+
+unregistersymbol(InfArte)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "Tales of Berseria.exe"+136CA9E
+
+"Tales of Berseria.exe"+136CA72: 7A 02                          -  jp "Tales of Berseria.exe"+136CA76
+"Tales of Berseria.exe"+136CA74: 74 0A                          -  je "Tales of Berseria.exe"+136CA80
+"Tales of Berseria.exe"+136CA76: 81 A6 58 04 00 00 FF FF FF EF  -  and [rsi+00000458],EFFFFFFF
+"Tales of Berseria.exe"+136CA80: 41 8B 44 24 18                 -  mov eax,[r12+18]
+"Tales of Berseria.exe"+136CA85: 83 F8 01                       -  cmp eax,01
+"Tales of Berseria.exe"+136CA88: 75 09                          -  jne "Tales of Berseria.exe"+136CA93
+"Tales of Berseria.exe"+136CA8A: FF 86 70 05 00 00              -  inc [rsi+00000570]
+"Tales of Berseria.exe"+136CA90: EB 0C                          -  jmp "Tales of Berseria.exe"+136CA9E
+"Tales of Berseria.exe"+136CA92: 00 83 F8 02 75 06              -  add [rbx+067502F8],al
+"Tales of Berseria.exe"+136CA98: FF 86 74 05 00 00              -  inc [rsi+00000574]
+// ---------- INJECTING HERE ----------
+"Tales of Berseria.exe"+136CA9E: FF 86 68 05 00 00              -  inc [rsi+00000568]
+// ---------- DONE INJECTING  ----------
+"Tales of Berseria.exe"+136CAA4: 48 8B 4E 38                    -  mov rcx,[rsi+38]
+"Tales of Berseria.exe"+136CAA8: 48 8B 01                       -  mov rax,[rcx]
+"Tales of Berseria.exe"+136CAAB: 83 B8 18 3F 00 00 00           -  cmp dword ptr [rax+00003F18],00
+"Tales of Berseria.exe"+136CAB2: 7E 32                          -  jle "Tales of Berseria.exe"+136CAE6
+"Tales of Berseria.exe"+136CAB4: 41 8B 14 24                    -  mov edx,[r12]
+"Tales of Berseria.exe"+136CAB8: E8 B3 E9 09 00                 -  call "Tales of Berseria.exe"+140B470
+"Tales of Berseria.exe"+136CABD: 66 0F 6E C0                    -  movd xmm0,eax
+"Tales of Berseria.exe"+136CAC1: 0F 5B C0                       -  cvtdq2ps xmm0,xmm0
+"Tales of Berseria.exe"+136CAC4: F3 41 0F 59 C3                 -  mulss xmm0,xmm11
+"Tales of Berseria.exe"+136CAC9: 0F 2F C7                       -  comiss xmm0,xmm7
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>58</ID>
+      <Description>"Character Stat"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Value="" Activated="1" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>59</ID>
+          <Description>"Velvet"</Description>
+          <Options moHideChildren="1"/>
+          <LastState Value="" Activated="1" RealAddress="00000000"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>56</ID>
+              <Description>"HP"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"Tales of Berseria.exe"+00F1D1F0</Address>
+              <Offsets>
+                <Offset>C</Offset>
+                <Offset>A8</Offset>
+                <Offset>10</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>57</ID>
+              <Description>"MSP"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"Tales of Berseria.exe"+00F1D1F0</Address>
+              <Offsets>
+                <Offset>28</Offset>
+                <Offset>A8</Offset>
+                <Offset>10</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>54</ID>
+              <Description>"SP"</Description>
+              <VariableType>Float</VariableType>
+              <Address>"Tales of Berseria.exe"+00F1D1F0</Address>
+              <Offsets>
+                <Offset>10</Offset>
+                <Offset>A8</Offset>
+                <Offset>10</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>39</ID>
+              <Description>"BG"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"Tales of Berseria.exe"+00F1D1F8</Address>
+              <Offsets>
+                <Offset>14</Offset>
+                <Offset>A8</Offset>
+                <Offset>10</Offset>
+                <Offset>50</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>61</ID>
+      <Description>"XP Multipler"</Description>
+      <Options moHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+
+alloc(xp_mul,8)
+xp_mul:
+  db 02 00 00 00
+registersymbol(xp_mul)
+
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+unregistersymbol(xp_mul)
+dealloc(xp_mul)
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>62</ID>
+          <Description>"XP Multipler"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>xp_mul</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>63</ID>
+          <Description>"XP Mul. Script"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Tales of Berseria.exe
+  Version: 
+  Date   : 2019-12-02
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(XPMultipler,Tales of Berseria.exe,44 89 68 1C 49 8B 06) // should be unique
+alloc(newmem,$1000,"Tales of Berseria.exe"+14092CD)
+
+label(code)
+label(return)
+
+newmem:
+  push rax
+  push r15
+  mov r15,rax
+  mov rax,r13d
+  sub rax,[r15+1C]
+  mul [xp_mul]
+  add r13,rax
+  pop r15
+  pop rax
+  jmp code
+
+code:
+  mov [rax+1C],r13d
+  mov rax,[r14]
+  jmp return
+
+XPMultipler:
+  jmp newmem
+  nop
+  nop
+return:
+registersymbol(XPMultipler)
+
+[DISABLE]
+
+XPMultipler:
+  db 44 89 68 1C 49 8B 06
+
+unregistersymbol(XPMultipler)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "Tales of Berseria.exe"+14092CD
+
+"Tales of Berseria.exe"+14092AA: 89 18                    -  mov [rax],ebx
+"Tales of Berseria.exe"+14092AC: 48 8B 9C 24 08 01 00 00  -  mov rbx,[rsp+00000108]
+"Tales of Berseria.exe"+14092B4: 45 85 ED                 -  test r13d,r13d
+"Tales of Berseria.exe"+14092B7: 79 05                    -  jns "Tales of Berseria.exe"+14092BE
+"Tales of Berseria.exe"+14092B9: 41 89 ED                 -  mov r13d,ebp
+"Tales of Berseria.exe"+14092BC: EB 0C                    -  jmp "Tales of Berseria.exe"+14092CA
+"Tales of Berseria.exe"+14092BE: B8 FF E0 F5 05           -  mov eax,05F5E0FF
+"Tales of Berseria.exe"+14092C3: 41 39 C5                 -  cmp r13d,eax
+"Tales of Berseria.exe"+14092C6: 44 0F 4F E8              -  cmovg r13d,eax
+"Tales of Berseria.exe"+14092CA: 49 8B 06                 -  mov rax,[r14]
+// ---------- INJECTING HERE ----------
+"Tales of Berseria.exe"+14092CD: 44 89 68 1C              -  mov [rax+1C],r13d
+"Tales of Berseria.exe"+14092D1: 49 8B 06                 -  mov rax,[r14]
+// ---------- DONE INJECTING  ----------
+"Tales of Berseria.exe"+14092D4: 4C 8B B4 24 C8 00 00 00  -  mov r14,[rsp+000000C8]
+"Tales of Berseria.exe"+14092DC: 81 78 08 C8 00 00 00     -  cmp [rax+08],000000C8
+"Tales of Berseria.exe"+14092E3: 4C 8B AC 24 D0 00 00 00  -  mov r13,[rsp+000000D0]
+"Tales of Berseria.exe"+14092EB: 7C 5F                    -  jl "Tales of Berseria.exe"+140934C
+"Tales of Berseria.exe"+14092ED: 4C 8B 0D A4 B6 C5 FF     -  mov r9,["Tales of Berseria.exe"+1064998]
+"Tales of Berseria.exe"+14092F4: 4D 85 C9                 -  test r9,r9
+"Tales of Berseria.exe"+14092F7: 74 53                    -  je "Tales of Berseria.exe"+140934C
+"Tales of Berseria.exe"+14092F9: 41 83 79 04 17           -  cmp dword ptr [r9+04],17
+"Tales of Berseria.exe"+14092FE: 7E 4C                    -  jle "Tales of Berseria.exe"+140934C
+"Tales of Berseria.exe"+1409300: 49 8B 41 08              -  mov rax,[r9+08]
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>74</ID>
+      <Description>"Grade Magics"</Description>
+      <Options moHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>65</ID>
+          <Description>"Inf. Grade Timer"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Tales of Berseria.exe
+  Version: 
+  Date   : 2019-12-03
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INF_GRADE,Tales of Berseria.exe,01 F3 0F 11 53 70) // should be unique
+alloc(newmem,$1000,"Tales of Berseria.exe"+12BB23D)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rbx+70],(float)20.0
+  jmp return
+
+code:
+  movss [rbx+70],xmm2
+  jmp return
+
+INF_GRADE+01:
+  jmp newmem
+return:
+registersymbol(INF_GRADE)
+
+[DISABLE]
+
+INF_GRADE+01:
+  db F3 0F 11 53 70
+
+unregistersymbol(INF_GRADE)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "Tales of Berseria.exe"+12BB23D
+
+"Tales of Berseria.exe"+12BB211: 48 C7 43 74 00 00 80 3F  -  mov qword ptr [rbx+74],3F800000
+"Tales of Berseria.exe"+12BB219: F3 0F 11 53 70           -  movss [rbx+70],xmm2
+"Tales of Berseria.exe"+12BB21E: 0F 28 74 24 20           -  movaps xmm6,[rsp+20]
+"Tales of Berseria.exe"+12BB223: 48 83 C4 30              -  add rsp,30
+"Tales of Berseria.exe"+12BB227: 5B                       -  pop rbx
+"Tales of Berseria.exe"+12BB228: C3                       -  ret 
+"Tales of Berseria.exe"+12BB229: F3 0F 10 05 E3 B1 70 FF  -  movss xmm0,["Tales of Berseria.exe"+9C6414]
+"Tales of Berseria.exe"+12BB231: 0F 2F C2                 -  comiss xmm0,xmm2
+"Tales of Berseria.exe"+12BB234: 72 07                    -  jb "Tales of Berseria.exe"+12BB23D
+"Tales of Berseria.exe"+12BB236: C6 83 80 00 00 00 01     -  mov byte ptr [rbx+00000080],01
+// ---------- INJECTING HERE ----------
+"Tales of Berseria.exe"+12BB23D: F3 0F 11 53 70           -  movss [rbx+70],xmm2
+// ---------- DONE INJECTING  ----------
+"Tales of Berseria.exe"+12BB242: 0F 28 74 24 20           -  movaps xmm6,[rsp+20]
+"Tales of Berseria.exe"+12BB247: 48 83 C4 30              -  add rsp,30
+"Tales of Berseria.exe"+12BB24B: 5B                       -  pop rbx
+"Tales of Berseria.exe"+12BB24C: C3                       -  ret 
+"Tales of Berseria.exe"+12BB24D: CC                       -  int 3 
+"Tales of Berseria.exe"+12BB24E: CC                       -  int 3 
+"Tales of Berseria.exe"+12BB24F: 90                       -  nop 
+"Tales of Berseria.exe"+12BB250: 48 89 5C 24 18           -  mov [rsp+18],rbx
+"Tales of Berseria.exe"+12BB255: 56                       -  push rsi
+"Tales of Berseria.exe"+12BB256: 48 83 EC 60              -  sub rsp,60
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>76</ID>
+          <Description>"Prevent Grade Multpler Reset"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Tales of Berseria.exe
+  Version: 
+  Date   : 2019-12-04
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(NoGradeReset,Tales of Berseria.exe,48 C7 43 74 00 00 80 3F F3) // should be unique
+alloc(newmem,$1000,"Tales of Berseria.exe"+12BB211)
+
+label(code)
+label(return)
+
+newmem:
+  jmp return
+
+code:
+  mov qword ptr [rbx+74],3F800000
+  jmp return
+
+NoGradeReset:
+  jmp newmem
+  nop
+  nop
+  nop
+return:
+registersymbol(NoGradeReset)
+
+[DISABLE]
+
+NoGradeReset:
+  db 48 C7 43 74 00 00 80 3F
+
+unregistersymbol(NoGradeReset)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "Tales of Berseria.exe"+12BB211
+
+"Tales of Berseria.exe"+12BB1EE: F3 0F 5E C6              -  divss xmm0,xmm6
+"Tales of Berseria.exe"+12BB1F2: F3 0F 5E C8              -  divss xmm1,xmm0
+"Tales of Berseria.exe"+12BB1F6: 0F 57 C0                 -  xorps xmm0,xmm0
+"Tales of Berseria.exe"+12BB1F9: F3 0F 5C D1              -  subss xmm2,xmm1
+"Tales of Berseria.exe"+12BB1FD: 0F 2F C2                 -  comiss xmm0,xmm2
+"Tales of Berseria.exe"+12BB200: 76 27                    -  jna "Tales of Berseria.exe"+12BB229
+"Tales of Berseria.exe"+12BB202: 0F 28 D0                 -  movaps xmm2,xmm0
+"Tales of Berseria.exe"+12BB205: 31 C0                    -  xor eax,eax
+"Tales of Berseria.exe"+12BB207: C6 83 80 00 00 00 00     -  mov byte ptr [rbx+00000080],00
+"Tales of Berseria.exe"+12BB20E: 89 43 70                 -  mov [rbx+70],eax
+// ---------- INJECTING HERE ----------
+"Tales of Berseria.exe"+12BB211: 48 C7 43 74 00 00 80 3F  -  mov qword ptr [rbx+74],3F800000
+// ---------- DONE INJECTING  ----------
+"Tales of Berseria.exe"+12BB219: F3 0F 11 53 70           -  movss [rbx+70],xmm2
+"Tales of Berseria.exe"+12BB21E: 0F 28 74 24 20           -  movaps xmm6,[rsp+20]
+"Tales of Berseria.exe"+12BB223: 48 83 C4 30              -  add rsp,30
+"Tales of Berseria.exe"+12BB227: 5B                       -  pop rbx
+"Tales of Berseria.exe"+12BB228: C3                       -  ret 
+"Tales of Berseria.exe"+12BB229: F3 0F 10 05 E3 B1 70 FF  -  movss xmm0,["Tales of Berseria.exe"+9C6414]
+"Tales of Berseria.exe"+12BB231: 0F 2F C2                 -  comiss xmm0,xmm2
+"Tales of Berseria.exe"+12BB234: 72 07                    -  jb "Tales of Berseria.exe"+12BB23D
+"Tales of Berseria.exe"+12BB236: C6 83 80 00 00 00 01     -  mov byte ptr [rbx+00000080],01
+"Tales of Berseria.exe"+12BB23D: E9 BE 4D D2 FE           -  jmp 13FFE0000
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>75</ID>
+          <Description>"Grade Multipler"</Description>
+          <VariableType>Float</VariableType>
+          <Address>"Tales of Berseria.exe"+01006BE0</Address>
+          <Offsets>
+            <Offset>74</Offset>
+            <Offset>168</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>84</ID>
+      <Description>"Katz Soul"</Description>
+      <Options moHideChildren="1"/>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Tales of Berseria.exe
+  Version: 
+  Date   : 2019-12-05
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(KatzSoulFinder,Tales of Berseria.exe,89 82 20 09 00 00) // should be unique
+alloc(newmem,$100,"Tales of Berseria.exe"+15BA3D1)
+
+label(code)
+label(return)
+label(pt_katzsoul)
+
+newmem:
+  push eax
+  mov eax,rdx
+  add eax,920
+  mov [pt_katzsoul],eax
+  pop eax
+  jmp code
+
+code:
+  mov [rdx+00000920],eax
+  jmp return
+
+pt_katzsoul:
+  db 00 00 00 00
+
+KatzSoulFinder:
+  jmp newmem
+  nop
+
+return:
+registersymbol(KatzSoulFinder)
+registersymbol(pt_katzsoul)
+
+[DISABLE]
+
+KatzSoulFinder:
+  db 89 82 20 09 00 00
+
+unregistersymbol(KatzSoulFinder)
+unregistersymbol(pt_katzsoul)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "Tales of Berseria.exe"+15BA3D1
+
+"Tales of Berseria.exe"+15BA3AF: 48 8B 0D 5A 2E 96 FF        -  mov rcx,["Tales of Berseria.exe"+F1D210]
+"Tales of Berseria.exe"+15BA3B6: 48 8B 51 10                 -  mov rdx,[rcx+10]
+"Tales of Berseria.exe"+15BA3BA: 8B 82 20 09 00 00           -  mov eax,[rdx+00000920]
+"Tales of Berseria.exe"+15BA3C0: FF C0                       -  inc eax
+"Tales of Berseria.exe"+15BA3C2: 79 06                       -  jns "Tales of Berseria.exe"+15BA3CA
+"Tales of Berseria.exe"+15BA3C4: 44 89 F0                    -  mov eax,r14d
+"Tales of Berseria.exe"+15BA3C7: EB 08                       -  jmp "Tales of Berseria.exe"+15BA3D1
+"Tales of Berseria.exe"+15BA3C9: E4 44                       -  in al,44
+"Tales of Berseria.exe"+15BA3CB: 39 F8                       -  cmp eax,edi
+"Tales of Berseria.exe"+15BA3CD: 41 0F 4F C7                 -  cmovg eax,r15d
+// ---------- INJECTING HERE ----------
+"Tales of Berseria.exe"+15BA3D1: 89 82 20 09 00 00           -  mov [rdx+00000920],eax
+// ---------- DONE INJECTING  ----------
+"Tales of Berseria.exe"+15BA3D7: BA 16 00 00 00              -  mov edx,00000016
+"Tales of Berseria.exe"+15BA3DC: 44 8D 42 EB                 -  lea r8d,[rdx-15]
+"Tales of Berseria.exe"+15BA3E0: E8 1B 34 E4 FF              -  call "Tales of Berseria.exe"+13FD800
+"Tales of Berseria.exe"+15BA3E5: 4C 89 74 24 48              -  mov [rsp+48],r14
+"Tales of Berseria.exe"+15BA3EA: 0F 57 C0                    -  xorps xmm0,xmm0
+"Tales of Berseria.exe"+15BA3ED: F3 0F 7F 44 24 58           -  movdqu [rsp+58],xmm0
+"Tales of Berseria.exe"+15BA3F3: 48 C7 44 24 68 00 00 01 01  -  mov qword ptr [rsp+68],01010000
+"Tales of Berseria.exe"+15BA3FC: 48 89 5C 24 50              -  mov [rsp+50],rbx
+"Tales of Berseria.exe"+15BA401: 49 8B 5D 10                 -  mov rbx,[r13+10]
+"Tales of Berseria.exe"+15BA405: 48 8B 0D 9C C2 A4 FF        -  mov rcx,["Tales of Berseria.exe"+10066A8]
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>83</ID>
+          <Description>"Amount"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_katzsoul</Address>
+          <Offsets>
+            <Offset>0</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>89</ID>
+      <Description>"No Description"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>2F26B328</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

@@ -1,0 +1,1784 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="29">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>103</ID>
+      <Description>"General"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>68</ID>
+          <Description>"Garrison"</Description>
+          <Options moHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+          <LastState Value="" RealAddress="00000000"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>61</ID>
+              <Description>"Last Unit"</Description>
+              <Options moHideChildren="1"/>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : TaleWorlds.MountAndBlade.Launcher.exe
+  Version: 
+  Date   : 2020-04-05
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_GARRISON,89 51 08 48 83 C4 20 5E C3 48 B9) // should be unique
+alloc(newmem,$1000,7FE94797369)
+
+label(code)
+label(return)
+label(flag_garrison)
+label(pt_garrison)
+label(pt_garrison2)
+label(L1)
+
+newmem:
+  cmp [flag_garrison],0
+  je L1
+  mov [pt_garrison2],rcx
+  xor [flag_garrison],1
+  jmp code
+
+L1:
+  mov [pt_garrison],rcx
+  xor [flag_garrison],1
+  jmp code
+
+flag_garrison:
+  dq 0
+
+pt_garrison:
+  dq 0
+registersymbol(pt_garrison)
+
+pt_garrison2:
+  dq 0
+registersymbol(pt_garrison2)
+
+code:
+  mov [rcx+08],edx
+  add rsp,20
+  jmp return
+
+INJ_GARRISON:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJ_GARRISON)
+
+[DISABLE]
+
+INJ_GARRISON:
+  db 89 51 08 48 83 C4 20
+
+unregistersymbol(pt_garrison)
+unregistersymbol(pt_garrison2)
+unregistersymbol(INJ_GARRISON)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 7FE94797369
+
+7FE9479734D: 00 00                          -  add [rax],al
+7FE9479734F: 00 00                          -  add [rax],al
+7FE94797351: 00 00                          -  add [rax],al
+7FE94797353: 00 00                          -  add [rax],al
+7FE94797355: 00 00                          -  add [rax],al
+7FE94797357: 00 78 BA                       -  add [rax-46],bh
+7FE9479735A: 9A 94 FE 07 00 00 56           -  call (invalid) 5600:
+7FE94797361: 48 83 EC 20                    -  sub rsp,20
+7FE94797365: 85 D2                          -  test edx,edx
+7FE94797367: 7C 09                          -  jl 7FE94797372
+// ---------- INJECTING HERE ----------
+7FE94797369: 89 51 08                       -  mov [rcx+08],edx
+7FE9479736C: 48 83 C4 20                    -  add rsp,20
+// ---------- DONE INJECTING  ----------
+7FE94797370: 5E                             -  pop rsi
+7FE94797371: C3                             -  ret 
+7FE94797372: 48 B9 70 AC B8 93 FE 07 00 00  -  mov rcx,000007FE93B8AC70
+7FE9479737C: E8 8F B1 2B 5E                 -  call clr.dll+2510
+7FE94797381: 48 8B F0                       -  mov rsi,rax
+7FE94797384: B9 BD 2E 03 00                 -  mov ecx,00032EBD
+7FE94797389: 48 BA 80 72 CE 93 FE 07 00 00  -  mov rdx,000007FE93CE7280
+7FE94797393: E8 08 F5 40 5E                 -  call clr.dll+1568A0
+7FE94797398: 48 8B D0                       -  mov rdx,rax
+7FE9479739B: 48 8B CE                       -  mov rcx,rsi
+}
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>62</ID>
+                  <Description>"Last Number"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>pt_garrison</Address>
+                  <Offsets>
+                    <Offset>8</Offset>
+                  </Offsets>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>93</ID>
+                      <Description>"XP"</Description>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+8</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>63</ID>
+                  <Description>"Last Number 2"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>pt_garrison2</Address>
+                  <Offsets>
+                    <Offset>8</Offset>
+                  </Offsets>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>94</ID>
+                      <Description>"XP"</Description>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+8</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>65</ID>
+              <Description>"Party Number"</Description>
+              <Options moHideChildren="1"/>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : TaleWorlds.MountAndBlade.Launcher.exe
+  Version: 
+  Date   : 2020-04-05
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_GARRISON_TOTAL,01 5E 28 80 BC 24 B8 00 00 00 00) // should be unique
+alloc(newmem,$1000,7FE947971E7)
+
+label(code)
+label(return)
+label(L1)
+label(flag_gar_total)
+label(pt_gar_total)
+label(pt_gar_total2)
+
+newmem:
+  cmp [flag_gar_total],0
+  je L1
+  mov [pt_gar_total2],rsi
+  xor [flag_gar_total],1
+  jmp code
+
+L1:
+  mov [pt_gar_total],rsi
+  xor [flag_gar_total],1
+  jmp code
+
+flag_gar_total:
+  dq 0
+
+pt_gar_total:
+  dq 0
+registersymbol(pt_gar_total)
+
+pt_gar_total2:
+  dq 0
+registersymbol(pt_gar_total2)
+
+code:
+  add [rsi+28],ebx
+  cmp byte ptr [rsp+000000B8],00
+  jmp return
+
+INJ_GARRISON_TOTAL:
+  jmp newmem
+  nop 6
+return:
+registersymbol(INJ_GARRISON_TOTAL)
+
+[DISABLE]
+
+INJ_GARRISON_TOTAL:
+  db 01 5E 28 80 BC 24 B8 00 00 00 00
+
+unregistersymbol(pt_gar_total)
+unregistersymbol(pt_gar_total2)
+unregistersymbol(INJ_GARRISON_TOTAL)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 7FE947971E7
+
+7FE947971C1: 41 83 B8 60 01 00 00 14  -  cmp dword ptr [r8+00000160],14
+7FE947971C9: 7F 03                    -  jg 7FE947971CE
+7FE947971CB: 01 5E 30                 -  add [rsi+30],ebx
+7FE947971CE: 85 DB                    -  test ebx,ebx
+7FE947971D0: 74 18                    -  je 7FE947971EA
+7FE947971D2: 41 BF 01 00 00 00        -  mov r15d,00000001
+7FE947971D8: 80 BC 24 B8 00 00 00 00  -  cmp byte ptr [rsp+000000B8],00
+7FE947971E0: 74 3F                    -  je 7FE94797221
+7FE947971E2: EB 10                    -  jmp 7FE947971F4
+7FE947971E4: 01 6E 2C                 -  add [rsi+2C],ebp
+// ---------- INJECTING HERE ----------
+7FE947971E7: 01 5E 28                 -  add [rsi+28],ebx
+7FE947971EA: 80 BC 24 B8 00 00 00 00  -  cmp byte ptr [rsp+000000B8],00
+// ---------- DONE INJECTING  ----------
+7FE947971F2: 74 2D                    -  je 7FE94797221
+7FE947971F4: 4C 8B 46 10              -  mov r8,[rsi+10]
+7FE947971F8: 41 3B 78 08              -  cmp edi,[r8+08]
+7FE947971FC: 0F 83 27 01 00 00        -  jae 7FE94797329
+7FE94797202: 4F 8D 44 E0 10           -  lea r8,[r8+r12*8+10]
+7FE94797207: 41 83 78 08 00           -  cmp dword ptr [r8+08],00
+7FE9479720C: 75 13                    -  jne 7FE94797221
+7FE9479720E: 44 8D 47 01              -  lea r8d,[rdi+01]
+7FE94797212: 48 8B CE                 -  mov rcx,rsi
+7FE94797215: 8B D7                    -  mov edx,edi
+}
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>66</ID>
+                  <Description>"Last Party Number"</Description>
+                  <ShowAsSigned>1</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>pt_gar_total</Address>
+                  <Offsets>
+                    <Offset>28</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>67</ID>
+                  <Description>"Last Party Number 2"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>pt_gar_total2</Address>
+                  <Offsets>
+                    <Offset>28</Offset>
+                  </Offsets>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>79</ID>
+          <Description>"Army Cohesion"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : TaleWorlds.MountAndBlade.Launcher.exe
+  Version: 
+  Date   : 2020-04-12
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_COHESION,F3 0F 10 76 60 48) // should be unique
+alloc(newmem,$1000,7FE94B8E630)
+
+label(code)
+label(return)
+label(pt_cohesion)
+
+newmem:
+  mov [pt_cohesion],rsi
+  jmp code
+
+pt_cohesion:
+  dq 0
+registersymbol(pt_cohesion)
+
+code:
+  movss xmm6,[rsi+60]
+  jmp return
+
+INJ_COHESION:
+  jmp newmem
+return:
+registersymbol(INJ_COHESION)
+
+[DISABLE]
+
+INJ_COHESION:
+  db F3 0F 10 76 60
+
+unregistersymbol(pt_cohesion)
+unregistersymbol(INJ_COHESION)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 7FE94B8E630
+
+7FE94B8E60C: 48 8B F1                       -  mov rsi,rcx
+7FE94B8E60F: 48 8B CE                       -  mov rcx,rsi
+7FE94B8E612: 39 09                          -  cmp [rcx],ecx
+7FE94B8E614: E8 FF 48 2E FF                 -  call 7FE93E72F18
+7FE94B8E619: 48 8B F8                       -  mov rdi,rax
+7FE94B8E61C: 48 8B 0C 25 C0 BB 05 14        -  mov rcx,[1405BBC0]
+7FE94B8E624: 48 8B 01                       -  mov rax,[rcx]
+7FE94B8E627: 48 8B 40 40                    -  mov rax,[rax+40]
+7FE94B8E62B: FF 10                          -  call qword ptr [rax]
+7FE94B8E62D: 48 8B D8                       -  mov rbx,rax
+// ---------- INJECTING HERE ----------
+7FE94B8E630: F3 0F 10 76 60                 -  movss xmm6,[rsi+60]
+// ---------- DONE INJECTING  ----------
+7FE94B8E635: 48 8B CE                       -  mov rcx,rsi
+7FE94B8E638: E8 B3 76 A7 FF                 -  call 7FE94605CF0
+7FE94B8E63D: 0F 28 D0                       -  movaps xmm2,xmm0
+7FE94B8E640: 0F 28 CE                       -  movaps xmm1,xmm6
+7FE94B8E643: 48 8B CB                       -  mov rcx,rbx
+7FE94B8E646: 4C 8B CF                       -  mov r9,rdi
+7FE94B8E649: 48 B8 10 99 A0 94 FE 07 00 00  -  mov rax,000007FE94A09910
+7FE94B8E653: 0F 28 74 24 20                 -  movaps xmm6,[rsp+20]
+7FE94B8E658: 48 83 C4 30                    -  add rsp,30
+7FE94B8E65C: 5B                             -  pop rbx
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>80</ID>
+              <Description>"Cohesion"</Description>
+              <VariableType>Float</VariableType>
+              <Address>pt_cohesion</Address>
+              <Offsets>
+                <Offset>60</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>6</ID>
+          <Description>"Gold Pointer"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : TaleWorlds.MountAndBlade.Launcher.exe
+  Version: 
+  Date   : 2020-04-01
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+{ Game   : TaleWorlds.MountAndBlade.Launcher.exe
+  Version: 
+  Date   : 2020-04-01
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_GOLD,39 82 70 01 00 00 0F) // should be unique
+alloc(newmem,$1000,7FE942EC472)
+
+label(code)
+label(return)
+label(pt_gold)
+
+newmem:
+  mov [pt_gold],rdx
+  add [pt_gold],170
+  jmp code
+
+pt_gold:
+  dq 0
+registersymbol(pt_gold)
+
+code:
+  cmp [rdx+00000170],eax
+  jmp return
+
+INJ_GOLD:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_GOLD)
+
+
+[DISABLE]
+
+INJ_GOLD:
+  db 39 82 70 01 00 00
+
+unregistersymbol(pt_gold)
+unregistersymbol(INJ_GOLD)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 7FE942EC472
+
+7FE942EC444: E8 C7 67 AE FF                 -  call 7FE93DD2C10
+7FE942EC449: 48 8B 14 25 80 0E 40 14        -  mov rdx,[14400E80]
+7FE942EC451: 48 8B 52 68                    -  mov rdx,[rdx+68]
+7FE942EC455: 48 85 D2                       -  test rdx,rdx
+7FE942EC458: 74 11                          -  je 7FE942EC46B
+7FE942EC45A: 48 B9 A8 4A D0 93 FE 07 00 00  -  mov rcx,000007FE93D04AA8
+7FE942EC464: 48 39 0A                       -  cmp [rdx],rcx
+7FE942EC467: 74 02                          -  je 7FE942EC46B
+7FE942EC469: 33 D2                          -  xor edx,edx
+7FE942EC46B: 48 8B 92 10 01 00 00           -  mov rdx,[rdx+00000110]
+// ---------- INJECTING HERE ----------
+7FE942EC472: 39 82 70 01 00 00              -  cmp [rdx+00000170],eax
+// ---------- DONE INJECTING  ----------
+7FE942EC478: 0F 9C C2                       -  setl dl
+7FE942EC47B: 0F B6 D2                       -  movzx edx,dl
+7FE942EC47E: 48 8B CE                       -  mov rcx,rsi
+7FE942EC481: E8 7A 7C D0 FF                 -  call 7FE93FF4100
+7FE942EC486: 48 8B 14 25 80 0E 40 14        -  mov rdx,[14400E80]
+7FE942EC48E: 48 8B 52 68                    -  mov rdx,[rdx+68]
+7FE942EC492: 48 85 D2                       -  test rdx,rdx
+7FE942EC495: 74 11                          -  je 7FE942EC4A8
+7FE942EC497: 48 B9 A8 4A D0 93 FE 07 00 00  -  mov rcx,000007FE93D04AA8
+7FE942EC4A1: 48 39 0A                       -  cmp [rdx],rcx
+}
+
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>7</ID>
+              <Description>"Gold"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>pt_gold</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>104</ID>
+      <Description>"Character"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Value="" Activated="1" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>55</ID>
+          <Description>"Influence"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : TaleWorlds.MountAndBlade.Launcher.exe
+  Version: 
+  Date   : 2020-04-05
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+
+ 
+ 
+aobscan(INJ_INFLUNECE,F3 0F 2C 51 1C) // should be unique
+alloc(newmem,$1000,7FE941F111A)
+
+label(code)
+label(return)
+label(pt_influence)
+
+newmem:
+  mov [pt_influence],rcx
+  jmp code
+
+pt_influence:
+  dq 0
+registersymbol(pt_influence)
+
+code:
+  cvttss2si edx,[rcx+1C]
+  jmp return
+
+INJ_INFLUNECE:
+  jmp newmem
+return:
+registersymbol(INJ_INFLUNECE)
+
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+INJ_INFLUNECE:
+  db F3 0F 2C 51 1C
+
+unregistersymbol(pt_influence)
+unregistersymbol(INJ_INFLUNECE)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 7FE941F111A
+
+7FE941F10ED: 48 B9 A8 4A C0 93 FE 07 00 00  -  mov rcx,000007FE93C04AA8
+7FE941F10F7: 48 39 0A                       -  cmp [rdx],rcx
+7FE941F10FA: 74 02                          -  je 7FE941F10FE
+7FE941F10FC: 33 D2                          -  xor edx,edx
+7FE941F10FE: 48 8B 92 10 01 00 00           -  mov rdx,[rdx+00000110]
+7FE941F1105: 8B 0A                          -  mov ecx,[rdx]
+7FE941F1107: 48 8B 8A 88 00 00 00           -  mov rcx,[rdx+00000088]
+7FE941F110E: 48 85 C9                       -  test rcx,rcx
+7FE941F1111: 75 07                          -  jne 7FE941F111A
+7FE941F1113: 48 8B 8A A0 00 00 00           -  mov rcx,[rdx+000000A0]
+// ---------- INJECTING HERE ----------
+7FE941F111A: F3 0F 2C 51 1C                 -  cvttss2si edx,[rcx+1C]
+// ---------- DONE INJECTING  ----------
+7FE941F111F: 48 8B CE                       -  mov rcx,rsi
+7FE941F1122: E8 D9 30 D0 FF                 -  call 7FE93EF4200
+7FE941F1127: 8B 8E BC 00 00 00              -  mov ecx,[rsi+000000BC]
+7FE941F112D: E8 F6 02 D0 FF                 -  call 7FE93EF1428
+7FE941F1132: 48 8B D0                       -  mov rdx,rax
+7FE941F1135: 48 8B CE                       -  mov rcx,rsi
+7FE941F1138: E8 D3 30 D0 FF                 -  call 7FE93EF4210
+7FE941F113D: E8 BE 82 FA FF                 -  call 7FE94199400
+7FE941F1142: 48 8B C8                       -  mov rcx,rax
+7FE941F1145: 39 09                          -  cmp [rcx],ecx
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>56</ID>
+              <Description>"Influence"</Description>
+              <VariableType>Float</VariableType>
+              <Address>pt_influence</Address>
+              <Offsets>
+                <Offset>1C</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>28</ID>
+          <Description>"Renown Pointer (open clan menu)"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : TaleWorlds.MountAndBlade.Launcher.exe
+  Version: 
+  Date   : 2020-04-03
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_RENOWN,F3 0F 2C 92 FC 00 00 00) // should be unique
+alloc(newmem,$1000,7FE94BEB377)
+
+label(code)
+label(return)
+label(pt_renown)
+
+newmem:
+  mov [pt_renown],rdx
+  jmp code
+
+pt_renown:
+  dq 0
+registersymbol(pt_renown)
+
+code:
+  cvttss2si edx,[rdx+000000FC]
+  jmp return
+
+INJ_RENOWN:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJ_RENOWN)
+
+[DISABLE]
+
+INJ_RENOWN:
+  db F3 0F 2C 92 FC 00 00 00
+
+unregistersymbol(pt_renown)
+unregistersymbol(INJ_RENOWN)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 7FE94BEB377
+
+7FE94BEB349: E8 C2 71 D1 5D                 -  call clr.dll+2510
+7FE94BEB34E: 48 8B D8                       -  mov rbx,rax
+7FE94BEB351: 48 8B 97 98 00 00 00           -  mov rdx,[rdi+00000098]
+7FE94BEB358: 48 8B CB                       -  mov rcx,rbx
+7FE94BEB35B: E8 50 3C A3 FF                 -  call 7FE9461EFB0
+7FE94BEB360: 48 8B CE                       -  mov rcx,rsi
+7FE94BEB363: 48 8B D3                       -  mov rdx,rbx
+7FE94BEB366: E8 55 EB 34 FF                 -  call 7FE93F39EC0
+7FE94BEB36B: E8 10 F5 55 FF                 -  call 7FE9414A880
+7FE94BEB370: 48 8B 90 88 00 00 00           -  mov rdx,[rax+00000088]
+// ---------- INJECTING HERE ----------
+7FE94BEB377: F3 0F 2C 92 FC 00 00 00        -  cvttss2si edx,[rdx+000000FC]
+// ---------- DONE INJECTING  ----------
+7FE94BEB37F: 48 8B CE                       -  mov rcx,rsi
+7FE94BEB382: E8 A9 EC 34 FF                 -  call 7FE93F3A030
+7FE94BEB387: E8 F4 F4 55 FF                 -  call 7FE9414A880
+7FE94BEB38C: 48 8B 90 88 00 00 00           -  mov rdx,[rax+00000088]
+7FE94BEB393: 8B 92 04 01 00 00              -  mov edx,[rdx+00000104]
+7FE94BEB399: 48 8B CE                       -  mov rcx,rsi
+7FE94BEB39C: E8 5F EC 34 FF                 -  call 7FE93F3A000
+7FE94BEB3A1: E8 DA F4 55 FF                 -  call 7FE9414A880
+7FE94BEB3A6: 48 8B 80 50 01 00 00           -  mov rax,[rax+00000150]
+7FE94BEB3AD: 48 8B B8 A8 01 00 00           -  mov rdi,[rax+000001A8]
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>29</ID>
+              <Description>"Renown"</Description>
+              <VariableType>Float</VariableType>
+              <Address>pt_renown</Address>
+              <Offsets>
+                <Offset>FC</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>31</ID>
+          <Description>"Attribute Points"</Description>
+          <Options moHideChildren="1" moActivateChildrenAsWell="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : TaleWorlds.MountAndBlade.Launcher.exe
+  Version: 
+  Date   : 2020-04-03
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+
+aobscan(INJ_ATTR_PTS,8B 51 44 8B CA) // should be unique
+alloc(newmem,$1000,7FE9531F658)
+
+label(code)
+label(return)
+label(pt_attr_pts)
+
+newmem:
+  mov [pt_attr_pts],rcx
+  jmp code
+
+pt_attr_pts:
+  dq 0
+registersymbol(pt_attr_pts)
+
+code:
+  mov edx,[rcx+44]
+  mov ecx,edx
+  jmp return
+
+INJ_ATTR_PTS:
+  jmp newmem
+return:
+registersymbol(INJ_ATTR_PTS)
+
+[DISABLE]
+
+INJ_ATTR_PTS:
+  db 8B 51 44 8B CA
+
+unregistersymbol(pt_attr_pts)
+unregistersymbol(INJ_ATTR_PTS)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 7FE9531F658
+
+7FE9531F634: 8B CA                          -  mov ecx,edx
+7FE9531F636: 89 8E A0 00 00 00              -  mov [rsi+000000A0],ecx
+7FE9531F63C: 48 8B CE                       -  mov rcx,rsi
+7FE9531F63F: E8 3C B2 77 FF                 -  call 7FE94A9A880
+7FE9531F644: 48 8B 56 20                    -  mov rdx,[rsi+20]
+7FE9531F648: 48 85 D2                       -  test rdx,rdx
+7FE9531F64B: 75 04                          -  jne 7FE9531F651
+7FE9531F64D: 33 C9                          -  xor ecx,ecx
+7FE9531F64F: EB 07                          -  jmp 7FE9531F658
+7FE9531F651: 48 8B 8A 38 01 00 00           -  mov rcx,[rdx+00000138]
+// ---------- INJECTING HERE ----------
+7FE9531F658: 8B 51 44                       -  mov edx,[rcx+44]
+7FE9531F65B: 8B CA                          -  mov ecx,edx
+// ---------- DONE INJECTING  ----------
+7FE9531F65D: 89 8E A4 00 00 00              -  mov [rsi+000000A4],ecx
+7FE9531F663: 48 8B CE                       -  mov rcx,rsi
+7FE9531F666: E8 25 B2 77 FF                 -  call 7FE94A9A890
+7FE9531F66B: 48 8B 56 20                    -  mov rdx,[rsi+20]
+7FE9531F66F: 48 85 D2                       -  test rdx,rdx
+7FE9531F672: 75 04                          -  jne 7FE9531F678
+7FE9531F674: 33 D2                          -  xor edx,edx
+7FE9531F676: EB 07                          -  jmp 7FE9531F67F
+7FE9531F678: 48 8B 92 38 01 00 00           -  mov rdx,[rdx+00000138]
+7FE9531F67F: 48 8D 4E 28                    -  lea rcx,[rsi+28]
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>44</ID>
+              <Description>"Skill"</Description>
+              <VariableType>2 Bytes</VariableType>
+              <Address>pt_attr_pts</Address>
+              <Offsets>
+                <Offset>40</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>47</ID>
+              <Description>"Attribute"</Description>
+              <VariableType>2 Bytes</VariableType>
+              <Address>pt_attr_pts</Address>
+              <Offsets>
+                <Offset>44</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>108</ID>
+          <Description>"Smithing Stamina"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : TaleWorlds.MountAndBlade.Launcher.exe
+  Version: 
+  Date   : 2020-04-12
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_SMITH_STAMINA,8B 40 08 48 83 C4 28 C3 00 00) // should be unique
+alloc(newmem,$1000,7FE8BA2C8F9)
+
+label(code)
+label(return)
+label(pt_smith_stamina)
+
+newmem:
+  mov [pt_smith_stamina],rax
+  jmp code
+
+pt_smith_stamina:
+  dq 0
+registersymbol(pt_smith_stamina)
+
+code:
+  mov eax,[rax+08]
+  add rsp,28
+  jmp return
+
+INJ_SMITH_STAMINA:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJ_SMITH_STAMINA)
+
+[DISABLE]
+
+INJ_SMITH_STAMINA:
+  db 8B 40 08 48 83 C4 28
+
+unregistersymbol(pt_smith_stamina)
+unregistersymbol(INJ_SMITH_STAMINA)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 7FE8BA2C8F9
+
+7FE8BA2C8DC: 40 00 00                       -  add [rax],al
+7FE8BA2C8DF: 00 00                          -  add [rax],al
+7FE8BA2C8E1: 00 00                          -  add [rax],al
+7FE8BA2C8E3: 00 00                          -  add [rax],al
+7FE8BA2C8E5: 00 00                          -  add [rax],al
+7FE8BA2C8E7: 00 50 1A                       -  add [rax+1A],dl
+7FE8BA2C8EA: C4 8B FE 07                    -  pop es
+7FE8BA2C8EE: 00 00                          -  add [rax],al
+7FE8BA2C8F0: 48 83 EC 28                    -  sub rsp,28
+7FE8BA2C8F4: E8 37 5B 90 FF                 -  call 7FE8B332430
+// ---------- INJECTING HERE ----------
+7FE8BA2C8F9: 8B 40 08                       -  mov eax,[rax+08]
+7FE8BA2C8FC: 48 83 C4 28                    -  add rsp,28
+// ---------- DONE INJECTING  ----------
+7FE8BA2C900: C3                             -  ret 
+7FE8BA2C901: 00 00                          -  add [rax],al
+7FE8BA2C903: 00 19                          -  add [rcx],bl
+7FE8BA2C905: 04 01                          -  add al,01
+7FE8BA2C907: 00 04 42                       -  add [rdx+rax*2],al
+7FE8BA2C90A: 00 00                          -  add [rax],al
+7FE8BA2C90C: 40 00 00                       -  add [rax],al
+7FE8BA2C90F: 00 00                          -  add [rax],al
+7FE8BA2C911: 00 00                          -  add [rax],al
+7FE8BA2C913: 00 00                          -  add [rax],al
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>109</ID>
+              <Description>"Stamina"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>pt_smith_stamina</Address>
+              <Offsets>
+                <Offset>8</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>111</ID>
+          <Description>"Lord Relation"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : TaleWorlds.MountAndBlade.Launcher.exe
+  Version: 
+  Date   : 2020-04-12
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_RELATION,ERROR: Could not find unique AOB, tried code "8B 44 C2 20 89 07") // should be unique
+alloc(newmem,$1000,7FE8B686768)
+
+label(code)
+label(return)
+label(pt_relation)
+
+newmem:
+  push rcx
+  push rbx
+  push rax
+  mov rcx,8
+  mov rbx,rdx
+  mul rcx
+  add rbx,rax
+  add rbx,20
+  mov [pt_relation],rbx
+  pop rax
+  pop rbx
+  pop rcx
+  jmp code
+
+pt_relation:
+  dq 0
+registersymbol(pt_relation)
+
+code:
+  mov eax,[rdx+rax*8+20]
+  mov [rdi],eax
+  jmp return
+
+INJ_RELATION:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_RELATION)
+
+[DISABLE]
+
+INJ_RELATION:
+  db 8B 44 C2 20 89 07
+
+unregistersymbol(pt_relation)
+unregistersymbol(INJ_RELATION)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 7FE8B686768
+
+7FE8B686749: 49 8B F8                       -  mov rdi,r8
+7FE8B68674C: 48 8B CE                       -  mov rcx,rsi
+7FE8B68674F: E8 B4 8F EA FF                 -  call 7FE8B52F708
+7FE8B686754: 85 C0                          -  test eax,eax
+7FE8B686756: 7C 22                          -  jl 7FE8B68677A
+7FE8B686758: 48 8B 56 10                    -  mov rdx,[rsi+10]
+7FE8B68675C: 3B 42 08                       -  cmp eax,[rdx+08]
+7FE8B68675F: 73 24                          -  jae 7FE8B686785
+7FE8B686761: 48 63 C0                       -  movsxd  rax,eax
+7FE8B686764: 48 8D 04 40                    -  lea rax,[rax+rax*2]
+// ---------- INJECTING HERE ----------
+7FE8B686768: 8B 44 C2 20                    -  mov eax,[rdx+rax*8+20]
+7FE8B68676C: 89 07                          -  mov [rdi],eax
+// ---------- DONE INJECTING  ----------
+7FE8B68676E: B8 01 00 00 00                 -  mov eax,00000001
+7FE8B686773: 48 83 C4 28                    -  add rsp,28
+7FE8B686777: 5E                             -  pop rsi
+7FE8B686778: 5F                             -  pop rdi
+7FE8B686779: C3                             -  ret 
+7FE8B68677A: 33 C0                          -  xor eax,eax
+7FE8B68677C: 89 07                          -  mov [rdi],eax
+7FE8B68677E: 48 83 C4 28                    -  add rsp,28
+7FE8B686782: 5E                             -  pop rsi
+7FE8B686783: 5F                             -  pop rdi
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>112</ID>
+              <Description>"Relation"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>pt_relation</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>114</ID>
+          <Description>"Skill Levels (W: Make Page writable first)"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : TaleWorlds.MountAndBlade.Launcher.exe
+  Version: 
+  Date   : 2020-04-18
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_SKILL_LEVEL,mscorlib.ni.dll,8B 44 C2 20 89 07) // should be unique
+alloc(newmem,$1000,"mscorlib.ni.dll"+4B4448)
+
+label(code)
+label(return)
+label(pt_skill_level)
+
+newmem:
+  cmp rbx,0E
+  jne code
+  push rax
+  push rbx
+  mov rbx,8
+  mul rbx
+  mov [pt_skill_level],rdx
+  add [pt_skill_level],rax
+  pop rbx
+  pop rax
+  jmp code
+
+pt_skill_level:
+  dq 0
+registersymbol(pt_skill_level)
+
+code:
+  mov eax,[rdx+rax*8+20]
+  mov [rdi],eax
+  jmp return
+
+INJ_SKILL_LEVEL:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_SKILL_LEVEL)
+
+[DISABLE]
+
+INJ_SKILL_LEVEL:
+  db 8B 44 C2 20 89 07
+
+unregistersymbol(pt_skill_level)
+unregistersymbol(INJ_SKILL_LEVEL)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "mscorlib.ni.dll"+4B4448
+
+"mscorlib.ni.dll"+4B4429: 49 8B F8              -  mov rdi,r8
+"mscorlib.ni.dll"+4B442C: 48 8B CE              -  mov rcx,rsi
+"mscorlib.ni.dll"+4B442F: E8 3C 00 00 00        -  call mscorlib.ni.dll+4B4470
+"mscorlib.ni.dll"+4B4434: 85 C0                 -  test eax,eax
+"mscorlib.ni.dll"+4B4436: 7C 22                 -  jl mscorlib.ni.dll+4B445A
+"mscorlib.ni.dll"+4B4438: 48 8B 56 10           -  mov rdx,[rsi+10]
+"mscorlib.ni.dll"+4B443C: 3B 42 08              -  cmp eax,[rdx+08]
+"mscorlib.ni.dll"+4B443F: 73 24                 -  jae mscorlib.ni.dll+4B4465
+"mscorlib.ni.dll"+4B4441: 48 63 C0              -  movsxd  rax,eax
+"mscorlib.ni.dll"+4B4444: 48 8D 04 40           -  lea rax,[rax+rax*2]
+// ---------- INJECTING HERE ----------
+"mscorlib.ni.dll"+4B4448: 8B 44 C2 20           -  mov eax,[rdx+rax*8+20]
+"mscorlib.ni.dll"+4B444C: 89 07                 -  mov [rdi],eax
+// ---------- DONE INJECTING  ----------
+"mscorlib.ni.dll"+4B444E: B8 01 00 00 00        -  mov eax,00000001
+"mscorlib.ni.dll"+4B4453: 48 83 C4 28           -  add rsp,28
+"mscorlib.ni.dll"+4B4457: 5E                    -  pop rsi
+"mscorlib.ni.dll"+4B4458: 5F                    -  pop rdi
+"mscorlib.ni.dll"+4B4459: C3                    -  ret 
+"mscorlib.ni.dll"+4B445A: 33 C0                 -  xor eax,eax
+"mscorlib.ni.dll"+4B445C: 89 07                 -  mov [rdi],eax
+"mscorlib.ni.dll"+4B445E: 48 83 C4 28           -  add rsp,28
+"mscorlib.ni.dll"+4B4462: 5E                    -  pop rsi
+"mscorlib.ni.dll"+4B4463: 5F                    -  pop rdi
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>117</ID>
+              <Description>"Riding"</Description>
+              <LastState Value="0" RealAddress="08EDACA8"/>
+              <VariableType>4 Bytes</VariableType>
+              <Address>pt_skill_level</Address>
+              <Offsets>
+                <Offset>20</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>101</ID>
+      <Description>"Combat"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>52</ID>
+          <Description>"Combat HP Pointer"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : TaleWorlds.MountAndBlade.Launcher.exe
+  Version: 
+  Date   : 2020-04-04
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_COM_HP2,F3 0F 2C 92 68 01 00 00 48 8B CE E8) // first one should be target
+alloc(newmem,$1000,7FE946D41F0)
+
+label(code)
+label(return)
+label(pt_comhp2)
+
+newmem:
+  mov [pt_comhp2],rdx
+  jmp code
+
+pt_comhp2:
+  dq 0
+registersymbol(pt_comhp2)
+
+code:
+  cvttss2si edx,[rdx+00000168]
+  jmp return
+
+INJ_COM_HP2:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJ_COM_HP2)
+
+[DISABLE]
+
+INJ_COM_HP2:
+  db F3 0F 2C 92 68 01 00 00
+
+unregistersymbol(pt_comhp2)
+unregistersymbol(INJ_COM_HP2)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 7FE946D41F0
+
+7FE946D41B8: 48 8B 56 20              -  mov rdx,[rsi+20]
+7FE946D41BC: 48 83 BA C8 00 00 00 00  -  cmp qword ptr [rdx+000000C8],00
+7FE946D41C4: 0F 84 D6 00 00 00        -  je 7FE946D42A0
+7FE946D41CA: 48 8B 56 20              -  mov rdx,[rsi+20]
+7FE946D41CE: 48 8B 92 C8 00 00 00     -  mov rdx,[rdx+000000C8]
+7FE946D41D5: F3 0F 2C 92 6C 01 00 00  -  cvttss2si edx,[rdx+0000016C]
+7FE946D41DD: 48 8B CE                 -  mov rcx,rsi
+7FE946D41E0: E8 D3 42 5E FF           -  call 7FE93CB84B8
+7FE946D41E5: 48 8B 56 20              -  mov rdx,[rsi+20]
+7FE946D41E9: 48 8B 92 C8 00 00 00     -  mov rdx,[rdx+000000C8]
+// ---------- INJECTING HERE ----------
+7FE946D41F0: F3 0F 2C 92 68 01 00 00  -  cvttss2si edx,[rdx+00000168]
+// ---------- DONE INJECTING  ----------
+7FE946D41F8: 48 8B CE                 -  mov rcx,rsi
+7FE946D41FB: E8 A8 42 5E FF           -  call 7FE93CB84A8
+7FE946D4200: 48 8B 56 20              -  mov rdx,[rsi+20]
+7FE946D4204: 48 8B 92 C8 00 00 00     -  mov rdx,[rdx+000000C8]
+7FE946D420B: 48 8B CA                 -  mov rcx,rdx
+7FE946D420E: 8B 01                    -  mov eax,[rcx]
+7FE946D4210: 48 8B 89 00 01 00 00     -  mov rcx,[rcx+00000100]
+7FE946D4217: 48 85 C9                 -  test rcx,rcx
+7FE946D421A: 74 5D                    -  je 7FE946D4279
+7FE946D421C: 8B 12                    -  mov edx,[rdx]
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>53</ID>
+              <Description>"HP"</Description>
+              <VariableType>Float</VariableType>
+              <Address>pt_comhp2</Address>
+              <Offsets>
+                <Offset>168</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>40</ID>
+          <Description>"Inf Ammo (put on slot 4)"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : TaleWorlds.MountAndBlade.Launcher.exe
+  Version: 
+  Date   : 2020-04-03
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_INF_AMMO,Game.dll,66 44 89 01 4C 39 99 18 01 00 00) // should be unique
+alloc(newmem,$1000,"Game.dll"+F5A50)
+
+label(code)
+label(return)
+
+newmem:
+  cmp rdi,3
+  jne code
+  cmp [rcx+00000118],r11
+  jmp return
+
+code:
+  mov [rcx],r8w
+  cmp [rcx+00000118],r11
+  jmp return
+
+INJ_INF_AMMO:
+  jmp newmem
+  nop 6
+return:
+registersymbol(INJ_INF_AMMO)
+
+[DISABLE]
+
+INJ_INF_AMMO:
+  db 66 44 89 01 4C 39 99 18 01 00 00
+
+unregistersymbol(INJ_INF_AMMO)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "Game.dll"+F5A50
+
+"Game.dll"+F5A26: 48 89 5C 24 50              -  mov [rsp+50],rbx
+"Game.dll"+F5A2B: 48 89 6C 24 58              -  mov [rsp+58],rbp
+"Game.dll"+F5A30: 41 0F B7 E8                 -  movzx ebp,r8w
+"Game.dll"+F5A34: 4C 63 F2                    -  movsxd  r14,edx
+"Game.dll"+F5A37: 4C 8B D1                    -  mov r10,rcx
+"Game.dll"+F5A3A: 45 33 DB                    -  xor r11d,r11d
+"Game.dll"+F5A3D: 44 89 5C 24 20              -  mov [rsp+20],r11d
+"Game.dll"+F5A42: 4D 69 CE 18 02 00 00        -  imul r9,r14,00000218
+"Game.dll"+F5A49: 48 83 C1 08                 -  add rcx,08
+"Game.dll"+F5A4D: 49 03 C9                    -  add rcx,r9
+// ---------- INJECTING HERE ----------
+"Game.dll"+F5A50: 66 44 89 01                 -  mov [rcx],r8w
+"Game.dll"+F5A54: 4C 39 99 18 01 00 00        -  cmp [rcx+00000118],r11
+// ---------- DONE INJECTING  ----------
+"Game.dll"+F5A5B: 74 05                       -  je Game.dll+F5A62
+"Game.dll"+F5A5D: E8 7E ED FF FF              -  call Game.dll+F47E0
+"Game.dll"+F5A62: 49 63 02                    -  movsxd  rax,dword ptr [r10]
+"Game.dll"+F5A65: 49 8B 92 B8 0A 00 00        -  mov rdx,[r10+00000AB8]
+"Game.dll"+F5A6C: 44 89 5C 24 68              -  mov [rsp+68],r11d
+"Game.dll"+F5A71: 48 69 F0 D0 08 00 00        -  imul rsi,rax,000008D0
+"Game.dll"+F5A78: 48 03 F2                    -  add rsi,rdx
+"Game.dll"+F5A7B: 8B BE 48 04 00 00           -  mov edi,[rsi+00000448]
+"Game.dll"+F5A81: 8B 5C 24 68                 -  mov ebx,[rsp+68]
+"Game.dll"+F5A85: 48 8D 4C 24 68              -  lea rcx,[rsp+68]
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>99</ID>
+          <Description>"Siege Engine HP (hover over)"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : TaleWorlds.MountAndBlade.Launcher.exe
+  Version: 
+  Date   : 2020-04-12
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_SIEGE_HP,F3 0F 2C 5E 18) // should be unique
+alloc(newmem,$100,7FE8BF939B5)
+
+label(code)
+label(return)
+label(pt_siege_hp)
+
+newmem:
+  mov [pt_siege_hp],rsi
+  jmp code
+
+pt_siege_hp:
+  dq 0
+registersymbol(pt_siege_hp)
+
+code:
+  cvttss2si ebx,[rsi+18]
+  jmp return
+
+INJ_SIEGE_HP:
+  jmp newmem
+return:
+registersymbol(INJ_SIEGE_HP)
+
+[DISABLE]
+
+INJ_SIEGE_HP:
+  db F3 0F 2C 5E 18
+
+unregistersymbol(pt_siege_hp)
+unregistersymbol(INJ_SIEGE_HP)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 7FE8BF939B5
+
+7FE8BF9398B: E8 60 CD B9 5C           -  call mscorlib.ni.dll+4B06F0
+7FE8BF93990: EB 1C                    -  jmp 7FE8BF939AE
+7FE8BF93992: 48 8B 4D 08              -  mov rcx,[rbp+08]
+7FE8BF93996: 8B 11                    -  mov edx,[rcx]
+7FE8BF93998: 48 8B 14 25 20 C9 C4 14  -  mov rdx,[14C4C920]
+7FE8BF939A0: 4C 8B C3                 -  mov r8,rbx
+7FE8BF939A3: 41 B9 01 00 00 00        -  mov r9d,00000001
+7FE8BF939A9: E8 42 CD B9 5C           -  call mscorlib.ni.dll+4B06F0
+7FE8BF939AE: 33 C0                    -  xor eax,eax
+7FE8BF939B0: 48 89 44 24 40           -  mov [rsp+40],rax
+// ---------- INJECTING HERE ----------
+7FE8BF939B5: F3 0F 2C 5E 18           -  cvttss2si ebx,[rsi+18]
+// ---------- DONE INJECTING  ----------
+7FE8BF939BA: E8 11 BD BC 5C           -  call mscorlib.ni.dll+4DF6D0
+7FE8BF939BF: 4C 8B C0                 -  mov r8,rax
+7FE8BF939C2: 8B CB                    -  mov ecx,ebx
+7FE8BF939C4: 33 D2                    -  xor edx,edx
+7FE8BF939C6: E8 75 62 DF 5D           -  call clr.dll+69C40
+7FE8BF939CB: 48 8B D0                 -  mov rdx,rax
+7FE8BF939CE: 48 8B 0C 25 60 C8 C4 14  -  mov rcx,[14C4C860]
+7FE8BF939D6: 45 33 C0                 -  xor r8d,r8d
+7FE8BF939D9: E8 F2 AF 69 FF           -  call 7FE8B62E9D0
+7FE8BF939DE: 48 8B 46 08              -  mov rax,[rsi+08]
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>100</ID>
+              <Description>"HP"</Description>
+              <VariableType>Float</VariableType>
+              <Address>pt_siege_hp</Address>
+              <Offsets>
+                <Offset>18</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>102</ID>
+      <Description>"Settlement"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>85</ID>
+          <Description>"City Food"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : TaleWorlds.MountAndBlade.Launcher.exe
+  Version: 
+  Date   : 2020-04-12
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_CITY_FOOD,F3 0F 2C 58 58) // should be unique
+alloc(newmem,$1000,7FE94648B5E)
+
+label(code)
+label(return)
+label(pt_city_food)
+
+newmem:
+  mov [pt_city_food],rax
+  jmp code
+
+pt_city_food:
+  dq 0
+registersymbol(pt_city_food)
+
+code:
+  cvttss2si ebx,[rax+58]
+  jmp return
+
+INJ_CITY_FOOD:
+  jmp newmem
+return:
+registersymbol(INJ_CITY_FOOD)
+
+[DISABLE]
+
+INJ_CITY_FOOD:
+  db F3 0F 2C 58 58
+
+unregistersymbol(pt_city_food)
+unregistersymbol(INJ_CITY_FOOD)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 7FE94648B5E
+
+7FE94648B3A: EB 02                    -  jmp 7FE94648B3E
+7FE94648B3C: 33 C0                    -  xor eax,eax
+7FE94648B3E: EB 05                    -  jmp 7FE94648B45
+7FE94648B40: B8 01 00 00 00           -  mov eax,00000001
+7FE94648B45: 85 C0                    -  test eax,eax
+7FE94648B47: 75 0A                    -  jne 7FE94648B53
+7FE94648B49: 48 8B 14 25 70 87 FE 13  -  mov rdx,[13FE8770]
+7FE94648B51: EB 24                    -  jmp 7FE94648B77
+7FE94648B53: 48 8B 47 08              -  mov rax,[rdi+08]
+7FE94648B57: 48 8B 80 D0 00 00 00     -  mov rax,[rax+000000D0]
+// ---------- INJECTING HERE ----------
+7FE94648B5E: F3 0F 2C 58 58           -  cvttss2si ebx,[rax+58]
+// ---------- DONE INJECTING  ----------
+7FE94648B63: E8 68 6B 08 5D           -  call mscorlib.ni.dll+4DF6D0
+7FE94648B68: 4C 8B C0                 -  mov r8,rax
+7FE94648B6B: 8B CB                    -  mov ecx,ebx
+7FE94648B6D: 33 D2                    -  xor edx,edx
+7FE94648B6F: E8 CC 10 2B 5E           -  call clr.dll+69C40
+7FE94648B74: 48 8B D0                 -  mov rdx,rax
+7FE94648B77: 48 8B CE                 -  mov rcx,rsi
+7FE94648B7A: E8 59 DE 87 FF           -  call 7FE93EC69D8
+7FE94648B7F: 48 8B 4F 08              -  mov rcx,[rdi+08]
+7FE94648B83: 48 83 B9 D0 00 00 00 00  -  cmp qword ptr [rcx+000000D0],00
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>86</ID>
+              <Description>"Food"</Description>
+              <VariableType>Float</VariableType>
+              <Address>pt_city_food</Address>
+              <Offsets>
+                <Offset>58</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>82</ID>
+          <Description>"Village Hearth"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : TaleWorlds.MountAndBlade.Launcher.exe
+  Version: 
+  Date   : 2020-04-12
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_HEARTH,F3 0F 2C 58 78) // should be unique
+alloc(newmem,$1000,7FE94648F2B)
+
+label(code)
+label(return)
+label(pt_hearth)
+
+newmem:
+  mov [pt_hearth],rax
+  jmp code
+
+pt_hearth:
+  dq 0
+registersymbol(pt_hearth)
+
+code:
+  cvttss2si ebx,[rax+78]
+  jmp return
+
+INJ_HEARTH:
+  jmp newmem
+return:
+registersymbol(INJ_HEARTH)
+
+[DISABLE]
+
+INJ_HEARTH:
+  db F3 0F 2C 58 78
+
+unregistersymbol(pt_hearth)
+unregistersymbol(INJ_HEARTH)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 7FE94648F2B
+
+7FE94648F00: 48 8B 4F 08              -  mov rcx,[rdi+08]
+7FE94648F04: 48 8B 89 D0 00 00 00     -  mov rcx,[rcx+000000D0]
+7FE94648F0B: 39 09                    -  cmp [rcx],ecx
+7FE94648F0D: E8 EE EA F7 FF           -  call 7FE945C7A00
+7FE94648F12: F3 0F 2C D0              -  cvttss2si edx,xmm0
+7FE94648F16: 48 8B CE                 -  mov rcx,rsi
+7FE94648F19: E8 CA DA 87 FF           -  call 7FE93EC69E8
+7FE94648F1E: EB 4A                    -  jmp 7FE94648F6A
+7FE94648F20: 48 8B 47 08              -  mov rax,[rdi+08]
+7FE94648F24: 48 8B 80 D8 00 00 00     -  mov rax,[rax+000000D8]
+// ---------- INJECTING HERE ----------
+7FE94648F2B: F3 0F 2C 58 78           -  cvttss2si ebx,[rax+78]
+// ---------- DONE INJECTING  ----------
+7FE94648F30: E8 9B 67 08 5D           -  call mscorlib.ni.dll+4DF6D0
+7FE94648F35: 4C 8B C0                 -  mov r8,rax
+7FE94648F38: 8B CB                    -  mov ecx,ebx
+7FE94648F3A: 33 D2                    -  xor edx,edx
+7FE94648F3C: E8 FF 0C 2B 5E           -  call clr.dll+69C40
+7FE94648F41: 48 8B D0                 -  mov rdx,rax
+7FE94648F44: 48 8B CE                 -  mov rcx,rsi
+7FE94648F47: E8 5C DC 87 FF           -  call 7FE93EC6BA8
+7FE94648F4C: 48 8B 4F 08              -  mov rcx,[rdi+08]
+7FE94648F50: 48 8B 89 D8 00 00 00     -  mov rcx,[rcx+000000D8]
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>83</ID>
+              <Description>"Hearth"</Description>
+              <VariableType>Float</VariableType>
+              <Address>pt_hearth</Address>
+              <Offsets>
+                <Offset>78</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>154</ID>
+      <Description>"Skill XP"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TaleWorlds.MountAndBlade.Launcher.exe
+  Version: 
+  Date   : 2020-04-18
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_SKILL_XP,F3 0F 10 44 C2 20 F3) // should be unique
+alloc(newmem,$1000,7FE94762778)
+
+label(code)
+label(return)
+label(pt_skill_xp)
+
+newmem:
+  cmp rax,0
+  jne code
+  cmp r15,0
+  jne code
+  mov [pt_skill_xp],rdx
+  jmp code
+
+pt_skill_xp:
+  dq 0
+registersymbol(pt_skill_xp)
+
+code:
+  movss xmm0,[rdx+rax*8+20]
+  jmp return
+
+INJ_SKILL_XP:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_SKILL_XP)
+
+[DISABLE]
+
+INJ_SKILL_XP:
+  db F3 0F 10 44 C2 20
+
+unregistersymbol(pt_skill_xp)
+unregistersymbol(INJ_SKILL_XP)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 7FE94762778
+
+7FE94762759: 49 8B F8                    -  mov rdi,r8
+7FE9476275C: 48 8B CE                    -  mov rcx,rsi
+7FE9476275F: E8 14 15 F5 FF              -  call 7FE946B3C78
+7FE94762764: 85 C0                       -  test eax,eax
+7FE94762766: 7C 26                       -  jl 7FE9476278E
+7FE94762768: 48 8B 56 10                 -  mov rdx,[rsi+10]
+7FE9476276C: 3B 42 08                    -  cmp eax,[rdx+08]
+7FE9476276F: 73 28                       -  jae 7FE94762799
+7FE94762771: 48 63 C0                    -  movsxd  rax,eax
+7FE94762774: 48 8D 04 40                 -  lea rax,[rax+rax*2]
+// ---------- INJECTING HERE ----------
+7FE94762778: F3 0F 10 44 C2 20           -  movss xmm0,[rdx+rax*8+20]
+// ---------- DONE INJECTING  ----------
+7FE9476277E: F3 0F 11 07                 -  movss [rdi],xmm0
+7FE94762782: B8 01 00 00 00              -  mov eax,00000001
+7FE94762787: 48 83 C4 28                 -  add rsp,28
+7FE9476278B: 5E                          -  pop rsi
+7FE9476278C: 5F                          -  pop rdi
+7FE9476278D: C3                          -  ret 
+7FE9476278E: 33 C0                       -  xor eax,eax
+7FE94762790: 89 07                       -  mov [rdi],eax
+7FE94762792: 48 83 C4 28                 -  add rsp,28
+7FE94762796: 5E                          -  pop rsi
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>155</ID>
+          <Description>"One Handed"</Description>
+          <LastState Value="26000" RealAddress="079496A8"/>
+          <VariableType>Float</VariableType>
+          <Address>pt_skill_xp</Address>
+          <Offsets>
+            <Offset>20</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>164</ID>
+          <Description>"Two Handed"</Description>
+          <LastState Value="26000" RealAddress="079496C0"/>
+          <VariableType>Float</VariableType>
+          <Address>pt_skill_xp</Address>
+          <Offsets>
+            <Offset>20+18</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>166</ID>
+          <Description>"Polearm"</Description>
+          <LastState Value="29348" RealAddress="079496D8"/>
+          <VariableType>Float</VariableType>
+          <Address>pt_skill_xp</Address>
+          <Offsets>
+            <Offset>20+18*2</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>165</ID>
+          <Description>"Bow"</Description>
+          <LastState Value="29837.5" RealAddress="079496F0"/>
+          <VariableType>Float</VariableType>
+          <Address>pt_skill_xp</Address>
+          <Offsets>
+            <Offset>20+18*3</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>168</ID>
+          <Description>"CrossBow"</Description>
+          <LastState Value="26000" RealAddress="07949708"/>
+          <VariableType>Float</VariableType>
+          <Address>pt_skill_xp</Address>
+          <Offsets>
+            <Offset>20+18*4</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>167</ID>
+          <Description>"Throwing"</Description>
+          <LastState Value="26000" RealAddress="07949720"/>
+          <VariableType>Float</VariableType>
+          <Address>pt_skill_xp</Address>
+          <Offsets>
+            <Offset>20+18*5</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>171</ID>
+          <Description>"Riding"</Description>
+          <LastState Value="32085.29688" RealAddress="07949738"/>
+          <VariableType>Float</VariableType>
+          <Address>pt_skill_xp</Address>
+          <Offsets>
+            <Offset>20+18*6</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>170</ID>
+          <Description>"Athletics"</Description>
+          <LastState Value="26000" RealAddress="07949750"/>
+          <VariableType>Float</VariableType>
+          <Address>pt_skill_xp</Address>
+          <Offsets>
+            <Offset>20+18*7</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>169</ID>
+          <Description>"Smithing"</Description>
+          <LastState Value="26000" RealAddress="07949768"/>
+          <VariableType>Float</VariableType>
+          <Address>pt_skill_xp</Address>
+          <Offsets>
+            <Offset>20+18*8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>180</ID>
+          <Description>"Scouting"</Description>
+          <LastState Value="26000" RealAddress="07949780"/>
+          <VariableType>Float</VariableType>
+          <Address>pt_skill_xp</Address>
+          <Offsets>
+            <Offset>20+18*9</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>179</ID>
+          <Description>"Tactics"</Description>
+          <LastState Value="26000" RealAddress="07949798"/>
+          <VariableType>Float</VariableType>
+          <Address>pt_skill_xp</Address>
+          <Offsets>
+            <Offset>20+18*A</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>178</ID>
+          <Description>"Roguery"</Description>
+          <LastState Value="26000" RealAddress="079497B0"/>
+          <VariableType>Float</VariableType>
+          <Address>pt_skill_xp</Address>
+          <Offsets>
+            <Offset>20+18*B</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>177</ID>
+          <Description>"Charm"</Description>
+          <LastState Value="26000" RealAddress="079497C8"/>
+          <VariableType>Float</VariableType>
+          <Address>pt_skill_xp</Address>
+          <Offsets>
+            <Offset>20+18*C</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>176</ID>
+          <Description>"Leadership"</Description>
+          <LastState Value="26000" RealAddress="079497E0"/>
+          <VariableType>Float</VariableType>
+          <Address>pt_skill_xp</Address>
+          <Offsets>
+            <Offset>20+18*D</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>175</ID>
+          <Description>"Trade"</Description>
+          <LastState Value="26000" RealAddress="079497F8"/>
+          <VariableType>Float</VariableType>
+          <Address>pt_skill_xp</Address>
+          <Offsets>
+            <Offset>20+18*E</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>174</ID>
+          <Description>"Steward"</Description>
+          <LastState Value="26000" RealAddress="07949810"/>
+          <VariableType>Float</VariableType>
+          <Address>pt_skill_xp</Address>
+          <Offsets>
+            <Offset>20+18*F</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>173</ID>
+          <Description>"Medicine"</Description>
+          <LastState Value="26005.20898" RealAddress="07949828"/>
+          <VariableType>Float</VariableType>
+          <Address>pt_skill_xp</Address>
+          <Offsets>
+            <Offset>20+18*10</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>172</ID>
+          <Description>"Engineering"</Description>
+          <LastState Value="26000" RealAddress="07949840"/>
+          <VariableType>Float</VariableType>
+          <Address>pt_skill_xp</Address>
+          <Offsets>
+            <Offset>20+18*11</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <Comments>Siege Engine Progress:
+F3 0F 11 43 1C 48 8B CB
+Relationship:
+00 00 89 5C C1 20 FF 46 3C
+Skill Level:
+"mscorlib.ni.dll"+4B4448
+8B 44 C2 20 89 07
+Don't care whether writable
+RBP - RSP == 0x190 (Bow)</Comments>
+</CheatTable>

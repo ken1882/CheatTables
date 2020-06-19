@@ -1,0 +1,1093 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="29">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>17</ID>
+      <Description>"Cast The Magic (Disable when change pawn)"</Description>
+      <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>1</ID>
+          <Description>"Inf Gold"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : DDDA.exe
+  Version: 
+  Date   : 2020-02-12
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+
+aobscanmodule(INF_GOLD,DDDA.exe,29 88 48 03 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+label(pt_gold)
+
+newmem:
+  mov [pt_gold],eax
+  add [pt_gold],348
+  jmp return
+
+pt_gold:
+  dq 0
+registersymbol(pt_gold)
+
+code:
+  sub [eax+00000348],ecx
+  jmp return
+
+INF_GOLD:
+  jmp newmem
+  nop
+return:
+registersymbol(INF_GOLD)
+
+[DISABLE]
+
+INF_GOLD:
+  db 29 88 48 03 00 00
+
+unregistersymbol(INF_GOLD)
+unregistersymbol(pt_gold)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "DDDA.exe"+2E0985
+
+"DDDA.exe"+2E0960: 75 09                          -  jne DDDA.exe+2E096B
+"DDDA.exe"+2E0962: 80 3D B0 0B 8D 01 00           -  cmp byte ptr [DDDA.exe+14D0BB0],00
+"DDDA.exe"+2E0969: 74 0F                          -  je DDDA.exe+2E097A
+"DDDA.exe"+2E096B: 83 C0 04                       -  add eax,04
+"DDDA.exe"+2E096E: 50                             -  push eax
+"DDDA.exe"+2E096F: FF 15 60 D1 39 01              -  call dword ptr [DDDA.exe+F9D160]
+"DDDA.exe"+2E0975: A1 BC A4 8F 01                 -  mov eax,[DDDA.exe+14FA4BC]
+"DDDA.exe"+2E097A: 05 D0 76 0A 00                 -  add eax,000A76D0
+"DDDA.exe"+2E097F: 74 16                          -  je DDDA.exe+2E0997
+"DDDA.exe"+2E0981: 8B 4C 24 0C                    -  mov ecx,[esp+0C]
+// ---------- INJECTING HERE ----------
+"DDDA.exe"+2E0985: 29 88 48 03 00 00              -  sub [eax+00000348],ecx
+// ---------- DONE INJECTING  ----------
+"DDDA.exe"+2E098B: 79 0A                          -  jns DDDA.exe+2E0997
+"DDDA.exe"+2E098D: C7 80 48 03 00 00 00 00 00 00  -  mov [eax+00000348],00000000
+"DDDA.exe"+2E0997: 80 3E 00                       -  cmp byte ptr [esi],00
+"DDDA.exe"+2E099A: 75 09                          -  jne DDDA.exe+2E09A5
+"DDDA.exe"+2E099C: 80 3D B0 0B 8D 01 00           -  cmp byte ptr [DDDA.exe+14D0BB0],00
+"DDDA.exe"+2E09A3: 74 0A                          -  je DDDA.exe+2E09AF
+"DDDA.exe"+2E09A5: 83 C7 04                       -  add edi,04
+"DDDA.exe"+2E09A8: 57                             -  push edi
+"DDDA.exe"+2E09A9: FF 15 64 D1 39 01              -  call dword ptr [DDDA.exe+F9D164]
+"DDDA.exe"+2E09AF: 5F                             -  pop edi
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>2</ID>
+              <Description>"Gold"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>pt_gold</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>7</ID>
+          <Description>"Inf JP"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : DDDA.exe
+  Version: 
+  Date   : 2020-02-12
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INF_JP,DDDA.exe,29 90 44 03 00 00 8B 85) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+label(pt_jp)
+
+newmem:
+  mov [pt_jp],eax
+  add [pt_jp],344
+  jmp return
+
+pt_jp:
+  dq 0
+registersymbol(pt_jp)
+
+code:
+  sub [eax+00000344],edx
+  jmp return
+
+INF_JP:
+  jmp newmem
+  nop
+return:
+registersymbol(INF_JP)
+
+[DISABLE]
+
+INF_JP:
+  db 29 90 44 03 00 00
+
+unregistersymbol(pt_jp)
+unregistersymbol(INF_JP)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "DDDA.exe"+2FC758
+
+"DDDA.exe"+2FC734: 8B 51 10              -  mov edx,[ecx+10]
+"DDDA.exe"+2FC737: 8B 8C 91 CC 02 00 00  -  mov ecx,[ecx+edx*4+000002CC]
+"DDDA.exe"+2FC73E: 3B 48 10              -  cmp ecx,[eax+10]
+"DDDA.exe"+2FC741: 7C 0E                 -  jl DDDA.exe+2FC751
+"DDDA.exe"+2FC743: 8B 7B 08              -  mov edi,[ebx+08]
+"DDDA.exe"+2FC746: A1 BC A4 8F 01        -  mov eax,[DDDA.exe+14FA4BC]
+"DDDA.exe"+2FC74B: 47                    -  inc edi
+"DDDA.exe"+2FC74C: E8 7F E5 FF FF        -  call DDDA.exe+2FACD0
+"DDDA.exe"+2FC751: 8B 53 0C              -  mov edx,[ebx+0C]
+"DDDA.exe"+2FC754: 8B 44 24 10           -  mov eax,[esp+10]
+// ---------- INJECTING HERE ----------
+"DDDA.exe"+2FC758: 29 90 44 03 00 00     -  sub [eax+00000344],edx
+// ---------- DONE INJECTING  ----------
+"DDDA.exe"+2FC75E: 8B 85 70 02 00 00     -  mov eax,[ebp+00000270]
+"DDDA.exe"+2FC764: 8B D5                 -  mov edx,ebp
+"DDDA.exe"+2FC766: E8 F5 53 00 00        -  call DDDA.exe+301B60
+"DDDA.exe"+2FC76B: 83 BD 70 02 00 00 00  -  cmp dword ptr [ebp+00000270],00
+"DDDA.exe"+2FC772: 8B 35 BC A4 8F 01     -  mov esi,[DDDA.exe+14FA4BC]
+"DDDA.exe"+2FC778: 75 35                 -  jne DDDA.exe+2FC7AF
+"DDDA.exe"+2FC77A: 83 7B 14 00           -  cmp dword ptr [ebx+14],00
+"DDDA.exe"+2FC77E: 75 09                 -  jne DDDA.exe+2FC789
+"DDDA.exe"+2FC780: 8B D6                 -  mov edx,esi
+"DDDA.exe"+2FC782: E8 19 F1 D4 FF        -  call DDDA.exe+4B8A0
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>8</ID>
+              <Description>"JP"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>pt_jp</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>13</ID>
+          <Description>"Inf Item"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : DDDA.exe
+  Version: 
+  Date   : 2020-02-13
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+
+aobscanmodule(ITEMGIVE_HACK,DDDA.exe,66 89 51 12 8B 51 04) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+label(pt_lastitemgivenum)
+
+newmem:
+  mov [pt_lastitemgivenum],ecx
+  add [pt_lastitemgivenum],12
+  mov edx,[ecx+04]
+  jmp return
+
+pt_lastitemgivenum:
+  dq 0
+registersymbol(pt_lastitemgivenum)
+
+code:
+  mov [ecx+12],dx
+  mov edx,[ecx+04]
+  jmp return
+
+ITEMGIVE_HACK:
+  jmp newmem
+  nop 2
+return:
+registersymbol(ITEMGIVE_HACK)
+
+[DISABLE]
+
+ITEMGIVE_HACK:
+  db 66 89 51 12 8B 51 04
+
+unregistersymbol(pt_lastitemgivenum)
+unregistersymbol(ITEMGIVE_HACK)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "DDDA.exe"+59892
+
+"DDDA.exe"+59878: C7 40 04 00 00 00 00  -  mov [eax+04],00000000
+"DDDA.exe"+5987F: C3                    -  ret 
+"DDDA.exe"+59880: 0F B7 51 12           -  movzx edx,word ptr [ecx+12]
+"DDDA.exe"+59884: 56                    -  push esi
+"DDDA.exe"+59885: 0F BF F2              -  movsx esi,dx
+"DDDA.exe"+59888: 2B F0                 -  sub esi,eax
+"DDDA.exe"+5988A: 79 04                 -  jns DDDA.exe+59890
+"DDDA.exe"+5988C: 33 D2                 -  xor edx,edx
+"DDDA.exe"+5988E: EB 02                 -  jmp DDDA.exe+59892
+"DDDA.exe"+59890: 2B D0                 -  sub edx,eax
+// ---------- INJECTING HERE ----------
+"DDDA.exe"+59892: 66 89 51 12           -  mov [ecx+12],dx
+"DDDA.exe"+59896: 8B 51 04              -  mov edx,[ecx+04]
+// ---------- DONE INJECTING  ----------
+"DDDA.exe"+59899: 66 83 7A 60 00        -  cmp word ptr [edx+60],00
+"DDDA.exe"+5989E: 76 66                 -  jna DDDA.exe+59906
+"DDDA.exe"+598A0: 0F B7 51 18           -  movzx edx,word ptr [ecx+18]
+"DDDA.exe"+598A4: 8B F2                 -  mov esi,edx
+"DDDA.exe"+598A6: 3B F0                 -  cmp esi,eax
+"DDDA.exe"+598A8: 76 06                 -  jna DDDA.exe+598B0
+"DDDA.exe"+598AA: 2B D0                 -  sub edx,eax
+"DDDA.exe"+598AC: 33 C0                 -  xor eax,eax
+"DDDA.exe"+598AE: EB 04                 -  jmp DDDA.exe+598B4
+"DDDA.exe"+598B0: 2B C6                 -  sub eax,esi
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>14</ID>
+              <Description>"Last item quantity"</Description>
+              <VariableType>2 Bytes</VariableType>
+              <Address>pt_lastitemgivenum</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>53</ID>
+          <Description>"Inf Rift Shards"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : DDDA.exe
+  Version: 
+  Date   : 2020-02-15
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+
+aobscanmodule(INJ_INF_RS,DDDA.exe,29 B8 4C 03 00 00) // should be unique
+alloc(newmem,$500)
+aobscanmodule(INJ_INF_RS2,DDDA.exe,29 9E 4C 03 00 00) // should be unique
+alloc(newmem2,$500)
+aobscanmodule(INF_RS_ADD,DDDA.exe,01 9F 4C 03 00 00) // should be unique
+alloc(newmem3,$500)
+
+label(code)
+label(return)
+label(pt_rs)
+label(code2)
+label(return2)
+label(code3)
+label(return3)
+
+newmem:
+  mov [pt_rs],eax
+  add [pt_rs],34c
+  jmp return
+
+pt_rs:
+  dq 0
+registersymbol(pt_rs)
+
+code:
+  sub [eax+0000034C],edi
+  jmp return
+
+INJ_INF_RS:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_INF_RS)
+
+newmem2:
+  mov [pt_rs],esi
+  add [pt_rs],34c
+  jmp return2
+
+code2:
+  sub [esi+0000034C],ebx
+  jmp return2
+
+INJ_INF_RS2:
+  jmp newmem2
+  nop
+return2:
+registersymbol(INJ_INF_RS2)
+
+newmem3:
+  mov [pt_rs],edi
+  add [pt_rs],34c
+  jmp code3
+
+code3:
+  add [edi+0000034C],ebx
+  jmp return3
+
+INF_RS_ADD:
+  jmp newmem3
+  nop
+return3:
+registersymbol(INF_RS_ADD)
+
+[DISABLE]
+
+INF_RS_ADD:
+  db 01 9F 4C 03 00 00
+
+INJ_INF_RS2:
+  db 29 9E 4C 03 00 00
+
+INJ_INF_RS:
+  db 29 B8 4C 03 00 00
+
+unregistersymbol(INF_RS_ADD)
+unregistersymbol(INJ_INF_RS2)
+unregistersymbol(INJ_INF_RS)
+unregistersymbol(pt_rs)
+dealloc(newmem3)
+dealloc(newmem2)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "DDDA.exe"+F369A
+
+"DDDA.exe"+F3677: 80 3D B0 0B 8D 01 00     -  cmp byte ptr [DDDA.exe+14D0BB0],00
+"DDDA.exe"+F367E: 74 0F                    -  je DDDA.exe+F368F
+"DDDA.exe"+F3680: 83 C0 04                 -  add eax,04
+"DDDA.exe"+F3683: 50                       -  push eax
+"DDDA.exe"+F3684: FF 15 60 D1 39 01        -  call dword ptr [DDDA.exe+F9D160]
+"DDDA.exe"+F368A: A1 BC A4 8F 01           -  mov eax,[DDDA.exe+14FA4BC]
+"DDDA.exe"+F368F: 05 D0 76 0A 00           -  add eax,000A76D0
+"DDDA.exe"+F3694: 33 DB                    -  xor ebx,ebx
+"DDDA.exe"+F3696: 3B C3                    -  cmp eax,ebx
+"DDDA.exe"+F3698: 74 0E                    -  je DDDA.exe+F36A8
+// ---------- INJECTING HERE ----------
+"DDDA.exe"+F369A: 29 B8 4C 03 00 00        -  sub [eax+0000034C],edi
+// ---------- DONE INJECTING  ----------
+"DDDA.exe"+F36A0: 79 06                    -  jns DDDA.exe+F36A8
+"DDDA.exe"+F36A2: 89 98 4C 03 00 00        -  mov [eax+0000034C],ebx
+"DDDA.exe"+F36A8: 38 1E                    -  cmp [esi],bl
+"DDDA.exe"+F36AA: 75 08                    -  jne DDDA.exe+F36B4
+"DDDA.exe"+F36AC: 38 1D B0 0B 8D 01        -  cmp [DDDA.exe+14D0BB0],bl
+"DDDA.exe"+F36B2: 74 0E                    -  je DDDA.exe+F36C2
+"DDDA.exe"+F36B4: 8B 4C 24 10              -  mov ecx,[esp+10]
+"DDDA.exe"+F36B8: 83 C1 04                 -  add ecx,04
+"DDDA.exe"+F36BB: 51                       -  push ecx
+"DDDA.exe"+F36BC: FF 15 64 D1 39 01        -  call dword ptr [DDDA.exe+F9D164]
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>54</ID>
+              <Description>"Rift Shards"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>pt_rs</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>16</ID>
+          <Description>"Inf Stamina"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : DDDA.exe
+  Version: 
+  Date   : 2020-02-13
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INF_STAMINA,DDDA.exe,F3 0F 11 85 A8 02 00 00 8B BE) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  push eax
+  mov eax,270f
+  cvtsi2ss xmm0,eax
+  pop eax
+  jmp code
+
+code:
+  movss [ebp+000002A8],xmm0
+  jmp return
+
+INF_STAMINA:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INF_STAMINA)
+
+[DISABLE]
+
+INF_STAMINA:
+  db F3 0F 11 85 A8 02 00 00
+
+unregistersymbol(INF_STAMINA)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "DDDA.exe"+781F82
+
+"DDDA.exe"+781F60: 6A 00                    -  push 00
+"DDDA.exe"+781F62: 6A 00                    -  push 00
+"DDDA.exe"+781F64: 6A 11                    -  push 11
+"DDDA.exe"+781F66: 8B CF                    -  mov ecx,edi
+"DDDA.exe"+781F68: FF D0                    -  call eax
+"DDDA.exe"+781F6A: F3 0F 10 4C 24 1C        -  movss xmm1,[esp+1C]
+"DDDA.exe"+781F70: 0F 57 E4                 -  xorps xmm4,xmm4
+"DDDA.exe"+781F73: F3 0F 10 85 A8 02 00 00  -  movss xmm0,[ebp+000002A8]
+"DDDA.exe"+781F7B: 0F 28 E8                 -  movaps xmm5,xmm0
+"DDDA.exe"+781F7E: F3 0F 58 C1              -  addss xmm0,xmm1
+// ---------- INJECTING HERE ----------
+"DDDA.exe"+781F82: F3 0F 11 85 A8 02 00 00  -  movss [ebp+000002A8],xmm0
+// ---------- DONE INJECTING  ----------
+"DDDA.exe"+781F8A: 8B BE EC 3D 00 00        -  mov edi,[esi+00003DEC]
+"DDDA.exe"+781F90: 85 FF                    -  test edi,edi
+"DDDA.exe"+781F92: 75 25                    -  jne DDDA.exe+781FB9
+"DDDA.exe"+781F94: F3 0F 10 05 B8 19 53 01  -  movss xmm0,[DDDA.exe+11319B8]
+"DDDA.exe"+781F9C: EB 20                    -  jmp DDDA.exe+781FBE
+"DDDA.exe"+781F9E: 84 DB                    -  test bl,bl
+"DDDA.exe"+781FA0: 75 D1                    -  jne DDDA.exe+781F73
+"DDDA.exe"+781FA2: 8B 4C 24 20              -  mov ecx,[esp+20]
+"DDDA.exe"+781FA6: 51                       -  push ecx
+"DDDA.exe"+781FA7: 51                       -  push ecx
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>4</ID>
+          <Description>"Inf Weight"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : DDDA.exe
+  Version: 
+  Date   : 2020-02-12
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INF_WEIGHT,DDDA.exe,F3 0F 11 AB 4C 02 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+label(pt_weight)
+
+newmem:
+  push eax
+  mov eax,0
+  cvtsi2ss xmm5,eax
+  mov [pt_weight],ebx
+  add [pt_weight],24c
+  pop eax
+  jmp code
+
+pt_weight:
+  dq 0
+
+registersymbol(pt_weight)
+
+code:
+  movss [ebx+0000024C],xmm5
+  jmp return
+
+INF_WEIGHT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INF_WEIGHT)
+
+[DISABLE]
+
+INF_WEIGHT:
+  db F3 0F 11 AB 4C 02 00 00
+
+unregistersymbol(pt_weight)
+unregistersymbol(INF_WEIGHT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "DDDA.exe"+58AE7
+
+"DDDA.exe"+58AC0: F3 0F 59 C2              -  mulss xmm0,xmm2
+"DDDA.exe"+58AC4: EB 04                    -  jmp DDDA.exe+58ACA
+"DDDA.exe"+58AC6: F3 0F 59 C3              -  mulss xmm0,xmm3
+"DDDA.exe"+58ACA: 0F BF 47 12              -  movsx eax,word ptr [edi+12]
+"DDDA.exe"+58ACE: 83 44 24 18 04           -  add dword ptr [esp+18],04
+"DDDA.exe"+58AD3: 0F 57 ED                 -  xorps xmm5,xmm5
+"DDDA.exe"+58AD6: F3 0F 2A E8              -  cvtsi2ss xmm5,eax
+"DDDA.exe"+58ADA: F3 0F 59 E8              -  mulss xmm5,xmm0
+"DDDA.exe"+58ADE: F3 0F 58 AB 4C 02 00 00  -  addss xmm5,[ebx+0000024C]
+"DDDA.exe"+58AE6: 45                       -  inc ebp
+// ---------- INJECTING HERE ----------
+"DDDA.exe"+58AE7: F3 0F 11 AB 4C 02 00 00  -  movss [ebx+0000024C],xmm5
+// ---------- DONE INJECTING  ----------
+"DDDA.exe"+58AEF: 3B 6B 08                 -  cmp ebp,[ebx+08]
+"DDDA.exe"+58AF2: 0F 82 2E FF FF FF        -  jb DDDA.exe+58A26
+"DDDA.exe"+58AF8: 5F                       -  pop edi
+"DDDA.exe"+58AF9: 5E                       -  pop esi
+"DDDA.exe"+58AFA: 5D                       -  pop ebp
+"DDDA.exe"+58AFB: 5B                       -  pop ebx
+"DDDA.exe"+58AFC: 59                       -  pop ecx
+"DDDA.exe"+58AFD: C2 04 00                 -  ret 0004
+"DDDA.exe"+58B00: CA 8A 45                 -  ret 458A
+"DDDA.exe"+58B03: 00 CA                    -  add dl,cl
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>5</ID>
+              <Description>"Weight"</Description>
+              <VariableType>Float</VariableType>
+              <Address>pt_weight</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>51</ID>
+          <Description>"Instant Skill Charge"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : DDDA.exe
+  Version: 
+  Date   : 2020-02-15
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_INS_CHARGE,DDDA.exe,D8 BD A0 01 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov [ebp+1A0],4479c000
+  jmp code
+
+code:
+  fdivr dword ptr [ebp+000001A0]
+  jmp return
+
+INJ_INS_CHARGE:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_INS_CHARGE)
+
+[DISABLE]
+
+INJ_INS_CHARGE:
+  db D8 BD A0 01 00 00
+
+unregistersymbol(INJ_INS_CHARGE)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "DDDA.exe"+719942
+
+"DDDA.exe"+719928: FF D2                 -  call edx
+"DDDA.exe"+71992A: D9 05 B8 19 53 01     -  fld dword ptr [DDDA.exe+11319B8]
+"DDDA.exe"+719930: D9 C9                 -  fxch st(1)
+"DDDA.exe"+719932: DF F1                 -  fcomip st(0),st(1)
+"DDDA.exe"+719934: DD D8                 -  fstp st(0)
+"DDDA.exe"+719936: 72 4E                 -  jb DDDA.exe+719986
+"DDDA.exe"+719938: 8B 45 00              -  mov eax,[ebp+00]
+"DDDA.exe"+71993B: 8B 50 44              -  mov edx,[eax+44]
+"DDDA.exe"+71993E: 8B CD                 -  mov ecx,ebp
+"DDDA.exe"+719940: FF D2                 -  call edx
+// ---------- INJECTING HERE ----------
+"DDDA.exe"+719942: D8 BD A0 01 00 00     -  fdivr dword ptr [ebp+000001A0]
+// ---------- DONE INJECTING  ----------
+"DDDA.exe"+719948: 8B 45 58              -  mov eax,[ebp+58]
+"DDDA.exe"+71994B: D9 98 84 3D 00 00     -  fstp dword ptr [eax+00003D84]
+"DDDA.exe"+719951: 8B 85 A4 01 00 00     -  mov eax,[ebp+000001A4]
+"DDDA.exe"+719957: 8B 8D A8 00 00 00     -  mov ecx,[ebp+000000A8]
+"DDDA.exe"+71995D: 0F B7 74 81 3E        -  movzx esi,word ptr [ecx+eax*4+3E]
+"DDDA.exe"+719962: 8B 55 58              -  mov edx,[ebp+58]
+"DDDA.exe"+719965: 0F B7 4C 81 3C        -  movzx ecx,word ptr [ecx+eax*4+3C]
+"DDDA.exe"+71996A: 89 74 24 14           -  mov [esp+14],esi
+"DDDA.exe"+71996E: DB 44 24 14           -  fild dword ptr [esp+14]
+"DDDA.exe"+719972: 89 4C 24 14           -  mov [esp+14],ecx
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>27</ID>
+          <Description>"Cast Speed Multiplier"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : DDDA.exe
+  Version: 
+  Date   : 2020-02-13
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_QUICK_CAST,DDDA.exe,F3 0F 11 83 40 01 00 00 F3 0F 10 83) // should be unique
+alloc(newmem,$1000)
+aobscanmodule(INJ_QUICK_CAST2,DDDA.exe,F3 0F 11 83 40 01 00 00 F3 0F 10 40) // should be unique
+alloc(newmem2,$1000)
+
+label(code)
+label(return)
+label(memret)
+label(code2)
+label(return2)
+label(memret2)
+label(val_cast_mul)
+
+newmem:
+  push eax
+  cvttss2si eax,xmm0
+  test eax,eax
+  je memret
+  movss xmm7,dword ptr [ebx+00000140]
+  comiss xmm0,xmm7
+  jb memret
+  movss xmm6,dword ptr [val_cast_mul]
+  subss xmm0,xmm7
+  mulss xmm0,xmm6
+  addss xmm0,xmm7
+  jmp memret
+
+val_cast_mul:
+  db 00 00 20 41
+registersymbol(val_cast_mul)
+
+memret:
+  pop eax
+  jmp code
+
+newmem2:
+  push eax
+  cvttss2si eax,xmm0
+  test eax,eax
+  je memret2
+  movss xmm7,dword ptr [ebx+00000140]
+  comiss xmm0,xmm7
+  jb memret2
+  movss xmm6,dword ptr [val_cast_mul]
+  subss xmm0,xmm7
+  mulss xmm0,xmm6
+  addss xmm0,xmm7
+  jmp memret2
+
+memret2:
+  pop eax
+  jmp code2
+
+code:
+  movss [ebx+00000140],xmm0
+  jmp return
+
+code2:
+  movss [ebx+00000140],xmm0
+  jmp return2
+
+INJ_QUICK_CAST:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJ_QUICK_CAST)
+
+INJ_QUICK_CAST2:
+  jmp newmem2
+  nop 3
+return2:
+registersymbol(INJ_QUICK_CAST2)
+
+[DISABLE]
+
+INJ_QUICK_CAST2:
+  db F3 0F 11 83 40 01 00 00
+
+INJ_QUICK_CAST:
+  db F3 0F 11 83 40 01 00 00
+
+unregistersymbol(val_cast_mul)
+unregistersymbol(val_last_cast)
+unregistersymbol(INJ_QUICK_CAST2)
+unregistersymbol(INJ_QUICK_CAST)
+dealloc(newmem2)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "DDDA.exe"+7458CF
+
+"DDDA.exe"+7458AB: 6A 01                          -  push 01
+"DDDA.exe"+7458AD: 8B C3                          -  mov eax,ebx
+"DDDA.exe"+7458AF: E8 1C 3A 00 00                 -  call DDDA.exe+7492D0
+"DDDA.exe"+7458B4: 8B C3                          -  mov eax,ebx
+"DDDA.exe"+7458B6: E8 A5 5D 00 00                 -  call DDDA.exe+74B660
+"DDDA.exe"+7458BB: 84 C0                          -  test al,al
+"DDDA.exe"+7458BD: 75 2D                          -  jne DDDA.exe+7458EC
+"DDDA.exe"+7458BF: 8B 43 58                       -  mov eax,[ebx+58]
+"DDDA.exe"+7458C2: F3 0F 10 83 40 01 00 00        -  movss xmm0,[ebx+00000140]
+"DDDA.exe"+7458CA: F3 0F 58 40 14                 -  addss xmm0,[eax+14]
+// ---------- INJECTING HERE ----------
+"DDDA.exe"+7458CF: F3 0F 11 83 40 01 00 00        -  movss [ebx+00000140],xmm0
+// ---------- DONE INJECTING  ----------
+"DDDA.exe"+7458D7: F3 0F 10 83 38 01 00 00        -  movss xmm0,[ebx+00000138]
+"DDDA.exe"+7458DF: F3 0F 58 40 14                 -  addss xmm0,[eax+14]
+"DDDA.exe"+7458E4: F3 0F 11 83 38 01 00 00        -  movss [ebx+00000138],xmm0
+"DDDA.exe"+7458EC: 8B 4B 58                       -  mov ecx,[ebx+58]
+"DDDA.exe"+7458EF: F3 0F 10 41 14                 -  movss xmm0,[ecx+14]
+"DDDA.exe"+7458F4: F3 0F 58 83 44 01 00 00        -  addss xmm0,[ebx+00000144]
+"DDDA.exe"+7458FC: F3 0F 10 0D 74 A5 4E 01        -  movss xmm1,[DDDA.exe+10EA574]
+"DDDA.exe"+745904: 0F 2F C8                       -  comiss xmm1,xmm0
+"DDDA.exe"+745907: F3 0F 11 44 24 0C              -  movss [esp+0C],xmm0
+"DDDA.exe"+74590D: 8D 44 24 0C                    -  lea eax,[esp+0C]
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>28</ID>
+              <Description>"Multiplier"</Description>
+              <VariableType>Float</VariableType>
+              <Address>val_cast_mul</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>36</ID>
+          <Description>"XP Multiplier"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : DDDA.exe
+  Version: 
+  Date   : 2020-02-14
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_XP_MUL,DDDA.exe,01 8F C4 02 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+label(val_xp_mul)
+
+newmem:
+  push eax
+  mov eax,ecx
+  mul [val_xp_mul]
+  mov ecx,eax
+  pop eax
+  jmp code
+
+val_xp_mul:
+  dq 3
+registersymbol(val_xp_mul)
+
+code:
+  add [edi+000002C4],ecx
+  jmp return
+
+INJ_XP_MUL:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_XP_MUL)
+
+[DISABLE]
+
+INJ_XP_MUL:
+  db 01 8F C4 02 00 00
+
+unregistersymbol(INJ_XP_MUL)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "DDDA.exe"+382D9B
+
+"DDDA.exe"+382D71: 79 06                    -  jns DDDA.exe+382D79
+"DDDA.exe"+382D73: D8 05 20 C2 61 01        -  fadd dword ptr [DDDA.exe+121C220]
+"DDDA.exe"+382D79: D8 4C 24 04              -  fmul dword ptr [esp+04]
+"DDDA.exe"+382D7D: D9 7C 24 14              -  fnstcw [esp+14]
+"DDDA.exe"+382D81: 0F B7 44 24 14           -  movzx eax,word ptr [esp+14]
+"DDDA.exe"+382D86: 0D 00 0C 00 00           -  or eax,00000C00
+"DDDA.exe"+382D8B: 89 44 24 04              -  mov [esp+04],eax
+"DDDA.exe"+382D8F: D9 6C 24 04              -  fldcw [esp+04]
+"DDDA.exe"+382D93: DF 7C 24 08              -  fistp qword ptr [esp+08]
+"DDDA.exe"+382D97: 8B 4C 24 08              -  mov ecx,[esp+08]
+// ---------- INJECTING HERE ----------
+"DDDA.exe"+382D9B: 01 8F C4 02 00 00        -  add [edi+000002C4],ecx
+// ---------- DONE INJECTING  ----------
+"DDDA.exe"+382DA1: D9 6C 24 14              -  fldcw [esp+14]
+"DDDA.exe"+382DA5: E8 86 01 00 00           -  call DDDA.exe+382F30
+"DDDA.exe"+382DAA: 8B 15 D4 A4 8F 01        -  mov edx,[DDDA.exe+14FA4D4]
+"DDDA.exe"+382DB0: F3 0F 10 05 B8 19 53 01  -  movss xmm0,[DDDA.exe+11319B8]
+"DDDA.exe"+382DB8: 8B F0                    -  mov esi,eax
+"DDDA.exe"+382DBA: 8B 47 08                 -  mov eax,[edi+08]
+"DDDA.exe"+382DBD: 69 C0 E8 11 00 00        -  imul eax,eax,000011E8
+"DDDA.exe"+382DC3: 8B 84 10 E4 03 00 00     -  mov eax,[eax+edx+000003E4]
+"DDDA.exe"+382DCA: F3 0F 11 44 24 04        -  movss [esp+04],xmm0
+"DDDA.exe"+382DD0: F3 0F 11 44 24 14        -  movss [esp+14],xmm0
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>37</ID>
+              <Description>"Muiltiplier"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>val_xp_mul</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>40</ID>
+          <Description>"Party HP"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : DDDA.exe
+  Version: 
+  Date   : 2020-02-15
+  Author : tpo
+
+  DDDA.exe+376F89
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_HP,DDDA.exe,F3 0F 11 89 9C 02 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+label(val_php_timer)
+label(pt_hp)
+label(pt_hp2)
+label(pt_hp3)
+label(pt_hp4)
+label(Lphp_reset)
+label(L1)
+label(L2)
+label(L3)
+label(L4)
+label(Lret)
+
+newmem:
+  //add [val_php_timer],1
+  //cmp [val_php_timer],420
+  //ja Lphp_reset
+  add eax,8
+  cmp [pt_hp],0
+  je L1
+  cmp [pt_hp2],0
+  je L2
+  cmp [pt_hp3],0
+  je L3
+  cmp [pt_hp4],0
+  je L4
+  jmp Lret
+
+L1:
+  mov [pt_hp],eax
+  jmp Lret
+
+L2:
+  mov [pt_hp2],eax
+  jmp Lret
+
+L3:
+  mov [pt_hp3],eax
+  jmp Lret
+
+L4:
+  mov [pt_hp4],eax
+  jmp Lret
+
+Lphp_reset:
+  mov [pt_hp],0
+  mov [pt_hp2],0
+  mov [pt_hp3],0
+  mov [pt_hp4],0
+  mov [val_php_timer],0
+  jmp code
+
+Lret:
+  sub eax,8
+  jmp code
+
+val_php_timer:
+  dq 0
+registersymbol(val_php_timer)
+
+pt_hp:
+  dq 0
+registersymbol(pt_hp)
+
+pt_hp2:
+  dq 0
+registersymbol(pt_hp2)
+
+pt_hp3:
+  dq 0
+registersymbol(pt_hp3)
+
+pt_hp4:
+  dq 0
+registersymbol(pt_hp4)
+
+code:
+  movss [ecx+0000029C],xmm1
+  jmp return
+
+INJ_HP:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJ_HP)
+
+[DISABLE]
+
+INJ_HP:
+  db F3 0F 11 89 9C 02 00 00
+
+unregistersymbol(pt_hp4)
+unregistersymbol(pt_hp3)
+unregistersymbol(pt_hp2)
+unregistersymbol(pt_hp)
+unregistersymbol(val_php_timer)
+unregistersymbol(INJ_HP)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "DDDA.exe"+764561
+
+"DDDA.exe"+764541: 3B CE                    -  cmp ecx,esi
+"DDDA.exe"+764543: 74 24                    -  je DDDA.exe+764569
+"DDDA.exe"+764545: 0F 28 C8                 -  movaps xmm1,xmm0
+"DDDA.exe"+764548: 39 B7 0C 1D 00 00        -  cmp [edi+00001D0C],esi
+"DDDA.exe"+76454E: 76 11                    -  jna DDDA.exe+764561
+"DDDA.exe"+764550: 8B 87 18 1D 00 00        -  mov eax,[edi+00001D18]
+"DDDA.exe"+764556: 8B 00                    -  mov eax,[eax]
+"DDDA.exe"+764558: 3B C6                    -  cmp eax,esi
+"DDDA.exe"+76455A: 74 05                    -  je DDDA.exe+764561
+"DDDA.exe"+76455C: F3 0F 10 48 08           -  movss xmm1,[eax+08]
+// ---------- INJECTING HERE ----------
+"DDDA.exe"+764561: F3 0F 11 89 9C 02 00 00  -  movss [ecx+0000029C],xmm1
+// ---------- DONE INJECTING  ----------
+"DDDA.exe"+764569: 89 B7 F4 3D 00 00        -  mov [edi+00003DF4],esi
+"DDDA.exe"+76456F: F3 0F 10 8F E0 00 00 00  -  movss xmm1,[edi+000000E0]
+"DDDA.exe"+764577: F3 0F 10 97 E4 00 00 00  -  movss xmm2,[edi+000000E4]
+"DDDA.exe"+76457F: F3 0F 10 9F E8 00 00 00  -  movss xmm3,[edi+000000E8]
+"DDDA.exe"+764587: F3 0F 5C 8F 30 4B 00 00  -  subss xmm1,[edi+00004B30]
+"DDDA.exe"+76458F: F3 0F 5C 97 34 4B 00 00  -  subss xmm2,[edi+00004B34]
+"DDDA.exe"+764597: F3 0F 5C 9F 38 4B 00 00  -  subss xmm3,[edi+00004B38]
+"DDDA.exe"+76459F: F3 0F 11 8F 40 4B 00 00  -  movss [edi+00004B40],xmm1
+"DDDA.exe"+7645A7: F3 0F 11 97 44 4B 00 00  -  movss [edi+00004B44],xmm2
+"DDDA.exe"+7645AF: F3 0F 11 9F 48 4B 00 00  -  movss [edi+00004B48],xmm3
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>41</ID>
+              <Description>"HP"</Description>
+              <VariableType>Float</VariableType>
+              <Address>pt_hp</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>42</ID>
+              <Description>"HP 2"</Description>
+              <VariableType>Float</VariableType>
+              <Address>pt_hp2</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>44</ID>
+              <Description>"HP 3"</Description>
+              <VariableType>Float</VariableType>
+              <Address>pt_hp3</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>43</ID>
+              <Description>"HP 4"</Description>
+              <VariableType>Float</VariableType>
+              <Address>pt_hp4</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

@@ -1,0 +1,749 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="29">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>8</ID>
+      <Description>"[X] &lt;== Age of Empires Definitive Edition v36211 Steam Script v2.0"</Description>
+      <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
+      <LastState/>
+      <Color>FF0000</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{
+===========================================
+ Game Title    : Age of Empires Definitive Edition
+ Game Version  : build 36211
+ Game Sponsor  : PF
+ Process Name  : AoEDE_s.exe
+ Relevant Info : 64bits/RTS
+ Script Version: 2.0
+ CE Version    : 7.0
+ Release date  : 10-May-2020
+ Author        : Recifense
+ History:
+ 20-Aug-2019: First Release (v27805)
+ 21-Aug-2019: Release for version 28218 (AOB)(s11)
+ 18-Apr-2020: Release for build 36211(s12)
+ 10-May-2020: A fix for an inconvenience (s20)
+ Features:
+ - Minimum Resources
+ - God Mode
+ - Instant Research
+ - Instant Construction
+ - Instant unit Production
+ - Some Pointers
+===========================================
+}
+
+//=========================================
+// Checking CE version
+{$lua}
+  if(getCEVersion() &lt; 7.0) then
+    ShowMessage('Warning. CE version should be 7.0 or above')
+  end
+{$asm}
+
+//=========================================
+// Checking Selected Process
+{$lua}
+  if(process == nil) then
+    ShowMessage('No process was selected')
+  elseif (process ~= "AoEDE_s.exe") then
+    ShowMessage('Warning. Expected Process = AoEDE_s.exe')
+  end
+{$asm}
+
+//=========================================
+{$lua}
+--  monoAA_USEMONO(process,false)
+  if waitForPDB then --this way older CE versions are unaffected (By Dark Byte)
+    waitForPDB()
+  end
+{$asm}
+
+//=========================================
+// Definitions
+define(LUDO,"AoEDE_s.exe")
+define(LUDOSTA,AoEDE_s.exe+000F1000)
+define(LUDOEND,AoEDE_s.exe+0032F700)
+{
+define(MOHP,AoEDE_s.exe+00175023) //== 6 1
+define(MOSU,AoEDE_s.exe+00321E85) //#=
+define(GDMD,AoEDE_s.exe+000F1DB8) //#=
+define(GMD2,AoEDE_s.exe+0032F6CA) //==
+define(GMD3,AoEDE_s.exe+0032B329) //==
+define(MOEP,AoEDE_s.exe+002EEAF2) //==
+define(MOCP,AoEDE_s.exe+0032A741) //==
+define(MOPP,AoEDE_s.exe+002AAB79) //==
+}
+define(MXBP,AoEDE_s.exe+001ECCF4) //-N
+//=========================================
+// Constants used in the script (that can be changed)
+define(ctCE70,(float)7.0)
+
+//=========================================
+[ENABLE]
+//=========================================
+//LuaCall(CheckVersion())
+//=========================================
+// Check if script is compatible to this game version
+// If false the script will not be loaded
+
+AOBScanModule(MOHP,$process,48 8b 87 80 00 00 00 f3 0f 10 04 88 48 8b 83 48 01 00 00 0f 2e)
+AOBScanModule(MOSU,$process,48 89 8b 68 04 00 00 8b ca 41 0f bf 86 b4 02 00 00 89 83 70 04) //
+AOBScanModule(GDMD,$process,f3 0f 11 4b 0c 48 85 ff ?? ?? 48 8b 43 18 41 b9 f4 01 00 00 8b) //
+AOBScanModule(GMD2,$process,f3 0f 11 4b 0c 0f 2f f1 ?? ?? 48 8b 47 18 48 8b cb 4c 8b 03 0f)
+AOBScanModule(GMD3,$process,f3 0f 11 4f 0c 48 8b 47 20 66 83 78 6a 00 ?? ?? 0f 2f d1 ?? ??)
+AOBScanModule(MOEP,$process,0f 5b c9 0f 2f c1 ?? ?? 41 0f b7 d0 49 8b c9 e8 ?? ?? ?? ?? 32)
+AOBScanModule(MOCP,$process,0f 5b c0 0f 2f c8 ?? ?? 48 8b 03 b2 02 48 8b cb ff 90 98 00 00)
+AOBScanModule(MOPP,$process,0f 5b c0 0f 2f c8 0f 82 ?? ?? ?? ?? 48 8b 07 b2 01 48 89 9c 24)
+
+assert(MXBP,48 8B 45 28 0F B6 00)
+
+//=========================================
+alloc(MyCode,4096,$process)
+//=========================================
+alloc(CodeCopy,0x015DC800,$process)
+registersymbol(CodeCopy)
+//=========================================
+// Copy Game
+//=========================================
+CodeCopy:
+readmem($process,0x015DC800)
+//=========================================
+// Declaration section
+label(_MonHumanPlayer)
+label(_BackMHP)
+label(_MonSelUnit)
+label(_BackMSU)
+label(_GodMode)
+label(_BackGMD)
+label(_GodMode2)
+label(_BackGM2)
+label(_GodMode3)
+label(_BackGM3)
+label(_MonEraProgress)
+label(_BackMEP)
+label(_MonConstProg)
+label(_BackMCP)
+label(_MonProdProg)
+label(_BackMPP)
+
+label(_MonXBProt)
+label(_BackMXP)
+
+label(iEnableMMR)
+label(iEnableGMD)
+label(iEnableMEP)
+label(iEnableMCP)
+label(iEnableMPP)
+
+label(iPlayerID)
+label(pPlayer)
+label(pUnit)
+label(pEra)
+label(pCopy)
+label(aLast)
+
+//=========================================
+// Registering Symbols
+registersymbol(MyCode)
+registersymbol(iEnableMMR)
+registersymbol(iEnableGMD)
+registersymbol(iEnableMEP)
+registersymbol(iEnableMCP)
+registersymbol(iEnableMPP)
+registersymbol(iPlayerID)
+registersymbol(pPlayer)
+registersymbol(pUnit)
+registersymbol(pEra)
+registersymbol(pCopy)
+registersymbol(aLast)
+
+registersymbol(MOHP)
+registersymbol(MOSU)
+registersymbol(GDMD)
+registersymbol(GMD2)
+registersymbol(GMD3)
+registersymbol(MOEP)
+registersymbol(MOCP)
+registersymbol(MOPP)
+
+//=========================================
+MyCode:
+//=========================================
+// All the time (Id player and min Resources)
+_MonHumanPlayer:
+ mov [aLast],'_MHP'
+
+ mov [pPlayer],rdi
+ mov ax,[rdi+6a]
+ movsx rax,ax
+ mov [iPlayerID],eax
+
+ cmp dword ptr [iEnableMMR],0
+ je _ExitMHP                       // Jump if feature is disabled
+
+ mov rax,[rdi+00000080]
+
+ movss xmm0,[rax+00]
+ maxss xmm0,[fMinRes]
+ movss [rax+00],xmm0
+ movss xmm0,[rax+04]
+ maxss xmm0,[fMinRes]
+ movss [rax+04],xmm0
+ movss xmm0,[rax+08]
+ maxss xmm0,[fMinRes]
+ movss [rax+08],xmm0
+ movss xmm0,[rax+0c]
+ maxss xmm0,[fMinRes]
+ movss [rax+0c],xmm0
+
+_ExitMHP:
+ mov rax,[rdi+00000080]            // Original code (get pRes)
+// movss xmm0,[rax+rcx*4]            // Original code (get Res)
+ jmp _BackMHP                      // Back to main code
+
+//========================================= 35199 *
+// When a unit is selected
+_MonSelUnit:
+ mov [pUnit],rcx
+
+_ExitMSU:
+ mov [rbx+00000468],rcx            // Original code (set pUnit)
+ jmp _BackMSU                      // Back to main code
+
+//========================================= 35199 *
+// During Combat
+_GodMode:
+ mov [aLast],'_GMD'
+
+ mov [pRSI],rsi
+
+ cmp dword ptr [iEnableGMD],0
+ je _ExitGMD                       // Jump if feature is disabled
+
+ mov rsi,[rbx+20]
+ cmp rsi,[pPlayer]
+ jne _ExitGMD
+
+ maxss xmm1,[rbx+0C]
+
+_ExitGMD:
+ mov rsi,[pRSI]
+
+ movss [rbx+0C],xmm1               // Original code (upd HP)
+ jmp _BackGMD                      // Back to main code
+
+//=========================================
+// During Combat
+_GodMode2:
+ mov [aLast],'_GM2'
+
+ mov [pRDI],rdi
+
+ cmp dword ptr [iEnableGMD],0
+ je _ExitGM2                       // Jump if feature is disabled
+
+ mov rdi,[rbx+20]
+ cmp rdi,[pPlayer]
+ jne _ExitGM2
+
+ maxss xmm1,[rbx+0C]
+
+_ExitGM2:
+ mov rdi,[pRDI]
+
+ movss [rbx+0C],xmm1               // Original code (upd HP)
+ jmp _BackGM2                      // Back to main code
+
+//=========================================
+// When under attack (buildings)
+_GodMode3:
+ mov [aLast],'_GM3'
+
+ mov [pRAX],rax
+
+ cmp dword ptr [iEnableGMD],0
+ je _ExitGM3                       // Jump if feature is disabled
+
+ mov rax,[rdi+20]
+ cmp rax,[pPlayer]
+ jne _ExitGM3
+
+ maxss xmm1,[rdi+0C]
+
+_ExitGM3:
+ mov rax,[pRAX]
+
+ movss [rdi+0C],xmm1               // Original code (upd HP)
+ jmp _BackGM3                      // Back to main code
+
+//=========================================
+// When changing ERA is in progress (In fact Research)
+_MonEraProgress:
+ mov [aLast],'_MEP'
+
+ mov [pRBX],rbx
+
+ cvtdq2ps xmm1,xmm1                // Original code
+
+ cmp dword ptr [iEnableMEP],0
+ je _ExitMEP                       // Jump if feature is disabled
+
+ mov rbx,[r9+18]
+ cmp rbx,[pPlayer]
+ jne _ExitMEP
+
+ mov [pEra],r9
+
+ maxss xmm0,xmm1
+
+_ExitMEP:
+ mov rbx,[pRBX]
+
+ comiss xmm0,xmm1                  // Original code (chk if finished)
+ jmp _BackMEP                      // Back to main code
+
+//=========================================
+// When Constructing
+_MonConstProg:
+ mov [aLast],'_MCP'
+
+ mov [pRDX],rdx
+
+ cvtdq2ps xmm0,xmm0                // Original code
+
+ cmp dword ptr [iEnableMCP],0
+ je _ExitMCP                       // Jump if feature is disabled
+
+ mov rdx,[rbx+20]
+ cmp rdx,[pPlayer]
+ jne _ExitMCP
+
+ movss [rbx+0c],xmm2
+ movss [rbx+00000308],xmm0
+ movss xmm1,xmm0
+
+_ExitMCP:
+ mov rdx,[pRDX]
+
+ comiss xmm1,xmm0                  // Original code (chk if finished)
+ jmp _BackMCP                      // Back to main code
+
+//=========================================
+// When Constructing
+_MonProdProg:
+ mov [aLast],'_MPP'
+
+ mov [pRCX],rcx
+
+ cvtdq2ps xmm0,xmm0                // Original code
+
+ cmp dword ptr [iEnableMPP],0
+ je _ExitMPP                       // Jump if feature is disabled
+
+ mov rcx,[rdi+10]
+ test rcx,rcx
+ jz _ExitMPP
+
+ mov rcx,[rcx+20]
+ cmp rcx,[pPlayer]
+ jne _ExitMPP
+
+ movss [rdi+5c],xmm0
+ movss xmm1,xmm0
+
+_ExitMPP:
+ mov rcx,[pRCX]
+
+ comiss xmm1,xmm0                  // Original code (chk if finished)
+ jmp _BackMPP                      // Back to main code
+
+//=========================================
+// Monitor the monitor
+_MonXBProt:
+ mov [aLast],'_MXP'
+
+ mov [pRCX],rcx
+
+ mov rax,[rbp+28]                  // Original code
+
+ mov rcx,LUDOSTA
+ cmp rax,rcx
+ js _ExitMXP
+
+ mov rcx,LUDOEND
+ cmp rax,rcx
+ jns _ExitMXP
+
+ mov rcx,LUDO
+ sub rax,rcx
+ mov rcx,CodeCopy
+ add rax,rcx
+
+_ExitMXP:
+ mov rcx,[pRCX]
+
+ movzx eax,byte ptr [rax]          // Original code
+ jmp _BackMXP                      // Back to main code
+
+//=========================================
+align 10,'='
+//=========================================
+ db '===============================&gt;'
+ db 'CE7.0 Script by Recifense 200510'
+//=========================================
+// Variables
+iEnableMMR:
+ dd 0
+iEnableGMD:
+ dd 0
+iEnableMEP:
+ dd 0
+iEnableMCP:
+ dd 0
+iEnableMPP:
+ dd 0
+iPlayerID:
+ dd 55555555
+fMinRes:
+ dd (float)2670.0
+fMinERA:
+ dd (float)0.98
+pPlayer:
+ dq MyCode
+pUnit:
+ dq 0
+pEra:
+ dq 0
+pCopy:
+ dq CodeCopy
+pRAX:
+ dq 0
+pRBX:
+ dq 0
+pRCX:
+ dq 0
+pRDX:
+ dq 0
+pRDI:
+ dq 0
+pRSI:
+ dq 0
+pXMM1:
+ dq 0
+aLast:
+ db 'CE70'
+
+//=========================================
+// Hacking Points
+MOHP:
+ jmp _MonHumanPlayer
+ nop
+ nop
+_BackMHP:
+
+MOSU:
+ jmp _MonSelUnit
+ nop
+ nop
+_BackMSU:
+
+GDMD:
+ jmp _GodMode
+_BackGMD:
+
+GMD2:
+ jmp _GodMode2
+_BackGM2:
+
+GMD3:
+ jmp _GodMode3
+_BackGM3:
+
+MOEP:
+ jmp _MonEraProgress
+ nop
+_BackMEP:
+
+MOCP:
+ jmp _MonConstProg
+ nop
+_BackMCP:
+
+MOPP:
+ jmp _MonProdProg
+ nop
+_BackMPP:
+
+MXBP:
+ jmp _MonXBProt
+ nop
+ nop
+_BackMXP:
+
+
+//=========================================
+// Script for Restoring Original Codes
+[DISABLE]
+MOHP:
+// mov rax,[rdi+00000080]
+ db 48 8b 87 80 00 00 00
+
+MOSU:
+// mov [rbx+00000468],rcx
+ db 48 89 8b 68 04 00 00
+
+GDMD:
+// movss [rbx+0C],xmm1
+ db f3 0f 11 4b 0c
+
+GMD2:
+// movss [rbx+0C],xmm1
+ db f3 0f 11 4b 0c
+
+GMD3:
+// movss [rdi+0C],xmm1
+ db f3 0f 11 4f 0c
+
+MOEP:
+// cvtdq2ps xmm1,xmm1
+// comiss xmm0,xmm1
+ db 0f 5b c9 0f 2f c1
+
+MOCP:
+// cvtdq2ps xmm0,xmm0
+// comiss xmm1,xmm0
+ db 0f 5b c0 0f 2f c8
+
+MOPP:
+// cvtdq2ps xmm0,xmm0
+// comiss xmm1,xmm0
+ db 0f 5b c0 0f 2f c8
+
+MXBP:
+// mov rax,[rbp+28]
+// movzx eax,byte ptr [rax]
+ db 48 8B 45 28 0F B6 00
+
+//=========================================
+// Unregistering Symbols
+unregistersymbol(MyCode)
+unregistersymbol(CodeCopy)
+
+unregistersymbol(iEnableMMR)
+unregistersymbol(iEnableGMD)
+unregistersymbol(iEnableMEP)
+unregistersymbol(iEnableMCP)
+unregistersymbol(iEnableMPP)
+unregistersymbol(iPlayerID)
+unregistersymbol(pPlayer)
+unregistersymbol(pUnit)
+unregistersymbol(pEra)
+unregistersymbol(pCopy)
+unregistersymbol(aLast)
+
+unregistersymbol(MOHP)
+unregistersymbol(MOSU)
+unregistersymbol(GDMD)
+unregistersymbol(GMD2)
+unregistersymbol(GMD3)
+unregistersymbol(MOEP)
+unregistersymbol(MOCP)
+unregistersymbol(MOPP)
+
+//=========================================
+dealloc(MyCode)
+dealloc(CodeCopy)
+//============= Scripts End ===============
+
+// ****************************************
+// NOTES
+// ****************************************
+{
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>96</ID>
+          <Description>"[X] &lt;== Minimum Resources"</Description>
+          <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
+          <LastState/>
+          <Color>C08000</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+{$LUA}
+writeInteger("iEnableMMR",1)
+memrec.Color=0x0004000
+{$ASM}
+
+[disable]
+{$LUA}
+writeInteger("iEnableMMR",0)
+memrec.Color=0x0c08000
+{$ASM}
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>229</ID>
+          <Description>"[X] &lt;== God Mode"</Description>
+          <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
+          <LastState/>
+          <Color>C08000</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+{$LUA}
+writeInteger("iEnableGMD",1)
+memrec.Color=0x0004000
+{$ASM}
+
+[disable]
+{$LUA}
+writeInteger("iEnableGMD",0)
+memrec.Color=0x0c08000
+{$ASM}
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>235</ID>
+          <Description>"[X] &lt;== Instant Research"</Description>
+          <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
+          <LastState/>
+          <Color>C08000</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+{$LUA}
+writeInteger("iEnableMEP",1)
+memrec.Color=0x0004000
+{$ASM}
+
+[disable]
+{$LUA}
+writeInteger("iEnableMEP",0)
+memrec.Color=0x0c08000
+{$ASM}
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>233</ID>
+          <Description>"[X] &lt;== Instant Construction"</Description>
+          <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
+          <LastState/>
+          <Color>C08000</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+{$LUA}
+writeInteger("iEnableMCP",1)
+memrec.Color=0x0004000
+{$ASM}
+
+[disable]
+{$LUA}
+writeInteger("iEnableMCP",0)
+memrec.Color=0x0c08000
+{$ASM}
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>231</ID>
+          <Description>"[X] &lt;== Instant Production"</Description>
+          <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
+          <LastState/>
+          <Color>C08000</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+{$LUA}
+writeInteger("iEnableMPP",1)
+memrec.Color=0x0004000
+{$ASM}
+
+[disable]
+{$LUA}
+writeInteger("iEnableMPP",0)
+memrec.Color=0x0c08000
+{$ASM}
+
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>228</ID>
+      <Description>"[X] &lt;== Table/Script Information"</Description>
+      <Options moHideChildren="1"/>
+      <LastState/>
+      <Color>0000FF</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[enable]
+{$LUA}
+getMainForm().CommentButton.doClick()
+{$ASM}
+
+[disable]
+
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols>
+    <SymbolEntry>
+      <Name>Recifense</Name>
+      <Address>20200418</Address>
+    </SymbolEntry>
+  </UserdefinedSymbols>
+  <Comments>===========================================
+ Game Title    : Age of Empires Definitive Edition
+ Game Version  : build 36211
+ Game Sponsor  : PF
+ Process Name  : AoEDE_s.exe
+ Relevant Info : 64bits/RTS
+ Script Version: 2.0
+ CE Version    : 7.0
+ Release date  : 10-May-2020
+ Author        : Recifense
+ History:
+ 20-Aug-2019: First Release (v27805)
+ 21-Aug-2019: Release for version 28218 (AOB)(s11)
+ 18-Apr-2020: Release for build 36211(s12)
+ 10-May-2020: A fix for an inconvenience (s20)
+ Features:
+ - Minimum Resources           [1]
+ - God Mode                    [2]
+ - Instant Research            [3]
+ - Instant Construction        [4]
+ - Instant unit Production     [5]
+ - Some Pointers
+===========================================
+[1] Minimum Value is 2670 (resource will not go under this vale)[HPO];
+[2] Units will not die and the Buildings will not be destroyed [HPO];
+[3] Resarch in 1 click [HPO];
+[4] Construction as soon as it starts [HPO];
+[3] Production in 1 click [HPO];
+[HPO] = Human Player Only
+===========================================
+[USAGE]
+1) Run CE70 or greater;
+2) Run Game;
+3) Load the game process "AoEDE_s.exe" in CE;
+4) Load this table and activate the main script;
+5) Now Activate the script of each cheat you want to use;
+6) Game On;
+===========================================
+[HOTKEYS]
+- None defined;
+===========================================
+[ADVICE]
+When you can,save the game before starting using table/cheat. So you can always come back in case you don't like the result.
+===========================================
+[INFO]
+Tested on Win 10 64bits
+===========================================
+[INFO]
+First table/script for CE7.0.
+===========================================
+Cheers!
+</Comments>
+</CheatTable>

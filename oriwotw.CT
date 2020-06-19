@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="29">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"Inf HP"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : oriwotw.exe
+  Version: 
+  Date   : 2020-03-13
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+
+aobscanmodule(INJ_HP,GameAssembly.dll,89 41 10 33 D2 0F) // should be unique
+alloc(newmem,$1000,"GameAssembly.dll"+122FDA4)
+
+label(code)
+label(return)
+label(L1)
+
+newmem:
+  movd xmm15,eax
+  comiss xmm15,dword ptr [rcx+10]
+  jb L1
+  jmp code
+
+L1:
+  xor edx,edx
+  jmp return
+
+code:
+  mov [rcx+10],eax
+  xor edx,edx
+  jmp return
+
+INJ_HP:
+  jmp newmem
+return:
+registersymbol(INJ_HP)
+
+[DISABLE]
+
+INJ_HP:
+  db 89 41 10 33 D2
+
+unregistersymbol(INJ_HP)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "GameAssembly.dll"+122FDA4
+
+"GameAssembly.dll"+122FD87: 48 85 C9                    -  test rcx,rcx
+"GameAssembly.dll"+122FD8A: 74 31                       -  je GameAssembly.dll+122FDBD
+"GameAssembly.dll"+122FD8C: 33 D2                       -  xor edx,edx
+"GameAssembly.dll"+122FD8E: E8 0D DB 17 00              -  call GameAssembly.dll+13AD8A0
+"GameAssembly.dll"+122FD93: 48 85 C0                    -  test rax,rax
+"GameAssembly.dll"+122FD96: 74 37                       -  je GameAssembly.dll+122FDCF
+"GameAssembly.dll"+122FD98: 48 8B 48 28                 -  mov rcx,[rax+28]
+"GameAssembly.dll"+122FD9C: 48 85 C9                    -  test rcx,rcx
+"GameAssembly.dll"+122FD9F: 74 28                       -  je GameAssembly.dll+122FDC9
+"GameAssembly.dll"+122FDA1: 8B 43 2C                    -  mov eax,[rbx+2C]
+// ---------- INJECTING HERE ----------
+"GameAssembly.dll"+122FDA4: 89 41 10                    -  mov [rcx+10],eax
+"GameAssembly.dll"+122FDA7: 33 D2                       -  xor edx,edx
+// ---------- DONE INJECTING  ----------
+"GameAssembly.dll"+122FDA9: 0F 28 74 24 50              -  movaps xmm6,[rsp+50]
+"GameAssembly.dll"+122FDAE: 0F 28 7C 24 40              -  movaps xmm7,[rsp+40]
+"GameAssembly.dll"+122FDB3: 48 83 C4 60                 -  add rsp,60
+"GameAssembly.dll"+122FDB7: 5B                          -  pop rbx
+"GameAssembly.dll"+122FDB8: E9 63 9D 18 00              -  jmp GameAssembly.dll+13B9B20
+"GameAssembly.dll"+122FDBD: E8 9E FD 03 FF              -  call GameAssembly.dll+26FB60
+"GameAssembly.dll"+122FDC2: CC                          -  int 3 
+"GameAssembly.dll"+122FDC3: E8 98 FD 03 FF              -  call GameAssembly.dll+26FB60
+"GameAssembly.dll"+122FDC8: CC                          -  int 3 
+"GameAssembly.dll"+122FDC9: E8 92 FD 03 FF              -  call GameAssembly.dll+26FB60
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"Inf Energy"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : oriwotw.exe
+  Version: 
+  Date   : 2020-03-13
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_ENG,GameAssembly.dll,F3 0F 11 73 18 33) // should be unique
+alloc(newmem,$1000,"GameAssembly.dll"+DE9EED)
+
+label(code)
+label(return)
+
+newmem:
+  movd xmm15,[rbx+18]
+  comiss xmm15,xmm6
+  jb code
+  jmp return
+
+code:
+  movss [rbx+18],xmm6
+  jmp return
+
+INJ_ENG:
+  jmp newmem
+return:
+registersymbol(INJ_ENG)
+
+[DISABLE]
+
+INJ_ENG:
+  db F3 0F 11 73 18
+
+unregistersymbol(INJ_ENG)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "GameAssembly.dll"+DE9EED
+
+"GameAssembly.dll"+DE9ED3: 0F 57 C9                    -  xorps xmm1,xmm1
+"GameAssembly.dll"+DE9ED6: 0F 2F CE                    -  comiss xmm1,xmm6
+"GameAssembly.dll"+DE9ED9: 77 0A                       -  ja GameAssembly.dll+DE9EE5
+"GameAssembly.dll"+DE9EDB: 0F 2F F7                    -  comiss xmm6,xmm7
+"GameAssembly.dll"+DE9EDE: 76 08                       -  jna GameAssembly.dll+DE9EE8
+"GameAssembly.dll"+DE9EE0: 0F 28 F7                    -  movaps xmm6,xmm7
+"GameAssembly.dll"+DE9EE3: EB 03                       -  jmp GameAssembly.dll+DE9EE8
+"GameAssembly.dll"+DE9EE5: 0F 57 F6                    -  xorps xmm6,xmm6
+"GameAssembly.dll"+DE9EE8: 48 85 DB                    -  test rbx,rbx
+"GameAssembly.dll"+DE9EEB: 74 34                       -  je GameAssembly.dll+DE9F21
+// ---------- INJECTING HERE ----------
+"GameAssembly.dll"+DE9EED: F3 0F 11 73 18              -  movss [rbx+18],xmm6
+// ---------- DONE INJECTING  ----------
+"GameAssembly.dll"+DE9EF2: 33 D2                       -  xor edx,edx
+"GameAssembly.dll"+DE9EF4: 48 8B CB                    -  mov rcx,rbx
+"GameAssembly.dll"+DE9EF7: E8 24 FC 5C 00              -  call GameAssembly.dll+13B9B20
+"GameAssembly.dll"+DE9EFC: C6 47 30 01                 -  mov byte ptr [rdi+30],01
+"GameAssembly.dll"+DE9F00: 48 8B 5C 24 70              -  mov rbx,[rsp+70]
+"GameAssembly.dll"+DE9F05: 0F 28 74 24 50              -  movaps xmm6,[rsp+50]
+"GameAssembly.dll"+DE9F0A: 0F 28 7C 24 40              -  movaps xmm7,[rsp+40]
+"GameAssembly.dll"+DE9F0F: 48 83 C4 60                 -  add rsp,60
+"GameAssembly.dll"+DE9F13: 5F                          -  pop rdi
+"GameAssembly.dll"+DE9F14: C3                          -  ret 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"Spirit Light Pointer"</Description>
+      <Options moHideChildren="1"/>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : oriwotw.exe
+  Version: 
+  Date   : 2020-03-16
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_GOLD,GameAssembly.dll,89 59 30 33 D2) // should be unique
+alloc(newmem,$1000,"GameAssembly.dll"+49411D)
+
+label(code)
+label(return)
+label(pt_gold)
+
+newmem:
+  mov [pt_gold],rcx
+  add [pt_gold],30
+  jmp code
+
+pt_gold:
+  dq 0
+registersymbol(pt_gold)
+
+code:
+  mov [rcx+30],ebx
+  xor edx,edx
+  jmp return
+
+INJ_GOLD:
+  jmp newmem
+return:
+registersymbol(INJ_GOLD)
+
+[DISABLE]
+
+INJ_GOLD:
+  db 89 59 30 33 D2
+
+unregistersymbol(pt_gold)
+unregistersymbol(INJ_GOLD)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "GameAssembly.dll"+49411D
+
+"GameAssembly.dll"+4940FF: 48 8B 48 18                 -  mov rcx,[rax+18]
+"GameAssembly.dll"+494103: 48 85 C9                    -  test rcx,rcx
+"GameAssembly.dll"+494106: 74 24                       -  je GameAssembly.dll+49412C
+"GameAssembly.dll"+494108: 33 D2                       -  xor edx,edx
+"GameAssembly.dll"+49410A: E8 91 97 F1 00              -  call GameAssembly.dll+13AD8A0
+"GameAssembly.dll"+49410F: 48 85 C0                    -  test rax,rax
+"GameAssembly.dll"+494112: 74 2A                       -  je GameAssembly.dll+49413E
+"GameAssembly.dll"+494114: 48 8B 48 18                 -  mov rcx,[rax+18]
+"GameAssembly.dll"+494118: 48 85 C9                    -  test rcx,rcx
+"GameAssembly.dll"+49411B: 74 1B                       -  je GameAssembly.dll+494138
+// ---------- INJECTING HERE ----------
+"GameAssembly.dll"+49411D: 89 59 30                    -  mov [rcx+30],ebx
+"GameAssembly.dll"+494120: 33 D2                       -  xor edx,edx
+// ---------- DONE INJECTING  ----------
+"GameAssembly.dll"+494122: 48 83 C4 40                 -  add rsp,40
+"GameAssembly.dll"+494126: 5B                          -  pop rbx
+"GameAssembly.dll"+494127: E9 44 C5 F1 00              -  jmp GameAssembly.dll+13B0670
+"GameAssembly.dll"+49412C: E8 2F BA DD FF              -  call GameAssembly.dll+26FB60
+"GameAssembly.dll"+494131: CC                          -  int 3 
+"GameAssembly.dll"+494132: E8 29 BA DD FF              -  call GameAssembly.dll+26FB60
+"GameAssembly.dll"+494137: CC                          -  int 3 
+"GameAssembly.dll"+494138: E8 23 BA DD FF              -  call GameAssembly.dll+26FB60
+"GameAssembly.dll"+49413D: CC                          -  int 3 
+"GameAssembly.dll"+49413E: E8 1D BA DD FF              -  call GameAssembly.dll+26FB60
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>6</ID>
+          <Description>"Amount"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_gold</Address>
+          <Offsets>
+            <Offset>0</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

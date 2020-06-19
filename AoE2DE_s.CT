@@ -1,0 +1,962 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="29">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>59</ID>
+      <Description>"Resources"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : AoE2DE_s.exe
+  Version: 
+  Date   : 2020-02-17
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_FOOD,AoE2DE_s.exe,8B 08 89 4B 1C) // should be unique
+alloc(newmem,$100,"AoE2DE_s.exe"+9BBA94)
+aobscanmodule(INJ_POP,AoE2DE_s.exe,F3 0F 10 40 2C F3 0F 58) // should be unique
+alloc(newmem2,$1000,"AoE2DE_s.exe"+9BBA72)
+
+label(code)
+label(return)
+label(pt_food)
+label(code2)
+label(return2)
+label(pt_pop)
+
+newmem:
+  mov [pt_food],rax
+  jmp code
+
+pt_food:
+  dq 0
+registersymbol(pt_food)
+
+code:
+  mov ecx,[rax]
+  mov [rbx+1C],ecx
+  jmp return
+
+INJ_FOOD:
+  jmp newmem
+return:
+registersymbol(INJ_FOOD)
+
+// population
+newmem2:
+  mov [pt_pop],rax
+  add [pt_pop],2C
+  jmp code2
+
+pt_pop:
+  dq 0
+registersymbol(pt_pop)
+
+code2:
+  movss xmm0,[rax+2C]
+  jmp return2
+
+INJ_POP:
+  jmp newmem2
+return2:
+registersymbol(INJ_POP)
+
+[DISABLE]
+
+INJ_POP:
+  db F3 0F 10 40 2C
+
+INJ_FOOD:
+  db 8B 08 89 4B 1C
+
+unregistersymbol(pt_pop)
+unregistersymbol(INJ_POP)
+unregistersymbol(pt_food)
+unregistersymbol(INJ_FOOD)
+dealloc(newmem2)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "AoE2DE_s.exe"+9BBA94
+
+"AoE2DE_s.exe"+9BBA68: 0F 84 80 02 00 00        -  je AoE2DE_s.exe+9BBCEE
+"AoE2DE_s.exe"+9BBA6E: 49 8B 47 70              -  mov rax,[r15+70]
+"AoE2DE_s.exe"+9BBA72: F3 0F 10 40 2C           -  movss xmm0,[rax+2C]
+"AoE2DE_s.exe"+9BBA77: F3 0F 58 40 10           -  addss xmm0,[rax+10]
+"AoE2DE_s.exe"+9BBA7C: F3 0F 2C D0              -  cvttss2si edx,xmm0
+"AoE2DE_s.exe"+9BBA80: F3 0F 2C 88 80 00 00 00  -  cvttss2si ecx,[rax+00000080]
+"AoE2DE_s.exe"+9BBA88: 3B CA                    -  cmp ecx,edx
+"AoE2DE_s.exe"+9BBA8A: 0F 4D CA                 -  cmovge ecx,edx
+"AoE2DE_s.exe"+9BBA8D: 89 4B 50                 -  mov [rbx+50],ecx
+"AoE2DE_s.exe"+9BBA90: 49 8B 47 70              -  mov rax,[r15+70]
+// ---------- INJECTING HERE ----------
+"AoE2DE_s.exe"+9BBA94: 8B 08                    -  mov ecx,[rax]
+"AoE2DE_s.exe"+9BBA96: 89 4B 1C                 -  mov [rbx+1C],ecx
+// ---------- DONE INJECTING  ----------
+"AoE2DE_s.exe"+9BBA99: 49 8B 47 70              -  mov rax,[r15+70]
+"AoE2DE_s.exe"+9BBA9D: 8B 48 04                 -  mov ecx,[rax+04]
+"AoE2DE_s.exe"+9BBAA0: 89 4B 18                 -  mov [rbx+18],ecx
+"AoE2DE_s.exe"+9BBAA3: 49 8B 47 70              -  mov rax,[r15+70]
+"AoE2DE_s.exe"+9BBAA7: 8B 48 08                 -  mov ecx,[rax+08]
+"AoE2DE_s.exe"+9BBAAA: 89 4B 24                 -  mov [rbx+24],ecx
+"AoE2DE_s.exe"+9BBAAD: 49 8B 47 70              -  mov rax,[r15+70]
+"AoE2DE_s.exe"+9BBAB1: 8B 48 0C                 -  mov ecx,[rax+0C]
+"AoE2DE_s.exe"+9BBAB4: 89 4B 20                 -  mov [rbx+20],ecx
+"AoE2DE_s.exe"+9BBAB7: 49 8B 47 70              -  mov rax,[r15+70]
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>60</ID>
+          <Description>"Food"</Description>
+          <LastState Value="0" RealAddress="1F9FC9C0"/>
+          <VariableType>Float</VariableType>
+          <Address>pt_food</Address>
+          <Offsets>
+            <Offset>0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>63</ID>
+          <Description>"Wood"</Description>
+          <LastState Value="60" RealAddress="1F9FC9C4"/>
+          <VariableType>Float</VariableType>
+          <Address>pt_food</Address>
+          <Offsets>
+            <Offset>4</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>62</ID>
+          <Description>"Stone"</Description>
+          <LastState Value="0" RealAddress="1F9FC9C8"/>
+          <VariableType>Float</VariableType>
+          <Address>pt_food</Address>
+          <Offsets>
+            <Offset>8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>61</ID>
+          <Description>"Gold"</Description>
+          <LastState Value="50" RealAddress="1F9FC9CC"/>
+          <VariableType>Float</VariableType>
+          <Address>pt_food</Address>
+          <Offsets>
+            <Offset>C</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>67</ID>
+          <Description>"Population"</Description>
+          <LastState Value="10" RealAddress="1F9FC9EC"/>
+          <VariableType>Float</VariableType>
+          <Address>pt_pop</Address>
+          <Offsets>
+            <Offset>0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>68</ID>
+          <Description>"Max Population"</Description>
+          <LastState Value="30" RealAddress="1F9FC9D0"/>
+          <VariableType>Float</VariableType>
+          <Address>pt_pop</Address>
+          <Offsets>
+            <Offset>-1C</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>37</ID>
+      <Description>"Unit"</Description>
+      <Options moHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+      <LastState Value="" Activated="1" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>21</ID>
+          <Description>"Unit HP Finder"</Description>
+          <Options moHideChildren="1"/>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : AoE2DE_s.exe
+  Version: 
+  Date   : 2019-11-17
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(HP_Editor,AoE2DE_s.exe,8B 81 90 00 00 00 89 86)) // should be unique
+alloc(newmem,$1000,"AoE2DE_s.exe"+9BD5B9)
+
+label(code)
+label(return)
+label(sym_hp)
+
+newmem:
+  mov rax, rcx
+  add rax, 90
+  mov [sym_hp], rax
+  mov eax, [rcx+90]
+  jmp return
+
+code:
+  mov eax,[rcx+00000090]
+  jmp return
+
+sym_hp:
+  db 00 00 00 00 00 00 00 00
+
+HP_Editor:
+  jmp newmem
+  nop
+return:
+registersymbol(HP_Editor)
+registersymbol(sym_hp)
+
+[DISABLE]
+
+HP_Editor:
+  db 8B 81 90 00 00 00
+
+unregistersymbol(HP_Editor)
+unregistersymbol(sym_hp)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "AoE2DE_s.exe"+9BD5B9
+
+"AoE2DE_s.exe"+9BD586: EB 02                 -  jmp AoE2DE_s.exe+9BD58A
+"AoE2DE_s.exe"+9BD588: 8B CB                 -  mov ecx,ebx
+"AoE2DE_s.exe"+9BD58A: 66 89 8E B4 0E 00 00  -  mov [rsi+00000EB4],cx
+"AoE2DE_s.exe"+9BD591: 48 8B C8              -  mov rcx,rax
+"AoE2DE_s.exe"+9BD594: 48 8B 40 10           -  mov rax,[rax+10]
+"AoE2DE_s.exe"+9BD598: 48 89 86 F8 0D 00 00  -  mov [rsi+00000DF8],rax
+"AoE2DE_s.exe"+9BD59F: 0F B7 81 AC 00 00 00  -  movzx eax,word ptr [rcx+000000AC]
+"AoE2DE_s.exe"+9BD5A6: 66 89 86 08 0E 00 00  -  mov [rsi+00000E08],ax
+"AoE2DE_s.exe"+9BD5AD: 8B 81 A4 00 00 00     -  mov eax,[rcx+000000A4]
+"AoE2DE_s.exe"+9BD5B3: 89 86 0C 0E 00 00     -  mov [rsi+00000E0C],eax
+// ---------- INJECTING HERE ----------
+"AoE2DE_s.exe"+9BD5B9: 8B 81 90 00 00 00     -  mov eax,[rcx+00000090]
+// ---------- DONE INJECTING  ----------
+"AoE2DE_s.exe"+9BD5BF: 89 86 24 0E 00 00     -  mov [rsi+00000E24],eax
+"AoE2DE_s.exe"+9BD5C5: 48 8B 01              -  mov rax,[rcx]
+"AoE2DE_s.exe"+9BD5C8: FF 90 58 04 00 00     -  call qword ptr [rax+00000458]
+"AoE2DE_s.exe"+9BD5CE: 48 8B BE E0 0D 00 00  -  mov rdi,[rsi+00000DE0]
+"AoE2DE_s.exe"+9BD5D5: 66 89 86 18 0E 00 00  -  mov [rsi+00000E18],ax
+"AoE2DE_s.exe"+9BD5DC: 48 8B 47 10           -  mov rax,[rdi+10]
+"AoE2DE_s.exe"+9BD5E0: 8B 48 44              -  mov ecx,[rax+44]
+"AoE2DE_s.exe"+9BD5E3: 89 8E A8 0E 00 00     -  mov [rsi+00000EA8],ecx
+"AoE2DE_s.exe"+9BD5E9: 48 8B 47 18           -  mov rax,[rdi+18]
+"AoE2DE_s.exe"+9BD5ED: 48 89 86 B8 0E 00 00  -  mov [rsi+00000EB8],rax
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>22</ID>
+              <Description>"Unit HP"</Description>
+              <LastState Value="750" RealAddress="35A74660"/>
+              <VariableType>Float</VariableType>
+              <Address>sym_hp</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>3</ID>
+          <Description>"Unit Resource Finder"</Description>
+          <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : AoE2DE_s.exe
+  Version: 
+  Date   : 2019-11-17
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(GodPointer,AoE2DE_s.exe,8B 81 A4 00 00 00 89) // should be unique
+alloc(newmem,$1000,"AoE2DE_s.exe"+9BD5AD)
+
+label(code)
+label(return)
+label(sym_rss)
+
+newmem:
+  mov rax, rcx
+  add rax, 0A4
+  mov [sym_rss], rax
+  mov eax, [rcx+0A4]
+  jmp return
+
+sym_rss:
+  db 00 00 00 00 00 00 00 00
+
+code:
+  mov eax,[rcx+000000A4]
+  jmp return
+
+GodPointer:
+  jmp newmem
+  nop
+return:
+registersymbol(GodPointer)
+registersymbol(sym_rss)
+
+[DISABLE]
+
+GodPointer:
+  db 8B 81 A4 00 00 00
+
+unregistersymbol(GodPointer)
+unregistersymbol(sym_rss)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "AoE2DE_s.exe"+9BD5AD
+
+"AoE2DE_s.exe"+9BD57D: 72 09                 -  jb AoE2DE_s.exe+9BD588
+"AoE2DE_s.exe"+9BD57F: 0F B7 88 64 02 00 00  -  movzx ecx,word ptr [rax+00000264]
+"AoE2DE_s.exe"+9BD586: EB 02                 -  jmp AoE2DE_s.exe+9BD58A
+"AoE2DE_s.exe"+9BD588: 8B CB                 -  mov ecx,ebx
+"AoE2DE_s.exe"+9BD58A: 66 89 8E B4 0E 00 00  -  mov [rsi+00000EB4],cx
+"AoE2DE_s.exe"+9BD591: 48 8B C8              -  mov rcx,rax
+"AoE2DE_s.exe"+9BD594: 48 8B 40 10           -  mov rax,[rax+10]
+"AoE2DE_s.exe"+9BD598: 48 89 86 F8 0D 00 00  -  mov [rsi+00000DF8],rax
+"AoE2DE_s.exe"+9BD59F: 0F B7 81 AC 00 00 00  -  movzx eax,word ptr [rcx+000000AC]
+"AoE2DE_s.exe"+9BD5A6: 66 89 86 08 0E 00 00  -  mov [rsi+00000E08],ax
+// ---------- INJECTING HERE ----------
+"AoE2DE_s.exe"+9BD5AD: 8B 81 A4 00 00 00     -  mov eax,[rcx+000000A4]
+// ---------- DONE INJECTING  ----------
+"AoE2DE_s.exe"+9BD5B3: 89 86 0C 0E 00 00     -  mov [rsi+00000E0C],eax
+"AoE2DE_s.exe"+9BD5B9: 8B 81 90 00 00 00     -  mov eax,[rcx+00000090]
+"AoE2DE_s.exe"+9BD5BF: 89 86 24 0E 00 00     -  mov [rsi+00000E24],eax
+"AoE2DE_s.exe"+9BD5C5: 48 8B 01              -  mov rax,[rcx]
+"AoE2DE_s.exe"+9BD5C8: FF 90 58 04 00 00     -  call qword ptr [rax+00000458]
+"AoE2DE_s.exe"+9BD5CE: 48 8B BE E0 0D 00 00  -  mov rdi,[rsi+00000DE0]
+"AoE2DE_s.exe"+9BD5D5: 66 89 86 18 0E 00 00  -  mov [rsi+00000E18],ax
+"AoE2DE_s.exe"+9BD5DC: 48 8B 47 10           -  mov rax,[rdi+10]
+"AoE2DE_s.exe"+9BD5E0: 8B 48 44              -  mov ecx,[rax+44]
+"AoE2DE_s.exe"+9BD5E3: 89 8E A8 0E 00 00     -  mov [rsi+00000EA8],ecx
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>4</ID>
+              <Description>"Resources Carried"</Description>
+              <LastState Value="0" RealAddress="35A74674"/>
+              <VariableType>Float</VariableType>
+              <Address>sym_rss</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>45</ID>
+          <Description>"Unit Attack Damage"</Description>
+          <Options moHideChildren="1"/>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : AoE2DE_s.exe
+  Version: 
+  Date   : 2019-12-24
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_UATK,AoE2DE_s.exe,42 0F B7 4C 03 02) // should be unique
+alloc(newmem,$1000,"AoE2DE_s.exe"+5F243B)
+
+label(code)
+label(return)
+label(pt_atk)
+
+newmem:
+  mov [pt_atk],rbx
+  add [pt_atk],r8
+  add [pt_atk],2
+  jmp code
+
+pt_atk:
+  db 00 00 00 00 00 00 00 00
+
+code:
+  movzx ecx,word ptr [rbx+r8+02]
+  jmp return
+
+INJ_UATK:
+  jmp newmem
+  nop
+
+return:
+registersymbol(INJ_UATK)
+registersymbol(pt_atk)
+
+[DISABLE]
+
+INJ_UATK:
+  db 42 0F B7 4C 03 02
+
+unregistersymbol(INJ_UATK)
+unregistersymbol(pt_atk)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "AoE2DE_s.exe"+5F243B
+
+"AoE2DE_s.exe"+5F2417: 48 89 5C 24 10           -  mov [rsp+10],rbx
+"AoE2DE_s.exe"+5F241C: 45 8B C2                 -  mov r8d,r10d
+"AoE2DE_s.exe"+5F241F: 90                       -  nop 
+"AoE2DE_s.exe"+5F2420: 49 8B 99 50 02 00 00     -  mov rbx,[r9+00000250]
+"AoE2DE_s.exe"+5F2427: 42 0F B7 0C 03           -  movzx ecx,word ptr [rbx+r8]
+"AoE2DE_s.exe"+5F242C: 66 83 F9 04              -  cmp cx,04
+"AoE2DE_s.exe"+5F2430: 74 09                    -  je AoE2DE_s.exe+5F243B
+"AoE2DE_s.exe"+5F2432: 49 8B C1                 -  mov rax,r9
+"AoE2DE_s.exe"+5F2435: 66 83 F9 03              -  cmp cx,03
+"AoE2DE_s.exe"+5F2439: 75 15                    -  jne AoE2DE_s.exe+5F2450
+// ---------- INJECTING HERE ----------
+"AoE2DE_s.exe"+5F243B: 42 0F B7 4C 03 02        -  movzx ecx,word ptr [rbx+r8+02]
+// ---------- DONE INJECTING  ----------
+"AoE2DE_s.exe"+5F2441: 49 8B C1                 -  mov rax,r9
+"AoE2DE_s.exe"+5F2444: 66 3B 0A                 -  cmp cx,[rdx]
+"AoE2DE_s.exe"+5F2447: 7E 07                    -  jle AoE2DE_s.exe+5F2450
+"AoE2DE_s.exe"+5F2449: 66 89 0A                 -  mov [rdx],cx
+"AoE2DE_s.exe"+5F244C: 48 8B 47 10              -  mov rax,[rdi+10]
+"AoE2DE_s.exe"+5F2450: 0F BF 88 48 02 00 00     -  movsx ecx,word ptr [rax+00000248]
+"AoE2DE_s.exe"+5F2457: 41 FF C3                 -  inc r11d
+"AoE2DE_s.exe"+5F245A: 49 83 C0 04              -  add r8,04
+"AoE2DE_s.exe"+5F245E: 4C 8B C8                 -  mov r9,rax
+"AoE2DE_s.exe"+5F2461: 44 3B D9                 -  cmp r11d,ecx
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>46</ID>
+              <Description>"Attack"</Description>
+              <LastState Value="17" RealAddress="35F6743A"/>
+              <VariableType>2 Bytes</VariableType>
+              <Address>pt_atk</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>89</ID>
+          <Description>"Unit Armor"</Description>
+          <Options moHideChildren="1"/>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : AoE2DE_s.exe
+  Version: 
+  Date   : 2020-02-21
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+{ Game   : AoE2DE_s.exe
+  Version: 
+  Date   : 2020-02-21
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_PARMOR,AoE2DE_s.exe,41 0F B7 4C 83 02 EB D8 CC) // should be unique
+alloc(newmem,$1000,"AoE2DE_s.exe"+C811DD)
+
+label(code)
+label(return)
+label(pt_parmor)
+
+newmem:
+  push rax
+  push rbx
+  mov rbx,4
+  mul rbx
+  add rax,r11
+  add rax,2
+  mov [pt_parmor],rax
+  pop rbx
+  pop rax
+  jmp code
+
+pt_parmor:
+  dq 0
+registersymbol(pt_parmor)
+
+code:
+  movzx ecx,word ptr [r11+rax*4+02]
+  jmp return
+
+INJ_PARMOR:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_PARMOR)
+
+aobscanmodule(INJ_MARMOR,AoE2DE_s.exe,41 0F B7 4C 83 02 EB D8 90) // should be unique
+alloc(newmem2,$1000,"AoE2DE_s.exe"+C8126D)
+
+label(code2)
+label(return2)
+label(pt_marmor)
+
+newmem2:
+  push rax
+  push rbx
+  mov rbx,4
+  mul rbx
+  add rax,r11
+  add rax,2
+  mov [pt_marmor],rax
+  pop rbx
+  pop rax
+  jmp code2
+
+pt_marmor:
+  dq 0
+registersymbol(pt_marmor)
+
+code2:
+  movzx ecx,word ptr [r11+rax*4+02]
+  jmp return2
+
+INJ_MARMOR:
+  jmp newmem2
+  nop
+return2:
+registersymbol(INJ_MARMOR)
+
+[DISABLE]
+
+INJ_PARMOR:
+  db 41 0F B7 4C 83 02
+
+unregistersymbol(pt_parmor)
+unregistersymbol(INJ_PARMOR)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "AoE2DE_s.exe"+BCBD9D
+
+"AoE2DE_s.exe"+BCBD73: 7C EB                          -  jl AoE2DE_s.exe+BCBD60
+"AoE2DE_s.exe"+BCBD75: 41 0F B7 8A 40 02 00 00        -  movzx ecx,word ptr [r10+00000240]
+"AoE2DE_s.exe"+BCBD7D: 66 89 0F                       -  mov [rdi],cx
+"AoE2DE_s.exe"+BCBD80: 48 8B 43 10                    -  mov rax,[rbx+10]
+"AoE2DE_s.exe"+BCBD84: 48 8B 5C 24 08                 -  mov rbx,[rsp+08]
+"AoE2DE_s.exe"+BCBD89: 48 8B 7C 24 10                 -  mov rdi,[rsp+10]
+"AoE2DE_s.exe"+BCBD8E: 0F B7 88 B8 02 00 00           -  movzx ecx,word ptr [rax+000002B8]
+"AoE2DE_s.exe"+BCBD95: 66 41 89 08                    -  mov [r8],cx
+"AoE2DE_s.exe"+BCBD99: C3                             -  ret 
+"AoE2DE_s.exe"+BCBD9A: 49 63 C1                       -  movsxd  rax,r9d
+// ---------- INJECTING HERE ----------
+"AoE2DE_s.exe"+BCBD9D: 41 0F B7 4C 83 02              -  movzx ecx,word ptr [r11+rax*4+02]
+// ---------- DONE INJECTING  ----------
+"AoE2DE_s.exe"+BCBDA3: EB D8                          -  jmp AoE2DE_s.exe+BCBD7D
+"AoE2DE_s.exe"+BCBDA5: CC                             -  int 3 
+"AoE2DE_s.exe"+BCBDA6: 87 5A CB                       -  xchg [rdx-35],ebx
+"AoE2DE_s.exe"+BCBDA9: 58                             -  pop rax
+"AoE2DE_s.exe"+BCBDAA: 73 22                          -  jae AoE2DE_s.exe+BCBDCE
+"AoE2DE_s.exe"+BCBDAC: 0B C7                          -  or eax,edi
+"AoE2DE_s.exe"+BCBDAE: ED                             -  in eax,dx
+"AoE2DE_s.exe"+BCBDAF: 34 40                          -  xor al,40
+"AoE2DE_s.exe"+BCBDB1: 53                             -  push rbx
+"AoE2DE_s.exe"+BCBDB2: 48 83 EC 30                    -  sub rsp,30
+}
+INJ_MARMOR:
+  db 41 0F B7 4C 83 02
+
+unregistersymbol(pt_marmor)
+unregistersymbol(INJ_MARMOR)
+dealloc(newmem2)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "AoE2DE_s.exe"+BCBCFD
+
+"AoE2DE_s.exe"+BCBCD3: 7C EB                    -  jl AoE2DE_s.exe+BCBCC0
+"AoE2DE_s.exe"+BCBCD5: 41 0F B7 8A 40 02 00 00  -  movzx ecx,word ptr [r10+00000240]
+"AoE2DE_s.exe"+BCBCDD: 66 89 0F                 -  mov [rdi],cx
+"AoE2DE_s.exe"+BCBCE0: 48 8B 43 10              -  mov rax,[rbx+10]
+"AoE2DE_s.exe"+BCBCE4: 48 8B 5C 24 08           -  mov rbx,[rsp+08]
+"AoE2DE_s.exe"+BCBCE9: 48 8B 7C 24 10           -  mov rdi,[rsp+10]
+"AoE2DE_s.exe"+BCBCEE: 0F B7 88 8C 02 00 00     -  movzx ecx,word ptr [rax+0000028C]
+"AoE2DE_s.exe"+BCBCF5: 66 41 89 08              -  mov [r8],cx
+"AoE2DE_s.exe"+BCBCF9: C3                       -  ret 
+"AoE2DE_s.exe"+BCBCFA: 49 63 C1                 -  movsxd  rax,r9d
+// ---------- INJECTING HERE ----------
+"AoE2DE_s.exe"+BCBCFD: 41 0F B7 4C 83 02        -  movzx ecx,word ptr [r11+rax*4+02]
+// ---------- DONE INJECTING  ----------
+"AoE2DE_s.exe"+BCBD03: EB D8                    -  jmp AoE2DE_s.exe+BCBCDD
+"AoE2DE_s.exe"+BCBD05: CC                       -  int 3 
+"AoE2DE_s.exe"+BCBD06: 39 82 A7 06 7B 6B        -  cmp [rdx+6B7B06A7],eax
+"AoE2DE_s.exe"+BCBD0C: C8 3A 15 5D              -  enter 153A,5D
+"AoE2DE_s.exe"+BCBD10: 33 C0                    -  xor eax,eax
+"AoE2DE_s.exe"+BCBD12: 48 39 81 10 01 00 00     -  cmp [rcx+00000110],rax
+"AoE2DE_s.exe"+BCBD19: 0F 95 C0                 -  setne al
+"AoE2DE_s.exe"+BCBD1C: C3                       -  ret 
+"AoE2DE_s.exe"+BCBD1D: 90                       -  nop 
+"AoE2DE_s.exe"+BCBD1E: 22 83 48 89 5C 24        -  and al,[rbx+245C8948]
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>123</ID>
+              <Description>"Pierce Armor"</Description>
+              <LastState Value="8" RealAddress="35D0F73E"/>
+              <VariableType>2 Bytes</VariableType>
+              <Address>pt_marmor</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>90</ID>
+              <Description>"Melee Armor"</Description>
+              <LastState Value="1" RealAddress="35D0F73A"/>
+              <VariableType>2 Bytes</VariableType>
+              <Address>pt_parmor</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>71</ID>
+          <Description>"Unit Range"</Description>
+          <Options moHideChildren="1"/>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : AoE2DE_s.exe
+  Version: 
+  Date   : 2020-02-17
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+
+aobscanmodule(INJ_RANGE,AoE2DE_s.exe,89 02 41 8B 81 90 02 00 00) // should be unique
+alloc(newmem,$1000,"AoE2DE_s.exe"+610BDB)
+
+label(code)
+label(return)
+label(pt_range)
+
+newmem:
+  mov [pt_range],r9
+  add [pt_range],264
+  jmp code
+
+pt_range:
+  dq 0
+registersymbol(pt_range)
+
+code:
+  mov [rdx],eax
+  mov eax,[r9+00000290]
+  jmp return
+
+INJ_RANGE:
+  jmp newmem
+  nop 4
+return:
+registersymbol(INJ_RANGE)
+
+[DISABLE]
+
+INJ_RANGE:
+  db 89 02 41 8B 81 90 02 00 00
+
+unregistersymbol(pt_range)
+unregistersymbol(INJ_RANGE)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "AoE2DE_s.exe"+610BDB
+
+"AoE2DE_s.exe"+610BBC: 0F B7 88 8E 02 00 00     -  movzx ecx,word ptr [rax+0000028E]
+"AoE2DE_s.exe"+610BC3: 66 89 0E                 -  mov [rsi],cx
+"AoE2DE_s.exe"+610BC6: 48 8B 74 24 18           -  mov rsi,[rsp+18]
+"AoE2DE_s.exe"+610BCB: 5F                       -  pop rdi
+"AoE2DE_s.exe"+610BCC: C3                       -  ret 
+"AoE2DE_s.exe"+610BCD: CC                       -  int 3 
+"AoE2DE_s.exe"+610BCE: 48 8B 4C 8B 49           -  mov rcx,[rbx+rcx*4+49]
+"AoE2DE_s.exe"+610BD3: 10 41 8B                 -  adc [rcx-75],al
+"AoE2DE_s.exe"+610BD6: 81 64 02                 - db 81 64 02  // SHORTENED TO HIT INJECTION FROM:  and [rdx+rax+00],41028900
+"AoE2DE_s.exe"+610BD9: 00 00                    -  add [rax],al
+// ---------- INJECTING HERE ----------
+"AoE2DE_s.exe"+610BDB: 89 02                    -  mov [rdx],eax
+"AoE2DE_s.exe"+610BDD: 41 8B 81 90 02 00 00     -  mov eax,[r9+00000290]
+// ---------- DONE INJECTING  ----------
+"AoE2DE_s.exe"+610BE4: 41 89 00                 -  mov [r8],eax
+"AoE2DE_s.exe"+610BE7: C3                       -  ret 
+"AoE2DE_s.exe"+610BE8: 8B 40 64                 -  mov eax,[rax+64]
+"AoE2DE_s.exe"+610BEB: E9 F7 A8 00 00           -  jmp AoE2DE_s.exe+61B4E7
+"AoE2DE_s.exe"+610BF0: 40 53                    -  push rbx
+"AoE2DE_s.exe"+610BF2: 48 83 EC 40              -  sub rsp,40
+"AoE2DE_s.exe"+610BF6: 0F 29 74 24 30           -  movaps [rsp+30],xmm6
+"AoE2DE_s.exe"+610BFB: 48 8B D9                 -  mov rbx,rcx
+"AoE2DE_s.exe"+610BFE: 0F 29 7C 24 20           -  movaps [rsp+20],xmm7
+"AoE2DE_s.exe"+610C03: E8 68 CD 59 00           -  call AoE2DE_s.exe+BAD970
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>72</ID>
+              <Description>"Range"</Description>
+              <LastState Value="0" RealAddress="92BC9244"/>
+              <VariableType>Float</VariableType>
+              <Address>pt_range</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>57</ID>
+      <Description>"Allow Building HP Excessed"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : AoE2DE_s.exe
+  Version: 
+  Date   : 2019-12-28
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_BUMHP,AoE2DE_s.exe,F3 0F 11 93 90 00 00 00 EB) // should be unique
+alloc(newmem,$128,"AoE2DE_s.exe"+B750CD)
+
+label(code)
+label(return)
+
+newmem:
+  jmp return
+
+code:
+  movss [rbx+00000090],xmm2
+  jmp return
+
+INJ_BUMHP:
+  jmp newmem
+  nop
+  nop
+  nop
+return:
+registersymbol(INJ_BUMHP)
+
+[DISABLE]
+
+INJ_BUMHP:
+  db F3 0F 11 93 90 00 00 00
+
+unregistersymbol(INJ_BUMHP)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "AoE2DE_s.exe"+B750CD
+
+"AoE2DE_s.exe"+B750A7: 41 0F B7 46 42                 -  movzx eax,word ptr [r14+42]
+"AoE2DE_s.exe"+B750AC: 66 85 C0                       -  test ax,ax
+"AoE2DE_s.exe"+B750AF: 0F 8E 4F 03 00 00              -  jng AoE2DE_s.exe+B75404
+"AoE2DE_s.exe"+B750B5: F3 0F 10 83 90 00 00 00        -  movss xmm0,[rbx+00000090]
+"AoE2DE_s.exe"+B750BD: 45 33 FF                       -  xor r15d,r15d
+"AoE2DE_s.exe"+B750C0: 98                             -  cwde 
+"AoE2DE_s.exe"+B750C1: 66 0F 6E D0                    -  movd xmm2,eax
+"AoE2DE_s.exe"+B750C5: 0F 5B D2                       -  cvtdq2ps xmm2,xmm2
+"AoE2DE_s.exe"+B750C8: 0F 2F C2                       -  comiss xmm0,xmm2
+"AoE2DE_s.exe"+B750CB: 76 0A                          -  jna AoE2DE_s.exe+B750D7
+// ---------- INJECTING HERE ----------
+"AoE2DE_s.exe"+B750CD: F3 0F 11 93 90 00 00 00        -  movss [rbx+00000090],xmm2
+// ---------- DONE INJECTING  ----------
+"AoE2DE_s.exe"+B750D5: EB 12                          -  jmp AoE2DE_s.exe+B750E9
+"AoE2DE_s.exe"+B750D7: 0F 2F C8                       -  comiss xmm1,xmm0
+"AoE2DE_s.exe"+B750DA: 0F 28 D0                       -  movaps xmm2,xmm0
+"AoE2DE_s.exe"+B750DD: 76 0A                          -  jna AoE2DE_s.exe+B750E9
+"AoE2DE_s.exe"+B750DF: 44 89 BB 90 00 00 00           -  mov [rbx+00000090],r15d
+"AoE2DE_s.exe"+B750E6: 0F 57 D2                       -  xorps xmm2,xmm2
+"AoE2DE_s.exe"+B750E9: F3 0F 10 0D 5B E4 03 01        -  movss xmm1,[AoE2DE_s.exe+1BB354C]
+"AoE2DE_s.exe"+B750F1: 41 0F BF 46 42                 -  movsx eax,word ptr [r14+42]
+"AoE2DE_s.exe"+B750F6: F3 0F 59 D1                    -  mulss xmm2,xmm1
+"AoE2DE_s.exe"+B750FA: 66 0F 6E C0                    -  movd xmm0,eax
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols>
+    <SymbolEntry>
+      <Name>inj_invoffsets</Name>
+      <Address>14CFA52C7</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>inj_statsmission</Name>
+      <Address>149FAA6C4</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>inj_palicopet</Name>
+      <Address>149FAF193</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>p_inv1</Name>
+      <Address>13FFF0097</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>p_inv2</Name>
+      <Address>13FFF009F</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>p_inv3</Name>
+      <Address>13FFF00A7</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>p_inv4</Name>
+      <Address>13FFF00AF</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>infitemuse</Name>
+      <Address>14C19077C</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>hampc</Name>
+      <Address>141C7586C</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>nopgcd2</Name>
+      <Address>141BBA0DC</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>maxbowcharge</Name>
+      <Address>141C8C715</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>p_playerstats</Name>
+      <Address>13FF9001E</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>p_investigation</Name>
+      <Address>152DC004C</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>events_listadd1</Name>
+      <Address>141730304</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>events_listadd2</Name>
+      <Address>14173040A</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>events_enable1</Name>
+      <Address>14AA98631</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>events_enable2</Name>
+      <Address>14AA99339</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>maxskills</Name>
+      <Address>147995E3C</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>maxskills2</Name>
+      <Address>14F14C4D7</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>inj_gathertracks</Name>
+      <Address>141BFCAC3</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>inventory</Name>
+      <Address>90060098</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>inj_catchpet</Name>
+      <Address>14191E2DD</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>inj_mapfunc_pet</Name>
+      <Address>141013120</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>inj_gatherwish</Name>
+      <Address>14144A540</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>inj_pchar</Name>
+      <Address>1468D2B8C</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>aob_statsmission</Name>
+      <Address>14D1746A0</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>aob_palicopet</Name>
+      <Address>14D1778CB</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>aob_layeredarmor</Name>
+      <Address>14F45B041</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>inj_playerstats</Name>
+      <Address>141BDE350</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>p_gamedb</Name>
+      <Address>3581F540</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>inj_rewards</Name>
+      <Address>141A78563</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>inj_investigation</Name>
+      <Address>14E3AA817</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>inj_investigation_ms</Name>
+      <Address>14E62E041</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>infhealth</Name>
+      <Address>14EA9063C</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>infhealth2</Name>
+      <Address>14EA90CFD</Address>
+    </SymbolEntry>
+  </UserdefinedSymbols>
+</CheatTable>

@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="29">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"Inf Ballista Bolt"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Besiege.exe
+  Version: 
+  Date   : 2020-03-03
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_INF_BOLT,89 88 B4 02 00 00 D9) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov ecx,1E
+  jmp code
+
+code:
+  mov [eax+000002B4],ecx
+  jmp return
+
+INJ_INF_BOLT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_INF_BOLT)
+
+[DISABLE]
+
+INJ_INF_BOLT:
+  db 89 88 B4 02 00 00
+
+unregistersymbol(INJ_INF_BOLT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 144EF8D9
+
+144EF8B6: 8B 80 90 02 00 00     -  mov eax,[eax+00000290]
+144EF8BC: 83 EC 0C              -  sub esp,0C
+144EF8BF: 50                    -  push eax
+144EF8C0: 39 00                 -  cmp [eax],eax
+144EF8C2: E8 4D 05 00 00        -  call 144EFE14
+144EF8C7: 83 C4 10              -  add esp,10
+144EF8CA: E9 F7 04 00 00        -  jmp 144EFDC6
+144EF8CF: 8B 47 1C              -  mov eax,[edi+1C]
+144EF8D2: 8B 88 B4 02 00 00     -  mov ecx,[eax+000002B4]
+144EF8D8: 49                    -  dec ecx
+// ---------- INJECTING HERE ----------
+144EF8D9: 89 88 B4 02 00 00     -  mov [eax+000002B4],ecx
+// ---------- DONE INJECTING  ----------
+144EF8DF: D9 EE                 -  fldz 
+144EF8E1: D9 05 20 FA 45 20     -  fld dword ptr [2045FA20]
+144EF8E7: 83 EC 08              -  sub esp,08
+144EF8EA: 83 EC 04              -  sub esp,04
+144EF8ED: D9 1C 24              -  fstp dword ptr [esp]
+144EF8F0: 83 EC 04              -  sub esp,04
+144EF8F3: D9 1C 24              -  fstp dword ptr [esp]
+144EF8F6: E8 95 9F 2B F2        -  call 067A9890
+144EF8FB: 83 C4 10              -  add esp,10
+144EF8FE: DD 9D 18 FF FF FF     -  fstp qword ptr [ebp-000000E8]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>10</ID>
+      <Description>"Inf Flame Thrower"</Description>
+      <Options moHideChildren="1" moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
+      <LastState Value="" Activated="1" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>4</ID>
+          <Description>"Script 1"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Besiege.exe
+  Version: 
+  Date   : 2020-03-05
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_INF_FLAME,E0 DD 45 F0 D9 C9 DE E9 D9 9F 9C 02 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  push eax
+  mov eax,[edi+0000029C]
+  fstp dword ptr [edi+0000029C]
+  mov [edi+0000029C],eax
+  pop eax
+  jmp return
+
+code:
+  fstp dword ptr [edi+0000029C]
+  jmp return
+
+INJ_INF_FLAME+08:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_INF_FLAME)
+
+[DISABLE]
+
+INJ_INF_FLAME+08:
+  db D9 9F 9C 02 00 00
+
+unregistersymbol(INJ_INF_FLAME)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 26250506
+
+262504E0: 0F 85 40 00 00 00     -  jne 26250526
+262504E6: 0F B6 87 98 02 00 00  -  movzx eax,byte ptr [edi+00000298]
+262504ED: 85 C0                 -  test eax,eax
+262504EF: 74 1B                 -  je 2625050C
+262504F1: D9 87 9C 02 00 00     -  fld dword ptr [edi+0000029C]
+262504F7: DD 5D F0              -  fstp qword ptr [ebp-10]
+262504FA: E8 E1 57 45 E0        -  call 066A5CE0
+262504FF: DD 45 F0              -  fld qword ptr [ebp-10]
+26250502: D9 C9                 -  fxch st(1)
+26250504: DE E9                 -  fsubp st(1),st(0)
+// ---------- INJECTING HERE ----------
+26250506: D9 9F 9C 02 00 00     -  fstp dword ptr [edi+0000029C]
+// ---------- DONE INJECTING  ----------
+2625050C: D9 87 9C 02 00 00     -  fld dword ptr [edi+0000029C]
+26250512: D9 EE                 -  fldz 
+26250514: DF F1                 -  fcomip st(0),st(1)
+26250516: DD D8                 -  fstp st(0)
+26250518: 72 0C                 -  jb 26250526
+2625051A: 83 EC 0C              -  sub esp,0C
+2625051D: 57                    -  push edi
+2625051E: E8 15 01 00 00        -  call 26250638
+26250523: 83 C4 10              -  add esp,10
+26250526: 8D 65 FC              -  lea esp,[ebp-04]
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>9</ID>
+          <Description>"Script 2"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Besiege.exe
+  Version: 
+  Date   : 2020-03-05
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_INF_FLAME,D9 9F 9C 02 00 00 D9 87) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  push eax
+  mov eax,[edi+0000029C]
+  fstp dword ptr [edi+0000029C]
+  mov [edi+0000029C],eax
+  pop eax
+  jmp return
+code:
+  fstp dword ptr [edi+0000029C]
+  jmp return
+
+INJ_INF_FLAME:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_INF_FLAME)
+
+[DISABLE]
+
+INJ_INF_FLAME:
+  db D9 9F 9C 02 00 00
+
+unregistersymbol(INJ_INF_FLAME)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 296C6E8E
+
+296C6E68: 0F 85 40 00 00 00     -  jne 296C6EAE
+296C6E6E: 0F B6 87 98 02 00 00  -  movzx eax,byte ptr [edi+00000298]
+296C6E75: 85 C0                 -  test eax,eax
+296C6E77: 74 1B                 -  je 296C6E94
+296C6E79: D9 87 9C 02 00 00     -  fld dword ptr [edi+0000029C]
+296C6E7F: DD 5D F0              -  fstp qword ptr [ebp-10]
+296C6E82: E8 81 5D F8 DC        -  call 0664CC08
+296C6E87: DD 45 F0              -  fld qword ptr [ebp-10]
+296C6E8A: D9 C9                 -  fxch st(1)
+296C6E8C: DE E9                 -  fsubp st(1),st(0)
+// ---------- INJECTING HERE ----------
+296C6E8E: D9 9F 9C 02 00 00     -  fstp dword ptr [edi+0000029C]
+// ---------- DONE INJECTING  ----------
+296C6E94: D9 87 9C 02 00 00     -  fld dword ptr [edi+0000029C]
+296C6E9A: D9 EE                 -  fldz 
+296C6E9C: DF F1                 -  fcomip st(0),st(1)
+296C6E9E: DD D8                 -  fstp st(0)
+296C6EA0: 72 0C                 -  jb 296C6EAE
+296C6EA2: 83 EC 0C              -  sub esp,0C
+296C6EA5: 57                    -  push edi
+296C6EA6: E8 09 00 00 00        -  call 296C6EB4
+296C6EAB: 83 C4 10              -  add esp,10
+296C6EAE: 8D 65 FC              -  lea esp,[ebp-04]
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>12</ID>
+      <Description>"Rapid Bolt Fire"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Besiege.exe
+  Version: 
+  Date   : 2020-03-05
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_RAPID_BOLT,D9 9F C4 02 00 00 E9) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  push eax
+  mov eax,3DCCCCCD // 0.03
+  fstp dword ptr [edi+000002C4]
+  mov [edi+000002C4],eax
+  pop eax
+  jmp return
+
+code:
+  fstp dword ptr [edi+000002C4]
+  jmp return
+
+INJ_RAPID_BOLT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_RAPID_BOLT)
+
+[DISABLE]
+
+INJ_RAPID_BOLT:
+  db D9 9F C4 02 00 00
+
+unregistersymbol(INJ_RAPID_BOLT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 296ABF7D
+
+296ABF5E: E8 5D 29 F7 DC        -  call 0661E8C0
+296ABF63: 83 C4 10              -  add esp,10
+296ABF66: D9 E8                 -  fld1 
+296ABF68: 8B 87 A0 02 00 00     -  mov eax,[edi+000002A0]
+296ABF6E: 8B C8                 -  mov ecx,eax
+296ABF70: 39 09                 -  cmp [ecx],ecx
+296ABF72: D9 40 30              -  fld dword ptr [eax+30]
+296ABF75: D9 5D F8              -  fstp dword ptr [ebp-08]
+296ABF78: D9 45 F8              -  fld dword ptr [ebp-08]
+296ABF7B: DE F9                 -  fdivp st(1),st(0)
+// ---------- INJECTING HERE ----------
+296ABF7D: D9 9F C4 02 00 00     -  fstp dword ptr [edi+000002C4]
+// ---------- DONE INJECTING  ----------
+296ABF83: E9 E9 00 00 00        -  jmp 296AC071
+296ABF88: 8B 87 8C 02 00 00     -  mov eax,[edi+0000028C]
+296ABF8E: 83 EC 08              -  sub esp,08
+296ABF91: 6A 01                 -  push 01
+296ABF93: 50                    -  push eax
+296ABF94: 39 00                 -  cmp [eax],eax
+296ABF96: E8 7D 38 F6 DC        -  call 0660F818
+296ABF9B: 83 C4 10              -  add esp,10
+296ABF9E: E9 CE 00 00 00        -  jmp 296AC071
+296ABFA3: 8B 87 8C 02 00 00     -  mov eax,[edi+0000028C]
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

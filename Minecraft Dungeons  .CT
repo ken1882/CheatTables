@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="31">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>18</ID>
+      <Description>"Emrald (open inventory)"</Description>
+      <Options moHideChildren="1"/>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Dungeons-Win64-Shipping.exe
+  Version: 
+  Date   : 2020-05-28
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_EMRALD,Dungeons-Win64-Shipping.exe,F8 8B 41 08 C3 CC) // should be unique
+alloc(newmem,$1000,"Dungeons-Win64-Shipping.exe"+A3CF23)
+
+label(code)
+label(return)
+label(pt_emrald)
+
+newmem:
+  mov [pt_emrald],rcx
+  add [pt_emrald],8
+  jmp code
+
+pt_emrald:
+  dq 0
+registersymbol(pt_emrald)
+
+code:
+  mov eax,[rcx+08]
+  ret 
+  int 3 
+  jmp return
+
+INJ_EMRALD+01:
+  jmp newmem
+return:
+registersymbol(INJ_EMRALD)
+
+[DISABLE]
+
+INJ_EMRALD+01:
+  db 8B 41 08 C3 CC
+
+unregistersymbol(pt_emrald)
+unregistersymbol(INJ_EMRALD)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "Dungeons-Win64-Shipping.exe"+A3CF23
+
+"Dungeons-Win64-Shipping.exe"+A3CF0A: 0F 94 C2                 -  sete dl
+"Dungeons-Win64-Shipping.exe"+A3CF0D: 44 84 C2                 -  test dl,r8l
+"Dungeons-Win64-Shipping.exe"+A3CF10: 75 0C                    -  jne Dungeons-Win64-Shipping.exe+A3CF1E
+"Dungeons-Win64-Shipping.exe"+A3CF12: 48 83 C1 0C              -  add rcx,0C
+"Dungeons-Win64-Shipping.exe"+A3CF16: 49 3B C9                 -  cmp rcx,r9
+"Dungeons-Win64-Shipping.exe"+A3CF19: 75 E5                    -  jne Dungeons-Win64-Shipping.exe+A3CF00
+"Dungeons-Win64-Shipping.exe"+A3CF1B: 33 C0                    -  xor eax,eax
+"Dungeons-Win64-Shipping.exe"+A3CF1D: C3                       -  ret 
+"Dungeons-Win64-Shipping.exe"+A3CF1E: 49 3B C9                 -  cmp rcx,r9
+"Dungeons-Win64-Shipping.exe"+A3CF21: 74 F8                    -  je Dungeons-Win64-Shipping.exe+A3CF1B
+// ---------- INJECTING HERE ----------
+"Dungeons-Win64-Shipping.exe"+A3CF23: 8B 41 08                 -  mov eax,[rcx+08]
+"Dungeons-Win64-Shipping.exe"+A3CF26: C3                       -  ret 
+"Dungeons-Win64-Shipping.exe"+A3CF27: CC                       -  int 3 
+// ---------- DONE INJECTING  ----------
+"Dungeons-Win64-Shipping.exe"+A3CF28: CC                       -  int 3 
+"Dungeons-Win64-Shipping.exe"+A3CF29: CC                       -  int 3 
+"Dungeons-Win64-Shipping.exe"+A3CF2A: CC                       -  int 3 
+"Dungeons-Win64-Shipping.exe"+A3CF2B: CC                       -  int 3 
+"Dungeons-Win64-Shipping.exe"+A3CF2C: CC                       -  int 3 
+"Dungeons-Win64-Shipping.exe"+A3CF2D: CC                       -  int 3 
+"Dungeons-Win64-Shipping.exe"+A3CF2E: CC                       -  int 3 
+"Dungeons-Win64-Shipping.exe"+A3CF2F: CC                       -  int 3 
+"Dungeons-Win64-Shipping.exe"+A3CF30: 48 8B C4                 -  mov rax,rsp
+"Dungeons-Win64-Shipping.exe"+A3CF33: 48 89 50 10              -  mov [rax+10],rdx
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>19</ID>
+          <Description>"Amount"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_emrald</Address>
+          <Offsets>
+            <Offset>0</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>22</ID>
+      <Description>"HP"</Description>
+      <VariableType>Float</VariableType>
+      <Address>"Dungeons-Win64-Shipping.exe"+03AAE4C0</Address>
+      <Offsets>
+        <Offset>34</Offset>
+        <Offset>38</Offset>
+        <Offset>188</Offset>
+        <Offset>1F0</Offset>
+        <Offset>E60</Offset>
+        <Offset>0</Offset>
+        <Offset>8</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"Inf Arrow"</Description>
+      <Options moHideChildren="1"/>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Minecraft Dungeons  
+  Version: 
+  Date   : 2020-05-27
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_INF_ARROW,Dungeons-Win64-Shipping.exe,29 BB EC 01 00 00) // should be unique
+alloc(newmem,$1000,"Dungeons-Win64-Shipping.exe"+916D02)
+
+label(code)
+label(return)
+label(pt_arrow)
+
+newmem:
+  mov [pt_arrow],rbx
+  add [pt_arrow],01EC
+  cmp edi,[rbx+01EC]
+  jge code
+  jmp return
+
+pt_arrow:
+  dq 0
+registersymbol(pt_arrow)
+
+code:
+  sub [rbx+000001EC],edi
+  jmp return
+
+INJ_INF_ARROW:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_INF_ARROW)
+
+[DISABLE]
+
+INJ_INF_ARROW:
+  db 29 BB EC 01 00 00
+
+unregistersymbol(pt_arrow)
+unregistersymbol(INJ_INF_ARROW)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "Dungeons-Win64-Shipping.exe"+916D02
+
+"Dungeons-Win64-Shipping.exe"+916CDA: 83 B9 EC 01 00 00 00  -  cmp dword ptr [rcx+000001EC],00
+"Dungeons-Win64-Shipping.exe"+916CE1: 8B FA                 -  mov edi,edx
+"Dungeons-Win64-Shipping.exe"+916CE3: 48 8B D9              -  mov rbx,rcx
+"Dungeons-Win64-Shipping.exe"+916CE6: 74 49                 -  je Dungeons-Win64-Shipping.exe+916D31
+"Dungeons-Win64-Shipping.exe"+916CE8: 48 8B 89 F8 01 00 00  -  mov rcx,[rcx+000001F8]
+"Dungeons-Win64-Shipping.exe"+916CEF: 48 85 C9              -  test rcx,rcx
+"Dungeons-Win64-Shipping.exe"+916CF2: 74 0E                 -  je Dungeons-Win64-Shipping.exe+916D02
+"Dungeons-Win64-Shipping.exe"+916CF4: E8 67 0F FD FF        -  call Dungeons-Win64-Shipping.exe+8E7C60
+"Dungeons-Win64-Shipping.exe"+916CF9: 83 B8 80 00 00 00 00  -  cmp dword ptr [rax+00000080],00
+"Dungeons-Win64-Shipping.exe"+916D00: 75 2F                 -  jne Dungeons-Win64-Shipping.exe+916D31
+// ---------- INJECTING HERE ----------
+"Dungeons-Win64-Shipping.exe"+916D02: 29 BB EC 01 00 00     -  sub [rbx+000001EC],edi
+// ---------- DONE INJECTING  ----------
+"Dungeons-Win64-Shipping.exe"+916D08: 48 8B CB              -  mov rcx,rbx
+"Dungeons-Win64-Shipping.exe"+916D0B: E8 80 B5 00 00        -  call Dungeons-Win64-Shipping.exe+922290
+"Dungeons-Win64-Shipping.exe"+916D10: 83 BB EC 01 00 00 00  -  cmp dword ptr [rbx+000001EC],00
+"Dungeons-Win64-Shipping.exe"+916D17: 7F 18                 -  jg Dungeons-Win64-Shipping.exe+916D31
+"Dungeons-Win64-Shipping.exe"+916D19: 48 8B 83 E8 00 00 00  -  mov rax,[rbx+000000E8]
+"Dungeons-Win64-Shipping.exe"+916D20: 80 B8 18 01 00 00 03  -  cmp byte ptr [rax+00000118],03
+"Dungeons-Win64-Shipping.exe"+916D27: 75 08                 -  jne Dungeons-Win64-Shipping.exe+916D31
+"Dungeons-Win64-Shipping.exe"+916D29: 48 8B CB              -  mov rcx,rbx
+"Dungeons-Win64-Shipping.exe"+916D2C: E8 9F CE 1F 00        -  call Dungeons-Win64-Shipping.exe+B13BD0
+"Dungeons-Win64-Shipping.exe"+916D31: 48 8B 5C 24 30        -  mov rbx,[rsp+30]
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>7</ID>
+          <Description>"Arrows"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_arrow</Address>
+          <Offsets>
+            <Offset>0</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>24</ID>
+      <Description>"Enchantment Points"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Dungeons-Win64-Shipping.exe
+  Version: 
+  Date   : 2020-05-29
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_ENCHANTMENT,Dungeons-Win64-Shipping.exe,44 89 B1 E4 01 00 00) // should be unique
+alloc(newmem,$1000,"Dungeons-Win64-Shipping.exe"+8667DA)
+
+label(code)
+label(return)
+label(pt_enchantment)
+
+newmem:
+  mov [pt_enchantment],rcx
+  jmp code
+
+pt_enchantment:
+  dq 0
+registersymbol(pt_enchantment)
+
+code:
+  mov [rcx+000001E4],r14d
+  jmp return
+
+INJ_ENCHANTMENT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJ_ENCHANTMENT)
+
+[DISABLE]
+
+INJ_ENCHANTMENT:
+  db 44 89 B1 E4 01 00 00
+
+unregistersymbol(pt_enchantment)
+unregistersymbol(INJ_ENCHANTMENT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "Dungeons-Win64-Shipping.exe"+8667DA
+
+"Dungeons-Win64-Shipping.exe"+8667B2: 41 55                    -  push r13
+"Dungeons-Win64-Shipping.exe"+8667B4: 41 56                    -  push r14
+"Dungeons-Win64-Shipping.exe"+8667B6: 41 57                    -  push r15
+"Dungeons-Win64-Shipping.exe"+8667B8: 48 8D 6C 24 C9           -  lea rbp,[rsp-37]
+"Dungeons-Win64-Shipping.exe"+8667BD: 48 81 EC 90 00 00 00     -  sub rsp,00000090
+"Dungeons-Win64-Shipping.exe"+8667C4: 44 8B A9 E0 01 00 00     -  mov r13d,[rcx+000001E0]
+"Dungeons-Win64-Shipping.exe"+8667CB: 8D 42 FF                 -  lea eax,[rdx-01]
+"Dungeons-Win64-Shipping.exe"+8667CE: 44 2B A9 E4 01 00 00     -  sub r13d,[rcx+000001E4]
+"Dungeons-Win64-Shipping.exe"+8667D5: 45 33 F6                 -  xor r14d,r14d
+"Dungeons-Win64-Shipping.exe"+8667D8: 85 C0                    -  test eax,eax
+// ---------- INJECTING HERE ----------
+"Dungeons-Win64-Shipping.exe"+8667DA: 44 89 B1 E4 01 00 00     -  mov [rcx+000001E4],r14d
+// ---------- DONE INJECTING  ----------
+"Dungeons-Win64-Shipping.exe"+8667E1: 48 8B D9                 -  mov rbx,rcx
+"Dungeons-Win64-Shipping.exe"+8667E4: 41 8B F6                 -  mov esi,r14d
+"Dungeons-Win64-Shipping.exe"+8667E7: 41 0F 4E C6              -  cmovle eax,r14d
+"Dungeons-Win64-Shipping.exe"+8667EB: 89 81 E0 01 00 00        -  mov [rcx+000001E0],eax
+"Dungeons-Win64-Shipping.exe"+8667F1: 48 63 81 00 02 00 00     -  movsxd  rax,dword ptr [rcx+00000200]
+"Dungeons-Win64-Shipping.exe"+8667F8: 48 8B B9 F8 01 00 00     -  mov rdi,[rcx+000001F8]
+"Dungeons-Win64-Shipping.exe"+8667FF: 4C 8D 3C C5 00 00 00 00  -  lea r15,[rax*8+00000000]
+"Dungeons-Win64-Shipping.exe"+866807: 49 8D 04 3F              -  lea rax,[r15+rdi]
+"Dungeons-Win64-Shipping.exe"+86680B: 49 C1 EF 03              -  shr r15,03
+"Dungeons-Win64-Shipping.exe"+86680F: 48 3B F8                 -  cmp rdi,rax
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>25</ID>
+          <Description>"Points Used"</Description>
+          <ShowAsSigned>1</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_enchantment</Address>
+          <Offsets>
+            <Offset>1E4</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

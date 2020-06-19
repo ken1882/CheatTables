@@ -1,0 +1,761 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="31">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"Gold"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>2</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0" RealAddress="7FF71ABD2010"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>TOV_DE.exe+1182010</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>3</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0" RealAddress="7FF71ABD5A34"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>TOV_DE.exe+1185A34</Address>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"Character"</Description>
+      <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>12</ID>
+          <Description>"Yuri"</Description>
+          <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
+          <LastState Value="" RealAddress="00000000"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>6</ID>
+              <Description>"HP"</Description>
+              <LastState Value="300" RealAddress="7FF71ABD6A04"/>
+              <VariableType>4 Bytes</VariableType>
+              <Address>TOV_DE.exe+1186A04</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>9</ID>
+              <Description>"TP"</Description>
+              <LastState Value="40" RealAddress="7FF71ABD6A08"/>
+              <VariableType>4 Bytes</VariableType>
+              <Address>TOV_DE.exe+1186A08</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>11</ID>
+              <Description>"XP"</Description>
+              <LastState Value="0" RealAddress="7FF71ABD6A18"/>
+              <VariableType>4 Bytes</VariableType>
+              <Address>TOV_DE.exe+1186A18</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>8</ID>
+      <Description>"Iron Skin"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TOV_DE.exe
+  Version: 
+  Date   : 2020-05-24
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INF_HP,TOV_DE.exe,89 4F 4C 48 83 C4 20) // should be unique
+alloc(newmem,$1000,"TOV_DE.exe"+5CC0B3)
+
+label(code)
+label(return)
+label(Lret)
+label(character_addr)
+
+newmem:
+  push rax
+  mov rax,rdi
+  add rax,4C
+  cmp rax,[character_addr]
+  jb Lret
+  cmp ecx,[rax]
+  jae Lret
+  mov ecx,[rax]
+  dec ecx
+  jmp Lret
+
+character_addr:
+  dq 700000000000
+
+Lret:
+  pop rax
+  jmp code
+
+code:
+  mov [rdi+4C],ecx
+  add rsp,20
+  jmp return
+
+INF_HP:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INF_HP)
+
+[DISABLE]
+
+INF_HP:
+  db 89 4F 4C 48 83 C4 20
+
+unregistersymbol(INF_HP)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "TOV_DE.exe"+5CC0B3
+
+"TOV_DE.exe"+5CC098: 8B C3              -  mov eax,ebx
+"TOV_DE.exe"+5CC09A: 48 8B 5C 24 30     -  mov rbx,[rsp+30]
+"TOV_DE.exe"+5CC09F: 48 83 C4 20        -  add rsp,20
+"TOV_DE.exe"+5CC0A3: 5F                 -  pop rdi
+"TOV_DE.exe"+5CC0A4: C3                 -  ret 
+"TOV_DE.exe"+5CC0A5: 33 C0              -  xor eax,eax
+"TOV_DE.exe"+5CC0A7: 85 C9              -  test ecx,ecx
+"TOV_DE.exe"+5CC0A9: 0F 48 C8           -  cmovs ecx,eax
+"TOV_DE.exe"+5CC0AC: 8B C3              -  mov eax,ebx
+"TOV_DE.exe"+5CC0AE: 48 8B 5C 24 30     -  mov rbx,[rsp+30]
+// ---------- INJECTING HERE ----------
+"TOV_DE.exe"+5CC0B3: 89 4F 4C           -  mov [rdi+4C],ecx
+"TOV_DE.exe"+5CC0B6: 48 83 C4 20        -  add rsp,20
+// ---------- DONE INJECTING  ----------
+"TOV_DE.exe"+5CC0BA: 5F                 -  pop rdi
+"TOV_DE.exe"+5CC0BB: C3                 -  ret 
+"TOV_DE.exe"+5CC0BC: CC                 -  int 3 
+"TOV_DE.exe"+5CC0BD: CC                 -  int 3 
+"TOV_DE.exe"+5CC0BE: CC                 -  int 3 
+"TOV_DE.exe"+5CC0BF: CC                 -  int 3 
+"TOV_DE.exe"+5CC0C0: CC                 -  int 3 
+"TOV_DE.exe"+5CC0C1: CC                 -  int 3 
+"TOV_DE.exe"+5CC0C2: CC                 -  int 3 
+"TOV_DE.exe"+5CC0C3: CC                 -  int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>10</ID>
+      <Description>"Inf TP"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TOV_DE.exe
+  Version: 
+  Date   : 2020-05-24
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INF_TP,TOV_DE.exe,89 4F 50 48 83 C4 20) // should be unique
+alloc(newmem,$1000,"TOV_DE.exe"+5CC193)
+
+label(code)
+label(return)
+label(ret)
+label(character_addr)
+
+newmem:
+  push rax
+  mov rax,rdi
+  add rax,4C
+  cmp rax,[character_addr]
+  jb ret
+  cmp ecx,[rax]
+  jae code
+  add rsp,20
+  pop rax
+  jmp return
+
+character_addr:
+  dq 700000000000
+
+ret:
+  pop rax
+  jmp code
+
+code:
+  mov [rdi+50],ecx
+  add rsp,20
+  jmp return
+
+INF_TP:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INF_TP)
+
+[DISABLE]
+
+INF_TP:
+  db 89 4F 50 48 83 C4 20
+
+unregistersymbol(INF_TP)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "TOV_DE.exe"+5CC193
+
+"TOV_DE.exe"+5CC178: 8B C3              -  mov eax,ebx
+"TOV_DE.exe"+5CC17A: 48 8B 5C 24 30     -  mov rbx,[rsp+30]
+"TOV_DE.exe"+5CC17F: 48 83 C4 20        -  add rsp,20
+"TOV_DE.exe"+5CC183: 5F                 -  pop rdi
+"TOV_DE.exe"+5CC184: C3                 -  ret 
+"TOV_DE.exe"+5CC185: 33 C0              -  xor eax,eax
+"TOV_DE.exe"+5CC187: 85 C9              -  test ecx,ecx
+"TOV_DE.exe"+5CC189: 0F 48 C8           -  cmovs ecx,eax
+"TOV_DE.exe"+5CC18C: 8B C3              -  mov eax,ebx
+"TOV_DE.exe"+5CC18E: 48 8B 5C 24 30     -  mov rbx,[rsp+30]
+// ---------- INJECTING HERE ----------
+"TOV_DE.exe"+5CC193: 89 4F 50           -  mov [rdi+50],ecx
+"TOV_DE.exe"+5CC196: 48 83 C4 20        -  add rsp,20
+// ---------- DONE INJECTING  ----------
+"TOV_DE.exe"+5CC19A: 5F                 -  pop rdi
+"TOV_DE.exe"+5CC19B: C3                 -  ret 
+"TOV_DE.exe"+5CC19C: CC                 -  int 3 
+"TOV_DE.exe"+5CC19D: CC                 -  int 3 
+"TOV_DE.exe"+5CC19E: CC                 -  int 3 
+"TOV_DE.exe"+5CC19F: CC                 -  int 3 
+"TOV_DE.exe"+5CC1A0: CC                 -  int 3 
+"TOV_DE.exe"+5CC1A1: CC                 -  int 3 
+"TOV_DE.exe"+5CC1A2: CC                 -  int 3 
+"TOV_DE.exe"+5CC1A3: CC                 -  int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>13</ID>
+      <Description>"XP Multiplier"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TOV_DE.exe
+  Version: 
+  Date   : 2020-05-24
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_XP_MUL,TOV_DE.exe,89 43 60 7C 08) // should be unique
+alloc(newmem,$1000,"TOV_DE.exe"+5CBEF7)
+
+label(code)
+label(return)
+label(Lret)
+label(xp_mul)
+
+newmem:
+  push rcx
+  cmp eax,[rbx+60]
+  jbe Lret
+  mov ecx,eax
+  sub eax,[rbx+60] // Detla XP
+  mul [xp_mul]
+  add eax,ecx
+  jmp Lret
+
+Lret:
+  pop rcx
+  jmp code
+
+xp_mul:
+  dq 2
+registersymbol(xp_mul)
+
+code:
+  mov [rbx+60],eax
+  jl TOV_DE.exe+5CBF04
+  jmp return
+
+INJ_XP_MUL:
+  jmp newmem
+return:
+registersymbol(INJ_XP_MUL)
+
+[DISABLE]
+
+INJ_XP_MUL:
+  db 89 43 60 7C 08
+
+unregistersymbol(xp_mul)
+unregistersymbol(INJ_XP_MUL)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "TOV_DE.exe"+5CBEF7
+
+"TOV_DE.exe"+5CBED9: B8 FF E0 F5 05        -  mov eax,05F5E0FF
+"TOV_DE.exe"+5CBEDE: 8B 49 60              -  mov ecx,[rcx+60]
+"TOV_DE.exe"+5CBEE1: 03 CA                 -  add ecx,edx
+"TOV_DE.exe"+5CBEE3: 3B C8                 -  cmp ecx,eax
+"TOV_DE.exe"+5CBEE5: 7F 09                 -  jg TOV_DE.exe+5CBEF0
+"TOV_DE.exe"+5CBEE7: 33 D2                 -  xor edx,edx
+"TOV_DE.exe"+5CBEE9: 8B C1                 -  mov eax,ecx
+"TOV_DE.exe"+5CBEEB: 85 C9                 -  test ecx,ecx
+"TOV_DE.exe"+5CBEED: 0F 48 C2              -  cmovs eax,edx
+"TOV_DE.exe"+5CBEF0: 81 7B 48 C8 00 00 00  -  cmp [rbx+48],000000C8
+// ---------- INJECTING HERE ----------
+"TOV_DE.exe"+5CBEF7: 89 43 60              -  mov [rbx+60],eax
+"TOV_DE.exe"+5CBEFA: 7C 08                 -  jl TOV_DE.exe+5CBF04
+// ---------- DONE INJECTING  ----------
+"TOV_DE.exe"+5CBEFC: 32 C0                 -  xor al,al
+"TOV_DE.exe"+5CBEFE: 48 83 C4 20           -  add rsp,20
+"TOV_DE.exe"+5CBF02: 5B                    -  pop rbx
+"TOV_DE.exe"+5CBF03: C3                    -  ret 
+"TOV_DE.exe"+5CBF04: E8 77 9B F0 FF        -  call TOV_DE.exe+4D5A80
+"TOV_DE.exe"+5CBF09: 48 63 4B 48           -  movsxd  rcx,dword ptr [rbx+48]
+"TOV_DE.exe"+5CBF0D: 8B 84 88 F4 1F 00 00  -  mov eax,[rax+rcx*4+00001FF4]
+"TOV_DE.exe"+5CBF14: 39 43 60              -  cmp [rbx+60],eax
+"TOV_DE.exe"+5CBF17: 0F 9D C0              -  setge al
+"TOV_DE.exe"+5CBF1A: 48 83 C4 20           -  add rsp,20
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>14</ID>
+          <Description>"Amount"</Description>
+          <LastState Value="2" RealAddress="7FF719A20022"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>xp_mul</Address>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>15</ID>
+      <Description>"Additional Skill Usage"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TOV_DE.exe
+  Version: 
+  Date   : 2020-05-24
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+
+aobscanmodule(INJ_SKILL_USAGE,TOV_DE.exe,89 8A D8 04 00 00) // should be unique
+alloc(newmem,$1000,"TOV_DE.exe"+5CD129)
+
+label(code)
+label(return)
+label(val_skill_usage)
+label(exe_address)
+
+newmem:
+  cmp rdx,[exe_address]
+  jb code
+  add ecx,[val_skill_usage]
+  jmp code
+
+exe_address:
+  dq 700000000000
+
+code:
+  mov [rdx+000004D8],ecx
+  jmp return
+
+val_skill_usage:
+  dq 1
+registersymbol(val_skill_usage)
+
+INJ_SKILL_USAGE:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_SKILL_USAGE)
+
+[DISABLE]
+
+INJ_SKILL_USAGE:
+  db 89 8A D8 04 00 00
+unregistersymbol(val_skill_usage)
+unregistersymbol(INJ_SKILL_USAGE)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "TOV_DE.exe"+5CD129
+
+"TOV_DE.exe"+5CD10D: CC                       -  int 3 
+"TOV_DE.exe"+5CD10E: CC                       -  int 3 
+"TOV_DE.exe"+5CD10F: CC                       -  int 3 
+"TOV_DE.exe"+5CD110: 8B C2                    -  mov eax,edx
+"TOV_DE.exe"+5CD112: 48 8D 14 81              -  lea rdx,[rcx+rax*4]
+"TOV_DE.exe"+5CD116: B8 0F 27 00 00           -  mov eax,0000270F
+"TOV_DE.exe"+5CD11B: 8B 8A D8 04 00 00        -  mov ecx,[rdx+000004D8]
+"TOV_DE.exe"+5CD121: 41 03 C8                 -  add ecx,r8d
+"TOV_DE.exe"+5CD124: 3B C8                    -  cmp ecx,eax
+"TOV_DE.exe"+5CD126: 0F 47 C8                 -  cmova ecx,eax
+// ---------- INJECTING HERE ----------
+"TOV_DE.exe"+5CD129: 89 8A D8 04 00 00        -  mov [rdx+000004D8],ecx
+// ---------- DONE INJECTING  ----------
+"TOV_DE.exe"+5CD12F: C3                       -  ret 
+"TOV_DE.exe"+5CD130: CC                       -  int 3 
+"TOV_DE.exe"+5CD131: CC                       -  int 3 
+"TOV_DE.exe"+5CD132: CC                       -  int 3 
+"TOV_DE.exe"+5CD133: CC                       -  int 3 
+"TOV_DE.exe"+5CD134: CC                       -  int 3 
+"TOV_DE.exe"+5CD135: CC                       -  int 3 
+"TOV_DE.exe"+5CD136: CC                       -  int 3 
+"TOV_DE.exe"+5CD137: CC                       -  int 3 
+"TOV_DE.exe"+5CD138: CC                       -  int 3 
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>16</ID>
+          <Description>"Number"</Description>
+          <LastState Value="1" RealAddress="7FF719A1002B"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>val_skill_usage</Address>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>23</ID>
+      <Description>"Inf SP"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TOV_DE.exe
+  Version: 
+  Date   : 2020-05-24
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INF_SP,TOV_DE.exe,89 83 F8 24 00 00 48 8B 7C) // should be unique
+alloc(newmem,$1000,"TOV_DE.exe"+5CD9A7)
+
+label(code)
+label(return)
+label(exe_address)
+
+newmem:
+  cmp rbx,[exe_address]
+  jb code
+  mov eax,64
+  jmp code
+
+exe_address:
+  dq 700000000000
+
+code:
+  mov [rbx+000024F8],eax
+  jmp return
+
+INF_SP:
+  jmp newmem
+  nop
+return:
+registersymbol(INF_SP)
+
+[DISABLE]
+
+INF_SP:
+  db 89 83 F8 24 00 00
+
+unregistersymbol(INF_SP)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "TOV_DE.exe"+5CD9A7
+
+"TOV_DE.exe"+5CD98A: 74 21                    -  je TOV_DE.exe+5CD9AD
+"TOV_DE.exe"+5CD98C: 8B 8B F8 24 00 00        -  mov ecx,[rbx+000024F8]
+"TOV_DE.exe"+5CD992: 8B 83 FC 24 00 00        -  mov eax,[rbx+000024FC]
+"TOV_DE.exe"+5CD998: 03 CF                    -  add ecx,edi
+"TOV_DE.exe"+5CD99A: 3B C8                    -  cmp ecx,eax
+"TOV_DE.exe"+5CD99C: 7F 09                    -  jg TOV_DE.exe+5CD9A7
+"TOV_DE.exe"+5CD99E: 33 D2                    -  xor edx,edx
+"TOV_DE.exe"+5CD9A0: 8B C1                    -  mov eax,ecx
+"TOV_DE.exe"+5CD9A2: 85 C9                    -  test ecx,ecx
+"TOV_DE.exe"+5CD9A4: 0F 48 C2                 -  cmovs eax,edx
+// ---------- INJECTING HERE ----------
+"TOV_DE.exe"+5CD9A7: 89 83 F8 24 00 00        -  mov [rbx+000024F8],eax
+// ---------- DONE INJECTING  ----------
+"TOV_DE.exe"+5CD9AD: 48 8B 7C 24 30           -  mov rdi,[rsp+30]
+"TOV_DE.exe"+5CD9B2: 40 0F B6 CE              -  movzx ecx,sil
+"TOV_DE.exe"+5CD9B6: 80 E1 1F                 -  and cl,1F
+"TOV_DE.exe"+5CD9B9: 48 8B C6                 -  mov rax,rsi
+"TOV_DE.exe"+5CD9BC: 41 D3 E0                 -  shl r8d,cl
+"TOV_DE.exe"+5CD9BF: 48 8B CB                 -  mov rcx,rbx
+"TOV_DE.exe"+5CD9C2: 48 C1 E8 05              -  shr rax,05
+"TOV_DE.exe"+5CD9C6: 41 F7 D0                 -  not r8d
+"TOV_DE.exe"+5CD9C9: 48 8D 14 83              -  lea rdx,[rbx+rax*4]
+"TOV_DE.exe"+5CD9CD: 44 21 82 00 25 00 00     -  and [rdx+00002500],r8d
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>27</ID>
+      <Description>"LB Gague"</Description>
+      <LastState Value="300" Activated="1" RealAddress="7FF71ABD5C38"/>
+      <VariableType>Float</VariableType>
+      <Address>TOV_DE.exe+1185C38</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>19</ID>
+      <Description>"Extended ItemCap"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TOV_DE.exe
+  Version: 
+  Date   : 2020-05-24
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(EXT_ITEMCAP,TOV_DE.exe,B8 0F 00 00 00 0F) // should be unique
+alloc(newmem,$1000,"TOV_DE.exe"+5BE526)
+
+label(code)
+label(return)
+
+newmem:
+  mov eax,063
+  jmp return
+
+code:
+  mov eax,0000000F
+  jmp return
+
+EXT_ITEMCAP:
+  jmp newmem
+return:
+registersymbol(EXT_ITEMCAP)
+
+[DISABLE]
+
+EXT_ITEMCAP:
+  db B8 0F 00 00 00
+
+unregistersymbol(EXT_ITEMCAP)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "TOV_DE.exe"+5BE526
+
+"TOV_DE.exe"+5BE504: B9 01 00 00 00        -  mov ecx,00000001
+"TOV_DE.exe"+5BE509: 0F 45 C1              -  cmovne eax,ecx
+"TOV_DE.exe"+5BE50C: 48 8B 5C 24 30        -  mov rbx,[rsp+30]
+"TOV_DE.exe"+5BE511: 48 83 C4 20           -  add rsp,20
+"TOV_DE.exe"+5BE515: 5F                    -  pop rdi
+"TOV_DE.exe"+5BE516: C3                    -  ret 
+"TOV_DE.exe"+5BE517: 8B 87 5C 49 00 00     -  mov eax,[rdi+0000495C]
+"TOV_DE.exe"+5BE51D: B9 63 00 00 00        -  mov ecx,00000063
+"TOV_DE.exe"+5BE522: D1 E8                 -  shr eax,1
+"TOV_DE.exe"+5BE524: A8 01                 -  test al,01
+// ---------- INJECTING HERE ----------
+"TOV_DE.exe"+5BE526: B8 0F 00 00 00        -  mov eax,0000000F
+// ---------- DONE INJECTING  ----------
+"TOV_DE.exe"+5BE52B: 0F 45 C1              -  cmovne eax,ecx
+"TOV_DE.exe"+5BE52E: 48 8B 5C 24 30        -  mov rbx,[rsp+30]
+"TOV_DE.exe"+5BE533: 48 83 C4 20           -  add rsp,20
+"TOV_DE.exe"+5BE537: 5F                    -  pop rdi
+"TOV_DE.exe"+5BE538: C3                    -  ret 
+"TOV_DE.exe"+5BE539: B8 63 00 00 00        -  mov eax,00000063
+"TOV_DE.exe"+5BE53E: 48 8B 5C 24 30        -  mov rbx,[rsp+30]
+"TOV_DE.exe"+5BE543: 48 83 C4 20           -  add rsp,20
+"TOV_DE.exe"+5BE547: 5F                    -  pop rdi
+"TOV_DE.exe"+5BE548: C3                    -  ret 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>21</ID>
+      <Description>"Inf Item"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TOV_DE.exe
+  Version: 
+  Date   : 2020-05-24
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INF_ITEM,TOV_DE.exe,41 03 F8 48 8B F1) // should be unique
+alloc(newmem,$1000,"TOV_DE.exe"+5BE452)
+
+label(code)
+label(return)
+label(Lret)
+
+newmem:
+  push rax
+  mov eax,edi
+  add edi,r8d
+  cmp edi,eax
+  jge Lret
+  mov edi,eax
+  jmp Lret
+
+Lret:
+  pop eax
+  mov rsi,rcx
+  jmp return
+
+code:
+  add edi,r8d
+  mov rsi,rcx
+  jmp return
+
+INF_ITEM:
+  jmp newmem
+  nop
+return:
+registersymbol(INF_ITEM)
+
+[DISABLE]
+
+INF_ITEM:
+  db 41 03 F8 48 8B F1
+
+unregistersymbol(INF_ITEM)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "TOV_DE.exe"+5BE452
+
+"TOV_DE.exe"+5BE42F: CC                             -  int 3 
+"TOV_DE.exe"+5BE430: 48 89 5C 24 08                 -  mov [rsp+08],rbx
+"TOV_DE.exe"+5BE435: 48 89 74 24 10                 -  mov [rsp+10],rsi
+"TOV_DE.exe"+5BE43A: 48 89 7C 24 18                 -  mov [rsp+18],rdi
+"TOV_DE.exe"+5BE43F: 41 56                          -  push r14
+"TOV_DE.exe"+5BE441: 48 83 EC 20                    -  sub rsp,20
+"TOV_DE.exe"+5BE445: 8B C2                          -  mov eax,edx
+"TOV_DE.exe"+5BE447: 41 8B D8                       -  mov ebx,r8d
+"TOV_DE.exe"+5BE44A: 8B 7C 81 38                    -  mov edi,[rcx+rax*4+38]
+"TOV_DE.exe"+5BE44E: 4C 8D 34 81                    -  lea r14,[rcx+rax*4]
+// ---------- INJECTING HERE ----------
+"TOV_DE.exe"+5BE452: 41 03 F8                       -  add edi,r8d
+"TOV_DE.exe"+5BE455: 48 8B F1                       -  mov rsi,rcx
+// ---------- DONE INJECTING  ----------
+"TOV_DE.exe"+5BE458: 44 8B C7                       -  mov r8d,edi
+"TOV_DE.exe"+5BE45B: E8 B0 FE FF FF                 -  call TOV_DE.exe+5BE310
+"TOV_DE.exe"+5BE460: 85 DB                          -  test ebx,ebx
+"TOV_DE.exe"+5BE462: 7E 20                          -  jle TOV_DE.exe+5BE484
+"TOV_DE.exe"+5BE464: 83 BE 7C 0A 00 00 00           -  cmp dword ptr [rsi+00000A7C],00
+"TOV_DE.exe"+5BE46B: 74 17                          -  je TOV_DE.exe+5BE484
+"TOV_DE.exe"+5BE46D: 48 8B CE                       -  mov rcx,rsi
+"TOV_DE.exe"+5BE470: E8 9B 01 00 00                 -  call TOV_DE.exe+5BE610
+"TOV_DE.exe"+5BE475: 83 F8 64                       -  cmp eax,64
+"TOV_DE.exe"+5BE478: 75 0A                          -  jne TOV_DE.exe+5BE484
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>32</ID>
+      <Description>"Ignore Crafting Requirements"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : TOV_DE.exe
+  Version: 
+  Date   : 2020-05-26
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_INF_CRAFT,TOV_DE.exe,89 41 30 E9 64 05 00 00) // should be unique
+alloc(newmem,$1000,"TOV_DE.exe"+44A709)
+
+label(code)
+label(return)
+
+newmem:
+  cmp r12,0
+  je code
+  mov eax,[rcx+30]
+  jmp code
+
+code:
+  mov [rcx+30],eax
+  jmp TOV_DE.exe+44AC75
+  jmp return
+
+INJ_INF_CRAFT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJ_INF_CRAFT)
+
+[DISABLE]
+
+INJ_INF_CRAFT:
+  db 89 41 30 E9 64 05 00 00
+
+unregistersymbol(INJ_INF_CRAFT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "TOV_DE.exe"+44A709
+
+"TOV_DE.exe"+44A6E1: 48 8B D0                    -  mov rdx,rax
+"TOV_DE.exe"+44A6E4: E8 47 83 FF FF              -  call TOV_DE.exe+442A30
+"TOV_DE.exe"+44A6E9: 49 8B 97 58 03 00 00        -  mov rdx,[r15+00000358]
+"TOV_DE.exe"+44A6F0: 4C 8B C6                    -  mov r8,rsi
+"TOV_DE.exe"+44A6F3: 48 8B 4E 50                 -  mov rcx,[rsi+50]
+"TOV_DE.exe"+44A6F7: E8 94 19 FF FF              -  call TOV_DE.exe+43C090
+"TOV_DE.exe"+44A6FC: E9 74 05 00 00              -  jmp TOV_DE.exe+44AC75
+"TOV_DE.exe"+44A701: 8B 41 34                    -  mov eax,[rcx+34]
+"TOV_DE.exe"+44A704: 39 41 30                    -  cmp [rcx+30],eax
+"TOV_DE.exe"+44A707: 7E 6A                       -  jle TOV_DE.exe+44A773
+// ---------- INJECTING HERE ----------
+"TOV_DE.exe"+44A709: 89 41 30                    -  mov [rcx+30],eax
+"TOV_DE.exe"+44A70C: E9 64 05 00 00              -  jmp TOV_DE.exe+44AC75
+// ---------- DONE INJECTING  ----------
+"TOV_DE.exe"+44A711: 48 8B 1D 78 28 73 01        -  mov rbx,[TOV_DE.exe+1B7CF90]
+"TOV_DE.exe"+44A718: 48 8B 3B                    -  mov rdi,[rbx]
+"TOV_DE.exe"+44A71B: E8 20 D9 03 00              -  call TOV_DE.exe+488040
+"TOV_DE.exe"+44A720: 44 8B C0                    -  mov r8d,eax
+"TOV_DE.exe"+44A723: BA 2D 00 00 00              -  mov edx,0000002D
+"TOV_DE.exe"+44A728: 48 8B CB                    -  mov rcx,rbx
+"TOV_DE.exe"+44A72B: FF 57 30                    -  call qword ptr [rdi+30]
+"TOV_DE.exe"+44A72E: 84 C0                       -  test al,al
+"TOV_DE.exe"+44A730: 74 50                       -  je TOV_DE.exe+44A782
+"TOV_DE.exe"+44A732: 48 63 86 70 04 00 00        -  movsxd  rax,dword ptr [rsi+00000470]
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>
