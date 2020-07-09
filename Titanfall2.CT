@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="29">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"Ammo No Reload"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Titanfall2.exe
+  Version: 
+  Date   : 2020-07-02
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_NO_RELOAD,server.dll,89 B7 DC 0E 00 00 48 8B 5C) // should be unique
+alloc(newmem,$1000,"server.dll"+6A1F30)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [rdi+EDC],esi
+  jbe code
+  mov esi,[rdi+EDC]
+  jmp code
+
+code:
+  mov [rdi+00000EDC],esi
+  jmp return
+
+INJ_NO_RELOAD:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_NO_RELOAD)
+
+[DISABLE]
+
+INJ_NO_RELOAD:
+  db 89 B7 DC 0E 00 00
+
+unregistersymbol(INJ_NO_RELOAD)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "server.dll"+6A1F30
+
+"server.dll"+6A1EFC: 48 8B 05 05 9F 55 00           -  mov rax,[server.dll+BFBE08]
+"server.dll"+6A1F03: 48 8B 98 80 00 00 00           -  mov rbx,[rax+00000080]
+"server.dll"+6A1F0A: FF 15 68 47 1C 00              -  call qword ptr [server.dll+866678]
+"server.dll"+6A1F10: 48 63 C8                       -  movsxd  rcx,eax
+"server.dll"+6A1F13: 48 0F BF C5                    -  movsx rax,bp
+"server.dll"+6A1F17: 48 C1 E1 0C                    -  shl rcx,0C
+"server.dll"+6A1F1B: 48 03 C8                       -  add rcx,rax
+"server.dll"+6A1F1E: B8 00 02 00 00                 -  mov eax,00000200
+"server.dll"+6A1F23: 66 09 84 4B 40 60 01 00        -  or [rbx+rcx*2+00016040],ax
+"server.dll"+6A1F2B: 48 8B 6C 24 38                 -  mov rbp,[rsp+38]
+// ---------- INJECTING HERE ----------
+"server.dll"+6A1F30: 89 B7 DC 0E 00 00              -  mov [rdi+00000EDC],esi
+// ---------- DONE INJECTING  ----------
+"server.dll"+6A1F36: 48 8B 5C 24 30                 -  mov rbx,[rsp+30]
+"server.dll"+6A1F3B: 48 8B 74 24 40                 -  mov rsi,[rsp+40]
+"server.dll"+6A1F40: 48 83 C4 20                    -  add rsp,20
+"server.dll"+6A1F44: 5F                             -  pop rdi
+"server.dll"+6A1F45: C3                             -  ret 
+"server.dll"+6A1F46: CC                             -  int 3 
+"server.dll"+6A1F47: CC                             -  int 3 
+"server.dll"+6A1F48: CC                             -  int 3 
+"server.dll"+6A1F49: CC                             -  int 3 
+"server.dll"+6A1F4A: CC                             -  int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"Inf Ammo"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Titanfall2.exe
+  Version: 
+  Date   : 2020-07-02
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_INF_AMMO,server.dll,89 B7 E0 0E 00 00 48 8B 5C) // should be unique
+alloc(newmem,$1000,"server.dll"+6A2020)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [rdi+EE0],esi
+  jbe code
+  mov esi,[rdi+EE0]
+  jmp code
+
+code:
+  mov [rdi+00000EE0],esi
+  jmp return
+
+INJ_INF_AMMO:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_INF_AMMO)
+
+[DISABLE]
+
+INJ_INF_AMMO:
+  db 89 B7 E0 0E 00 00
+
+unregistersymbol(INJ_INF_AMMO)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "server.dll"+6A2020
+
+"server.dll"+6A1FEC: 48 8B 05 15 9E 55 00           -  mov rax,[server.dll+BFBE08]
+"server.dll"+6A1FF3: 48 8B 98 80 00 00 00           -  mov rbx,[rax+00000080]
+"server.dll"+6A1FFA: FF 15 78 46 1C 00              -  call qword ptr [server.dll+866678]
+"server.dll"+6A2000: 48 63 C8                       -  movsxd  rcx,eax
+"server.dll"+6A2003: 48 0F BF C5                    -  movsx rax,bp
+"server.dll"+6A2007: 48 C1 E1 0C                    -  shl rcx,0C
+"server.dll"+6A200B: 48 03 C8                       -  add rcx,rax
+"server.dll"+6A200E: B8 00 02 00 00                 -  mov eax,00000200
+"server.dll"+6A2013: 66 09 84 4B 40 60 01 00        -  or [rbx+rcx*2+00016040],ax
+"server.dll"+6A201B: 48 8B 6C 24 38                 -  mov rbp,[rsp+38]
+// ---------- INJECTING HERE ----------
+"server.dll"+6A2020: 89 B7 E0 0E 00 00              -  mov [rdi+00000EE0],esi
+// ---------- DONE INJECTING  ----------
+"server.dll"+6A2026: 48 8B 5C 24 30                 -  mov rbx,[rsp+30]
+"server.dll"+6A202B: 48 8B 74 24 40                 -  mov rsi,[rsp+40]
+"server.dll"+6A2030: 48 83 C4 20                    -  add rsp,20
+"server.dll"+6A2034: 5F                             -  pop rdi
+"server.dll"+6A2035: C3                             -  ret 
+"server.dll"+6A2036: CC                             -  int 3 
+"server.dll"+6A2037: CC                             -  int 3 
+"server.dll"+6A2038: CC                             -  int 3 
+"server.dll"+6A2039: CC                             -  int 3 
+"server.dll"+6A203A: CC                             -  int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

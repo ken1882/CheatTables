@@ -1,0 +1,933 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="29">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"Cash Pointer (open menu)"</Description>
+      <Options moHideChildren="1"/>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : theHunterCotW_F.exe
+  Version: 
+  Date   : 2020-06-25
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_CASH,theHunterCotW_F.exe,44 8B 86 80 03 00 00) // should be unique
+alloc(newmem,$1000,"theHunterCotW_F.exe"+9D2D2B)
+
+label(code)
+label(return)
+label(pt_cash)
+
+newmem:
+  mov [pt_cash],rsi
+  jmp code
+
+pt_cash:
+  dq 0
+registersymbol(pt_cash)
+
+code:
+  mov r8d,[rsi+00000380]
+  jmp return
+
+INJ_CASH:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJ_CASH)
+
+[DISABLE]
+
+INJ_CASH:
+  db 44 8B 86 80 03 00 00
+
+unregistersymbol(pt_cash)
+unregistersymbol(INJ_CASH)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "theHunterCotW_F.exe"+9D2D2B
+
+"theHunterCotW_F.exe"+9D2CF2: 0F 82 AB 01 00 00        -  jb theHunterCotW_F.exe+9D2EA3
+"theHunterCotW_F.exe"+9D2CF8: 48 89 74 24 48           -  mov [rsp+48],rsi
+"theHunterCotW_F.exe"+9D2CFD: 48 8D 15 DC FB FA 00     -  lea rdx,[theHunterCotW_F.exe+19828E0]
+"theHunterCotW_F.exe"+9D2D04: 48 8B 35 25 77 86 01     -  mov rsi,[theHunterCotW_F.exe+223A430]
+"theHunterCotW_F.exe"+9D2D0B: 48 89 7C 24 50           -  mov [rsp+50],rdi
+"theHunterCotW_F.exe"+9D2D10: 4C 89 74 24 58           -  mov [rsp+58],r14
+"theHunterCotW_F.exe"+9D2D15: 4C 8D B3 F8 00 00 00     -  lea r14,[rbx+000000F8]
+"theHunterCotW_F.exe"+9D2D1C: 49 8B CE                 -  mov rcx,r14
+"theHunterCotW_F.exe"+9D2D1F: 44 8B 86 F0 02 00 00     -  mov r8d,[rsi+000002F0]
+"theHunterCotW_F.exe"+9D2D26: E8 C5 11 FF FF           -  call theHunterCotW_F.exe+9C3EF0
+// ---------- INJECTING HERE ----------
+"theHunterCotW_F.exe"+9D2D2B: 44 8B 86 80 03 00 00     -  mov r8d,[rsi+00000380]
+// ---------- DONE INJECTING  ----------
+"theHunterCotW_F.exe"+9D2D32: 48 8D 15 B7 FB FA 00     -  lea rdx,[theHunterCotW_F.exe+19828F0]
+"theHunterCotW_F.exe"+9D2D39: 49 8B CE                 -  mov rcx,r14
+"theHunterCotW_F.exe"+9D2D3C: E8 AF 11 FF FF           -  call theHunterCotW_F.exe+9C3EF0
+"theHunterCotW_F.exe"+9D2D41: 44 8B 86 EC 02 00 00     -  mov r8d,[rsi+000002EC]
+"theHunterCotW_F.exe"+9D2D48: 48 8D 15 A9 5E FA 00     -  lea rdx,[theHunterCotW_F.exe+1978BF8]
+"theHunterCotW_F.exe"+9D2D4F: 49 8B CE                 -  mov rcx,r14
+"theHunterCotW_F.exe"+9D2D52: E8 99 11 FF FF           -  call theHunterCotW_F.exe+9C3EF0
+"theHunterCotW_F.exe"+9D2D57: 41 83 C8 FF              -  or r8d,-01
+"theHunterCotW_F.exe"+9D2D5B: 48 8D 15 96 FB FA 00     -  lea rdx,[theHunterCotW_F.exe+19828F8]
+"theHunterCotW_F.exe"+9D2D62: 49 8B CE                 -  mov rcx,r14
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>4</ID>
+          <Description>"Cash"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_cash</Address>
+          <Offsets>
+            <Offset>380</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>7</ID>
+      <Description>"Inf Ammo (No Reload)"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : theHunterCotW_F.exe
+  Version: 
+  Date   : 2020-06-27
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+{ Game   : theHunterCotW_F.exe
+  Version: 
+  Date   : 2020-06-26
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_INF_AMMO,theHunterCotW_F.exe,89 54 C8 04 C3 32) // should be unique
+alloc(newmem,$1000,"theHunterCotW_F.exe"+665917)
+
+label(code)
+label(return)
+label(Lret)
+
+newmem:
+  push rbx
+  mov ebx,[rax+rcx*8+4]
+  cmp ebx,edx
+  jbe Lret
+  mov edx,ebx
+  jmp Lret
+
+Lret:
+  pop rbx
+  jmp code
+
+code:
+  mov [rax+rcx*8+04],edx
+  ret 
+  jmp return
+
+INJ_INF_AMMO:
+  jmp newmem
+return:
+registersymbol(INJ_INF_AMMO)
+
+aobscanmodule(INJ_INF_AMMO2,theHunterCotW_F.exe,89 54 C8 04 C3 CC) // should be unique
+alloc(newmem2,$1000,"theHunterCotW_F.exe"+665928)
+
+label(code2)
+label(return2)
+label(Lret2)
+
+newmem2:
+  push rbx
+  mov ebx,[rax+rcx*8+4]
+  cmp ebx,edx
+  jbe Lret2
+  mov edx,ebx
+  jmp Lret2
+
+Lret2:
+  pop rbx
+  jmp code2
+
+code2:
+  mov [rax+rcx*8+04],edx
+  ret 
+  jmp return2
+
+INJ_INF_AMMO2:
+  jmp newmem2
+return2:
+registersymbol(INJ_INF_AMMO2)
+
+[DISABLE]
+
+INJ_INF_AMMO:
+  db 89 54 C8 04 C3
+
+unregistersymbol(INJ_INF_AMMO)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "theHunterCotW_F.exe"+665917
+
+"theHunterCotW_F.exe"+6658E0: 48 8B 81 E8 02 00 00           -  mov rax,[rcx+000002E8]
+"theHunterCotW_F.exe"+6658E7: 4C 8B C9                       -  mov r9,rcx
+"theHunterCotW_F.exe"+6658EA: 48 39 81 E0 02 00 00           -  cmp [rcx+000002E0],rax
+"theHunterCotW_F.exe"+6658F1: 74 29                          -  je theHunterCotW_F.exe+66591C
+"theHunterCotW_F.exe"+6658F3: 48 8B 81 E0 02 00 00           -  mov rax,[rcx+000002E0]
+"theHunterCotW_F.exe"+6658FA: 4C 8B 81 F8 02 00 00           -  mov r8,[rcx+000002F8]
+"theHunterCotW_F.exe"+665901: 4E 8B 04 C0                    -  mov r8,[rax+r8*8]
+"theHunterCotW_F.exe"+665905: 41 0F B6 80 A9 00 00 00        -  movzx eax,byte ptr [r8+000000A9]
+"theHunterCotW_F.exe"+66590D: 0F B6 C8                       -  movzx ecx,al
+"theHunterCotW_F.exe"+665910: 49 8B 81 10 02 00 00           -  mov rax,[r9+00000210]
+// ---------- INJECTING HERE ----------
+"theHunterCotW_F.exe"+665917: 89 54 C8 04                    -  mov [rax+rcx*8+04],edx
+"theHunterCotW_F.exe"+66591B: C3                             -  ret 
+// ---------- DONE INJECTING  ----------
+"theHunterCotW_F.exe"+66591C: 32 C0                          -  xor al,al
+"theHunterCotW_F.exe"+66591E: 0F B6 C8                       -  movzx ecx,al
+"theHunterCotW_F.exe"+665921: 49 8B 81 10 02 00 00           -  mov rax,[r9+00000210]
+"theHunterCotW_F.exe"+665928: 89 54 C8 04                    -  mov [rax+rcx*8+04],edx
+"theHunterCotW_F.exe"+66592C: C3                             -  ret 
+"theHunterCotW_F.exe"+66592D: CC                             -  int 3 
+"theHunterCotW_F.exe"+66592E: CC                             -  int 3 
+"theHunterCotW_F.exe"+66592F: CC                             -  int 3 
+"theHunterCotW_F.exe"+665930: 48 89 5C 24 08                 -  mov [rsp+08],rbx
+"theHunterCotW_F.exe"+665935: 48 89 6C 24 10                 -  mov [rsp+10],rbp
+}
+INJ_INF_AMMO2:
+  db 89 54 C8 04 C3
+
+unregistersymbol(INJ_INF_AMMO2)
+dealloc(newmem2)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "theHunterCotW_F.exe"+665928
+
+"theHunterCotW_F.exe"+6658FA: 4C 8B 81 F8 02 00 00           -  mov r8,[rcx+000002F8]
+"theHunterCotW_F.exe"+665901: 4E 8B 04 C0                    -  mov r8,[rax+r8*8]
+"theHunterCotW_F.exe"+665905: 41 0F B6 80 A9 00 00 00        -  movzx eax,byte ptr [r8+000000A9]
+"theHunterCotW_F.exe"+66590D: 0F B6 C8                       -  movzx ecx,al
+"theHunterCotW_F.exe"+665910: 49 8B 81 10 02 00 00           -  mov rax,[r9+00000210]
+"theHunterCotW_F.exe"+665917: 89 54 C8 04                    -  mov [rax+rcx*8+04],edx
+"theHunterCotW_F.exe"+66591B: C3                             -  ret 
+"theHunterCotW_F.exe"+66591C: 32 C0                          -  xor al,al
+"theHunterCotW_F.exe"+66591E: 0F B6 C8                       -  movzx ecx,al
+"theHunterCotW_F.exe"+665921: 49 8B 81 10 02 00 00           -  mov rax,[r9+00000210]
+// ---------- INJECTING HERE ----------
+"theHunterCotW_F.exe"+665928: 89 54 C8 04                    -  mov [rax+rcx*8+04],edx
+"theHunterCotW_F.exe"+66592C: C3                             -  ret 
+// ---------- DONE INJECTING  ----------
+"theHunterCotW_F.exe"+66592D: CC                             -  int 3 
+"theHunterCotW_F.exe"+66592E: CC                             -  int 3 
+"theHunterCotW_F.exe"+66592F: CC                             -  int 3 
+"theHunterCotW_F.exe"+665930: 48 89 5C 24 08                 -  mov [rsp+08],rbx
+"theHunterCotW_F.exe"+665935: 48 89 6C 24 10                 -  mov [rsp+10],rbp
+"theHunterCotW_F.exe"+66593A: 48 89 74 24 18                 -  mov [rsp+18],rsi
+"theHunterCotW_F.exe"+66593F: 48 89 7C 24 20                 -  mov [rsp+20],rdi
+"theHunterCotW_F.exe"+665944: 41 56                          -  push r14
+"theHunterCotW_F.exe"+665946: 48 83 EC 20                    -  sub rsp,20
+"theHunterCotW_F.exe"+66594A: 48 8B 89 10 01 00 00           -  mov rcx,[rcx+00000110]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>10</ID>
+      <Description>"Inf Consumable"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : theHunterCotW_F.exe
+  Version: 
+  Date   : 2020-06-26
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_INF_AMMO_STOCK,theHunterCotW_F.exe,41 89 83 20 11 00 00) // should be unique
+alloc(newmem,$1000,"theHunterCotW_F.exe"+87112E)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [r11+1120],eax
+  jbe code
+  jmp return
+
+code:
+  mov [r11+00001120],eax
+  jmp return
+
+INJ_INF_AMMO_STOCK:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJ_INF_AMMO_STOCK)
+
+[DISABLE]
+
+INJ_INF_AMMO_STOCK:
+  db 41 89 83 20 11 00 00
+
+unregistersymbol(INJ_INF_AMMO_STOCK)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "theHunterCotW_F.exe"+87112E
+
+"theHunterCotW_F.exe"+87110B: 74 F8                    -  je theHunterCotW_F.exe+871105
+"theHunterCotW_F.exe"+87110D: 48 98                    -  cdqe 
+"theHunterCotW_F.exe"+87110F: 41 C6 82 79 77 00 00 01  -  mov byte ptr [r10+00007779],01
+"theHunterCotW_F.exe"+871117: 4D 8D 1C 82              -  lea r11,[r10+rax*4]
+"theHunterCotW_F.exe"+87111B: 41 8B 83 20 11 00 00     -  mov eax,[r11+00001120]
+"theHunterCotW_F.exe"+871122: 41 3B C0                 -  cmp eax,r8d
+"theHunterCotW_F.exe"+871125: 72 05                    -  jb theHunterCotW_F.exe+87112C
+"theHunterCotW_F.exe"+871127: 41 2B C0                 -  sub eax,r8d
+"theHunterCotW_F.exe"+87112A: EB 02                    -  jmp theHunterCotW_F.exe+87112E
+"theHunterCotW_F.exe"+87112C: 33 C0                    -  xor eax,eax
+// ---------- INJECTING HERE ----------
+"theHunterCotW_F.exe"+87112E: 41 89 83 20 11 00 00     -  mov [r11+00001120],eax
+// ---------- DONE INJECTING  ----------
+"theHunterCotW_F.exe"+871135: 85 C0                    -  test eax,eax
+"theHunterCotW_F.exe"+871137: 75 46                    -  jne theHunterCotW_F.exe+87117F
+"theHunterCotW_F.exe"+871139: 33 D2                    -  xor edx,edx
+"theHunterCotW_F.exe"+87113B: 44 8D 40 10              -  lea r8d,[rax+10]
+"theHunterCotW_F.exe"+87113F: 90                       -  nop 
+"theHunterCotW_F.exe"+871140: 4A 8B 84 12 30 25 00 00  -  mov rax,[rdx+r10+00002530]
+"theHunterCotW_F.exe"+871148: 4A 39 84 12 28 25 00 00  -  cmp [rdx+r10+00002528],rax
+"theHunterCotW_F.exe"+871150: 75 04                    -  jne theHunterCotW_F.exe+871156
+"theHunterCotW_F.exe"+871152: 33 C0                    -  xor eax,eax
+"theHunterCotW_F.exe"+871154: EB 0A                    -  jmp theHunterCotW_F.exe+871160
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>17</ID>
+      <Description>"No Wobble"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : theHunterCotW_F.exe
+  Version: 
+  Date   : 2020-06-26
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_NO_WOOBLE,VCRUNTIME140.dll,89 08 C3 0F 1F 00) // should be unique
+alloc(newmem,$1000,"VCRUNTIME140.dll"+13BA)
+
+label(code)
+label(return)
+label(Lret)
+label(Lheart)
+
+newmem:
+  cmp [rax],3E800000
+  je Lheart
+  push rdx
+  cmp r14,1
+  jne Lret
+  mov rdx,rbx
+  sub rdx,100000
+  cmp rax,rdx
+  jb Lret
+  cmp [rax+4],01000001
+  jne Lret
+  cmp [rax-8],06000001
+  jne Lret
+  cmp [rax+10],06000001
+  jne Lret
+  mov ecx,bc23d70a
+  jmp Lret
+
+Lret:
+  pop rdx
+  jmp code
+
+Lheart:
+  mov ecx,3E800000
+  jmp code
+
+code:
+  mov [rax],ecx
+  ret 
+  nop [rax]
+  jmp return
+
+INJ_NO_WOOBLE:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_NO_WOOBLE)
+
+[DISABLE]
+
+INJ_NO_WOOBLE:
+  db 89 08 C3 0F 1F 00
+
+unregistersymbol(INJ_NO_WOOBLE)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "VCRUNTIME140.dll"+13BA
+
+"VCRUNTIME140.dll"+139D: C3                             -  ret 
+"VCRUNTIME140.dll"+139E: 66 90                          -  nop 
+"VCRUNTIME140.dll"+13A0: 4C 8B 02                       -  mov r8,[rdx]
+"VCRUNTIME140.dll"+13A3: 0F B7 4A 08                    -  movzx ecx,word ptr [rdx+08]
+"VCRUNTIME140.dll"+13A7: 44 0F B6 4A 0A                 -  movzx r9d,byte ptr [rdx+0A]
+"VCRUNTIME140.dll"+13AC: 4C 89 00                       -  mov [rax],r8
+"VCRUNTIME140.dll"+13AF: 66 89 48 08                    -  mov [rax+08],cx
+"VCRUNTIME140.dll"+13B3: 44 88 48 0A                    -  mov [rax+0A],r9l
+"VCRUNTIME140.dll"+13B7: C3                             -  ret 
+"VCRUNTIME140.dll"+13B8: 8B 0A                          -  mov ecx,[rdx]
+// ---------- INJECTING HERE ----------
+"VCRUNTIME140.dll"+13BA: 89 08                          -  mov [rax],ecx
+"VCRUNTIME140.dll"+13BC: C3                             -  ret 
+"VCRUNTIME140.dll"+13BD: 0F 1F 00                       -  nop [rax]
+// ---------- DONE INJECTING  ----------
+"VCRUNTIME140.dll"+13C0: 8B 0A                          -  mov ecx,[rdx]
+"VCRUNTIME140.dll"+13C2: 44 0F B6 42 04                 -  movzx r8d,byte ptr [rdx+04]
+"VCRUNTIME140.dll"+13C7: 89 08                          -  mov [rax],ecx
+"VCRUNTIME140.dll"+13C9: 44 88 40 04                    -  mov [rax+04],r8l
+"VCRUNTIME140.dll"+13CD: C3                             -  ret 
+"VCRUNTIME140.dll"+13CE: 66 90                          -  nop 
+"VCRUNTIME140.dll"+13D0: 8B 0A                          -  mov ecx,[rdx]
+"VCRUNTIME140.dll"+13D2: 44 0F B7 42 04                 -  movzx r8d,word ptr [rdx+04]
+"VCRUNTIME140.dll"+13D7: 89 08                          -  mov [rax],ecx
+"VCRUNTIME140.dll"+13D9: 66 44 89 40 04                 -  mov [rax+04],r8w
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>32</ID>
+      <Description>"Minimum Visibility"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : theHunterCotW_F.exe
+  Version: 
+  Date   : 2020-06-28
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_VISIBILITY,theHunterCotW_F.exe,F3 45 0F 59 D1 66) // should be unique
+alloc(newmem,$1000,"theHunterCotW_F.exe"+86D891)
+
+label(code)
+label(return)
+
+newmem:
+  movss xmm10,xmm15
+  jmp code
+
+code:
+  mulss xmm10,xmm9
+  jmp return
+
+INJ_VISIBILITY:
+  jmp newmem
+return:
+registersymbol(INJ_VISIBILITY)
+
+[DISABLE]
+
+INJ_VISIBILITY:
+  db F3 45 0F 59 D1
+
+unregistersymbol(INJ_VISIBILITY)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "theHunterCotW_F.exe"+86D891
+
+"theHunterCotW_F.exe"+86D85B: F3 0F 58 78 08              -  addss xmm7,[rax+08]
+"theHunterCotW_F.exe"+86D860: F3 44 0F 58 40 04           -  addss xmm8,[rax+04]
+"theHunterCotW_F.exe"+86D866: F3 0F 58 30                 -  addss xmm6,[rax]
+"theHunterCotW_F.exe"+86D86A: 48 8B 47 68                 -  mov rax,[rdi+68]
+"theHunterCotW_F.exe"+86D86E: F3 0F 11 7C 24 28           -  movss [rsp+28],xmm7
+"theHunterCotW_F.exe"+86D874: F3 44 0F 11 44 24 24        -  movss [rsp+24],xmm8
+"theHunterCotW_F.exe"+86D87B: F3 0F 11 74 24 20           -  movss [rsp+20],xmm6
+"theHunterCotW_F.exe"+86D881: 48 8B 88 80 33 00 00        -  mov rcx,[rax+00003380]
+"theHunterCotW_F.exe"+86D888: 48 8B 49 10                 -  mov rcx,[rcx+10]
+"theHunterCotW_F.exe"+86D88C: E8 9F 2E 1A 00              -  call theHunterCotW_F.exe+A10730
+// ---------- INJECTING HERE ----------
+"theHunterCotW_F.exe"+86D891: F3 45 0F 59 D1              -  mulss xmm10,xmm9
+// ---------- DONE INJECTING  ----------
+"theHunterCotW_F.exe"+86D896: 66 0F 6E C0                 -  movd xmm0,eax
+"theHunterCotW_F.exe"+86D89A: 0F 5B C0                    -  cvtdq2ps xmm0,xmm0
+"theHunterCotW_F.exe"+86D89D: F3 0F 59 05 EF E8 82 01     -  mulss xmm0,[theHunterCotW_F.exe+209C194]
+"theHunterCotW_F.exe"+86D8A5: F3 0F 2C C0                 -  cvttss2si eax,xmm0
+"theHunterCotW_F.exe"+86D8A9: 66 0F 6E C8                 -  movd xmm1,eax
+"theHunterCotW_F.exe"+86D8AD: 0F 5B C9                    -  cvtdq2ps xmm1,xmm1
+"theHunterCotW_F.exe"+86D8B0: F3 0F 59 0D 04 AB E1 00     -  mulss xmm1,[theHunterCotW_F.exe+16883BC]
+"theHunterCotW_F.exe"+86D8B8: F3 44 0F 5C D1              -  subss xmm10,xmm1
+"theHunterCotW_F.exe"+86D8BD: 0F 57 C9                    -  xorps xmm1,xmm1
+"theHunterCotW_F.exe"+86D8C0: F3 44 0F 5E 97 04 21 00 00  -  divss xmm10,[rdi+00002104]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>36</ID>
+      <Description>"Minimun Noise"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : theHunterCotW_F.exe
+  Version: 
+  Date   : 2020-06-28
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+{ Game   : theHunterCotW_F.exe
+  Version: 
+  Date   : 2020-06-28
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+{ Game   : theHunterCotW_F.exe
+  Version: 
+  Date   : 2020-06-28
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_SILENT,theHunterCotW_F.exe,F3 0F 11 86 20 21 00 00) // should be unique
+alloc(newmem,$1000,"theHunterCotW_F.exe"+86D5FB)
+
+label(code)
+label(return)
+
+newmem:
+  movss xmm0,xmm15
+  jmp code
+
+code:
+  movss [rsi+00002120],xmm0
+  jmp return
+
+INJ_SILENT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJ_SILENT)
+
+aobscanmodule(INJ_SILENT2,theHunterCotW_F.exe,F3 44 0F 11 86 10 21 00 00) // should be unique
+alloc(newmem2,$1000,"theHunterCotW_F.exe"+86D74E)
+
+label(code2)
+label(return2)
+
+newmem2:
+  movss xmm8,xmm15
+  jmp code2
+
+code2:
+  movss [rsi+00002110],xmm8
+  jmp return2
+
+INJ_SILENT2:
+  jmp newmem2
+  nop 4
+return2:
+registersymbol(INJ_SILENT2)
+
+aobscanmodule(INJ_SILENT3,theHunterCotW_F.exe,F3 0F 11 86 10 21 00 00) // should be unique
+alloc(newmem5,$1000,"theHunterCotW_F.exe"+86D76A)
+
+label(code5)
+label(return5)
+
+newmem5:
+  movss xmm0,xmm15
+  jmp code5
+
+code5:
+  movss [rsi+00002110],xmm0
+  jmp return5
+
+INJ_SILENT3:
+  jmp newmem5
+  nop 3
+return5:
+registersymbol(INJ_SILENT3)
+
+[DISABLE]
+
+INJ_SILENT:
+  db F3 0F 11 86 20 21 00 00
+
+unregistersymbol(INJ_SILENT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "theHunterCotW_F.exe"+86D5FB
+
+"theHunterCotW_F.exe"+86D5C3: 48 8D 54 24 28           -  lea rdx,[rsp+28]
+"theHunterCotW_F.exe"+86D5C8: 48 8B CF                 -  mov rcx,rdi
+"theHunterCotW_F.exe"+86D5CB: E8 80 4B C3 FF           -  call theHunterCotW_F.exe+4A2150
+"theHunterCotW_F.exe"+86D5D0: F3 0F 59 C6              -  mulss xmm0,xmm6
+"theHunterCotW_F.exe"+86D5D4: F3 0F 5E 86 18 21 00 00  -  divss xmm0,[rsi+00002118]
+"theHunterCotW_F.exe"+86D5DC: 45 0F 57 C9              -  xorps xmm9,xmm9
+"theHunterCotW_F.exe"+86D5E0: F3 41 0F 5F C1           -  maxss xmm0,xmm9
+"theHunterCotW_F.exe"+86D5E5: F3 0F 5D 05 A3 CC DD 00  -  minss xmm0,[theHunterCotW_F.exe+164A290]
+"theHunterCotW_F.exe"+86D5ED: F3 0F 59 05 4F 62 E1 00  -  mulss xmm0,[theHunterCotW_F.exe+1683844]
+"theHunterCotW_F.exe"+86D5F5: FF 15 B5 A7 DC 00        -  call qword ptr [theHunterCotW_F.exe+1637DB0]
+// ---------- INJECTING HERE ----------
+"theHunterCotW_F.exe"+86D5FB: F3 0F 11 86 20 21 00 00  -  movss [rsi+00002120],xmm0
+// ---------- DONE INJECTING  ----------
+"theHunterCotW_F.exe"+86D603: 4C 8B 46 68              -  mov r8,[rsi+68]
+"theHunterCotW_F.exe"+86D607: BA 02 00 00 00           -  mov edx,00000002
+"theHunterCotW_F.exe"+86D60C: 48 8B CF                 -  mov rcx,rdi
+"theHunterCotW_F.exe"+86D60F: E8 DC 72 C3 FF           -  call theHunterCotW_F.exe+4A48F0
+"theHunterCotW_F.exe"+86D614: 0F 28 F8                 -  movaps xmm7,xmm0
+"theHunterCotW_F.exe"+86D617: 48 8B 4E 68              -  mov rcx,[rsi+68]
+"theHunterCotW_F.exe"+86D61B: 48 81 C1 10 26 00 00     -  add rcx,00002610
+"theHunterCotW_F.exe"+86D622: E8 89 71 C3 FF           -  call theHunterCotW_F.exe+4A47B0
+"theHunterCotW_F.exe"+86D627: 48 8B D8                 -  mov rbx,rax
+"theHunterCotW_F.exe"+86D62A: 48 8B D0                 -  mov rdx,rax
+}
+INJ_SILENT2:
+  db F3 44 0F 11 86 10 21 00 00
+
+unregistersymbol(INJ_SILENT2)
+dealloc(newmem2)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "theHunterCotW_F.exe"+86D74E
+
+"theHunterCotW_F.exe"+86D70F: 90                             -  nop 
+"theHunterCotW_F.exe"+86D710: F3 0F 10 86 0C 21 00 00        -  movss xmm0,[rsi+0000210C]
+"theHunterCotW_F.exe"+86D718: F3 41 0F 5C C4                 -  subss xmm0,xmm12
+"theHunterCotW_F.exe"+86D71D: F3 41 0F 5F C1                 -  maxss xmm0,xmm9
+"theHunterCotW_F.exe"+86D722: F3 0F 5D 05 66 CB DD 00        -  minss xmm0,[theHunterCotW_F.exe+164A290]
+"theHunterCotW_F.exe"+86D72A: F3 0F 11 86 0C 21 00 00        -  movss [rsi+0000210C],xmm0
+"theHunterCotW_F.exe"+86D732: F3 44 0F 5E 86 18 21 00 00     -  divss xmm8,[rsi+00002118]
+"theHunterCotW_F.exe"+86D73B: F3 45 0F 5F C1                 -  maxss xmm8,xmm9
+"theHunterCotW_F.exe"+86D740: F3 44 0F 5D 05 47 CB DD 00     -  minss xmm8,[theHunterCotW_F.exe+164A290]
+"theHunterCotW_F.exe"+86D749: F3 44 0F 5F C0                 -  maxss xmm8,xmm0
+// ---------- INJECTING HERE ----------
+"theHunterCotW_F.exe"+86D74E: F3 44 0F 11 86 10 21 00 00     -  movss [rsi+00002110],xmm8
+// ---------- DONE INJECTING  ----------
+"theHunterCotW_F.exe"+86D757: F3 44 0F 59 05 E4 60 E1 00     -  mulss xmm8,[theHunterCotW_F.exe+1683844]
+"theHunterCotW_F.exe"+86D760: 41 0F 28 C0                    -  movaps xmm0,xmm8
+"theHunterCotW_F.exe"+86D764: FF 15 46 A6 DC 00              -  call qword ptr [theHunterCotW_F.exe+1637DB0]
+"theHunterCotW_F.exe"+86D76A: F3 0F 11 86 10 21 00 00        -  movss [rsi+00002110],xmm0
+"theHunterCotW_F.exe"+86D772: 4C 8D 9C 24 A0 00 00 00        -  lea r11,[rsp+000000A0]
+"theHunterCotW_F.exe"+86D77A: 49 8B 5B 10                    -  mov rbx,[r11+10]
+"theHunterCotW_F.exe"+86D77E: 49 8B 73 18                    -  mov rsi,[r11+18]
+"theHunterCotW_F.exe"+86D782: 41 0F 28 73 F0                 -  movaps xmm6,[r11-10]
+"theHunterCotW_F.exe"+86D787: 41 0F 28 7B E0                 -  movaps xmm7,[r11-20]
+"theHunterCotW_F.exe"+86D78C: 45 0F 28 43 D0                 -  movaps xmm8,[r11-30]
+}
+INJ_SILENT3:
+  db F3 0F 11 86 10 21 00 00
+
+unregistersymbol(INJ_SILENT3)
+dealloc(newmem5)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "theHunterCotW_F.exe"+86D76A
+
+"theHunterCotW_F.exe"+86D722: F3 0F 5D 05 66 CB DD 00     -  minss xmm0,[theHunterCotW_F.exe+164A290]
+"theHunterCotW_F.exe"+86D72A: F3 0F 11 86 0C 21 00 00     -  movss [rsi+0000210C],xmm0
+"theHunterCotW_F.exe"+86D732: F3 44 0F 5E 86 18 21 00 00  -  divss xmm8,[rsi+00002118]
+"theHunterCotW_F.exe"+86D73B: F3 45 0F 5F C1              -  maxss xmm8,xmm9
+"theHunterCotW_F.exe"+86D740: F3 44 0F 5D 05 47 CB DD 00  -  minss xmm8,[theHunterCotW_F.exe+164A290]
+"theHunterCotW_F.exe"+86D749: F3 44 0F 5F C0              -  maxss xmm8,xmm0
+"theHunterCotW_F.exe"+86D74E: F3 44 0F 11 86 10 21 00 00  -  movss [rsi+00002110],xmm8
+"theHunterCotW_F.exe"+86D757: F3 44 0F 59 05 E4 60 E1 00  -  mulss xmm8,[theHunterCotW_F.exe+1683844]
+"theHunterCotW_F.exe"+86D760: 41 0F 28 C0                 -  movaps xmm0,xmm8
+"theHunterCotW_F.exe"+86D764: FF 15 46 A6 DC 00           -  call qword ptr [theHunterCotW_F.exe+1637DB0]
+// ---------- INJECTING HERE ----------
+"theHunterCotW_F.exe"+86D76A: F3 0F 11 86 10 21 00 00     -  movss [rsi+00002110],xmm0
+// ---------- DONE INJECTING  ----------
+"theHunterCotW_F.exe"+86D772: 4C 8D 9C 24 A0 00 00 00     -  lea r11,[rsp+000000A0]
+"theHunterCotW_F.exe"+86D77A: 49 8B 5B 10                 -  mov rbx,[r11+10]
+"theHunterCotW_F.exe"+86D77E: 49 8B 73 18                 -  mov rsi,[r11+18]
+"theHunterCotW_F.exe"+86D782: 41 0F 28 73 F0              -  movaps xmm6,[r11-10]
+"theHunterCotW_F.exe"+86D787: 41 0F 28 7B E0              -  movaps xmm7,[r11-20]
+"theHunterCotW_F.exe"+86D78C: 45 0F 28 43 D0              -  movaps xmm8,[r11-30]
+"theHunterCotW_F.exe"+86D791: 45 0F 28 4B C0              -  movaps xmm9,[r11-40]
+"theHunterCotW_F.exe"+86D796: 45 0F 28 63 B0              -  movaps xmm12,[r11-50]
+"theHunterCotW_F.exe"+86D79B: 49 8B E3                    -  mov rsp,r11
+"theHunterCotW_F.exe"+86D79E: 5F                          -  pop rdi
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>21</ID>
+      <Description>"Weapon Scores (Open Cache)"</Description>
+      <Options moHideChildren="1"/>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : theHunterCotW_F.exe
+  Version: 
+  Date   : 2020-06-26
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_WP_SCORE,theHunterCotW_F.exe,41 8B 9D 10 01 00 00) // should be unique
+alloc(newmem,$1000,"theHunterCotW_F.exe"+95ED9B)
+
+label(code)
+label(return)
+label(pt_rifle_score)
+
+newmem:
+  mov [pt_rifle_score],r13
+  jmp code
+
+pt_rifle_score:
+  dq 0
+registersymbol(pt_rifle_score)
+
+code:
+  mov ebx,[r13+00000110]
+  jmp return
+
+INJ_WP_SCORE:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJ_WP_SCORE)
+
+[DISABLE]
+
+INJ_WP_SCORE:
+  db 41 8B 9D 10 01 00 00
+
+unregistersymbol(pt_rifle_score)
+unregistersymbol(INJ_WP_SCORE)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "theHunterCotW_F.exe"+95ED9B
+
+"theHunterCotW_F.exe"+95ED76: 33 DB                             -  xor ebx,ebx
+"theHunterCotW_F.exe"+95ED78: EB 28                             -  jmp theHunterCotW_F.exe+95EDA2
+"theHunterCotW_F.exe"+95ED7A: 41 8B 5D 64                       -  mov ebx,[r13+64]
+"theHunterCotW_F.exe"+95ED7E: EB 22                             -  jmp theHunterCotW_F.exe+95EDA2
+"theHunterCotW_F.exe"+95ED80: 41 8B 9D 1C 01 00 00              -  mov ebx,[r13+0000011C]
+"theHunterCotW_F.exe"+95ED87: EB 19                             -  jmp theHunterCotW_F.exe+95EDA2
+"theHunterCotW_F.exe"+95ED89: 41 8B 9D 18 01 00 00              -  mov ebx,[r13+00000118]
+"theHunterCotW_F.exe"+95ED90: EB 10                             -  jmp theHunterCotW_F.exe+95EDA2
+"theHunterCotW_F.exe"+95ED92: 41 8B 9D 14 01 00 00              -  mov ebx,[r13+00000114]
+"theHunterCotW_F.exe"+95ED99: EB 07                             -  jmp theHunterCotW_F.exe+95EDA2
+// ---------- INJECTING HERE ----------
+"theHunterCotW_F.exe"+95ED9B: 41 8B 9D 10 01 00 00              -  mov ebx,[r13+00000110]
+// ---------- DONE INJECTING  ----------
+"theHunterCotW_F.exe"+95EDA2: 41 8B 86 EC 00 00 00              -  mov eax,[r14+000000EC]
+"theHunterCotW_F.exe"+95EDA9: 89 44 24 7C                       -  mov [rsp+7C],eax
+"theHunterCotW_F.exe"+95EDAD: 41 8B BE DC 00 00 00              -  mov edi,[r14+000000DC]
+"theHunterCotW_F.exe"+95EDB4: 0F 57 C0                          -  xorps xmm0,xmm0
+"theHunterCotW_F.exe"+95EDB7: F3 48 0F 2A C7                    -  cvtsi2ss xmm0,rdi
+"theHunterCotW_F.exe"+95EDBC: 48 8B 74 24 38                    -  mov rsi,[rsp+38]
+"theHunterCotW_F.exe"+95EDC1: F3 0F 59 86 78 7A 00 00           -  mulss xmm0,[rsi+00007A78]
+"theHunterCotW_F.exe"+95EDC9: F3 48 0F 2C C0                    -  cvttss2si rax,xmm0
+"theHunterCotW_F.exe"+95EDCE: 2B F8                             -  sub edi,eax
+"theHunterCotW_F.exe"+95EDD0: 41 0F BE 86 FB 00 00 00           -  movsx eax,byte ptr [r14+000000FB]
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>22</ID>
+          <Description>"Rifle"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_rifle_score</Address>
+          <Offsets>
+            <Offset>110</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>25</ID>
+          <Description>"Pistol"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_rifle_score</Address>
+          <Offsets>
+            <Offset>114</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>24</ID>
+          <Description>"Shotgun"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_rifle_score</Address>
+          <Offsets>
+            <Offset>118</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>23</ID>
+          <Description>"Bow"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_rifle_score</Address>
+          <Offsets>
+            <Offset>11C</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>28</ID>
+      <Description>"XP Multiplier"</Description>
+      <Options moHideChildren="1"/>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : theHunterCotW_F.exe
+  Version: 
+  Date   : 2020-06-27
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_XP_MUL,theHunterCotW_F.exe,45 89 7E 10 48 8B 43 18) // should be unique
+alloc(newmem,$1000,"theHunterCotW_F.exe"+882C92)
+
+label(code)
+label(return)
+label(val_xp_mul)
+label(pt_xp)
+
+newmem:
+  push rax
+  push rcx
+  xor rcx,rcx
+  mov [pt_xp],r14
+  mov eax,r15d
+  sub eax,[r14+10]
+  mov ecx,[val_xp_mul]
+  mul ecx
+  add eax,[r14+10]
+  mov r15d,eax
+  pop rcx
+  pop rax
+  jmp code
+
+val_xp_mul:
+  dq 2
+registersymbol(val_xp_mul)
+
+pt_xp:
+  dq 0
+registersymbol(pt_xp)
+
+code:
+  mov [r14+10],r15d
+  mov rax,[rbx+18]
+  jmp return
+
+INJ_XP_MUL:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJ_XP_MUL)
+
+[DISABLE]
+
+INJ_XP_MUL:
+  db 45 89 7E 10 48 8B 43 18
+
+unregistersymbol(pt_xp)
+unregistersymbol(val_xp_mul)
+unregistersymbol(INJ_XP_MUL)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "theHunterCotW_F.exe"+882C92
+
+"theHunterCotW_F.exe"+882C6C: 4C 89 7C 24 20              -  mov [rsp+20],r15
+"theHunterCotW_F.exe"+882C71: 48 8B 43 18                 -  mov rax,[rbx+18]
+"theHunterCotW_F.exe"+882C75: 48 6B C9 1C                 -  imul rcx,rcx,1C
+"theHunterCotW_F.exe"+882C79: 44 8B 3C 01                 -  mov r15d,[rcx+rax]
+"theHunterCotW_F.exe"+882C7D: 41 8B 4E 10                 -  mov ecx,[r14+10]
+"theHunterCotW_F.exe"+882C81: 41 8B 46 0C                 -  mov eax,[r14+0C]
+"theHunterCotW_F.exe"+882C85: 03 CA                       -  add ecx,edx
+"theHunterCotW_F.exe"+882C87: 41 3B CF                    -  cmp ecx,r15d
+"theHunterCotW_F.exe"+882C8A: 44 0F 4C F9                 -  cmovl r15d,ecx
+"theHunterCotW_F.exe"+882C8E: 48 6B C8 1C                 -  imul rcx,rax,1C
+// ---------- INJECTING HERE ----------
+"theHunterCotW_F.exe"+882C92: 45 89 7E 10                 -  mov [r14+10],r15d
+"theHunterCotW_F.exe"+882C96: 48 8B 43 18                 -  mov rax,[rbx+18]
+// ---------- DONE INJECTING  ----------
+"theHunterCotW_F.exe"+882C9A: 44 3B 3C 01                 -  cmp r15d,[rcx+rax]
+"theHunterCotW_F.exe"+882C9E: 0F 82 03 01 00 00           -  jb theHunterCotW_F.exe+882DA7
+"theHunterCotW_F.exe"+882CA4: 48 89 6C 24 60              -  mov [rsp+60],rbp
+"theHunterCotW_F.exe"+882CA9: 48 89 74 24 38              -  mov [rsp+38],rsi
+"theHunterCotW_F.exe"+882CAE: 48 89 7C 24 30              -  mov [rsp+30],rdi
+"theHunterCotW_F.exe"+882CB3: 0F 1F 40 00                 -  nop [rax+00]
+"theHunterCotW_F.exe"+882CB7: 66 0F 1F 84 00 00 00 00 00  -  nop [rax+rax+00000000]
+"theHunterCotW_F.exe"+882CC0: 41 8B 46 0C                 -  mov eax,[r14+0C]
+"theHunterCotW_F.exe"+882CC4: 48 6B F0 1C                 -  imul rsi,rax,1C
+"theHunterCotW_F.exe"+882CC8: 48 03 73 18                 -  add rsi,[rbx+18]
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>29</ID>
+          <Description>"Multiplier"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>val_xp_mul</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>30</ID>
+          <Description>"XP"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_xp</Address>
+          <Offsets>
+            <Offset>10</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols>
+    <SymbolEntry>
+      <Name>cheatTimeOn</Name>
+      <Address>21C87870000</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>cheatFOV</Name>
+      <Address>21C87870010</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>cheaton</Name>
+      <Address>21C87870020</Address>
+    </SymbolEntry>
+  </UserdefinedSymbols>
+</CheatTable>

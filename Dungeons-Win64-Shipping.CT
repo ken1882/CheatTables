@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<CheatTable CheatEngineTableVersion="31">
+<CheatTable CheatEngineTableVersion="29">
   <CheatEntries>
     <CheatEntry>
       <ID>53</ID>
@@ -9,93 +9,93 @@
       <GroupHeader>1</GroupHeader>
       <CheatEntries>
         <CheatEntry>
-          <ID>54</ID>
+          <ID>204</ID>
           <Description>"HP"</Description>
+          <LastState Value="29701.20703" RealAddress="132F3282DD4"/>
           <VariableType>Float</VariableType>
-          <Address>"Dungeons-Win64-Shipping.exe"+03CEB7E8</Address>
+          <Address>"Dungeons-Win64-Shipping.exe"+03D21CB8</Address>
           <Offsets>
             <Offset>34</Offset>
             <Offset>38</Offset>
             <Offset>188</Offset>
-            <Offset>10</Offset>
-            <Offset>2A0</Offset>
-            <Offset>370</Offset>
+            <Offset>860</Offset>
+            <Offset>3B0</Offset>
             <Offset>30</Offset>
           </Offsets>
         </CheatEntry>
         <CheatEntry>
-          <ID>55</ID>
+          <ID>206</ID>
           <Description>"MHP"</Description>
+          <LastState Value="29701.20703" RealAddress="132F3282DD8"/>
           <VariableType>Float</VariableType>
-          <Address>"Dungeons-Win64-Shipping.exe"+03CEB7E8</Address>
+          <Address>"Dungeons-Win64-Shipping.exe"+03D21CB8</Address>
           <Offsets>
             <Offset>38</Offset>
             <Offset>38</Offset>
             <Offset>188</Offset>
+            <Offset>860</Offset>
+            <Offset>3B0</Offset>
+            <Offset>30</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>202</ID>
+          <Description>"Attack Speed"</Description>
+          <LastState Value="1.25" RealAddress="132F3282E3C"/>
+          <VariableType>Float</VariableType>
+          <Address>"Dungeons-Win64-Shipping.exe"+03D24040</Address>
+          <Offsets>
+            <Offset>3C</Offset>
             <Offset>10</Offset>
-            <Offset>2A0</Offset>
-            <Offset>370</Offset>
-            <Offset>30</Offset>
-          </Offsets>
-        </CheatEntry>
-        <CheatEntry>
-          <ID>60</ID>
-          <Description>"Artifact cooldown rate"</Description>
-          <VariableType>Float</VariableType>
-          <Address>"Dungeons-Win64-Shipping.exe"+03AAE4C0</Address>
-          <Offsets>
-            <Offset>30</Offset>
-            <Offset>20</Offset>
             <Offset>188</Offset>
-            <Offset>860</Offset>
-            <Offset>78</Offset>
-            <Offset>0</Offset>
-            <Offset>8</Offset>
+            <Offset>F8</Offset>
+            <Offset>458</Offset>
+            <Offset>70</Offset>
           </Offsets>
         </CheatEntry>
         <CheatEntry>
-          <ID>89</ID>
-          <Description>"Move Speed"</Description>
-          <VariableType>Float</VariableType>
-          <Address>"Dungeons-Win64-Shipping.exe"+03F436D0</Address>
-          <Offsets>
-            <Offset>30</Offset>
-            <Offset>8</Offset>
-            <Offset>188</Offset>
-            <Offset>860</Offset>
-            <Offset>140</Offset>
-            <Offset>110</Offset>
-            <Offset>0</Offset>
-          </Offsets>
-        </CheatEntry>
-        <CheatEntry>
-          <ID>75</ID>
+          <ID>205</ID>
           <Description>"Fire Rate"</Description>
+          <LastState Value="1" RealAddress="13358C4EA0C"/>
           <VariableType>Float</VariableType>
-          <Address>"Dungeons-Win64-Shipping.exe"+03F93628</Address>
+          <Address>"Dungeons-Win64-Shipping.exe"+03BABA30</Address>
           <Offsets>
-            <Offset>38</Offset>
+            <Offset>3C</Offset>
             <Offset>18</Offset>
             <Offset>188</Offset>
-            <Offset>1F0</Offset>
-            <Offset>E68</Offset>
-            <Offset>E8</Offset>
-            <Offset>0</Offset>
+            <Offset>860</Offset>
+            <Offset>78</Offset>
+            <Offset>108</Offset>
           </Offsets>
         </CheatEntry>
         <CheatEntry>
-          <ID>88</ID>
-          <Description>"Attack Speed"</Description>
+          <ID>207</ID>
+          <Description>"Cool Down Rate"</Description>
+          <LastState Value="0.75" RealAddress="132F3282FB0"/>
           <VariableType>Float</VariableType>
-          <Address>"Dungeons-Win64-Shipping.exe"+03F93628</Address>
+          <Address>"Dungeons-Win64-Shipping.exe"+03FBFDD0</Address>
           <Offsets>
-            <Offset>38</Offset>
-            <Offset>10</Offset>
+            <Offset>30</Offset>
+            <Offset>20</Offset>
             <Offset>188</Offset>
             <Offset>860</Offset>
-            <Offset>78</Offset>
-            <Offset>20</Offset>
-            <Offset>0</Offset>
+            <Offset>3B0</Offset>
+            <Offset>30</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>209</ID>
+          <Description>"Movement Speed"</Description>
+          <LastState Value="1.150000095" RealAddress="132B6476170"/>
+          <VariableType>Float</VariableType>
+          <Address>"Dungeons-Win64-Shipping.exe"+03D99698</Address>
+          <Offsets>
+            <Offset>30</Offset>
+            <Offset>8</Offset>
+            <Offset>188</Offset>
+            <Offset>610</Offset>
+            <Offset>A0</Offset>
+            <Offset>F8</Offset>
           </Offsets>
         </CheatEntry>
       </CheatEntries>
@@ -678,7 +678,7 @@ dealloc(newmem)
       <ID>84</ID>
       <Description>"Selected Item Edit (view table extras)"</Description>
       <Options moHideChildren="1"/>
-      <LastState/>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : Dungeons-Win64-Shipping.exe
   Version: 
@@ -758,6 +758,7 @@ dealloc(newmem)
         <CheatEntry>
           <ID>85</ID>
           <Description>"Power"</Description>
+          <LastState Value="11.79899979" RealAddress="13301A24F3C"/>
           <VariableType>Float</VariableType>
           <Address>pt_gpower</Address>
           <Offsets>
@@ -767,6 +768,7 @@ dealloc(newmem)
         <CheatEntry>
           <ID>90</ID>
           <Description>"Enchantment Slots"</Description>
+          <LastState Value="9" RealAddress="13301A24F48"/>
           <VariableType>4 Bytes</VariableType>
           <Address>pt_gpower</Address>
           <Offsets>
@@ -776,6 +778,7 @@ dealloc(newmem)
         <CheatEntry>
           <ID>189</ID>
           <Description>"Max Enchantment Slots"</Description>
+          <LastState Value="10" RealAddress="13301A24F4C"/>
           <VariableType>4 Bytes</VariableType>
           <Address>pt_gpower</Address>
           <Offsets>
@@ -793,13 +796,8 @@ dealloc(newmem)
               <ID>91</ID>
               <Description>"Enchantment 1"</Description>
               <Options moHideChildren="1"/>
-              <LastState Value="" Activated="1" RealAddress="00000000"/>
+              <LastState Value="" Activated="1" RealAddress="132CE9487B0"/>
               <GroupHeader>1</GroupHeader>
-              <Address>pt_gpower</Address>
-              <Offsets>
-                <Offset>0</Offset>
-                <Offset>40</Offset>
-              </Offsets>
               <CheatEntries>
                 <CheatEntry>
                   <ID>96</ID>
@@ -894,12 +892,14 @@ dealloc(newmem)
 88:Slow Resistance
 89:Slow Immunity
 </DropDownList>
+                  <LastState Value="60" RealAddress="132CE9487B0"/>
                   <VariableType>Byte</VariableType>
                   <Address>+0</Address>
                   <CheatEntries>
                     <CheatEntry>
                       <ID>97</ID>
                       <Description>"Level"</Description>
+                      <LastState Value="3" RealAddress="132CE9487B4"/>
                       <VariableType>Byte</VariableType>
                       <Address>+4</Address>
                     </CheatEntry>
@@ -998,12 +998,14 @@ dealloc(newmem)
 88:Slow Resistance
 89:Slow Immunity
 </DropDownList>
+                  <LastState Value="58" RealAddress="132CE9487B8"/>
                   <VariableType>Byte</VariableType>
                   <Address>+8</Address>
                   <CheatEntries>
                     <CheatEntry>
                       <ID>95</ID>
                       <Description>"Level"</Description>
+                      <LastState Value="3" RealAddress="132CE9487BC"/>
                       <VariableType>Byte</VariableType>
                       <Address>+4</Address>
                     </CheatEntry>
@@ -1102,12 +1104,14 @@ dealloc(newmem)
 88:Slow Resistance
 89:Slow Immunity
 </DropDownList>
+                  <LastState Value="58" RealAddress="132CE9487C0"/>
                   <VariableType>Byte</VariableType>
                   <Address>+10</Address>
                   <CheatEntries>
                     <CheatEntry>
                       <ID>93</ID>
                       <Description>"Level"</Description>
+                      <LastState Value="3" RealAddress="132CE9487C4"/>
                       <VariableType>Byte</VariableType>
                       <Address>+4</Address>
                     </CheatEntry>
@@ -1119,13 +1123,8 @@ dealloc(newmem)
               <ID>98</ID>
               <Description>"Enchantment 2"</Description>
               <Options moHideChildren="1"/>
-              <LastState Value="" Activated="1" RealAddress="00000000"/>
+              <LastState Value="" Activated="1" RealAddress="132CE9487C8"/>
               <GroupHeader>1</GroupHeader>
-              <Address>pt_gpower</Address>
-              <Offsets>
-                <Offset>18</Offset>
-                <Offset>40</Offset>
-              </Offsets>
               <CheatEntries>
                 <CheatEntry>
                   <ID>99</ID>
@@ -1220,12 +1219,14 @@ dealloc(newmem)
 88:Slow Resistance
 89:Slow Immunity
 </DropDownList>
+                  <LastState Value="72" RealAddress="132CE9487C8"/>
                   <VariableType>Byte</VariableType>
                   <Address>+0</Address>
                   <CheatEntries>
                     <CheatEntry>
                       <ID>100</ID>
                       <Description>"Level"</Description>
+                      <LastState Value="3" RealAddress="132CE9487CC"/>
                       <VariableType>Byte</VariableType>
                       <Address>+4</Address>
                     </CheatEntry>
@@ -1324,12 +1325,14 @@ dealloc(newmem)
 88:Slow Resistance
 89:Slow Immunity
 </DropDownList>
+                  <LastState Value="73" RealAddress="132CE9487D0"/>
                   <VariableType>Byte</VariableType>
                   <Address>+8</Address>
                   <CheatEntries>
                     <CheatEntry>
                       <ID>102</ID>
                       <Description>"Level"</Description>
+                      <LastState Value="0" RealAddress="132CE9487D4"/>
                       <VariableType>Byte</VariableType>
                       <Address>+4</Address>
                     </CheatEntry>
@@ -1428,12 +1431,14 @@ dealloc(newmem)
 88:Slow Resistance
 89:Slow Immunity
 </DropDownList>
+                  <LastState Value="57" RealAddress="132CE9487D8"/>
                   <VariableType>Byte</VariableType>
                   <Address>+10</Address>
                   <CheatEntries>
                     <CheatEntry>
                       <ID>104</ID>
                       <Description>"Level"</Description>
+                      <LastState Value="0" RealAddress="132CE9487DC"/>
                       <VariableType>Byte</VariableType>
                       <Address>+4</Address>
                     </CheatEntry>
@@ -1445,13 +1450,8 @@ dealloc(newmem)
               <ID>105</ID>
               <Description>"Enchantment 3"</Description>
               <Options moHideChildren="1"/>
-              <LastState Value="" Activated="1" RealAddress="00000000"/>
+              <LastState Value="" Activated="1" RealAddress="132CE9487E0"/>
               <GroupHeader>1</GroupHeader>
-              <Address>pt_gpower</Address>
-              <Offsets>
-                <Offset>30</Offset>
-                <Offset>40</Offset>
-              </Offsets>
               <CheatEntries>
                 <CheatEntry>
                   <ID>106</ID>
@@ -1546,12 +1546,14 @@ dealloc(newmem)
 88:Slow Resistance
 89:Slow Immunity
 </DropDownList>
+                  <LastState Value="68" RealAddress="132CE9487E0"/>
                   <VariableType>Byte</VariableType>
                   <Address>+0</Address>
                   <CheatEntries>
                     <CheatEntry>
                       <ID>107</ID>
                       <Description>"Level"</Description>
+                      <LastState Value="0" RealAddress="132CE9487E4"/>
                       <VariableType>Byte</VariableType>
                       <Address>+4</Address>
                     </CheatEntry>
@@ -1650,12 +1652,14 @@ dealloc(newmem)
 88:Slow Resistance
 89:Slow Immunity
 </DropDownList>
+                  <LastState Value="84" RealAddress="132CE9487E8"/>
                   <VariableType>Byte</VariableType>
                   <Address>+8</Address>
                   <CheatEntries>
                     <CheatEntry>
                       <ID>109</ID>
                       <Description>"Level"</Description>
+                      <LastState Value="3" RealAddress="132CE9487EC"/>
                       <VariableType>Byte</VariableType>
                       <Address>+4</Address>
                     </CheatEntry>
@@ -1754,12 +1758,14 @@ dealloc(newmem)
 88:Slow Resistance
 89:Slow Immunity
 </DropDownList>
+                  <LastState Value="62" RealAddress="132CE9487F0"/>
                   <VariableType>Byte</VariableType>
                   <Address>+10</Address>
                   <CheatEntries>
                     <CheatEntry>
                       <ID>111</ID>
                       <Description>"Level"</Description>
+                      <LastState Value="0" RealAddress="132CE9487F4"/>
                       <VariableType>Byte</VariableType>
                       <Address>+4</Address>
                     </CheatEntry>
@@ -1775,12 +1781,12 @@ dealloc(newmem)
       <ID>148</ID>
       <Description>"Highlighted Equip Edit"</Description>
       <Options moHideChildren="1"/>
-      <LastState/>
+      <LastState Activated="1"/>
       <Color>808000</Color>
       <VariableType>Auto Assembler Script</VariableType>
-      <AssemblerScript>{ Game   : Dungeons.exe
-  Version: 
-  Date   : 2020-05-30
+      <AssemblerScript>{ Game   : Dungeons-Win64-Shipping.exe
+  Version: 1.3.2.0_4307136
+  Date   : 2020-07-01
   Author : Idlehands88
 
   This script does blah blah blah
@@ -1788,8 +1794,8 @@ dealloc(newmem)
 
 [ENABLE]
 
-aobscanmodule(INJECT_EquipmentEdit,Dungeons-Win64-Shipping.exe,4C 8B 03 48 8D 54 24 30 48 8B C8 48 8B F8 E8 B2 EC) // should be unique
-alloc(newmem,$1000,"Dungeons-Win64-Shipping.exe"+85749B)
+aobscanmodule(INJECT_EquipmentEdit,Dungeons-Win64-Shipping.exe,4C 8B 03 48 8D 54 24 30 48 8B C8 48 8B F8 E8 02) // should be unique
+alloc(newmem,$1000,"Dungeons-Win64-Shipping.exe"+85847B)
 alloc(newmem2,$2000,1100000000)
 
 registersymbol(p_equip)
@@ -1825,39 +1831,12 @@ unregistersymbol(p_equip)
 unregistersymbol(INJECT_EquipmentEdit)
 dealloc(newmem)
 
-{
-// ORIGINAL CODE - INJECTION POINT: "Dungeons.exe"+85914B
-
-"Dungeons.exe"+85912D: CC              -  int 3 
-"Dungeons.exe"+85912E: CC              -  int 3 
-"Dungeons.exe"+85912F: CC              -  int 3 
-"Dungeons.exe"+859130: 48 89 5C 24 10  -  mov [rsp+10],rbx
-"Dungeons.exe"+859135: 57              -  push rdi
-"Dungeons.exe"+859136: 48 83 EC 20     -  sub rsp,20
-"Dungeons.exe"+85913A: 48 83 C1 28     -  add rcx,28
-"Dungeons.exe"+85913E: E8 ED A3 0B 00  -  call Dungeons.exe+913530
-"Dungeons.exe"+859143: 48 8B D8        -  mov rbx,rax
-"Dungeons.exe"+859146: E8 A5 5F 0C 00  -  call Dungeons.exe+91F0F0
-// ---------- INJECTING HERE ----------
-"Dungeons.exe"+85914B: 4C 8B 03        -  mov r8,[rbx]
-"Dungeons.exe"+85914E: 48 8D 54 24 30  -  lea rdx,[rsp+30]
-// ---------- DONE INJECTING  ----------
-"Dungeons.exe"+859153: 48 8B C8        -  mov rcx,rax
-"Dungeons.exe"+859156: 48 8B F8        -  mov rdi,rax
-"Dungeons.exe"+859159: E8 02 D0 AF FF  -  call Dungeons.exe+356160
-"Dungeons.exe"+85915E: 48 63 4C 24 30  -  movsxd  rcx,dword ptr [rsp+30]
-"Dungeons.exe"+859163: 83 F9 FF        -  cmp ecx,-01
-"Dungeons.exe"+859166: 74 0D           -  je Dungeons.exe+859175
-"Dungeons.exe"+859168: 48 8B 07        -  mov rax,[rdi]
-"Dungeons.exe"+85916B: 48 8D 0C 49     -  lea rcx,[rcx+rcx*2]
-"Dungeons.exe"+85916F: 48 8D 0C C8     -  lea rcx,[rax+rcx*8]
-"Dungeons.exe"+859173: EB 02           -  jmp Dungeons.exe+859177
-}
 </AssemblerScript>
       <CheatEntries>
         <CheatEntry>
           <ID>149</ID>
           <Description>"BASE"</Description>
+          <LastState Value="00007FF7FAF73B50" RealAddress="13301A24F00"/>
           <ShowAsHex>1</ShowAsHex>
           <Color>FF0000</Color>
           <VariableType>8 Bytes</VariableType>
@@ -1868,162 +1847,163 @@ dealloc(newmem)
         </CheatEntry>
         <CheatEntry>
           <ID>150</ID>
-          <Description>"Item ID (List by: TenLetters)"</Description>
-          <DropDownList ReadOnly="1" DescriptionOnly="1" DisplayValueAsItem="1">2425:Sword
-2426:Diamond Sword - Extra Damage
-2427:Hawkbrand - Increases critical hit chance
-2428:Katana
-2429:Master's Katana - Increases critical hit chance
-2430:Dark Katana - Extra damage to undead
-2431:Spear - Long Melee Reach
-2432:Whispering Spear - Sometimes Strikes Twice
-2433:Fortune Spear - Drop More Consumables
-2434:Claymore - Powerful Pushback
-2435:Heartstealer - Leeches Health from Mobs
-2436:Broadsword - Extra Damage
-2437:Sickles - Dual Wield
-2438:Nightmare's Bite - Spawns Poison Clouds
-2439:The Last Laugh - Mobs Drop More Emeralds
-2440:Gauntlets - Relentless Combo
-2441:Soul Fists - Souls Critical Boost/+2 Soul Gathering
-2442:Maulers - Increases attack speed
-2443:Fighter's Bindings - Boosts attack speed/Turbo Punches
-2444:Glaive - Longer Melee Reach
-2445:Grave Bane - Extra Damage to Undead
-2446:Venom Glaive - Spawns Poison Clouds
-2447:Double Axe - Spin attack
-2448:Whirlwind - Casts Shockwaves
-2449:Cursed Axe - Defeated Mobs Explode
-2450:Whip - Longer Melee Reach
-2451:Vine Whip - Inflicts Poison
-2452:Daggers - Dual Wield
-2453:Fangs of Frost - Slows Mobs
-2454:Moon Daggers - Souls Critical Boost
-2455:Cutlass - Reliable Combo
-2456:Nameless Blade - Weakens Enemy Attacks
-2457:Dancer's Sword - Increase attack speed
-2458:Mace
-2459:Sun's Grace - Heals Allies in the Area
-2460:Flail - Binds and Chains Enemies
-2461:Pickaxe
-2462:Diamond Pickaxe - Finds More Emeralds
-2463:Corrupted Seeds
-2464:Axe - Spin attack move
-2465:Firebrand - Burns Mobs
-2466:Highland Axe - Stuns Mobs
-2467:Great Hammer - Great Splash
-2468:Stormlander - Fires Lightning Bolts
-2469:Hammer of Gravity - Pulls in enemies
-2470:Soul Scythe - +2 Soul Gathering
-2471:Jailor's Scythe
-2472:Frost Scythe - Slows mobs
-2473:Soul Knife - Thrust attack/+2 Soul Gathering
-2474:Truthseeker - Increased damage to wounded mobs
-2475:Eternal Knife - Chance to Gain Souls
-2476:Bow
-2477:Bonebow - Arrows grow size
-2478:Twin Bow - Shoots Two Enemies At Once
-2479:Trickbow - Hits Multiple Targets
-2480:The Green Menace - Spawns Poison Clouds
-2481:The Pink Scoundrel - Chance to Enrage Mobs
-2482:Shortbow
-2483:Purple Storm - Increased Fire Rate
-2484:Mechanical Shortbow - Accelerated Fire Rate
-2485:Longbow - Strong Charged Attacks
-2486:Guardian Bow - Super Charged Arrows
-2487:Red Snake - Chance for Arrows to Explode
-2488:Hunting Bow - Pets Attack Targeted Mobs
-2489:Hunter's Promise - Chance to Regain Arrows
-2490:Master's Bow - Extra Damage Dealt
-2491:Soul Bow - +2 Soul Gathering
-2492:Nocturnal Bow - Steals Speed
-2493:Bow of Lost Souls - Chance for Multishot
-2494:Power Bow - Strong Charged Attacks
-2495:Elite Power Bow - Greater damage
-2496:Sabrewing - Heals Allies in the Area
-2497:Crossbow - Faster Projectiles
-2498:The Slicer - Chance to fire piercing bolts
-2499:Azure Seeker - Increased Fire Rate
-2501:Heavy Crossbow - Powerful Shots
-2502:Doom Crossbow - Additional Knockback
-2503:Slayer Crossbow - Chance to ricochet
-2504:Rapid Crossbow - High Firerate
-2505:Butterfly Crossbow - Shoots Two Enemies At Once
-2506:Auto Crossbow - Firerate increases upon firing
-2507:Scatter Crossbow - Multiple projectiles
-2508:Harp Crossbow - Even More Projectiles
-2509:Lightning Harp Crossbow - Chance to ricochet
-2510:Soul Crossbow - +100% souls gathered/+30% ranged damage/+2 Soul Gathering
-2511:Feral Soul Crossbow - Souls Critical Boost
-2512:Voidcaller - Pulls enemies in
-2513:Exploding Crossbow - Explodes on Impact/+100% souls gathered/+30% ranged damage
-2514:Imploding Crossbow - Pulls in enemies
-2515:Firebolt Thrower - Chance of Chain Reaction
-2516:Snow Bow - Freezes on Impact/+100% souls gathered/+30% ranged damage
-2517:Winter's Touch - Fires 3 arrows when charged
-2518:Guard's Armor
-2519:Curious Armor
-2520:Reinforced Mail
-2521:Stalwart Armor - Potion Use Boosts Defense
-2522:Scale Mail
-2523:Highland Armor - Gains Speed after Dodge
-2524:Evocation Robe
-2525:Ember Robe - Burns Nearby Enemies
-2526:Hunter's Armor
-2527:Archer's Armor
-2528:Thief Armor
-2529:Spider Armor
-2530:Battle Robe
-2531:Splendid Robe
-2532:Dark Armor
-2533:Titan's Shroud
-2534:Wolf Armor
-2535:Fox Armor
-2536:Champion's Armor
-2537:Hero's Armor
-2538:Mercenary Armor
-2539:Renegade Armor
-2540:Grim Armor
-2541:Wither Armor
-2542:Phantom Armor
-2543:Frost Bite - Spawns a Snowy Companion
-2544:Plate Armor
-2545:Full Metal Armor
-2546:Spelunker's Armor
-2547:Cave Crawler
-2548:Soul Robe
-2549:Souldancer Robe
-2550:Mystery Armor
-2552:Ocelot Armor
-2553:Shadow Walker
-2554:Snow Armor
-2555:Frost Armor - Emits a Chilling Aura
-2560:Fireworks Arrow
-2561:Harvester
-2563:Corrupted Seeds
-2564:Ice Wand
-2565:Gong of Weakening
-2566:Light Feather
-2567:Wind Horn
-2568:Boots of Swiftness
-2569:Ghost Cloak
-2570:Fishing Rod
-2571:Death Cap Mushroom
-2572:Shock Powder
-2573:Iron Hide Amulet
-2574:Tasty Bone
-2575:Wonderful Wheat
-2576:Golem Kit
-2577:Love Medallion
-2578:Corrupted Beacon
-2579:Lightning Rod
-2580:Soul Healer
-2581:Totem of Shielding
-2583:Totem of Soul Protection
-2584:Totem of Regeneration
-2585:Flaming Quiver
-2586:Torment Quiver
+          <Description>"Item ID (List by: TsumikiMiniwa)"</Description>
+          <DropDownList ReadOnly="1" DescriptionOnly="1" DisplayValueAsItem="1">2720:Sword
+2727:Diamond Sword - Extra Damage
+2734:Hawkbrand - Increases critical hit chance
+2741:Katana
+2748:Master's Katana - Increases critical hit chance
+2755:Dark Katana - Extra damage to undead
+2762:Spear - Long Melee Reach
+2769:Whispering Spear - Sometimes Strikes Twice
+2776:Fortune Spear - Drop More Consumables
+2783:Claymore - Powerful Pushback
+2790:Heartstealer - Leeches Health from Mobs
+2797:Broadsword - Extra Damage
+2804:Sickles - Dual Wield
+2811:Nightmare's Bite - Spawns Poison Clouds
+2818:The Last Laugh - Mobs Drop More Emeralds
+2825:Gauntlets - Relentless Combo
+2832:Soul Fists - Souls Critical Boost/+2 Soul Gathering
+2839:Maulers - Increases attack speed
+2846:Fighter's Bindings - Boosts attack speed/Turbo Punches
+2853:Battlestaff - Stylish Combo
+2860:Growing Staff - Increased damage to wounded mobs
+2867:Battlestaff of Terror - Defated mobs explode
+2874:Glaive - Longer melee reach
+2881:Grave Bane - Extra Damage to Undead
+2888:Venom Glaive - Spawns poison clouds
+2895:Double Axe - Spin attack
+2902:Whirlwind - Casts Shockwaves
+2909:Cursed Axe - Defeated Mobs Explode
+2916:Whip - Longer Melee Reach
+2923:Vine Whip - Inflicts Poison
+2930:Daggers - Dual Wield
+2937:Fangs of Frost - Slows Mobs
+2944:Moon Daggers - Souls Critical Boost
+2951:Cutlass - Reliable Combo
+2958:Nameless Blade - Weakens Enemy Attacks
+2965:Dancer's Sword - Increase attack speed
+2972:Mace
+2979:Sun's Grace - Heals Allies in the Area
+2986:Flail
+2993:Pickaxe
+3000:Diamond Pickaxe - Finds More Emeralds
+3014:Axe - Spin attack move
+3021:Firebrand - Burns Mobs
+3028:Highland Axe - Stuns Mobs
+3035:Great Hammer - Great Splash
+3042:Stormlander - Fires Lightning Bolts
+3049:Hammer of Gravity - Pulls in enemies
+3077:Soul Knife
+3084:Truthseeker - Increased damage to wounded mobs
+3091:Eternal Knife - Chance to Gain Souls
+3098:Bow
+3105:Bonebow - Arrows grow size
+3112:Twin Bow - Shoots Two Enemies At Once
+3119:Trickbow - Hits Multiple Targets
+3126:The Green Menace - Spawns Poison Clouds
+3133:The Pink Scoundrel - Chance to Enrage Mobs
+3140:Shortbow
+3147:Purple Storm - Increased Fire Rate
+3154:Mechanical Shortbow - Accelerated Fire Rate
+3161:Longbow - Strong Charged Attacks
+3168:Guardian Bow - Super Charged Arrows
+3175:Red Snake - Chance for Arrows to Explode
+3182:Hunting Bow - Pets Attack Targeted Mobs
+3189:Hunter's Promise - Chance to Regain Arrows
+3196:Master's Bow - Extra Damage Dealt
+3203:Dual Crossbows - Double Projectiles
+3210:Nocturnal Bow - Steals Speed
+3217:Bow of Lost Souls - Chance for Multishot
+3224:Power Bow - Strong Charged Attacks
+3231:Elite Power Bow - Greater damage
+3238:Sabrewing - Heals Allies in the Area
+3245:Crossbow - Faster Projectiles
+3252:The Slicer - Chance to fire piercing bolts
+3259:Azure Seeker - Increased Fire Rate
+3273:Heavy Crossbow - Powerful Shots
+3280:Doom Crossbow - Additional Knockback
+3287:Slayer Crossbow - Chance to ricochet
+3294:Rapid Crossbow - High Firerate
+3301:Butterfly Crossbow - Shoots Two Enemies At Once
+3308:Auto Crossbow - Firerate increases upon firing
+3315:Scatter Crossbow - Multiple projectiles
+3322:Harp Crossbow - Even More Projectiles
+3329:Lightning Harp Crossbow - Chance to ricochet
+3336:Dual Crossbows - Double Projectiles
+3343:Spellbound Crossbows - Strong vs Enchanted mobs
+3350:Baby Crossbows - Arrows grow size
+3357:Soul Crossbow - +100% souls gathered/+30% ranged damage/+2 Soul Gathering
+3364:Feral Soul Crossbow - Souls Critical Boost
+3371:Voidcaller - Pulls enemies in
+3378:Exploding Crossbow - Explodes on Impact/+100% souls gathered/+30% ranged damage
+3385:Imploding Crossbow - Pulls in enemies
+3392:Firebolt Thrower - Chance of Chain Reaction
+3399:Snow Bow - Freezes on Impact/+100% souls gathered/+30% ranged damage
+3406:Winter's Touch - Fires 3 arrows when charged
+3413:Guard's Armor
+3427:Reinforced Mail
+3434:Stalwart Armor - Potion Use Boosts Defense
+3441:Scale Mail
+3448:Highland Armor - Gains Speed after Dodge
+3455:Evocation Robe
+3462:Ember Robe - Burns Nearby Enemies
+3469:Hunter's Armor
+3476:Archer's Armor
+3483:Thief Armor
+3490:Spider Armor
+3497:Battle Robe
+3504:Splendid Robe
+3511:Dark Armor
+3518:Titan's Shroud
+3525:Wolf Armor
+3532:Fox Armor
+3539:Champion's Armor
+3546:Hero's Armor
+3553:Mercenary Armor
+3560:Renegade Armor
+3567:Grim Armor
+3574:Wither Armor
+3581:Phantom Armor
+3588:Frost Bite - Spawns a Snowy Companion
+3595:Plate Armor
+3602:Full Metal Armor
+3609:Spelunker's Armor
+3616:Cave Crawler
+3623:Soul Robe
+3630:Souldancer Robe
+3637:Mystery Armor
+3651:Ocelot Armor
+3658:Shadow Walker
+3665:Snow Armor
+3672:Frost Armor - Emits a Chilling Aura
+3707:Fireworks Arrow
+3714:Harvester
+3728:Corrupted Seeds
+3735:Ice Wand
+3742:Gong of Weakening
+3749:Light Feather
+3756:Wind Horn
+3763:Boots of Swiftness
+3770:Ghost Cloak
+3777:Fishing Rod
+3784:Death Cap Mushroom
+3791:Shock Powder
+3798:Iron Hide Amulet
+3805:Tasty Bone
+3812:Wonderful Wheat
+3819:Golem Kit
+3826:Love Medallion
+3833:Corrupted Beacon
+3840:Lightning Rod
+3847:Soul Healer
+3854:Totem of Shielding
+3875:Totem of Regeneration
+3882:Flaming Quiver
+3889:Torment Quiver
 </DropDownList>
+          <LastState Value="3504" RealAddress="13301A24F28"/>
           <Color>000000</Color>
           <VariableType>4 Bytes</VariableType>
           <Address>p_equip</Address>
@@ -2034,6 +2014,7 @@ dealloc(newmem)
         <CheatEntry>
           <ID>152</ID>
           <Description>"Power Level"</Description>
+          <LastState Value="11.79899979" RealAddress="13301A24F3C"/>
           <Color>000000</Color>
           <VariableType>Float</VariableType>
           <Address>p_equip</Address>
@@ -2048,6 +2029,7 @@ dealloc(newmem)
 1:Rare
 2:Unique
 </DropDownList>
+          <LastState Value="2" RealAddress="13301A24F60"/>
           <Color>000000</Color>
           <VariableType>4 Bytes</VariableType>
           <Address>p_equip</Address>
@@ -2059,7 +2041,7 @@ dealloc(newmem)
           <ID>153</ID>
           <Description>"SKILLS"</Description>
           <Options moHideChildren="1"/>
-          <LastState Value="" RealAddress="00000000"/>
+          <LastState Value="" Activated="1" RealAddress="00000000"/>
           <Color>808000</Color>
           <GroupHeader>1</GroupHeader>
           <CheatEntries>
@@ -2076,6 +2058,7 @@ dealloc(newmem)
             <CheatEntry>
               <ID>187</ID>
               <Description>"Skills Offset"</Description>
+              <LastState Value="00000132CE9487B0" RealAddress="13301A24F40"/>
               <ShowAsHex>1</ShowAsHex>
               <Color>FF0000</Color>
               <VariableType>8 Bytes</VariableType>
@@ -2087,6 +2070,7 @@ dealloc(newmem)
             <CheatEntry>
               <ID>155</ID>
               <Description>"Number of Skills"</Description>
+              <LastState Value="9" RealAddress="13301A24F48"/>
               <Color>000000</Color>
               <VariableType>4 Bytes</VariableType>
               <Address>p_equip</Address>
@@ -2097,6 +2081,7 @@ dealloc(newmem)
             <CheatEntry>
               <ID>156</ID>
               <Description>"Max Number of Skills"</Description>
+              <LastState Value="10" RealAddress="13301A24F4C"/>
               <Color>000000</Color>
               <VariableType>4 Bytes</VariableType>
               <Address>p_equip</Address>
@@ -2197,6 +2182,7 @@ dealloc(newmem)
 88:Slow Resistance
 89:Slow Immunity
 </DropDownList>
+              <LastState Value="60" RealAddress="132CE9487B0"/>
               <Color>008000</Color>
               <VariableType>Byte</VariableType>
               <Address>p_equip</Address>
@@ -2298,6 +2284,7 @@ dealloc(newmem)
 88:Slow Resistance
 89:Slow Immunity
 </DropDownList>
+              <LastState Value="58" RealAddress="132CE9487B8"/>
               <Color>008000</Color>
               <VariableType>Byte</VariableType>
               <Address>p_equip</Address>
@@ -2399,6 +2386,7 @@ dealloc(newmem)
 88:Slow Resistance
 89:Slow Immunity
 </DropDownList>
+              <LastState Value="58" RealAddress="132CE9487C0"/>
               <Color>008000</Color>
               <VariableType>Byte</VariableType>
               <Address>p_equip</Address>
@@ -2500,6 +2488,7 @@ dealloc(newmem)
 88:Slow Resistance
 89:Slow Immunity
 </DropDownList>
+              <LastState Value="72" RealAddress="132CE9487C8"/>
               <Color>804000</Color>
               <VariableType>Byte</VariableType>
               <Address>p_equip</Address>
@@ -2601,6 +2590,7 @@ dealloc(newmem)
 88:Slow Resistance
 89:Slow Immunity
 </DropDownList>
+              <LastState Value="73" RealAddress="132CE9487D0"/>
               <Color>804000</Color>
               <VariableType>Byte</VariableType>
               <Address>p_equip</Address>
@@ -2702,6 +2692,7 @@ dealloc(newmem)
 88:Slow Resistance
 89:Slow Immunity
 </DropDownList>
+              <LastState Value="57" RealAddress="132CE9487D8"/>
               <Color>804000</Color>
               <VariableType>Byte</VariableType>
               <Address>p_equip</Address>
@@ -2803,6 +2794,7 @@ dealloc(newmem)
 88:Slow Resistance
 89:Slow Immunity
 </DropDownList>
+              <LastState Value="68" RealAddress="132CE9487E0"/>
               <Color>400080</Color>
               <VariableType>Byte</VariableType>
               <Address>p_equip</Address>
@@ -2904,6 +2896,7 @@ dealloc(newmem)
 88:Slow Resistance
 89:Slow Immunity
 </DropDownList>
+              <LastState Value="84" RealAddress="132CE9487E8"/>
               <Color>400080</Color>
               <VariableType>Byte</VariableType>
               <Address>p_equip</Address>
@@ -3005,6 +2998,7 @@ dealloc(newmem)
 88:Slow Resistance
 89:Slow Immunity
 </DropDownList>
+              <LastState Value="62" RealAddress="132CE9487F0"/>
               <Color>400080</Color>
               <VariableType>Byte</VariableType>
               <Address>p_equip</Address>
@@ -3016,6 +3010,7 @@ dealloc(newmem)
             <CheatEntry>
               <ID>166</ID>
               <Description>"Skill 1 Level"</Description>
+              <LastState Value="3" RealAddress="132CE9487B4"/>
               <Color>008000</Color>
               <VariableType>Byte</VariableType>
               <Address>p_equip</Address>
@@ -3027,6 +3022,7 @@ dealloc(newmem)
             <CheatEntry>
               <ID>167</ID>
               <Description>"Skill 1 Level"</Description>
+              <LastState Value="3" RealAddress="132CE9487BC"/>
               <Color>008000</Color>
               <VariableType>Byte</VariableType>
               <Address>p_equip</Address>
@@ -3038,6 +3034,7 @@ dealloc(newmem)
             <CheatEntry>
               <ID>168</ID>
               <Description>"Skill 1 Level"</Description>
+              <LastState Value="3" RealAddress="132CE9487C4"/>
               <Color>008000</Color>
               <VariableType>Byte</VariableType>
               <Address>p_equip</Address>
@@ -3049,6 +3046,7 @@ dealloc(newmem)
             <CheatEntry>
               <ID>169</ID>
               <Description>"Skill 2 Level"</Description>
+              <LastState Value="3" RealAddress="132CE9487CC"/>
               <Color>804000</Color>
               <VariableType>Byte</VariableType>
               <Address>p_equip</Address>
@@ -3060,6 +3058,7 @@ dealloc(newmem)
             <CheatEntry>
               <ID>170</ID>
               <Description>"Skill 2 Level"</Description>
+              <LastState Value="0" RealAddress="132CE9487D4"/>
               <Color>804000</Color>
               <VariableType>Byte</VariableType>
               <Address>p_equip</Address>
@@ -3071,6 +3070,7 @@ dealloc(newmem)
             <CheatEntry>
               <ID>171</ID>
               <Description>"Skill 2 Level"</Description>
+              <LastState Value="0" RealAddress="132CE9487DC"/>
               <Color>804000</Color>
               <VariableType>Byte</VariableType>
               <Address>p_equip</Address>
@@ -3082,6 +3082,7 @@ dealloc(newmem)
             <CheatEntry>
               <ID>172</ID>
               <Description>"Skill 3 Level"</Description>
+              <LastState Value="0" RealAddress="132CE9487E4"/>
               <Color>400080</Color>
               <VariableType>Byte</VariableType>
               <Address>p_equip</Address>
@@ -3093,6 +3094,7 @@ dealloc(newmem)
             <CheatEntry>
               <ID>173</ID>
               <Description>"Skill 3 Level"</Description>
+              <LastState Value="3" RealAddress="132CE9487EC"/>
               <Color>400080</Color>
               <VariableType>Byte</VariableType>
               <Address>p_equip</Address>
@@ -3104,6 +3106,7 @@ dealloc(newmem)
             <CheatEntry>
               <ID>174</ID>
               <Description>"Skill 3 Level"</Description>
+              <LastState Value="0" RealAddress="132CE9487F4"/>
               <Color>400080</Color>
               <VariableType>Byte</VariableType>
               <Address>p_equip</Address>
@@ -3135,6 +3138,7 @@ dealloc(newmem)
             <CheatEntry>
               <ID>176</ID>
               <Description>"Stats Offset"</Description>
+              <LastState Value="00000132C48C3540" RealAddress="13301A24F50"/>
               <ShowAsHex>1</ShowAsHex>
               <Color>FF0000</Color>
               <VariableType>8 Bytes</VariableType>
@@ -3146,6 +3150,7 @@ dealloc(newmem)
             <CheatEntry>
               <ID>177</ID>
               <Description>"Number of Stats"</Description>
+              <LastState Value="8" RealAddress="13301A24F58"/>
               <Color>000000</Color>
               <VariableType>4 Bytes</VariableType>
               <Address>p_equip</Address>
@@ -3156,6 +3161,7 @@ dealloc(newmem)
             <CheatEntry>
               <ID>178</ID>
               <Description>"Max Number of Stats"</Description>
+              <LastState Value="8" RealAddress="13301A24F5C"/>
               <Color>000000</Color>
               <VariableType>4 Bytes</VariableType>
               <Address>p_equip</Address>
@@ -3190,6 +3196,7 @@ dealloc(newmem)
 22:10% Damage Reduction
 23:50% Freezing Resistance
 </DropDownList>
+              <LastState Value="5" RealAddress="132C48C3540"/>
               <Color>000000</Color>
               <VariableType>2 Bytes</VariableType>
               <Address>p_equip</Address>
@@ -3225,6 +3232,7 @@ dealloc(newmem)
 22:10% Damage Reduction
 23:50% Freezing Resistance
 </DropDownList>
+              <LastState Value="6" RealAddress="132C48C3542"/>
               <Color>000000</Color>
               <VariableType>2 Bytes</VariableType>
               <Address>p_equip</Address>
@@ -3260,6 +3268,7 @@ dealloc(newmem)
 22:10% Damage Reduction
 23:50% Freezing Resistance
 </DropDownList>
+              <LastState Value="9" RealAddress="132C48C3544"/>
               <Color>000000</Color>
               <VariableType>2 Bytes</VariableType>
               <Address>p_equip</Address>
@@ -3295,6 +3304,7 @@ dealloc(newmem)
 22:10% Damage Reduction
 23:50% Freezing Resistance
 </DropDownList>
+              <LastState Value="18" RealAddress="132C48C3546"/>
               <Color>000000</Color>
               <VariableType>2 Bytes</VariableType>
               <Address>p_equip</Address>
@@ -3330,6 +3340,7 @@ dealloc(newmem)
 22:10% Damage Reduction
 23:50% Freezing Resistance
 </DropDownList>
+              <LastState Value="21" RealAddress="132C48C3548"/>
               <Color>000000</Color>
               <VariableType>2 Bytes</VariableType>
               <Address>p_equip</Address>
@@ -3365,6 +3376,7 @@ dealloc(newmem)
 22:10% Damage Reduction
 23:50% Freezing Resistance
 </DropDownList>
+              <LastState Value="11" RealAddress="132C48C354A"/>
               <Color>000000</Color>
               <VariableType>2 Bytes</VariableType>
               <Address>p_equip</Address>
@@ -3400,6 +3412,7 @@ dealloc(newmem)
 22:10% Damage Reduction
 23:50% Freezing Resistance
 </DropDownList>
+              <LastState Value="13" RealAddress="132C48C354C"/>
               <Color>000000</Color>
               <VariableType>2 Bytes</VariableType>
               <Address>p_equip</Address>
@@ -3435,6 +3448,7 @@ dealloc(newmem)
 22:10% Damage Reduction
 23:50% Freezing Resistance
 </DropDownList>
+              <LastState Value="10" RealAddress="132C48C354E"/>
               <Color>000000</Color>
               <VariableType>2 Bytes</VariableType>
               <Address>p_equip</Address>
@@ -7001,6 +7015,6 @@ x = (((n * 2 - 0.5) / 2) - 1) / 10 + 1
 So if n = 108, x = 11.675
 ========= NOTE ==============
 A very intersting address
-"Dungeons-Win64-Shipping.exe"+DD0240
+"Dungeons-Win64-Shipping.exe"+DECBC0
 </Comments>
 </CheatTable>

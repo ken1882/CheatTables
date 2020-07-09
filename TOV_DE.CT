@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<CheatTable CheatEngineTableVersion="31">
+<CheatTable CheatEngineTableVersion="29">
   <CheatEntries>
     <CheatEntry>
       <ID>4</ID>
@@ -11,14 +11,12 @@
         <CheatEntry>
           <ID>2</ID>
           <Description>"No description"</Description>
-          <LastState Value="0" RealAddress="7FF71ABD2010"/>
           <VariableType>4 Bytes</VariableType>
           <Address>TOV_DE.exe+1182010</Address>
         </CheatEntry>
         <CheatEntry>
           <ID>3</ID>
           <Description>"No description"</Description>
-          <LastState Value="0" RealAddress="7FF71ABD5A34"/>
           <VariableType>4 Bytes</VariableType>
           <Address>TOV_DE.exe+1185A34</Address>
         </CheatEntry>
@@ -41,21 +39,18 @@
             <CheatEntry>
               <ID>6</ID>
               <Description>"HP"</Description>
-              <LastState Value="300" RealAddress="7FF71ABD6A04"/>
               <VariableType>4 Bytes</VariableType>
               <Address>TOV_DE.exe+1186A04</Address>
             </CheatEntry>
             <CheatEntry>
               <ID>9</ID>
               <Description>"TP"</Description>
-              <LastState Value="40" RealAddress="7FF71ABD6A08"/>
               <VariableType>4 Bytes</VariableType>
               <Address>TOV_DE.exe+1186A08</Address>
             </CheatEntry>
             <CheatEntry>
               <ID>11</ID>
               <Description>"XP"</Description>
-              <LastState Value="0" RealAddress="7FF71ABD6A18"/>
               <VariableType>4 Bytes</VariableType>
               <Address>TOV_DE.exe+1186A18</Address>
             </CheatEntry>
@@ -339,7 +334,6 @@ dealloc(newmem)
         <CheatEntry>
           <ID>14</ID>
           <Description>"Amount"</Description>
-          <LastState Value="2" RealAddress="7FF719A20022"/>
           <VariableType>4 Bytes</VariableType>
           <Address>xp_mul</Address>
         </CheatEntry>
@@ -433,7 +427,6 @@ dealloc(newmem)
         <CheatEntry>
           <ID>16</ID>
           <Description>"Number"</Description>
-          <LastState Value="1" RealAddress="7FF719A1002B"/>
           <VariableType>4 Bytes</VariableType>
           <Address>val_skill_usage</Address>
         </CheatEntry>
@@ -520,7 +513,6 @@ dealloc(newmem)
     <CheatEntry>
       <ID>27</ID>
       <Description>"LB Gague"</Description>
-      <LastState Value="300" Activated="1" RealAddress="7FF71ABD5C38"/>
       <VariableType>Float</VariableType>
       <Address>TOV_DE.exe+1185C38</Address>
     </CheatEntry>
@@ -683,7 +675,7 @@ dealloc(newmem)
     <CheatEntry>
       <ID>32</ID>
       <Description>"Ignore Crafting Requirements"</Description>
-      <LastState/>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : TOV_DE.exe
   Version: 
@@ -755,6 +747,21 @@ dealloc(newmem)
 "TOV_DE.exe"+44A732: 48 63 86 70 04 00 00        -  movsxd  rax,dword ptr [rsi+00000470]
 }
 </AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>34</ID>
+      <Description>"Pointers"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Value="" Activated="1" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>33</ID>
+          <Description>"Water"</Description>
+          <VariableType>Float</VariableType>
+          <Address>TOV_DE.exe+11C6F7C</Address>
+        </CheatEntry>
+      </CheatEntries>
     </CheatEntry>
   </CheatEntries>
   <UserdefinedSymbols/>

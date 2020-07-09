@@ -114,7 +114,6 @@ dealloc(newmem)
         <CheatEntry>
           <ID>60</ID>
           <Description>"Food"</Description>
-          <LastState Value="0" RealAddress="1F9FC9C0"/>
           <VariableType>Float</VariableType>
           <Address>pt_food</Address>
           <Offsets>
@@ -124,7 +123,6 @@ dealloc(newmem)
         <CheatEntry>
           <ID>63</ID>
           <Description>"Wood"</Description>
-          <LastState Value="60" RealAddress="1F9FC9C4"/>
           <VariableType>Float</VariableType>
           <Address>pt_food</Address>
           <Offsets>
@@ -134,7 +132,6 @@ dealloc(newmem)
         <CheatEntry>
           <ID>62</ID>
           <Description>"Stone"</Description>
-          <LastState Value="0" RealAddress="1F9FC9C8"/>
           <VariableType>Float</VariableType>
           <Address>pt_food</Address>
           <Offsets>
@@ -144,7 +141,6 @@ dealloc(newmem)
         <CheatEntry>
           <ID>61</ID>
           <Description>"Gold"</Description>
-          <LastState Value="50" RealAddress="1F9FC9CC"/>
           <VariableType>Float</VariableType>
           <Address>pt_food</Address>
           <Offsets>
@@ -154,7 +150,6 @@ dealloc(newmem)
         <CheatEntry>
           <ID>67</ID>
           <Description>"Population"</Description>
-          <LastState Value="10" RealAddress="1F9FC9EC"/>
           <VariableType>Float</VariableType>
           <Address>pt_pop</Address>
           <Offsets>
@@ -164,7 +159,6 @@ dealloc(newmem)
         <CheatEntry>
           <ID>68</ID>
           <Description>"Max Population"</Description>
-          <LastState Value="30" RealAddress="1F9FC9D0"/>
           <VariableType>Float</VariableType>
           <Address>pt_pop</Address>
           <Offsets>
@@ -196,7 +190,7 @@ dealloc(newmem)
 
 [ENABLE]
 
-aobscanmodule(HP_Editor,AoE2DE_s.exe,8B 81 90 00 00 00 89 86)) // should be unique
+aobscanmodule(HP_Editor,AoE2DE_s.exe,8B 81 90 00 00 00 89 87)) // should be unique
 alloc(newmem,$1000,"AoE2DE_s.exe"+9BD5B9)
 
 label(code)
@@ -265,7 +259,6 @@ dealloc(newmem)
             <CheatEntry>
               <ID>22</ID>
               <Description>"Unit HP"</Description>
-              <LastState Value="750" RealAddress="35A74660"/>
               <VariableType>Float</VariableType>
               <Address>sym_hp</Address>
               <Offsets>
@@ -359,7 +352,6 @@ dealloc(newmem)
             <CheatEntry>
               <ID>4</ID>
               <Description>"Resources Carried"</Description>
-              <LastState Value="0" RealAddress="35A74674"/>
               <VariableType>Float</VariableType>
               <Address>sym_rss</Address>
               <Offsets>
@@ -453,7 +445,6 @@ dealloc(newmem)
             <CheatEntry>
               <ID>46</ID>
               <Description>"Attack"</Description>
-              <LastState Value="17" RealAddress="35F6743A"/>
               <VariableType>2 Bytes</VariableType>
               <Address>pt_atk</Address>
               <Offsets>
@@ -486,7 +477,7 @@ dealloc(newmem)
 
 [ENABLE]
 
-aobscanmodule(INJ_PARMOR,AoE2DE_s.exe,41 0F B7 4C 83 02 EB D8 CC) // should be unique
+aobscanmodule(INJ_PARMOR,AoE2DE_s.exe,41 0F B7 4C 83 02 EB D8 90 51) // should be unique
 alloc(newmem,$1000,"AoE2DE_s.exe"+C811DD)
 
 label(code)
@@ -519,7 +510,7 @@ INJ_PARMOR:
 return:
 registersymbol(INJ_PARMOR)
 
-aobscanmodule(INJ_MARMOR,AoE2DE_s.exe,41 0F B7 4C 83 02 EB D8 90) // should be unique
+aobscanmodule(INJ_MARMOR,AoE2DE_s.exe,41 0F B7 4C 83 02 EB D8 90 48) // should be unique
 alloc(newmem2,$1000,"AoE2DE_s.exe"+C8126D)
 
 label(code2)
@@ -627,7 +618,6 @@ dealloc(newmem2)
             <CheatEntry>
               <ID>123</ID>
               <Description>"Pierce Armor"</Description>
-              <LastState Value="8" RealAddress="35D0F73E"/>
               <VariableType>2 Bytes</VariableType>
               <Address>pt_marmor</Address>
               <Offsets>
@@ -637,7 +627,6 @@ dealloc(newmem2)
             <CheatEntry>
               <ID>90</ID>
               <Description>"Melee Armor"</Description>
-              <LastState Value="1" RealAddress="35D0F73A"/>
               <VariableType>2 Bytes</VariableType>
               <Address>pt_parmor</Address>
               <Offsets>
@@ -732,7 +721,6 @@ dealloc(newmem)
             <CheatEntry>
               <ID>72</ID>
               <Description>"Range"</Description>
-              <LastState Value="0" RealAddress="92BC9244"/>
               <VariableType>Float</VariableType>
               <Address>pt_range</Address>
               <Offsets>

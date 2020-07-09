@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="29">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"Inf HP"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Monster Girl Quest.exe
+  Version: 
+  Date   : 2019-08-04
+  Author : tpo
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+
+aobscanmodule(INF_HP,Monster Girl Quest.exe,89 04 B9 E8 A7 8A FD FF) // should be unique
+alloc(newmem,$100)
+alloc(newmem2,$100)
+alloc(newmem3,$100)
+alloc(sym_hp, 4)
+alloc(sym_mhp, 4)
+registersymbol(sym_hp)
+registersymbol(sym_mhp)
+label(code)
+label(return)
+
+newmem2:
+  call "Monster Girl Quest.exe"+4500
+  jmp return
+
+newmem:
+  cmp edi,321
+  jne code
+  movd xmm0, ecx
+  movd xmm1, edi
+  addsd xmm0, xmm1
+  addsd xmm0, xmm1
+  addsd xmm0, xmm1
+  addsd xmm0, xmm1
+  movd [sym_hp], xmm0
+  movd [sym_mhp], xmm0
+  add [sym_mhp], 50
+  cmp eax, [ecx+edi*4]
+  jge code
+  jmp newmem2
+
+code:
+  mov [ecx+edi*4],eax
+  call "Monster Girl Quest.exe"+4500
+  jmp return
+
+INF_HP:
+  jmp newmem
+  nop
+  nop
+  nop
+return:
+registersymbol(INF_HP)
+
+[DISABLE]
+
+INF_HP:
+  db 89 04 B9 E8 A7 8A FD FF
+
+unregistersymbol(hp)
+unregistersymbol(INF_HP)
+unregistersymbol(sym_mhp)
+dealloc(newmem)
+dealloc(newmem2)
+dealloc(sym_hp)
+dealloc(sym_mhp)
+{
+// ORIGINAL CODE - INJECTION POINT: "Monster Girl Quest.exe"+2BA51
+
+"Monster Girl Quest.exe"+2BA2A: 48                    -  dec eax
+"Monster Girl Quest.exe"+2BA2B: 3B F8                 -  cmp edi,eax
+"Monster Girl Quest.exe"+2BA2D: 7E 12                 -  jle "Monster Girl Quest.exe"+2BA41
+"Monster Girl Quest.exe"+2BA2F: 68 58 D7 47 00        -  push "Monster Girl Quest.exe"+7D758
+"Monster Girl Quest.exe"+2BA34: 68 7C D7 47 00        -  push "Monster Girl Quest.exe"+7D77C
+"Monster Girl Quest.exe"+2BA39: E8 72 AB 02 00        -  call "Monster Girl Quest.exe"+565B0
+"Monster Girl Quest.exe"+2BA3E: 83 C4 08              -  add esp,08
+"Monster Girl Quest.exe"+2BA41: E8 4A 62 FD FF        -  call "Monster Girl Quest.exe"+1C90
+"Monster Girl Quest.exe"+2BA46: E8 C5 76 FF FF        -  call "Monster Girl Quest.exe"+23110
+"Monster Girl Quest.exe"+2BA4B: 8B 0D 48 F8 55 00     -  mov ecx,["Monster Girl Quest.exe"+15F848]
+// ---------- INJECTING HERE ----------
+"Monster Girl Quest.exe"+2BA51: 89 04 B9              -  mov [ecx+edi*4],eax
+"Monster Girl Quest.exe"+2BA54: E8 A7 8A FD FF        -  call "Monster Girl Quest.exe"+4500
+// ---------- DONE INJECTING  ----------
+"Monster Girl Quest.exe"+2BA59: E9 01 30 01 00        -  jmp "Monster Girl Quest.exe"+3EA5F
+"Monster Girl Quest.exe"+2BA5E: 3C 3F                 -  cmp al,3F
+"Monster Girl Quest.exe"+2BA60: 75 3D                 -  jne "Monster Girl Quest.exe"+2BA9F
+"Monster Girl Quest.exe"+2BA62: FF 05 A0 E3 55 00     -  inc ["Monster Girl Quest.exe"+15E3A0]
+"Monster Girl Quest.exe"+2BA68: 8D 94 24 BC 03 00 00  -  lea edx,[esp+000003BC]
+"Monster Girl Quest.exe"+2BA6F: 6A 01                 -  push 01
+"Monster Girl Quest.exe"+2BA71: 52                    -  push edx
+"Monster Girl Quest.exe"+2BA72: 8D 44 24 48           -  lea eax,[esp+48]
+"Monster Girl Quest.exe"+2BA76: E8 55 9A FF FF        -  call "Monster Girl Quest.exe"+254D0
+"Monster Girl Quest.exe"+2BA7B: E8 10 62 FD FF        -  call "Monster Girl Quest.exe"+1C90
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>7</ID>
+          <Description>"Player HP"</Description>
+          <LastState Value="530" RealAddress="0259ACA4"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>sym_hp</Address>
+          <Offsets>
+            <Offset>0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>10</ID>
+          <Description>"MHP"</Description>
+          <LastState Value="530" RealAddress="0259ACF4"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>sym_mhp</Address>
+          <Offsets>
+            <Offset>0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>9</ID>
+          <Description>"Enemy HP"</Description>
+          <LastState Value="2500" RealAddress="0259ACA8"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>sym_hp</Address>
+          <Offsets>
+            <Offset>4</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>11</ID>
+          <Description>"SP"</Description>
+          <LastState Value="7" RealAddress="0259AD44"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>sym_hp</Address>
+          <Offsets>
+            <Offset>A0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>14</ID>
+          <Description>"EXP"</Description>
+          <LastState Value="0" RealAddress="0259AD38"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>sym_hp</Address>
+          <Offsets>
+            <Offset>94</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>16</ID>
+          <Description>"LV"</Description>
+          <LastState Value="37" RealAddress="0259AD14"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>sym_hp</Address>
+          <Offsets>
+            <Offset>70</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>
