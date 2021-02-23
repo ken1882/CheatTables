@@ -1,0 +1,2023 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable MugenJinFuuTableVersion="34">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>27</ID>
+      <Description>"Building Selected"</Description>
+      <DropDownList ReadOnly="1" DescriptionOnly="1" DisplayValueAsItem="1">0:None
+114:Round Tower
+113:Square Tower
+112:Defense Turret
+111:Perimeter Turret
+26:Crenellated Wall
+25:Stone Wall
+46:Wooden Wall
+87:Barracks
+81:Armory
+146:Large Stone Gate (Right)
+147:Large Stone Gate (Left)
+144:Stone Gate (Right)
+145:Stone Gate (Left)
+140:Wooden Gate (UR)
+141:Wooden Gate (BR)
+142:Wooden Gate (BL)
+143:Wooden Gate (UL)
+27:Wall Stairs
+110:Wooden Platform
+105:Drawbridge
+106:Moat (Dig)
+107:Moat (Fill)
+77:Marketplace
+51:Woodcutter
+52:Stock pile
+55:Ox
+56:Quarry
+90:Iron Mine
+91:Ditch Rig
+70:Wheat Farm
+71:Hop Farm
+72:Apple Orchard
+73:Cow Farm
+78:Hunter Post
+50:Fletcher Workshop
+84:Armorer
+85:Tanner
+83:Blacksmith
+82:Poleturner
+61:Wooden Keep
+62:Stone Keep
+63:Fortress
+64:Stronghold
+65:Stable
+88:Engineer's Guild
+89:Tunner's Guild
+180:Oil Smelter
+210:Mangonel
+211:Ballista
+93:Apothecary
+95:Capel
+96:Church
+97:Cathedral
+39:Eraser
+221:Wolf
+223:Bear
+220:Deer
+49:oil
+21:Min Height
+22:Max Height
+23:Equalize Height
+2:Lower Land
+3:Raise Land
+40:Chestnut
+41:Oak
+42:Pine
+43:Brich
+5:Land
+12:Boulders
+16:Iron
+</DropDownList>
+      <VariableType>4 Bytes</VariableType>
+      <Address>Stronghold.exe+10B2C2C</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>10</ID>
+      <Description>"No Resources Cost"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Stronghold.exe
+  Version: 
+  Date   : 2020-12-30
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_NO_COST,Stronghold.exe,2B C7 89 06 8B C5) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  xor edi,edi
+code:
+  sub eax,edi
+  mov [esi],eax
+  mov eax,ebp
+  jmp return
+
+INJ_NO_COST:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_NO_COST)
+
+[DISABLE]
+
+INJ_NO_COST:
+  db 2B C7 89 06 8B C5
+
+unregistersymbol(INJ_NO_COST)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Stronghold.exe+17462
+
+Stronghold.exe+17448: 85 C9                 - test ecx,ecx
+Stronghold.exe+1744A: 75 03                 - jne Stronghold.exe+1744F
+Stronghold.exe+1744C: 66 89 0B              - mov [ebx],cx
+Stronghold.exe+1744F: 8B 06                 - mov eax,[esi]
+Stronghold.exe+17451: 3B C7                 - cmp eax,edi
+Stronghold.exe+17453: 0F 8C 84 00 00 00     - jl Stronghold.exe+174DD
+Stronghold.exe+17459: 85 C9                 - test ecx,ecx
+Stronghold.exe+1745B: 74 05                 - je Stronghold.exe+17462
+Stronghold.exe+1745D: 66 89 3B              - mov [ebx],di
+Stronghold.exe+17460: EB 1C                 - jmp Stronghold.exe+1747E
+// ---------- INJECTING HERE ----------
+Stronghold.exe+17462: 2B C7                 - sub eax,edi
+// ---------- DONE INJECTING  ----------
+Stronghold.exe+17464: 89 06                 - mov [esi],eax
+Stronghold.exe+17466: 8B C5                 - mov eax,ebp
+Stronghold.exe+17468: 69 C0 D6 05 00 00     - imul eax,eax,000005D6
+Stronghold.exe+1746E: 03 C2                 - add eax,edx
+Stronghold.exe+17470: 29 3C 85 30 DF BD 00  - sub [eax*4+Stronghold.exe+7DDF30],edi
+Stronghold.exe+17477: 8D 04 85 30 DF BD 00  - lea eax,[eax*4+Stronghold.exe+7DDF30]
+Stronghold.exe+1747E: 33 FF                 - xor edi,edi
+Stronghold.exe+17480: 85 C9                 - test ecx,ecx
+Stronghold.exe+17482: 75 18                 - jne Stronghold.exe+1749C
+Stronghold.exe+17484: 8B 54 24 14           - mov edx,[esp+14]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>33</ID>
+      <Description>"More Resources Harvest"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Stronghold.exe (paused)
+  Version: 
+  Date   : 2021-01-01
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_RSS,Stronghold.exe,89 02 0F BF 81 DA 00 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+label(Ldouble)
+label(Ltriple)
+
+newmem:
+  cmp ebp,30
+  je Ldouble
+  cmp ebp,FA
+  je Ldouble
+  cmp ebp,20
+  je Ldouble
+  cmp ebp,32
+  je Ldouble
+  jmp code
+
+Ldouble:
+  inc eax
+  cmp eax,20
+  jg code
+Ltriple:
+  add eax,3
+code:
+  mov [edx],eax
+  movsx eax,word ptr [ecx+000000DA]
+  jmp return
+
+INJ_RSS:
+  jmp newmem
+  nop 4
+return:
+registersymbol(INJ_RSS)
+
+[DISABLE]
+
+INJ_RSS:
+  db 89 02 0F BF 81 DA 00 00 00
+
+unregistersymbol(INJ_RSS)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "Stronghold.exe"+171EA
+
+"Stronghold.exe"+171D4: 5D                       -  pop ebp
+"Stronghold.exe"+171D5: 33 C0                    -  xor eax,eax
+"Stronghold.exe"+171D7: 5B                       -  pop ebx
+"Stronghold.exe"+171D8: C2 18 00                 -  ret 0018
+"Stronghold.exe"+171DB: 85 C0                    -  test eax,eax
+"Stronghold.exe"+171DD: 7C F3                    -  jl Stronghold.exe+171D2
+"Stronghold.exe"+171DF: 3B C5                    -  cmp eax,ebp
+"Stronghold.exe"+171E1: 7F EF                    -  jg Stronghold.exe+171D2
+"Stronghold.exe"+171E3: 83 7C 24 28 00           -  cmp dword ptr [esp+28],00
+"Stronghold.exe"+171E8: 74 63                    -  je Stronghold.exe+1724D
+// ---------- INJECTING HERE ----------
+"Stronghold.exe"+171EA: 89 02                    -  mov [edx],eax
+"Stronghold.exe"+171EC: 0F BF 81 DA 00 00 00     -  movsx eax,word ptr [ecx+000000DA]
+// ---------- DONE INJECTING  ----------
+"Stronghold.exe"+171F3: 83 F8 0A                 -  cmp eax,0A
+"Stronghold.exe"+171F6: 7C 28                    -  jl Stronghold.exe+17220
+"Stronghold.exe"+171F8: 83 F8 0B                 -  cmp eax,0B
+"Stronghold.exe"+171FB: 7E 05                    -  jle Stronghold.exe+17202
+"Stronghold.exe"+171FD: 83 F8 13                 -  cmp eax,13
+"Stronghold.exe"+17200: 75 1E                    -  jne Stronghold.exe+17220
+"Stronghold.exe"+17202: 8B 54 24 20              -  mov edx,[esp+20]
+"Stronghold.exe"+17206: 8B C3                    -  mov eax,ebx
+"Stronghold.exe"+17208: 69 C0 D6 05 00 00        -  imul eax,eax,000005D6
+"Stronghold.exe"+1720E: 03 44 24 1C              -  add eax,[esp+1C]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>34</ID>
+      <Description>"Larger Storage"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>define(ValStorageSize,100)
+
+[ENABLE]
+aobscanmodule(INJ_LSTORAGE,Stronghold.exe,6A 30 6A 04 50) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  push ValStorageSize
+  push 04
+  push eax
+  jmp return
+
+code:
+  push 30
+  push 04
+  push eax
+  jmp return
+
+INJ_LSTORAGE:
+  jmp newmem
+return:
+registersymbol(INJ_LSTORAGE)
+
+aobscanmodule(INJ_LSTORAGE2,Stronghold.exe,6A 30 53 6A 04) // should be unique
+alloc(newmem2,$1000)
+
+label(code2)
+label(return2)
+
+newmem2:
+  push ValStorageSize
+  push ebx
+  push 04
+  jmp return2
+
+code2:
+  push 30
+  push ebx
+  push 04
+  jmp return2
+
+INJ_LSTORAGE2:
+  jmp newmem2
+return2:
+registersymbol(INJ_LSTORAGE2)
+
+aobscanmodule(INJ_LSTORAGE3,Stronghold.exe,8B 33 85 F6 74 11) // should be unique
+alloc(newmem3,$1000)
+
+label(code3)
+label(return3)
+
+newmem3:
+  mov esi,[ebx]
+  test esi,esi
+  jz code3
+  cmp esi,ValStorageSize
+  jge code3
+  mov esi,1
+  test esi,esi
+  jmp return3
+
+code3:
+  mov esi,[ebx]
+  test esi,esi
+  je Stronghold.exe+1C912
+  jmp return3
+
+INJ_LSTORAGE3:
+  jmp newmem3
+  nop
+return3:
+registersymbol(INJ_LSTORAGE3)
+
+aobscanmodule(INJ_LSTORAGE4,Stronghold.exe,6A 30 6A 02 50) // should be unique
+alloc(newmem4,$1000)
+
+label(code4)
+label(return4)
+
+newmem4:
+  push ValStorageSize
+  push 02
+  push eax
+  jmp return4
+code4:
+  push 30
+  push 02
+  push eax
+  jmp return4
+
+INJ_LSTORAGE4:
+  jmp newmem4
+return4:
+registersymbol(INJ_LSTORAGE4)
+
+aobscanmodule(INJ_LSTORAGE5,Stronghold.exe,6A 30 55 6A 02 51) // should be unique
+alloc(newmem5,$1000)
+
+label(code5)
+label(return5)
+
+newmem5:
+  push ValStorageSize
+  push ebp
+  push 02
+  jmp return5
+
+code5:
+  push 30
+  push ebp
+  push 02
+  jmp return5
+
+INJ_LSTORAGE5:
+  jmp newmem5
+return5:
+registersymbol(INJ_LSTORAGE5)
+
+aobscanmodule(INJ_LSTORAGE6,Stronghold.exe,6A 20 55 6A 09) // should be unique
+alloc(newmem6,$1000)
+
+label(code6)
+label(return6)
+
+newmem6:
+  push ValStorageSize
+  push ebp
+  push 09
+  jmp return6
+code6:
+  push 20
+  push ebp
+  push 09
+  jmp return6
+
+INJ_LSTORAGE6:
+  jmp newmem6
+return6:
+registersymbol(INJ_LSTORAGE6)
+
+aobscanmodule(INJ_LSTORAGE7,Stronghold.exe,6A 20 6A 09 51) // should be unique
+alloc(newmem7,$1000)
+
+label(code7)
+label(return7)
+
+newmem7:
+  push ValStorageSize
+  push 09
+  push ecx
+  jmp return7
+code7:
+  push 20
+  push 09
+  push ecx
+  jmp return7
+
+INJ_LSTORAGE7:
+  jmp newmem7
+return7:
+registersymbol(INJ_LSTORAGE7)
+
+aobscanmodule(INJ_LSTORAGE8,Stronghold.exe,6A 20 B9 28 BF E7 00 E8 C7) // should be unique
+alloc(newmem8,$1000)
+
+label(code8)
+label(return8)
+
+newmem8:
+  push ValStorageSize
+  mov ecx,Stronghold.exe+A7BF28
+  jmp return8
+code8:
+  push 20
+  mov ecx,Stronghold.exe+A7BF28
+  jmp return8
+
+INJ_LSTORAGE8:
+  jmp newmem8
+  nop 2
+return8:
+registersymbol(INJ_LSTORAGE8)
+
+aobscanmodule(INJ_LSTORAGE9,Stronghold.exe,3B 34 AD 30 92 56 00) // should be unique
+alloc(newmem9,$1000)
+
+label(code9)
+label(return9)
+
+newmem9:
+  push eax
+  lea eax,[ebp*4+Stronghold.exe+169230]
+  mov [eax],ValStorageSize
+  pop eax
+code9:
+  cmp esi,[ebp*4+Stronghold.exe+169230]
+  jmp return9
+
+INJ_LSTORAGE9:
+  jmp newmem9
+  nop 2
+return9:
+registersymbol(INJ_LSTORAGE9)
+
+aobscanmodule(INJ_LSTORAGE10,Stronghold.exe,6A 20 6A 10 50) // should be unique
+alloc(newmem10,$1000)
+
+label(code10)
+label(return10)
+
+newmem10:
+  push ValStorageSize
+  push 10
+  push eax
+  jmp return10
+code10:
+  push 20
+  push 10
+  push eax
+  jmp return10
+
+INJ_LSTORAGE10:
+  jmp newmem10
+return10:
+registersymbol(INJ_LSTORAGE10)
+
+aobscanmodule(INJ_LSTORAGE11,Stronghold.exe,6A 20 6A 01 6A 10) // should be unique
+alloc(newmem11,$1000)
+
+label(code11)
+label(return11)
+
+newmem11:
+  push ValStorageSize
+  push 01
+  push 10
+  jmp return11
+code11:
+  push 20
+  push 01
+  push 10
+  jmp return11
+
+INJ_LSTORAGE11:
+  jmp newmem11
+  nop
+return11:
+registersymbol(INJ_LSTORAGE11)
+
+aobscanmodule(INJ_LSTORAGE12,Stronghold.exe,6A 30 6A 06 52) // should be unique
+alloc(newmem12,$1000)
+
+label(code12)
+label(return12)
+
+newmem12:
+  push ValStorageSize
+  push 06
+  push edx
+  jmp return12
+code12:
+  push 30
+  push 06
+  push edx
+  jmp return12
+
+INJ_LSTORAGE12:
+  jmp newmem12
+return12:
+registersymbol(INJ_LSTORAGE12)
+
+aobscanmodule(INJ_LSTORAGE13,Stronghold.exe,6A 30 57 6A 06) // should be unique
+alloc(newmem13,$1000)
+
+label(code13)
+label(return13)
+
+newmem13:
+  push ValStorageSize
+  push edi
+  push 06
+  jmp return13
+code13:
+  push 30
+  push edi
+  push 06
+  jmp return13
+
+INJ_LSTORAGE13:
+  jmp newmem13
+return13:
+registersymbol(INJ_LSTORAGE13)
+
+aobscanmodule(INJ_LSTORAGE14,Stronghold.exe,6A 10 6A 07 50) // should be unique
+alloc(newmem14,$1000)
+
+label(code14)
+label(return14)
+
+newmem14:
+  push ValStorageSize
+  push 07
+  push eax
+  jmp return14
+code14:
+  push 10
+  push 07
+  push eax
+  jmp return14
+
+INJ_LSTORAGE14:
+  jmp newmem14
+return14:
+registersymbol(INJ_LSTORAGE14)
+
+aobscanmodule(INJ_LSTORAGE15,Stronghold.exe,6A 10 55 6A 07) // should be unique
+alloc(newmem15,$1000)
+
+label(code15)
+label(return15)
+
+newmem15:
+  push ValStorageSize
+  push ebp
+  push 07
+  jmp return15
+code15:
+  push 10
+  push ebp
+  push 07
+  jmp return15
+
+INJ_LSTORAGE15:
+  jmp newmem15
+return15:
+registersymbol(INJ_LSTORAGE15)
+
+aobscanmodule(INJ_LSTORAGE16,Stronghold.exe,6A 10 6A 03 51) // should be unique
+alloc(newmem16,$1000)
+
+label(code16)
+label(return16)
+
+newmem16:
+  push ValStorageSize
+  push 03
+  push ecx
+  jmp return16
+code16:
+  push 10
+  push 03
+  push ecx
+  jmp return16
+
+INJ_LSTORAGE16:
+  jmp newmem16
+return16:
+registersymbol(INJ_LSTORAGE16)
+
+aobscanmodule(INJ_LSTORAGE17,Stronghold.exe,6A 10 55 6A 03 52) // should be unique
+alloc(newmem17,$1000)
+
+label(code17)
+label(return17)
+
+newmem17:
+  push ValStorageSize
+  push ebp
+  push 03
+  jmp return17
+code17:
+  push 10
+  push ebp
+  push 03
+  jmp return17
+
+INJ_LSTORAGE17:
+  jmp newmem17
+return17:
+registersymbol(INJ_LSTORAGE17)
+
+aobscanmodule(INJ_LSTORAGE18,Stronghold.exe,6A 10 6A 0E 52) // should be unique
+alloc(newmem18,$1000)
+
+label(code18)
+label(return18)
+
+newmem18:
+  push ValStorageSize
+  push 0E
+  push edx
+  jmp return18
+code18:
+  push 10
+  push 0E
+  push edx
+  jmp return18
+
+INJ_LSTORAGE18:
+  jmp newmem18
+return18:
+registersymbol(INJ_LSTORAGE18)
+
+aobscanmodule(INJ_LSTORAGE19,Stronghold.exe,6A 10 55 6A 0E 51) // should be unique
+alloc(newmem19,$1000)
+
+label(code19)
+label(return19)
+
+newmem19:
+  push ValStorageSize
+  push ebp
+  push 0E
+  jmp return19
+code19:
+  push 10
+  push ebp
+  push 0E
+  jmp return19
+
+INJ_LSTORAGE19:
+  jmp newmem19
+return19:
+registersymbol(INJ_LSTORAGE19)
+
+[DISABLE]
+
+INJ_LSTORAGE:
+  db 6A 30 6A 04 50
+
+unregistersymbol(INJ_LSTORAGE)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Stronghold.exe+100BC5
+
+Stronghold.exe+100BA3: C3                          - ret 
+Stronghold.exe+100BA4: 8B 15 E8 8A A6 00           - mov edx,[Stronghold.exe+668AE8]
+Stronghold.exe+100BAA: 69 D2 14 04 00 00           - imul edx,edx,00000414
+Stronghold.exe+100BB0: 5F                          - pop edi
+Stronghold.exe+100BB1: 5E                          - pop esi
+Stronghold.exe+100BB2: 5D                          - pop ebp
+Stronghold.exe+100BB3: 66 C7 82 B4 CE CF 00 03 00  - mov word ptr [edx+Stronghold.exe+8FCEB4],0003
+Stronghold.exe+100BBC: 5B                          - pop ebx
+Stronghold.exe+100BBD: C3                          - ret 
+Stronghold.exe+100BBE: 0F BF 86 5E D1 CF 00        - movsx eax,word ptr [esi+Stronghold.exe+8FD15E]
+// ---------- INJECTING HERE ----------
+Stronghold.exe+100BC5: 6A 30                       - push 30
+// ---------- DONE INJECTING  ----------
+Stronghold.exe+100BC7: 6A 04                       - push 04
+Stronghold.exe+100BC9: 50                          - push eax
+Stronghold.exe+100BCA: B9 A8 DA B0 00              - mov ecx,Stronghold.exe+70DAA8
+Stronghold.exe+100BCF: E8 7C 9F F0 FF              - call Stronghold.exe+AB50
+Stronghold.exe+100BD4: 85 C0                       - test eax,eax
+Stronghold.exe+100BD6: A1 E8 8A A6 00              - mov eax,[Stronghold.exe+668AE8]
+Stronghold.exe+100BDB: 74 67                       - je Stronghold.exe+100C44
+Stronghold.exe+100BDD: 69 C0 14 04 00 00           - imul eax,eax,00000414
+Stronghold.exe+100BE3: 8B 88 C8 CE CF 00           - mov ecx,[eax+Stronghold.exe+8FCEC8]
+Stronghold.exe+100BE9: 0F BF 90 5E D1 CF 00        - movsx edx,word ptr [eax+Stronghold.exe+8FD15E]
+}
+INJ_LSTORAGE2:
+  db 6A 30 53 6A 04
+
+unregistersymbol(INJ_LSTORAGE2)
+dealloc(newmem2)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Stronghold.exe+100BF1
+
+Stronghold.exe+100BC9: 50                    - push eax
+Stronghold.exe+100BCA: B9 A8 DA B0 00        - mov ecx,Stronghold.exe+70DAA8
+Stronghold.exe+100BCF: E8 7C 9F F0 FF        - call Stronghold.exe+AB50
+Stronghold.exe+100BD4: 85 C0                 - test eax,eax
+Stronghold.exe+100BD6: A1 E8 8A A6 00        - mov eax,[Stronghold.exe+668AE8]
+Stronghold.exe+100BDB: 74 67                 - je Stronghold.exe+100C44
+Stronghold.exe+100BDD: 69 C0 14 04 00 00     - imul eax,eax,00000414
+Stronghold.exe+100BE3: 8B 88 C8 CE CF 00     - mov ecx,[eax+Stronghold.exe+8FCEC8]
+Stronghold.exe+100BE9: 0F BF 90 5E D1 CF 00  - movsx edx,word ptr [eax+Stronghold.exe+8FD15E]
+Stronghold.exe+100BF0: 53                    - push ebx
+// ---------- INJECTING HERE ----------
+Stronghold.exe+100BF1: 6A 30                 - push 30
+// ---------- DONE INJECTING  ----------
+Stronghold.exe+100BF3: 53                    - push ebx
+Stronghold.exe+100BF4: 6A 04                 - push 04
+Stronghold.exe+100BF6: 51                    - push ecx
+Stronghold.exe+100BF7: 52                    - push edx
+Stronghold.exe+100BF8: B9 A8 DA B0 00        - mov ecx,Stronghold.exe+70DAA8
+Stronghold.exe+100BFD: E8 7E 65 F1 FF        - call Stronghold.exe+17180
+Stronghold.exe+100C02: A1 E8 8A A6 00        - mov eax,[Stronghold.exe+668AE8]
+Stronghold.exe+100C07: 69 C0 14 04 00 00     - imul eax,eax,00000414
+Stronghold.exe+100C0D: 0F BF 88 BE CE CF 00  - movsx ecx,word ptr [eax+Stronghold.exe+8FCEBE]
+Stronghold.exe+100C14: 01 1C 8D 10 71 FB 00  - add [ecx*4+Stronghold.exe+BB7110],ebx
+}
+INJ_LSTORAGE3:
+  db 8B 33 85 F6 74 11
+
+unregistersymbol(INJ_LSTORAGE3)
+dealloc(newmem3)
+
+{
+// ORIGINAL CODE - INJECTION POINT: INJ_LSTORAGE6
+
+Stronghold.exe+1C8D7: 7E 4C                 - jle Stronghold.exe+1C925
+Stronghold.exe+1C8D9: 8D 8F A2 03 00 00     - lea ecx,[edi+000003A2]
+Stronghold.exe+1C8DF: 8D 9C B7 F0 03 00 00  - lea ebx,[edi+esi*4+000003F0]
+Stronghold.exe+1C8E6: 66 83 79 FE 02        - cmp word ptr [ecx-02],02
+Stronghold.exe+1C8EB: 75 25                 - jne Stronghold.exe+1C912
+Stronghold.exe+1C8ED: 66 83 39 0A           - cmp word ptr [ecx],0A
+Stronghold.exe+1C8F1: 75 1F                 - jne Stronghold.exe+1C912
+Stronghold.exe+1C8F3: 0F BF 71 04           - movsx esi,word ptr [ecx+04]
+Stronghold.exe+1C8F7: 3B F5                 - cmp esi,ebp
+Stronghold.exe+1C8F9: 75 17                 - jne Stronghold.exe+1C912
+// ---------- INJECTING HERE ----------
+INJ_LSTORAGE6: 8B 33                 - mov esi,[ebx]
+// ---------- DONE INJECTING  ----------
+Stronghold.exe+1C8FD: 85 F6                 - test esi,esi
+Stronghold.exe+1C8FF: 74 11                 - je Stronghold.exe+1C912
+Stronghold.exe+1C901: 8B 6C 24 14           - mov ebp,[esp+14]
+Stronghold.exe+1C905: 3B 34 AD 30 92 56 00  - cmp esi,[ebp*4+Stronghold.exe+169230]
+Stronghold.exe+1C90C: 7C 5E                 - jl Stronghold.exe+1C96C
+Stronghold.exe+1C90E: 8B 6C 24 1C           - mov ebp,[esp+1C]
+Stronghold.exe+1C912: 83 C0 01              - add eax,01
+Stronghold.exe+1C915: 81 C1 C8 02 00 00     - add ecx,000002C8
+Stronghold.exe+1C91B: 81 C3 C8 02 00 00     - add ebx,000002C8
+Stronghold.exe+1C921: 3B C2                 - cmp eax,edx
+}
+INJ_LSTORAGE4:
+  db 6A 30 6A 02 50
+
+unregistersymbol(INJ_LSTORAGE4)
+dealloc(newmem4)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Stronghold.exe+10D8B0
+
+Stronghold.exe+10D87E: 0F B7 86 F0 D0 CF 00  - movzx eax,word ptr [esi+Stronghold.exe+8FD0F0]
+Stronghold.exe+10D885: 66 3D 05 00           - cmp ax,0005
+Stronghold.exe+10D889: 0F 8C 89 05 00 00     - jl Stronghold.exe+10DE18
+Stronghold.exe+10D88F: 57                    - push edi
+Stronghold.exe+10D890: B9 90 CB CF 00        - mov ecx,Stronghold.exe+8FCB90
+Stronghold.exe+10D895: E8 B6 81 FE FF        - call Stronghold.exe+F5A50
+Stronghold.exe+10D89A: 85 C0                 - test eax,eax
+Stronghold.exe+10D89C: 0F 84 76 05 00 00     - je Stronghold.exe+10DE18
+Stronghold.exe+10D8A2: 66 89 9E F0 D0 CF 00  - mov [esi+Stronghold.exe+8FD0F0],bx
+Stronghold.exe+10D8A9: 0F BF 86 5E D1 CF 00  - movsx eax,word ptr [esi+Stronghold.exe+8FD15E]
+// ---------- INJECTING HERE ----------
+Stronghold.exe+10D8B0: 6A 30                 - push 30
+// ---------- DONE INJECTING  ----------
+Stronghold.exe+10D8B2: 6A 02                 - push 02
+Stronghold.exe+10D8B4: 50                    - push eax
+Stronghold.exe+10D8B5: B9 A8 DA B0 00        - mov ecx,Stronghold.exe+70DAA8
+Stronghold.exe+10D8BA: E8 91 D2 EF FF        - call Stronghold.exe+AB50
+Stronghold.exe+10D8BF: 85 C0                 - test eax,eax
+Stronghold.exe+10D8C1: A1 E8 8A A6 00        - mov eax,[Stronghold.exe+668AE8]
+Stronghold.exe+10D8C6: 74 6D                 - je Stronghold.exe+10D935
+Stronghold.exe+10D8C8: 69 C0 14 04 00 00     - imul eax,eax,00000414
+Stronghold.exe+10D8CE: 8B 88 C8 CE CF 00     - mov ecx,[eax+Stronghold.exe+8FCEC8]
+Stronghold.exe+10D8D4: 0F BF 90 5E D1 CF 00  - movsx edx,word ptr [eax+Stronghold.exe+8FD15E]
+}
+INJ_LSTORAGE5:
+  db 6A 30 55 6A 02
+
+unregistersymbol(INJ_LSTORAGE5)
+dealloc(newmem5)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Stronghold.exe+10D8DC
+
+Stronghold.exe+10D8B4: 50                    - push eax
+Stronghold.exe+10D8B5: B9 A8 DA B0 00        - mov ecx,Stronghold.exe+70DAA8
+Stronghold.exe+10D8BA: E8 91 D2 EF FF        - call Stronghold.exe+AB50
+Stronghold.exe+10D8BF: 85 C0                 - test eax,eax
+Stronghold.exe+10D8C1: A1 E8 8A A6 00        - mov eax,[Stronghold.exe+668AE8]
+Stronghold.exe+10D8C6: 74 6D                 - je Stronghold.exe+10D935
+Stronghold.exe+10D8C8: 69 C0 14 04 00 00     - imul eax,eax,00000414
+Stronghold.exe+10D8CE: 8B 88 C8 CE CF 00     - mov ecx,[eax+Stronghold.exe+8FCEC8]
+Stronghold.exe+10D8D4: 0F BF 90 5E D1 CF 00  - movsx edx,word ptr [eax+Stronghold.exe+8FD15E]
+Stronghold.exe+10D8DB: 55                    - push ebp
+// ---------- INJECTING HERE ----------
+Stronghold.exe+10D8DC: 6A 30                 - push 30
+// ---------- DONE INJECTING  ----------
+Stronghold.exe+10D8DE: 55                    - push ebp
+Stronghold.exe+10D8DF: 6A 02                 - push 02
+Stronghold.exe+10D8E1: 51                    - push ecx
+Stronghold.exe+10D8E2: 52                    - push edx
+Stronghold.exe+10D8E3: B9 A8 DA B0 00        - mov ecx,Stronghold.exe+70DAA8
+Stronghold.exe+10D8E8: E8 93 98 F0 FF        - call Stronghold.exe+17180
+Stronghold.exe+10D8ED: A1 E8 8A A6 00        - mov eax,[Stronghold.exe+668AE8]
+Stronghold.exe+10D8F2: 69 C0 14 04 00 00     - imul eax,eax,00000414
+Stronghold.exe+10D8F8: 0F BF 88 BE CE CF 00  - movsx ecx,word ptr [eax+Stronghold.exe+8FCEBE]
+Stronghold.exe+10D8FF: 01 2C 8D 34 71 FB 00  - add [ecx*4+Stronghold.exe+BB7134],ebp
+}
+INJ_LSTORAGE6:
+  db 6A 20 55 6A 09
+
+unregistersymbol(INJ_LSTORAGE6)
+dealloc(newmem6)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Stronghold.exe+112F42
+
+Stronghold.exe+112F1A: 51                       - push ecx
+Stronghold.exe+112F1B: B9 A8 DA B0 00           - mov ecx,Stronghold.exe+70DAA8
+Stronghold.exe+112F20: E8 2B 7C EF FF           - call Stronghold.exe+AB50
+Stronghold.exe+112F25: 85 C0                    - test eax,eax
+Stronghold.exe+112F27: A1 E8 8A A6 00           - mov eax,[Stronghold.exe+668AE8]
+Stronghold.exe+112F2C: 74 59                    - je Stronghold.exe+112F87
+Stronghold.exe+112F2E: 69 C0 14 04 00 00        - imul eax,eax,00000414
+Stronghold.exe+112F34: 8B 90 C8 CE CF 00        - mov edx,[eax+Stronghold.exe+8FCEC8]
+Stronghold.exe+112F3A: 0F BF 80 5E D1 CF 00     - movsx eax,word ptr [eax+Stronghold.exe+8FD15E]
+Stronghold.exe+112F41: 55                       - push ebp
+// ---------- INJECTING HERE ----------
+Stronghold.exe+112F42: 6A 20                    - push 20
+// ---------- DONE INJECTING  ----------
+Stronghold.exe+112F44: 55                       - push ebp
+Stronghold.exe+112F45: 6A 09                    - push 09
+Stronghold.exe+112F47: 52                       - push edx
+Stronghold.exe+112F48: 50                       - push eax
+Stronghold.exe+112F49: B9 A8 DA B0 00           - mov ecx,Stronghold.exe+70DAA8
+Stronghold.exe+112F4E: E8 2D 42 F0 FF           - call Stronghold.exe+17180
+Stronghold.exe+112F53: A1 E8 8A A6 00           - mov eax,[Stronghold.exe+668AE8]
+Stronghold.exe+112F58: 69 C0 14 04 00 00        - imul eax,eax,00000414
+Stronghold.exe+112F5E: 66 83 80 B0 D1 CF 00 FF  - add word ptr [eax+Stronghold.exe+8FD1B0],-01
+Stronghold.exe+112F66: 0F BF 88 EE CE CF 00     - movsx ecx,word ptr [eax+Stronghold.exe+8FCEEE]
+}
+INJ_LSTORAGE7:
+  db 6A 20 6A 09 51
+
+unregistersymbol(INJ_LSTORAGE7)
+dealloc(newmem7)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Stronghold.exe+112F16
+
+Stronghold.exe+112EE8: 83 C4 08              - add esp,08
+Stronghold.exe+112EEB: 66 3D 05 00           - cmp ax,0005
+Stronghold.exe+112EEF: 0F 8C 61 03 00 00     - jl Stronghold.exe+113256
+Stronghold.exe+112EF5: 57                    - push edi
+Stronghold.exe+112EF6: B9 90 CB CF 00        - mov ecx,Stronghold.exe+8FCB90
+Stronghold.exe+112EFB: E8 50 2B FE FF        - call Stronghold.exe+F5A50
+Stronghold.exe+112F00: 85 C0                 - test eax,eax
+Stronghold.exe+112F02: 0F 84 4E 03 00 00     - je Stronghold.exe+113256
+Stronghold.exe+112F08: 66 89 9E F0 D0 CF 00  - mov [esi+Stronghold.exe+8FD0F0],bx
+Stronghold.exe+112F0F: 0F BF 8E 5E D1 CF 00  - movsx ecx,word ptr [esi+Stronghold.exe+8FD15E]
+// ---------- INJECTING HERE ----------
+Stronghold.exe+112F16: 6A 20                 - push 20
+// ---------- DONE INJECTING  ----------
+Stronghold.exe+112F18: 6A 09                 - push 09
+Stronghold.exe+112F1A: 51                    - push ecx
+Stronghold.exe+112F1B: B9 A8 DA B0 00        - mov ecx,Stronghold.exe+70DAA8
+Stronghold.exe+112F20: E8 2B 7C EF FF        - call Stronghold.exe+AB50
+Stronghold.exe+112F25: 85 C0                 - test eax,eax
+Stronghold.exe+112F27: A1 E8 8A A6 00        - mov eax,[Stronghold.exe+668AE8]
+Stronghold.exe+112F2C: 74 59                 - je Stronghold.exe+112F87
+Stronghold.exe+112F2E: 69 C0 14 04 00 00     - imul eax,eax,00000414
+Stronghold.exe+112F34: 8B 90 C8 CE CF 00     - mov edx,[eax+Stronghold.exe+8FCEC8]
+Stronghold.exe+112F3A: 0F BF 80 5E D1 CF 00  - movsx eax,word ptr [eax+Stronghold.exe+8FD15E]
+}
+INJ_LSTORAGE8:
+  db 6A 20 B9 28 BF E7 00
+
+unregistersymbol(INJ_LSTORAGE8)
+dealloc(newmem8)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Stronghold.exe+E0B4D
+
+Stronghold.exe+E0B35: 8B 4E 04           - mov ecx,[esi+04]
+Stronghold.exe+E0B38: 51                 - push ecx
+Stronghold.exe+E0B39: 50                 - push eax
+Stronghold.exe+E0B3A: B9 70 35 E9 00     - mov ecx,Stronghold.exe+A93570
+Stronghold.exe+E0B3F: E8 8C 61 00 00     - call Stronghold.exe+E6CD0
+Stronghold.exe+E0B44: 85 C0              - test eax,eax
+Stronghold.exe+E0B46: 75 11              - jne Stronghold.exe+E0B59
+Stronghold.exe+E0B48: 8D 56 F0           - lea edx,[esi-10]
+Stronghold.exe+E0B4B: 52                 - push edx
+Stronghold.exe+E0B4C: 50                 - push eax
+// ---------- INJECTING HERE ----------
+Stronghold.exe+E0B4D: 6A 20              - push 20
+// ---------- DONE INJECTING  ----------
+Stronghold.exe+E0B4F: B9 28 BF E7 00     - mov ecx,Stronghold.exe+A7BF28
+Stronghold.exe+E0B54: E8 C7 ED F7 FF     - call Stronghold.exe+5F920
+Stronghold.exe+E0B59: 8B 46 08           - mov eax,[esi+08]
+Stronghold.exe+E0B5C: 85 C0              - test eax,eax
+Stronghold.exe+E0B5E: 7E 06              - jle Stronghold.exe+E0B66
+Stronghold.exe+E0B60: 83 C0 FF           - add eax,-01
+Stronghold.exe+E0B63: 89 46 08           - mov [esi+08],eax
+Stronghold.exe+E0B66: 83 C6 20           - add esi,20
+Stronghold.exe+E0B69: 81 FE FC 5B F1 00  - cmp esi,Stronghold.exe+B15BFC
+Stronghold.exe+E0B6F: 7C 9F              - jl Stronghold.exe+E0B10
+}
+INJ_LSTORAGE9:
+  db 3B 34 AD 30 92 56 00
+
+unregistersymbol(INJ_LSTORAGE9)
+dealloc(newmem9)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Stronghold.exe+1C905
+
+Stronghold.exe+1C8EB: 75 25                 - jne Stronghold.exe+1C912
+Stronghold.exe+1C8ED: 66 83 39 0A           - cmp word ptr [ecx],0A
+Stronghold.exe+1C8F1: 75 1F                 - jne Stronghold.exe+1C912
+Stronghold.exe+1C8F3: 0F BF 71 04           - movsx esi,word ptr [ecx+04]
+Stronghold.exe+1C8F7: 3B F5                 - cmp esi,ebp
+Stronghold.exe+1C8F9: 75 17                 - jne Stronghold.exe+1C912
+Stronghold.exe+1C8FB: 8B 33                 - mov esi,[ebx]
+Stronghold.exe+1C8FD: 85 F6                 - test esi,esi
+Stronghold.exe+1C8FF: 74 11                 - je Stronghold.exe+1C912
+Stronghold.exe+1C901: 8B 6C 24 14           - mov ebp,[esp+14]
+// ---------- INJECTING HERE ----------
+Stronghold.exe+1C905: 3B 34 AD 30 92 56 00  - cmp esi,[ebp*4+Stronghold.exe+169230]
+// ---------- DONE INJECTING  ----------
+Stronghold.exe+1C90C: 7C 5E                 - jl Stronghold.exe+1C96C
+Stronghold.exe+1C90E: 8B 6C 24 1C           - mov ebp,[esp+1C]
+Stronghold.exe+1C912: 83 C0 01              - add eax,01
+Stronghold.exe+1C915: 81 C1 C8 02 00 00     - add ecx,000002C8
+Stronghold.exe+1C91B: 81 C3 C8 02 00 00     - add ebx,000002C8
+Stronghold.exe+1C921: 3B C2                 - cmp eax,edx
+Stronghold.exe+1C923: 7C C1                 - jl Stronghold.exe+1C8E6
+Stronghold.exe+1C925: B8 01 00 00 00        - mov eax,00000001
+Stronghold.exe+1C92A: 3B D0                 - cmp edx,eax
+Stronghold.exe+1C92C: 7E 3C                 - jle Stronghold.exe+1C96A
+}
+INJ_LSTORAGE10:
+  db 6A 20 6A 10 50
+
+unregistersymbol(INJ_LSTORAGE10)
+dealloc(newmem10)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Stronghold.exe+1156BB
+
+Stronghold.exe+115689: C7 86 58 CE CF 00 10 00 00 00  - mov [esi+Stronghold.exe+8FCE58],00000010
+Stronghold.exe+115693: E8 38 DD FD FF                 - call Stronghold.exe+F33D0
+Stronghold.exe+115698: 83 C4 08                       - add esp,08
+Stronghold.exe+11569B: 57                             - push edi
+Stronghold.exe+11569C: B9 90 CB CF 00                 - mov ecx,Stronghold.exe+8FCB90
+Stronghold.exe+1156A1: E8 AA 03 FE FF                 - call Stronghold.exe+F5A50
+Stronghold.exe+1156A6: 85 C0                          - test eax,eax
+Stronghold.exe+1156A8: 0F 84 C4 03 00 00              - je Stronghold.exe+115A72
+Stronghold.exe+1156AE: 89 9E D8 D0 CF 00              - mov [esi+Stronghold.exe+8FD0D8],ebx
+Stronghold.exe+1156B4: 0F BF 86 5E D1 CF 00           - movsx eax,word ptr [esi+Stronghold.exe+8FD15E]
+// ---------- INJECTING HERE ----------
+Stronghold.exe+1156BB: 6A 20                          - push 20
+// ---------- DONE INJECTING  ----------
+Stronghold.exe+1156BD: 6A 10                          - push 10
+Stronghold.exe+1156BF: 50                             - push eax
+Stronghold.exe+1156C0: B9 A8 DA B0 00                 - mov ecx,Stronghold.exe+70DAA8
+Stronghold.exe+1156C5: E8 86 54 EF FF                 - call Stronghold.exe+AB50
+Stronghold.exe+1156CA: 85 C0                          - test eax,eax
+Stronghold.exe+1156CC: A1 E8 8A A6 00                 - mov eax,[Stronghold.exe+668AE8]
+Stronghold.exe+1156D1: 74 5A                          - je Stronghold.exe+11572D
+Stronghold.exe+1156D3: 69 C0 14 04 00 00              - imul eax,eax,00000414
+Stronghold.exe+1156D9: 8B 88 C8 CE CF 00              - mov ecx,[eax+Stronghold.exe+8FCEC8]
+Stronghold.exe+1156DF: 0F BF 90 5E D1 CF 00           - movsx edx,word ptr [eax+Stronghold.exe+8FD15E]
+}
+INJ_LSTORAGE11:
+  db 6A 20 6A 01 6A 10
+
+unregistersymbol(INJ_LSTORAGE11)
+dealloc(newmem11)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Stronghold.exe+1156E8
+
+Stronghold.exe+1156BF: 50                    - push eax
+Stronghold.exe+1156C0: B9 A8 DA B0 00        - mov ecx,Stronghold.exe+70DAA8
+Stronghold.exe+1156C5: E8 86 54 EF FF        - call Stronghold.exe+AB50
+Stronghold.exe+1156CA: 85 C0                 - test eax,eax
+Stronghold.exe+1156CC: A1 E8 8A A6 00        - mov eax,[Stronghold.exe+668AE8]
+Stronghold.exe+1156D1: 74 5A                 - je Stronghold.exe+11572D
+Stronghold.exe+1156D3: 69 C0 14 04 00 00     - imul eax,eax,00000414
+Stronghold.exe+1156D9: 8B 88 C8 CE CF 00     - mov ecx,[eax+Stronghold.exe+8FCEC8]
+Stronghold.exe+1156DF: 0F BF 90 5E D1 CF 00  - movsx edx,word ptr [eax+Stronghold.exe+8FD15E]
+Stronghold.exe+1156E6: 6A 01                 - push 01
+// ---------- INJECTING HERE ----------
+Stronghold.exe+1156E8: 6A 20                 - push 20
+// ---------- DONE INJECTING  ----------
+Stronghold.exe+1156EA: 6A 01                 - push 01
+Stronghold.exe+1156EC: 6A 10                 - push 10
+Stronghold.exe+1156EE: 51                    - push ecx
+Stronghold.exe+1156EF: 52                    - push edx
+Stronghold.exe+1156F0: B9 A8 DA B0 00        - mov ecx,Stronghold.exe+70DAA8
+Stronghold.exe+1156F5: E8 86 1A F0 FF        - call Stronghold.exe+17180
+Stronghold.exe+1156FA: A1 E8 8A A6 00        - mov eax,[Stronghold.exe+668AE8]
+Stronghold.exe+1156FF: 69 C0 14 04 00 00     - imul eax,eax,00000414
+Stronghold.exe+115705: 66 89 98 B0 D1 CF 00  - mov [eax+Stronghold.exe+8FD1B0],bx
+Stronghold.exe+11570C: 0F BF 88 EE CE CF 00  - movsx ecx,word ptr [eax+Stronghold.exe+8FCEEE]
+}
+INJ_LSTORAGE12:
+  db 6A 30 6A 06 52
+
+unregistersymbol(INJ_LSTORAGE12)
+dealloc(newmem12)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Stronghold.exe+126193
+
+Stronghold.exe+126165: 83 C4 08              - add esp,08
+Stronghold.exe+126168: 66 3D 05 00           - cmp ax,0005
+Stronghold.exe+12616C: 0F 8C 9E 03 00 00     - jl Stronghold.exe+126510
+Stronghold.exe+126172: 53                    - push ebx
+Stronghold.exe+126173: B9 90 CB CF 00        - mov ecx,Stronghold.exe+8FCB90
+Stronghold.exe+126178: E8 D3 F8 FC FF        - call Stronghold.exe+F5A50
+Stronghold.exe+12617D: 85 C0                 - test eax,eax
+Stronghold.exe+12617F: 0F 84 8B 03 00 00     - je Stronghold.exe+126510
+Stronghold.exe+126185: 66 89 AE F0 D0 CF 00  - mov [esi+Stronghold.exe+8FD0F0],bp
+Stronghold.exe+12618C: 0F BF 96 5E D1 CF 00  - movsx edx,word ptr [esi+Stronghold.exe+8FD15E]
+// ---------- INJECTING HERE ----------
+Stronghold.exe+126193: 6A 30                 - push 30
+// ---------- DONE INJECTING  ----------
+Stronghold.exe+126195: 6A 06                 - push 06
+Stronghold.exe+126197: 52                    - push edx
+Stronghold.exe+126198: B9 A8 DA B0 00        - mov ecx,Stronghold.exe+70DAA8
+Stronghold.exe+12619D: E8 AE 49 EE FF        - call Stronghold.exe+AB50
+Stronghold.exe+1261A2: 85 C0                 - test eax,eax
+Stronghold.exe+1261A4: A1 E8 8A A6 00        - mov eax,[Stronghold.exe+668AE8]
+Stronghold.exe+1261A9: 74 6D                 - je Stronghold.exe+126218
+Stronghold.exe+1261AB: 69 C0 14 04 00 00     - imul eax,eax,00000414
+Stronghold.exe+1261B1: 8B 88 C8 CE CF 00     - mov ecx,[eax+Stronghold.exe+8FCEC8]
+Stronghold.exe+1261B7: 0F BF 90 5E D1 CF 00  - movsx edx,word ptr [eax+Stronghold.exe+8FD15E]
+}
+INJ_LSTORAGE13:
+  db 6A 30 57 6A 06
+
+unregistersymbol(INJ_LSTORAGE13)
+dealloc(newmem13)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Stronghold.exe+1261BF
+
+Stronghold.exe+126197: 52                    - push edx
+Stronghold.exe+126198: B9 A8 DA B0 00        - mov ecx,Stronghold.exe+70DAA8
+Stronghold.exe+12619D: E8 AE 49 EE FF        - call Stronghold.exe+AB50
+Stronghold.exe+1261A2: 85 C0                 - test eax,eax
+Stronghold.exe+1261A4: A1 E8 8A A6 00        - mov eax,[Stronghold.exe+668AE8]
+Stronghold.exe+1261A9: 74 6D                 - je Stronghold.exe+126218
+Stronghold.exe+1261AB: 69 C0 14 04 00 00     - imul eax,eax,00000414
+Stronghold.exe+1261B1: 8B 88 C8 CE CF 00     - mov ecx,[eax+Stronghold.exe+8FCEC8]
+Stronghold.exe+1261B7: 0F BF 90 5E D1 CF 00  - movsx edx,word ptr [eax+Stronghold.exe+8FD15E]
+Stronghold.exe+1261BE: 57                    - push edi
+// ---------- INJECTING HERE ----------
+Stronghold.exe+1261BF: 6A 30                 - push 30
+// ---------- DONE INJECTING  ----------
+Stronghold.exe+1261C1: 57                    - push edi
+Stronghold.exe+1261C2: 6A 06                 - push 06
+Stronghold.exe+1261C4: 51                    - push ecx
+Stronghold.exe+1261C5: 52                    - push edx
+Stronghold.exe+1261C6: B9 A8 DA B0 00        - mov ecx,Stronghold.exe+70DAA8
+Stronghold.exe+1261CB: E8 B0 0F EF FF        - call Stronghold.exe+17180
+Stronghold.exe+1261D0: A1 E8 8A A6 00        - mov eax,[Stronghold.exe+668AE8]
+Stronghold.exe+1261D5: 69 C0 14 04 00 00     - imul eax,eax,00000414
+Stronghold.exe+1261DB: 0F BF 88 BE CE CF 00  - movsx ecx,word ptr [eax+Stronghold.exe+8FCEBE]
+Stronghold.exe+1261E2: 01 3C 8D EC 70 FB 00  - add [ecx*4+Stronghold.exe+BB70EC],edi
+}
+INJ_LSTORAGE14:
+  db 6A 10 6A 07 50
+
+unregistersymbol(INJ_LSTORAGE14)
+dealloc(newmem14)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Stronghold.exe+112197
+
+Stronghold.exe+112169: 83 C4 08              - add esp,08
+Stronghold.exe+11216C: 66 3D 05 00           - cmp ax,0005
+Stronghold.exe+112170: 0F 8C 80 03 00 00     - jl Stronghold.exe+1124F6
+Stronghold.exe+112176: 57                    - push edi
+Stronghold.exe+112177: B9 90 CB CF 00        - mov ecx,Stronghold.exe+8FCB90
+Stronghold.exe+11217C: E8 CF 38 FE FF        - call Stronghold.exe+F5A50
+Stronghold.exe+112181: 85 C0                 - test eax,eax
+Stronghold.exe+112183: 0F 84 6D 03 00 00     - je Stronghold.exe+1124F6
+Stronghold.exe+112189: 66 89 9E F0 D0 CF 00  - mov [esi+Stronghold.exe+8FD0F0],bx
+Stronghold.exe+112190: 0F BF 86 5E D1 CF 00  - movsx eax,word ptr [esi+Stronghold.exe+8FD15E]
+// ---------- INJECTING HERE ----------
+Stronghold.exe+112197: 6A 10                 - push 10
+// ---------- DONE INJECTING  ----------
+Stronghold.exe+112199: 6A 07                 - push 07
+Stronghold.exe+11219B: 50                    - push eax
+Stronghold.exe+11219C: B9 A8 DA B0 00        - mov ecx,Stronghold.exe+70DAA8
+Stronghold.exe+1121A1: E8 AA 89 EF FF        - call Stronghold.exe+AB50
+Stronghold.exe+1121A6: 85 C0                 - test eax,eax
+Stronghold.exe+1121A8: A1 E8 8A A6 00        - mov eax,[Stronghold.exe+668AE8]
+Stronghold.exe+1121AD: 74 6D                 - je Stronghold.exe+11221C
+Stronghold.exe+1121AF: 69 C0 14 04 00 00     - imul eax,eax,00000414
+Stronghold.exe+1121B5: 8B 88 C8 CE CF 00     - mov ecx,[eax+Stronghold.exe+8FCEC8]
+Stronghold.exe+1121BB: 0F BF 90 5E D1 CF 00  - movsx edx,word ptr [eax+Stronghold.exe+8FD15E]
+}
+INJ_LSTORAGE15:
+  db 6A 10 55 6A 07
+
+unregistersymbol(INJ_LSTORAGE15)
+dealloc(newmem15)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Stronghold.exe+1121C3
+
+Stronghold.exe+11219B: 50                    - push eax
+Stronghold.exe+11219C: B9 A8 DA B0 00        - mov ecx,Stronghold.exe+70DAA8
+Stronghold.exe+1121A1: E8 AA 89 EF FF        - call Stronghold.exe+AB50
+Stronghold.exe+1121A6: 85 C0                 - test eax,eax
+Stronghold.exe+1121A8: A1 E8 8A A6 00        - mov eax,[Stronghold.exe+668AE8]
+Stronghold.exe+1121AD: 74 6D                 - je Stronghold.exe+11221C
+Stronghold.exe+1121AF: 69 C0 14 04 00 00     - imul eax,eax,00000414
+Stronghold.exe+1121B5: 8B 88 C8 CE CF 00     - mov ecx,[eax+Stronghold.exe+8FCEC8]
+Stronghold.exe+1121BB: 0F BF 90 5E D1 CF 00  - movsx edx,word ptr [eax+Stronghold.exe+8FD15E]
+Stronghold.exe+1121C2: 55                    - push ebp
+// ---------- INJECTING HERE ----------
+Stronghold.exe+1121C3: 6A 10                 - push 10
+// ---------- DONE INJECTING  ----------
+Stronghold.exe+1121C5: 55                    - push ebp
+Stronghold.exe+1121C6: 6A 07                 - push 07
+Stronghold.exe+1121C8: 51                    - push ecx
+Stronghold.exe+1121C9: 52                    - push edx
+Stronghold.exe+1121CA: B9 A8 DA B0 00        - mov ecx,Stronghold.exe+70DAA8
+Stronghold.exe+1121CF: E8 AC 4F F0 FF        - call Stronghold.exe+17180
+Stronghold.exe+1121D4: A1 E8 8A A6 00        - mov eax,[Stronghold.exe+668AE8]
+Stronghold.exe+1121D9: 69 C0 14 04 00 00     - imul eax,eax,00000414
+Stronghold.exe+1121DF: 0F BF 88 BE CE CF 00  - movsx ecx,word ptr [eax+Stronghold.exe+8FCEBE]
+Stronghold.exe+1121E6: 01 2C 8D 58 71 FB 00  - add [ecx*4+Stronghold.exe+BB7158],ebp
+}
+INJ_LSTORAGE16:
+  db 6A 10 6A 03 51
+
+unregistersymbol(INJ_LSTORAGE16)
+dealloc(newmem16)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Stronghold.exe+113A34
+
+Stronghold.exe+113A06: 83 C4 08              - add esp,08
+Stronghold.exe+113A09: 66 3D 05 00           - cmp ax,0005
+Stronghold.exe+113A0D: 0F 8C 5B 03 00 00     - jl Stronghold.exe+113D6E
+Stronghold.exe+113A13: 57                    - push edi
+Stronghold.exe+113A14: B9 90 CB CF 00        - mov ecx,Stronghold.exe+8FCB90
+Stronghold.exe+113A19: E8 32 20 FE FF        - call Stronghold.exe+F5A50
+Stronghold.exe+113A1E: 85 C0                 - test eax,eax
+Stronghold.exe+113A20: 0F 84 48 03 00 00     - je Stronghold.exe+113D6E
+Stronghold.exe+113A26: 66 89 9E F0 D0 CF 00  - mov [esi+Stronghold.exe+8FD0F0],bx
+Stronghold.exe+113A2D: 0F BF 8E 5E D1 CF 00  - movsx ecx,word ptr [esi+Stronghold.exe+8FD15E]
+// ---------- INJECTING HERE ----------
+Stronghold.exe+113A34: 6A 10                 - push 10
+// ---------- DONE INJECTING  ----------
+Stronghold.exe+113A36: 6A 03                 - push 03
+Stronghold.exe+113A38: 51                    - push ecx
+Stronghold.exe+113A39: B9 A8 DA B0 00        - mov ecx,Stronghold.exe+70DAA8
+Stronghold.exe+113A3E: E8 0D 71 EF FF        - call Stronghold.exe+AB50
+Stronghold.exe+113A43: 85 C0                 - test eax,eax
+Stronghold.exe+113A45: A1 E8 8A A6 00        - mov eax,[Stronghold.exe+668AE8]
+Stronghold.exe+113A4A: 74 59                 - je Stronghold.exe+113AA5
+Stronghold.exe+113A4C: 69 C0 14 04 00 00     - imul eax,eax,00000414
+Stronghold.exe+113A52: 8B 90 C8 CE CF 00     - mov edx,[eax+Stronghold.exe+8FCEC8]
+Stronghold.exe+113A58: 0F BF 80 5E D1 CF 00  - movsx eax,word ptr [eax+Stronghold.exe+8FD15E]
+}
+INJ_LSTORAGE17:
+  db 6A 10 55 6A 03
+
+unregistersymbol(INJ_LSTORAGE17)
+dealloc(newmem17)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Stronghold.exe+113A60
+
+Stronghold.exe+113A38: 51                       - push ecx
+Stronghold.exe+113A39: B9 A8 DA B0 00           - mov ecx,Stronghold.exe+70DAA8
+Stronghold.exe+113A3E: E8 0D 71 EF FF           - call Stronghold.exe+AB50
+Stronghold.exe+113A43: 85 C0                    - test eax,eax
+Stronghold.exe+113A45: A1 E8 8A A6 00           - mov eax,[Stronghold.exe+668AE8]
+Stronghold.exe+113A4A: 74 59                    - je Stronghold.exe+113AA5
+Stronghold.exe+113A4C: 69 C0 14 04 00 00        - imul eax,eax,00000414
+Stronghold.exe+113A52: 8B 90 C8 CE CF 00        - mov edx,[eax+Stronghold.exe+8FCEC8]
+Stronghold.exe+113A58: 0F BF 80 5E D1 CF 00     - movsx eax,word ptr [eax+Stronghold.exe+8FD15E]
+Stronghold.exe+113A5F: 55                       - push ebp
+// ---------- INJECTING HERE ----------
+Stronghold.exe+113A60: 6A 10                    - push 10
+// ---------- DONE INJECTING  ----------
+Stronghold.exe+113A62: 55                       - push ebp
+Stronghold.exe+113A63: 6A 03                    - push 03
+Stronghold.exe+113A65: 52                       - push edx
+Stronghold.exe+113A66: 50                       - push eax
+Stronghold.exe+113A67: B9 A8 DA B0 00           - mov ecx,Stronghold.exe+70DAA8
+Stronghold.exe+113A6C: E8 0F 37 F0 FF           - call Stronghold.exe+17180
+Stronghold.exe+113A71: A1 E8 8A A6 00           - mov eax,[Stronghold.exe+668AE8]
+Stronghold.exe+113A76: 69 C0 14 04 00 00        - imul eax,eax,00000414
+Stronghold.exe+113A7C: 66 83 80 B0 D1 CF 00 FF  - add word ptr [eax+Stronghold.exe+8FD1B0],-01
+Stronghold.exe+113A84: 0F BF 88 EE CE CF 00     - movsx ecx,word ptr [eax+Stronghold.exe+8FCEEE]
+}
+INJ_LSTORAGE18:
+  db 6A 10 6A 0E 52
+
+unregistersymbol(INJ_LSTORAGE18)
+dealloc(newmem18)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Stronghold.exe+116FE0
+
+Stronghold.exe+116FB2: 83 C4 08              - add esp,08
+Stronghold.exe+116FB5: 66 3D 05 00           - cmp ax,0005
+Stronghold.exe+116FB9: 0F 8C 94 03 00 00     - jl Stronghold.exe+117353
+Stronghold.exe+116FBF: 57                    - push edi
+Stronghold.exe+116FC0: B9 90 CB CF 00        - mov ecx,Stronghold.exe+8FCB90
+Stronghold.exe+116FC5: E8 86 EA FD FF        - call Stronghold.exe+F5A50
+Stronghold.exe+116FCA: 85 C0                 - test eax,eax
+Stronghold.exe+116FCC: 0F 84 81 03 00 00     - je Stronghold.exe+117353
+Stronghold.exe+116FD2: 66 89 9E F0 D0 CF 00  - mov [esi+Stronghold.exe+8FD0F0],bx
+Stronghold.exe+116FD9: 0F BF 96 5E D1 CF 00  - movsx edx,word ptr [esi+Stronghold.exe+8FD15E]
+// ---------- INJECTING HERE ----------
+Stronghold.exe+116FE0: 6A 10                 - push 10
+// ---------- DONE INJECTING  ----------
+Stronghold.exe+116FE2: 6A 0E                 - push 0E
+Stronghold.exe+116FE4: 52                    - push edx
+Stronghold.exe+116FE5: B9 A8 DA B0 00        - mov ecx,Stronghold.exe+70DAA8
+Stronghold.exe+116FEA: E8 61 3B EF FF        - call Stronghold.exe+AB50
+Stronghold.exe+116FEF: 85 C0                 - test eax,eax
+Stronghold.exe+116FF1: A1 E8 8A A6 00        - mov eax,[Stronghold.exe+668AE8]
+Stronghold.exe+116FF6: 74 5F                 - je Stronghold.exe+117057
+Stronghold.exe+116FF8: 69 C0 14 04 00 00     - imul eax,eax,00000414
+Stronghold.exe+116FFE: 8B 88 C8 CE CF 00     - mov ecx,[eax+Stronghold.exe+8FCEC8]
+Stronghold.exe+117004: 0F BF 90 5E D1 CF 00  - movsx edx,word ptr [eax+Stronghold.exe+8FD15E]
+}
+INJ_LSTORAGE19:
+  db 6A 10 55 6A 0E
+
+unregistersymbol(INJ_LSTORAGE19)
+dealloc(newmem19)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Stronghold.exe+11700C
+
+Stronghold.exe+116FE4: 52                       - push edx
+Stronghold.exe+116FE5: B9 A8 DA B0 00           - mov ecx,Stronghold.exe+70DAA8
+Stronghold.exe+116FEA: E8 61 3B EF FF           - call Stronghold.exe+AB50
+Stronghold.exe+116FEF: 85 C0                    - test eax,eax
+Stronghold.exe+116FF1: A1 E8 8A A6 00           - mov eax,[Stronghold.exe+668AE8]
+Stronghold.exe+116FF6: 74 5F                    - je Stronghold.exe+117057
+Stronghold.exe+116FF8: 69 C0 14 04 00 00        - imul eax,eax,00000414
+Stronghold.exe+116FFE: 8B 88 C8 CE CF 00        - mov ecx,[eax+Stronghold.exe+8FCEC8]
+Stronghold.exe+117004: 0F BF 90 5E D1 CF 00     - movsx edx,word ptr [eax+Stronghold.exe+8FD15E]
+Stronghold.exe+11700B: 55                       - push ebp
+// ---------- INJECTING HERE ----------
+Stronghold.exe+11700C: 6A 10                    - push 10
+// ---------- DONE INJECTING  ----------
+Stronghold.exe+11700E: 55                       - push ebp
+Stronghold.exe+11700F: 6A 0E                    - push 0E
+Stronghold.exe+117011: 51                       - push ecx
+Stronghold.exe+117012: 52                       - push edx
+Stronghold.exe+117013: B9 A8 DA B0 00           - mov ecx,Stronghold.exe+70DAA8
+Stronghold.exe+117018: E8 63 01 F0 FF           - call Stronghold.exe+17180
+Stronghold.exe+11701D: A1 E8 8A A6 00           - mov eax,[Stronghold.exe+668AE8]
+Stronghold.exe+117022: 69 C0 14 04 00 00        - imul eax,eax,00000414
+Stronghold.exe+117028: 66 83 80 B0 D1 CF 00 FF  - add word ptr [eax+Stronghold.exe+8FD1B0],-01
+Stronghold.exe+117030: 0F BF 88 EE CE CF 00     - movsx ecx,word ptr [eax+Stronghold.exe+8FCEEE]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>31</ID>
+      <Description>"Ignore Building Material Requirements"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+aobscanmodule(INJ_IGN_WOOD,Stronghold.exe,8B 54 24 1C 3B D1) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov [esp+1C],0
+code:
+  mov edx,[esp+1C]
+  cmp edx,ecx
+  jmp return
+
+INJ_IGN_WOOD:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_IGN_WOOD)
+
+aobscanmodule(INJ_IGN_GOLD,Stronghold.exe,8B 54 24 24 3B 90 CC D9 01 00) // should be unique
+alloc(newmem2,$1000)
+
+label(code2)
+label(return2)
+
+newmem2:
+  mov [esp+24],0
+code2:
+  mov edx,[esp+24]
+  cmp edx,[eax+0001D9CC]
+  jmp return2
+
+INJ_IGN_GOLD:
+  jmp newmem2
+  nop 5
+return2:
+registersymbol(INJ_IGN_GOLD)
+
+aobscanmodule(INJ_IGN_STONE,Stronghold.exe,3B B0 A0 D9 01 00 7E 1D) // should be unique
+alloc(newmem5,$1000)
+
+label(code5)
+label(return5)
+
+newmem5:
+  xor esi,esi
+code5:
+  cmp esi,[eax+0001D9A0]
+  jmp return5
+
+INJ_IGN_STONE:
+  jmp newmem5
+  nop
+return5:
+registersymbol(INJ_IGN_STONE)
+
+aobscanmodule(INJ_IGN_WALL,Stronghold.exe,8B 84 11 A0 D9 01 00) // should be unique
+alloc(newmem9,$1000)
+
+label(code9)
+label(return9)
+
+newmem9:
+  mov [Stronghold.exe+7DF698],63
+code9:
+  mov eax,[ecx+edx+0001D9A0]
+  jmp return9
+
+INJ_IGN_WALL:
+  jmp newmem9
+  nop 2
+return9:
+registersymbol(INJ_IGN_WALL)
+
+[DISABLE]
+
+INJ_IGN_WOOD:
+  db 8B 54 24 1C 3B D1
+
+unregistersymbol(INJ_IGN_WOOD)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "Stronghold.exe"+4A89D
+
+"Stronghold.exe"+4A87F: B9 B8 8B A6 00           -  mov ecx,Stronghold.exe+668BB8
+"Stronghold.exe"+4A884: E8 F7 4E 01 00           -  call Stronghold.exe+5F780
+"Stronghold.exe"+4A889: 8B 44 24 10              -  mov eax,[esp+10]
+"Stronghold.exe"+4A88D: 5F                       -  pop edi
+"Stronghold.exe"+4A88E: 5E                       -  pop esi
+"Stronghold.exe"+4A88F: 5D                       -  pop ebp
+"Stronghold.exe"+4A890: 5B                       -  pop ebx
+"Stronghold.exe"+4A891: 83 C4 10                 -  add esp,10
+"Stronghold.exe"+4A894: C2 0C 00                 -  ret 000C
+"Stronghold.exe"+4A897: 8B 88 98 D9 01 00        -  mov ecx,[eax+0001D998]
+// ---------- INJECTING HERE ----------
+"Stronghold.exe"+4A89D: 8B 54 24 1C              -  mov edx,[esp+1C]
+"Stronghold.exe"+4A8A1: 3B D1                    -  cmp edx,ecx
+// ---------- DONE INJECTING  ----------
+"Stronghold.exe"+4A8A3: 8B 74 24 14              -  mov esi,[esp+14]
+"Stronghold.exe"+4A8A7: 7E 62                    -  jle Stronghold.exe+4A90B
+"Stronghold.exe"+4A8A9: 3B B0 A0 D9 01 00        -  cmp esi,[eax+0001D9A0]
+"Stronghold.exe"+4A8AF: 7E 2B                    -  jle Stronghold.exe+4A8DC
+"Stronghold.exe"+4A8B1: 83 7C 24 2C 00           -  cmp dword ptr [esp+2C],00
+"Stronghold.exe"+4A8B6: C7 44 24 10 00 00 00 00  -  mov [esp+10],00000000
+"Stronghold.exe"+4A8BE: 74 70                    -  je Stronghold.exe+4A930
+"Stronghold.exe"+4A8C0: 6A 04                    -  push 04
+"Stronghold.exe"+4A8C2: 6A 01                    -  push 01
+"Stronghold.exe"+4A8C4: B9 B8 8B A6 00           -  mov ecx,Stronghold.exe+668BB8
+}
+INJ_IGN_GOLD:
+  db 8B 54 24 24 3B 90 CC D9 01 00
+
+unregistersymbol(INJ_IGN_GOLD)
+dealloc(newmem2)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "Stronghold.exe"+4A85C
+
+"Stronghold.exe"+4A842: 6A 01                    -  push 01
+"Stronghold.exe"+4A844: B9 B8 8B A6 00           -  mov ecx,Stronghold.exe+668BB8
+"Stronghold.exe"+4A849: E8 32 4F 01 00           -  call Stronghold.exe+5F780
+"Stronghold.exe"+4A84E: 8B 44 24 10              -  mov eax,[esp+10]
+"Stronghold.exe"+4A852: 5F                       -  pop edi
+"Stronghold.exe"+4A853: 5E                       -  pop esi
+"Stronghold.exe"+4A854: 5D                       -  pop ebp
+"Stronghold.exe"+4A855: 5B                       -  pop ebx
+"Stronghold.exe"+4A856: 83 C4 10                 -  add esp,10
+"Stronghold.exe"+4A859: C2 0C 00                 -  ret 000C
+// ---------- INJECTING HERE ----------
+"Stronghold.exe"+4A85C: 8B 54 24 24              -  mov edx,[esp+24]
+"Stronghold.exe"+4A860: 3B 90 CC D9 01 00        -  cmp edx,[eax+0001D9CC]
+// ---------- DONE INJECTING  ----------
+"Stronghold.exe"+4A866: 7E 2F                    -  jle Stronghold.exe+4A897
+"Stronghold.exe"+4A868: 83 7C 24 2C 00           -  cmp dword ptr [esp+2C],00
+"Stronghold.exe"+4A86D: C7 44 24 10 00 00 00 00  -  mov [esp+10],00000000
+"Stronghold.exe"+4A875: 0F 84 B5 00 00 00        -  je Stronghold.exe+4A930
+"Stronghold.exe"+4A87B: 6A 03                    -  push 03
+"Stronghold.exe"+4A87D: 6A 01                    -  push 01
+"Stronghold.exe"+4A87F: B9 B8 8B A6 00           -  mov ecx,Stronghold.exe+668BB8
+"Stronghold.exe"+4A884: E8 F7 4E 01 00           -  call Stronghold.exe+5F780
+"Stronghold.exe"+4A889: 8B 44 24 10              -  mov eax,[esp+10]
+"Stronghold.exe"+4A88D: 5F                       -  pop edi
+}
+INJ_IGN_STONE:
+  db 3B B0 A0 D9 01 00
+
+unregistersymbol(INJ_IGN_STONE)
+dealloc(newmem5)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "Stronghold.exe"+4A90B
+
+"Stronghold.exe"+4A8F1: 6A 01                    -  push 01
+"Stronghold.exe"+4A8F3: B9 B8 8B A6 00           -  mov ecx,Stronghold.exe+668BB8
+"Stronghold.exe"+4A8F8: E8 83 4E 01 00           -  call Stronghold.exe+5F780
+"Stronghold.exe"+4A8FD: 8B 44 24 10              -  mov eax,[esp+10]
+"Stronghold.exe"+4A901: 5F                       -  pop edi
+"Stronghold.exe"+4A902: 5E                       -  pop esi
+"Stronghold.exe"+4A903: 5D                       -  pop ebp
+"Stronghold.exe"+4A904: 5B                       -  pop ebx
+"Stronghold.exe"+4A905: 83 C4 10                 -  add esp,10
+"Stronghold.exe"+4A908: C2 0C 00                 -  ret 000C
+// ---------- INJECTING HERE ----------
+"Stronghold.exe"+4A90B: 3B B0 A0 D9 01 00        -  cmp esi,[eax+0001D9A0]
+// ---------- DONE INJECTING  ----------
+"Stronghold.exe"+4A911: 7E 1D                    -  jle Stronghold.exe+4A930
+"Stronghold.exe"+4A913: 83 7C 24 2C 00           -  cmp dword ptr [esp+2C],00
+"Stronghold.exe"+4A918: C7 44 24 10 00 00 00 00  -  mov [esp+10],00000000
+"Stronghold.exe"+4A920: 74 0E                    -  je Stronghold.exe+4A930
+"Stronghold.exe"+4A922: 6A 06                    -  push 06
+"Stronghold.exe"+4A924: 6A 01                    -  push 01
+"Stronghold.exe"+4A926: B9 B8 8B A6 00           -  mov ecx,Stronghold.exe+668BB8
+"Stronghold.exe"+4A92B: E8 50 4E 01 00           -  call Stronghold.exe+5F780
+"Stronghold.exe"+4A930: 8B 44 24 10              -  mov eax,[esp+10]
+"Stronghold.exe"+4A934: 5F                       -  pop edi
+}
+
+INJ_IGN_WALL:
+  db 8B 84 11 A0 D9 01 00
+
+unregistersymbol(INJ_IGN_WALL)
+dealloc(newmem9)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "Stronghold.exe"+4A991
+
+"Stronghold.exe"+4A968: 75 14                    -  jne Stronghold.exe+4A97E
+"Stronghold.exe"+4A96A: 8B 44 24 04              -  mov eax,[esp+04]
+"Stronghold.exe"+4A96E: 69 C0 58 17 00 00        -  imul eax,eax,00001758
+"Stronghold.exe"+4A974: 8B 84 08 3C D9 01 00     -  mov eax,[eax+ecx+0001D93C]
+"Stronghold.exe"+4A97B: C2 08 00                 -  ret 0008
+"Stronghold.exe"+4A97E: 8B 54 24 08              -  mov edx,[esp+08]
+"Stronghold.exe"+4A982: 83 FA 04                 -  cmp edx,04
+"Stronghold.exe"+4A985: 75 1E                    -  jne Stronghold.exe+4A9A5
+"Stronghold.exe"+4A987: 8B 54 24 04              -  mov edx,[esp+04]
+"Stronghold.exe"+4A98B: 69 D2 58 17 00 00        -  imul edx,edx,00001758
+// ---------- INJECTING HERE ----------
+"Stronghold.exe"+4A991: 8B 84 11 A0 D9 01 00     -  mov eax,[ecx+edx+0001D9A0]
+// ---------- DONE INJECTING  ----------
+"Stronghold.exe"+4A998: 03 CA                    -  add ecx,edx
+"Stronghold.exe"+4A99A: 03 C0                    -  add eax,eax
+"Stronghold.exe"+4A99C: 83 B9 30 EA 01 00 00     -  cmp dword ptr [ecx+0001EA30],00
+"Stronghold.exe"+4A9A3: EB 20                    -  jmp Stronghold.exe+4A9C5
+"Stronghold.exe"+4A9A5: 83 FA 02                 -  cmp edx,02
+"Stronghold.exe"+4A9A8: 75 34                    -  jne Stronghold.exe+4A9DE
+"Stronghold.exe"+4A9AA: 8B 44 24 04              -  mov eax,[esp+04]
+"Stronghold.exe"+4A9AE: 69 C0 58 17 00 00        -  imul eax,eax,00001758
+"Stronghold.exe"+4A9B4: 03 C8                    -  add ecx,eax
+"Stronghold.exe"+4A9B6: 8B 81 98 D9 01 00        -  mov eax,[ecx+0001D998]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>14</ID>
+      <Description>"Slighty Faster Window Restoration"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Stronghold.exe
+  Version: 
+  Date   : 2020-12-31
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+{ Game   : Stronghold.exe
+  Version: 
+  Date   : 2020-12-31
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+{ Game   : Stronghold.exe
+  Version: 
+  Date   : 2020-12-31
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_FOREGROUND,win32u.dll,FF D2 C3 8D 49 00 B8 3D) // should be unique
+alloc(newmem,$1000)
+registersymbol(INJ_FOREGROUND)
+
+label(code)
+label(return)
+
+newmem:
+  call edx
+  mov eax,[Stronghold.exe+70D95C]
+  ret
+
+code:
+  call edx
+  ret 
+  lea ecx,[ecx+00]
+  jmp return
+
+INJ_FOREGROUND:
+  jmp newmem
+  nop
+return:
+
+aobscanmodule(INJ_FOREGROUND2,Stronghold.exe,8B 9E AC 00 00 00) // should be unique
+alloc(newmem2,$1000)
+
+label(code2)
+label(return2)
+
+newmem2:
+  mov eax,ebx
+code2:
+  mov ebx,[esi+000000AC]
+  jmp return2
+
+INJ_FOREGROUND2:
+  jmp newmem2
+  nop
+return2:
+registersymbol(INJ_FOREGROUND2)
+
+aobscanmodule(INJ_FOREGROUND3,MSCTF.dll,89 9F F0 05 00 00) // should be unique
+alloc(newmem3,$1000)
+
+label(code3)
+label(return3)
+
+newmem3:
+  mov ebx,[Stronghold.exe+70D95C]
+code3:
+  mov [edi+000005F0],ebx
+  jmp return3
+
+INJ_FOREGROUND3:
+  jmp newmem3
+  nop
+return3:
+registersymbol(INJ_FOREGROUND3)
+
+[DISABLE]
+
+INJ_FOREGROUND:
+  db FF D2 C3 8D 49 00
+
+unregistersymbol(INJ_FOREGROUND)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: win32u.NtUserGetForegroundWindow+A
+
+win32u.NtGdiRestoreDC+A: FF D2           - call edx
+win32u.NtGdiRestoreDC+C: C2 08 00        - ret 0008
+win32u.NtGdiRestoreDC+F: 90              - nop 
+win32u.NtGdiSaveDC: B8 3B 10 03 00  - mov eax,0003103B
+win32u.NtGdiSaveDC+5: BA 10 63 92 77  - mov edx,win32u.gDispatchTableValues+F0
+win32u.NtGdiSaveDC+A: FF D2           - call edx
+win32u.NtGdiSaveDC+C: C2 04 00        - ret 0004
+win32u.NtGdiSaveDC+F: 90              - nop 
+win32u.NtUserGetForegroundWindow: B8 3C 10 01 00  - mov eax,0001103C
+win32u.NtUserGetForegroundWindow+5: BA 10 63 92 77  - mov edx,win32u.gDispatchTableValues+F0
+// ---------- INJECTING HERE ----------
+win32u.NtUserGetForegroundWindow+A: FF D2           - call edx
+// ---------- DONE INJECTING  ----------
+win32u.NtUserGetForegroundWindow+C: C3              - ret 
+win32u.NtUserGetForegroundWindow+D: 8D 49 00        - lea ecx,[ecx+00]
+win32u.NtUserShowScrollBar: B8 3D 10 0C 00  - mov eax,000C103D
+win32u.NtUserShowScrollBar+5: BA 10 63 92 77  - mov edx,win32u.gDispatchTableValues+F0
+win32u.NtUserShowScrollBar+A: FF D2           - call edx
+win32u.NtUserShowScrollBar+C: C2 0C 00        - ret 000C
+win32u.NtUserShowScrollBar+F: 90              - nop 
+win32u.NtUserFindExistingCursorIcon: B8 3E 10 00 00  - mov eax,0000103E
+win32u.NtUserFindExistingCursorIcon+5: BA 10 63 92 77  - mov edx,win32u.gDispatchTableValues+F0
+win32u.NtUserFindExistingCursorIcon+A: FF D2           - call edx
+}
+INJ_FOREGROUND2:
+  db 8B 9E AC 00 00 00
+
+unregistersymbol(INJ_FOREGROUND2)
+dealloc(newmem2)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Stronghold.exe+5E734
+
+Stronghold.exe+5E724: 56                             - push esi
+Stronghold.exe+5E725: FF D2                          - call edx
+Stronghold.exe+5E727: 5E                             - pop esi
+Stronghold.exe+5E728: 5D                             - pop ebp
+Stronghold.exe+5E729: 83 C4 20                       - add esp,20
+Stronghold.exe+5E72C: C2 10 00                       - ret 0010
+Stronghold.exe+5E72F: CC                             - int 3 
+Stronghold.exe+5E730: 53                             - push ebx
+Stronghold.exe+5E731: 56                             - push esi
+Stronghold.exe+5E732: 8B F1                          - mov esi,ecx
+// ---------- INJECTING HERE ----------
+Stronghold.exe+5E734: 8B 9E AC 00 00 00              - mov ebx,[esi+000000AC]
+// ---------- DONE INJECTING  ----------
+Stronghold.exe+5E73A: FF 15 08 32 55 00              - call dword ptr [Stronghold.exe+153208]
+Stronghold.exe+5E740: 3B C3                          - cmp eax,ebx
+Stronghold.exe+5E742: 0F 85 96 00 00 00              - jne Stronghold.exe+5E7DE
+Stronghold.exe+5E748: C7 86 C4 00 00 00 00 00 00 00  - mov [esi+000000C4],00000000
+Stronghold.exe+5E752: 83 3D 08 D9 B0 00 00           - cmp dword ptr [Stronghold.exe+70D908],00
+Stronghold.exe+5E759: 57                             - push edi
+Stronghold.exe+5E75A: 74 39                          - je Stronghold.exe+5E795
+Stronghold.exe+5E75C: 8B CE                          - mov ecx,esi
+Stronghold.exe+5E75E: E8 8D F6 FF FF                 - call Stronghold.exe+5DDF0
+Stronghold.exe+5E763: 8B 3D CC 31 55 00              - mov edi,[Stronghold.exe+1531CC]
+}
+INJ_FOREGROUND3:
+  db 89 9F F0 05 00 00
+
+unregistersymbol(INJ_FOREGROUND3)
+dealloc(newmem3)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MSCTF.TF_GetAppCompatFlags+5F3
+
+MSCTF.TF_GetAppCompatFlags+5D5: 81 EC 50 04 00 00              - sub esp,00000450
+MSCTF.TF_GetAppCompatFlags+5DB: A1 64 19 2A 76                 - mov eax,[MSCTF.dll+C1964]
+MSCTF.TF_GetAppCompatFlags+5E0: 33 C5                          - xor eax,ebp
+MSCTF.TF_GetAppCompatFlags+5E2: 89 45 F8                       - mov [ebp-08],eax
+MSCTF.TF_GetAppCompatFlags+5E5: 53                             - push ebx
+MSCTF.TF_GetAppCompatFlags+5E6: 8B 5D 08                       - mov ebx,[ebp+08]
+MSCTF.TF_GetAppCompatFlags+5E9: 56                             - push esi
+MSCTF.TF_GetAppCompatFlags+5EA: 57                             - push edi
+MSCTF.TF_GetAppCompatFlags+5EB: 8B F9                          - mov edi,ecx
+MSCTF.TF_GetAppCompatFlags+5ED: FF B7 F4 05 00 00              - push [edi+000005F4]
+// ---------- INJECTING HERE ----------
+MSCTF.TF_GetAppCompatFlags+5F3: 89 9F F0 05 00 00              - mov [edi+000005F0],ebx
+// ---------- DONE INJECTING  ----------
+MSCTF.TF_GetAppCompatFlags+5F9: 53                             - push ebx
+MSCTF.TF_GetAppCompatFlags+5FA: FF 15 28 80 2A 76              - call dword ptr [MSCTF.dll+C8028]
+MSCTF.TF_GetAppCompatFlags+600: C7 87 23 06 00 00 00 00 00 00  - mov [edi+00000623],00000000
+MSCTF.TF_GetAppCompatFlags+60A: 66 C7 87 1D 06 00 00 00 00     - mov word ptr [edi+0000061D],0000
+MSCTF.TF_GetAppCompatFlags+613: C6 87 27 06 00 00 00           - mov byte ptr [edi+00000627],00
+MSCTF.TF_GetAppCompatFlags+61A: 85 DB                          - test ebx,ebx
+MSCTF.TF_GetAppCompatFlags+61C: 0F 84 4F 03 00 00              - je MSCTF.TF_GetAppCompatFlags+971
+MSCTF.TF_GetAppCompatFlags+622: 8B 47 64                       - mov eax,[edi+64]
+MSCTF.TF_GetAppCompatFlags+625: C7 87 4C 06 00 00 00 00 00 00  - mov [edi+0000064C],00000000
+MSCTF.TF_GetAppCompatFlags+62F: 8B 48 30                       - mov ecx,[eax+30]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>40</ID>
+      <Description>"Force Produce Troop"</Description>
+      <Options moHideChildren="1"/>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Stronghold.exe (paused)
+  Version: 
+  Date   : 2021-01-02
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_PROD_TROOP,Stronghold.exe,89 70 38 8B 46 4C) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+label(val_troop)
+
+newmem:
+  cmp [val_troop],0
+  jz code
+  mov esi,[val_troop]
+  jmp code
+
+val_troop:
+  dq 0
+registersymbol(val_troop)
+
+code:
+  mov [eax+38],esi
+  mov eax,[esi+4C]
+  jmp return
+
+INJ_PROD_TROOP:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_PROD_TROOP)
+
+[DISABLE]
+
+INJ_PROD_TROOP:
+  db 89 70 38 8B 46 4C
+
+unregistersymbol(INJ_PROD_TROOP)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Stronghold.exe+BB520
+
+Stronghold.exe+BB4F7: 0F BF 46 32        - movsx eax,word ptr [esi+32]
+Stronghold.exe+BB4FB: 0B C1              - or eax,ecx
+Stronghold.exe+BB4FD: A3 D8 AC A5 00     - mov [Stronghold.exe+65ACD8],eax
+Stronghold.exe+BB502: 8B 56 48           - mov edx,[esi+48]
+Stronghold.exe+BB505: B9 AC 17 AB 00     - mov ecx,Stronghold.exe+6B17AC
+Stronghold.exe+BB50A: 89 15 E0 AC A5 00  - mov [Stronghold.exe+65ACE0],edx
+Stronghold.exe+BB510: E8 BB 9A F9 FF     - call Stronghold.exe+54FD0
+Stronghold.exe+BB515: 85 C0              - test eax,eax
+Stronghold.exe+BB517: 0F 84 9B 05 00 00  - je Stronghold.exe+BBAB8
+Stronghold.exe+BB51D: 8B 46 4C           - mov eax,[esi+4C]
+// ---------- INJECTING HERE ----------
+Stronghold.exe+BB520: 89 70 38           - mov [eax+38],esi
+// ---------- DONE INJECTING  ----------
+Stronghold.exe+BB523: 8B 46 4C           - mov eax,[esi+4C]
+Stronghold.exe+BB526: 39 70 3C           - cmp [eax+3C],esi
+Stronghold.exe+BB529: 74 4B              - je Stronghold.exe+BB576
+Stronghold.exe+BB52B: 83 78 40 00        - cmp dword ptr [eax+40],00
+Stronghold.exe+BB52F: 75 45              - jne Stronghold.exe+BB576
+Stronghold.exe+BB531: 0F BF 4E 2E        - movsx ecx,word ptr [esi+2E]
+Stronghold.exe+BB535: 3B CB              - cmp ecx,ebx
+Stronghold.exe+BB537: 74 25              - je Stronghold.exe+BB55E
+Stronghold.exe+BB539: 83 C1 FE           - add ecx,-02
+Stronghold.exe+BB53C: 83 F9 05           - cmp ecx,05
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>41</ID>
+          <Description>"Type"</Description>
+          <DropDownList ReadOnly="1" DescriptionOnly="1" DisplayValueAsItem="1">0:None
+5918880:Archer
+5918720:Spearman
+5919040:Maceman
+5918960:Crossbowman
+5918800:Pikeman
+5919120:Swordsman
+5919200:Knight
+</DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>val_troop</Address>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>45</ID>
+      <Description>"Force Production"</Description>
+      <Options moHideChildren="1"/>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Stronghold.exe (paused)
+  Version: 
+  Date   : 2021-01-02
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_PROD,Stronghold.exe,0F BF 91 40 DD B0 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+label(pt_prod_type)
+
+newmem:
+  mov [pt_prod_type],ecx
+  jmp code
+
+pt_prod_type:
+  dq 0
+registersymbol(pt_prod_type)
+
+code:
+  movsx edx,word ptr [ecx+Stronghold.exe+70DD40]
+  jmp return
+
+INJ_PROD:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJ_PROD)
+
+[DISABLE]
+
+INJ_PROD:
+  db 0F BF 91 40 DD B0 00
+
+unregistersymbol(pt_prod_type)
+unregistersymbol(INJ_PROD)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Stronghold.exe+3CBD2
+
+Stronghold.exe+3CB9E: E8 3D 20 00 00        - call Stronghold.exe+3EBE0
+Stronghold.exe+3CBA3: E9 A7 06 00 00        - jmp Stronghold.exe+3D24F
+Stronghold.exe+3CBA8: E8 83 B1 01 00        - call Stronghold.exe+57D30
+Stronghold.exe+3CBAD: E9 9D 06 00 00        - jmp Stronghold.exe+3D24F
+Stronghold.exe+3CBB2: E8 E9 9D 01 00        - call Stronghold.exe+569A0
+Stronghold.exe+3CBB7: E9 93 06 00 00        - jmp Stronghold.exe+3D24F
+Stronghold.exe+3CBBC: E8 2F 9E 01 00        - call Stronghold.exe+569F0
+Stronghold.exe+3CBC1: E9 89 06 00 00        - jmp Stronghold.exe+3D24F
+Stronghold.exe+3CBC6: 8B 0D 88 C8 BB 00     - mov ecx,[Stronghold.exe+7BC888]
+Stronghold.exe+3CBCC: 69 C9 C8 02 00 00     - imul ecx,ecx,000002C8
+// ---------- INJECTING HERE ----------
+Stronghold.exe+3CBD2: 0F BF 91 40 DD B0 00  - movsx edx,word ptr [ecx+Stronghold.exe+70DD40]
+// ---------- DONE INJECTING  ----------
+Stronghold.exe+3CBD9: 89 90 70 DA BD 00     - mov [eax+Stronghold.exe+7DDA70],edx
+Stronghold.exe+3CBDF: E9 6B 06 00 00        - jmp Stronghold.exe+3D24F
+Stronghold.exe+3CBE4: A1 88 C8 BB 00        - mov eax,[Stronghold.exe+7BC888]
+Stronghold.exe+3CBE9: 69 C0 C8 02 00 00     - imul eax,eax,000002C8
+Stronghold.exe+3CBEF: 0F BF 80 82 DB B0 00  - movsx eax,word ptr [eax+Stronghold.exe+70DB82]
+Stronghold.exe+3CBF6: 83 E8 24              - sub eax,24
+Stronghold.exe+3CBF9: 74 3A                 - je Stronghold.exe+3CC35
+Stronghold.exe+3CBFB: 2B C5                 - sub eax,ebp
+Stronghold.exe+3CBFD: 74 1D                 - je Stronghold.exe+3CC1C
+Stronghold.exe+3CBFF: 2B C5                 - sub eax,ebp
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>44</ID>
+          <Description>"Item"</Description>
+          <DropDownList ReadOnly="1" DescriptionOnly="1" DisplayValueAsItem="1">0:None
+17:Bow
+18:Crossbow
+19:Spear
+20:Halberd
+21:Mace
+22:Sword
+</DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_prod_type</Address>
+          <Offsets>
+            <Offset>Stronghold.exe+70DD40</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"Gold"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>Stronghold.exe+7DF6C4</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"Popularity"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>Stronghold.exe+7DF218</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry Color="20000000">
+      <Description>Rss Add</Description>
+      <AddressString>Stronghold.exe+171EA</AddressString>
+      <Before>
+        <Byte>24</Byte>
+        <Byte>28</Byte>
+        <Byte>00</Byte>
+        <Byte>74</Byte>
+        <Byte>63</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>02</Byte>
+      </Actual>
+      <After>
+        <Byte>0F</Byte>
+        <Byte>BF</Byte>
+        <Byte>81</Byte>
+        <Byte>DA</Byte>
+        <Byte>00</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Code :push 30</Description>
+      <AddressString>Stronghold.exe+100BC5</AddressString>
+      <Before>
+        <Byte>86</Byte>
+        <Byte>5E</Byte>
+        <Byte>D1</Byte>
+        <Byte>CF</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>6A</Byte>
+        <Byte>30</Byte>
+      </Actual>
+      <After>
+        <Byte>6A</Byte>
+        <Byte>04</Byte>
+        <Byte>50</Byte>
+        <Byte>B9</Byte>
+        <Byte>A8</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Code :push 30</Description>
+      <AddressString>Stronghold.exe+100BF1</AddressString>
+      <Before>
+        <Byte>5E</Byte>
+        <Byte>D1</Byte>
+        <Byte>CF</Byte>
+        <Byte>00</Byte>
+        <Byte>53</Byte>
+      </Before>
+      <Actual>
+        <Byte>6A</Byte>
+        <Byte>30</Byte>
+      </Actual>
+      <After>
+        <Byte>53</Byte>
+        <Byte>6A</Byte>
+        <Byte>04</Byte>
+        <Byte>51</Byte>
+        <Byte>52</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="20000000">
+      <Description>Code :mov esi,[ebx]</Description>
+      <AddressString>Stronghold.exe+1C8FB</AddressString>
+      <Before>
+        <Byte>04</Byte>
+        <Byte>3B</Byte>
+        <Byte>F5</Byte>
+        <Byte>75</Byte>
+        <Byte>17</Byte>
+      </Before>
+      <Actual>
+        <Byte>8B</Byte>
+        <Byte>33</Byte>
+      </Actual>
+      <After>
+        <Byte>85</Byte>
+        <Byte>F6</Byte>
+        <Byte>74</Byte>
+        <Byte>11</Byte>
+        <Byte>8B</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>

@@ -1,0 +1,1410 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable MugenJinFuuTableVersion="34">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"Pointers"</Description>
+      <Options moHideChildren="1"/>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+aobscanmodule(INJ_GOLD,StrongholdLegends.exe,D9 83 7C 0E 00 00 6A) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+label(pt_gold)
+
+newmem:
+  mov [pt_gold],ebx
+  jmp code
+
+pt_gold:
+  dq 0
+registersymbol(pt_gold)
+
+code:
+  fld dword ptr [ebx+00000E7C]
+  jmp return
+
+INJ_GOLD:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_GOLD)
+
+aobscanmodule(INJ_HONOR,StrongholdLegends.exe,8B 43 1C 6A 05) // should be unique
+alloc(newmem2,$1000)
+
+label(code2)
+label(return2)
+label(pt_honor)
+
+newmem2:
+  mov [pt_honor],ebx
+  jmp code2
+
+pt_honor:
+  dq 0
+registersymbol(pt_honor)
+
+code2:
+  mov eax,[ebx+1C]
+  push 05
+  jmp return2
+
+INJ_HONOR:
+  jmp newmem2
+return2:
+registersymbol(INJ_HONOR)
+
+aobscanmodule(INJ_POPULATION,StrongholdLegends.exe,8B 83 A4 0E 00 00) // should be unique
+alloc(newmem3,$1000)
+
+label(code3)
+label(return3)
+label(pt_population)
+
+newmem3:
+  mov [pt_population],ebx
+  jmp code3
+
+pt_population:
+  dq 0
+registersymbol(pt_population)
+
+code3:
+  mov eax,[ebx+00000EA4]
+  jmp return3
+
+INJ_POPULATION:
+  jmp newmem3
+  nop
+return3:
+registersymbol(INJ_POPULATION)
+
+[DISABLE]
+
+INJ_GOLD:
+  db D9 83 7C 0E 00 00
+
+unregistersymbol(pt_gold)
+unregistersymbol(INJ_GOLD)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: StrongholdLegends.exe+21C8AA
+
+StrongholdLegends.exe+21C891: 6A 05              - push 05
+StrongholdLegends.exe+21C893: 6A 03              - push 03
+StrongholdLegends.exe+21C895: 40                 - inc eax
+StrongholdLegends.exe+21C896: 6A FA              - push -06
+StrongholdLegends.exe+21C898: 50                 - push eax
+StrongholdLegends.exe+21C899: FF D7              - call edi
+StrongholdLegends.exe+21C89B: 83 C4 04           - add esp,04
+StrongholdLegends.exe+21C89E: 50                 - push eax
+StrongholdLegends.exe+21C89F: 8D 8E F4 31 00 00  - lea ecx,[esi+000031F4]
+StrongholdLegends.exe+21C8A5: E8 B6 E9 24 00     - call StrongholdLegends.exe+46B260
+// ---------- INJECTING HERE ----------
+StrongholdLegends.exe+21C8AA: D9 83 7C 0E 00 00  - fld dword ptr [ebx+00000E7C]
+// ---------- DONE INJECTING  ----------
+StrongholdLegends.exe+21C8B0: 6A 05              - push 05
+StrongholdLegends.exe+21C8B2: D9 9D 3C F5 FF FF  - fstp dword ptr [ebp-00000AC4]
+StrongholdLegends.exe+21C8B8: D9 85 3C F5 FF FF  - fld dword ptr [ebp-00000AC4]
+StrongholdLegends.exe+21C8BE: 6A 03              - push 03
+StrongholdLegends.exe+21C8C0: 6A FA              - push -06
+StrongholdLegends.exe+21C8C2: E8 C9 AD 25 00     - call StrongholdLegends.exe+477690
+StrongholdLegends.exe+21C8C7: 50                 - push eax
+StrongholdLegends.exe+21C8C8: FF D7              - call edi
+StrongholdLegends.exe+21C8CA: 83 C4 04           - add esp,04
+StrongholdLegends.exe+21C8CD: 50                 - push eax
+}
+INJ_HONOR:
+  db 8B 43 1C 6A 05
+
+unregistersymbol(pt_honor)
+unregistersymbol(INJ_HONOR)
+dealloc(newmem2)
+
+{
+// ORIGINAL CODE - INJECTION POINT: StrongholdLegends.exe+21C8D9
+
+StrongholdLegends.exe+21C8B8: D9 85 3C F5 FF FF  - fld dword ptr [ebp-00000AC4]
+StrongholdLegends.exe+21C8BE: 6A 03              - push 03
+StrongholdLegends.exe+21C8C0: 6A FA              - push -06
+StrongholdLegends.exe+21C8C2: E8 C9 AD 25 00     - call StrongholdLegends.exe+477690
+StrongholdLegends.exe+21C8C7: 50                 - push eax
+StrongholdLegends.exe+21C8C8: FF D7              - call edi
+StrongholdLegends.exe+21C8CA: 83 C4 04           - add esp,04
+StrongholdLegends.exe+21C8CD: 50                 - push eax
+StrongholdLegends.exe+21C8CE: 8D 8E 9C 41 00 00  - lea ecx,[esi+0000419C]
+StrongholdLegends.exe+21C8D4: E8 87 E9 24 00     - call StrongholdLegends.exe+46B260
+// ---------- INJECTING HERE ----------
+StrongholdLegends.exe+21C8D9: 8B 43 1C           - mov eax,[ebx+1C]
+// ---------- DONE INJECTING  ----------
+StrongholdLegends.exe+21C8DC: 6A 05              - push 05
+StrongholdLegends.exe+21C8DE: 6A 03              - push 03
+StrongholdLegends.exe+21C8E0: 6A FA              - push -06
+StrongholdLegends.exe+21C8E2: 50                 - push eax
+StrongholdLegends.exe+21C8E3: FF D7              - call edi
+StrongholdLegends.exe+21C8E5: 83 C4 04           - add esp,04
+StrongholdLegends.exe+21C8E8: 50                 - push eax
+StrongholdLegends.exe+21C8E9: 8D 8E 2C 37 00 00  - lea ecx,[esi+0000372C]
+StrongholdLegends.exe+21C8EF: E8 6C E9 24 00     - call StrongholdLegends.exe+46B260
+StrongholdLegends.exe+21C8F4: 8B 43 20           - mov eax,[ebx+20]
+}
+INJ_POPULATION:
+  db 8B 83 A4 0E 00 00
+
+unregistersymbol(pt_population)
+unregistersymbol(INJ_POPULATION)
+dealloc(newmem3)
+
+{
+// ORIGINAL CODE - INJECTION POINT: StrongholdLegends.exe+21C967
+
+StrongholdLegends.exe+21C942: 8B CB              - mov ecx,ebx
+StrongholdLegends.exe+21C944: 89 85 3C F5 FF FF  - mov [ebp-00000AC4],eax
+StrongholdLegends.exe+21C94A: E8 11 93 E0 FF     - call StrongholdLegends.exe+25C60
+StrongholdLegends.exe+21C94F: 03 85 3C F5 FF FF  - add eax,[ebp-00000AC4]
+StrongholdLegends.exe+21C955: 50                 - push eax
+StrongholdLegends.exe+21C956: FF D7              - call edi
+StrongholdLegends.exe+21C958: 83 C4 04           - add esp,04
+StrongholdLegends.exe+21C95B: 50                 - push eax
+StrongholdLegends.exe+21C95C: 8D 8E D4 46 00 00  - lea ecx,[esi+000046D4]
+StrongholdLegends.exe+21C962: E8 F9 E8 24 00     - call StrongholdLegends.exe+46B260
+// ---------- INJECTING HERE ----------
+StrongholdLegends.exe+21C967: 8B 83 A4 0E 00 00  - mov eax,[ebx+00000EA4]
+// ---------- DONE INJECTING  ----------
+StrongholdLegends.exe+21C96D: 8B 8B A8 0E 00 00  - mov ecx,[ebx+00000EA8]
+StrongholdLegends.exe+21C973: 50                 - push eax
+StrongholdLegends.exe+21C974: 51                 - push ecx
+StrongholdLegends.exe+21C975: 8D 8D F0 F5 FF FF  - lea ecx,[ebp-00000A10]
+StrongholdLegends.exe+21C97B: 68 F8 70 88 00     - push StrongholdLegends.exe+5F70F8
+StrongholdLegends.exe+21C980: 51                 - push ecx
+StrongholdLegends.exe+21C981: E8 0A 44 FF FF     - call StrongholdLegends.exe+210D90
+StrongholdLegends.exe+21C986: 83 C4 10           - add esp,10
+StrongholdLegends.exe+21C989: 33 D2              - xor edx,edx
+StrongholdLegends.exe+21C98B: 8D 85 F0 F5 FF FF  - lea eax,[ebp-00000A10]
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>4</ID>
+          <Description>"Gold"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>Float</VariableType>
+          <Address>pt_gold</Address>
+          <Offsets>
+            <Offset>E7C</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>6</ID>
+          <Description>"Honor"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_honor</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>12</ID>
+          <Description>"Max Population"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_population</Address>
+          <Offsets>
+            <Offset>ea4</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>17</ID>
+      <Description>"Resources (click stockpile)"</Description>
+      <Options moHideChildren="1"/>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : StrongholdLegends.exe
+  Version: 
+  Date   : 2021-01-03
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_FOOD,StrongholdLegends.exe,8B 84 81 C8 0D 00 00 5D) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+label(Lwptr)
+label(Lret)
+label(pt_food)
+label(pt_food2)
+label(pt_food3)
+label(pt_food4)
+label(pt_wood)
+label(pt_stone)
+label(pt_iron)
+label(Lwfood)
+label(Lwfood2)
+label(Lwfood3)
+label(Lwfood4)
+label(Lwwood)
+label(Lwstone)
+label(Lwiron)
+
+newmem:
+  push ebx
+  push edx
+  cmp eax,1
+  je Lwwood
+  cmp eax,2
+  je Lwstone
+  cmp eax,3
+  je Lwiron
+  cmp eax,19
+  je Lwfood
+  cmp eax,18
+  je Lwfood2
+  cmp eax,17
+  je Lwfood3
+  cmp eax,16
+  je Lwfood4
+  jmp Lret
+
+// ebx: address to write
+Lwptr:
+  lea edx,[ecx+eax*4+00000DC8]
+  mov [ebx],edx
+  jmp Lret
+
+Lwfood:
+  mov ebx,pt_food
+  jmp Lwptr
+Lwfood2:
+  mov ebx,pt_food2
+  jmp Lwptr
+Lwfood3:
+  mov ebx,pt_food3
+  jmp Lwptr
+Lwfood4:
+  mov ebx,pt_food4
+  jmp Lwptr
+Lwwood:
+  mov ebx,pt_wood
+  jmp Lwptr
+Lwstone:
+  mov ebx,pt_stone
+  jmp Lwptr
+Lwiron:
+  mov ebx,pt_iron
+  jmp Lwptr
+
+pt_food:
+  dq 0
+registersymbol(pt_food)
+pt_food2:
+  dq 0
+registersymbol(pt_food2)
+pt_food3:
+  dq 0
+registersymbol(pt_food3)
+pt_food4:
+  dq 0
+registersymbol(pt_food4)
+pt_wood:
+  dq 0
+registersymbol(pt_wood)
+pt_stone:
+  dq 0
+registersymbol(pt_stone)
+pt_iron:
+  dq 0
+registersymbol(pt_iron)
+
+Lret:
+  pop edx
+  pop ebx
+code:
+  mov eax,[ecx+eax*4+00000DC8]
+  jmp return
+
+INJ_FOOD:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJ_FOOD)
+
+[DISABLE]
+
+INJ_FOOD:
+  db 8B 84 81 C8 0D 00 00
+
+unregistersymbol(pt_food)
+unregistersymbol(pt_food2)
+unregistersymbol(pt_food3)
+unregistersymbol(pt_food4)
+unregistersymbol(pt_wood)
+unregistersymbol(pt_stone)
+unregistersymbol(pt_iron)
+unregistersymbol(INJ_FOOD)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: StrongholdLegends.exe+25C6B
+
+StrongholdLegends.exe+25C5B: CC                    - int 3 
+StrongholdLegends.exe+25C5C: CC                    - int 3 
+StrongholdLegends.exe+25C5D: CC                    - int 3 
+StrongholdLegends.exe+25C5E: CC                    - int 3 
+StrongholdLegends.exe+25C5F: CC                    - int 3 
+StrongholdLegends.exe+25C60: 55                    - push ebp
+StrongholdLegends.exe+25C61: 8B EC                 - mov ebp,esp
+StrongholdLegends.exe+25C63: 8B 45 08              - mov eax,[ebp+08]
+StrongholdLegends.exe+25C66: 83 F8 2D              - cmp eax,2D
+StrongholdLegends.exe+25C69: 7D 0B                 - jnl StrongholdLegends.exe+25C76
+// ---------- INJECTING HERE ----------
+StrongholdLegends.exe+25C6B: 8B 84 81 C8 0D 00 00  - mov eax,[ecx+eax*4+00000DC8]
+// ---------- DONE INJECTING  ----------
+StrongholdLegends.exe+25C72: 5D                    - pop ebp
+StrongholdLegends.exe+25C73: C2 04 00              - ret 0004
+StrongholdLegends.exe+25C76: 33 C0                 - xor eax,eax
+StrongholdLegends.exe+25C78: 5D                    - pop ebp
+StrongholdLegends.exe+25C79: C2 04 00              - ret 0004
+StrongholdLegends.exe+25C7C: CC                    - int 3 
+StrongholdLegends.exe+25C7D: CC                    - int 3 
+StrongholdLegends.exe+25C7E: CC                    - int 3 
+StrongholdLegends.exe+25C7F: CC                    - int 3 
+StrongholdLegends.exe+25C80: 55                    - push ebp
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>39</ID>
+          <Description>"Wheat"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_food</Address>
+          <Offsets>
+            <Offset>-4*15</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>38</ID>
+          <Description>"Flour"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_food</Address>
+          <Offsets>
+            <Offset>-4*14</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>37</ID>
+          <Description>"Hop"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_food</Address>
+          <Offsets>
+            <Offset>-4*13</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>36</ID>
+          <Description>"Ale"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_food</Address>
+          <Offsets>
+            <Offset>-4*12</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>34</ID>
+          <Description>"Oil"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_food</Address>
+          <Offsets>
+            <Offset>-4*10</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>33</ID>
+          <Description>"Candle"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_food</Address>
+          <Offsets>
+            <Offset>-4*F</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>42</ID>
+          <Description>"Bow"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_food</Address>
+          <Offsets>
+            <Offset>14</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>49</ID>
+          <Description>"Crossbow"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_food</Address>
+          <Offsets>
+            <Offset>18</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>48</ID>
+          <Description>"Sword"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_food</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>47</ID>
+          <Description>"Mace"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_food</Address>
+          <Offsets>
+            <Offset>20</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>52</ID>
+          <Description>"Pike"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_food</Address>
+          <Offsets>
+            <Offset>24</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>51</ID>
+          <Description>"Spear"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_food</Address>
+          <Offsets>
+            <Offset>28</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>54</ID>
+          <Description>"Plate Armor"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_food</Address>
+          <Offsets>
+            <Offset>2C</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>53</ID>
+          <Description>"Leather Spear"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_food</Address>
+          <Offsets>
+            <Offset>30</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>31</ID>
+          <Description>"Wood"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_food</Address>
+          <Offsets>
+            <Offset>-4*18</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>30</ID>
+          <Description>"Stone"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_food</Address>
+          <Offsets>
+            <Offset>-4*17</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>29</ID>
+          <Description>"Iron"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_food</Address>
+          <Offsets>
+            <Offset>-4*16</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>18</ID>
+          <Description>"Meat"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_food</Address>
+          <Offsets>
+            <Offset>0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>21</ID>
+          <Description>"Cheese"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_food2</Address>
+          <Offsets>
+            <Offset>0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>19</ID>
+          <Description>"Apple"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_food4</Address>
+          <Offsets>
+            <Offset>0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>20</ID>
+          <Description>"Bread"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_food3</Address>
+          <Offsets>
+            <Offset>0</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>59</ID>
+      <Description>"Unit HP"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : StrongholdLegends.exe
+  Version: 
+  Date   : 2021-01-04
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_HP,StrongholdLegends.exe,D9 47 4C DC 0D 70 46 ?? 01) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+Label(pt_unithp)
+label(pt_horsehp)
+label(Lhorse)
+label(Lret)
+
+newmem:
+  push ebx
+  push ecx
+  lea ecx,[StrongholdLegends.exe+5DC4A0] // Stronghold2::Horse
+  mov ebx,edi
+  add ebx,60
+  cmp [ebx],ecx
+  je Lhorse
+  sub ebx,14
+  mov [pt_unithp],ebx
+  jmp Lret
+
+Lhorse:
+  sub ebx,14
+  mov [pt_horsehp],ebx
+Lret:
+  pop ecx
+  pop ebx
+  jmp code
+
+pt_unithp:
+  dq 0
+registersymbol(pt_unithp)
+
+pt_horsehp:
+  dq 0
+registersymbol(pt_horsehp)
+
+code:
+  fld dword ptr [edi+4C]
+  fmul qword ptr [StrongholdLegends.exe+5D4670]
+  jmp return
+
+INJ_HP:
+  jmp newmem
+  nop 4
+return:
+registersymbol(INJ_HP)
+
+[DISABLE]
+
+INJ_HP:
+  db D9 47 4C DC 0D 70 46 56 01
+
+unregistersymbol(INJ_HP)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: StrongholdLegends.exe+FA224
+
+StrongholdLegends.exe+FA1FF: E8 8C D4 37 00        - call StrongholdLegends.exe+477690
+StrongholdLegends.exe+FA204: D9 EE                 - fldz 
+StrongholdLegends.exe+FA206: D8 57 48              - fcom dword ptr [edi+48]
+StrongholdLegends.exe+FA209: 8B F0                 - mov esi,eax
+StrongholdLegends.exe+FA20B: 03 B3 C4 01 00 00     - add esi,[ebx+000001C4]
+StrongholdLegends.exe+FA211: BB 00 DC 00 FF        - mov ebx,FF00DC00
+StrongholdLegends.exe+FA216: C7 45 FC 14 00 00 00  - mov [ebp-04],00000014
+StrongholdLegends.exe+FA21D: DF E0                 - fnstsw ax
+StrongholdLegends.exe+FA21F: F6 C4 05              - test ah,05
+StrongholdLegends.exe+FA222: 7A 5D                 - jp StrongholdLegends.exe+FA281
+// ---------- INJECTING HERE ----------
+StrongholdLegends.exe+FA224: D9 47 4C              - fld dword ptr [edi+4C]
+// ---------- DONE INJECTING  ----------
+StrongholdLegends.exe+FA227: DC 0D 70 46 56 01     - fmul qword ptr [StrongholdLegends.exe+5D4670]
+StrongholdLegends.exe+FA22D: D9 7D FE              - fnstcw [ebp-02]
+StrongholdLegends.exe+FA230: D8 77 48              - fdiv dword ptr [edi+48]
+StrongholdLegends.exe+FA233: 0F B7 45 FE           - movzx eax,word ptr [ebp-02]
+StrongholdLegends.exe+FA237: 0D 00 0C 00 00        - or eax,00000C00
+StrongholdLegends.exe+FA23C: 89 45 F4              - mov [ebp-0C],eax
+StrongholdLegends.exe+FA23F: D9 6D F4              - fldcw [ebp-0C]
+StrongholdLegends.exe+FA242: DF 7D F0              - fistp qword ptr [ebp-10]
+StrongholdLegends.exe+FA245: 8B 45 F0              - mov eax,[ebp-10]
+StrongholdLegends.exe+FA248: D9 6D FE              - fldcw [ebp-02]
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>60</ID>
+          <Description>"Unit"</Description>
+          <LastState Value="3000" RealAddress="400317AC"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>Float</VariableType>
+          <Address>pt_unithp</Address>
+          <Offsets>
+            <Offset>0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>61</ID>
+          <Description>"Mount"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>Float</VariableType>
+          <Address>pt_horsehp</Address>
+          <Offsets>
+            <Offset>0</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>9</ID>
+      <Description>"No Resources Cost"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : StrongholdLegends.exe
+  Version: 
+  Date   : 2021-01-03
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_NFOODCOST,StrongholdLegends.exe,89 84 91 C8 0D 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  cmp eax,[ecx+edx*4+00000DC8]
+  jb return
+  jmp code
+
+code:
+  mov [ecx+edx*4+00000DC8],eax
+  jmp return
+
+INJ_NFOODCOST:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJ_NFOODCOST)
+
+[DISABLE]
+
+INJ_NFOODCOST:
+  db 89 84 91 C8 0D 00 00
+
+unregistersymbol(INJ_NFOODCOST)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: StrongholdLegends.exe+25C3C
+
+StrongholdLegends.exe+25C21: 8B EC                 - mov ebp,esp
+StrongholdLegends.exe+25C23: 8B 55 08              - mov edx,[ebp+08]
+StrongholdLegends.exe+25C26: 56                    - push esi
+StrongholdLegends.exe+25C27: 83 FA 2D              - cmp edx,2D
+StrongholdLegends.exe+25C2A: 7D 1E                 - jnl StrongholdLegends.exe+25C4A
+StrongholdLegends.exe+25C2C: 8B 84 91 C8 0D 00 00  - mov eax,[ecx+edx*4+00000DC8]
+StrongholdLegends.exe+25C33: 8B 75 0C              - mov esi,[ebp+0C]
+StrongholdLegends.exe+25C36: 3B C6                 - cmp eax,esi
+StrongholdLegends.exe+25C38: 72 10                 - jb StrongholdLegends.exe+25C4A
+StrongholdLegends.exe+25C3A: 2B C6                 - sub eax,esi
+// ---------- INJECTING HERE ----------
+StrongholdLegends.exe+25C3C: 89 84 91 C8 0D 00 00  - mov [ecx+edx*4+00000DC8],eax
+// ---------- DONE INJECTING  ----------
+StrongholdLegends.exe+25C43: B0 01                 - mov al,01
+StrongholdLegends.exe+25C45: 5E                    - pop esi
+StrongholdLegends.exe+25C46: 5D                    - pop ebp
+StrongholdLegends.exe+25C47: C2 08 00              - ret 0008
+StrongholdLegends.exe+25C4A: 32 C0                 - xor al,al
+StrongholdLegends.exe+25C4C: 5E                    - pop esi
+StrongholdLegends.exe+25C4D: 5D                    - pop ebp
+StrongholdLegends.exe+25C4E: C2 08 00              - ret 0008
+StrongholdLegends.exe+25C51: CC                    - int 3 
+StrongholdLegends.exe+25C52: CC                    - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>23</ID>
+      <Description>"Instant Skill CD"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : StrongholdLegends.exe
+  Version: 
+  Date   : 2021-01-04
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+{ Game   : StrongholdLegends.exe
+  Version: 
+  Date   : 2021-01-03
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_INS_CD,StrongholdLegends.exe,89 86 00 03 00 00 8B 46) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  xor eax,eax
+code:
+  mov [esi+00000300],eax
+  jmp return
+
+INJ_INS_CD:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_INS_CD)
+
+aobscanmodule(INJ_SKILL_CD2,StrongholdLegends.exe,8B 81 00 03 00 00 C3) // should be unique
+alloc(newmem2,$1000)
+
+label(code2)
+label(return2)
+
+newmem2:
+  mov [ecx+00000300],0
+code2:
+  mov eax,[ecx+00000300]
+  jmp return2
+
+INJ_SKILL_CD2:
+  jmp newmem2
+  nop
+return2:
+registersymbol(INJ_SKILL_CD2)
+
+[DISABLE]
+
+INJ_INS_CD:
+  db 89 86 00 03 00 00
+
+unregistersymbol(INJ_INS_CD)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "StrongholdLegends.exe"+153893
+
+"StrongholdLegends.exe"+153877: 56                    -  push esi
+"StrongholdLegends.exe"+153878: 57                    -  push edi
+"StrongholdLegends.exe"+153879: 8B F1                 -  mov esi,ecx
+"StrongholdLegends.exe"+15387B: E8 F0 A6 FC FF        -  call StrongholdLegends.exe+11DF70
+"StrongholdLegends.exe"+153880: 84 C0                 -  test al,al
+"StrongholdLegends.exe"+153882: 0F 84 82 04 00 00     -  je StrongholdLegends.exe+153D0A
+"StrongholdLegends.exe"+153888: 8B 86 00 03 00 00     -  mov eax,[esi+00000300]
+"StrongholdLegends.exe"+15388E: 85 C0                 -  test eax,eax
+"StrongholdLegends.exe"+153890: 74 07                 -  je StrongholdLegends.exe+153899
+"StrongholdLegends.exe"+153892: 48                    -  dec eax
+// ---------- INJECTING HERE ----------
+"StrongholdLegends.exe"+153893: 89 86 00 03 00 00     -  mov [esi+00000300],eax
+// ---------- DONE INJECTING  ----------
+"StrongholdLegends.exe"+153899: 8B 46 58              -  mov eax,[esi+58]
+"StrongholdLegends.exe"+15389C: 83 F8 20              -  cmp eax,20
+"StrongholdLegends.exe"+15389F: 73 09                 -  jae StrongholdLegends.exe+1538AA
+"StrongholdLegends.exe"+1538A1: 8B 04 85 D8 87 F8 00  -  mov eax,[eax*4+StrongholdLegends.exe+CF87D8]
+"StrongholdLegends.exe"+1538A8: EB 02                 -  jmp StrongholdLegends.exe+1538AC
+"StrongholdLegends.exe"+1538AA: 33 C0                 -  xor eax,eax
+"StrongholdLegends.exe"+1538AC: 8B 48 0C              -  mov ecx,[eax+0C]
+"StrongholdLegends.exe"+1538AF: 3B 48 10              -  cmp ecx,[eax+10]
+"StrongholdLegends.exe"+1538B2: 74 13                 -  je StrongholdLegends.exe+1538C7
+"StrongholdLegends.exe"+1538B4: 8B 40 10              -  mov eax,[eax+10]
+}
+INJ_SKILL_CD2:
+  db 8B 81 00 03 00 00
+
+unregistersymbol(INJ_SKILL_CD2)
+dealloc(newmem2)
+
+{
+// ORIGINAL CODE - INJECTION POINT: StrongholdLegends.exe+FC300
+
+StrongholdLegends.exe+FC2ED: CC                 - int 3 
+StrongholdLegends.exe+FC2EE: CC                 - int 3 
+StrongholdLegends.exe+FC2EF: CC                 - int 3 
+StrongholdLegends.exe+FC2F0: 55                 - push ebp
+StrongholdLegends.exe+FC2F1: 8B EC              - mov ebp,esp
+StrongholdLegends.exe+FC2F3: B9 C8 87 C8 01     - mov ecx,StrongholdLegends.exe+CF87C8
+StrongholdLegends.exe+FC2F8: 5D                 - pop ebp
+StrongholdLegends.exe+FC2F9: E9 32 8F 30 00     - jmp StrongholdLegends.exe+405230
+StrongholdLegends.exe+FC2FE: CC                 - int 3 
+StrongholdLegends.exe+FC2FF: CC                 - int 3 
+// ---------- INJECTING HERE ----------
+StrongholdLegends.exe+FC300: 8B 81 00 03 00 00  - mov eax,[ecx+00000300]
+// ---------- DONE INJECTING  ----------
+StrongholdLegends.exe+FC306: C3                 - ret 
+StrongholdLegends.exe+FC307: CC                 - int 3 
+StrongholdLegends.exe+FC308: CC                 - int 3 
+StrongholdLegends.exe+FC309: CC                 - int 3 
+StrongholdLegends.exe+FC30A: CC                 - int 3 
+StrongholdLegends.exe+FC30B: CC                 - int 3 
+StrongholdLegends.exe+FC30C: CC                 - int 3 
+StrongholdLegends.exe+FC30D: CC                 - int 3 
+StrongholdLegends.exe+FC30E: CC                 - int 3 
+StrongholdLegends.exe+FC30F: CC                 - int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>26</ID>
+      <Description>"Instant Dragon Hatch"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : StrongholdLegends.exe
+  Version: 
+  Date   : 2021-01-04
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_INS_DRAGON,StrongholdLegends.exe,DB 80 D8 17 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  fild dword ptr [eax+000017D8]
+  mov [eax+000017D8],2580
+  jmp return
+code:
+  fild dword ptr [eax+000017D8]
+  jmp return
+
+INJ_INS_DRAGON:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_INS_DRAGON)
+
+[DISABLE]
+
+INJ_INS_DRAGON:
+  db DB 80 D8 17 00 00
+
+unregistersymbol(INJ_INS_DRAGON)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "StrongholdLegends.exe"+29E50F
+
+"StrongholdLegends.exe"+29E4DC: 74 0F                          -  je StrongholdLegends.exe+29E4ED
+"StrongholdLegends.exe"+29E4DE: 48                             -  dec eax
+"StrongholdLegends.exe"+29E4DF: 75 22                          -  jne StrongholdLegends.exe+29E503
+"StrongholdLegends.exe"+29E4E1: C7 85 DC F3 FF FF 25 00 00 00  -  mov [ebp-00000C24],00000025
+"StrongholdLegends.exe"+29E4EB: EB 16                          -  jmp StrongholdLegends.exe+29E503
+"StrongholdLegends.exe"+29E4ED: C7 85 DC F3 FF FF 24 00 00 00  -  mov [ebp-00000C24],00000024
+"StrongholdLegends.exe"+29E4F7: EB 0A                          -  jmp StrongholdLegends.exe+29E503
+"StrongholdLegends.exe"+29E4F9: C7 85 DC F3 FF FF 26 00 00 00  -  mov [ebp-00000C24],00000026
+"StrongholdLegends.exe"+29E503: 8B 85 CC F3 FF FF              -  mov eax,[ebp-00000C34]
+"StrongholdLegends.exe"+29E509: 8B 88 D8 17 00 00              -  mov ecx,[eax+000017D8]
+// ---------- INJECTING HERE ----------
+"StrongholdLegends.exe"+29E50F: DB 80 D8 17 00 00              -  fild dword ptr [eax+000017D8]
+// ---------- DONE INJECTING  ----------
+"StrongholdLegends.exe"+29E515: 85 C9                          -  test ecx,ecx
+"StrongholdLegends.exe"+29E517: 79 06                          -  jns StrongholdLegends.exe+29E51F
+"StrongholdLegends.exe"+29E519: D8 05 00 B7 7D 00              -  fadd dword ptr [StrongholdLegends.exe+54B700]
+"StrongholdLegends.exe"+29E51F: DC 0D 18 04 8A 00              -  fmul qword ptr [StrongholdLegends.exe+610418]
+"StrongholdLegends.exe"+29E525: E8 66 91 1D 00                 -  call StrongholdLegends.exe+477690
+"StrongholdLegends.exe"+29E52A: 8B 8D DC F3 FF FF              -  mov ecx,[ebp-00000C24]
+"StrongholdLegends.exe"+29E530: 8B 95 B8 F3 FF FF              -  mov edx,[ebp-00000C48]
+"StrongholdLegends.exe"+29E536: 89 85 94 F3 FF FF              -  mov [ebp-00000C6C],eax
+"StrongholdLegends.exe"+29E53C: 89 8D A4 F3 FF FF              -  mov [ebp-00000C5C],ecx
+"StrongholdLegends.exe"+29E542: 8B 8D C4 F3 FF FF              -  mov ecx,[ebp-00000C3C]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>28</ID>
+      <Description>"Permanent Dragon"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : StrongholdLegends.exe
+  Version: 
+  Date   : 2021-01-04
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_PERM_DRAGON,StrongholdLegends.exe,8B 81 48 05 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov [ecx+548],0
+code:
+  mov eax,[ecx+00000548]
+  jmp return
+
+INJ_PERM_DRAGON:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_PERM_DRAGON)
+
+[DISABLE]
+
+INJ_PERM_DRAGON:
+  db 8B 81 48 05 00 00
+
+unregistersymbol(INJ_PERM_DRAGON)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "StrongholdLegends.exe"+194130
+
+"StrongholdLegends.exe"+194111: D9 96 40 05 00 00     -  fst dword ptr [esi+00000540]
+"StrongholdLegends.exe"+194117: D9 9E 44 05 00 00     -  fstp dword ptr [esi+00000544]
+"StrongholdLegends.exe"+19411D: 89 86 48 05 00 00     -  mov [esi+00000548],eax
+"StrongholdLegends.exe"+194123: 88 86 50 05 00 00     -  mov [esi+00000550],al
+"StrongholdLegends.exe"+194129: 8B C6                 -  mov eax,esi
+"StrongholdLegends.exe"+19412B: 5E                    -  pop esi
+"StrongholdLegends.exe"+19412C: C3                    -  ret 
+"StrongholdLegends.exe"+19412D: CC                    -  int 3 
+"StrongholdLegends.exe"+19412E: CC                    -  int 3 
+"StrongholdLegends.exe"+19412F: CC                    -  int 3 
+// ---------- INJECTING HERE ----------
+"StrongholdLegends.exe"+194130: 8B 81 48 05 00 00     -  mov eax,[ecx+00000548]
+// ---------- DONE INJECTING  ----------
+"StrongholdLegends.exe"+194136: C3                    -  ret 
+"StrongholdLegends.exe"+194137: CC                    -  int 3 
+"StrongholdLegends.exe"+194138: CC                    -  int 3 
+"StrongholdLegends.exe"+194139: CC                    -  int 3 
+"StrongholdLegends.exe"+19413A: CC                    -  int 3 
+"StrongholdLegends.exe"+19413B: CC                    -  int 3 
+"StrongholdLegends.exe"+19413C: CC                    -  int 3 
+"StrongholdLegends.exe"+19413D: CC                    -  int 3 
+"StrongholdLegends.exe"+19413E: CC                    -  int 3 
+"StrongholdLegends.exe"+19413F: CC                    -  int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>63</ID>
+      <Description>"Convert Mount Damage to Rider"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : StrongholdLegends.exe
+  Version: 
+  Date   : 2021-01-04
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_SYNC_MOUNT_HP,StrongholdLegends.exe,D9 41 4C D8 65 08) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+label(Lhorse)
+label(Lsync_mount)
+label(Lret)
+label(Lret2)
+label(pt_rider)
+
+newmem:
+  push eax
+  push ebx
+  mov ebx,[ecx]
+  lea eax,[StrongholdLegends.exe+5DC4AC] // Stronghold2::Horse
+  cmp eax,ebx
+  je Lhorse
+  jmp Lret
+
+Lhorse:
+  mov ebx,[pt_rider]
+  test ebx,ebx
+  jnz Lsync_mount
+  mov ebx,[ebp+14]
+  cmp eax,ebx
+  je Lret
+  mov [pt_rider],ebx
+  jmp Lret
+
+Lsync_mount:
+  movd eax,xmm1
+  push eax
+  movd eax,xmm2
+  push eax
+
+  mov eax,[pt_rider]
+  movd xmm1,[eax+4C] // rider hp
+  movd xmm2,[ebp+08] // damage value
+  subss xmm1,xmm2
+  movd ebx,xmm1
+  mov [eax+4C],ebx // write to rider hp instead of mount
+
+  xor eax,eax  // clear mount damage
+  mov [ebp+8],eax
+  mov [pt_rider],eax
+
+Lret2:
+  pop eax
+  movd xmm2,eax
+  pop eax
+  movd xmm1,eax
+Lret:
+  pop ebx
+  pop eax
+code:
+  fld dword ptr [ecx+4C]
+  fsub dword ptr [ebp+08]
+  jmp return
+
+pt_rider:
+  dq 0
+
+INJ_SYNC_MOUNT_HP:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_SYNC_MOUNT_HP)
+
+[DISABLE]
+
+INJ_SYNC_MOUNT_HP:
+  db D9 41 4C D8 65 08
+
+unregistersymbol(INJ_SYNC_MOUNT_HP)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: StrongholdLegends.exe+4255D7
+
+StrongholdLegends.exe+4255C0: F6 C4 44  - test ah,44
+StrongholdLegends.exe+4255C3: 7B 39     - jnp StrongholdLegends.exe+4255FE
+StrongholdLegends.exe+4255C5: D8 51 4C  - fcom dword ptr [ecx+4C]
+StrongholdLegends.exe+4255C8: DF E0     - fnstsw ax
+StrongholdLegends.exe+4255CA: F6 C4 01  - test ah,01
+StrongholdLegends.exe+4255CD: 75 08     - jne StrongholdLegends.exe+4255D7
+StrongholdLegends.exe+4255CF: B0 01     - mov al,01
+StrongholdLegends.exe+4255D1: DD D8     - fstp st(0)
+StrongholdLegends.exe+4255D3: 5D        - pop ebp
+StrongholdLegends.exe+4255D4: C2 08 00  - ret 0008
+// ---------- INJECTING HERE ----------
+StrongholdLegends.exe+4255D7: D9 41 4C  - fld dword ptr [ecx+4C]
+// ---------- DONE INJECTING  ----------
+StrongholdLegends.exe+4255DA: D8 65 08  - fsub dword ptr [ebp+08]
+StrongholdLegends.exe+4255DD: D9 5D 08  - fstp dword ptr [ebp+08]
+StrongholdLegends.exe+4255E0: D9 45 08  - fld dword ptr [ebp+08]
+StrongholdLegends.exe+4255E3: D9 51 4C  - fst dword ptr [ecx+4C]
+StrongholdLegends.exe+4255E6: D8 D9     - fcomp st(0),st(1)
+StrongholdLegends.exe+4255E8: DF E0     - fnstsw ax
+StrongholdLegends.exe+4255EA: F6 C4 41  - test ah,41
+StrongholdLegends.exe+4255ED: 7A 0F     - jp StrongholdLegends.exe+4255FE
+StrongholdLegends.exe+4255EF: 8B 45 0C  - mov eax,[ebp+0C]
+StrongholdLegends.exe+4255F2: D9 59 4C  - fstp dword ptr [ecx+4C]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>79</ID>
+      <Description>"Rapid Population Growth"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : StrongholdLegends.exe
+  Version: 
+  Date   : 2021-01-10
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_RAPID_POPGROW,StrongholdLegends.exe,01 BE AC 0E 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  cmp [esi+EB0],1
+  jne code
+  mov edi,FA0
+
+code:
+  add [esi+00000EAC],edi
+  jmp return
+
+INJ_RAPID_POPGROW:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_RAPID_POPGROW)
+
+[DISABLE]
+
+INJ_RAPID_POPGROW:
+  db 01 BE AC 0E 00 00
+
+unregistersymbol(INJ_RAPID_POPGROW)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: StrongholdLegends.exe+2EF24
+
+StrongholdLegends.exe+2EEFF: 89 8E A8 0E 00 00              - mov [esi+00000EA8],ecx
+StrongholdLegends.exe+2EF05: 85 FF                          - test edi,edi
+StrongholdLegends.exe+2EF07: 79 1B                          - jns StrongholdLegends.exe+2EF24
+StrongholdLegends.exe+2EF09: 8B 96 E0 06 00 00              - mov edx,[esi+000006E0]
+StrongholdLegends.exe+2EF0F: 2B 96 DC 06 00 00              - sub edx,[esi+000006DC]
+StrongholdLegends.exe+2EF15: C1 FA 03                       - sar edx,03
+StrongholdLegends.exe+2EF18: 03 D0                          - add edx,eax
+StrongholdLegends.exe+2EF1A: 83 FA 04                       - cmp edx,04
+StrongholdLegends.exe+2EF1D: 73 05                          - jae StrongholdLegends.exe+2EF24
+StrongholdLegends.exe+2EF1F: BF 05 00 00 00                 - mov edi,00000005
+// ---------- INJECTING HERE ----------
+StrongholdLegends.exe+2EF24: 01 BE AC 0E 00 00              - add [esi+00000EAC],edi
+// ---------- DONE INJECTING  ----------
+StrongholdLegends.exe+2EF2A: 8B 86 AC 0E 00 00              - mov eax,[esi+00000EAC]
+StrongholdLegends.exe+2EF30: 3D A0 0F 00 00                 - cmp eax,00000FA0
+StrongholdLegends.exe+2EF35: 7C 0C                          - jl StrongholdLegends.exe+2EF43
+StrongholdLegends.exe+2EF37: C7 86 AC 0E 00 00 A0 0F 00 00  - mov [esi+00000EAC],00000FA0
+StrongholdLegends.exe+2EF41: EB 0E                          - jmp StrongholdLegends.exe+2EF51
+StrongholdLegends.exe+2EF43: 85 C0                          - test eax,eax
+StrongholdLegends.exe+2EF45: 79 0A                          - jns StrongholdLegends.exe+2EF51
+StrongholdLegends.exe+2EF47: C7 86 AC 0E 00 00 00 00 00 00  - mov [esi+00000EAC],00000000
+StrongholdLegends.exe+2EF51: 85 FF                          - test edi,edi
+StrongholdLegends.exe+2EF53: 75 0A                          - jne StrongholdLegends.exe+2EF5F
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>64</ID>
+      <Description>"Selected Unit Pointer"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : StrongholdLegends.exe
+  Version: 
+  Date   : 2021-01-10
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_SEL_UNIT_PT,StrongholdLegends.exe,89 0E 85 C9 75 0F) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+label(pt_selected_unit)
+
+newmem:
+  mov [pt_selected_unit],ecx
+  jmp code
+
+pt_selected_unit:
+  dq 0
+registersymbol(pt_selected_unit)
+
+code:
+  mov [esi],ecx
+  test ecx,ecx
+  jne StrongholdLegends.exe+108EDD
+  jmp return
+
+INJ_SEL_UNIT_PT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_SEL_UNIT_PT)
+
+[DISABLE]
+
+INJ_SEL_UNIT_PT:
+  db 89 0E 85 C9 75 0F
+
+unregistersymbol(pt_selected_unit)
+unregistersymbol(INJ_SEL_UNIT_PT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: StrongholdLegends.exe+108EC8
+
+StrongholdLegends.exe+108EA7: 83 7E 04 00           - cmp dword ptr [esi+04],00
+StrongholdLegends.exe+108EAB: 74 21                 - je StrongholdLegends.exe+108ECE
+StrongholdLegends.exe+108EAD: 0F B7 46 04           - movzx eax,word ptr [esi+04]
+StrongholdLegends.exe+108EB1: 0F B7 4E 06           - movzx ecx,word ptr [esi+06]
+StrongholdLegends.exe+108EB5: 50                    - push eax
+StrongholdLegends.exe+108EB6: 51                    - push ecx
+StrongholdLegends.exe+108EB7: 68 30 81 4E 03        - push StrongholdLegends.exe+2958130
+StrongholdLegends.exe+108EBC: B9 28 83 88 01        - mov ecx,StrongholdLegends.exe+CF8328
+StrongholdLegends.exe+108EC1: E8 0A AA 2F 00        - call StrongholdLegends.exe+4038D0
+StrongholdLegends.exe+108EC6: 8B C8                 - mov ecx,eax
+// ---------- INJECTING HERE ----------
+StrongholdLegends.exe+108EC8: 89 0E                 - mov [esi],ecx
+// ---------- DONE INJECTING  ----------
+StrongholdLegends.exe+108ECA: 85 C9                 - test ecx,ecx
+StrongholdLegends.exe+108ECC: 75 0F                 - jne StrongholdLegends.exe+108EDD
+StrongholdLegends.exe+108ECE: C7 46 04 00 00 00 00  - mov [esi+04],00000000
+StrongholdLegends.exe+108ED5: B8 01 00 00 00        - mov eax,00000001
+StrongholdLegends.exe+108EDA: 5E                    - pop esi
+StrongholdLegends.exe+108EDB: 5D                    - pop ebp
+StrongholdLegends.exe+108EDC: C3                    - ret 
+StrongholdLegends.exe+108EDD: D9 EE                 - fldz 
+StrongholdLegends.exe+108EDF: D8 51 4C              - fcom dword ptr [ecx+4C]
+StrongholdLegends.exe+108EE2: DF E0                 - fnstsw ax
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>65</ID>
+          <Description>"Unit Pointer"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_selected_unit</Address>
+          <Offsets>
+            <Offset>0</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry Color="20000000">
+      <Description>Select Building to construct</Description>
+      <AddressString>StrongholdLegends.exe+46D14C</AddressString>
+      <Before>
+        <Byte>FF</Byte>
+        <Byte>D0</Byte>
+        <Byte>8B</Byte>
+        <Byte>4D</Byte>
+        <Byte>08</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>4E</Byte>
+        <Byte>14</Byte>
+      </Actual>
+      <After>
+        <Byte>5E</Byte>
+        <Byte>3B</Byte>
+        <Byte>CB</Byte>
+        <Byte>5B</Byte>
+        <Byte>74</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry Color="80000008">
+      <Description>Population</Description>
+      <AddressString>StrongholdLegends.exe+2EF24</AddressString>
+      <Before>
+        <Byte>BF</Byte>
+        <Byte>05</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>01</Byte>
+        <Byte>BE</Byte>
+        <Byte>AC</Byte>
+        <Byte>0E</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>8B</Byte>
+        <Byte>86</Byte>
+        <Byte>AC</Byte>
+        <Byte>0E</Byte>
+        <Byte>00</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>

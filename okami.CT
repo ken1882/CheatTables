@@ -1,0 +1,4287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="26">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"enable .2"</Description>
+      <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
+      <LastState Activated="1"/>
+      <Color>FF0000</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+//vng21092's aobscan lua script
+{$lua}
+function lua_aobscan(name,module,bytes,index)
+  index = index - 1
+  if(module == "") then
+    local resultSet = AOBScan(bytes)
+      if(resultSet == nil) then
+        unregisterSymbol(name)
+        print(name.." not found")
+      else
+        unregisterSymbol(name)
+        registerSymbol(name,resultSet[index])
+        resultSet.destroy()
+      end
+  else
+    if(getModuleSize(module) == nil) then
+      print("Module "..module.." not found")
+    else
+      local memScanner = createMemScan()
+      local memFoundList = createFoundList(memScanner)
+      memScanner.firstScan(
+        soExactValue,vtByteArray,rtRounded,bytes,nil,
+        getAddress(module),(getAddress(module)+getModuleSize(module)),"",
+        fsmNotAligned,"",true,false,false,false)
+      memScanner.waitTillDone()
+      memFoundList.initialize()
+        if(memFoundList.Count == 0) then
+          unregisterSymbol(name)
+          print(name.." in module "..module.." not found")
+        else
+          unregisterSymbol(name)
+          registerSymbol(name,memFoundList.Address[index])
+        end
+      memScanner.destroy()
+      memFoundList.destroy()
+    end
+  end
+end
+{$asm}
+
+//////////////////////////
+luaCall(lua_aobscan("weaponsQChkZero1InEquipMenuAOB","main.dll","E8 ** ** ** ** 66 85 C0 74 ** 8B",1))
+luaCall(lua_aobscan("weaponsQChkZero2InEquipMenuAOB","main.dll","E8 ** ** ** ** 66 85 C0 74 ** 8B",2))
+luaCall(lua_aobscan("weaponsQChkZero3InEquipMenuAOB","main.dll","E8 ** ** ** ** 66 85 C0 74 ** 8B",3))
+luaCall(lua_aobscan("weaponsChkZeroInDojoAOB","main.dll","8B D3 E8 ** ** ** ** 66 85 C0 7F",2))
+//////////////////////////
+
+aobscanmodule(playerHealthCalOnChange1AOB,main.dll,0F B7 15 ** ** ** ** 66 03 D1 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** 66 85 D2)
+registersymbol(playerHealthCalOnChange1AOB)
+aobscanmodule(playerHealthCalOnChange2AOB,main.dll,0F B7 15 ** ** ** ** 66 03 D1 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** 66 83)
+registersymbol(playerHealthCalOnChange2AOB)
+aobscanmodule(foodPouchReadAOB,main.dll,0F B7 05 ** ** ** ** C3 CC CC CC CC CC CC CC CC 0F B7 05 ** ** ** ** C3 CC CC CC CC CC CC CC CC 66)
+registersymbol(foodPouchReadAOB)
+
+///
+
+aobscanmodule(yanRead1AOB,main.dll,48 8B ** ** ** ** ** 8B 40 10 C3)
+registersymbol(yanRead1AOB)
+
+label(pPlayer)
+registersymbol(pPlayer)
+
+alloc(newmem,2048,yanRead1AOB) //"main.dll"+496DD0)
+label(returnhere)
+label(originalcode_enable)
+registersymbol(originalcode_enable)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+reassemble(yanRead1AOB)
+push rbx
+mov rbx,pPlayer
+mov [rbx],rax
+pop rbx
+jmp exit
+
+originalcode_enable:
+readmem(yanRead1AOB,7)
+//mov rax,[main.dll+B205C0]
+
+exit:
+jmp returnhere
+
+///
+pPlayer:
+///
+
+yanRead1AOB: //"main.dll"+496DD0:
+jmp newmem
+nop
+nop
+returnhere:
+
+///***************************************///
+aobscanmodule(someItemQWriteAOB,main.dll,66 41 89 3C 06 48 8B ** ** ** 48)
+registersymbol(someItemQWriteAOB)
+
+label(bIgnoreDemonFangs)
+registersymbol(bIgnoreDemonFangs)
+label(bIgnoreUsableTools)
+registersymbol(bIgnoreUsableTools)
+
+alloc(newmem2,2048,someItemQWriteAOB) //"main.dll"+49665D)
+label(returnhere2)
+label(originalcode2)
+label(exit2)
+
+newmem2: //this is allocated memory, you have read,write,execute access
+//place your code here
+push rbx
+
+mov rbx,bIgnoreDemonFangs
+cmp byte ptr [rbx],1
+je preventnegiq2
+mov rbx,bIgnoreUsableTools
+cmp byte ptr [rbx],1
+je preventnegiq2
+
+jmp end2
+
+preventnegiq2:
+test di,di
+jns @f
+xor di,di
+jmp end2
+
+end2:
+pop rbx
+
+originalcode2:
+mov [r14+rax],di
+
+exit2:
+jmp returnhere2
+
+///
+bIgnoreDemonFangs:
+dq 0
+bIgnoreUsableTools:
+dq 0
+///
+
+someItemQWriteAOB: //"main.dll"+49665D:
+jmp newmem2
+returnhere2:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+yanRead1AOB: //"main.dll"+496DD0:
+readmem(originalcode_enable,7)
+//db 48 8B 05 E9 97 68 00
+//Alt: mov rax,[main.dll+B205C0]
+
+unregistersymbol(originalcode_enable)
+unregistersymbol(pPlayer)
+
+///***************************************///
+dealloc(newmem2)
+someItemQWriteAOB: //"main.dll"+49665D:
+db 66 41 89 3C 06
+//Alt: mov [r14+rax],di
+
+unregistersymbol(bIgnoreDemonFangs)
+unregistersymbol(bIgnoreUsableTools)
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>22</ID>
+          <Description>"undead"</Description>
+          <Options moHideChildren="1"/>
+          <LastState Activated="1"/>
+          <Color>FF0000</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+define(wminhealthdefault,#1)
+
+label(wMinHealth)
+registersymbol(wMinHealth)
+
+alloc(newmem,2048,playerHealthCalOnChange1AOB+7) //"main.dll"+43B24B)
+label(returnhere)
+label(originalcode_undead)
+registersymbol(originalcode_undead)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+push rax
+mov rax,wMinHealth
+add dx,cx
+cmp dx,[rax]
+jge @f
+mov dx,[rax]
+
+@@:
+pop rax
+reassemble(playerHealthCalOnChange1AOB+a)
+jmp exit
+
+originalcode_undead:
+readmem(playerHealthCalOnChange1AOB+7,10)
+//add dx,cx
+//cmp [main.dll+B4DF92],dx
+
+exit:
+jmp returnhere
+
+///
+wMinHealth:
+dd wminhealthdefault
+///
+
+playerHealthCalOnChange1AOB+7: //"main.dll"+43B24B:
+jmp newmem
+nop
+nop
+nop
+nop
+nop
+returnhere:
+
+///**************************************///
+alloc(newmem2,2048,playerHealthCalOnChange2AOB+7) //"main.dll"+43B2A7)
+label(returnhere2)
+label(originalcode2_undead)
+registersymbol(originalcode2_undead)
+label(exit2)
+
+newmem2: //this is allocated memory, you have read,write,execute access
+//place your code here
+push rax
+mov rax,wMinHealth
+add dx,cx
+cmp dx,[rax]
+jge @f
+mov dx,[rax]
+
+@@:
+pop rax
+reassemble(playerHealthCalOnChange2AOB+a)
+jmp exit2
+
+originalcode2_undead:
+readmem(playerHealthCalOnChange2AOB+7,10)
+//add dx,cx
+//cmp [main.dll+B4DF92],dx
+
+exit2:
+jmp returnhere2
+
+///
+
+playerHealthCalOnChange2AOB+7: //"main.dll"+43B2A7:
+jmp newmem2
+nop
+nop
+nop
+nop
+nop
+returnhere2:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+playerHealthCalOnChange1AOB+7: //"main.dll"+43B24B:
+readmem(originalcode_undead,10)
+//db 66 03 D1 66 39 15 3D 2D 71 00
+//Alt: add dx,cx
+//Alt: cmp [main.dll+B4DF92],dx
+
+unregistersymbol(originalcode_undead)
+unregistersymbol(wMinHealth)
+
+///**************************************///
+dealloc(newmem2)
+playerHealthCalOnChange2AOB+7: //"main.dll"+43B2A7:
+readmem(originalcode2_undead,10)
+//db 66 03 D1 66 39 15 E1 2C 71 00
+//Alt: add dx,cx
+//Alt: cmp [main.dll+B4DF92],dx
+
+unregistersymbol(originalcode2_undead)
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>25</ID>
+              <Description>"min health"</Description>
+              <LastState Value="1" RealAddress="7FEE0830048"/>
+              <Color>008000</Color>
+              <VariableType>2 Bytes</VariableType>
+              <Address>wMinHealth</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>289</ID>
+          <Description>"inf. godhood"</Description>
+          <LastState Activated="1"/>
+          <Color>FF0000</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+aobscanmodule(godhoodStateCalAOB,main.dll,66 3B 05 ** ** ** ** 7C 06 B8 02)
+registersymbol(godhoodStateCalAOB)
+
+godhoodStateCalAOB+7: //"main.dll"+43A87C:
+db 90 90
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+godhoodStateCalAOB+7: //"main.dll"+43A87C:
+db 7C 06
+//Alt: jl main.cObjAtari::View+22C674
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>11</ID>
+          <Description>"full ink"</Description>
+          <LastState Activated="1"/>
+          <Color>FF0000</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+aobscanmodule(inkReadAOB,main.dll,44 8B 40 08 44 03 C2 79)
+registersymbol(inkReadAOB)
+
+inkReadAOB+3: //"main.dll"+49638A:
+db 0C
+
+///**************************************///
+aobscanmodule(inkWriteAOB,main.dll,44 3B 40 0C 44 0F 4F 40 0C 44 89 40 08 C3)
+registersymbol(inkWriteAOB)
+
+inkWriteAOB+4: //"main.dll"+49639C:
+db 90 44 8B
+
+///**************************************///
+aobscanmodule(inkWirteOnPaintExitAOB,main.dll,3B 50 0C 0F 4F 50 0C 89 50 08 C3)
+registersymbol(inkWirteOnPaintExitAOB)
+
+inkWirteOnPaintExitAOB+3: //"main.dll"+497036:
+db 90 8B
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+inkReadAOB+3: //"main.dll"+49638A:
+db 08
+
+///**************************************///
+inkWriteAOB+4: //"main.dll"+49639C:
+db 44 0F 4F
+
+///**************************************///
+inkWirteOnPaintExitAOB+3: //"main.dll"+497036:
+db 0F 4F
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>200</ID>
+          <Description>"ignore usable tools"</Description>
+          <LastState Activated="1"/>
+          <Color>FF0000</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+aobscanmodule(toolsChkZeroOnInvAccessAOB,main.dll,E8 ** ** ** ** 66 85 C0 7E ** 8B 03 FF C5)
+registersymbol(toolsChkZeroOnInvAccessAOB)
+
+alloc(originalcode_ignoretools,4)
+registersymbol(originalcode_ignoretools)
+
+originalcode_ignoretools:
+readmem(toolsChkZeroOnInvAccessAOB+8,2)
+
+///
+
+toolsChkZeroOnInvAccessAOB+8: //"main.dll"+40F0F1:
+db 90 90
+
+///********************************************///
+aobscanmodule(feedChkZeroWhenNextToAnimalsAOB,main.dll,E8 ** ** ** ** 85 DB 48 8B ** ** ** ** ** ** 75)
+registersymbol(feedChkZeroWhenNextToAnimalsAOB)
+
+feedChkZeroWhenNextToAnimalsAOB+f: //"main.dll"+4136EE:
+db EB
+
+///********************************************///
+bIgnoreUsableTools:
+db 1
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+toolsChkZeroOnInvAccessAOB+8: //"main.dll"+40F0F1:
+readmem(originalcode_ignoretools,2)
+//db 7E 0A
+//Alt: jle main.cObjAtari::View+200EED
+
+unregistersymbol(originalcode_ignoretools)
+
+///********************************************///
+feedChkZeroWhenNextToAnimalsAOB+f: //"main.dll"+4136EE:
+db 75
+//Alt: jne
+
+///********************************************///
+bIgnoreUsableTools:
+db 0
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>68</ID>
+          <Description>"ignore yen .2"</Description>
+          <LastState Activated="1"/>
+          <Color>FF0000</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+aobscanmodule(yenChkInBuyMenuAOB,main.dll,48 8B F0 E8 ** ** ** ** 39 44 ** ** 0F 8F ** ** ** ** 8B 0C 3E)
+registersymbol(yenChkInBuyMenuAOB)
+
+alloc(originalcode_ignoreyen,8)
+registersymbol(originalcode_ignoreyen)
+
+originalcode_ignoreyen:
+readmem(yenChkInBuyMenuAOB+c,6)
+
+///
+
+yenChkInBuyMenuAOB+c: //"main.dll"+43B6FD:
+db 90 90 90 90 90 90
+
+///********************************************///
+aobscanmodule(yenChkInQInputOnBuyAOB,main.dll,48 8B ** ** ** ** ** E8 ** ** ** ** 3B C3 0F 8C ** ** ** ** B0 01)
+registersymbol(yenChkInQInputOnBuyAOB)
+
+alloc(originalcode2_ignoreyen,8)
+registersymbol(originalcode2_ignoreyen)
+
+originalcode2_ignoreyen:
+readmem(yenChkInQInputOnBuyAOB+e,6)
+
+///
+
+yenChkInQInputOnBuyAOB+e: //"main.dll"+43B942:
+db 90 90 90 90 90 90
+
+///********************************************///
+aobscanmodule(yenChkInDojoMenu,main.dll,E8 ** ** ** ** 48 8B ** ** ** ** ** 39 44 ** ** 7F)
+registersymbol(yenChkInDojoMenu)
+
+alloc(originalcode3_ignoreyen,4)
+registersymbol(originalcode3_ignoreyen)
+
+originalcode3_ignoreyen:
+readmem(yenChkInDojoMenu+10,2)
+
+///
+
+yenChkInDojoMenu+10: //"main.dll"+442086:
+db 90 90
+
+
+
+
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+yenChkInBuyMenuAOB+c: //"main.dll"+43B6FD:
+readmem(originalcode_ignoreyen,6)
+//db 0F 8F BF FE FF FF
+//Alt: jg main.cObjAtari::View+22D3B2
+
+unregistersymbol(originalcode_ignoreyen)
+
+///********************************************///
+yenChkInQInputOnBuyAOB+e: //"main.dll"+43B942:
+readmem(originalcode2_ignoreyen,6)
+//db 0F 8C AC FE FF FF
+//Alt: jl main.cObjAtari::View+22D5E4
+
+unregistersymbol(originalcode2_ignoreyen)
+
+///********************************************///
+yenChkInDojoMenu+10: //"main.dll"+442086:
+readmem(originalcode3_ignoreyen,2)
+//db 7F 31
+//Alt: jg main.cObjAtari::View+233EA9
+
+unregistersymbol(originalcode3_ignoreyen)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>198</ID>
+          <Description>"ignore demon fangs"</Description>
+          <LastState Activated="1"/>
+          <Color>FF0000</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+aobscanmodule(demonFangsChkInBuyMenuAOB,main.dll,E8 ** ** ** ** 0F BF C8 48 8B ** ** 39 4C ** ** 7F)
+registersymbol(demonFangsChkInBuyMenuAOB)
+
+alloc(originalcode_ignoredemonfangs,8)
+registersymbol(originalcode_ignoredemonfangs)
+
+originalcode_ignoredemonfangs:
+readmem(demonFangsChkInBuyMenuAOB+10,2)
+
+///
+
+demonFangsChkInBuyMenuAOB+10: //"main.dll"+43F1BE:
+db 90 90
+
+///**************************************///
+aobscanmodule(demonFangsChkInQInputOnBuyMenuAOB,main.dll,E8 ** ** ** ** 48 8B ** ** ** 48 8B ** ** ** 0F BF C8 3B CF 0F 9D C0)
+registersymbol(demonFangsChkInQInputOnBuyMenuAOB)
+
+demonFangsChkInQInputOnBuyMenuAOB+14: //"main.dll"+43F2B4:
+db 90 B0 01
+
+///**************************************///
+bIgnoreDemonFangs:
+db 1
+
+
+
+
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+demonFangsChkInBuyMenuAOB+10: //"main.dll"+43F1BE:
+readmem(originalcode_ignoredemonfangs,2)
+//db 7F 43
+//Alt: jg main.cObjAtari::View+230FF3
+
+unregistersymbol(originalcode_ignoredemonfangs)
+
+///**************************************///
+demonFangsChkInQInputOnBuyMenuAOB+14: //"main.dll"+43F2B4:
+db 0F 9D C0
+
+///**************************************///
+bIgnoreDemonFangs:
+db 0
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>211</ID>
+          <Description>"all divine instruments"</Description>
+          <LastState Activated="1"/>
+          <Color>FF0000</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(originalcode_allweapons,4)
+registersymbol(originalcode_allweapons)
+
+originalcode_allweapons:
+readmem(weaponsQChkZero1InEquipMenuAOB+8,2)
+
+///
+
+weaponsQChkZero1InEquipMenuAOB+8: //"main.dll"+40F1D3:
+db 90 90
+
+///**************************************************///
+alloc(originalcode2_allweapons,4)
+registersymbol(originalcode2_allweapons)
+
+originalcode2_allweapons:
+readmem(weaponsQChkZero2InEquipMenuAOB+8,2)
+
+///
+
+weaponsQChkZero2InEquipMenuAOB+8: //"main.dll"+40F221:
+db 90 90
+
+///**************************************************///
+alloc(originalcode3_allweapons,4)
+registersymbol(originalcode3_allweapons)
+
+originalcode3_allweapons:
+readmem(weaponsQChkZero3InEquipMenuAOB+8,2)
+
+///
+
+weaponsQChkZero3InEquipMenuAOB+8: //"main.dll"+40F271:
+db 90 90
+
+///**************************************************///
+aobscanmodule(weaponsChkZeroForGoldDustUsageAOB,main.dll,48 8B ** ** ** ** ** 66 83 ** ** 00 74 ** 48)
+registersymbol(weaponsChkZeroForGoldDustUsageAOB)
+
+alloc(originalcode4_allweapons,4)
+registersymbol(originalcode4_allweapons)
+
+originalcode4_allweapons:
+readmem(weaponsChkZeroForGoldDustUsageAOB+c,2)
+
+///
+
+weaponsChkZeroForGoldDustUsageAOB+c: //"main.dll"+49694C:
+db 90 90
+
+///**************************************************///
+weaponsChkZeroInDojoAOB+a: //"main.dll"+442391:
+db EB
+
+
+
+
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+weaponsQChkZero1InEquipMenuAOB+8: //"main.dll"+40F1D3:
+readmem(originalcode_allweapons,2)
+//db 74 09
+//Alt: je main.cObjAtari::View+200FCE
+
+unregistersymbol(originalcode_allweapons)
+
+///**************************************************///
+weaponsQChkZero2InEquipMenuAOB+8: //"main.dll"+40F221:
+readmem(originalcode2_allweapons,2)
+//db 74 09
+//Alt: je main.cObjAtari::View+20101C
+
+unregistersymbol(originalcode2_allweapons)
+
+///**************************************************///
+weaponsQChkZero3InEquipMenuAOB+8: //"main.dll"+40F271:
+readmem(originalcode3_allweapons,2)
+//db 74 08
+//Alt: je main.cObjAtari::View+20106B
+
+unregistersymbol(originalcode3_allweapons)
+
+///**************************************************///
+weaponsChkZeroForGoldDustUsageAOB+c: //"main.dll"+49694C:
+readmem(originalcode4_allweapons,2)
+//db 74 28
+//Alt: je main.cObjAtari::View+288766
+
+unregistersymbol(originalcode4_allweapons)
+
+///**************************************************///
+weaponsChkZeroInDojoAOB+a: //"main.dll"+442391:
+db 7F
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>203</ID>
+          <Description>"all holy artifacts"</Description>
+          <LastState Activated="1"/>
+          <Color>FF0000</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+aobscanmodule(subEquipmentQChkZeroInEquipMenuAOB,main.dll,49 8D ** ** 8B 13 48 ** ** ** ** ** ** E8 ** ** ** ** 66 85 C0 7E)
+registersymbol(subEquipmentQChkZeroInEquipMenuAOB)
+
+alloc(originalcode_allsubequipments,4)
+registersymbol(originalcode_allsubequipments)
+
+originalcode_allsubequipments:
+readmem(subEquipmentQChkZeroInEquipMenuAOB+15,2)
+
+///
+
+subEquipmentQChkZeroInEquipMenuAOB+15: //"main.dll"+40F2C1:
+db 90 90
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+subEquipmentQChkZeroInEquipMenuAOB+15: //"main.dll"+40F2C1:
+readmem(originalcode_allsubequipments,2)
+//db 7E 08
+//Alt: jle main.cObjAtari::View+2010BB
+
+unregistersymbol(originalcode_allsubequipments)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>214</ID>
+          <Description>"max fishing life gauge"</Description>
+          <LastState Activated="1"/>
+          <Color>FF0000</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+aobscanmodule(fishingLifeGaugeWriteOnDecAOB,main.dll,0F B6 ** ** 29 8A ** ** ** ** FE)
+registersymbol(fishingLifeGaugeWriteOnDecAOB)
+
+alloc(newmem,2048,fishingLifeGaugeWriteOnDecAOB+4) //"main.dll"+48DCC3)
+label(returnhere)
+label(originalcode_maxfishinglifegauge)
+registersymbol(originalcode_maxfishinglifegauge)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+push rax
+db 48 8D 82
+readmem(fishingLifeGaugeWriteOnDecAOB+6,4)
+//lea rax,[rdx+104]
+mov ecx,[rax]
+sub ecx,[rax-4]
+
+pop rax
+
+originalcode_maxfishinglifegauge:
+readmem(fishingLifeGaugeWriteOnDecAOB+4,6)
+//sub [rdx+00000104],ecx
+
+exit:
+jmp returnhere
+
+///
+
+fishingLifeGaugeWriteOnDecAOB+4: //"main.dll"+48DCC3:
+jmp newmem
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+fishingLifeGaugeWriteOnDecAOB+4: //"main.dll"+48DCC3:
+readmem(originalcode_maxfishinglifegauge,6)
+//db 29 8A 04 01 00 00
+//Alt: sub [rdx+00000104],ecx
+
+unregistersymbol(originalcode_maxfishinglifegauge)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>224</ID>
+          <Description>"auto fishing"</Description>
+          <LastState Activated="1"/>
+          <Color>FF0000</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+aobscanmodule(fishingPowerGaugeWriteAOB,main.dll,F3 0F 5E ** ** ** ** ** F3 0F 58 C8 F3 0F 11 ** ** ** ** ** 48 ** ** ** 5F C3)
+registersymbol(fishingPowerGaugeWriteAOB)
+
+alloc(newmem,2048,fishingPowerGaugeWriteAOB+c) //"main.dll"+48DC26)
+label(returnhere)
+label(originalcode_autofishing)
+registersymbol(originalcode_autofishing)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+//xorps xmm1,xmm1
+push rax
+mov eax,(float)0.5
+movd xmm1,eax
+pop rax
+
+originalcode_autofishing:
+readmem(fishingPowerGaugeWriteAOB+c,8)
+//movss [rdi+000000EC],xmm1
+
+exit:
+jmp returnhere
+
+///
+
+fishingPowerGaugeWriteAOB+c: //"main.dll"+48DC26:
+jmp newmem
+nop
+nop
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+fishingPowerGaugeWriteAOB+c: //"main.dll"+48DC26:
+readmem(originalcode_autofishing,8)
+//db F3 0F 11 8F EC 00 00 00
+//Alt: movss [rdi+000000EC],xmm1
+
+unregistersymbol(originalcode_autofishing)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>229</ID>
+          <Description>"inf. countdown"</Description>
+          <LastState Activated="1"/>
+          <Color>FF0000</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+aobscanmodule(diggingCountdownSubAOB,main.dll,0F B6 05 ** ** ** ** 29 81 ** ** ** ** 79)
+registersymbol(diggingCountdownSubAOB)
+
+alloc(newmem,2048,diggingCountdownSubAOB+7) //"main.dll"+407A32)
+label(returnhere)
+label(originalcode_infdiggingtime)
+registersymbol(originalcode_infdiggingtime)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+test eax,eax
+js @f
+xor eax,eax
+
+originalcode_infdiggingtime:
+readmem(diggingCountdownSubAOB+7,6)
+//sub [rcx+00000084],eax
+
+exit:
+jmp returnhere
+
+///
+
+diggingCountdownSubAOB+7: //"main.dll"+407A32:
+jmp newmem
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+diggingCountdownSubAOB+7: //"main.dll"+407A32:
+readmem(originalcode_infdiggingtime,6)
+//db 29 81 84 00 00 00
+//Alt: sub [rcx+00000084],eax
+
+unregistersymbol(originalcode_infdiggingtime)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>35</ID>
+          <Description>"walk key"</Description>
+          <Options moHideChildren="1"/>
+          <LastState Activated="1"/>
+          <Color>FF0000</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+define(dmoveforcemultiplierdefault,(float)0.4)
+
+aobscanmodule(padForceApplyAOB,main.dll,88 83 ** ** ** ** 0F B6 87 ** ** ** ** 88 83 ** ** ** ** 0F B6 87 ** ** ** ** 88 83 ** ** ** ** 0F B6 87 ** ** ** ** 88 83 ** ** ** ** 8B 87)
+registersymbol(padForceApplyAOB)
+
+label(bWalkKeyPressed)
+registersymbol(bWalkKeyPressed)
+label(dMoveForceMultiplier)
+registersymbol(dMoveForceMultiplier)
+
+alloc(newmem,2048,padForceApplyAOB+d) //"main.dll"+182132)
+label(returnhere)
+label(originalcode_walkkey)
+registersymbol(originalcode_walkkey)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+push rcx
+mov rcx,bWalkKeyPressed
+cmp byte ptr [rcx],1
+jne @f
+
+push rax
+mov rcx,dMoveForceMultiplier
+fild dword ptr [rsp]
+fmul dword ptr [rcx]
+fistp dword ptr [rsp]
+pop rax
+
+@@:
+pop rcx
+
+originalcode_walkkey:
+readmem(padForceApplyAOB+d,6)
+//mov [rbx+0000016B],al
+
+exit:
+jmp returnhere
+
+///
+bWalkKeyPressed:
+dq 0
+dMoveForceMultiplier:
+dd dmoveforcemultiplierdefault
+///
+
+padForceApplyAOB+d: //"main.dll"+182132:
+jmp newmem
+nop
+returnhere:
+
+///********************************************************///
+alloc(newmem2,2048,padForceApplyAOB) //"main.dll"+182125)
+label(returnhere2)
+label(originalcode2_walkkey)
+registersymbol(originalcode2_walkkey)
+label(exit2)
+
+newmem2: //this is allocated memory, you have read,write,execute access
+//place your code here
+push rcx
+mov rcx,bWalkKeyPressed
+cmp byte ptr [rcx],1
+jne @f
+
+push rax
+mov rcx,dMoveForceMultiplier
+fild dword ptr [rsp]
+fmul dword ptr [rcx]
+fistp dword ptr [rsp]
+pop rax
+
+@@:
+pop rcx
+
+originalcode2_walkkey:
+readmem(padForceApplyAOB,6)
+//mov [rbx+0000016A],al
+
+exit2:
+jmp returnhere2
+
+///
+
+padForceApplyAOB: //"main.dll"+182125:
+jmp newmem2
+nop
+returnhere2:
+
+///********************************************************///
+label(bEndThread_walkKey_keylistener_mem)
+registersymbol(bEndThread_walkKey_keylistener_mem)
+
+alloc(walkKey_keylistener_mem,1024,"main.dll")
+registersymbol(walkKey_keylistener_mem)
+createthread(walkKey_keylistener_mem)
+label(keylistenerstart)
+label(keylistenerend)
+label(keylistenerexit)
+
+walkKey_keylistener_mem:
+sub rsp,28
+
+keylistenerstart:
+mov rcx,14 //CAPS LOCK key
+//push rcx
+call GetAsyncKeyState
+//add rsp,08
+shr ax,#15
+mov rcx,bWalkKeyPressed
+mov [rcx],ax
+
+keylistenerend:
+mov rcx,#100
+call Sleep
+mov rbx,bEndThread_walkKey_keylistener_mem
+cmp dword ptr [rbx],1
+jne keylistenerstart
+
+keylistenerexit:
+add rsp,28
+mov rbx,bEndThread_walkKey_keylistener_mem
+mov dword ptr [rbx],2
+ret
+
+///
+bEndThread_walkKey_keylistener_mem:
+dd 0
+///
+
+
+
+
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+//obtained from SubBeam's ACS script - start//
+{$lua}
+
+if( syntaxcheck == false ) then --actual execution
+  local starttime = getTickCount()
+
+if readInteger( "bEndThread_walkKey_keylistener_mem" ) == 0 then --could be 2 already
+  writeInteger( "bEndThread_walkKey_keylistener_mem", 1 ) --tell the thread to kill itself
+end
+
+while( getTickCount() &lt; starttime + 1000 ) and ( readInteger( "bEndThread_walkKey_keylistener_mem" ) ~=2 ) do --wait till it has finished
+  sleep( 20 )
+end
+
+if( getTickCount() &gt; starttime + 1000 ) then --could happen when the window is shown
+  showMessage( 'Disabling the thread failed!' )
+  error( 'Thread disabling failed!' )
+end
+  sleep( 1 )
+end
+
+{$asm}
+//obtained from SubBeam's ACS script - end//
+
+//bEndThread_walkKey_keylistener_mem:
+//dd 1
+
+///********************************************************///
+dealloc(newmem)
+padForceApplyAOB+d: //"main.dll"+182132:
+readmem(originalcode_walkkey,6)
+//db 88 83 6B 01 00 00
+//Alt: mov [rbx+0000016B],al
+
+unregistersymbol(originalcode_walkkey)
+unregistersymbol(bWalkKeyPressed)
+unregistersymbol(dMoveForceMultiplier)
+
+///********************************************************///
+dealloc(newmem2)
+padForceApplyAOB: //"main.dll"+182125:
+readmem(originalcode2_walkkey,6)
+//db 88 83 6A 01 00 00
+//Alt: mov [rbx+0000016A],al
+
+unregistersymbol(originalcode2_walkkey)
+
+///********************************************************///
+unregistersymbol(bEndThread_walkKey_keylistener_mem)
+
+dealloc(walkKey_keylistener_mem)
+unregistersymbol(walkKey_keylistener_mem)
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>63</ID>
+              <Description>"walk speed"</Description>
+              <LastState Value="0.400000006" RealAddress="7FEE07E0045"/>
+              <Color>008000</Color>
+              <VariableType>Float</VariableType>
+              <Address>dMoveForceMultiplier</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>16</ID>
+          <Description>"[pointers]"</Description>
+          <Options moHideChildren="1"/>
+          <LastState Activated="1"/>
+          <Color>000080</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+label(pFoodPouch)
+registersymbol(pFoodPouch)
+label(pPlayerHealth)
+registersymbol(pPlayerHealth)
+
+alloc(newmem,2048,foodPouchReadAOB+7) //"main.dll"+43A8B7)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+push rax
+push rbx
+mov rax,foodPouchReadAOB
+xor rbx,rbx
+mov ebx,[rax+3]
+lea rax,[rax+7]
+add rax,rbx
+mov rbx,pFoodPouch
+mov [rbx],rax
+
+mov rax,playerHealthCalOnChange1AOB
+xor rbx,rbx
+mov ebx,[rax+3]
+lea rax,[rax+7]
+add rax,rbx
+mov rbx,pPlayerHealth
+mov [rbx],rax
+
+@@:
+pop rbx
+pop rax
+
+originalcode:
+ret 
+int 3 
+int 3 
+int 3 
+int 3 
+
+exit:
+jmp returnhere
+
+///
+pFoodPouch:
+dq 0
+pPlayerHealth:
+dq 0
+///
+
+foodPouchReadAOB+7: //"main.dll"+43A8B7:
+jmp newmem
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+foodPouchReadAOB+7: //"main.dll"+43A8B7:
+db C3 CC CC CC CC
+//Alt: ret
+//Alt: int 3
+//Alt: int 3
+//Alt: int 3
+//Alt: int 3
+
+unregistersymbol(pFoodPouch)
+unregistersymbol(pPlayerHealth)
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>10</ID>
+              <Description>"[player]"</Description>
+              <Options moHideChildren="1"/>
+              <LastState Value="" RealAddress="7FEE15405D0"/>
+              <Color>000080</Color>
+              <VariableType>Array of byte</VariableType>
+              <ByteLength>0</ByteLength>
+              <Address>pPlayer</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>17</ID>
+                  <Description>"solar energy"</Description>
+                  <LastState Value="2100" RealAddress="7FEE156DF90"/>
+                  <Color>0000FF</Color>
+                  <VariableType>2 Bytes</VariableType>
+                  <Address>pPlayerHealth</Address>
+                  <Offsets>
+                    <Offset>0</Offset>
+                  </Offsets>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>18</ID>
+                      <Description>"max"</Description>
+                      <LastState Value="2100" RealAddress="7FEE156DF92"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+2</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>287</ID>
+                  <Description>"godhood"</Description>
+                  <LastState Value="30" RealAddress="7FEE156DFAC"/>
+                  <Color>0000FF</Color>
+                  <VariableType>2 Bytes</VariableType>
+                  <Address>pPlayerHealth</Address>
+                  <Offsets>
+                    <Offset>1C</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>7</ID>
+                  <Description>"ink"</Description>
+                  <LastState Value="61440" RealAddress="7FEE15405D8"/>
+                  <Color>0000FF</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+8</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>9</ID>
+                      <Description>"max"</Description>
+                      <LastState Value="61440" RealAddress="7FEE15405DC"/>
+                      <Color>0000FF</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+4</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>23</ID>
+                  <Description>"astral pouch"</Description>
+                  <LastState Value="400" RealAddress="7FEE156DF94"/>
+                  <Color>0000FF</Color>
+                  <VariableType>2 Bytes</VariableType>
+                  <Address>pFoodPouch</Address>
+                  <Offsets>
+                    <Offset>0</Offset>
+                  </Offsets>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>24</ID>
+                      <Description>"max"</Description>
+                      <LastState Value="400" RealAddress="7FEE156DF96"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+2</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>53</ID>
+                  <Description>"praise"</Description>
+                  <LastState Value="917" RealAddress="7FEE156DF9A"/>
+                  <Color>0000FF</Color>
+                  <VariableType>2 Bytes</VariableType>
+                  <Address>pFoodPouch</Address>
+                  <Offsets>
+                    <Offset>6</Offset>
+                  </Offsets>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>54</ID>
+                      <Description>"total collected?"</Description>
+                      <LastState Value="1907" RealAddress="7FEE156DF9C"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+2</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>79</ID>
+                  <Description>"yen"</Description>
+                  <LastState Value="148628" RealAddress="7FEE15405E0"/>
+                  <Color>0000FF</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+10</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>80</ID>
+              <Description>"[inventory]"</Description>
+              <Options moHideChildren="1"/>
+              <LastState Value="" Activated="1" RealAddress="7FEE15405D0"/>
+              <Color>000080</Color>
+              <VariableType>Array of byte</VariableType>
+              <ByteLength>0</ByteLength>
+              <Address>pPlayer</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>163</ID>
+                  <Description>"Inkfinity Stone"</Description>
+                  <LastState Value="8" RealAddress="7FEE154064A"/>
+                  <Color>0000FF</Color>
+                  <VariableType>2 Bytes</VariableType>
+                  <Address>+3d*2</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>167</ID>
+                  <Description>"Mermaid Coin"</Description>
+                  <LastState Value="0" RealAddress="7FEE154064C"/>
+                  <Color>0000FF</Color>
+                  <VariableType>2 Bytes</VariableType>
+                  <Address>+3e*2</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>168</ID>
+                  <Description>"Golden Peach"</Description>
+                  <LastState Value="6" RealAddress="7FEE154064E"/>
+                  <Color>0000FF</Color>
+                  <VariableType>2 Bytes</VariableType>
+                  <Address>+3f*2</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>166</ID>
+                  <Description>"Demon Fangs"</Description>
+                  <LastState Value="99" RealAddress="7FEE154066E"/>
+                  <Color>0000FF</Color>
+                  <VariableType>2 Bytes</VariableType>
+                  <Address>+4f*2</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>162</ID>
+                  <Description>"Traveler's Charm"</Description>
+                  <LastState Value="5" RealAddress="7FEE1540710"/>
+                  <Color>0000FF</Color>
+                  <VariableType>2 Bytes</VariableType>
+                  <Address>+a0*2</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>119</ID>
+                  <Description>"Gold Dust"</Description>
+                  <LastState Value="0" RealAddress="7FEE154076C"/>
+                  <Color>0000FF</Color>
+                  <VariableType>2 Bytes</VariableType>
+                  <Address>+ce*2</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>85</ID>
+                  <Description>"[Feedbags]"</Description>
+                  <Options moHideChildren="1"/>
+                  <LastState Value="" RealAddress="7FEE15405D0"/>
+                  <Color>000080</Color>
+                  <VariableType>Array of byte</VariableType>
+                  <ByteLength>0</ByteLength>
+                  <Address>+0</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>87</ID>
+                      <Description>"Feedbag (Meat)"</Description>
+                      <LastState Value="0" RealAddress="7FEE1540750"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+c0*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>88</ID>
+                      <Description>"Feedbag (Herbs)"</Description>
+                      <LastState Value="2" RealAddress="7FEE1540752"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+c1*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>86</ID>
+                      <Description>"Feedbag (Seeds)"</Description>
+                      <LastState Value="0" RealAddress="7FEE1540754"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+c2*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>89</ID>
+                      <Description>"Feedbag (Fish)"</Description>
+                      <LastState Value="12" RealAddress="7FEE1540756"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+c3*2</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>113</ID>
+                  <Description>"[Bones]"</Description>
+                  <Options moHideChildren="1"/>
+                  <LastState Value="" RealAddress="7FEE15405D0"/>
+                  <Color>000080</Color>
+                  <VariableType>Array of byte</VariableType>
+                  <ByteLength>0</ByteLength>
+                  <Address>+0</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>112</ID>
+                      <Description>"Holy Bone M"</Description>
+                      <LastState Value="9" RealAddress="7FEE154074C"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+be*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>96</ID>
+                      <Description>"Holy Bone S"</Description>
+                      <LastState Value="9" RealAddress="7FEE154074E"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+bf*2</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>90</ID>
+                  <Description>"[Slips]"</Description>
+                  <Options moHideChildren="1"/>
+                  <LastState Value="" RealAddress="7FEE15405D0"/>
+                  <Color>000080</Color>
+                  <VariableType>Array of byte</VariableType>
+                  <ByteLength>0</ByteLength>
+                  <Address>+0</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>92</ID>
+                      <Description>"Exorcism Slip M"</Description>
+                      <LastState Value="0" RealAddress="7FEE1540646"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+3b*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>193</ID>
+                      <Description>"Exorcism Slip S"</Description>
+                      <LastState Value="13" RealAddress="7FEE1540644"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+3a*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>91</ID>
+                      <Description>"Venfeance Slip"</Description>
+                      <LastState Value="5" RealAddress="7FEE1540648"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+3c*2</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>95</ID>
+                  <Description>"[Sakes]"</Description>
+                  <Options moHideChildren="1"/>
+                  <LastState Value="" RealAddress="7FEE15405D0"/>
+                  <Color>000080</Color>
+                  <VariableType>Array of byte</VariableType>
+                  <ByteLength>0</ByteLength>
+                  <Address>+0</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>84</ID>
+                      <Description>"Steel Fist Sake"</Description>
+                      <LastState Value="9" RealAddress="7FEE1540762"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+c9*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>81</ID>
+                      <Description>"Steel Soul Sake"</Description>
+                      <LastState Value="4" RealAddress="7FEE1540764"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+ca*2</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>114</ID>
+                  <Description>"[Holy Artifacts]"</Description>
+                  <Options moHideChildren="1"/>
+                  <LastState Value="" RealAddress="7FEE15405D0"/>
+                  <Color>000080</Color>
+                  <VariableType>Array of byte</VariableType>
+                  <ByteLength>0</ByteLength>
+                  <Address>+0</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>115</ID>
+                      <Description>"Golden Lucky Cat"</Description>
+                      <LastState Value="1" RealAddress="7FEE154075A"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+c5*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>118</ID>
+                      <Description>"Thief's Glove"</Description>
+                      <LastState Value="0" RealAddress="7FEE154075C"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+c6*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>117</ID>
+                      <Description>"Wood Mat"</Description>
+                      <LastState Value="0" RealAddress="7FEE154075E"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+c7*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>116</ID>
+                      <Description>"Golden Ink Pot"</Description>
+                      <LastState Value="0" RealAddress="7FEE1540760"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+c8*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>120</ID>
+                      <Description>"Water Tablet"</Description>
+                      <LastState Value="0" RealAddress="7FEE1540768"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+cc*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>121</ID>
+                      <Description>"Fire Tablet"</Description>
+                      <LastState Value="0" RealAddress="7FEE154076A"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+cd*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>164</ID>
+                      <Description>"String of Beads"</Description>
+                      <LastState Value="0" RealAddress="7FEE15407CA"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+fd*2</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>122</ID>
+                  <Description>"[Karmic Transformers]"</Description>
+                  <Options moHideChildren="1"/>
+                  <LastState Value="" RealAddress="7FEE15405D0"/>
+                  <Color>000080</Color>
+                  <VariableType>Array of byte</VariableType>
+                  <ByteLength>0</ByteLength>
+                  <Address>+0</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>123</ID>
+                      <Description>"Karmic Transformer 3"</Description>
+                      <LastState Value="0" RealAddress="7FEE1540722"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+a9*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>129</ID>
+                      <Description>"Karmic Transformer 8"</Description>
+                      <LastState Value="0" RealAddress="7FEE1540724"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+aa*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>130</ID>
+                      <Description>"Karmic Transformer 7"</Description>
+                      <LastState Value="0" RealAddress="7FEE1540726"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+ab*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>142</ID>
+                      <Description>"Karmic Transformer 9"</Description>
+                      <LastState Value="0" RealAddress="7FEE1540728"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+ac*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>194</ID>
+                      <Description>"Karmic Returner"</Description>
+                      <LastState Value="0" RealAddress="7FEE15407C0"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+f8*2</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>131</ID>
+                  <Description>"[Key Items]"</Description>
+                  <Options moHideChildren="1"/>
+                  <LastState Value="" RealAddress="7FEE15405D0"/>
+                  <Color>000080</Color>
+                  <VariableType>Array of byte</VariableType>
+                  <ByteLength>0</ByteLength>
+                  <Address>+0</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>136</ID>
+                      <Description>"Canine Tracker"</Description>
+                      <LastState Value="1" RealAddress="7FEE15406B4"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+72*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>144</ID>
+                      <Description>"Lucky Mallet"</Description>
+                      <LastState Value="1" RealAddress="7FEE15406B6"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+73*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>145</ID>
+                      <Description>"Border Key"</Description>
+                      <LastState Value="0" RealAddress="7FEE15406B8"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+74*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>146</ID>
+                      <Description>"Dragon Orb"</Description>
+                      <LastState Value="0" RealAddress="7FEE15406BA"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+75*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>147</ID>
+                      <Description>"Fox Rods"</Description>
+                      <LastState Value="0" RealAddress="7FEE15406BC"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+76*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>148</ID>
+                      <Description>"Thunder Brew"</Description>
+                      <LastState Value="0" RealAddress="7FEE15406BE"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+77*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>149</ID>
+                      <Description>"Shell Amulet"</Description>
+                      <LastState Value="0" RealAddress="7FEE15406C0"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+78*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>150</ID>
+                      <Description>"Mask"</Description>
+                      <LastState Value="0" RealAddress="7FEE15406C2"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+79*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>151</ID>
+                      <Description>"Ogre Liver"</Description>
+                      <LastState Value="0" RealAddress="7FEE15406C4"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+7a*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>152</ID>
+                      <Description>"Lips of Ice"</Description>
+                      <LastState Value="0" RealAddress="7FEE15406C6"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+7b*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>153</ID>
+                      <Description>"Eyeball of Fire"</Description>
+                      <LastState Value="0" RealAddress="7FEE15406C8"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+7c*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>154</ID>
+                      <Description>"Black Demon Horn"</Description>
+                      <LastState Value="0" RealAddress="7FEE15406CA"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+7d*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>155</ID>
+                      <Description>"Loyalty Orb"</Description>
+                      <LastState Value="0" RealAddress="7FEE15406CC"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+7e*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>156</ID>
+                      <Description>"Justice Orb"</Description>
+                      <LastState Value="0" RealAddress="7FEE15406CE"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+7f*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>157</ID>
+                      <Description>"Duty Orb"</Description>
+                      <LastState Value="0" RealAddress="7FEE15406D0"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+80*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>158</ID>
+                      <Description>"Golden Mushroom"</Description>
+                      <LastState Value="1" RealAddress="7FEE15406EE"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+8f*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>159</ID>
+                      <Description>"Gimmick Gear"</Description>
+                      <LastState Value="0" RealAddress="7FEE15406F0"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+90*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>160</ID>
+                      <Description>"8 Purification Sake"</Description>
+                      <LastState Value="0" RealAddress="7FEE15406F4"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+92*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>161</ID>
+                      <Description>"Sewaprolo"</Description>
+                      <LastState Value="0" RealAddress="7FEE15406F6"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+93*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>143</ID>
+                      <Description>"Charcoal"</Description>
+                      <LastState Value="1" RealAddress="7FEE1540712"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+a1*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>137</ID>
+                      <Description>"Blinding Snow"</Description>
+                      <LastState Value="0" RealAddress="7FEE1540714"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+a2*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>138</ID>
+                      <Description>"Treasure Box"</Description>
+                      <LastState Value="0" RealAddress="7FEE1540716"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+a3*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>139</ID>
+                      <Description>"Herbal Medicine"</Description>
+                      <LastState Value="1" RealAddress="7FEE154071A"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+a5*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>140</ID>
+                      <Description>"Pinwheel"</Description>
+                      <LastState Value="0" RealAddress="7FEE154071C"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+a6*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>141</ID>
+                      <Description>"Marlin Rod"</Description>
+                      <LastState Value="1" RealAddress="7FEE154071E"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+a7*2</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>99</ID>
+                  <Description>"[Treasures]"</Description>
+                  <Options moHideChildren="1"/>
+                  <LastState Value="" RealAddress="7FEE15405D0"/>
+                  <Color>000080</Color>
+                  <VariableType>Array of byte</VariableType>
+                  <ByteLength>0</ByteLength>
+                  <Address>+0</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>110</ID>
+                      <Description>"White Porcelain Pot"</Description>
+                      <LastState Value="0" RealAddress="7FEE1540770"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+d0*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>109</ID>
+                      <Description>"Kutani Pottery"</Description>
+                      <LastState Value="1" RealAddress="7FEE1540772"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+d1*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>107</ID>
+                      <Description>"Incense Burner"</Description>
+                      <LastState Value="2" RealAddress="7FEE1540776"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+d3*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>103</ID>
+                      <Description>"Vase"</Description>
+                      <LastState Value="1" RealAddress="7FEE1540778"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+d4*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>104</ID>
+                      <Description>"Silver Pocket Watch"</Description>
+                      <LastState Value="0" RealAddress="7FEE154077A"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+d5*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>105</ID>
+                      <Description>"Rat Statue"</Description>
+                      <LastState Value="1" RealAddress="7FEE154077C"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+d6*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>106</ID>
+                      <Description>"Bull Horn"</Description>
+                      <LastState Value="2" RealAddress="7FEE154077E"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+d7*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>169</ID>
+                      <Description>"Coral Fragment"</Description>
+                      <LastState Value="2" RealAddress="7FEE1540790"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+e0*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>170</ID>
+                      <Description>"Crystal"</Description>
+                      <LastState Value="4" RealAddress="7FEE1540792"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+e1*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>171</ID>
+                      <Description>"Pearl"</Description>
+                      <LastState Value="3" RealAddress="7FEE1540794"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+e2*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>172</ID>
+                      <Description>"Ruby Tassels"</Description>
+                      <LastState Value="0" RealAddress="7FEE1540796"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+e3*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>173</ID>
+                      <Description>"Bull Statue"</Description>
+                      <LastState Value="0" RealAddress="7FEE1540798"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+e4*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>174</ID>
+                      <Description>"Tiger Statue"</Description>
+                      <LastState Value="0" RealAddress="7FEE154079A"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+e5*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>175</ID>
+                      <Description>"Rabbit Statue"</Description>
+                      <LastState Value="0" RealAddress="7FEE154079C"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+e6*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>176</ID>
+                      <Description>"Dragon Statue"</Description>
+                      <LastState Value="0" RealAddress="7FEE154079E"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+e7*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>177</ID>
+                      <Description>"Snake Statue"</Description>
+                      <LastState Value="0" RealAddress="7FEE15407A0"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+e8*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>178</ID>
+                      <Description>"Horse Statue"</Description>
+                      <LastState Value="0" RealAddress="7FEE15407A2"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+e9*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>179</ID>
+                      <Description>"Sheep Statue"</Description>
+                      <LastState Value="0" RealAddress="7FEE15407A4"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+ea*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>180</ID>
+                      <Description>"Monkey Statue"</Description>
+                      <LastState Value="1" RealAddress="7FEE15407A6"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+eb*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>181</ID>
+                      <Description>"Rooster Statue"</Description>
+                      <LastState Value="1" RealAddress="7FEE15407A8"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+ec*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>182</ID>
+                      <Description>"Dog Statue"</Description>
+                      <LastState Value="0" RealAddress="7FEE15407AA"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+ed*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>183</ID>
+                      <Description>"Boar Statue"</Description>
+                      <LastState Value="0" RealAddress="7FEE15407AC"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+ee*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>184</ID>
+                      <Description>"Cat Statue"</Description>
+                      <LastState Value="0" RealAddress="7FEE15407AE"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+ef*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>185</ID>
+                      <Description>"Sapphire Tassels"</Description>
+                      <LastState Value="0" RealAddress="7FEE15407B0"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+f0*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>186</ID>
+                      <Description>"Emerald Tassels"</Description>
+                      <LastState Value="0" RealAddress="7FEE15407B2"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+f1*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>187</ID>
+                      <Description>"Turquoise Tassels"</Description>
+                      <LastState Value="0" RealAddress="7FEE15407B4"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+f2*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>188</ID>
+                      <Description>"Agate Tassels"</Description>
+                      <LastState Value="0" RealAddress="7FEE15407B6"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+f3*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>189</ID>
+                      <Description>"Amber Tassels"</Description>
+                      <LastState Value="0" RealAddress="7FEE15407B8"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+f4*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>190</ID>
+                      <Description>"Cat's Eye Tassels"</Description>
+                      <LastState Value="0" RealAddress="7FEE15407BA"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+f5*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>191</ID>
+                      <Description>"Amethyst Tassels"</Description>
+                      <LastState Value="0" RealAddress="7FEE15407BC"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+f6*2</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>192</ID>
+                      <Description>"Jade Tassels"</Description>
+                      <LastState Value="0" RealAddress="7FEE15407BE"/>
+                      <Color>0000FF</Color>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+f7*2</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>26</ID>
+      <Description>""</Description>
+      <Options moHideChildren="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>0</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0" RealAddress="30082BB4"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>30082BB4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1</ID>
+          <Description>"No description"</Description>
+          <LastState Value="148628" RealAddress="7FEE153CFE0"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B1CFE0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>2</ID>
+          <Description>"No description"</Description>
+          <LastState Value="148628" RealAddress="7FEE153CFE4"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B1CFE4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>3</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0" RealAddress="7FEE153DBB8"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B1DBB8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>4</ID>
+          <Description>"No description"</Description>
+          <LastState Value="148628" RealAddress="7FEE15405E0"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B205E0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>5</ID>
+          <Description>"No description"</Description>
+          <LastState Value="543257" RealAddress="7FEE1541758"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B21758</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>12</ID>
+          <Description>"Auto Assemble script"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+aobscanmodule(inkWriteAOB,main.dll,44 3B 40 0C 44 0F 4F 40 0C 44 89 40 08 C3)
+registersymbol(inkWriteAOB)
+
+inkWriteAOB+4: //"main.dll"+49639C:
+db 90 44 8B
+
+
+
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+inkWriteAOB+4: //"main.dll"+49639C:
+db 44 0F 4F
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>13</ID>
+          <Description>"Auto Assemble script"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+aobscanmodule(inkWirteOnPaintExitAOB,main.dll,3B 50 0C 0F 4F 50 0C 89 50 08 C3)
+registersymbol(inkWirteOnPaintExitAOB)
+
+inkWirteOnPaintExitAOB+3: //"main.dll"+497036:
+db 90 8B
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+inkWirteOnPaintExitAOB+3: //"main.dll"+497036:
+db 0F 4F
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>14</ID>
+          <Description>"No description"</Description>
+          <LastState Value="400" RealAddress="7FEE153CDC0"/>
+          <VariableType>2 Bytes</VariableType>
+          <Address>main.dll+B1CDC0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>15</ID>
+          <Description>"No description"</Description>
+          <LastState Value="400" RealAddress="7FEE156DF94"/>
+          <VariableType>2 Bytes</VariableType>
+          <Address>main.dll+B4DF94</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>19</ID>
+          <Description>"No description"</Description>
+          <LastState Value="2100" RealAddress="7FEE153CD20"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B1CD20</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>20</ID>
+          <Description>"No description"</Description>
+          <LastState Value="2100" RealAddress="7FEE153CD28"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B1CD28</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>21</ID>
+          <Description>"No description"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>7FEDAAFDF90</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>27</ID>
+          <Description>"No description"</Description>
+          <LastState Value="-1.485139585E29" RealAddress="02708AA0"/>
+          <VariableType>Float</VariableType>
+          <Address>02708AA0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>28</ID>
+          <Description>"No description"</Description>
+          <LastState Value="-1.485139585E29" RealAddress="02708B50"/>
+          <VariableType>Float</VariableType>
+          <Address>02708B50</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>29</ID>
+          <Description>"No description"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>7FEDAB1AD04</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>30</ID>
+          <Description>"No description"</Description>
+          <VariableType>Byte</VariableType>
+          <Address>7FEDAB1AE09</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>31</ID>
+          <Description>"No description"</Description>
+          <VariableType>Byte</VariableType>
+          <Address>7FEDAB1AE6B</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>32</ID>
+          <Description>"Auto Assemble script"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+define(dmoveforcemultiplierdefault,(float)0.4)
+
+aobscanmodule(padForceApplyAOB,main.dll,88 83 ** ** ** ** 0F B6 87 ** ** ** ** 88 83 ** ** ** ** 0F B6 87 ** ** ** ** 88 83 ** ** ** ** 0F B6 87 ** ** ** ** 88 83 ** ** ** ** 8B 87)
+registersymbol(padForceApplyAOB)
+
+label(bWalkKeyPressed)
+registersymbol(bWalkKeyPressed)
+label(dMoveForceMultiplier)
+registersymbol(dMoveForceMultiplier)
+
+alloc(newmem,2048,padForceApplyAOB+d) //"main.dll"+182132)
+label(returnhere)
+label(originalcode_walkkey)
+registersymbol(originalcode_walkkey)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+push rcx
+mov rcx,bWalkKeyPressed
+cmp byte ptr [rcx],1
+jne @f
+
+push rax
+mov rcx,dMoveForceMultiplier
+fld dword ptr [rsp]
+fmul dword ptr [rcx]
+fstp dword ptr [rsp]
+pop rax
+
+@@:
+pop rcx
+
+originalcode_walkkey:
+readmem(padForceApplyAOB+d,6)
+//mov [rbx+0000016B],al
+
+exit:
+jmp returnhere
+
+///
+bWalkKeyPressed:
+dq 0
+dMoveForceMultiplier:
+dd dmoveforcemultiplierdefault
+///
+
+padForceApplyAOB+d: //"main.dll"+182132:
+jmp newmem
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+padForceApplyAOB+d: //"main.dll"+182132:
+readmem(originalcode_walkkey,6)
+//db 88 83 6B 01 00 00
+//Alt: mov [rbx+0000016B],al
+
+unregistersymbol(originalcode_walkkey)
+unregistersymbol(bWalkKeyPressed)
+unregistersymbol(dMoveForceMultiplier)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>33</ID>
+          <Description>"Auto Assemble script"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem2,2048,padForceApplyAOB) //"main.dll"+182125)
+label(returnhere2)
+label(originalcode2_walkkey)
+registersymbol(originalcode2_walkkey)
+label(exit2)
+
+newmem2: //this is allocated memory, you have read,write,execute access
+//place your code here
+push rcx
+mov rcx,bWalkKeyPressed
+cmp byte ptr [rcx],1
+jne @f
+
+push rax
+mov rcx,dMoveForceMultiplier
+fld dword ptr [rsp]
+fmul dword ptr [rcx]
+fstp dword ptr [rsp]
+pop rax
+
+@@:
+pop rcx
+
+originalcode2_walkkey:
+readmem(padForceApplyAOB,6)
+//mov [rbx+0000016A],al
+
+exit2:
+jmp returnhere2
+
+///
+
+padForceApplyAOB: //"main.dll"+182125:
+jmp newmem2
+nop
+returnhere2:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem2)
+padForceApplyAOB: //"main.dll"+182125:
+readmem(originalcode2_walkkey,6)
+//db 88 83 6A 01 00 00
+//Alt: mov [rbx+0000016A],al
+
+unregistersymbol(originalcode2_walkkey)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>34</ID>
+          <Description>"Auto Assemble script"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+
+///********************************************************///
+label(bEndThread_walkKey_keylistener_mem)
+registersymbol(bEndThread_walkKey_keylistener_mem)
+
+alloc(walkKey_keylistener_mem,1024,"main.dll")
+registersymbol(walkKey_keylistener_mem)
+createthread(walkKey_keylistener_mem)
+label(keylistenerstart)
+label(keylistenerend)
+label(keylistenerexit)
+
+walkKey_keylistener_mem:
+sub rsp,28
+
+keylistenerstart:
+mov rcx,14 //CAPS LOCK key
+//push rcx
+call GetAsyncKeyState
+//add rsp,08
+shr ax,#15
+mov rcx,bWalkKeyPressed
+mov [rcx],ax
+
+keylistenerend:
+mov rcx,#100
+call Sleep
+mov rbx,bEndThread_walkKey_keylistener_mem
+cmp dword ptr [rbx],1
+jne keylistenerstart
+
+keylistenerexit:
+add rsp,28
+mov rbx,bEndThread_walkKey_keylistener_mem
+mov dword ptr [rbx],2
+ret
+
+///
+bEndThread_walkKey_keylistener_mem:
+dd 0
+///
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+//obtained from SubBeam's ACS script - start//
+{$lua}
+
+if( syntaxcheck == false ) then --actual execution
+  local starttime = getTickCount()
+
+if readInteger( "bEndThread_walkKey_keylistener_mem" ) == 0 then --could be 2 already
+  writeInteger( "bEndThread_walkKey_keylistener_mem", 1 ) --tell the thread to kill itself
+end
+
+while( getTickCount() &lt; starttime + 1000 ) and ( readInteger( "bEndThread_walkKey_keylistener_mem" ) ~=2 ) do --wait till it has finished
+  sleep( 20 )
+end
+
+if( getTickCount() &gt; starttime + 1000 ) then --could happen when the window is shown
+  showMessage( 'Disabling the thread failed!' )
+  error( 'Thread disabling failed!' )
+end
+  sleep( 1 )
+end
+
+{$asm}
+//obtained from SubBeam's ACS script - end//
+
+//bEndThread_walkKey_keylistener_mem:
+//dd 1
+
+///********************************************************///
+unregistersymbol(bEndThread_walkKey_keylistener_mem)
+
+dealloc(walkKey_keylistener_mem)
+unregistersymbol(walkKey_keylistener_mem)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>36</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0" RealAddress="7FEE12D301A"/>
+          <VariableType>Byte</VariableType>
+          <Address>main.dll+8B301A</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>37</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0" RealAddress="7FEE12D3090"/>
+          <VariableType>Byte</VariableType>
+          <Address>main.dll+8B3090</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>38</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0" RealAddress="7FEE12D4F80"/>
+          <VariableType>Byte</VariableType>
+          <Address>main.dll+8B4F80</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>39</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0" RealAddress="7FEE157BC18"/>
+          <VariableType>Byte</VariableType>
+          <Address>main.dll+B5BC18</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>40</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0" RealAddress="7FEE157BC20"/>
+          <VariableType>Byte</VariableType>
+          <Address>main.dll+B5BC20</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>41</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0" RealAddress="7FEE157BD3C"/>
+          <VariableType>Byte</VariableType>
+          <Address>main.dll+B5BD3C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>42</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0" RealAddress="7FEE157BD40"/>
+          <VariableType>Byte</VariableType>
+          <Address>main.dll+B5BD40</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>43</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0" RealAddress="7FEE157BD84"/>
+          <VariableType>Byte</VariableType>
+          <Address>main.dll+B5BD84</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>44</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0" RealAddress="7FEE157BEF0"/>
+          <VariableType>Byte</VariableType>
+          <Address>main.dll+B5BEF0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>45</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0" RealAddress="7FEE157BEFC"/>
+          <VariableType>Byte</VariableType>
+          <Address>main.dll+B5BEFC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>46</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0" RealAddress="7FEE157BF00"/>
+          <VariableType>Byte</VariableType>
+          <Address>main.dll+B5BF00</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>47</ID>
+          <Description>"No Description"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>7FEDAB0A974</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>48</ID>
+          <Description>"No Description"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>7FEDAB0BA2C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>49</ID>
+          <Description>"No Description"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>7FEDAB0BD84</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>50</ID>
+          <Description>"No description"</Description>
+          <LastState Value="917" RealAddress="7FEE156DF9A"/>
+          <VariableType>2 Bytes</VariableType>
+          <Address>main.dll+B4DF9A</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>51</ID>
+          <Description>"No description"</Description>
+          <LastState Value="1907" RealAddress="7FEE156DF9C"/>
+          <VariableType>2 Bytes</VariableType>
+          <Address>main.dll+B4DF9C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>52</ID>
+          <Description>"Auto Assemble script"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+"main.dll"+434AAC:
+db 90 90
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+"main.dll"+434AAC:
+db 7E 1E
+//Alt: jle main.cObjAtari::View+2268BC
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>55</ID>
+          <Description>"No Description"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>7FEDAACF1F0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>59</ID>
+          <Description>"No Description"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>7FEDAACF1F2</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>56</ID>
+          <Description>"No description"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>7FEDAACF1F4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>57</ID>
+          <Description>"Auto Assemble script"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+"main.dll"+434D93:
+db 90 90 90 90 90 90
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+"main.dll"+434D93:
+db 0F 84 6D 01 00 00
+//Alt: je main.cObjAtari::View+226CF6
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>58</ID>
+          <Description>"Auto Assemble script"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+"main.dll"+434E81:
+db 90 90
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+"main.dll"+434E81:
+db 74 4F
+//Alt: je main.cObjAtari::View+226CC2
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>60</ID>
+          <Description>"No description"</Description>
+          <VariableType>Byte</VariableType>
+          <Address>7FEDAACF1F6</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>61</ID>
+          <Description>"Auto Assemble script"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+"main.dll"+434E47:
+db 90 90 90
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+"main.dll"+434E47:
+db 0F 4C F0
+//Alt: cmovl esi,eax
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>62</ID>
+          <Description>"Auto Assemble script"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048,"main.dll"+434E55) 
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+cmp word ptr [rbx+284],0
+je exit
+
+originalcode:
+sub [rbx+00000284],si
+
+exit:
+jmp returnhere
+
+///
+
+"main.dll"+434E55:
+jmp newmem
+nop
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+"main.dll"+434E55:
+db 66 29 B3 84 02 00 00
+//Alt: sub [rbx+00000284],si
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>64</ID>
+          <Description>"Auto Assemble script"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048,7FEE0A6000F)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+push rbx
+
+mov rbx,"main.dll"+43B6F9
+cmp [rsp+8],rbx
+je @f
+mov rbx,"main.dll"+43C785
+cmp [rsp+8],rbx
+je @f
+
+mov ebx,[rax+10]
+
+@@:
+pop rbx
+
+originalcode:
+mov eax,[rax+10]
+ret 
+int 3 
+
+exit:
+jmp returnhere
+
+///
+
+7FEE0A6000F:
+jmp newmem
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+7FEE0A6000F:
+db 8B 40 10 C3 CC
+//Alt: mov eax,[rax+10]
+//Alt: ret
+//Alt: int 3
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>65</ID>
+          <Description>"1/2"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+aobscanmodule(yenChkInQInputOnBuyAOB,main.dll,48 8B ** ** ** ** ** E8 ** ** ** ** 3B C3 0F 8C ** ** ** ** B0 01)
+registersymbol(yenChkInQInputOnBuyAOB)
+
+alloc(originalcode2_ignoreyen,8)
+registersymbol(originalcode2_ignoreyen)
+
+originalcode2_ignoreyen:
+readmem(yenChkInQInputOnBuyAOB+e,6)
+
+///
+
+yenChkInQInputOnBuyAOB+e: //"main.dll"+43B942:
+db 90 90 90 90 90 90
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+yenChkInQInputOnBuyAOB+e: //"main.dll"+43B942:
+readmem(originalcode2_ignoreyen,6)
+//db 0F 8C AC FE FF FF
+//Alt: jl main.cObjAtari::View+22D5E4
+
+unregistersymbol(originalcode2_ignoreyen)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>66</ID>
+          <Description>"No Description"</Description>
+          <LastState Value="4025479151" RealAddress="301BC8D4"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>301BC8D4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>67</ID>
+          <Description>"2/2"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+aobscanmodule(yenChkInBuyMenuAOB,main.dll,48 8B F0 E8 ** ** ** ** 39 44 ** ** 0F 8F ** ** ** ** 8B 0C 3E)
+registersymbol(yenChkInBuyMenuAOB)
+
+alloc(originalcode_ignoreyen,8)
+registersymbol(originalcode_ignoreyen)
+
+originalcode_ignoreyen:
+readmem(yenChkInBuyMenuAOB+c,6)
+
+///
+
+yenChkInBuyMenuAOB+c: //"main.dll"+43B6FD:
+db 90 90 90 90 90 90
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+yenChkInBuyMenuAOB+c: //"main.dll"+43B6FD:
+readmem(originalcode_ignoreyen,6)
+//db 0F 8F BF FE FF FF
+//Alt: jg main.cObjAtari::View+22D3B2
+
+unregistersymbol(originalcode_ignoreyen)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>69</ID>
+          <Description>"No description"</Description>
+          <LastState Value="4" RealAddress="7FEE1540764"/>
+          <VariableType>2 Bytes</VariableType>
+          <Address>main.dll+B20764</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>98</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0" RealAddress="7FEE1800778"/>
+          <VariableType>Byte</VariableType>
+          <Address>7FEE1800778</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>165</ID>
+          <Description>"Auto Assemble script"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+aobscanmodule(yenChkInDojoMenu,main.dll,E8 ** ** ** ** 48 8B ** ** ** ** ** 39 44 ** ** 7F)
+registersymbol(yenChkInDojoMenu)
+
+alloc(originalcode3_ignoreyen,4)
+registersymbol(originalcode3_ignoreyen)
+
+originalcode3_ignoreyen:
+readmem(yenChkInDojoMenu+10,2)
+
+///
+
+yenChkInDojoMenu+10: //"main.dll"+442086:
+db 90 90
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+yenChkInDojoMenu+10: //"main.dll"+442086:
+readmem(originalcode3_ignoreyen,2)
+//db 7F 31
+//Alt: jg main.cObjAtari::View+233EA9
+
+unregistersymbol(originalcode3_ignoreyen)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>196</ID>
+          <Description>"Auto Assemble script"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048,"main.dll"+496E0A) 
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+push rbx
+push rdx
+mov rbx,7FEDAE2066E
+lea rdx,[rax+rcx*2+60]
+cmp rbx,rdx
+jne @f
+
+mov rbx,"main.dll"+43F1B3   //chk for enough df to buy
+cmp [rsp+10],rbx
+je @f
+mov rbx,"main.dll"+43FB7B   //display?
+cmp [rsp+10],rbx
+je @f
+
+movzx eax,word ptr [rax+rcx*2+60]
+pop rdx
+pop rbx
+jmp exit
+
+@@:
+pop rdx
+pop rbx
+
+originalcode:
+movzx eax,word ptr [rax+rcx*2+60]
+
+exit:
+jmp returnhere
+
+///
+
+"main.dll"+496E0A:
+jmp newmem
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+"main.dll"+496E0A:
+db 0F B7 44 48 60
+//Alt: movzx eax,word ptr [rax+rcx*2+60]
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>195</ID>
+          <Description>"Auto Assemble script"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+aobscanmodule(demonFangsChkInBuyMenuAOB,main.dll,E8 ** ** ** ** 0F BF C8 48 8B ** ** 39 4C ** ** 7F)
+registersymbol(demonFangsChkInBuyMenuAOB)
+
+alloc(originalcode_ignoredemonfangs,8)
+registersymbol(originalcode_ignoredemonfangs)
+
+originalcode_ignoredemonfangs:
+readmem(demonFangsChkInBuyMenuAOB+10,2)
+
+///
+
+demonFangsChkInBuyMenuAOB+10: //"main.dll"+43F1BE:
+db 90 90
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+demonFangsChkInBuyMenuAOB+10: //"main.dll"+43F1BE:
+readmem(originalcode_ignoredemonfangs,2)
+//db 7F 43
+//Alt: jg main.cObjAtari::View+230FF3
+
+unregistersymbol(originalcode_ignoredemonfangs)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>197</ID>
+          <Description>"Auto Assemble script"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+aobscanmodule(demonFangsChkInQInputOnBuyMenuAOB,main.dll,E8 ** ** ** ** 48 8B ** ** ** 48 8B ** ** ** 0F BF C8 3B CF 0F 9D C0)
+registersymbol(demonFangsChkInQInputOnBuyMenuAOB)
+
+demonFangsChkInQInputOnBuyMenuAOB+14: //"main.dll"+43F2B4:
+db 90 B0 01
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+demonFangsChkInQInputOnBuyMenuAOB+14: //"main.dll"+43F2B4:
+db 0F 9D C0
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>199</ID>
+          <Description>"Auto Assemble script"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+aobscanmodule(someItemQWriteAOB,main.dll,66 41 89 3C 06 48 8B ** ** ** 48)
+registersymbol(someItemQWriteAOB)
+
+label(bIgnoreDemonFangs)
+registersymbol(bIgnoreDemonFangs)
+
+alloc(newmem2,2048,someItemQWriteAOB) //"main.dll"+49665D)
+label(returnhere2)
+label(originalcode2)
+label(exit2)
+
+newmem2: //this is allocated memory, you have read,write,execute access
+//place your code here
+push rbx
+
+mov rbx,bIgnoreDemonFangs
+cmp byte ptr [rbx],1
+je preventnegiq2
+
+jmp end2
+
+preventnegiq2:
+test di,di
+jns @f
+xor di,di
+jmp end2
+
+end2:
+pop rbx
+
+originalcode2:
+mov [r14+rax],di
+
+exit2:
+jmp returnhere2
+
+///
+bIgnoreDemonFangs:
+///
+
+someItemQWriteAOB: //"main.dll"+49665D:
+jmp newmem2
+returnhere2:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem2)
+someItemQWriteAOB: //"main.dll"+49665D:
+db 66 41 89 3C 06
+//Alt: mov [r14+rax],di
+
+unregistersymbol(bIgnoreDemonFangs)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>97</ID>
+          <Description>"Auto Assemble script"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+aobscanmodule(feedChkZeroWhenNextToAnimalsAOB,main.dll,E8 ** ** ** ** 85 DB 48 8B ** ** ** ** ** ** 75)
+registersymbol(feedChkZeroWhenNextToAnimalsAOB)
+
+feedChkZeroWhenNextToAnimalsAOB+f: //"main.dll"+4136EE:
+db EB
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+feedChkZeroWhenNextToAnimalsAOB+f: //"main.dll"+4136EE:
+db 75
+//Alt: jne
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>201</ID>
+          <Description>"No description"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Byte</VariableType>
+          <Address>7FEDAE208B9</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>202</ID>
+          <Description>"No description"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Byte</VariableType>
+          <Address>7FEDAE208B8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>204</ID>
+          <Description>"all key items"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+"main.dll"+40F151:
+db 90 90
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+"main.dll"+40F151:
+db 7E 08
+//Alt: jle main.cObjAtari::View+200F4B
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>205</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0" RealAddress="7FEE180065A"/>
+          <VariableType>Byte</VariableType>
+          <Address>7FEE180065A</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>208</ID>
+          <Description>"reflector"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(originalcode_allweapons,4)
+registersymbol(originalcode_allweapons)
+
+originalcode_allweapons:
+readmem(weaponsQChkZero1InEquipMenuAOB+8,2)
+
+///
+
+weaponsQChkZero1InEquipMenuAOB+8: //"main.dll"+40F1D3:
+db 90 90
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+weaponsQChkZero1InEquipMenuAOB+8: //"main.dll"+40F1D3:
+readmem(originalcode_allweapons,2)
+//db 74 09
+//Alt: je main.cObjAtari::View+200FCE
+
+unregistersymbol(originalcode_allweapons)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>206</ID>
+          <Description>"rosary"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(originalcode2_allweapons,4)
+registersymbol(originalcode2_allweapons)
+
+originalcode2_allweapons:
+readmem(weaponsQChkZero2InEquipMenuAOB+8,2)
+
+///
+
+weaponsQChkZero2InEquipMenuAOB+8: //"main.dll"+40F221:
+db 90 90
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+weaponsQChkZero2InEquipMenuAOB+8: //"main.dll"+40F221:
+readmem(originalcode2_allweapons,2)
+//db 74 09
+//Alt: je main.cObjAtari::View+20101C
+
+unregistersymbol(originalcode2_allweapons)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>207</ID>
+          <Description>"No Description"</Description>
+          <LastState Value="0" RealAddress="7FEE1800650"/>
+          <VariableType>Byte</VariableType>
+          <Address>7FEE1800650</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>209</ID>
+          <Description>"glaive"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(originalcode3_allweapons,4)
+registersymbol(originalcode3_allweapons)
+
+originalcode3_allweapons:
+readmem(weaponsQChkZero3InEquipMenuAOB+8,2)
+
+///
+
+weaponsQChkZero3InEquipMenuAOB+8: //"main.dll"+40F271:
+db 90 90
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+weaponsQChkZero3InEquipMenuAOB+8: //"main.dll"+40F271:
+readmem(originalcode3_allweapons,2)
+//db 74 08
+//Alt: je main.cObjAtari::View+20106B
+
+unregistersymbol(originalcode3_allweapons)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>210</ID>
+          <Description>"all weapons for gold dust"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+aobscanmodule(weaponsChkZeroForGoldDustUsageAOB,main.dll,48 8B ** ** ** ** ** 66 83 ** ** 00 74 ** 48)
+registersymbol(weaponsChkZeroForGoldDustUsageAOB)
+
+alloc(originalcode4_allweapons,4)
+registersymbol(originalcode4_allweapons)
+
+originalcode4_allweapons:
+readmem(weaponsChkZeroForGoldDustUsageAOB+c,2)
+
+///
+
+weaponsChkZeroForGoldDustUsageAOB+c: //"main.dll"+49694C:
+db 90 90
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+weaponsChkZeroForGoldDustUsageAOB+c: //"main.dll"+49694C:
+readmem(originalcode4_allweapons,2)
+//db 74 28
+//Alt: je main.cObjAtari::View+288766
+
+unregistersymbol(originalcode4_allweapons)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>212</ID>
+          <Description>"all weapons for dojo"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+weaponsChkZeroInDojoAOB+a: //"main.dll"+442391:
+db EB
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+weaponsChkZeroInDojoAOB+a: //"main.dll"+442391:
+db 7F
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>213</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0" RealAddress="7FEE1594CD4"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B74CD4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>215</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0" RealAddress="7FEE1854CBC"/>
+          <VariableType>Float</VariableType>
+          <Address>7FEE1854CBC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>216</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0" RealAddress="7FEE1854CB6"/>
+          <ShowAsSigned>1</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>7FEE1854CB6</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>217</ID>
+          <Description>"No Description"</Description>
+          <LastState Value="0" RealAddress="7FEE1854D28"/>
+          <VariableType>Byte</VariableType>
+          <Address>7FEE1854D28</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>218</ID>
+          <Description>"No description"</Description>
+          <VariableType>4 Bytes</VariableType>
+          <Address>7FEE0704CB6</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>219</ID>
+          <Description>"Auto Assemble script"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048,"main.dll"+48EACA) 
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+mov ecx,1
+jmp exit
+
+originalcode:
+movsx ecx,byte ptr [rbx+00000157]
+
+exit:
+jmp returnhere
+
+///
+
+"main.dll"+48EACA:
+jmp newmem
+nop
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+"main.dll"+48EACA:
+db 0F BE 8B 57 01 00 00
+//Alt: movsx ecx,byte ptr [rbx+00000157]
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>220</ID>
+          <Description>"Auto Assemble script"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+"main.dll"+48E46E:
+db 90 90
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+"main.dll"+48E46E:
+db 74 65
+//Alt: je main.cObjAtari::View+2802C5
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>221</ID>
+          <Description>"Auto Assemble script"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+"main.dll"+48E477:
+db 90 90
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+"main.dll"+48E477:
+db 7C 5C
+//Alt: jl main.cObjAtari::View+2802C5
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>222</ID>
+          <Description>"Auto Assemble script"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+alloc(newmem,2048,"main.dll"+48E470) 
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+mov byte ptr [rbx+e8],3
+
+originalcode:
+cmp byte ptr [rbx+000000E8],00
+
+exit:
+jmp returnhere
+
+///
+
+"main.dll"+48E470:
+jmp newmem
+nop
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+"main.dll"+48E470:
+db 80 BB E8 00 00 00 00
+//Alt: cmp byte ptr [rbx+000000E8],00
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>223</ID>
+          <Description>"No description"</Description>
+          <VariableType>Float</VariableType>
+          <Address>7FEE0704CBC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>225</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0" RealAddress="7FEE12C7F91"/>
+          <VariableType>Byte</VariableType>
+          <Address>main.dll+8A7F91</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>226</ID>
+          <Description>"enable .1"</Description>
+          <LastState/>
+          <Color>FF0000</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+//vng21092's aobscan lua script
+{$lua}
+function lua_aobscan(name,module,bytes,index)
+  index = index - 1
+  if(module == "") then
+    local resultSet = AOBScan(bytes)
+      if(resultSet == nil) then
+        unregisterSymbol(name)
+        print(name.." not found")
+      else
+        unregisterSymbol(name)
+        registerSymbol(name,resultSet[index])
+        resultSet.destroy()
+      end
+  else
+    if(getModuleSize(module) == nil) then
+      print("Module "..module.." not found")
+    else
+      local memScanner = createMemScan()
+      local memFoundList = createFoundList(memScanner)
+      memScanner.firstScan(
+        soExactValue,vtByteArray,rtRounded,bytes,nil,
+        getAddress(module),(getAddress(module)+getModuleSize(module)),"",
+        fsmNotAligned,"",true,false,false,false)
+      memScanner.waitTillDone()
+      memFoundList.initialize()
+        if(memFoundList.Count == 0) then
+          unregisterSymbol(name)
+          print(name.." in module "..module.." not found")
+        else
+          unregisterSymbol(name)
+          registerSymbol(name,memFoundList.Address[index])
+        end
+      memScanner.destroy()
+      memFoundList.destroy()
+    end
+  end
+end
+{$asm}
+
+//////////////////////////
+luaCall(lua_aobscan("weaponsQChkZero1InEquipMenuAOB","main.dll","E8 ** ** ** ** 66 85 C0 74 ** 8B",1))
+luaCall(lua_aobscan("weaponsQChkZero2InEquipMenuAOB","main.dll","E8 ** ** ** ** 66 85 C0 74 ** 8B",2))
+luaCall(lua_aobscan("weaponsQChkZero3InEquipMenuAOB","main.dll","E8 ** ** ** ** 66 85 C0 74 ** 8B",3))
+luaCall(lua_aobscan("weaponsChkZeroInDojoAOB","main.dll","8B D3 E8 ** ** ** ** 66 85 C0 7F",2))
+//////////////////////////
+
+aobscanmodule(playerHealthCalOnChange1AOB,main.dll,0F B7 15 ** ** ** ** 66 03 D1 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** 66 85 D2)
+registersymbol(playerHealthCalOnChange1AOB)
+aobscanmodule(playerHealthCalOnChange2AOB,main.dll,0F B7 15 ** ** ** ** 66 03 D1 ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** ** 66 83)
+registersymbol(playerHealthCalOnChange2AOB)
+aobscanmodule(foodPouchReadAOB,main.dll,0F B7 05 ** ** ** ** C3 CC CC CC CC CC CC CC CC 0F B7 05 ** ** ** ** C3 CC CC CC CC CC CC CC CC 66)
+registersymbol(foodPouchReadAOB)
+
+///
+
+aobscanmodule(yanRead1AOB,main.dll,48 8B ** ** ** ** ** 8B 40 10 C3)
+registersymbol(yanRead1AOB)
+
+label(pPlayer)
+registersymbol(pPlayer)
+
+alloc(newmem,2048,yanRead1AOB+7) //"main.dll"+496DD7)
+label(returnhere)
+label(originalcode)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+push rbx
+mov rbx,pPlayer
+mov [rbx],rax
+pop rbx
+
+originalcode:
+mov eax,[rax+10]
+ret
+int 3
+
+exit:
+jmp returnhere
+
+///
+pPlayer:
+///
+
+yanRead1AOB+7: //"main.dll"+496DD7:
+jmp newmem
+returnhere:
+
+///***************************************///
+aobscanmodule(someItemQWriteAOB,main.dll,66 41 89 3C 06 48 8B ** ** ** 48)
+registersymbol(someItemQWriteAOB)
+
+label(bIgnoreDemonFangs)
+registersymbol(bIgnoreDemonFangs)
+label(bIgnoreUsableTools)
+registersymbol(bIgnoreUsableTools)
+
+alloc(newmem2,2048,someItemQWriteAOB) //"main.dll"+49665D)
+label(returnhere2)
+label(originalcode2)
+label(exit2)
+
+newmem2: //this is allocated memory, you have read,write,execute access
+//place your code here
+push rbx
+
+mov rbx,bIgnoreDemonFangs
+cmp byte ptr [rbx],1
+je preventnegiq2
+mov rbx,bIgnoreUsableTools
+cmp byte ptr [rbx],1
+je preventnegiq2
+
+jmp end2
+
+preventnegiq2:
+test di,di
+jns @f
+xor di,di
+jmp end2
+
+end2:
+pop rbx
+
+originalcode2:
+mov [r14+rax],di
+
+exit2:
+jmp returnhere2
+
+///
+bIgnoreDemonFangs:
+dq 0
+bIgnoreUsableTools:
+dq 0
+///
+
+someItemQWriteAOB: //"main.dll"+49665D:
+jmp newmem2
+returnhere2:
+
+
+
+
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+yanRead1AOB+7: //"main.dll"+496DD7:
+db 8B 40 10 C3 CC
+//Alt: mov eax,[rax+10]
+//Alt: ret
+//Alt: int 3
+
+unregistersymbol(pPlayer)
+
+///***************************************///
+dealloc(newmem2)
+someItemQWriteAOB: //"main.dll"+49665D:
+db 66 41 89 3C 06
+//Alt: mov [r14+rax],di
+
+unregistersymbol(bIgnoreDemonFangs)
+unregistersymbol(bIgnoreUsableTools)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>227</ID>
+          <Description>"Auto Assemble script"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+
+aobscanmodule(yanRead1AOB,main.dll,48 8B ** ** ** ** ** 8B 40 10 C3)
+registersymbol(yanRead1AOB)
+
+label(pPlayer)
+registersymbol(pPlayer)
+
+alloc(newmem,2048,yanRead1AOB) //"main.dll"+496DD0)
+label(returnhere)
+label(originalcode_enable)
+registersymbol(originalcode_enable)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+reassemble(yanRead1AOB)
+push rbx
+mov rbx,pPlayer
+mov [rbx],rax
+pop rbx
+jmp exit
+
+originalcode_enable:
+readmem(yanRead1AOB,7)
+//mov rax,[main.dll+B205C0]
+
+exit:
+jmp returnhere
+
+///
+pPlayer:
+///
+
+yanRead1AOB: //"main.dll"+496DD0:
+jmp newmem
+nop
+nop
+returnhere:
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+yanRead1AOB: //"main.dll"+496DD0:
+readmem(originalcode_enable,7)
+//db 48 8B 05 E9 97 68 00
+//Alt: mov rax,[main.dll+B205C0]
+
+unregistersymbol(originalcode_enable)
+unregistersymbol(pPlayer)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>228</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0" RealAddress="7FEE153DC5C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B1DC5C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>230</ID>
+          <Description>"No description"</Description>
+          <LastState Value="1" RealAddress="7FEE1570364"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B50364</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>231</ID>
+          <Description>"No description"</Description>
+          <LastState Value="5898304" RealAddress="7FEE1570384"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B50384</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>232</ID>
+          <Description>"No description"</Description>
+          <LastState Value="1" RealAddress="7FEE15703D4"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B503D4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>233</ID>
+          <Description>"No description"</Description>
+          <LastState Value="6946816" RealAddress="7FEE1570590"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B50590</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>234</ID>
+          <Description>"No description"</Description>
+          <LastState Value="2" RealAddress="7FEE15705A8"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B505A8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>235</ID>
+          <Description>"No description"</Description>
+          <LastState Value="2" RealAddress="7FEE1570618"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B50618</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>236</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0" RealAddress="7FEE1570664"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B50664</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>237</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0" RealAddress="7FEE157066C"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B5066C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>238</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0" RealAddress="7FEE1570670"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B50670</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>239</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0" RealAddress="7FEE1570674"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B50674</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>240</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0" RealAddress="7FEE1570680"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B50680</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>241</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0" RealAddress="7FEE1570688"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B50688</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>242</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0" RealAddress="7FEE15706C0"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B506C0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>243</ID>
+          <Description>"No description"</Description>
+          <LastState Value="131093" RealAddress="7FEE15706E0"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B506E0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>244</ID>
+          <Description>"No description"</Description>
+          <LastState Value="13" RealAddress="7FEE15706E4"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B506E4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>245</ID>
+          <Description>"No description"</Description>
+          <LastState Value="4" RealAddress="7FEE15706F8"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B506F8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>246</ID>
+          <Description>"No description"</Description>
+          <LastState Value="1" RealAddress="7FEE1570730"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B50730</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>247</ID>
+          <Description>"No description"</Description>
+          <LastState Value="BB3A0083" RealAddress="7FEE1556F80"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B36F80</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>249</ID>
+          <Description>"No description"</Description>
+          <LastState Value="BB3A0083" RealAddress="7FEE1556F80"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B36F80</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>250</ID>
+          <Description>"?"</Description>
+          <LastState Value="00000000" RealAddress="7FEE15726F0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B526F0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>251</ID>
+          <Description>"?"</Description>
+          <LastState Value="00000000" RealAddress="7FEE15726F8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B526F8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>255</ID>
+          <Description>"..."</Description>
+          <LastState Value="00000001" RealAddress="7FEE1572824"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B52824</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>258</ID>
+          <Description>"No description"</Description>
+          <LastState Value="00000000" RealAddress="7FEE1572830"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B52830</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>259</ID>
+          <Description>"No description"</Description>
+          <LastState Value="00000000" RealAddress="7FEE1572838"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B52838</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>260</ID>
+          <Description>"No description"</Description>
+          <LastState Value="00000000" RealAddress="7FEE1572840"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B52840</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>261</ID>
+          <Description>"No description"</Description>
+          <LastState Value="00000000" RealAddress="7FEE1572844"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B52844</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>262</ID>
+          <Description>"No description"</Description>
+          <LastState Value="00000000" RealAddress="7FEE1572848"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B52848</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>263</ID>
+          <Description>"No description"</Description>
+          <LastState Value="00000000" RealAddress="7FEE157284C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B5284C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>264</ID>
+          <Description>"No description"</Description>
+          <LastState Value="00000000" RealAddress="7FEE1572850"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B52850</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>265</ID>
+          <Description>"No description"</Description>
+          <LastState Value="00000000" RealAddress="7FEE1572854"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B52854</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>266</ID>
+          <Description>"No description"</Description>
+          <LastState Value="00000001" RealAddress="7FEE157286C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B5286C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>267</ID>
+          <Description>"No description"</Description>
+          <LastState Value="00000001" RealAddress="7FEE15729D8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B529D8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>268</ID>
+          <Description>"No description"</Description>
+          <LastState Value="00000009" RealAddress="7FEE15729DC"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B529DC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>269</ID>
+          <Description>"No description"</Description>
+          <LastState Value="00000002" RealAddress="7FEE15729E8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B529E8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>270</ID>
+          <Description>"No description"</Description>
+          <LastState Value="10B81130" RealAddress="7FEE1572A00"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B52A00</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>271</ID>
+          <Description>"No description"</Description>
+          <LastState Value="10B836D0" RealAddress="7FEE1572A08"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B52A08</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>272</ID>
+          <Description>"No description"</Description>
+          <LastState Value="00000080" RealAddress="7FEE1572A10"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B52A10</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>273</ID>
+          <Description>"No description"</Description>
+          <LastState Value="FFFFFFFF" RealAddress="7FEE1572A14"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B52A14</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>274</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0000012D" RealAddress="7FEE1572A18"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B52A18</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>275</ID>
+          <Description>"No description"</Description>
+          <LastState Value="00000001" RealAddress="7FEE1572A74"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B52A74</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>276</ID>
+          <Description>"No description"</Description>
+          <LastState Value="00000000" RealAddress="7FEE1572E38"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B52E38</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>277</ID>
+          <Description>"No description"</Description>
+          <LastState Value="00000000" RealAddress="7FEE1572E5C"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B52E5C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>278</ID>
+          <Description>"No description"</Description>
+          <LastState Value="00000000" RealAddress="7FEE1572E60"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B52E60</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>279</ID>
+          <Description>"No description"</Description>
+          <LastState Value="00000000" RealAddress="7FEE1572E64"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B52E64</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>280</ID>
+          <Description>"No description"</Description>
+          <LastState Value="00000000" RealAddress="7FEE1572E68"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B52E68</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>281</ID>
+          <Description>"No description"</Description>
+          <LastState Value="00000000" RealAddress="7FEE1573220"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B53220</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>282</ID>
+          <Description>"No description"</Description>
+          <LastState Value="00000000" RealAddress="7FEE15735E8"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B535E8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>283</ID>
+          <Description>"No description"</Description>
+          <LastState Value="00000000" RealAddress="7FEE1573D78"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B53D78</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>284</ID>
+          <Description>"No description"</Description>
+          <LastState Value="005A0040" RealAddress="7FEE1578820"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B58820</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>285</ID>
+          <Description>"No description"</Description>
+          <LastState Value="00000000" RealAddress="7FEE1578828"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B58828</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>286</ID>
+          <Description>"No description"</Description>
+          <LastState Value="52428" RealAddress="7FEE0C2DFAC"/>
+          <VariableType>2 Bytes</VariableType>
+          <Address>7FEE0C2DFAC</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>288</ID>
+          <Description>"Auto Assemble script"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+"main.dll"+43A88B:
+db 90 90
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+"main.dll"+43A88B:
+db 7C 06
+//Alt: jl main.cObjAtari::View+22C683
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>290</ID>
+          <Description>"No description"</Description>
+          <LastState Value="001FF800" RealAddress="7FEE1541434"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+B21434</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>291</ID>
+          <Description>"No description"</Description>
+          <LastState Value="FFFFFFFF" RealAddress="7FEE139A420"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+97A420</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>292</ID>
+          <Description>"No description"</Description>
+          <LastState Value="FFFFFFFF" RealAddress="7FEE139A690"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+97A690</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>293</ID>
+          <Description>"No description"</Description>
+          <LastState Value="00000000" RealAddress="7FEE12CDC60"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+8ADC60</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>294</ID>
+          <Description>"No description"</Description>
+          <LastState Value="2" RealAddress="7FEE12B8198"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+898198</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>295</ID>
+          <Description>"No description"</Description>
+          <LastState Value="2" RealAddress="7FEE12B81E0"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+8981E0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>296</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0" RealAddress="7FEE12BD260"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+89D260</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>297</ID>
+          <Description>"No description"</Description>
+          <LastState Value="FE1FFFFE" RealAddress="7FEE11BA3A0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>4 Bytes</VariableType>
+          <Address>main.dll+79A3A0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>298</ID>
+          <Description>"No description"</Description>
+          <LastState Value="00" RealAddress="7FEE12D338A"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Byte</VariableType>
+          <Address>main.dll+8B338A</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>299</ID>
+          <Description>"No description"</Description>
+          <LastState Value="00" RealAddress="7FEE12D3400"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Byte</VariableType>
+          <Address>main.dll+8B3400</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>300</ID>
+          <Description>"No description"</Description>
+          <LastState Value="00" RealAddress="7FEE12D3DDA"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Byte</VariableType>
+          <Address>main.dll+8B3DDA</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>301</ID>
+          <Description>"No description"</Description>
+          <LastState Value="00" RealAddress="7FEE12D3E50"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Byte</VariableType>
+          <Address>main.dll+8B3E50</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>302</ID>
+          <Description>"No description"</Description>
+          <LastState Value="00" RealAddress="7FEE12D414A"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Byte</VariableType>
+          <Address>main.dll+8B414A</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>303</ID>
+          <Description>"No description"</Description>
+          <LastState Value="00" RealAddress="7FEE12D41C0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Byte</VariableType>
+          <Address>main.dll+8B41C0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>304</ID>
+          <Description>"No description"</Description>
+          <LastState Value="00" RealAddress="7FEE1577EC0"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>Byte</VariableType>
+          <Address>main.dll+B57EC0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>305</ID>
+          <Description>"No Description"</Description>
+          <LastState Value="1" RealAddress="7FEE154076E"/>
+          <VariableType>2 Bytes</VariableType>
+          <Address>7FEE154076E</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>306</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0001" RealAddress="7FEE1540748"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>2 Bytes</VariableType>
+          <Address>main.dll+B20748</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>307</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0001" RealAddress="7FEE154076E"/>
+          <ShowAsHex>1</ShowAsHex>
+          <VariableType>2 Bytes</VariableType>
+          <Address>main.dll+B2076E</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>308</ID>
+          <Description>"No description"</Description>
+          <LastState Value="0" RealAddress="7FEE11C9DF5"/>
+          <VariableType>Byte</VariableType>
+          <Address>7FEE11C9DF5</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>309</ID>
+          <Description>"No description"</Description>
+          <LastState Value="99" RealAddress="7FEE154066E"/>
+          <VariableType>Byte</VariableType>
+          <Address>7FEE154066E</Address>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols>
+    <SymbolEntry>
+      <Name>weaponsQChkZero1InEquipMenuAOB</Name>
+      <Address>7FEE0E2F1CB</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>weaponsQChkZero2InEquipMenuAOB</Name>
+      <Address>7FEE0E2F219</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>weaponsQChkZero3InEquipMenuAOB</Name>
+      <Address>7FEE0E2F269</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>weaponsChkZeroInDojoAOB</Name>
+      <Address>7FEE0E62387</Address>
+    </SymbolEntry>
+  </UserdefinedSymbols>
+  <Comments>http://fearlessrevolution.com/viewtopic.php?f=4&amp;t=5629
+</Comments>
+</CheatTable>

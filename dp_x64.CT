@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="31">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"Recv key background"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : dp_x64.exe
+  Version: 
+  Date   : 2020-11-21
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_APP_FOCUS,dp_x64.exe,48 3B 47 10 0F 94 C1) // should be unique
+alloc(newmem,$1000,"dp_x64.exe"+3BD41)
+
+label(code)
+label(return)
+
+newmem:
+  mov rax,[rdi+10]
+
+code:
+  cmp rax,[rdi+10]
+  sete cl
+  jmp return
+
+INJ_APP_FOCUS:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJ_APP_FOCUS)
+
+[DISABLE]
+
+INJ_APP_FOCUS:
+  db 48 3B 47 10 0F 94 C1
+
+unregistersymbol(INJ_APP_FOCUS)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "dp_x64.exe"+3BD41
+
+"dp_x64.exe"+3BD0E: 49 8D 51 FE              -  lea rdx,[r9-02]
+"dp_x64.exe"+3BD12: 45 33 C0                 -  xor r8d,r8d
+"dp_x64.exe"+3BD15: 89 44 24 20              -  mov [rsp+20],eax
+"dp_x64.exe"+3BD19: FF 15 E1 2F 7D 01        -  call qword ptr [dp_x64.exe+180ED00]
+"dp_x64.exe"+3BD1F: 0F 28 74 24 60           -  movaps xmm6,[rsp+60]
+"dp_x64.exe"+3BD24: 0F 28 7C 24 50           -  movaps xmm7,[rsp+50]
+"dp_x64.exe"+3BD29: FF 15 D9 2F 7D 01        -  call qword ptr [dp_x64.exe+180ED08]
+"dp_x64.exe"+3BD2F: 48 8B B4 24 88 00 00 00  -  mov rsi,[rsp+00000088]
+"dp_x64.exe"+3BD37: 48 8B 9C 24 80 00 00 00  -  mov rbx,[rsp+00000080]
+"dp_x64.exe"+3BD3F: 33 C9                    -  xor ecx,ecx
+// ---------- INJECTING HERE ----------
+"dp_x64.exe"+3BD41: 48 3B 47 10              -  cmp rax,[rdi+10]
+"dp_x64.exe"+3BD45: 0F 94 C1                 -  sete cl
+// ---------- DONE INJECTING  ----------
+"dp_x64.exe"+3BD48: 3B 4F 48                 -  cmp ecx,[rdi+48]
+"dp_x64.exe"+3BD4B: 74 54                    -  je dp_x64.exe+3BDA1
+"dp_x64.exe"+3BD4D: 89 4F 48                 -  mov [rdi+48],ecx
+"dp_x64.exe"+3BD50: E8 3B D5 D9 00           -  call dp_x64.exe+DD9290
+"dp_x64.exe"+3BD55: 83 7F 48 00              -  cmp dword ptr [rdi+48],00
+"dp_x64.exe"+3BD59: 0F 95 C2                 -  setne dl
+"dp_x64.exe"+3BD5C: 44 8B C0                 -  mov r8d,eax
+"dp_x64.exe"+3BD5F: 48 8B CF                 -  mov rcx,rdi
+"dp_x64.exe"+3BD62: E8 29 DF FF FF           -  call dp_x64.exe+39C90
+"dp_x64.exe"+3BD67: 83 BF A4 0B 00 00 00     -  cmp dword ptr [rdi+00000BA4],00
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry Color="20000000">
+      <Description>Crafting Number</Description>
+      <AddressString>dp_x64.exe+4EE158</AddressString>
+      <Before>
+        <Byte>3B</Byte>
+        <Byte>D9</Byte>
+        <Byte>0F</Byte>
+        <Byte>4C</Byte>
+        <Byte>CB</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>8E</Byte>
+        <Byte>48</Byte>
+        <Byte>03</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>83</Byte>
+        <Byte>EA</Byte>
+        <Byte>02</Byte>
+        <Byte>74</Byte>
+        <Byte>18</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols>
+    <SymbolEntry>
+      <Name>Recifense</Name>
+      <Address>20200924</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>inj_invoffsets</Name>
+      <Address>14CFA52C7</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>inj_statsmission</Name>
+      <Address>149FAA6C4</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>inj_palicopet</Name>
+      <Address>149FAF193</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>p_inv1</Name>
+      <Address>13FFF0097</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>p_inv2</Name>
+      <Address>13FFF009F</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>p_inv3</Name>
+      <Address>13FFF00A7</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>p_inv4</Name>
+      <Address>13FFF00AF</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>infitemuse</Name>
+      <Address>14C19077C</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>hampc</Name>
+      <Address>141C7586C</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>nopgcd2</Name>
+      <Address>141BBA0DC</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>maxbowcharge</Name>
+      <Address>141C8C715</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>p_playerstats</Name>
+      <Address>13FF9001E</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>p_investigation</Name>
+      <Address>152DC004C</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>events_listadd1</Name>
+      <Address>141730304</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>events_listadd2</Name>
+      <Address>14173040A</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>events_enable1</Name>
+      <Address>14AA98631</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>events_enable2</Name>
+      <Address>14AA99339</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>maxskills</Name>
+      <Address>147995E3C</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>maxskills2</Name>
+      <Address>14F14C4D7</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>inj_gathertracks</Name>
+      <Address>141BFCAC3</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>inventory</Name>
+      <Address>90060098</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>inj_catchpet</Name>
+      <Address>14191E2DD</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>inj_mapfunc_pet</Name>
+      <Address>141013120</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>inj_gatherwish</Name>
+      <Address>14144A540</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>inj_pchar</Name>
+      <Address>1468D2B8C</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>aob_statsmission</Name>
+      <Address>14D1746A0</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>aob_palicopet</Name>
+      <Address>14D1778CB</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>aob_layeredarmor</Name>
+      <Address>14F45B041</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>inj_playerstats</Name>
+      <Address>141BDE350</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>p_gamedb</Name>
+      <Address>3581F540</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>inj_rewards</Name>
+      <Address>141A78563</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>inj_investigation</Name>
+      <Address>14E3AA817</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>inj_investigation_ms</Name>
+      <Address>14E62E041</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>infhealth</Name>
+      <Address>14EA9063C</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>infhealth2</Name>
+      <Address>14EA90CFD</Address>
+    </SymbolEntry>
+  </UserdefinedSymbols>
+</CheatTable>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable MugenJinFuuTableVersion="34">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"Energy"</Description>
+      <VariableType>Float</VariableType>
+      <Address>"UnityPlayer.dll"+00F98958</Address>
+      <Offsets>
+        <Offset>1AC</Offset>
+        <Offset>18</Offset>
+        <Offset>48</Offset>
+        <Offset>3C</Offset>
+        <Offset>168</Offset>
+        <Offset>408</Offset>
+        <Offset>40</Offset>
+      </Offsets>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>
