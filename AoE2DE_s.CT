@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<CheatTable MugenJinFuuTableVersion="34">
+<CheatTable CheatEngineTableVersion="34">
   <CheatEntries>
     <CheatEntry>
       <ID>261</ID>
@@ -229,7 +229,7 @@ AoE2DE_s.exe+A0B2F8: 74 4F                       - je AoE2DE_s.exe+A0B349
       <ID>59</ID>
       <Description>"Resources"</Description>
       <Options moHideChildren="1"/>
-      <LastState/>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : AoE2DE_s.exe
   Version:
@@ -576,7 +576,7 @@ dealloc(newmem)
           <ID>137</ID>
           <Description>"Writeback"</Description>
           <Options moHideChildren="1"/>
-          <LastState Value="" Activated="1" RealAddress="00000000"/>
+          <LastState Value="" RealAddress="00000000"/>
           <GroupHeader>1</GroupHeader>
           <CheatEntries>
             <CheatEntry>
@@ -631,7 +631,7 @@ dealloc(newmem)
           <ID>21</ID>
           <Description>"Unit HP / Coord"</Description>
           <Options moHideChildren="1"/>
-          <LastState/>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : AoE2DE_s.exe
   Version:
@@ -645,7 +645,7 @@ dealloc(newmem)
 
 
 aobscanmodule(INJ_UNIT_HP,AoE2DE_s.exe,00 48 8B 81 90 00 00 00 48 B9) // should be unique
-alloc(newmem,$1000,"AoE2DE_s.exe"+CD73BA)
+alloc(newmem, $1000, "AoE2DE_s.exe"+CD73BA)
 
 label(code)
 label(return)
@@ -664,8 +664,10 @@ newmem:
   mov rax,[rcx+90]
 
   // Decrypt
-  sub rax,[val_magic]
-  sub rax,[val_magic2]
+  mov rbx,[val_magic]
+  xor rax,rbx
+  mov rbx,[val_magic2]
+  xor rax,rbx
 
   mov [val_dec_hp],rax
 // DA6C850E10A26B26
@@ -684,8 +686,10 @@ Lwriteback:
   jb Lret
 
   // Encrypt
-  add rax,[val_magic2]
-  add rax,[val_magic]
+  mov rbx,[val_magic2]
+  xor rax,rbx
+  mov rbx,[val_magic]
+  xor rax,rbx
 
   mov rbx,[pt_hp]
   mov [rbx],rax
@@ -706,11 +710,11 @@ code:
   jmp return
 
 val_magic:
-  dq 2CC65EAD2470D089
+  dq CE5ADF28FF685748
 registersymbol(val_magic)
 
 val_magic2:
-  dq 2C5E3717A71B9A9D
+  dq 6328957F66B8D88A
 registersymbol(val_magic2)
 
 pt_hp:
@@ -831,7 +835,7 @@ dealloc(newmem)
           <ID>3</ID>
           <Description>"Unit Resource Finder"</Description>
           <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
-          <LastState/>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : AoE2DE_s.exe
   Version:
@@ -979,7 +983,7 @@ FFFF:None
           <ID>45</ID>
           <Description>"Unit Attack Damage"</Description>
           <Options moHideChildren="1"/>
-          <LastState/>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : AoE2DE_s.exe
   Version:
@@ -1070,7 +1074,7 @@ dealloc(newmem)
           <ID>89</ID>
           <Description>"Unit Armor"</Description>
           <Options moHideChildren="1"/>
-          <LastState/>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : AoE2DE_s.exe
   Version:
@@ -1224,7 +1228,7 @@ dealloc(newmem)
           <ID>71</ID>
           <Description>"Unit Range / LOS"</Description>
           <Options moHideChildren="1"/>
-          <LastState/>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : AoE2DE_s.exe
   Version:
@@ -1327,7 +1331,7 @@ dealloc(newmem)
     <CheatEntry>
       <ID>190</ID>
       <Description>"Allow Building HP Excessed"</Description>
-      <LastState/>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{$lua}
 address = tonumber(AOBScan("48 89 45 DF 48 8B 45 DF 48 89 83 ?? ?? ?? ??", "+X")[0],16)
@@ -1368,7 +1372,7 @@ dealloc(newmem)
     <CheatEntry>
       <ID>182</ID>
       <Description>"Kepp Tile Visible"</Description>
-      <LastState/>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : AoE2DE_s.exe
   Version:
@@ -1378,7 +1382,7 @@ dealloc(newmem)
   This script does blah blah blah
 }
 
-define(address,"AoE2DE_s.exe"+4CF924)
+define(address,"AoE2DE_s.exe"+4CE354)
 define(bytes,21 1F 48 8B C7)
 
 [ENABLE]
@@ -1772,132 +1776,6 @@ AoE2DE_s.exe+6F01EE: 66 83 F9 FF              - cmp cx,-01
           <Offsets>
             <Offset>0</Offset>
           </Offsets>
-        </CheatEntry>
-      </CheatEntries>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>264</ID>
-      <Description>"Units Selected"</Description>
-      <Options moHideChildren="1"/>
-      <LastState/>
-      <VariableType>Auto Assembler Script</VariableType>
-      <AssemblerScript>{ Game   : AoE2DE_s.exe
-  Version:
-  Date   : 2020-12-26
-  Author : Compeador
-
-  This script does blah blah blah
-}
-
-[ENABLE]
-
-aobscanmodule(INJ_UNITS_SELECTED,AoE2DE_s.exe,0F 48 8B 01 B2 01) // should be unique
-alloc(newmem,$1000,INJ_UNITS_SELECTED)
-alloc(list_units,$1000)
-
-label(code)
-label(return)
-
-list_units:
-  dq 0
-registersymbol(list_units)
-
-newmem:
-  push rax
-  push rdx
-  mov rax,rbx // rbx=index
-  inc rax
-  mov [list_units],rax
-  mov rdx,8
-  mul rdx
-  mov rdx,list_units
-  add rax,rdx
-  mov [rax],rcx
-  pop rdx
-  pop rax
-  jmp code
-
-code:
-  mov rax,[rcx]
-  mov dl,01
-  jmp return
-
-INJ_UNITS_SELECTED+01:
-  jmp newmem
-return:
-registersymbol(INJ_UNITS_SELECTED)
-
-[DISABLE]
-
-INJ_UNITS_SELECTED+01:
-  db 48 8B 01 B2 01
-
-unregistersymbol(list_units)
-unregistersymbol(INJ_UNITS_SELECTED)
-dealloc(newmem)
-dealloc(list_units)
-
-{
-// ORIGINAL CODE - INJECTION POINT: AoE2DE_s.exe+CACFB0
-
-AoE2DE_s.exe+CACF86: 48 89 44 24 48     - mov [rsp+48],rax
-AoE2DE_s.exe+CACF8B: 48 8B 44 24 48     - mov rax,[rsp+48]
-AoE2DE_s.exe+CACF90: 49 2B C6           - sub rax,r14
-AoE2DE_s.exe+CACF93: 48 89 44 24 48     - mov [rsp+48],rax
-AoE2DE_s.exe+CACF98: 48 8B 44 24 48     - mov rax,[rsp+48]
-AoE2DE_s.exe+CACF9D: 49 33 C7           - xor rax,r15
-AoE2DE_s.exe+CACFA0: 48 89 44 24 48     - mov [rsp+48],rax
-AoE2DE_s.exe+CACFA5: 48 8B 44 24 48     - mov rax,[rsp+48]
-AoE2DE_s.exe+CACFAA: 80 78 08 50        - cmp byte ptr [rax+08],50
-AoE2DE_s.exe+CACFAE: 77 0F              - ja AoE2DE_s.exe+CACFBF
-// ---------- INJECTING HERE ----------
-AoE2DE_s.exe+CACFB0: 48 8B 01           - mov rax,[rcx]
-// ---------- DONE INJECTING  ----------
-AoE2DE_s.exe+CACFB3: B2 01              - mov dl,01
-AoE2DE_s.exe+CACFB5: FF 90 D8 02 00 00  - call qword ptr [rax+000002D8]
-AoE2DE_s.exe+CACFBB: 84 C0              - test al,al
-AoE2DE_s.exe+CACFBD: 74 2E              - je AoE2DE_s.exe+CACFED
-AoE2DE_s.exe+CACFBF: FF C3              - inc ebx
-AoE2DE_s.exe+CACFC1: 48 FF C7           - inc rdi
-AoE2DE_s.exe+CACFC4: 48 83 C6 08        - add rsi,08
-AoE2DE_s.exe+CACFC8: 48 83 FF 3C        - cmp rdi,3C
-AoE2DE_s.exe+CACFCC: 0F 8C 6E FF FF FF  - jl AoE2DE_s.exe+CACF40
-AoE2DE_s.exe+CACFD2: 33 C0              - xor eax,eax
-}
-</AssemblerScript>
-      <CheatEntries>
-        <CheatEntry>
-          <ID>265</ID>
-          <Description>"Size"</Description>
-          <ShowAsSigned>0</ShowAsSigned>
-          <VariableType>8 Bytes</VariableType>
-          <Address>list_units</Address>
-          <CheatEntries>
-            <CheatEntry>
-              <ID>266</ID>
-              <Description>"Pointer[0]"</Description>
-              <ShowAsHex>1</ShowAsHex>
-              <ShowAsSigned>0</ShowAsSigned>
-              <VariableType>8 Bytes</VariableType>
-              <Address>+8</Address>
-            </CheatEntry>
-            <CheatEntry>
-              <ID>268</ID>
-              <Description>"Pointer[1]"</Description>
-              <ShowAsHex>1</ShowAsHex>
-              <ShowAsSigned>0</ShowAsSigned>
-              <VariableType>8 Bytes</VariableType>
-              <Address>+10</Address>
-            </CheatEntry>
-            <CheatEntry>
-              <ID>267</ID>
-              <Description>"Pointer[2]"</Description>
-              <ShowAsHex>1</ShowAsHex>
-              <ShowAsSigned>0</ShowAsSigned>
-              <VariableType>8 Bytes</VariableType>
-              <Address>+18</Address>
-            </CheatEntry>
-          </CheatEntries>
         </CheatEntry>
       </CheatEntries>
     </CheatEntry>
@@ -2631,13 +2509,14 @@ AoE2DE_s.exe+6D6219: 89 45 CF                       - mov [rbp-31],eax
       </CheatEntries>
     </CheatEntry>
     <CheatEntry>
-      <ID>287</ID>
-      <Description>"Auto Assemble script"</Description>
+      <ID>264</ID>
+      <Description>"Units Selected"</Description>
+      <Options moHideChildren="1"/>
       <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : AoE2DE_s.exe
-  Version: 
-  Date   : 2021-01-30
+  Version:
+  Date   : 2020-12-26
   Author : Compeador
 
   This script does blah blah blah
@@ -2645,75 +2524,119 @@ AoE2DE_s.exe+6D6219: 89 45 CF                       - mov [rbp-31],eax
 
 [ENABLE]
 
-aobscanmodule(INJECT,AoE2DE_s.exe,0F B6 00 48 8B 55 20 0F B7 52 1C E9 D6) // should be unique
-alloc(newmem,$1000,"AoE2DE_s.exe"+2EDD1A7)
+aobscanmodule(INJ_UNITS_SELECTED,AoE2DE_s.exe,0F 48 8B 01 B2 01) // should be unique
+alloc(newmem,$1000,INJ_UNITS_SELECTED)
+alloc(list_units,$1000)
 
 label(code)
 label(return)
 
+list_units:
+  dq 0
+registersymbol(list_units)
+
 newmem:
+  push rax
+  push rdx
+  mov rax,rbx // rbx=index
+  inc rax
+  mov [list_units],rax
+  mov rdx,8
+  mul rdx
+  mov rdx,list_units
+  add rax,rdx
+  mov [rax],rcx
+  pop rdx
+  pop rax
+  jmp code
 
 code:
-  movzx eax,byte ptr [rax]
-  mov rdx,[rbp+20]
+  mov rax,[rcx]
+  mov dl,01
   jmp return
 
-INJECT:
+INJ_UNITS_SELECTED+01:
   jmp newmem
-  nop 2
 return:
-registersymbol(INJECT)
+registersymbol(INJ_UNITS_SELECTED)
 
 [DISABLE]
 
-INJECT:
-  db 0F B6 00 48 8B 55 20
+INJ_UNITS_SELECTED+01:
+  db 48 8B 01 B2 01
 
-unregistersymbol(INJECT)
+unregistersymbol(list_units)
+unregistersymbol(INJ_UNITS_SELECTED)
 dealloc(newmem)
+dealloc(list_units)
 
 {
-// ORIGINAL CODE - INJECTION POINT: "AoE2DE_s.exe"+2EDD1A7
+// ORIGINAL CODE - INJECTION POINT: AoE2DE_s.exe+CACFB0
 
-"AoE2DE_s.exe"+2EDD180: 41 5D                             -  pop r13
-"AoE2DE_s.exe"+2EDD182: 41 5A                             -  pop r10
-"AoE2DE_s.exe"+2EDD184: 5A                                -  pop rdx
-"AoE2DE_s.exe"+2EDD185: E9 10 8C 41 FE                    -  jmp AoE2DE_s.exe+12F5D9A
-"AoE2DE_s.exe"+2EDD18A: 03 50 08                          -  add edx,[rax+08]
-"AoE2DE_s.exe"+2EDD18D: 48 8B 85 90 01 00 00              -  mov rax,[rbp+00000190]
-"AoE2DE_s.exe"+2EDD194: 89 50 08                          -  mov [rax+08],edx
-"AoE2DE_s.exe"+2EDD197: 48 8B 85 90 01 00 00              -  mov rax,[rbp+00000190]
-"AoE2DE_s.exe"+2EDD19E: E9 52 4C 5E FD                    -  jmp AoE2DE_s.exe+4C1DF5
-"AoE2DE_s.exe"+2EDD1A3: 48 8B 45 28                       -  mov rax,[rbp+28]
+AoE2DE_s.exe+CACF86: 48 89 44 24 48     - mov [rsp+48],rax
+AoE2DE_s.exe+CACF8B: 48 8B 44 24 48     - mov rax,[rsp+48]
+AoE2DE_s.exe+CACF90: 49 2B C6           - sub rax,r14
+AoE2DE_s.exe+CACF93: 48 89 44 24 48     - mov [rsp+48],rax
+AoE2DE_s.exe+CACF98: 48 8B 44 24 48     - mov rax,[rsp+48]
+AoE2DE_s.exe+CACF9D: 49 33 C7           - xor rax,r15
+AoE2DE_s.exe+CACFA0: 48 89 44 24 48     - mov [rsp+48],rax
+AoE2DE_s.exe+CACFA5: 48 8B 44 24 48     - mov rax,[rsp+48]
+AoE2DE_s.exe+CACFAA: 80 78 08 50        - cmp byte ptr [rax+08],50
+AoE2DE_s.exe+CACFAE: 77 0F              - ja AoE2DE_s.exe+CACFBF
 // ---------- INJECTING HERE ----------
-"AoE2DE_s.exe"+2EDD1A7: 0F B6 00                          -  movzx eax,byte ptr [rax]
-"AoE2DE_s.exe"+2EDD1AA: 48 8B 55 20                       -  mov rdx,[rbp+20]
+AoE2DE_s.exe+CACFB0: 48 8B 01           - mov rax,[rcx]
 // ---------- DONE INJECTING  ----------
-"AoE2DE_s.exe"+2EDD1AE: 0F B7 52 1C                       -  movzx edx,word ptr [rdx+1C]
-"AoE2DE_s.exe"+2EDD1B2: E9 D6 6D C0 00                    -  jmp AoE2DE_s.exe+3AE3F8D
-"AoE2DE_s.exe"+2EDD1B7: 03 45 0C                          -  add eax,[rbp+0C]
-"AoE2DE_s.exe"+2EDD1BA: 48 8B 55 38                       -  mov rdx,[rbp+38]
-"AoE2DE_s.exe"+2EDD1BE: 03 02                             -  add eax,[rdx]
-"AoE2DE_s.exe"+2EDD1C0: 48 8B 55 38                       -  mov rdx,[rbp+38]
-"AoE2DE_s.exe"+2EDD1C4: E9 9C E7 A1 FD                    -  jmp AoE2DE_s.exe+8FB965
-"AoE2DE_s.exe"+2EDD1C9: 48 8D 64 24 08                    -  lea rsp,[rsp+08]
-"AoE2DE_s.exe"+2EDD1CE: 48 8B 54 24 F8                    -  mov rdx,[rsp-08]
-"AoE2DE_s.exe"+2EDD1D3: 48 8D 64 24 08                    -  lea rsp,[rsp+08]
+AoE2DE_s.exe+CACFB3: B2 01              - mov dl,01
+AoE2DE_s.exe+CACFB5: FF 90 D8 02 00 00  - call qword ptr [rax+000002D8]
+AoE2DE_s.exe+CACFBB: 84 C0              - test al,al
+AoE2DE_s.exe+CACFBD: 74 2E              - je AoE2DE_s.exe+CACFED
+AoE2DE_s.exe+CACFBF: FF C3              - inc ebx
+AoE2DE_s.exe+CACFC1: 48 FF C7           - inc rdi
+AoE2DE_s.exe+CACFC4: 48 83 C6 08        - add rsi,08
+AoE2DE_s.exe+CACFC8: 48 83 FF 3C        - cmp rdi,3C
+AoE2DE_s.exe+CACFCC: 0F 8C 6E FF FF FF  - jl AoE2DE_s.exe+CACF40
+AoE2DE_s.exe+CACFD2: 33 C0              - xor eax,eax
 }
 </AssemblerScript>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>288</ID>
-      <Description>"No description"</Description>
-      <LastState Value="0F20558B4800B60F" RealAddress="7FF6363DD1A7"/>
-      <ShowAsHex>1</ShowAsHex>
-      <ShowAsSigned>0</ShowAsSigned>
-      <VariableType>8 Bytes</VariableType>
-      <Address>INJ_AATC</Address>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>265</ID>
+          <Description>"Size"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>8 Bytes</VariableType>
+          <Address>list_units</Address>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>266</ID>
+              <Description>"Pointer[0]"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>8 Bytes</VariableType>
+              <Address>+8</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>268</ID>
+              <Description>"Pointer[1]"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>8 Bytes</VariableType>
+              <Address>+10</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>267</ID>
+              <Description>"Pointer[2]"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>8 Bytes</VariableType>
+              <Address>+18</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
     </CheatEntry>
   </CheatEntries>
   <CheatCodes>
-    <CodeEntry Color="80000008">
+    <CodeEntry Color="20000000">
       <Description>Code :mov [rdx],eax</Description>
       <AddressString>AoE2DE_s.exe+A0B2D3</AddressString>
       <Before>
