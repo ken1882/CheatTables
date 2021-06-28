@@ -1,0 +1,44 @@
+{
+	Process			: mgsvtpp.exe  -  (x64)
+	Module			: mgsvtpp.exe
+	Game Title		: Metal Gear Solid 5 Phantom Pain
+	Game Version	: 1.0.15.1
+	CE Version		: 6.83
+	Script Version	: 5.0.1
+	Date			: 12/19/19
+	Author			: TheyCallMeTim13
+	Name			: _Main
+
+	Main Hooks
+}
+{$lua}
+if syntaxcheck then return end
+I2CETableCEA.autoAssembleFile('PlayerHook.CEA', MemRec)
+I2CETableCEA.autoAssembleFile('WaypointHook.CEA', MemRec)
+I2CETableCEA.autoAssembleFile('SupplyDropCoordHook.CEA', MemRec)
+I2CETableCEA.autoAssembleFile('VehicleHealthHook.CEA', MemRec)
+I2CETableCEA.autoAssembleFile('PlayerVehicleCoordHook.CEA', MemRec)
+-- I2CETableCEA.autoAssembleFile('SupplyDropCoordVehicleHook.CEA', MemRec)
+I2CETableCEA.autoAssembleFile('SelectedMapIconCoordHook.CEA', MemRec)
+----
+I2CETableCEA.autoAssembleFile('DHorseCoordHook.CEA', MemRec)
+I2CETableCEA.autoAssembleFile('DWalkerCoordHook.CEA', MemRec)
+----
+I2CETableCEA.autoAssembleFile('TimeHook.CEA', MemRec)
+I2CETableCEA.autoAssembleFile('WeatherHook.CEA', MemRec)
+I2CETableCEA.autoAssembleFile('AmmoHook.CEA', MemRec)
+I2CETableCEA.autoAssembleFile('WeaponHook.CEA', MemRec)
+I2CETableCEA.autoAssembleFile('SuppressorCapHook.CEA', MemRec)
+I2CETableCEA.autoAssembleFile('BatteryMaxHook.CEA', MemRec)
+I2CETableCEA.autoAssembleFile('ResourcesHook.CEA', MemRec)
+I2CETableCEA.autoAssembleFile('ResourcesOnlineHook.CEA', MemRec)
+I2CETableCEA.autoAssembleFile('ZoomHook.CEA', MemRec)
+----
+I2CETableCEA.autoAssembleFile('TankAmmoHook.CEA', MemRec)
+I2CETableCEA.autoAssembleFile('DwHealthHook.CEA', MemRec)
+------------------------------ ENABLE -------------------------------
+[ENABLE]
+I2CETeleporter.initMemory()
+------------------------------ DISABLE ------------------------------
+[DISABLE]
+

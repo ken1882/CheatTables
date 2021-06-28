@@ -1,0 +1,179 @@
+{
+	Process			: mgsvtpp.exe  -  (x64)
+	Module			: mgsvtpp.exe
+	Game Title		: mgsvtpp
+	Game Version	: 1.0.14.0
+	CE Version		: 6.81
+	Script Version	: 0.0.1
+	Date			: 08/05/18
+	Author			: TheyCallMeTim13
+	Name			: StaffHook
+
+	Staff Hook
+
+	+1D : 74xx48xxxxxxxxxxxx8Bxxxx48xxxxxxxxxxxx8Bxxxx48xxxxxxxxxxxx44xxxxxx48xxxxxxxxxxxxEBxx
+	+1D : 7428488B81789C00008B3490488B81809C00008B2C90488B81889C0000448B3C90488B81909C0000EB26
+}
+
+{$STRICT}
+
+define(address, mgsvtpp.exe+BFF4224)
+define(bytes, 44 8B 3C 90 48 8B 81 90 9C 00 00)
+
+////
+//// ------------------------------ ENABLE ------------------------------
+[ENABLE]
+// aobScanModule(aobStaffHook, mgsvtpp.exe, 74xx48xxxxxxxxxxxx8Bxxxx48xxxxxxxxxxxx8Bxxxx48xxxxxxxxxxxx44xxxxxx48xxxxxxxxxxxxEB)
+i2aobScanModule(aobStaffHook, mgsvtpp.exe, 74xx48xxxxxxxxxxxx8Bxxxx48xxxxxxxxxxxx8Bxxxx48xxxxxxxxxxxx44xxxxxx48xxxxxxxxxxxxEB)
+define(injStaffHook, aobStaffHook+1D)
+// assert(injStaffHook, bytes)
+i2assert(injStaffHook, bytes)
+registerSymbol(injStaffHook)
+
+alloc(memStaffHook, 0x400, injStaffHook)
+
+label(ptrStaffHook)
+registerSymbol(ptrStaffHook)
+
+label(injSuperStaffHook)
+registerSymbol(injSuperStaffHook)
+
+label(injStaffTweakerHook)
+registerSymbol(injStaffTweakerHook)
+
+label(n_code)
+label(o_code)
+label(exit)
+label(return)
+
+memStaffHook:
+	ptrStaffHook:
+		dq 0
+		dq 0
+		dq 0
+		dq 0
+		dq 0
+		dq 0
+		dq 0
+		dq 0
+	align 10 CC
+	n_code:
+		push rax
+
+		mov rax,[rcx+9C80] // Seeds 99D0
+		mov [ptrStaffHook+20],rax
+		lea rax,[rax+rdx*4]
+		mov [ptrStaffHook],rax
+
+		mov rax,[rcx+9C78] // Headers 99C8
+		mov [ptrStaffHook+28],rax
+		lea rax,[rax+rdx*4]
+		mov [ptrStaffHook+8],rax
+
+		mov rax,[rcx+9C88] // Status Sync 99D8
+		mov [ptrStaffHook+30],rax
+		lea rax,[rax+rdx*4]
+		mov [ptrStaffHook+10],rax
+
+		mov rax,[rcx+9C90] // Status No Sync 99E0
+		mov [ptrStaffHook+38],rax
+		lea rax,[rax+rdx*2]
+		mov [ptrStaffHook+18],rax
+
+		pop rax
+
+		injSuperStaffHook:
+			db 90 90 90 90 90
+		injStaffTweakerHook:
+			db 90 90 90 90 90
+			
+	o_code:
+		mov r15d,[rax+rdx*4]
+		mov rax,[rcx+00009C90]
+	exit:
+		jmp return
+
+
+////
+//// ---------- Injection Point ----------
+injStaffHook:
+	jmp n_code
+	nop
+	nop
+	nop
+	nop
+	nop
+	nop
+	return:
+
+
+////
+//// ------------------------------ DISABLE ------------------------------
+[DISABLE]
+////
+//// ---------- Injection Point ----------
+injStaffHook:
+	db bytes
+
+unregisterSymbol(injStaffHook)
+
+unregisterSymbol(ptrStaffHook)
+
+unregisterSymbol(injSuperStaffHook)
+unregisterSymbol(injStaffTweakerHook)
+
+dealloc(memStaffHook)
+{
+//// Injection Point: mgsvtpp.exe+BFF4224  -  000000014BFF4224
+//// AOB address: 000000014BFF4207  -  mgsvtpp.exe+BFF4207
+//// Process: mgsvtpp.exe  -  0000000140000000
+//// Module: mgsvtpp.exe  -  0000000140000000
+//// Module Size: 000000000DFCB000
+mgsvtpp.exe+BFF41CA:  3C 0F                       -  cmp al,0F                          
+mgsvtpp.exe+BFF41CC:  75 29                       -  jne 14BFF41F7                      
+mgsvtpp.exe+BFF41CE:  89 D0                       -  mov eax,edx                        
+mgsvtpp.exe+BFF41D0:  41 B4 01                    -  mov r12l,01                        
+mgsvtpp.exe+BFF41D3:  48 01 C0                    -  add rax,rax                        
+mgsvtpp.exe+BFF41D6:  8B B4 C3 44230000           -  mov esi,[rbx+rax*8+00002344]       
+mgsvtpp.exe+BFF41DD:  8B AC C3 48230000           -  mov ebp,[rbx+rax*8+00002348]       
+mgsvtpp.exe+BFF41E4:  44 8B BC C3 4C230000        -  mov r15d,[rbx+rax*8+0000234C]      
+mgsvtpp.exe+BFF41EC:  44 0FB7 B4 C3 50230000      -  movzx r14d,word ptr [rbx+rax*8+00002350]
+mgsvtpp.exe+BFF41F5:  EB 65                       -  jmp 14BFF425C                      
+mgsvtpp.exe+BFF41F7:  48 8B 4B 50                 -  mov rcx,[rbx+50]                   
+mgsvtpp.exe+BFF41FB:  3C 0D                       -  cmp al,0D                          
+mgsvtpp.exe+BFF41FD:  89 D0                       -  mov eax,edx                        
+mgsvtpp.exe+BFF41FF:  0FB7 94 43 10010000         -  movzx edx,word ptr [rbx+rax*2+00000110]
+mgsvtpp.exe+BFF4207:  74 28                       -  je 14BFF4231                       <<<--- AOB Starts Here
+mgsvtpp.exe+BFF4209:  48 8B 81 789C0000           -  mov rax,[rcx+00009C78]             
+mgsvtpp.exe+BFF4210:  8B 34 90                    -  mov esi,[rax+rdx*4]                
+mgsvtpp.exe+BFF4213:  48 8B 81 809C0000           -  mov rax,[rcx+00009C80]             
+mgsvtpp.exe+BFF421A:  8B 2C 90                    -  mov ebp,[rax+rdx*4]                
+mgsvtpp.exe+BFF421D:  48 8B 81 889C0000           -  mov rax,[rcx+00009C88]             
+////  INJECTING START  ----------------------------------------------------------
+mgsvtpp.exe+BFF4224:  44 8B 3C 90                 -  mov r15d,[rax+rdx*4]               
+mgsvtpp.exe+BFF4228:  48 8B 81 909C0000           -  mov rax,[rcx+00009C90]             
+////  INJECTING END  ----------------------------------------------------------
+mgsvtpp.exe+BFF422F:  EB 26                       -  jmp 14BFF4257                      
+mgsvtpp.exe+BFF4231:  48 8B 81 209E0000           -  mov rax,[rcx+00009E20]             
+mgsvtpp.exe+BFF4238:  8B 34 90                    -  mov esi,[rax+rdx*4]                
+mgsvtpp.exe+BFF423B:  48 8B 81 289E0000           -  mov rax,[rcx+00009E28]             
+mgsvtpp.exe+BFF4242:  8B 2C 90                    -  mov ebp,[rax+rdx*4]                
+mgsvtpp.exe+BFF4245:  48 8B 81 309E0000           -  mov rax,[rcx+00009E30]             
+mgsvtpp.exe+BFF424C:  44 8B 3C 90                 -  mov r15d,[rax+rdx*4]               
+mgsvtpp.exe+BFF4250:  48 8B 81 389E0000           -  mov rax,[rcx+00009E38]             
+mgsvtpp.exe+BFF4257:  44 0FB7 34 50               -  movzx r14d,word ptr [rax+rdx*2]    
+mgsvtpp.exe+BFF425C:  48 8B 4B 50                 -  mov rcx,[rbx+50]                   
+mgsvtpp.exe+BFF4260:  48 B8 C69AC478C2190000      -  mov rax,000019C278C49AC6           
+mgsvtpp.exe+BFF426A:  C7 44 24 40 05000500        -  mov [rsp+40],00050005              
+mgsvtpp.exe+BFF4272:  48 89 44 24 30              -  mov [rsp+30],rax                   
+mgsvtpp.exe+BFF4277:  48 B8 989F16BFA0B80000      -  mov rax,0000B8A0BF169F98           
+mgsvtpp.exe+BFF4281:  C7 44 24 44 05000500        -  mov [rsp+44],00050005              
+mgsvtpp.exe+BFF4289:  C7 44 24 48 05000500        -  mov [rsp+48],00050005              
+mgsvtpp.exe+BFF4291:  40 88 7C 24 4C              -  mov [rsp+4C],dil                   
+mgsvtpp.exe+BFF4296:  48 89 44 24 38              -  mov [rsp+38],rax                   
+mgsvtpp.exe+BFF429B:  48 8B 01                    -  mov rax,[rcx]                      
+//// Template: I2CEA_AOBFullInjection
+//// Generated with: I2 Cheat Engine Auto Assembler Script Template Generator
+//// Code Happy, Code Freely, Be Awesome.
+}
+

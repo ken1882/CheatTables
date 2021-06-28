@@ -1,0 +1,108 @@
+{$lua}
+------------------------------ ENABLE ------------------------------
+[ENABLE]
+local address = '[ptrTimeHook]+5C'
+local mrType = vtDword
+
+local text = 'Time of Day (Display Only)'
+local text_mil = 'Military Time of Day (Display Only)'
+
+local dropDownList = [[
+00000:00:00:00
+10800:03:00:00
+21600:06:00:00
+32400:09:00:00
+43200:12:00:00
+54000:15:00:00
+64800:18:00:00
+75600:21:00:00
+]]
+local dropDownList_mil = [[
+00000:0000
+10800:0300
+21600:0600
+32400:0900
+43200:1200
+54000:1500
+64800:1800
+75600:2100
+]]
+----------
+local function setupMR(thread)
+	if MemRec ~= nil then
+		TIME_MR = AddressList.getMemoryRecordByDescription(text)
+		if TIME_MR == nil then
+			TIME_MR = AddressList.createMemoryRecord()
+		end
+		TIME_MR.Description = text
+		TIME_MR.Type = mrType
+		TIME_MR.DontSave = true
+		TIME_MR.Address = address
+		TIME_MR.OnGetDisplayValue = function(memoryrecord, valuestring)
+			if type(valuestring) == 'string' and tonumber(valuestring) ~= nil then
+				local secs = tonumber(valuestring)
+				local h = math.floor(secs / (60 * 60))
+				local m = math.floor(secs / 60 % 60)
+				local s = math.floor(secs % 60)
+				return true, string.format("%.2d:%.2d:%.2d", h, m, s)
+			else
+				return false, valuestring
+			end
+		end
+		TIME_MR.DropDownList.Text = dropDownList
+		TIME_MR.DisplayAsDropDownListItem = true
+		TIME_MR.appendToEntry(MemRec)
+	end
+	checkSynchronize()
+	if thread ~= nil and type(thread.terminate) == 'function' then
+		thread.terminate()
+	end
+end
+local function setupMilMR(thread)
+	if MemRec ~= nil then
+		MIL_TIME_MR = AddressList.getMemoryRecordByDescription(text_mil)
+		if MIL_TIME_MR == nil then
+			MIL_TIME_MR = AddressList.createMemoryRecord()
+		end
+		MIL_TIME_MR.Description = text_mil
+		MIL_TIME_MR.Type = mrType
+		MIL_TIME_MR.DontSave = true
+		MIL_TIME_MR.Address = address
+		MIL_TIME_MR.OnGetDisplayValue = function(memoryrecord, valuestring)
+			if type(valuestring) == 'string' and tonumber(valuestring) ~= nil then
+				local secs = tonumber(valuestring)
+				local milH = ((secs / 60) / 60) * 100
+				return true, string.format("%.2f", milH)
+			else
+				return false, valuestring
+			end
+		end
+		MIL_TIME_MR.DropDownList.Text = dropDownList_mil
+		MIL_TIME_MR.DisplayAsDropDownListItem = true
+		MIL_TIME_MR.appendToEntry(MemRec)
+	end
+	checkSynchronize()
+	if thread ~= nil and type(thread.terminate) == 'function' then
+		thread.terminate()
+	end
+end
+--------------------------------------------------
+if syntaxcheck then return end
+synchronize(setupMR)
+synchronize(setupMilMR)
+------------------------------ DISABLE ------------------------------
+[DISABLE]
+local function deleteMrs(thread)
+	if TIME_MR ~= nil then
+		TIME_MR.delete()
+	end
+	if MIL_TIME_MR ~= nil then
+		MIL_TIME_MR.delete()
+	end
+	checkSynchronize()
+	if thread ~= nil and type(thread.terminate) == 'function' then
+		thread.terminate()
+	end
+end
+if syntaxcheck then return end
+synchronize(deleteMrs)

@@ -1,0 +1,195 @@
+{
+	Process			: mgsvtpp.exe  -  (x64)
+	Module			: mgsvtpp.exe
+	Game Title		: mgsvtpp
+	Game Version	: 1.0.14.0
+	CE Version		: 6.81
+	Script Version	: 4.0.1
+	Date			: 08/05/18
+	Author			: TheyCallMeTim13
+	Name			: ActionHoldHook
+
+	Action Hold Hook
+
+	rbp : 1  : A button / ??
+	rbp : 3  : Left trigger / Right Mouse Buttton
+	rbp : 5  : Y button / E key
+	rbp : 7  : R-Stick / ??
+	rbp : A  : R1 / ??
+	rbp : B  : Up D-Pad / ??
+	rbp : F  : Right trigger / Left Mouse Buttton
+	rbp : 12 : X button / ??
+	rbp : 40 : B button / R key
+	rbp : 6 : B button / R key
+
+	+D  : 0F2F0Dxxxxxxxx76xxF30F5EC10F2F05xxxxxxxxF30F11431476xxC743140000803F
+}
+
+{$STRICT}
+
+define(address, mgsvtpp.exe+AFF69F)
+define(bytes, 0F 2F 05)
+
+////
+//// ------------------------------ ENABLE ------------------------------
+[ENABLE]
+// aobScanModule(aobActionHoldHook, mgsvtpp.exe, 0F2F0Dxxxxxxxx76xxF30F5EC10F2F05xxxxxxxxF30F11431476xxC743140000803F)
+i2aobScanModule(aobActionHoldHook, mgsvtpp.exe, 0F2F0Dxxxxxxxx76xxF30F5EC10F2F05xxxxxxxxF30F11431476xxC743140000803F)
+define(injActionHoldHook, aobActionHoldHook+D)
+// assert(injActionHoldHook, bytes)
+i2assert(injActionHoldHook, bytes)
+registerSymbol(injActionHoldHook)
+
+alloc(memActionHoldHook, 0x400, injActionHoldHook)
+
+label(fltActionHoldHook)
+registerSymbol(fltActionHoldHook)
+label(flgActionHoldHook)
+registerSymbol(flgActionHoldHook)
+// 00:Disabled
+// 01:All Actions
+// 02:Some Actions
+
+label(ptrActionHoldHook)
+registerSymbol(ptrActionHoldHook)
+
+label(instActionHoldHook_ocode)
+registerSymbol(instActionHoldHook_ocode)
+
+label(n_code)
+label(o_code)
+label(exit)
+label(return)
+
+memActionHoldHook:
+	fltActionHoldHook:
+		dd (float)0.1875
+		dd (float)1
+	flgActionHoldHook:
+		db 02
+	align 10
+	ptrActionHoldHook:
+		dq 0
+	align 10 CC
+	n_code:
+		mov [ptrActionHoldHook],rbx
+		cmp byte ptr [flgActionHoldHook],0
+		je o_code
+		cmp byte ptr [flgActionHoldHook],1
+		jne @f
+			movss xmm0,[fltActionHoldHook+4]
+			jmp o_code
+		@@:
+		cmp byte ptr [flgActionHoldHook],2
+		jne @f
+			cmp rbp,1 // A button / ??
+			je o_code
+			cmp rbp,3 // Left trigger / Right Mouse Buttton
+			je o_code
+			cmp rbp,7 // R-Stick / ??
+			je o_code
+			cmp rbp,A // R1 / ??
+			je o_code
+			cmp rbp,B // Up D-Pad / ??
+			je o_code
+			cmp rbp,F // Right trigger / Left Mouse Buttton
+			je o_code
+			cmp rbp,12 // X button / ??
+			je o_code
+				comiss xmm0,[fltActionHoldHook]
+				jb o_code
+					movss xmm0,[fltActionHoldHook+4]
+					jmp o_code
+		@@:
+		mov byte ptr [flgActionHoldHook],0
+	o_code:
+		reassemble(injActionHoldHook) // comiss xmm0,[mgsvtpp.exe+20991EC]
+	exit:
+		jmp return
+	align 10 CC
+	instActionHoldHook_ocode:
+		readMem(injActionHoldHook, 7)
+
+
+////
+//// ---------- Injection Point ----------
+injActionHoldHook:
+	jmp n_code
+	nop
+	nop
+	return:
+
+
+////
+//// ------------------------------ DISABLE ------------------------------
+[DISABLE]
+////
+//// ---------- Injection Point ----------
+injActionHoldHook:
+	readMem(instActionHoldHook_ocode, 7)
+
+unregisterSymbol(injActionHoldHook)
+
+unregisterSymbol(fltActionHoldHook)
+unregisterSymbol(flgActionHoldHook)
+
+unregisterSymbol(ptrActionHoldHook)
+
+unregisterSymbol(instActionHoldHook_ocode)
+
+dealloc(memActionHoldHook)
+
+{
+//// Injection Point: mgsvtpp.exe+AFF69F  -  0000000140AFF69F
+//// AOB address: 0000000140AFF692  -  mgsvtpp.exe+AFF692
+//// Process: mgsvtpp.exe  -  0000000140000000
+//// Module: mgsvtpp.exe  -  0000000140000000
+//// Module Size: 000000000DFCB000
+mgsvtpp.exe+AFF64D:  83 F8 01                    -  cmp eax,01                         
+mgsvtpp.exe+AFF650:  75 7A                       -  jne 140AFF6CC                      
+mgsvtpp.exe+AFF652:  48 8B 07                    -  mov rax,[rdi]                      
+mgsvtpp.exe+AFF655:  BA 01000000                 -  mov edx,00000001                   
+mgsvtpp.exe+AFF65A:  48 8B CF                    -  mov rcx,rdi                        
+mgsvtpp.exe+AFF65D:  FF 50 78                    -  call qword ptr [rax+78]            
+mgsvtpp.exe+AFF660:  0F28 C8                     -  movaps xmm1,xmm0                   
+mgsvtpp.exe+AFF663:  40 84 F6                    -  test sil,sil                       
+mgsvtpp.exe+AFF666:  75 4E                       -  jne 140AFF6B6                      
+mgsvtpp.exe+AFF668:  44 89 63 18                 -  mov [rbx+18],r12d                  
+mgsvtpp.exe+AFF66C:  48 8B 87 70020000           -  mov rax,[rdi+00000270]             
+mgsvtpp.exe+AFF673:  44 89 63 04                 -  mov [rbx+04],r12d                  
+mgsvtpp.exe+AFF677:  48 89 43 08                 -  mov [rbx+08],rax                   
+mgsvtpp.exe+AFF67B:  F3 0F10 43 04               -  movss xmm0,[rbx+04]                
+mgsvtpp.exe+AFF680:  0F2F 05 954C5A01            -  comiss xmm0,[1420A431C]            [3727C5AC]
+mgsvtpp.exe+AFF687:  0F86 84000000               -  jbe 140AFF711                      
+mgsvtpp.exe+AFF68D:  F3 0F10 4B 10               -  movss xmm1,[rbx+10]                
+mgsvtpp.exe+AFF692:  0F2F 0D 834C5A01            -  comiss xmm1,[1420A431C]            [3727C5AC]<<<--- AOB Starts Here
+mgsvtpp.exe+AFF699:  76 76                       -  jna 140AFF711                      
+mgsvtpp.exe+AFF69B:  F3 0F5E C1                  -  divss xmm0,xmm1                    
+////  INJECTING START  ----------------------------------------------------------
+mgsvtpp.exe+AFF69F:  0F2F 05 469B5901            -  comiss xmm0,[1420991EC]            [(float)1.0000]
+////  INJECTING END  ----------------------------------------------------------
+mgsvtpp.exe+AFF6A6:  F3 0F11 43 14               -  movss [rbx+14],xmm0                
+mgsvtpp.exe+AFF6AB:  76 68                       -  jna 140AFF715                      
+mgsvtpp.exe+AFF6AD:  C7 43 14 0000803F           -  mov [rbx+14],3F800000              [00000000]
+mgsvtpp.exe+AFF6B4:  EB 5F                       -  jmp 140AFF715                      
+mgsvtpp.exe+AFF6B6:  8B 43 20                    -  mov eax,[rbx+20]                   
+mgsvtpp.exe+AFF6B9:  A8 08                       -  test al,08                         
+mgsvtpp.exe+AFF6BB:  74 0F                       -  je 140AFF6CC                       
+mgsvtpp.exe+AFF6BD:  F3 0F10 43 18               -  movss xmm0,[rbx+18]                
+mgsvtpp.exe+AFF6C2:  0F2F C8                     -  comiss xmm1,xmm0                   
+mgsvtpp.exe+AFF6C5:  72 32                       -  jb 140AFF6F9                       
+mgsvtpp.exe+AFF6C7:  F3 0F11 4B 18               -  movss [rbx+18],xmm1                
+mgsvtpp.exe+AFF6CC:  40 84 F6                    -  test sil,sil                       
+mgsvtpp.exe+AFF6CF:  74 9B                       -  je 140AFF66C                       
+mgsvtpp.exe+AFF6D1:  F2 0F10 87 70020000         -  movsd xmm0,[rdi+00000270]          
+mgsvtpp.exe+AFF6D9:  F2 0F5C 43 08               -  subsd xmm0,[rbx+08]                
+mgsvtpp.exe+AFF6DE:  66 0F5A C8                  -  cvtpd2ps xmm1,xmm0                 
+mgsvtpp.exe+AFF6E2:  0F2F 0D 334C5A01            -  comiss xmm1,[1420A431C]            [3727C5AC]
+mgsvtpp.exe+AFF6E9:  F3 0F11 4B 04               -  movss [rbx+04],xmm1                
+mgsvtpp.exe+AFF6EE:  77 8B                       -  ja 140AFF67B                       
+mgsvtpp.exe+AFF6F0:  C7 43 04 D171DA3A           -  mov [rbx+04],3ADA71D1              [00000000]
+//// Template: I2CEA_AOBFullInjection
+//// Generated with: I2 Cheat Engine Auto Assembler Script Template Generator
+//// Code Happy, Code Freely, Be Awesome.
+}
+

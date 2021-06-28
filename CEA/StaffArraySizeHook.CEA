@@ -1,0 +1,130 @@
+{
+	Process			: mgsvtpp.exe  -  (x64)
+	Module			: mgsvtpp.exe
+	Game Title		: mgsvtpp
+	Game Version	: 1.0.14.0
+	CE Version		: 6.81
+	Script Version	: 0.0.1
+	Date			: 08/05/18
+	Author			: TheyCallMeTim13
+	Name			: StaffArraySizeHook
+
+	Staff Array Size Hook
+
+	+5  : 3D0F1F00530FB7996C9E000031C04989xx44xxxxxx85DB7E
+}
+
+{$STRICT}
+
+define(address, mgsvtpp.exe+BFEB161)
+define(bytes, 0F B7 99 6C 9E 00 00)
+
+////
+//// ------------------------------ ENABLE ------------------------------
+[ENABLE]
+// aobScanModule(aobStaffArraySizeHook, mgsvtpp.exe, 5x0FB7xxxxxxxxxx31xx49xxxx44xxxxxx85xx7E)
+i2aobScanModule(aobStaffArraySizeHook, mgsvtpp.exe, 5x0FB7xxxxxxxxxx31xx49xxxx44xxxxxx85xx7E)
+define(injStaffArraySizeHook, aobStaffArraySizeHook+1)
+// assert(injStaffArraySizeHook, bytes)
+i2assert(injStaffArraySizeHook, bytes)
+registerSymbol(injStaffArraySizeHook)
+
+alloc(memStaffArraySizeHook, 0x400, injStaffArraySizeHook)
+
+label(ptrStaffArraySizeHook)
+registerSymbol(ptrStaffArraySizeHook)
+
+label(n_code)
+label(o_code)
+label(exit)
+label(return)
+
+memStaffArraySizeHook:
+	ptrStaffArraySizeHook:
+		dq 0
+	align 10 CC
+	n_code:
+		mov [ptrStaffArraySizeHook],rcx
+	o_code:
+		movzx ebx,word ptr [rcx+00009E6C]
+	exit:
+		jmp return
+
+
+////
+//// ---------- Injection Point ----------
+injStaffArraySizeHook:
+	jmp n_code
+	nop
+	nop
+	return:
+
+
+////
+//// ------------------------------ DISABLE ------------------------------
+[DISABLE]
+////
+//// ---------- Injection Point ----------
+injStaffArraySizeHook:
+	db bytes
+
+unregisterSymbol(injStaffArraySizeHook)
+
+unregisterSymbol(ptrStaffArraySizeHook)
+
+dealloc(memStaffArraySizeHook)
+
+{
+//// Injection Point: mgsvtpp.exe+BFEB161  -  000000014BFEB161
+//// AOB address: 000000014BFEB15C  -  mgsvtpp.exe+BFEB15C
+//// Process: mgsvtpp.exe  -  0000000140000000
+//// Module: mgsvtpp.exe  -  0000000140000000
+//// Module Size: 000000000DFCB000
+mgsvtpp.exe+BFEB10D:  FF E7                       -  jmp rdi                            
+mgsvtpp.exe+BFEB10F:  3D 4D8DA424                 -  cmp eax,24A48D4D                   [00000000]
+mgsvtpp.exe+BFEB114:  53                          -  push rbx                           
+mgsvtpp.exe+BFEB115:  7A 94                       -  jp 14BFEB0AB                       
+mgsvtpp.exe+BFEB117:  BC 4D89E245                 -  mov esp,45E2894D                   [00000000]
+mgsvtpp.exe+BFEB11C:  31 C0                       -  xor eax,eax                        
+mgsvtpp.exe+BFEB11E:  4D 8D 92 271F8463           -  lea r10,[r10+63841F27]             
+mgsvtpp.exe+BFEB125:  0FBA EF 12                  -  bts edi,12                         
+mgsvtpp.exe+BFEB129:  49 83 E8 3F                 -  sub r8,3F                          
+mgsvtpp.exe+BFEB12D:  4D 89 C4                    -  mov r12,r8                         
+mgsvtpp.exe+BFEB130:  49 8D 81 500A0000           -  lea rax,[r9+00000A50]              
+mgsvtpp.exe+BFEB137:  4C 8D 35 B4922FFC           -  lea r14,[1482E43F2]                [F7495041]
+mgsvtpp.exe+BFEB13E:  49 8B 92 8666E7DF           -  mov rdx,[r10-2018997A]             
+mgsvtpp.exe+BFEB145:  4D 31 ED                    -  xor r13,r13                        
+mgsvtpp.exe+BFEB148:  48 05 8DD19C5B              -  add rax,5B9CD18D                   [00000000]
+mgsvtpp.exe+BFEB14E:  48 83 CF A0                 -  or rdi,-60                         
+mgsvtpp.exe+BFEB152:  4C 0B A8 732E63A4           -  or r13,[rax-5B9CD18D]              [00000000]
+mgsvtpp.exe+BFEB159:  41 56                       -  push r14                           
+mgsvtpp.exe+BFEB15B:  C3                          -  ret                                
+mgsvtpp.exe+BFEB15C:  3D 0F1F0053                 -  cmp eax,53001F0F                   [80000000]<<<--- AOB Starts Here
+////  INJECTING START  ----------------------------------------------------------
+mgsvtpp.exe+BFEB161:  0FB7 99 6C9E0000            -  movzx ebx,word ptr [rcx+00009E6C]  
+////  INJECTING END  ----------------------------------------------------------
+mgsvtpp.exe+BFEB168:  31 C0                       -  xor eax,eax                        
+mgsvtpp.exe+BFEB16A:  49 89 CB                    -  mov r11,rcx                        
+mgsvtpp.exe+BFEB16D:  44 0FB7 C0                  -  movzx r8d,ax                       
+mgsvtpp.exe+BFEB171:  85 DB                       -  test ebx,ebx                       
+mgsvtpp.exe+BFEB173:  7E 4E                       -  jle 14BFEB1C3                      
+mgsvtpp.exe+BFEB175:  48 89 7C 24 18              -  mov [rsp+18],rdi                   
+mgsvtpp.exe+BFEB17A:  BF 5E010000                 -  mov edi,0000015E                   
+mgsvtpp.exe+BFEB17F:  4D 8B 93 889C0000           -  mov r10,[r11+00009C88]             
+mgsvtpp.exe+BFEB186:  41 0FB7 C8                  -  movzx ecx,r8w                      
+mgsvtpp.exe+BFEB18A:  41 8B 14 8A                 -  mov edx,[r10+rcx*4]                
+mgsvtpp.exe+BFEB18E:  4C 8D 0C 8D 00000000        -  lea r9,[rcx*4+00000000]            
+mgsvtpp.exe+BFEB196:  89 D1                       -  mov ecx,edx                        
+mgsvtpp.exe+BFEB198:  C1 E9 07                    -  shr ecx,07                         
+mgsvtpp.exe+BFEB19B:  F6 C1 01                    -  test cl,01                         
+mgsvtpp.exe+BFEB19E:  74 12                       -  je 14BFEB1B2                       
+mgsvtpp.exe+BFEB1A0:  66 39 F8                    -  cmp ax,di                          
+mgsvtpp.exe+BFEB1A3:  73 05                       -  jae 14BFEB1AA                      
+mgsvtpp.exe+BFEB1A5:  66 FF C0                    -  inc ax                             
+mgsvtpp.exe+BFEB1A8:  EB 08                       -  jmp 14BFEB1B2                      
+mgsvtpp.exe+BFEB1AA:  0FBA F2 07                  -  btr edx,07                         
+//// Template: I2CEA_AOBFullInjection
+//// Generated with: I2 Cheat Engine Auto Assembler Script Template Generator
+//// Code Happy, Code Freely, Be Awesome.
+}
+

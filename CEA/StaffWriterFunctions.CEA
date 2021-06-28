@@ -1,0 +1,94 @@
+{$lua}
+------------------------------ ENABLE ------------------------------
+[ENABLE]
+
+local sizeAddr = '[ptrStaffArraySizeHook]+9E6C'
+local maxAddr = '[ptrStaffArraySizeHook]+9E6E'
+local mulAddr = 'fltStaffCapHook'
+local array1Addr = '[ptrStaffHook+20]'
+local array2Addr = '[ptrStaffHook+28]'
+local array3Addr = '[ptrStaffHook+30]'
+local array4Addr = '[ptrStaffHook+38]'
+
+function saveStaffMembersToFile(fileName, fileExt)
+	if fileName == nil or fileName == '' then
+		fileName = 'MGSVTPP-StaffArray'
+	end
+	if fileExt == nil or fileExt == '' then
+		fileExt = '.bin'
+	end
+	local fn1 = fileName .. '-1' .. fileExt
+	local fn2 = fileName .. '-2' .. fileExt
+	local fn3 = fileName .. '-3' .. fileExt
+	local fn4 = fileName .. '-4' .. fileExt
+	if getAddressSafe(sizeAddr) == 0 or getAddressSafe(array1Addr) == 0 then
+		msg = 'Needed addresses not set. Exit then re-enter the "Staff Management".'
+		Logger.error(msg)
+		error(msg)
+		return
+	end
+	local size = readSmallInteger(sizeAddr)
+	writeRegionToFile(fn1, array1Addr, size * 4)
+	writeRegionToFile(fn2, array2Addr, size * 4)
+	writeRegionToFile(fn3, array3Addr, size * 4)
+	writeRegionToFile(fn4, array4Addr, size * 2)
+end
+
+function loadStaffMembersFromFile(fileName, fileExt)
+	if fileName == nil or fileName == '' then
+		fileName = 'MGSVTPP-StaffArray'
+	end
+	if fileExt == nil or fileExt == '' then
+		fileExt = '.bin'
+	end
+	local fn1 = fileName .. '-1' .. fileExt
+	local fn2 = fileName .. '-2' .. fileExt
+	local fn3 = fileName .. '-3' .. fileExt
+	local fn4 = fileName .. '-4' .. fileExt
+	local msg = 'This will over-write ALL staff members.\r\n\r\n'
+	.. 'Are you sure you want to try this?!?'
+	local mr = messageDialog(msg, mtConfirmation, mbYes, mbNo, mbCancel)
+	if not I2CEHelpers.isFile(fn1) then
+		msg = string.format('File not found: "%s"', fn1)
+		Logger.error(msg)
+		error(msg)
+		return
+	end
+	if not I2CEHelpers.isFile(fn2) then
+		msg = string.format('File not found: "%s"', fn2)
+		Logger.error(msg)
+		error(msg)
+		return
+	end
+	if not I2CEHelpers.isFile(fn3) then
+		msg = string.format('File not found: "%s"', fn3)
+		Logger.error(msg)
+		error(msg)
+		return
+	end
+	if not I2CEHelpers.isFile(fn4) then
+		msg = string.format('File not found: "%s"', fn4)
+		Logger.error(msg)
+		error(msg)
+		return
+	end
+	if getAddressSafe(sizeAddr) == 0 or getAddressSafe(array1Addr) == 0 then
+		msg = 'Addresses not set. Exit then re-enter the "Staff Management".'
+		Logger.error(msg)
+		error(msg)
+		return
+	end
+	if mr == mrYes then
+		local s1 = (readRegionFromFile(fn1, array1Addr) / 4)
+		local s2 = (readRegionFromFile(fn2, array2Addr) / 4)
+		local s3 = (readRegionFromFile(fn3, array3Addr) / 4)
+		local s4 = (readRegionFromFile(fn4, array4Addr) / 2)
+		if s1 <= 0 or s1 ~= s2 or s1 ~= s3 or s1 ~= s4 then
+			Logger.errorf('File Sizes didn\'t match or were under zero: %d, %d, %d, %d\r\n' 
+							.. 'You may want to abort this try!', s1, s2, s3, s4)
+		end
+		writeSmallInteger(sizeAddr, s1)
+	end
+end
+------------------------------ DISABLE ------------------------------
+[DISABLE]

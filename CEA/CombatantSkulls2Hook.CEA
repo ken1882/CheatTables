@@ -1,0 +1,144 @@
+{
+	Process			: mgsvtpp.exe  -  (x64)
+	Module			: mgsvtpp.exe
+	Game Title		: Metal Gear Solid 5 The Phantom Pain
+	Game Version	: 1.0.15.1
+	CE Version		: 6.83
+	Script Version	: 0.0.1
+	Date			: 12/23/19
+	Author			: TheyCallMeTim13
+	Name			: CombatantSkulls2Hook
+
+	Combatant Skulls 2 Hook
+
+	Camo Skulls
+}
+
+{$STRICT}
+
+define(address, mgsvtpp.exe+17E0BE6)
+define(bytes, 44 0F B7 42 0C)
+
+////
+//// ------------------------------ ENABLE ------------------------------
+[ENABLE]
+// aobScanModule(aobCombatantSkulls2Hook, mgsvtpp.exe, 66xxxxxx44xxxxxxxx44xxxxxxxx66xxxxxx75xx41xxxxxx0F84)
+i2aobScanModule(aobCombatantSkulls2Hook, mgsvtpp.exe, 66xxxxxx44xxxxxxxx44xxxxxxxx66xxxxxx75xx41xxxxxx0F84)
+define(injCombatantSkulls2Hook, aobCombatantSkulls2Hook+4)
+// assert(injCombatantSkulls2Hook, bytes)
+i2assert(injCombatantSkulls2Hook, bytes)
+registerSymbol(injCombatantSkulls2Hook)
+
+alloc(memCombatantSkulls2Hook, 0x400, injCombatantSkulls2Hook)
+
+label(ptrCombatantSkulls2Hook)
+registerSymbol(ptrCombatantSkulls2Hook)
+
+label(n_code)
+label(o_code)
+label(exit)
+label(return)
+
+memCombatantSkulls2Hook:
+	ptrCombatantSkulls2Hook:
+		dq 0
+	align 10 CC
+	n_code:
+		pushfq
+		mov [ptrCombatantSkulls2Hook],rdx
+		cmp byte ptr [flgCombatantSkullsHook],0
+		je o_code
+		cmp byte ptr [flgCombatantSkullsHook],1
+		jne @f
+			xor r8,r8
+			jmp exit
+		@@:
+		cmp byte ptr [flgCombatantSkullsHook],2
+		jne @f
+			xor r8,r8
+			mov [rdx+12],r8w
+			jmp o_code
+		@@:
+		mov byte ptr [flgCombatantSkullsHook],0
+	o_code:
+		movzx r8d,word ptr [rdx+0C]
+	exit:
+		popfq
+		jmp return
+
+
+////
+//// ---------- Injection Point ----------
+injCombatantSkulls2Hook:
+	jmp n_code
+	return:
+
+
+////
+//// ------------------------------ DISABLE ------------------------------
+[DISABLE]
+////
+//// ---------- Injection Point ----------
+injCombatantSkulls2Hook:
+	db bytes
+
+unregisterSymbol(injCombatantSkulls2Hook)
+
+unregisterSymbol(ptrCombatantSkulls2Hook)
+
+dealloc(memCombatantSkulls2Hook)
+
+{
+//// Injection Point: mgsvtpp.exe+17E0BE6  -  00000001417E0BE6
+//// AOB address: 00000001417E0BE2  -  mgsvtpp.exe+17E0BE2
+//// Process: mgsvtpp.exe  -  0000000140000000
+//// Module: mgsvtpp.exe  -  0000000140000000
+//// Module Size: 000000000E1B1000
+mgsvtpp.exe+17E0B9E:  CC                          -  int 3                              
+mgsvtpp.exe+17E0B9F:  CC                          -  int 3                              
+mgsvtpp.exe+17E0BA0:  66 83 7A 18 00              -  cmp word ptr [rdx+18],00           
+mgsvtpp.exe+17E0BA5:  45 8B D0                    -  mov r10d,r8d                       
+mgsvtpp.exe+17E0BA8:  4C 8B D9                    -  mov r11,rcx                        
+mgsvtpp.exe+17E0BAB:  75 09                       -  jne 1417E0BB6                      
+mgsvtpp.exe+17E0BAD:  B8 00010000                 -  mov eax,00000100                   
+mgsvtpp.exe+17E0BB2:  66 09 42 30                 -  or [rdx+30],ax                     
+mgsvtpp.exe+17E0BB6:  66 83 7A 1C 00              -  cmp word ptr [rdx+1C],00           
+mgsvtpp.exe+17E0BBB:  75 09                       -  jne 1417E0BC6                      
+mgsvtpp.exe+17E0BBD:  B8 00020000                 -  mov eax,00000200                   
+mgsvtpp.exe+17E0BC2:  66 09 42 30                 -  or [rdx+30],ax                     
+mgsvtpp.exe+17E0BC6:  66 83 7A 20 00              -  cmp word ptr [rdx+20],00           
+mgsvtpp.exe+17E0BCB:  75 09                       -  jne 1417E0BD6                      
+mgsvtpp.exe+17E0BCD:  B8 00040000                 -  mov eax,00000400                   
+mgsvtpp.exe+17E0BD2:  66 09 42 30                 -  or [rdx+30],ax                     
+mgsvtpp.exe+17E0BD6:  66 83 7A 24 00              -  cmp word ptr [rdx+24],00           
+mgsvtpp.exe+17E0BDB:  75 09                       -  jne 1417E0BE6                      
+mgsvtpp.exe+17E0BDD:  B8 00080000                 -  mov eax,00000800                   
+mgsvtpp.exe+17E0BE2:  66 09 42 30                 -  or [rdx+30],ax                     <<<--- AOB Starts Here
+////  INJECTING START  ----------------------------------------------------------
+mgsvtpp.exe+17E0BE6:  44 0FB7 42 0C               -  movzx r8d,word ptr [rdx+0C]        
+////  INJECTING END  ----------------------------------------------------------
+mgsvtpp.exe+17E0BEB:  44 0FB6 4A 2D               -  movzx r9d,byte ptr [rdx+2D]        
+mgsvtpp.exe+17E0BF0:  66 45 85 C0                 -  test r8w,r8w                       
+mgsvtpp.exe+17E0BF4:  75 32                       -  jne 1417E0C28                      
+mgsvtpp.exe+17E0BF6:  41 80 F9 02                 -  cmp r9l,02                         
+mgsvtpp.exe+17E0BFA:  0F84 AC010000               -  je 1417E0DAC                       
+mgsvtpp.exe+17E0C00:  0FB7 4A 30                  -  movzx ecx,word ptr [rdx+30]        
+mgsvtpp.exe+17E0C04:  0FB6 C1                     -  movzx eax,cl                       
+mgsvtpp.exe+17E0C07:  24 03                       -  and al,03                          
+mgsvtpp.exe+17E0C09:  3C 03                       -  cmp al,03                          
+mgsvtpp.exe+17E0C0B:  74 1B                       -  je 1417E0C28                       
+mgsvtpp.exe+17E0C0D:  F6 C1 04                    -  test cl,04                         
+mgsvtpp.exe+17E0C10:  75 16                       -  jne 1417E0C28                      
+mgsvtpp.exe+17E0C12:  B8 01000000                 -  mov eax,00000001                   
+mgsvtpp.exe+17E0C17:  66 83 C9 03                 -  or cx,03                           
+mgsvtpp.exe+17E0C1B:  66 89 42 0C                 -  mov [rdx+0C],ax                    
+mgsvtpp.exe+17E0C1F:  88 42 2D                    -  mov [rdx+2D],al                    
+mgsvtpp.exe+17E0C22:  66 89 4A 30                 -  mov [rdx+30],cx                    
+mgsvtpp.exe+17E0C26:  EB 7C                       -  jmp 1417E0CA4                      
+mgsvtpp.exe+17E0C28:  41 80 F9 02                 -  cmp r9l,02                         
+mgsvtpp.exe+17E0C2C:  0F84 7A010000               -  je 1417E0DAC                       
+//// Template: I2CEA_AOBFullInjectionWithValues
+//// Generated with: I2 Cheat Engine Auto Assembler Script Template Generator
+//// Code Happy, Code Freely, Be Awesome.
+}
+

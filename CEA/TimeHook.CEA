@@ -1,0 +1,138 @@
+{
+	Process			: mgsvtpp.exe  -  (x64)
+	Module			: mgsvtpp.exe
+	Game Title		: Metal Gear Solid 5 Phantom Pain
+	Game Version	: 1.0.15.2
+	CE Version		: 6.83
+	Script Version	: 0.0.3
+	Date			: 12/19/19
+	Author			: TheyCallMeTim13
+	Name			: TimeHook
+
+	Time Hook
+
+	+5  : E8xxxxxxxx8Bxx24388948xx48xxxxxxC3
+}
+
+{$STRICT}
+
+define(address, mgsvtpp.exe+8DE7E5D)
+define(bytes, 8B 4C 24 38 89 48 5C)
+
+////
+//// ------------------------------ ENABLE ------------------------------
+[ENABLE]
+// aobScanModule(aobTimeHook, mgsvtpp.exe, E8xxxxxxxx8Bxx24388948xx48xxxxxxC3)
+i2aobScanModule(aobTimeHook, mgsvtpp.exe, E8xxxxxxxx8Bxx24388948xx48xxxxxxC3)
+define(injTimeHook, aobTimeHook+5)
+// assert(injTimeHook, bytes)
+i2assert(injTimeHook, bytes)
+registerSymbol(injTimeHook)
+
+alloc(memTimeHook, 0x400, injTimeHook)
+
+label(ptrTimeHook)
+registerSymbol(ptrTimeHook)
+
+label(n_code)
+label(o_code)
+label(exit)
+label(return)
+
+memTimeHook:
+	ptrTimeHook:
+		dq 0
+	align 10 CC
+	n_code:
+		mov [ptrTimeHook],rax
+	o_code:
+		mov ecx,[rsp+38]
+		mov [rax+5C],ecx
+	exit:
+		jmp return
+
+
+////
+//// ---------- Injection Point ----------
+injTimeHook:
+	jmp n_code
+	nop
+	nop
+	return:
+
+
+////
+//// ------------------------------ DISABLE ------------------------------
+[DISABLE]
+////
+//// ---------- Injection Point ----------
+injTimeHook:
+	db bytes
+
+unregisterSymbol(injTimeHook)
+
+unregisterSymbol(ptrTimeHook)
+
+dealloc(memTimeHook)
+
+{
+mgsvtpp.exe+80276E8 - E8 B32598F8           - call mgsvtpp.exe+9A9CA0
+mgsvtpp.exe+80276ED - 8B 4C 24 38           - mov ecx,[rsp+38]
+mgsvtpp.exe+80276F1 - 89 48 5C              - mov [rax+5C],ecx
+mgsvtpp.exe+80276F4 - 48 83 C4 28           - add rsp,28
+mgsvtpp.exe+80276F8 - C3                    - ret 
+}
+{
+//// Injection Point: mgsvtpp.exe+8DE7E5D  -  0000000148DE7E5D
+//// AOB address: 0000000148DE7E58  -  mgsvtpp.exe+8DE7E58
+//// Process: mgsvtpp.exe  -  0000000140000000
+//// Module: mgsvtpp.exe  -  0000000140000000
+//// Module Size: 000000000DFCB000
+mgsvtpp.exe+8DE7DF9:  4C 2B 3C 24                 -  sub r15,[rsp]                      
+mgsvtpp.exe+8DE7DFD:  48 8D 64 24 08              -  lea rsp,[rsp+08]                   
+mgsvtpp.exe+8DE7E02:  48 2D 0A3F6CDE              -  sub rax,DE6C3F0A                   [00000000]
+mgsvtpp.exe+8DE7E08:  48 2D F0D8A9F6              -  sub rax,F6A9D8F0                   [03500619]
+mgsvtpp.exe+8DE7E0E:  4D 8D B6 4FE139FE           -  lea r14,[r14-01C61EB1]             
+mgsvtpp.exe+8DE7E15:  49 81 EC 189A5802           -  sub r12,02589A18                   [00000000]
+mgsvtpp.exe+8DE7E1C:  E9 E4EC7C03                 -  jmp 14C5B6B05                      
+mgsvtpp.exe+8DE7E21:  67 11 C8                    -  adc eax,ecx                        
+mgsvtpp.exe+8DE7E24:  44 21 C8                    -  and eax,r9d                        
+mgsvtpp.exe+8DE7E27:  45 89 CD                    -  mov r13d,r9d                       
+mgsvtpp.exe+8DE7E2A:  44 0FAC D9 05               -  shrd ecx,r11d,05                   
+mgsvtpp.exe+8DE7E2F:  C1 D2 11                    -  rcl edx,11                         
+mgsvtpp.exe+8DE7E32:  48 8D 0D 67AAD5F9           -  lea rcx,[142B428A0]                [0580D700]
+mgsvtpp.exe+8DE7E39:  48 8D 0D 7B9DC503           -  lea rcx,[14CA41BBB]                [EC1F8B0F]
+mgsvtpp.exe+8DE7E40:  FF E1                       -  jmp rcx                            
+mgsvtpp.exe+8DE7E42:  C7                          -  db -39                             
+mgsvtpp.exe+8DE7E43:  66 66 66 66 2E 0F1F 84 00 00000000   -  nop cs:[rax+rax+00000000]          
+mgsvtpp.exe+8DE7E50:  89 54 24 10                 -  mov [rsp+10],edx                   
+mgsvtpp.exe+8DE7E54:  48 83 EC 28                 -  sub rsp,28                         
+mgsvtpp.exe+8DE7E58:  E8 13DCBBF7                 -  call 1409A5A70                     <<<--- AOB Starts Here
+////  INJECTING START  ----------------------------------------------------------
+mgsvtpp.exe+8DE7E5D:  8B 4C 24 38                 -  mov ecx,[rsp+38]                   
+mgsvtpp.exe+8DE7E61:  89 48 4C                    -  mov [rax+4C],ecx                   
+////  INJECTING END  ----------------------------------------------------------
+mgsvtpp.exe+8DE7E64:  48 83 C4 28                 -  add rsp,28                         
+mgsvtpp.exe+8DE7E68:  C3                          -  ret                                
+mgsvtpp.exe+8DE7E69:  CC                          -  int 3                              
+mgsvtpp.exe+8DE7E6A:  5A                          -  pop rdx                            
+mgsvtpp.exe+8DE7E6B:  48 33 14 24                 -  xor rdx,[rsp]                      
+mgsvtpp.exe+8DE7E6F:  4C 89 14 24                 -  mov [rsp],r10                      
+mgsvtpp.exe+8DE7E73:  49 89 D2                    -  mov r10,rdx                        
+mgsvtpp.exe+8DE7E76:  49 83 F2 FF                 -  xor r10,-01                        
+mgsvtpp.exe+8DE7E7A:  48 83 E2 FF                 -  and rdx,-01                        
+mgsvtpp.exe+8DE7E7E:  48 D1 E2                    -  shl rdx,1                          
+mgsvtpp.exe+8DE7E81:  4C 01 D2                    -  add rdx,r10                        
+mgsvtpp.exe+8DE7E84:  FC                          -  cld                                
+mgsvtpp.exe+8DE7E85:  41 5A                       -  pop r10                            
+mgsvtpp.exe+8DE7E87:  48 8D A4 24 F8FFFFFF        -  lea rsp,[rsp-00000008]             
+mgsvtpp.exe+8DE7E8F:  F8                          -  clc                                
+mgsvtpp.exe+8DE7E90:  F8                          -  clc                                
+mgsvtpp.exe+8DE7E91:  44 13 34 24                 -  adc r14d,[rsp]                     
+mgsvtpp.exe+8DE7E95:  53                          -  push rbx                           
+mgsvtpp.exe+8DE7E96:  8B 5C 24 08                 -  mov ebx,[rsp+08]                   
+//// Template: I2CEA_AOBFullInjection
+//// Generated with: I2 Cheat Engine Auto Assembler Script Template Generator
+//// Code Happy, Code Freely, Be Awesome.
+}
+

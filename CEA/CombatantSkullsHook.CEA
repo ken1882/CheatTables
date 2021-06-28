@@ -1,0 +1,165 @@
+{
+	Process			: mgsvtpp.exe  -  (x64)
+	Module			: mgsvtpp.exe
+	Game Title		: Metal Gear Solid 5 The Phantom Pain
+	Game Version	: 1.0.15.1
+	CE Version		: 6.83
+	Script Version	: 0.0.1
+	Date			: 12/23/19
+	Author			: TheyCallMeTim13
+	Name			: CombatantSkullsHook
+
+	Combatant Skulls Hook
+
+	Armor Skulls
+	Mist Skulls
+
+	+0 == health / float
+	+10 == death flag
+	+14 == con
+	+24 == uncon flag
+}
+
+{$STRICT}
+
+define(address, mgsvtpp.exe+1872F99)
+define(bytes, 45 0F 2E 0C 0E)
+
+////
+//// ------------------------------ ENABLE ------------------------------
+[ENABLE]
+// aobScanModule(aobCombatantSkullsHook, mgsvtpp.exe, 4Dxxxxxxxxxxxx45xxxxxxxx75xx41xxxxxxxxxx0F85xxxxxxxx45xxxxxxxxxx75xx41xxxxxxxxxx0F85)
+i2aobScanModule(aobCombatantSkullsHook, mgsvtpp.exe, 4Dxxxxxxxxxxxx45xxxxxxxx75xx41xxxxxxxxxx0F85xxxxxxxx45xxxxxxxxxx75xx41xxxxxxxxxx0F85)
+define(injCombatantSkullsHook, aobCombatantSkullsHook+7)
+// assert(injCombatantSkullsHook, bytes)
+i2assert(injCombatantSkullsHook, bytes)
+registerSymbol(injCombatantSkullsHook)
+
+alloc(memCombatantSkullsHook, 0x400, injCombatantSkullsHook)
+
+label(flgCombatantSkullsHook)
+registerSymbol(flgCombatantSkullsHook)
+// 00:Disabled
+// 01:Instant Kill
+// 02:Instant Stun
+
+label(ptrCombatantSkullsHook)
+registerSymbol(ptrCombatantSkullsHook)
+
+label(n_code)
+label(o_code)
+label(exit)
+label(return)
+
+memCombatantSkullsHook:
+	flgCombatantSkullsHook:
+		db 00
+	align 10
+	ptrCombatantSkullsHook:
+		dq 0
+	align 10 CC
+	n_code:
+		push rax
+		lea rax,[r14+rcx]
+		mov [ptrCombatantSkullsHook],rax
+		cmp byte ptr [flgCombatantSkullsHook],0
+		je o_code
+		cmp byte ptr [flgCombatantSkullsHook],1
+		jne @f
+			movss [r14+rcx],xmm9
+			movss [r14+rcx+28],xmm9
+			mov byte ptr [r14+rcx+10],1
+			jmp o_code
+		@@:
+		cmp byte ptr [flgCombatantSkullsHook],2
+		jne @f
+			movss [r14+rcx+14],xmm9
+			movss [r14+rcx+28],xmm9
+			mov byte ptr [r14+rcx+24],1
+			jmp o_code
+		@@:
+		mov byte ptr [flgCombatantSkullsHook],0
+	o_code:
+		ucomiss xmm9,[r14+rcx]
+	exit:
+		pop rax
+		jmp return
+
+
+////
+//// ---------- Injection Point ----------
+injCombatantSkullsHook:
+	jmp n_code
+	return:
+
+
+////
+//// ------------------------------ DISABLE ------------------------------
+[DISABLE]
+////
+//// ---------- Injection Point ----------
+injCombatantSkullsHook:
+	db bytes
+
+unregisterSymbol(injCombatantSkullsHook)
+
+unregisterSymbol(flgCombatantSkullsHook)
+
+unregisterSymbol(ptrCombatantSkullsHook)
+
+dealloc(memCombatantSkullsHook)
+
+{
+//// Injection Point: mgsvtpp.exe+1872F99  -  0000000141872F99
+//// AOB address: 0000000141872F92  -  mgsvtpp.exe+1872F92
+//// Process: mgsvtpp.exe  -  0000000140000000
+//// Module: mgsvtpp.exe  -  0000000140000000
+//// Module Size: 000000000E1B1000
+mgsvtpp.exe+1872F3D:  0F28 C3                     -  movaps xmm0,xmm3                   
+mgsvtpp.exe+1872F40:  0FC6 C3 55                  -  shufps xmm0,xmm3,55                
+mgsvtpp.exe+1872F44:  0FC6 CB AA                  -  shufps xmm1,xmm3,-56               
+mgsvtpp.exe+1872F48:  0FC6 DB 00                  -  shufps xmm3,xmm3,00                
+mgsvtpp.exe+1872F4C:  0F58 C1                     -  addps xmm0,xmm1                    
+mgsvtpp.exe+1872F4F:  0F58 C3                     -  addps xmm0,xmm3                    
+mgsvtpp.exe+1872F52:  41 0F2F C2                  -  comiss xmm0,xmm10                  
+mgsvtpp.exe+1872F56:  76 06                       -  jna 141872F5E                      
+mgsvtpp.exe+1872F58:  89 5C BE 04                 -  mov [rsi+rdi*4+04],ebx             
+mgsvtpp.exe+1872F5C:  EB 1B                       -  jmp 141872F79                      
+mgsvtpp.exe+1872F5E:  49 8B 45 38                 -  mov rax,[r13+38]                   
+mgsvtpp.exe+1872F62:  F3 0F10 04 A8               -  movss xmm0,[rax+rbp*4]             
+mgsvtpp.exe+1872F67:  F3 41 0F59 45 48            -  mulss xmm0,[r13+48]                
+mgsvtpp.exe+1872F6D:  F3 0F58 44 BE 04            -  addss xmm0,dword ptr [rsi+rdi*4+04]
+mgsvtpp.exe+1872F73:  F3 0F11 44 BE 04            -  movss [rsi+rdi*4+04],xmm0          
+mgsvtpp.exe+1872F79:  49 8B 87 D8000000           -  mov rax,[r15+000000D8]             
+mgsvtpp.exe+1872F80:  44 0F28 54 24 40            -  movaps xmm10,[rsp+40]              
+mgsvtpp.exe+1872F86:  4C 8B AC 24 D0000000        -  mov r13,[rsp+000000D0]             
+mgsvtpp.exe+1872F8E:  48 8B 48 08                 -  mov rcx,[rax+08]                   
+mgsvtpp.exe+1872F92:  4D 69 F6 B4000000           -  imul r14,r14000000B4               <<<--- AOB Starts Here
+////  INJECTING START  ----------------------------------------------------------
+mgsvtpp.exe+1872F99:  45 0F2E 0C 0E               -  ucomiss xmm9,[r14+rcx]             
+////  INJECTING END  ----------------------------------------------------------
+mgsvtpp.exe+1872F9E:  75 0C                       -  jne 141872FAC                      
+mgsvtpp.exe+1872FA0:  41 F6 44 0E 10 01           -  test byte ptr [r14+rcx+10],01      
+mgsvtpp.exe+1872FA6:  0F85 A4000000               -  jne 141873050                      
+mgsvtpp.exe+1872FAC:  45 0F2E 4C 0E 14            -  ucomiss xmm9,[r14+rcx+14]          
+mgsvtpp.exe+1872FB2:  75 0C                       -  jne 141872FC0                      
+mgsvtpp.exe+1872FB4:  41 F6 44 0E 24 01           -  test byte ptr [r14+rcx+24],01      
+mgsvtpp.exe+1872FBA:  0F85 90000000               -  jne 141873050                      
+mgsvtpp.exe+1872FC0:  4D 8B 47 18                 -  mov r8,[r15+18]                    
+mgsvtpp.exe+1872FC4:  41 8B 50 44                 -  mov edx,[r8+44]                    
+mgsvtpp.exe+1872FC8:  85 D2                       -  test edx,edx                       
+mgsvtpp.exe+1872FCA:  74 13                       -  je 141872FDF                       
+mgsvtpp.exe+1872FCC:  4D 8B 40 28                 -  mov r8,[r8+28]                     
+mgsvtpp.exe+1872FD0:  41 0FB7 0C 58               -  movzx ecx,word ptr [r8+rbx*2]      
+mgsvtpp.exe+1872FD5:  3B CD                       -  cmp ecx,ebp                        
+mgsvtpp.exe+1872FD7:  74 0B                       -  je 141872FE4                       
+mgsvtpp.exe+1872FD9:  FF C3                       -  inc ebx                            
+mgsvtpp.exe+1872FDB:  3B DA                       -  cmp ebx,edx                        
+mgsvtpp.exe+1872FDD:  72 F1                       -  jb 141872FD0                       
+mgsvtpp.exe+1872FDF:  BB FFFF0000                 -  mov ebx,0000FFFF                   
+mgsvtpp.exe+1872FE4:  49 8B 07                    -  mov rax,[r15]                      
+//// Template: I2CEA_AOBFullInjection
+//// Generated with: I2 Cheat Engine Auto Assembler Script Template Generator
+//// Code Happy, Code Freely, Be Awesome.
+}
+
