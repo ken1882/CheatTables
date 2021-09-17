@@ -1,0 +1,2556 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="34">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"CompactMode (Activate  Me!)"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+LuaCall(function cycleFullCompact(sender,force) local state = not(compactmenuitem.Caption == 'Compact View Mode'); if force~=nil then state = not force end; compactmenuitem.Caption = state and 'Compact View Mode' or 'Full View Mode'; getMainForm().Splitter1.Visible = state; getMainForm().Panel4.Visible    = state; getMainForm().Panel5.Visible    = state; end; function addCompactMenu() if compactmenualreadyexists then return end; local parent = getMainForm().Menu.Items; compactmenuitem = createMenuItem(parent); parent.add(compactmenuitem); compactmenuitem.Caption = 'Compact View Mode'; compactmenuitem.OnClick = cycleFullCompact; compactmenualreadyexists = 'yes'; end; addCompactMenu(); cycleFullCompact(nil,true))
+
+[DISABLE]
+LuaCall(cycleFullCompact(nil,false))
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>442</ID>
+      <Description>"Gold"</Description>
+      <Options moHideChildren="1"/>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : nwmain.exe
+  Version: 
+  Date   : 2021-07-11
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+define(address,"nwmain.exe"+4F9190)
+define(bytes,39 86 B0 0A 00 00)
+
+[ENABLE]
+
+assert(address,bytes)
+alloc(newmem,$1000,"nwmain.exe"+4F9190)
+
+label(code)
+label(return)
+label(pt_gold)
+
+newmem:
+  mov [pt_gold],rsi
+  jmp code
+
+pt_gold:
+  dq 0
+registersymbol(pt_gold)
+
+code:
+  cmp [rsi+00000AB0],eax
+  jmp return
+
+address:
+  jmp newmem
+  nop
+return:
+
+[DISABLE]
+
+address:
+  db bytes
+  // cmp [rsi+00000AB0],eax
+
+unregistersymbol(pt_gold)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: nwmain.exe+4F9190
+
+nwmain.exe+4F9169: B8 00 04 00 00        - mov eax,00000400
+nwmain.exe+4F916E: 66 41 09 04 24        - or [r12],ax
+nwmain.exe+4F9173: 48 8B 4C 24 70        - mov rcx,[rsp+70]
+nwmain.exe+4F9178: 4D 8B C6              - mov r8,r14
+nwmain.exe+4F917B: 48 8B D6              - mov rdx,rsi
+nwmain.exe+4F917E: E8 3D 6B FE FF        - call nwmain.exe+4DFCC0
+nwmain.exe+4F9183: 85 C0                 - test eax,eax
+nwmain.exe+4F9185: 74 06                 - je nwmain.exe+4F918D
+nwmain.exe+4F9187: 66 41 83 0C 24 04     - or word ptr [r12],04
+nwmain.exe+4F918D: 41 8B 06              - mov eax,[r14]
+// ---------- INJECTING HERE ----------
+nwmain.exe+4F9190: 39 86 B0 0A 00 00     - cmp [rsi+00000AB0],eax
+// ---------- DONE INJECTING  ----------
+nwmain.exe+4F9196: 75 4E                 - jne nwmain.exe+4F91E6
+nwmain.exe+4F9198: 48 8B CE              - mov rcx,rsi
+nwmain.exe+4F919B: E8 F0 F0 04 00        - call nwmain.exe+548290
+nwmain.exe+4F91A0: 66 41 39 46 04        - cmp [r14+04],ax
+nwmain.exe+4F91A5: 75 3F                 - jne nwmain.exe+4F91E6
+nwmain.exe+4F91A7: 41 0F BF 46 08        - movsx eax,word ptr [r14+08]
+nwmain.exe+4F91AC: 3B 86 88 0B 00 00     - cmp eax,[rsi+00000B88]
+nwmain.exe+4F91B2: 75 32                 - jne nwmain.exe+4F91E6
+nwmain.exe+4F91B4: 83 BE 84 0B 00 00 01  - cmp dword ptr [rsi+00000B84],01
+nwmain.exe+4F91BB: 74 29                 - je nwmain.exe+4F91E6
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>443</ID>
+          <Description>"Gold"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_gold</Address>
+          <Offsets>
+            <Offset>AB0</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>319</ID>
+      <Description>"DM_Godmode"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : nwmain.exe
+  Version: 
+  Date   : 2020-01-30
+  Author : Cole
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(goddm,nwmain.exe,83 BA 1C 01 00 00 00 75 39) // should be unique
+alloc(newmem,$1000,"nwmain.exe"+55E5D9)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [rdx+0000011C],#1
+  cmp dword ptr [rdx+0000011C],00
+  jmp return
+
+goddm:
+  jmp newmem
+  nop 2
+return:
+registersymbol(goddm)
+
+[DISABLE]
+
+goddm:
+  db 83 BA 1C 01 00 00 00
+
+unregistersymbol(goddm)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "nwmain.exe"+55E5D9
+
+"nwmain.exe"+55E5BA: E8 11 42 E7 FF           -  call nwmain.exe+3D27D0
+"nwmain.exe"+55E5BF: 48 8B 5C 24 40           -  mov rbx,[rsp+40]
+"nwmain.exe"+55E5C4: 48 8B 74 24 48           -  mov rsi,[rsp+48]
+"nwmain.exe"+55E5C9: 48 83 C4 30              -  add rsp,30
+"nwmain.exe"+55E5CD: 5F                       -  pop rdi
+"nwmain.exe"+55E5CE: C3                       -  ret 
+"nwmain.exe"+55E5CF: CC                       -  int 3 
+"nwmain.exe"+55E5D0: 48 83 EC 58              -  sub rsp,58
+"nwmain.exe"+55E5D4: 48 85 D2                 -  test rdx,rdx
+"nwmain.exe"+55E5D7: 74 42                    -  je nwmain.exe+55E61B
+// ---------- INJECTING HERE ----------
+"nwmain.exe"+55E5D9: 83 BA 1C 01 00 00 00     -  cmp dword ptr [rdx+0000011C],00
+// ---------- DONE INJECTING  ----------
+"nwmain.exe"+55E5E0: 75 39                    -  jne nwmain.exe+55E61B
+"nwmain.exe"+55E5E2: C7 44 24 48 00 00 00 00  -  mov [rsp+48],00000000
+"nwmain.exe"+55E5EA: 4C 8B C2                 -  mov r8,rdx
+"nwmain.exe"+55E5ED: C6 44 24 40 FF           -  mov byte ptr [rsp+40],-01
+"nwmain.exe"+55E5F2: 41 B9 01 00 00 00        -  mov r9d,00000001
+"nwmain.exe"+55E5F8: C6 44 24 38 FF           -  mov byte ptr [rsp+38],-01
+"nwmain.exe"+55E5FD: B2 02                    -  mov dl,02
+"nwmain.exe"+55E5FF: C6 44 24 30 00           -  mov byte ptr [rsp+30],00
+"nwmain.exe"+55E604: C6 44 24 28 00           -  mov byte ptr [rsp+28],00
+"nwmain.exe"+55E609: C7 44 24 20 01 00 00 00  -  mov [rsp+20],00000001
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>440</ID>
+      <Description>"Familiar Stats Boost"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{$lua}
+if sytanxcheck then return end
+
+local Familiar = {}
+
+function Familiar.init()
+  attrs = {28,30,26,10,14,12}
+  res = AOBScan("3 ?? F ?? A ?? 3 ?? 0C ?? 7")
+  if res == nil then return end
+  for i=0, res.Count-1, 1 do
+    for j=0,5 do
+      addr = tonumber(res[i],16)
+      writeBytes(addr+2*j,attrs[j+1])
+    end
+  end
+  res.destroy()
+end
+
+[ENABLE]
+
+Familiar.init()
+ 
+[DISABLE]
+
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>447</ID>
+      <Description>"Unlimited Epic Spells (PRC)"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>define(address,"nwmain.exe"+5E2CD5)
+define(bytes,8B 00 48 83 C4 28)
+
+[ENABLE]
+
+assert(address,bytes)
+alloc(newmem,$1000,"nwmain.exe"+5E2CD5)
+
+label(code)
+label(return)
+label(pt_epicspell)
+label(Lret)
+
+newmem:
+  cmp [rax-8],10
+  jne code
+  cmp [rax+8],7F000000
+  jne code
+  mov [pt_epicspell],rax
+  push rbx
+  mov ebx,[rax]
+  cmp ebx,10
+  jge Lret
+  add [rax],1
+Lret:
+  pop rbx
+code:
+  mov eax,[rax]
+  add rsp,28
+  jmp return
+
+pt_epicspell:
+  dq 0
+registersymbol(pt_epicspell)
+
+address:
+  jmp newmem
+  nop
+return:
+
+
+[DISABLE]
+
+address:
+  db bytes
+  // mov eax,[rax]
+  // add rsp,28
+
+unregistersymbol(pt_epicspell)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: nwmain.exe+5E2CD5
+
+nwmain.exe+5E2CBC: CC              - int 3
+nwmain.exe+5E2CBD: CC              - int 3
+nwmain.exe+5E2CBE: CC              - int 3
+nwmain.exe+5E2CBF: CC              - int 3
+nwmain.exe+5E2CC0: 48 83 EC 28     - sub rsp,28
+nwmain.exe+5E2CC4: 45 33 C9        - xor r9d,r9d
+nwmain.exe+5E2CC7: 45 8D 41 01     - lea r8d,[r9+01]
+nwmain.exe+5E2CCB: E8 B0 08 00 00  - call nwmain.exe+5E3580
+nwmain.exe+5E2CD0: 48 85 C0        - test rax,rax
+nwmain.exe+5E2CD3: 74 07           - je nwmain.exe+5E2CDC
+// ---------- INJECTING HERE ----------
+nwmain.exe+5E2CD5: 8B 00           - mov eax,[rax]
+// ---------- DONE INJECTING  ----------
+nwmain.exe+5E2CD7: 48 83 C4 28     - add rsp,28
+nwmain.exe+5E2CDB: C3              - ret
+nwmain.exe+5E2CDC: 48 83 C4 28     - add rsp,28
+nwmain.exe+5E2CE0: C3              - ret
+nwmain.exe+5E2CE1: CC              - int 3
+nwmain.exe+5E2CE2: CC              - int 3
+nwmain.exe+5E2CE3: CC              - int 3
+nwmain.exe+5E2CE4: CC              - int 3
+nwmain.exe+5E2CE5: CC              - int 3
+nwmain.exe+5E2CE6: CC              - int 3
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>451</ID>
+          <Description>"Epic Slots"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_epicspell</Address>
+          <Offsets>
+            <Offset>0</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>438</ID>
+      <Description>"Unlimited Item"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : nwmain.exe
+  Version: 
+  Date   : 2021-07-10
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+define(address,"nwmain.exe"+56AD01)
+define(bytes,89 87 6C 06 00 00)
+
+[ENABLE]
+
+assert(address,bytes)
+alloc(newmem,$1000,"nwmain.exe"+56AD01)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  cmp eax,[rdi+0000066C]
+  jb return
+  mov [rdi+0000066C],eax
+  jmp return
+
+address:
+  jmp newmem
+  nop
+return:
+
+[DISABLE]
+
+address:
+  db bytes
+  // mov [rdi+0000066C],eax
+
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: nwmain.exe+56AD01
+
+nwmain.exe+56ACD9: 0F 87 07 01 00 00     - ja nwmain.exe+56ADE6
+nwmain.exe+56ACDF: 48 98                 - cdqe 
+nwmain.exe+56ACE1: 48 8D 15 18 53 A9 FF  - lea rdx,[nwmain.exe]
+nwmain.exe+56ACE8: 8B 8C 82 4C AF 56 00  - mov ecx,[rdx+rax*4+0056AF4C]
+nwmain.exe+56ACEF: 48 03 CA              - add rcx,rdx
+nwmain.exe+56ACF2: FF E1                 - jmp rcx
+nwmain.exe+56ACF4: 8B 87 6C 06 00 00     - mov eax,[rdi+0000066C]
+nwmain.exe+56ACFA: 83 F8 01              - cmp eax,01
+nwmain.exe+56ACFD: 7E 0D                 - jle nwmain.exe+56AD0C
+nwmain.exe+56ACFF: FF C8                 - dec eax
+// ---------- INJECTING HERE ----------
+nwmain.exe+56AD01: 89 87 6C 06 00 00     - mov [rdi+0000066C],eax
+// ---------- DONE INJECTING  ----------
+nwmain.exe+56AD07: E9 DA 00 00 00        - jmp nwmain.exe+56ADE6
+nwmain.exe+56AD0C: 45 89 7D 0C           - mov [r13+0C],r15d
+nwmain.exe+56AD10: 39 9F 64 01 00 00     - cmp [rdi+00000164],ebx
+nwmain.exe+56AD16: 0F 85 CA 00 00 00     - jne nwmain.exe+56ADE6
+nwmain.exe+56AD1C: BE 01 00 00 00        - mov esi,00000001
+nwmain.exe+56AD21: E9 C0 00 00 00        - jmp nwmain.exe+56ADE6
+nwmain.exe+56AD26: BB 01 00 00 00        - mov ebx,00000001
+nwmain.exe+56AD2B: 8B 97 A0 05 00 00     - mov edx,[rdi+000005A0]
+nwmain.exe+56AD31: 83 FA 05              - cmp edx,05
+nwmain.exe+56AD34: 0F 8C AC 00 00 00     - jl nwmain.exe+56ADE6
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>428</ID>
+      <Description>"Unlimited Casting Wizard &amp; Cleric Spells"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>define(address,"nwmain.exe"+524B10)
+define(bytes,41 8B 42 04 EB 02)
+
+define(address2,"nwmain.exe"+5317F5)
+define(bytes2,89 42 04 B8 01 00 00 00)
+
+[ENABLE]
+
+assert(address,bytes)
+alloc(newmem,$1000,"nwmain.exe"+524B10)
+
+label(code)
+label(return)
+
+newmem:
+  mov [r10+04],00000001
+code:
+  mov eax,[r10+04]
+  jmp nwmain.exe+524B18
+  jmp return
+
+address:
+  jmp newmem
+  nop
+return:
+
+assert(address2,bytes2)
+alloc(newmem2,$1000,"nwmain.exe"+5317F5)
+
+label(code2)
+label(return2)
+
+newmem2:
+  mov eax,1
+code2:
+  mov [rdx+04],eax
+  mov eax,00000001
+  jmp return2
+
+address2:
+  jmp newmem2
+  nop 3
+return2:
+
+[DISABLE]
+
+address:
+  db bytes
+  // mov eax,[r10+04]
+  // jmp nwmain.exe+524B18
+
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: wizspelltwo
+
+nwmain.exe+524AE9: 4D 03 C7                 - add r8,r15
+nwmain.exe+524AEC: 40 80 FE 0A              - cmp sil,0A
+nwmain.exe+524AF0: 73 24                    - jae nwmain.exe+524B16
+nwmain.exe+524AF2: 43 3B 94 C8 90 01 00 00  - cmp edx,[r8+r9*8+00000190]
+nwmain.exe+524AFA: 7D 1A                    - jnl nwmain.exe+524B16
+nwmain.exe+524AFC: 4B 8B 84 C8 88 01 00 00  - mov rax,[r8+r9*8+00000188]
+nwmain.exe+524B04: 0F B6 CB                 - movzx ecx,bl
+nwmain.exe+524B07: 4C 8B 14 C8              - mov r10,[rax+rcx*8]
+nwmain.exe+524B0B: 4D 85 D2                 - test r10,r10
+nwmain.exe+524B0E: 74 06                    - je nwmain.exe+524B16
+// ---------- INJECTING HERE ----------
+wizspelltwo: 41 8B 42 04              - mov eax,[r10+04]
+// ---------- DONE INJECTING  ----------
+nwmain.exe+524B14: EB 02                    - jmp nwmain.exe+524B18
+nwmain.exe+524B16: 33 C0                    - xor eax,eax
+nwmain.exe+524B18: 84 C0                    - test al,al
+nwmain.exe+524B1A: 74 2D                    - je nwmain.exe+524B49
+nwmain.exe+524B1C: 40 80 FE 0A              - cmp sil,0A
+nwmain.exe+524B20: 73 24                    - jae nwmain.exe+524B46
+nwmain.exe+524B22: 43 3B 94 C8 90 01 00 00  - cmp edx,[r8+r9*8+00000190]
+nwmain.exe+524B2A: 7D 1A                    - jnl nwmain.exe+524B46
+nwmain.exe+524B2C: 4B 8B 84 C8 88 01 00 00  - mov rax,[r8+r9*8+00000188]
+nwmain.exe+524B34: 0F B6 CB                 - movzx ecx,bl
+}
+address2:
+  db bytes2
+  // mov [rdx+04],eax
+  // mov eax,00000001
+
+dealloc(newmem2)
+
+{
+// ORIGINAL CODE - INJECTION POINT: nwmain.exe+5317F5
+
+nwmain.exe+5317CF: 3A 9C C2 90 01 00 00     - cmp bl,[rdx+rax*8+00000190]
+nwmain.exe+5317D6: 73 4E                    - jae nwmain.exe+531826
+nwmain.exe+5317D8: 48 8D 41 0A              - lea rax,[rcx+0A]
+nwmain.exe+5317DC: 0F B6 CB                 - movzx ecx,bl
+nwmain.exe+5317DF: 48 03 C0                 - add rax,rax
+nwmain.exe+5317E2: 48 8B 84 C2 E8 00 00 00  - mov rax,[rdx+rax*8+000000E8]
+nwmain.exe+5317EA: 48 8B 14 C8              - mov rdx,[rax+rcx*8]
+nwmain.exe+5317EE: 48 85 D2                 - test rdx,rdx
+nwmain.exe+5317F1: 74 33                    - je nwmain.exe+531826
+nwmain.exe+5317F3: 33 C0                    - xor eax,eax
+// ---------- INJECTING HERE ----------
+nwmain.exe+5317F5: 89 42 04                 - mov [rdx+04],eax
+// ---------- DONE INJECTING  ----------
+nwmain.exe+5317F8: B8 01 00 00 00           - mov eax,00000001
+nwmain.exe+5317FD: E9 F6 FD FF FF           - jmp nwmain.exe+5315F8
+nwmain.exe+531802: 40 3A AF E5 00 00 00     - cmp bpl,[rdi+000000E5]
+nwmain.exe+531809: 73 1B                    - jae nwmain.exe+531826
+nwmain.exe+53180B: 49 69 CC 88 01 00 00     - imul rcx,r12,00000188
+nwmain.exe+531812: 48 03 CF                 - add rcx,rdi
+nwmain.exe+531815: 40 80 FE 0A              - cmp sil,0A
+nwmain.exe+531819: 73 0B                    - jae nwmain.exe+531826
+nwmain.exe+53181B: 40 0F B6 C6              - movzx eax,sil
+nwmain.exe+53181F: FE 8C 08 50 02 00 00     - dec [rax+rcx+00000250]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>397</ID>
+      <Description>"Unlimited Casting Sorcerer &amp; Bard Spells (Deactivate when loading Save game or they will zero out)"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+aobscanmodule(unlimsorc,nwmain.exe,42 0F B6 84 48 10 06 00 00) // should be unique
+alloc(newmem,$1000,"nwmain.exe"+553E69)
+aobscanmodule(sorcyspells,nwmain.exe,44 88 8C 51 10 06 00 00) // should be unique
+alloc(newmem1,$1000,"nwmain.exe"+554D09)
+aobscanmodule(sorceyagain,nwmain.exe,0F B6 84 02 58 02 00 00) // should be unique
+alloc(newmem,$1000,"nwmain.exe"+456492)
+
+label(code)
+label(return)
+label(code1)
+label(return1)
+label(code2)
+label(return2)
+
+newmem:
+code:
+  mov byte ptr [rax+r9*2+00000610],63
+  mov eax,63
+  jmp return
+newmem1:
+code1:
+  mov r9l,63
+  mov [rcx+rdx*2+00000610],r9l
+  jmp return1
+newmem2:
+code2:
+  mov [rdx+rax+00000258],63
+  movzx eax,byte ptr [rdx+rax+00000258]
+  jmp return2
+
+unlimsorc:
+  jmp newmem
+  nop 4
+return:
+registersymbol(unlimsorc)
+
+sorcyspells:
+  jmp newmem1
+  nop 3
+return1:
+registersymbol(sorcyspells)
+
+sorceyagain:
+  jmp newmem2
+  nop 3
+return2:
+registersymbol(sorceyagain)
+
+
+[DISABLE]
+
+unlimsorc:
+  db 42 0F B6 84 48 10 06 00 00
+
+sorcyspells:
+  db 44 88 8C 51 10 06 00 00
+
+sorceyagain:
+  db 0F B6 84 02 58 02 00 00
+
+unregistersymbol(unlimsorc)
+dealloc(newmem)
+unregistersymbol(sorcyspells)
+dealloc(newmem1)
+unregistersymbol(sorceyagain)
+dealloc(newmem2)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "nwmain.exe"+553E69
+
+"nwmain.exe"+553E4E: C3                          -  ret 
+"nwmain.exe"+553E4F: CC                          -  int 3 
+"nwmain.exe"+553E50: 80 FA 03                    -  cmp dl,03
+"nwmain.exe"+553E53: 73 1E                       -  jae nwmain.exe+553E73
+"nwmain.exe"+553E55: 41 80 F8 0A                 -  cmp r8l,0A
+"nwmain.exe"+553E59: 73 18                       -  jae nwmain.exe+553E73
+"nwmain.exe"+553E5B: 0F B6 C2                    -  movzx eax,dl
+"nwmain.exe"+553E5E: 4C 8D 0C 80                 -  lea r9,[rax+rax*4]
+"nwmain.exe"+553E62: 41 0F B6 C0                 -  movzx eax,r8l
+"nwmain.exe"+553E66: 48 03 C1                    -  add rax,rcx
+// ---------- INJECTING HERE ----------
+"nwmain.exe"+553E69: 42 0F B6 84 48 10 06 00 00  -  movzx eax,byte ptr [rax+r9*2+00000610]
+// ---------- DONE INJECTING  ----------
+"nwmain.exe"+553E72: C3                          -  ret 
+"nwmain.exe"+553E73: 32 C0                       -  xor al,al
+"nwmain.exe"+553E75: C3                          -  ret 
+"nwmain.exe"+553E76: CC                          -  int 3 
+"nwmain.exe"+553E77: CC                          -  int 3 
+"nwmain.exe"+553E78: CC                          -  int 3 
+"nwmain.exe"+553E79: CC                          -  int 3 
+"nwmain.exe"+553E7A: CC                          -  int 3 
+"nwmain.exe"+553E7B: CC                          -  int 3 
+"nwmain.exe"+553E7C: CC                          -  int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>369</ID>
+      <Description>"Note: Deactivate ALL character creation and level up scripts as soon as done"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <Color>FF8000</Color>
+      <GroupHeader>1</GroupHeader>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>242</ID>
+      <Description>"Character creation (Add Ability point to stat to update)"</Description>
+      <Options moHideChildren="1" moManualExpandCollapse="1" moDeactivateChildrenAsWell="1"/>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : nwmain.exe
+  Version: 
+  Date   : 2020-01-30
+  Author : Cole
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(creationpoints,nwmain.exe,80 B8 04 01 00 00 00) // should be unique
+alloc(newmem,$1000,"nwmain.exe"+36F8A4)
+
+label(code)
+label(return)
+alloc(create,4)
+registersymbol(create)
+
+newmem:
+mov [create],rax
+
+code:
+  cmp byte ptr [rax+00000104],00
+  jmp return
+
+creationpoints:
+  jmp newmem
+  nop 2
+return:
+registersymbol(creationpoints)
+
+[DISABLE]
+
+creationpoints:
+  db 80 B8 04 01 00 00 00
+
+unregistersymbol(creationpoints)
+dealloc(newmem)
+dealloc(create,4)
+unregistersymbol(create)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "nwmain.exe"+36F8A4
+
+"nwmain.exe"+36F87B: 48 8B CB                    -  mov rcx,rbx
+"nwmain.exe"+36F87E: E8 DD AD DE FF              -  call nwmain.exe+15A660
+"nwmain.exe"+36F883: 48 8B 03                    -  mov rax,[rbx]
+"nwmain.exe"+36F886: BA 01 00 00 00              -  mov edx,00000001
+"nwmain.exe"+36F88B: 48 8B CB                    -  mov rcx,rbx
+"nwmain.exe"+36F88E: 48 83 C4 30                 -  add rsp,30
+"nwmain.exe"+36F892: 5B                          -  pop rbx
+"nwmain.exe"+36F893: 48 FF 20                    -  jmp qword ptr [rax]
+"nwmain.exe"+36F896: 48 8B 80 A8 03 00 00        -  mov rax,[rax+000003A8]
+"nwmain.exe"+36F89D: 48 8D 8B 70 1B 00 00        -  lea rcx,[rbx+00001B70]
+// ---------- INJECTING HERE ----------
+"nwmain.exe"+36F8A4: 80 B8 04 01 00 00 00        -  cmp byte ptr [rax+00000104],00
+// ---------- DONE INJECTING  ----------
+"nwmain.exe"+36F8AB: 75 1A                       -  jne nwmain.exe+36F8C7
+"nwmain.exe"+36F8AD: BA 01 00 00 00              -  mov edx,00000001
+"nwmain.exe"+36F8B2: E8 29 B5 DF FF              -  call nwmain.exe+16ADE0
+"nwmain.exe"+36F8B7: F3 0F 10 0D C9 34 65 00     -  movss xmm1,[nwmain.exe+9C2D88]
+"nwmain.exe"+36F8BF: F3 0F 11 4C 24 20           -  movss [rsp+20],xmm1
+"nwmain.exe"+36F8C5: EB 1D                       -  jmp nwmain.exe+36F8E4
+"nwmain.exe"+36F8C7: 33 D2                       -  xor edx,edx
+"nwmain.exe"+36F8C9: E8 12 B5 DF FF              -  call nwmain.exe+16ADE0
+"nwmain.exe"+36F8CE: F3 0F 10 05 B2 34 65 00     -  movss xmm0,[nwmain.exe+9C2D88]
+"nwmain.exe"+36F8D6: F3 0F 10 0D A6 3E 65 00     -  movss xmm1,[nwmain.exe+9C3784]
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>247</ID>
+          <Description>"Ability points (set to 0 to progress)"</Description>
+          <VariableType>Byte</VariableType>
+          <Address>create</Address>
+          <Offsets>
+            <Offset>104</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>249</ID>
+          <Description>"Package points (set to 0 to progress)"</Description>
+          <VariableType>Byte</VariableType>
+          <Address>create</Address>
+          <Offsets>
+            <Offset>106</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>261</ID>
+          <Description>"Unlimited Feats (When done turn off script, then try to add one more feat to progress)"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : nwmain.exe
+  Version: 
+  Date   : 2020-01-30
+  Author : Cole
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,nwmain.exe,11 00 00 44 8B 43 08 8B 43 0C)//inject
+aobscanmodule(INJECTtwo,nwmain.exe,FE 8E 0E 01 00 00)injecttwo
+alloc(newmem,$1000,"nwmain.exe"+39FA16)//inject
+alloc(newmem1,$1000,"nwmain.exe"+39FA58)//injecttwo
+
+label(return)
+label(return1)
+
+newmem:
+  mov [rbx+08],#0
+  mov r8d,[rbx+08]
+  mov eax,[rbx+0C]
+  jmp return
+
+newmem1:
+db 90 90 90 90 90 90
+  jmp return1
+
+INJECT+03:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+INJECTtwo:
+  jmp newmem1
+  nop
+return1:
+registersymbol(INJECTtwo)
+
+
+[DISABLE]
+
+INJECT+03:
+  db 44 8B 43 08 8B 43 0C
+INJECTtwo:
+  db FE 8E 0E 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+unregistersymbol(INJECTtwo)
+dealloc(newmem1)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "nwmain.exe"+39FA16
+
+"nwmain.exe"+39F9EE: CC                          -  int 3 
+"nwmain.exe"+39F9EF: CC                          -  int 3 
+"nwmain.exe"+39F9F0: 40 57                       -  push rdi
+"nwmain.exe"+39F9F2: 48 83 EC 40                 -  sub rsp,40
+"nwmain.exe"+39F9F6: 48 C7 44 24 20 FE FF FF FF  -  mov qword ptr [rsp+20],FFFFFFFFFFFFFFFE
+"nwmain.exe"+39F9FF: 48 89 5C 24 58              -  mov [rsp+58],rbx
+"nwmain.exe"+39FA04: 48 89 74 24 60              -  mov [rsp+60],rsi
+"nwmain.exe"+39FA09: 0F B7 FA                    -  movzx edi,dx
+"nwmain.exe"+39FA0C: 48 8B F1                    -  mov rsi,rcx
+"nwmain.exe"+39FA0F: 48 8D 99 C0 11 00 00        -  lea rbx,[rcx+000011C0]
+// ---------- INJECTING HERE ----------
+"nwmain.exe"+39FA16: 44 8B 43 08                 -  mov r8d,[rbx+08]
+"nwmain.exe"+39FA1A: 8B 43 0C                    -  mov eax,[rbx+0C]
+// ---------- DONE INJECTING  ----------
+"nwmain.exe"+39FA1D: 44 3B C0                    -  cmp r8d,eax
+"nwmain.exe"+39FA20: 75 18                       -  jne nwmain.exe+39FA3A
+"nwmain.exe"+39FA22: 85 C0                       -  test eax,eax
+"nwmain.exe"+39FA24: 8D 14 00                    -  lea edx,[rax+rax]
+"nwmain.exe"+39FA27: 75 05                       -  jne nwmain.exe+39FA2E
+"nwmain.exe"+39FA29: BA 10 00 00 00              -  mov edx,00000010
+"nwmain.exe"+39FA2E: 48 8B CB                    -  mov rcx,rbx
+"nwmain.exe"+39FA31: E8 2A C4 E5 FF              -  call nwmain.exe+1FBE60
+"nwmain.exe"+39FA36: 44 8B 43 08                 -  mov r8d,[rbx+08]
+"nwmain.exe"+39FA3A: 49 63 C8                    -  movsxd  rcx,r8d
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>262</ID>
+      <Description>"old/not used"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>259</ID>
+          <Description>"feat1"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : nwmain.exe
+  Version: 
+  Date   : 2020-01-30
+  Author : Cole
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,nwmain.exe,11 00 00 44 8B 43 08 8B 43 0C) // should be unique
+alloc(newmem,$1000,"nwmain.exe"+39FA16)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [rbx+08],#0
+  mov r8d,[rbx+08]
+  mov eax,[rbx+0C]
+  jmp return
+
+INJECT+03:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+03:
+  db 44 8B 43 08 8B 43 0C
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "nwmain.exe"+39FA16
+
+"nwmain.exe"+39F9EE: CC                          -  int 3 
+"nwmain.exe"+39F9EF: CC                          -  int 3 
+"nwmain.exe"+39F9F0: 40 57                       -  push rdi
+"nwmain.exe"+39F9F2: 48 83 EC 40                 -  sub rsp,40
+"nwmain.exe"+39F9F6: 48 C7 44 24 20 FE FF FF FF  -  mov qword ptr [rsp+20],FFFFFFFFFFFFFFFE
+"nwmain.exe"+39F9FF: 48 89 5C 24 58              -  mov [rsp+58],rbx
+"nwmain.exe"+39FA04: 48 89 74 24 60              -  mov [rsp+60],rsi
+"nwmain.exe"+39FA09: 0F B7 FA                    -  movzx edi,dx
+"nwmain.exe"+39FA0C: 48 8B F1                    -  mov rsi,rcx
+"nwmain.exe"+39FA0F: 48 8D 99 C0 11 00 00        -  lea rbx,[rcx+000011C0]
+// ---------- INJECTING HERE ----------
+"nwmain.exe"+39FA16: 44 8B 43 08                 -  mov r8d,[rbx+08]
+"nwmain.exe"+39FA1A: 8B 43 0C                    -  mov eax,[rbx+0C]
+// ---------- DONE INJECTING  ----------
+"nwmain.exe"+39FA1D: 44 3B C0                    -  cmp r8d,eax
+"nwmain.exe"+39FA20: 75 18                       -  jne nwmain.exe+39FA3A
+"nwmain.exe"+39FA22: 85 C0                       -  test eax,eax
+"nwmain.exe"+39FA24: 8D 14 00                    -  lea edx,[rax+rax]
+"nwmain.exe"+39FA27: 75 05                       -  jne nwmain.exe+39FA2E
+"nwmain.exe"+39FA29: BA 10 00 00 00              -  mov edx,00000010
+"nwmain.exe"+39FA2E: 48 8B CB                    -  mov rcx,rbx
+"nwmain.exe"+39FA31: E8 2A C4 E5 FF              -  call nwmain.exe+1FBE60
+"nwmain.exe"+39FA36: 44 8B 43 08                 -  mov r8d,[rbx+08]
+"nwmain.exe"+39FA3A: 49 63 C8                    -  movsxd  rcx,r8d
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>260</ID>
+          <Description>"feat2"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : nwmain.exe
+  Version: 
+  Date   : 2020-01-30
+  Author : Cole
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECTtwo,nwmain.exe,FE 8E 0E 01 00 00) // should be unique
+alloc(newmem,$1000,"nwmain.exe"+39FA58)
+
+label(code)
+label(return)
+
+newmem:
+db 90 90 90 90 90 90
+
+jmp return
+
+code:
+  dec [rsi+0000010E]
+  jmp return
+
+INJECTtwo:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECTtwo)
+
+[DISABLE]
+
+INJECTtwo:
+  db FE 8E 0E 01 00 00
+
+unregistersymbol(INJECTtwo)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "nwmain.exe"+39FA58
+
+"nwmain.exe"+39FA31: E8 2A C4 E5 FF              -  call nwmain.exe+1FBE60
+"nwmain.exe"+39FA36: 44 8B 43 08                 -  mov r8d,[rbx+08]
+"nwmain.exe"+39FA3A: 49 63 C8                    -  movsxd  rcx,r8d
+"nwmain.exe"+39FA3D: 48 8B 03                    -  mov rax,[rbx]
+"nwmain.exe"+39FA40: 66 89 3C 48                 -  mov [rax+rcx*2],di
+"nwmain.exe"+39FA44: FF 43 08                    -  inc [rbx+08]
+"nwmain.exe"+39FA47: 41 B8 01 00 00 00           -  mov r8d,00000001
+"nwmain.exe"+39FA4D: 0F B7 D7                    -  movzx edx,di
+"nwmain.exe"+39FA50: 48 8B CE                    -  mov rcx,rsi
+"nwmain.exe"+39FA53: E8 48 0A 00 00              -  call nwmain.exe+3A04A0
+// ---------- INJECTING HERE ----------
+"nwmain.exe"+39FA58: FE 8E 0E 01 00 00           -  dec [rsi+0000010E]
+// ---------- DONE INJECTING  ----------
+"nwmain.exe"+39FA5E: 0F B6 96 0E 01 00 00        -  movzx edx,byte ptr [rsi+0000010E]
+"nwmain.exe"+39FA65: 48 8D 4C 24 28              -  lea rcx,[rsp+28]
+"nwmain.exe"+39FA6A: E8 71 CC D2 FF              -  call nwmain.exe+CC6E0
+"nwmain.exe"+39FA6F: 48 8B F8                    -  mov rdi,rax
+"nwmain.exe"+39FA72: 48 89 44 24 50              -  mov [rsp+50],rax
+"nwmain.exe"+39FA77: 48 8B 8E 38 0E 00 00        -  mov rcx,[rsi+00000E38]
+"nwmain.exe"+39FA7E: 48 8B 19                    -  mov rbx,[rcx]
+"nwmain.exe"+39FA81: 48 8B C8                    -  mov rcx,rax
+"nwmain.exe"+39FA84: E8 D7 D8 D2 FF              -  call nwmain.exe+CD360
+"nwmain.exe"+39FA89: 48 8B D0                    -  mov rdx,rax
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>385</ID>
+          <Description>"CreateSpells1 - (Set to 0 points and Disable script when one spell if left)"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : nwmain.exe
+  Version: 
+  Date   : 2020-01-31
+  Author : Cole
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(creationspells,nwmain.exe,0F B7 97 6C 19 00 00) // should be unique
+alloc(newmem,$1000,"nwmain.exe"+3A15B9)
+
+label(code)
+label(return)
+alloc(createspells,4)
+registersymbol(createspells)
+
+newmem:
+
+code:
+  mov [createspells],rdi
+  //mov [rdi+0000196C],#50
+  movzx edx,word ptr [rdi+0000196C]
+  jmp return
+
+creationspells:
+  jmp newmem
+  nop 2
+return:
+registersymbol(creationspells)
+
+[DISABLE]
+
+creationspells:
+  db 0F B7 97 6C 19 00 00
+
+unregistersymbol(creationspells)
+dealloc(newmem)
+dealloc(createspells,4)
+unregistersymbol(createspells)
+{
+// ORIGINAL CODE - INJECTION POINT: "nwmain.exe"+3A15B9
+
+"nwmain.exe"+3A1589: 48 8B CE              -  mov rcx,rsi
+"nwmain.exe"+3A158C: E8 BF 8D 00 00        -  call nwmain.exe+3AA350
+"nwmain.exe"+3A1591: 48 8D 54 24 20        -  lea rdx,[rsp+20]
+"nwmain.exe"+3A1596: 49 8B CF              -  mov rcx,r15
+"nwmain.exe"+3A1599: E8 C2 00 53 00        -  call nwmain.exe+8D1660
+"nwmain.exe"+3A159E: 48 8D 8E B0 00 00 00  -  lea rcx,[rsi+000000B0]
+"nwmain.exe"+3A15A5: 48 8B D0              -  mov rdx,rax
+"nwmain.exe"+3A15A8: E8 93 33 E9 FF        -  call nwmain.exe+234940
+"nwmain.exe"+3A15AD: B8 FF FF 00 00        -  mov eax,0000FFFF
+"nwmain.exe"+3A15B2: 66 01 87 6C 19 00 00  -  add [rdi+0000196C],ax
+// ---------- INJECTING HERE ----------
+"nwmain.exe"+3A15B9: 0F B7 97 6C 19 00 00  -  movzx edx,word ptr [rdi+0000196C]
+// ---------- DONE INJECTING  ----------
+"nwmain.exe"+3A15C0: 48 8D 4C 24 20        -  lea rcx,[rsp+20]
+"nwmain.exe"+3A15C5: E8 16 B1 D2 FF        -  call nwmain.exe+CC6E0
+"nwmain.exe"+3A15CA: 48 8D 8F 88 03 00 00  -  lea rcx,[rdi+00000388]
+"nwmain.exe"+3A15D1: 48 8B D0              -  mov rdx,rax
+"nwmain.exe"+3A15D4: E8 67 33 E9 FF        -  call nwmain.exe+234940
+"nwmain.exe"+3A15D9: 48 8B B5 A8 03 00 00  -  mov rsi,[rbp+000003A8]
+"nwmain.exe"+3A15E0: 0F B6 5E 62           -  movzx ebx,byte ptr [rsi+62]
+"nwmain.exe"+3A15E4: 45 8B C6              -  mov r8d,r14d
+"nwmain.exe"+3A15E7: 0F B6 D3              -  movzx edx,bl
+"nwmain.exe"+3A15EA: 48 8B CE              -  mov rcx,rsi
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>390</ID>
+              <Description>"Spell points (Set to when one spell is left)"</Description>
+              <VariableType>Byte</VariableType>
+              <Address>createspells</Address>
+              <Offsets>
+                <Offset>196C</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>391</ID>
+              <Description>"CreateSpellsTwo"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : nwmain.exe
+  Version: 
+  Date   : 2020-01-31
+  Author : Cole
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(createspellsagain,nwmain.exe,FF 43 08 48 8B 5C 24 30 48 8B 6C) // should be unique
+alloc(newmem,$1000,"nwmain.exe"+25DBDA)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  db 90 90 90
+  mov rbx,[rsp+30]
+  jmp return
+
+createspellsagain:
+  jmp newmem
+  nop 3
+return:
+registersymbol(createspellsagain)
+
+[DISABLE]
+
+createspellsagain:
+  db FF 43 08 48 8B 5C 24 30
+
+unregistersymbol(createspellsagain)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "nwmain.exe"+25DBDA
+
+"nwmain.exe"+25DBBA: 8D 14 00                    -  lea edx,[rax+rax]
+"nwmain.exe"+25DBBD: 85 C0                       -  test eax,eax
+"nwmain.exe"+25DBBF: 75 05                       -  jne nwmain.exe+25DBC6
+"nwmain.exe"+25DBC1: BA 10 00 00 00              -  mov edx,00000010
+"nwmain.exe"+25DBC6: 48 8B CB                    -  mov rcx,rbx
+"nwmain.exe"+25DBC9: E8 42 25 EB FF              -  call nwmain.exe+110110
+"nwmain.exe"+25DBCE: 8B 4B 08                    -  mov ecx,[rbx+08]
+"nwmain.exe"+25DBD1: 48 8B 03                    -  mov rax,[rbx]
+"nwmain.exe"+25DBD4: 48 63 C9                    -  movsxd  rcx,ecx
+"nwmain.exe"+25DBD7: 89 3C 88                    -  mov [rax+rcx*4],edi
+// ---------- INJECTING HERE ----------
+"nwmain.exe"+25DBDA: FF 43 08                    -  inc [rbx+08]
+"nwmain.exe"+25DBDD: 48 8B 5C 24 30              -  mov rbx,[rsp+30]
+// ---------- DONE INJECTING  ----------
+"nwmain.exe"+25DBE2: 48 8B 6C 24 38              -  mov rbp,[rsp+38]
+"nwmain.exe"+25DBE7: 48 8B 74 24 40              -  mov rsi,[rsp+40]
+"nwmain.exe"+25DBEC: 48 8B 7C 24 48              -  mov rdi,[rsp+48]
+"nwmain.exe"+25DBF1: 48 83 C4 20                 -  add rsp,20
+"nwmain.exe"+25DBF5: 41 5E                       -  pop r14
+"nwmain.exe"+25DBF7: C3                          -  ret 
+"nwmain.exe"+25DBF8: CC                          -  int 3 
+"nwmain.exe"+25DBF9: CC                          -  int 3 
+"nwmain.exe"+25DBFA: CC                          -  int 3 
+"nwmain.exe"+25DBFB: CC                          -  int 3 
+}
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>392</ID>
+              <Description>"Auto Assemble script"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : nwmain.exe
+  Version: 
+  Date   : 2020-01-31
+  Author : Cole
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(spellstry,nwmain.exe,FF 43 08 48 8B 5C 24 30 48 8B 6C) // should be unique
+alloc(newmem,$1000,"nwmain.exe"+25DBDA)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [rbx+08],#25
+  inc [rbx+08]
+  mov rbx,[rsp+30]
+  jmp return
+
+spellstry:
+  jmp newmem
+  nop 3
+return:
+registersymbol(spellstry)
+
+[DISABLE]
+
+spellstry:
+  db FF 43 08 48 8B 5C 24 30
+
+unregistersymbol(spellstry)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "nwmain.exe"+25DBDA
+
+"nwmain.exe"+25DBBA: 8D 14 00                    -  lea edx,[rax+rax]
+"nwmain.exe"+25DBBD: 85 C0                       -  test eax,eax
+"nwmain.exe"+25DBBF: 75 05                       -  jne nwmain.exe+25DBC6
+"nwmain.exe"+25DBC1: BA 10 00 00 00              -  mov edx,00000010
+"nwmain.exe"+25DBC6: 48 8B CB                    -  mov rcx,rbx
+"nwmain.exe"+25DBC9: E8 42 25 EB FF              -  call nwmain.exe+110110
+"nwmain.exe"+25DBCE: 8B 4B 08                    -  mov ecx,[rbx+08]
+"nwmain.exe"+25DBD1: 48 8B 03                    -  mov rax,[rbx]
+"nwmain.exe"+25DBD4: 48 63 C9                    -  movsxd  rcx,ecx
+"nwmain.exe"+25DBD7: 89 3C 88                    -  mov [rax+rcx*4],edi
+// ---------- INJECTING HERE ----------
+"nwmain.exe"+25DBDA: FF 43 08                    -  inc [rbx+08]
+"nwmain.exe"+25DBDD: 48 8B 5C 24 30              -  mov rbx,[rsp+30]
+// ---------- DONE INJECTING  ----------
+"nwmain.exe"+25DBE2: 48 8B 6C 24 38              -  mov rbp,[rsp+38]
+"nwmain.exe"+25DBE7: 48 8B 74 24 40              -  mov rsi,[rsp+40]
+"nwmain.exe"+25DBEC: 48 8B 7C 24 48              -  mov rdi,[rsp+48]
+"nwmain.exe"+25DBF1: 48 83 C4 20                 -  add rsp,20
+"nwmain.exe"+25DBF5: 41 5E                       -  pop r14
+"nwmain.exe"+25DBF7: C3                          -  ret 
+"nwmain.exe"+25DBF8: CC                          -  int 3 
+"nwmain.exe"+25DBF9: CC                          -  int 3 
+"nwmain.exe"+25DBFA: CC                          -  int 3 
+"nwmain.exe"+25DBFB: CC                          -  int 3 
+}
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>393</ID>
+              <Description>"Auto Assemble script"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : nwmain.exe
+  Version: 
+  Date   : 2020-01-31
+  Author : Cole
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,nwmain.exe,03 DE 8B 4B 08 8B 43 0C) // should be unique
+alloc(newmem,$1000,"nwmain.exe"+25DBB0)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [rbx+08],#30
+  mov ecx,[rbx+08]
+  mov [rbx+0C],#30
+  mov eax,[rbx+0C]
+  jmp return
+
+INJECT+02:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+02:
+  db 8B 4B 08 8B 43 0C
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "nwmain.exe"+25DBB0
+
+"nwmain.exe"+25DB89: 42 0F B6 94 30 8D 02 00 00  -  movzx edx,byte ptr [rax+r14+0000028D]
+"nwmain.exe"+25DB92: E8 49 3A 67 00              -  call nwmain.exe+8D15E0
+"nwmain.exe"+25DB97: 3C 0A                       -  cmp al,0A
+"nwmain.exe"+25DB99: 73 42                       -  jae nwmain.exe+25DBDD
+"nwmain.exe"+25DB9B: 48 6B CB 15                 -  imul rcx,rbx,15
+"nwmain.exe"+25DB9F: 0F B6 D8                    -  movzx ebx,al
+"nwmain.exe"+25DBA2: 48 83 C1 14                 -  add rcx,14
+"nwmain.exe"+25DBA6: 48 03 D9                    -  add rbx,rcx
+"nwmain.exe"+25DBA9: 48 C1 E3 04                 -  shl rbx,04
+"nwmain.exe"+25DBAD: 49 03 DE                    -  add rbx,r14
+// ---------- INJECTING HERE ----------
+"nwmain.exe"+25DBB0: 8B 4B 08                    -  mov ecx,[rbx+08]
+"nwmain.exe"+25DBB3: 8B 43 0C                    -  mov eax,[rbx+0C]
+// ---------- DONE INJECTING  ----------
+"nwmain.exe"+25DBB6: 3B C8                       -  cmp ecx,eax
+"nwmain.exe"+25DBB8: 75 17                       -  jne nwmain.exe+25DBD1
+"nwmain.exe"+25DBBA: 8D 14 00                    -  lea edx,[rax+rax]
+"nwmain.exe"+25DBBD: 85 C0                       -  test eax,eax
+"nwmain.exe"+25DBBF: 75 05                       -  jne nwmain.exe+25DBC6
+"nwmain.exe"+25DBC1: BA 10 00 00 00              -  mov edx,00000010
+"nwmain.exe"+25DBC6: 48 8B CB                    -  mov rcx,rbx
+"nwmain.exe"+25DBC9: E8 42 25 EB FF              -  call nwmain.exe+110110
+"nwmain.exe"+25DBCE: 8B 4B 08                    -  mov ecx,[rbx+08]
+"nwmain.exe"+25DBD1: 48 8B 03                    -  mov rax,[rbx]
+}
+</AssemblerScript>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>417</ID>
+          <Description>"hasted other"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : nwmain.exe
+  Version: 
+  Date   : 2020-01-31
+  Author : Cole
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(movementspeedtwo,nwmain.exe,F3 0F 11 B7 98 08 00 00) // should be unique
+alloc(newmem,$1000,"nwmain.exe"+48B882)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [esp-4],(float)1.5
+  movss xmm6,[esp-4]
+  movss [rdi+00000898],xmm6
+  jmp return
+
+movementspeedtwo:
+  jmp newmem
+  nop 3
+return:
+registersymbol(movementspeedtwo)
+
+[DISABLE]
+
+movementspeedtwo:
+  db F3 0F 11 B7 98 08 00 00
+
+unregistersymbol(movementspeedtwo)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "nwmain.exe"+48B882
+
+"nwmain.exe"+48B861: 76 0E                    -  jna nwmain.exe+48B871
+"nwmain.exe"+48B863: 85 F6                    -  test esi,esi
+"nwmain.exe"+48B865: 75 0A                    -  jne nwmain.exe+48B871
+"nwmain.exe"+48B867: F3 0F 11 87 98 08 00 00  -  movss [rdi+00000898],xmm0
+"nwmain.exe"+48B86F: EB 19                    -  jmp nwmain.exe+48B88A
+"nwmain.exe"+48B871: F3 0F 10 05 03 CD 53 00  -  movss xmm0,[nwmain.exe+9C857C]
+"nwmain.exe"+48B879: 0F 2F F0                 -  comiss xmm6,xmm0
+"nwmain.exe"+48B87C: 76 04                    -  jna nwmain.exe+48B882
+"nwmain.exe"+48B87E: 85 F6                    -  test esi,esi
+"nwmain.exe"+48B880: 7F E5                    -  jg nwmain.exe+48B867
+// ---------- INJECTING HERE ----------
+"nwmain.exe"+48B882: F3 0F 11 B7 98 08 00 00  -  movss [rdi+00000898],xmm6
+// ---------- DONE INJECTING  ----------
+"nwmain.exe"+48B88A: 48 8B 5C 24 40           -  mov rbx,[rsp+40]
+"nwmain.exe"+48B88F: 48 8B 74 24 48           -  mov rsi,[rsp+48]
+"nwmain.exe"+48B894: 0F 28 74 24 20           -  movaps xmm6,[rsp+20]
+"nwmain.exe"+48B899: 48 83 C4 30              -  add rsp,30
+"nwmain.exe"+48B89D: 5F                       -  pop rdi
+"nwmain.exe"+48B89E: C3                       -  ret 
+"nwmain.exe"+48B89F: CC                       -  int 3 
+"nwmain.exe"+48B8A0: 48 83 EC 78              -  sub rsp,78
+"nwmain.exe"+48B8A4: 48 8B 05 CD E0 7A 00     -  mov rax,[nwmain.exe+C39978]
+"nwmain.exe"+48B8AB: 48 33 C4                 -  xor rax,rsp
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>425</ID>
+          <Description>"Auto Assemble script"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : nwmain.exe
+  Version: 
+  Date   : 2020-01-31
+  Author : Cole
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(spellbook,nwmain.exe,41 3B 84 C8 98 01 00 00 7D 20) // should be unique
+alloc(newmem,$1000,"nwmain.exe"+451862)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  cmp eax,[r8+rcx*8+00000198]
+  jmp return
+
+spellbook:
+  jmp newmem
+  nop 3
+return:
+registersymbol(spellbook)
+
+[DISABLE]
+
+spellbook:
+  db 41 3B 84 C8 98 01 00 00
+
+unregistersymbol(spellbook)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "nwmain.exe"+451862
+
+"nwmain.exe"+451841: C3                       -  ret 
+"nwmain.exe"+451842: 0F B6 C2                 -  movzx eax,dl
+"nwmain.exe"+451845: 48 69 C8 88 01 00 00     -  imul rcx,rax,00000188
+"nwmain.exe"+45184C: 4C 03 C1                 -  add r8,rcx
+"nwmain.exe"+45184F: 41 80 FA 0A              -  cmp r10l,0A
+"nwmain.exe"+451853: 73 37                    -  jae nwmain.exe+45188C
+"nwmain.exe"+451855: 41 0F B6 D2              -  movzx edx,r10l
+"nwmain.exe"+451859: 8B CA                    -  mov ecx,edx
+"nwmain.exe"+45185B: 41 0F B6 C1              -  movzx eax,r9l
+"nwmain.exe"+45185F: 48 03 C9                 -  add rcx,rcx
+// ---------- INJECTING HERE ----------
+"nwmain.exe"+451862: 41 3B 84 C8 98 01 00 00  -  cmp eax,[r8+rcx*8+00000198]
+// ---------- DONE INJECTING  ----------
+"nwmain.exe"+45186A: 7D 20                    -  jnl nwmain.exe+45188C
+"nwmain.exe"+45186C: 48 8D 42 0A              -  lea rax,[rdx+0A]
+"nwmain.exe"+451870: 41 0F B6 C9              -  movzx ecx,r9l
+"nwmain.exe"+451874: 48 03 C0                 -  add rax,rax
+"nwmain.exe"+451877: 49 8B 84 C0 F0 00 00 00  -  mov rax,[r8+rax*8+000000F0]
+"nwmain.exe"+45187F: 48 8B 14 C8              -  mov rdx,[rax+rcx*8]
+"nwmain.exe"+451883: 48 85 D2                 -  test rdx,rdx
+"nwmain.exe"+451886: 74 04                    -  je nwmain.exe+45188C
+"nwmain.exe"+451888: 8B 42 04                 -  mov eax,[rdx+04]
+"nwmain.exe"+45188B: C3                       -  ret 
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>353</ID>
+          <Description>"Arcane Spell Failure 0"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : nwmain.exe
+  Version: 
+  Date   : 2020-01-30
+  Author : Cole
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(arcanefail,nwmain.exe,0F B6 42 06 38 41 06 0F 85 39) // should be unique
+alloc(newmem,$1000,"nwmain.exe"+8D5E5A)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov al,0
+  mov [rcx+06],al
+  mov [rdx+06],0
+  movzx eax,byte ptr [rdx+06]
+  cmp [rcx+06],al
+  jmp return
+
+arcanefail:
+  jmp newmem
+  nop 2
+return:
+registersymbol(arcanefail)
+
+[DISABLE]
+
+arcanefail:
+  db 0F B6 42 06 38 41 06
+
+unregistersymbol(arcanefail)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "nwmain.exe"+8D5E5A
+
+"nwmain.exe"+8D5E2E: 0F 85 6C 01 00 00  -  jne nwmain.exe+8D5FA0
+"nwmain.exe"+8D5E34: 0F B6 42 04        -  movzx eax,byte ptr [rdx+04]
+"nwmain.exe"+8D5E38: 38 41 04           -  cmp [rcx+04],al
+"nwmain.exe"+8D5E3B: 0F 85 5F 01 00 00  -  jne nwmain.exe+8D5FA0
+"nwmain.exe"+8D5E41: 8B 42 18           -  mov eax,[rdx+18]
+"nwmain.exe"+8D5E44: 39 41 18           -  cmp [rcx+18],eax
+"nwmain.exe"+8D5E47: 0F 85 53 01 00 00  -  jne nwmain.exe+8D5FA0
+"nwmain.exe"+8D5E4D: E9 AE A1 70 FF     -  jmp 7FF6F2120000
+"nwmain.exe"+8D5E52: 66 90              -  nop 
+"nwmain.exe"+8D5E54: 0F 85 46 01 00 00  -  jne nwmain.exe+8D5FA0
+// ---------- INJECTING HERE ----------
+"nwmain.exe"+8D5E5A: 0F B6 42 06        -  movzx eax,byte ptr [rdx+06]
+"nwmain.exe"+8D5E5E: 38 41 06           -  cmp [rcx+06],al
+// ---------- DONE INJECTING  ----------
+"nwmain.exe"+8D5E61: 0F 85 39 01 00 00  -  jne nwmain.exe+8D5FA0
+"nwmain.exe"+8D5E67: 0F B6 42 07        -  movzx eax,byte ptr [rdx+07]
+"nwmain.exe"+8D5E6B: 38 41 07           -  cmp [rcx+07],al
+"nwmain.exe"+8D5E6E: 0F 85 2C 01 00 00  -  jne nwmain.exe+8D5FA0
+"nwmain.exe"+8D5E74: 0F B6 42 08        -  movzx eax,byte ptr [rdx+08]
+"nwmain.exe"+8D5E78: 38 41 08           -  cmp [rcx+08],al
+"nwmain.exe"+8D5E7B: 0F 85 1F 01 00 00  -  jne nwmain.exe+8D5FA0
+"nwmain.exe"+8D5E81: 0F B6 42 09        -  movzx eax,byte ptr [rdx+09]
+"nwmain.exe"+8D5E85: 38 41 09           -  cmp [rcx+09],al
+"nwmain.exe"+8D5E88: 0F 85 12 01 00 00  -  jne nwmain.exe+8D5FA0
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>354</ID>
+          <Description>"Armor Check Penalty 0"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : nwmain.exe
+  Version: 
+  Date   : 2020-01-30
+  Author : Cole
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(armorcheckpen,nwmain.exe,0F B6 42 07 38 41 07 0F 85 2C) // should be unique
+alloc(newmem,$1000,"nwmain.exe"+8D5E67)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov al,0
+  mov [rcx+07],al
+  mov [rdx+07],0
+  movzx eax,byte ptr [rdx+07]
+  cmp [rcx+07],al
+  jmp return
+
+armorcheckpen:
+  jmp newmem
+  nop 2
+return:
+registersymbol(armorcheckpen)
+
+[DISABLE]
+
+armorcheckpen:
+  db 0F B6 42 07 38 41 07
+
+unregistersymbol(armorcheckpen)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "nwmain.exe"+8D5E67
+
+"nwmain.exe"+8D5E3B: 0F 85 5F 01 00 00  -  jne nwmain.exe+8D5FA0
+"nwmain.exe"+8D5E41: 8B 42 18           -  mov eax,[rdx+18]
+"nwmain.exe"+8D5E44: 39 41 18           -  cmp [rcx+18],eax
+"nwmain.exe"+8D5E47: 0F 85 53 01 00 00  -  jne nwmain.exe+8D5FA0
+"nwmain.exe"+8D5E4D: E9 AE A1 70 FF     -  jmp 7FF6F2120000
+"nwmain.exe"+8D5E52: 66 90              -  nop 
+"nwmain.exe"+8D5E54: 0F 85 46 01 00 00  -  jne nwmain.exe+8D5FA0
+"nwmain.exe"+8D5E5A: E9 A1 A1 6F FF     -  jmp 7FF6F2110000
+"nwmain.exe"+8D5E5F: 66 90              -  nop 
+"nwmain.exe"+8D5E61: 0F 85 39 01 00 00  -  jne nwmain.exe+8D5FA0
+// ---------- INJECTING HERE ----------
+"nwmain.exe"+8D5E67: 0F B6 42 07        -  movzx eax,byte ptr [rdx+07]
+"nwmain.exe"+8D5E6B: 38 41 07           -  cmp [rcx+07],al
+// ---------- DONE INJECTING  ----------
+"nwmain.exe"+8D5E6E: 0F 85 2C 01 00 00  -  jne nwmain.exe+8D5FA0
+"nwmain.exe"+8D5E74: 0F B6 42 08        -  movzx eax,byte ptr [rdx+08]
+"nwmain.exe"+8D5E78: 38 41 08           -  cmp [rcx+08],al
+"nwmain.exe"+8D5E7B: 0F 85 1F 01 00 00  -  jne nwmain.exe+8D5FA0
+"nwmain.exe"+8D5E81: 0F B6 42 09        -  movzx eax,byte ptr [rdx+09]
+"nwmain.exe"+8D5E85: 38 41 09           -  cmp [rcx+09],al
+"nwmain.exe"+8D5E88: 0F 85 12 01 00 00  -  jne nwmain.exe+8D5FA0
+"nwmain.exe"+8D5E8E: 0F B6 42 13        -  movzx eax,byte ptr [rdx+13]
+"nwmain.exe"+8D5E92: 38 41 13           -  cmp [rcx+13],al
+"nwmain.exe"+8D5E95: 0F 85 05 01 00 00  -  jne nwmain.exe+8D5FA0
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>433</ID>
+          <Description>"feats2"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : nwmain.exe
+  Version: 
+  Date   : 2020-01-31
+  Author : Cole
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(featsretry,nwmain.exe,40 88 69 02 E9 90 00 00 00) // should be unique
+alloc(newmem,$1000,"nwmain.exe"+267F43)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov bpl,0
+  mov [rcx+02],bpl
+  jmp nwmain.exe+267FDC
+  jmp return
+
+featsretry:
+  jmp newmem
+  nop 4
+return:
+registersymbol(featsretry)
+
+[DISABLE]
+
+featsretry:
+  db 40 88 69 02 E9 90 00 00 00
+
+unregistersymbol(featsretry)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "nwmain.exe"+267F43
+
+"nwmain.exe"+267F20: 8B 93 3C 01 00 00     -  mov edx,[rbx+0000013C]
+"nwmain.exe"+267F26: 8B 8B 38 01 00 00     -  mov ecx,[rbx+00000138]
+"nwmain.exe"+267F2C: 3B CA                 -  cmp ecx,edx
+"nwmain.exe"+267F2E: 0F 85 8F 00 00 00     -  jne nwmain.exe+267FC3
+"nwmain.exe"+267F34: 85 D2                 -  test edx,edx
+"nwmain.exe"+267F36: 74 14                 -  je nwmain.exe+267F4C
+"nwmain.exe"+267F38: 03 D2                 -  add edx,edx
+"nwmain.exe"+267F3A: EB 15                 -  jmp nwmain.exe+267F51
+"nwmain.exe"+267F3C: 49 63 C2              -  movsxd  rax,r10d
+"nwmain.exe"+267F3F: 49 8B 0C C3           -  mov rcx,[r11+rax*8]
+// ---------- INJECTING HERE ----------
+"nwmain.exe"+267F43: 40 88 69 02           -  mov [rcx+02],bpl
+"nwmain.exe"+267F47: E9 90 00 00 00        -  jmp nwmain.exe+267FDC
+// ---------- DONE INJECTING  ----------
+"nwmain.exe"+267F4C: BA 10 00 00 00        -  mov edx,00000010
+"nwmain.exe"+267F51: 48 8B B3 30 01 00 00  -  mov rsi,[rbx+00000130]
+"nwmain.exe"+267F58: B8 08 00 00 00        -  mov eax,00000008
+"nwmain.exe"+267F5D: 48 63 CA              -  movsxd  rcx,edx
+"nwmain.exe"+267F60: 89 93 3C 01 00 00     -  mov [rbx+0000013C],edx
+"nwmain.exe"+267F66: 48 F7 E1              -  mul rcx
+"nwmain.exe"+267F69: 48 C7 C1 FF FF FF FF  -  mov rcx,FFFFFFFFFFFFFFFF
+"nwmain.exe"+267F70: 48 0F 40 C1           -  cmovo rax,rcx
+"nwmain.exe"+267F74: 48 8B C8              -  mov rcx,rax
+"nwmain.exe"+267F77: E8 0C 97 56 00        -  call nwmain.exe+7D1688
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>432</ID>
+          <Description>"feats1"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : nwmain.exe
+  Version: 
+  Date   : 2020-01-31
+  Author : Cole
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(featsuse,nwmain.exe,0F B6 41 02 48 8B 5C 24 08) // should be unique
+alloc(newmem,$1000,"nwmain.exe"+263860)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [rcx+02],#99
+  movzx eax,byte ptr [rcx+02]
+  mov rbx,[rsp+08]
+  jmp return
+
+featsuse:
+  jmp newmem
+  nop 4
+return:
+registersymbol(featsuse)
+
+[DISABLE]
+
+featsuse:
+  db 0F B6 41 02 48 8B 5C 24 08
+
+unregistersymbol(featsuse)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "nwmain.exe"+263860
+
+"nwmain.exe"+263842: 48 83 EA 01                    -  sub rdx,01
+"nwmain.exe"+263846: 75 E8                          -  jne nwmain.exe+263830
+"nwmain.exe"+263848: 85 C0                          -  test eax,eax
+"nwmain.exe"+26384A: 74 23                          -  je nwmain.exe+26386F
+"nwmain.exe"+26384C: B0 64                          -  mov al,64
+"nwmain.exe"+26384E: 48 8B 5C 24 08                 -  mov rbx,[rsp+08]
+"nwmain.exe"+263853: 48 8B 7C 24 10                 -  mov rdi,[rsp+10]
+"nwmain.exe"+263858: C3                             -  ret 
+"nwmain.exe"+263859: 49 63 C3                       -  movsxd  rax,r11d
+"nwmain.exe"+26385C: 48 8B 0C C2                    -  mov rcx,[rdx+rax*8]
+// ---------- INJECTING HERE ----------
+"nwmain.exe"+263860: 0F B6 41 02                    -  movzx eax,byte ptr [rcx+02]
+"nwmain.exe"+263864: 48 8B 5C 24 08                 -  mov rbx,[rsp+08]
+// ---------- DONE INJECTING  ----------
+"nwmain.exe"+263869: 48 8B 7C 24 10                 -  mov rdi,[rsp+10]
+"nwmain.exe"+26386E: C3                             -  ret 
+"nwmain.exe"+26386F: 48 8B 5C 24 08                 -  mov rbx,[rsp+08]
+"nwmain.exe"+263874: 32 C0                          -  xor al,al
+"nwmain.exe"+263876: 48 8B 7C 24 10                 -  mov rdi,[rsp+10]
+"nwmain.exe"+26387B: C3                             -  ret 
+"nwmain.exe"+26387C: CC                             -  int 3 
+"nwmain.exe"+26387D: CC                             -  int 3 
+"nwmain.exe"+26387E: CC                             -  int 3 
+"nwmain.exe"+26387F: CC                             -  int 3 
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>434</ID>
+          <Description>"Featspossibeyea"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : nwmain.exe
+  Version: 
+  Date   : 2020-01-31
+  Author : Cole
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(featsusage,nwmain.exe,0F B6 41 02 48 8B 5C 24 08) // should be unique
+alloc(newmem,$1000,"nwmain.exe"+263860)
+
+label(code)
+label(return)
+
+newmem:
+cmp [rcx+344],00656D61
+//cmp [rcx+D84],4D00
+//cmp [rcx+F54],0000675F
+jne code
+mov byte ptr [rcx+02],0
+movzx eax,byte ptr [rcx+02]
+mov rbx,[rsp+08]
+jmp return
+
+code:
+  movzx eax,byte ptr [rcx+02]
+  mov rbx,[rsp+08]
+  jmp return
+
+featsusage:
+  jmp newmem
+  nop 4
+return:
+registersymbol(featsusage)
+
+[DISABLE]
+
+featsusage:
+  db 0F B6 41 02 48 8B 5C 24 08
+
+unregistersymbol(featsusage)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "nwmain.exe"+263860
+
+"nwmain.exe"+263842: 48 83 EA 01                    -  sub rdx,01
+"nwmain.exe"+263846: 75 E8                          -  jne nwmain.exe+263830
+"nwmain.exe"+263848: 85 C0                          -  test eax,eax
+"nwmain.exe"+26384A: 74 23                          -  je nwmain.exe+26386F
+"nwmain.exe"+26384C: B0 64                          -  mov al,64
+"nwmain.exe"+26384E: 48 8B 5C 24 08                 -  mov rbx,[rsp+08]
+"nwmain.exe"+263853: 48 8B 7C 24 10                 -  mov rdi,[rsp+10]
+"nwmain.exe"+263858: C3                             -  ret 
+"nwmain.exe"+263859: 49 63 C3                       -  movsxd  rax,r11d
+"nwmain.exe"+26385C: 48 8B 0C C2                    -  mov rcx,[rdx+rax*8]
+// ---------- INJECTING HERE ----------
+"nwmain.exe"+263860: 0F B6 41 02                    -  movzx eax,byte ptr [rcx+02]
+"nwmain.exe"+263864: 48 8B 5C 24 08                 -  mov rbx,[rsp+08]
+// ---------- DONE INJECTING  ----------
+"nwmain.exe"+263869: 48 8B 7C 24 10                 -  mov rdi,[rsp+10]
+"nwmain.exe"+26386E: C3                             -  ret 
+"nwmain.exe"+26386F: 48 8B 5C 24 08                 -  mov rbx,[rsp+08]
+"nwmain.exe"+263874: 32 C0                          -  xor al,al
+"nwmain.exe"+263876: 48 8B 7C 24 10                 -  mov rdi,[rsp+10]
+"nwmain.exe"+26387B: C3                             -  ret 
+"nwmain.exe"+26387C: CC                             -  int 3 
+"nwmain.exe"+26387D: CC                             -  int 3 
+"nwmain.exe"+26387E: CC                             -  int 3 
+"nwmain.exe"+26387F: CC                             -  int 3 
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>436</ID>
+          <Description>"featspossibleyea2"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : nwmain.exe
+  Version: 
+  Date   : 2020-01-31
+  Author : Cole
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(featsusgagetwo,nwmain.exe,40 88 69 02 E9 90 00 00 00) // should be unique
+alloc(newmem,$1000,"nwmain.exe"+267F43)
+
+label(code)
+label(return)
+
+newmem:
+cmp [rcx+80],#6
+//cmp [rcx+144],#584
+//cmp [rcx+864],0
+ jne code
+mov bpl,0
+ mov [rcx+02],bpl
+ //mov byte ptr [rcx+02],0
+ jmp nwmain.exe+267FDC
+ jmp return
+code:
+  mov [rcx+02],bpl
+  jmp nwmain.exe+267FDC
+  jmp return
+
+featsusgagetwo:
+  jmp newmem
+  nop 4
+return:
+registersymbol(featsusgagetwo)
+
+[DISABLE]
+
+featsusgagetwo:
+  db 40 88 69 02 E9 90 00 00 00
+
+unregistersymbol(featsusgagetwo)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "nwmain.exe"+267F43
+
+"nwmain.exe"+267F20: 8B 93 3C 01 00 00     -  mov edx,[rbx+0000013C]
+"nwmain.exe"+267F26: 8B 8B 38 01 00 00     -  mov ecx,[rbx+00000138]
+"nwmain.exe"+267F2C: 3B CA                 -  cmp ecx,edx
+"nwmain.exe"+267F2E: 0F 85 8F 00 00 00     -  jne nwmain.exe+267FC3
+"nwmain.exe"+267F34: 85 D2                 -  test edx,edx
+"nwmain.exe"+267F36: 74 14                 -  je nwmain.exe+267F4C
+"nwmain.exe"+267F38: 03 D2                 -  add edx,edx
+"nwmain.exe"+267F3A: EB 15                 -  jmp nwmain.exe+267F51
+"nwmain.exe"+267F3C: 49 63 C2              -  movsxd  rax,r10d
+"nwmain.exe"+267F3F: 49 8B 0C C3           -  mov rcx,[r11+rax*8]
+// ---------- INJECTING HERE ----------
+"nwmain.exe"+267F43: 40 88 69 02           -  mov [rcx+02],bpl
+"nwmain.exe"+267F47: E9 90 00 00 00        -  jmp nwmain.exe+267FDC
+// ---------- DONE INJECTING  ----------
+"nwmain.exe"+267F4C: BA 10 00 00 00        -  mov edx,00000010
+"nwmain.exe"+267F51: 48 8B B3 30 01 00 00  -  mov rsi,[rbx+00000130]
+"nwmain.exe"+267F58: B8 08 00 00 00        -  mov eax,00000008
+"nwmain.exe"+267F5D: 48 63 CA              -  movsxd  rcx,edx
+"nwmain.exe"+267F60: 89 93 3C 01 00 00     -  mov [rbx+0000013C],edx
+"nwmain.exe"+267F66: 48 F7 E1              -  mul rcx
+"nwmain.exe"+267F69: 48 C7 C1 FF FF FF FF  -  mov rcx,FFFFFFFFFFFFFFFF
+"nwmain.exe"+267F70: 48 0F 40 C1           -  cmovo rax,rcx
+"nwmain.exe"+267F74: 48 8B C8              -  mov rcx,rax
+"nwmain.exe"+267F77: E8 0C 97 56 00        -  call nwmain.exe+7D1688
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>437</ID>
+          <Description>"Unlimited Casting Sorcerer &amp; Bard Spells1"</Description>
+          <Options moActivateChildrenAsWell="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(unlimsorc,nwmain.exe,42 0F B6 84 48 10 06 00 00) // should be unique
+alloc(newmem,$1000,"nwmain.exe"+553E69)
+
+label(code)
+label(return)
+
+newmem:
+code:
+  mov byte ptr [rax+r9*2+00000610],63
+  mov eax,63
+  jmp return
+
+unlimsorc:
+  jmp newmem
+  nop 4
+return:
+registersymbol(unlimsorc)
+
+[DISABLE]
+
+unlimsorc:
+  db 42 0F B6 84 48 10 06 00 00
+
+unregistersymbol(unlimsorc)
+dealloc(newmem)
+{
+// ORIGINAL CODE - INJECTION POINT: "nwmain.exe"+553E69
+
+"nwmain.exe"+553E4E: C3                          -  ret 
+"nwmain.exe"+553E4F: CC                          -  int 3 
+"nwmain.exe"+553E50: 80 FA 03                    -  cmp dl,03
+"nwmain.exe"+553E53: 73 1E                       -  jae nwmain.exe+553E73
+"nwmain.exe"+553E55: 41 80 F8 0A                 -  cmp r8l,0A
+"nwmain.exe"+553E59: 73 18                       -  jae nwmain.exe+553E73
+"nwmain.exe"+553E5B: 0F B6 C2                    -  movzx eax,dl
+"nwmain.exe"+553E5E: 4C 8D 0C 80                 -  lea r9,[rax+rax*4]
+"nwmain.exe"+553E62: 41 0F B6 C0                 -  movzx eax,r8l
+"nwmain.exe"+553E66: 48 03 C1                    -  add rax,rcx
+// ---------- INJECTING HERE ----------
+"nwmain.exe"+553E69: 42 0F B6 84 48 10 06 00 00  -  movzx eax,byte ptr [rax+r9*2+00000610]
+// ---------- DONE INJECTING  ----------
+"nwmain.exe"+553E72: C3                          -  ret 
+"nwmain.exe"+553E73: 32 C0                       -  xor al,al
+"nwmain.exe"+553E75: C3                          -  ret 
+"nwmain.exe"+553E76: CC                          -  int 3 
+"nwmain.exe"+553E77: CC                          -  int 3 
+"nwmain.exe"+553E78: CC                          -  int 3 
+"nwmain.exe"+553E79: CC                          -  int 3 
+"nwmain.exe"+553E7A: CC                          -  int 3 
+"nwmain.exe"+553E7B: CC                          -  int 3 
+"nwmain.exe"+553E7C: CC                          -  int 3 
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>398</ID>
+              <Description>"Sorceror2"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : nwmain.exe
+  Version: 
+  Date   : 2020-01-31
+  Author : Cole
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(sorcyspells,nwmain.exe,44 88 8C 51 10 06 00 00) // should be unique
+alloc(newmem,$1000,"nwmain.exe"+554D09)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov r9l,63
+  mov [rcx+rdx*2+00000610],r9l
+  jmp return
+
+sorcyspells:
+  jmp newmem
+  nop 3
+return:
+registersymbol(sorcyspells)
+
+[DISABLE]
+
+sorcyspells:
+  db 44 88 8C 51 10 06 00 00
+
+unregistersymbol(sorcyspells)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "nwmain.exe"+554D09
+
+"nwmain.exe"+554CEE: CC                          -  int 3 
+"nwmain.exe"+554CEF: CC                          -  int 3 
+"nwmain.exe"+554CF0: 80 FA 03                    -  cmp dl,03
+"nwmain.exe"+554CF3: 73 1C                       -  jae nwmain.exe+554D11
+"nwmain.exe"+554CF5: 41 80 F8 0A                 -  cmp r8l,0A
+"nwmain.exe"+554CF9: 73 16                       -  jae nwmain.exe+554D11
+"nwmain.exe"+554CFB: 0F B6 C2                    -  movzx eax,dl
+"nwmain.exe"+554CFE: 48 8D 14 80                 -  lea rdx,[rax+rax*4]
+"nwmain.exe"+554D02: 41 0F B6 C0                 -  movzx eax,r8l
+"nwmain.exe"+554D06: 48 03 C8                    -  add rcx,rax
+// ---------- INJECTING HERE ----------
+"nwmain.exe"+554D09: 44 88 8C 51 10 06 00 00     -  mov [rcx+rdx*2+00000610],r9l
+// ---------- DONE INJECTING  ----------
+"nwmain.exe"+554D11: C3                          -  ret 
+"nwmain.exe"+554D12: CC                          -  int 3 
+"nwmain.exe"+554D13: CC                          -  int 3 
+"nwmain.exe"+554D14: CC                          -  int 3 
+"nwmain.exe"+554D15: CC                          -  int 3 
+"nwmain.exe"+554D16: CC                          -  int 3 
+"nwmain.exe"+554D17: CC                          -  int 3 
+"nwmain.exe"+554D18: CC                          -  int 3 
+"nwmain.exe"+554D19: CC                          -  int 3 
+"nwmain.exe"+554D1A: CC                          -  int 3 
+}
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>399</ID>
+              <Description>"Sorcerer3"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : nwmain.exe
+  Version: 
+  Date   : 2020-01-31
+  Author : Cole
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(sorceyagain,nwmain.exe,0F B6 84 02 58 02 00 00) // should be unique
+alloc(newmem,$1000,"nwmain.exe"+456492)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [rdx+rax+00000258],63
+  movzx eax,byte ptr [rdx+rax+00000258]
+  jmp return
+
+sorceyagain:
+  jmp newmem
+  nop 3
+return:
+registersymbol(sorceyagain)
+
+[DISABLE]
+
+sorceyagain:
+  db 0F B6 84 02 58 02 00 00
+
+unregistersymbol(sorceyagain)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "nwmain.exe"+456492
+
+"nwmain.exe"+456470: 3A 91 E9 00 00 00        -  cmp dl,[rcx+000000E9]
+"nwmain.exe"+456476: 73 06                    -  jae nwmain.exe+45647E
+"nwmain.exe"+456478: 41 80 F8 0A              -  cmp r8l,0A
+"nwmain.exe"+45647C: 72 03                    -  jb nwmain.exe+456481
+"nwmain.exe"+45647E: 32 C0                    -  xor al,al
+"nwmain.exe"+456480: C3                       -  ret 
+"nwmain.exe"+456481: 0F B6 C2                 -  movzx eax,dl
+"nwmain.exe"+456484: 48 69 C0 88 01 00 00     -  imul rax,rax,00000188
+"nwmain.exe"+45648B: 41 0F B6 D0              -  movzx edx,r8l
+"nwmain.exe"+45648F: 48 03 C1                 -  add rax,rcx
+// ---------- INJECTING HERE ----------
+"nwmain.exe"+456492: 0F B6 84 02 58 02 00 00  -  movzx eax,byte ptr [rdx+rax+00000258]
+// ---------- DONE INJECTING  ----------
+"nwmain.exe"+45649A: C3                       -  ret 
+"nwmain.exe"+45649B: CC                       -  int 3 
+"nwmain.exe"+45649C: CC                       -  int 3 
+"nwmain.exe"+45649D: CC                       -  int 3 
+"nwmain.exe"+45649E: CC                       -  int 3 
+"nwmain.exe"+45649F: CC                       -  int 3 
+"nwmain.exe"+4564A0: 80 FA 0A                 -  cmp dl,0A
+"nwmain.exe"+4564A3: 72 03                    -  jb nwmain.exe+4564A8
+"nwmain.exe"+4564A5: 32 C0                    -  xor al,al
+"nwmain.exe"+4564A7: C3                       -  ret 
+}
+</AssemblerScript>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry Color="20000000">
+      <Description>Base Skill</Description>
+      <AddressString>nwmain.exe+521A45</AddressString>
+      <Before>
+        <Byte>87</Byte>
+        <Byte>28</Byte>
+        <Byte>06</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>0F</Byte>
+        <Byte>BE</Byte>
+        <Byte>1C</Byte>
+        <Byte>08</Byte>
+      </Actual>
+      <After>
+        <Byte>85</Byte>
+        <Byte>F6</Byte>
+        <Byte>0F</Byte>
+        <Byte>85</Byte>
+        <Byte>0A</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols>
+    <SymbolEntry>
+      <Name>Recifense</Name>
+      <Address>20180331</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>code</Name>
+      <Address>7FF6F1E60000</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>code1</Name>
+      <Address>7FF6F1E61000</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>newmem</Name>
+      <Address>7FF6F2111000</Address>
+    </SymbolEntry>
+    <SymbolEntry>
+      <Name>newmem1</Name>
+      <Address>7FF6F2110000</Address>
+    </SymbolEntry>
+  </UserdefinedSymbols>
+  <Structures StructVersion="2">
+    <Structure Name="unnamed structure" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="0" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000000" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="8" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000008" DisplayMethod="Hexadecimal"/>
+        <Element Offset="12" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="0000000C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="28" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000001C" DisplayMethod="Hexadecimal"/>
+        <Element Offset="32" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000020" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="56" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000038" DisplayMethod="Hexadecimal"/>
+        <Element Offset="60" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000003C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="64" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000040" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="80" Vartype="Pointer" Bytesize="8" OffsetHex="00000050" Description="Pointer to instance of std::_Ref_count_obj&lt;CassowarySolverEngineStructureShared&gt;" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="88" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000058" DisplayMethod="Hexadecimal"/>
+        <Element Offset="96" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="00000060" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="120" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000078" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="136" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000088" DisplayMethod="Hexadecimal"/>
+        <Element Offset="140" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="0000008C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="156" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000009C" DisplayMethod="Hexadecimal"/>
+        <Element Offset="160" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="000000A0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="184" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000B8" DisplayMethod="Hexadecimal"/>
+        <Element Offset="188" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000BC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="192" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="000000C0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="208" Vartype="Pointer" Bytesize="8" OffsetHex="000000D0" Description="Pointer to instance of std::_Ref_count_obj&lt;CassowarySolverEngineStructureShared&gt;" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="216" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000000D8" DisplayMethod="Hexadecimal"/>
+        <Element Offset="224" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="000000E0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="248" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000F8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="252" Vartype="String" Bytesize="4" OffsetHex="000000FC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="256" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000100" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="264" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000108" DisplayMethod="Hexadecimal"/>
+        <Element Offset="268" Vartype="String" Bytesize="5" OffsetHex="0000010C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="273" Vartype="Byte" Bytesize="1" RLECount="3" OffsetHex="00000111" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="276" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="00000114" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="312" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000138" DisplayMethod="Hexadecimal"/>
+        <Element Offset="316" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000013C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="320" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000140" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="336" Vartype="Pointer" Bytesize="8" OffsetHex="00000150" Description="Pointer to instance of std::_Ref_count_obj&lt;CassowarySolverEngineStructureShared&gt;" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="344" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000158" DisplayMethod="Signed Integer"/>
+        <Element Offset="349" Vartype="Byte" Bytesize="1" RLECount="3" OffsetHex="0000015D" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="352" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="00000160" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="376" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000178" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="392" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000188" DisplayMethod="Hexadecimal"/>
+        <Element Offset="396" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="0000018C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="412" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000019C" DisplayMethod="Hexadecimal"/>
+        <Element Offset="416" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="000001A0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="440" Vartype="4 Bytes" Bytesize="4" OffsetHex="000001B8" DisplayMethod="Hexadecimal"/>
+        <Element Offset="444" Vartype="4 Bytes" Bytesize="4" OffsetHex="000001BC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="448" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="000001C0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="464" Vartype="Pointer" Bytesize="8" OffsetHex="000001D0" Description="Pointer to instance of std::_Ref_count_obj&lt;CassowarySolverEngineStructureShared&gt;" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="472" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="000001D8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="476" Vartype="4 Bytes" Bytesize="4" OffsetHex="000001DC" DisplayMethod="Hexadecimal"/>
+        <Element Offset="480" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000001E0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="496" Vartype="Pointer" Bytesize="8" OffsetHex="000001F0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="504" Vartype="4 Bytes" Bytesize="4" RLECount="22" OffsetHex="000001F8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="592" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000250" DisplayMethod="Hexadecimal"/>
+        <Element Offset="596" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000254" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="600" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="00000258" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="604" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000025C" DisplayMethod="Hexadecimal"/>
+        <Element Offset="608" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="00000260" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="632" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000278" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="648" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000288" DisplayMethod="Hexadecimal"/>
+        <Element Offset="652" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="0000028C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="668" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000029C" DisplayMethod="Hexadecimal"/>
+        <Element Offset="672" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="000002A0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="696" Vartype="4 Bytes" Bytesize="4" OffsetHex="000002B8" DisplayMethod="Hexadecimal"/>
+        <Element Offset="700" Vartype="4 Bytes" Bytesize="4" OffsetHex="000002BC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="704" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="000002C0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="720" Vartype="Pointer" Bytesize="8" OffsetHex="000002D0" Description="Pointer to instance of std::_Ref_count_obj&lt;CassowarySolverEngineStructureShared&gt;" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="728" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="000002D8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="732" Vartype="4 Bytes" Bytesize="4" OffsetHex="000002DC" DisplayMethod="Hexadecimal"/>
+        <Element Offset="736" Vartype="String" Bytesize="119" OffsetHex="000002E0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="855" Vartype="2 Bytes" Bytesize="2" OffsetHex="00000357" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="857" Vartype="Byte" Bytesize="1" RLECount="3" OffsetHex="00000359" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="860" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000035C" DisplayMethod="Hexadecimal"/>
+        <Element Offset="864" Vartype="Pointer" Bytesize="8" OffsetHex="00000360" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="872" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000368" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="876" Vartype="String" Bytesize="5" OffsetHex="0000036C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="881" Vartype="Byte" Bytesize="1" RLECount="3" OffsetHex="00000371" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="884" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000374" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="888" Vartype="String" Bytesize="11" OffsetHex="00000378" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="899" Vartype="Byte" Bytesize="1" OffsetHex="00000383" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="900" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000384" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="904" Vartype="String" Bytesize="11" OffsetHex="00000388" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="915" Vartype="Byte" Bytesize="1" OffsetHex="00000393" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="916" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000394" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="936" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="000003A8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="960" Vartype="4 Bytes" Bytesize="4" OffsetHex="000003C0" DisplayMethod="Hexadecimal"/>
+        <Element Offset="964" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="000003C4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="984" Vartype="String" Bytesize="5" OffsetHex="000003D8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="989" Vartype="Byte" Bytesize="1" RLECount="3" OffsetHex="000003DD" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="992" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="000003E0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1016" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000003F8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1032" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000408" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1036" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="0000040C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1052" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000041C" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1056" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000420" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1080" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000438" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1084" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000043C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1088" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000440" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1104" Vartype="Pointer" Bytesize="8" OffsetHex="00000450" Description="Pointer to instance of std::_Ref_count_obj&lt;CassowarySolverEngineStructureShared&gt;" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1112" Vartype="String" Bytesize="5" OffsetHex="00000458" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1117" Vartype="Byte" Bytesize="1" RLECount="3" OffsetHex="0000045D" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1120" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="00000460" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1144" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000478" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1160" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000488" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1164" Vartype="4 Bytes" Bytesize="4" RLECount="11" OffsetHex="0000048C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1208" Vartype="4 Bytes" Bytesize="4" OffsetHex="000004B8" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1212" Vartype="4 Bytes" Bytesize="4" OffsetHex="000004BC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1216" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="000004C0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1232" Vartype="Pointer" Bytesize="8" OffsetHex="000004D0" Description="Pointer to instance of std::_Ref_count_obj&lt;CassowarySolverEngineStructureShared&gt;" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1240" Vartype="String" Bytesize="5" OffsetHex="000004D8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1245" Vartype="Byte" Bytesize="1" RLECount="3" OffsetHex="000004DD" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1248" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="000004E0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1272" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000004F8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1288" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000508" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1292" Vartype="4 Bytes" Bytesize="4" RLECount="11" OffsetHex="0000050C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1336" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000538" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1340" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000053C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1344" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000540" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1360" Vartype="Pointer" Bytesize="8" OffsetHex="00000550" Description="Pointer to instance of std::_Ref_count_obj&lt;CassowarySolverEngineStructureShared&gt;" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1368" Vartype="String" Bytesize="5" OffsetHex="00000558" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1373" Vartype="Byte" Bytesize="1" RLECount="3" OffsetHex="0000055D" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1376" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="00000560" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1400" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000578" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1416" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000588" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1420" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="0000058C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1436" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000059C" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1440" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="000005A0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1464" Vartype="4 Bytes" Bytesize="4" OffsetHex="000005B8" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1468" Vartype="4 Bytes" Bytesize="4" OffsetHex="000005BC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1472" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="000005C0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1488" Vartype="Pointer" Bytesize="8" OffsetHex="000005D0" Description="Pointer to instance of std::_Ref_count_obj&lt;CassowarySolverEngineStructureShared&gt;" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1496" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="000005D8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1500" Vartype="4 Bytes" Bytesize="4" OffsetHex="000005DC" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1504" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="000005E0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1528" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000005F8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1544" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000608" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1548" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="0000060C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1564" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000061C" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1568" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000620" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1592" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000638" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1596" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000063C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1600" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000640" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1616" Vartype="Pointer" Bytesize="8" OffsetHex="00000650" Description="Pointer to instance of std::_Ref_count_obj&lt;CassowarySolverEngineStructureShared&gt;" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1624" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="00000658" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1628" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000065C" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1632" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="00000660" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1636" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000664" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1640" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000668" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1656" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000678" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1672" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000688" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1676" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="0000068C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1692" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000069C" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1696" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="000006A0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1720" Vartype="4 Bytes" Bytesize="4" OffsetHex="000006B8" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1724" Vartype="4 Bytes" Bytesize="4" OffsetHex="000006BC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1728" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="000006C0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1744" Vartype="Pointer" Bytesize="8" OffsetHex="000006D0" Description="Pointer to instance of std::_Ref_count_obj&lt;CassowarySolverEngineStructureShared&gt;" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1752" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="000006D8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1756" Vartype="4 Bytes" Bytesize="4" OffsetHex="000006DC" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1760" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="000006E0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1784" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000006F8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1800" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000708" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1804" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="0000070C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1820" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000071C" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1824" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000720" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1848" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000738" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1852" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000073C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1856" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000740" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1872" Vartype="Pointer" Bytesize="8" OffsetHex="00000750" Description="Pointer to instance of std::_Ref_count_obj&lt;CassowarySolverEngineStructureShared&gt;" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1880" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000758" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1888" Vartype="Pointer" Bytesize="8" OffsetHex="00000760" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1896" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000768" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1904" Vartype="Pointer" Bytesize="8" OffsetHex="00000770" Description="Pointer to instance of CRes2DA" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1912" Vartype="String" Bytesize="7" OffsetHex="00000778" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1919" Vartype="Byte" Bytesize="1" OffsetHex="0000077F" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1920" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000780" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1928" Vartype="String" Bytesize="7" OffsetHex="00000788" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1935" Vartype="Byte" Bytesize="1" OffsetHex="0000078F" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1936" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000790" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1960" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="000007A8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1984" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="000007C0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2004" Vartype="Float" Bytesize="4" OffsetHex="000007D4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2008" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000007D8" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2016" Vartype="Pointer" Bytesize="8" OffsetHex="000007E0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2024" Vartype="Pointer" Bytesize="8" OffsetHex="000007E8" Description="Pointer to instance of FountainEmitter" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2032" Vartype="Float" Bytesize="4" RLECount="3" OffsetHex="000007F0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2044" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="000007FC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2064" Vartype="Double" Bytesize="8" OffsetHex="00000810" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2072" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000818" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2088" Vartype="Float" Bytesize="4" OffsetHex="00000828" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2092" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000082C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2096" Vartype="Double" Bytesize="8" OffsetHex="00000830" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2104" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000838" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2112" Vartype="Float" Bytesize="4" RLECount="4" OffsetHex="00000840" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2128" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000850" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2132" Vartype="Float" Bytesize="4" OffsetHex="00000854" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2136" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000858" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2144" Vartype="Pointer" Bytesize="8" OffsetHex="00000860" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2152" Vartype="String" Bytesize="4" OffsetHex="00000868" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2156" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000086C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2160" Vartype="Pointer" Bytesize="8" OffsetHex="00000870" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2168" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000878" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2184" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000888" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2188" Vartype="4 Bytes" Bytesize="4" RLECount="11" OffsetHex="0000088C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2232" Vartype="4 Bytes" Bytesize="4" OffsetHex="000008B8" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2236" Vartype="4 Bytes" Bytesize="4" OffsetHex="000008BC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2240" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="000008C0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2256" Vartype="Pointer" Bytesize="8" OffsetHex="000008D0" Description="Pointer to instance of std::_Ref_count_obj&lt;CassowarySolverEngineStructureShared&gt;" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2264" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000008D8" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2272" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="000008E0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2276" Vartype="4 Bytes" Bytesize="4" OffsetHex="000008E4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2280" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="000008E8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2296" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000008F8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2312" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000908" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2316" Vartype="4 Bytes" Bytesize="4" RLECount="11" OffsetHex="0000090C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2360" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000938" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2364" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000093C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2368" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000940" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2384" Vartype="Pointer" Bytesize="8" OffsetHex="00000950" Description="Pointer to instance of std::_Ref_count_obj&lt;CassowarySolverEngineStructureShared&gt;" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2392" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000958" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2400" Vartype="String" Bytesize="4" OffsetHex="00000960" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2404" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000964" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2408" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000968" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2424" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000978" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2440" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000988" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2444" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="0000098C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2456" Vartype="Double" Bytesize="8" OffsetHex="00000998" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2464" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="000009A0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2488" Vartype="4 Bytes" Bytesize="4" OffsetHex="000009B8" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2492" Vartype="4 Bytes" Bytesize="4" OffsetHex="000009BC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2496" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="000009C0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2512" Vartype="Pointer" Bytesize="8" OffsetHex="000009D0" Description="Pointer to instance of std::_Ref_count_obj&lt;CassowarySolverEngineStructureShared&gt;" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2520" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000009D8" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2528" Vartype="String" Bytesize="4" OffsetHex="000009E0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2532" Vartype="4 Bytes" Bytesize="4" OffsetHex="000009E4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2536" Vartype="String" Bytesize="4" OffsetHex="000009E8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2540" Vartype="4 Bytes" Bytesize="4" OffsetHex="000009EC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2544" Vartype="Pointer" Bytesize="8" OffsetHex="000009F0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2552" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000009F8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2568" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000A08" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2572" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000A0C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2588" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000A1C" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2592" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000A20" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2616" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000A38" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2620" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000A3C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2624" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000A40" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2640" Vartype="Pointer" Bytesize="8" OffsetHex="00000A50" Description="Pointer to instance of std::_Ref_count_obj&lt;CassowarySolverEngineStructureShared&gt;" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2648" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000A58" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2656" Vartype="Pointer" Bytesize="8" OffsetHex="00000A60" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2664" Vartype="Pointer" Bytesize="8" OffsetHex="00000A68" Description="Pointer to instance of FountainEmitter" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2672" Vartype="Float" Bytesize="4" RLECount="3" OffsetHex="00000A70" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2684" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000A7C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2704" Vartype="Double" Bytesize="8" OffsetHex="00000A90" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2712" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000A98" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2720" Vartype="Float" Bytesize="4" OffsetHex="00000AA0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2724" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000AA4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2728" Vartype="Float" Bytesize="4" OffsetHex="00000AA8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2732" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000AAC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2736" Vartype="Double" Bytesize="8" OffsetHex="00000AB0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2744" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000AB8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2752" Vartype="Float" Bytesize="4" RLECount="4" OffsetHex="00000AC0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2768" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000AD0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2772" Vartype="Float" Bytesize="4" OffsetHex="00000AD4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2776" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000AD8" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2784" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="00000AE0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2808" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000AF8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2824" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000B08" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2828" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000B0C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2844" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000B1C" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2848" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000B20" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2872" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000B38" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2876" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000B3C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2880" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000B40" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2896" Vartype="Pointer" Bytesize="8" OffsetHex="00000B50" Description="Pointer to instance of std::_Ref_count_obj&lt;CassowarySolverEngineStructureShared&gt;" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2904" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000B58" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2912" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="00000B60" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2936" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000B78" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2952" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000B88" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2956" Vartype="4 Bytes" Bytesize="4" RLECount="11" OffsetHex="00000B8C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3000" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000BB8" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3004" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000BBC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3008" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000BC0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3024" Vartype="Pointer" Bytesize="8" OffsetHex="00000BD0" Description="Pointer to instance of std::_Ref_count_obj&lt;CassowarySolverEngineStructureShared&gt;" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3032" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000BD8" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3040" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="00000BE0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3044" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000BE4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3048" Vartype="String" Bytesize="4" OffsetHex="00000BE8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3052" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000BEC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3056" Vartype="Pointer" Bytesize="8" OffsetHex="00000BF0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3064" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000BF8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3080" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000C08" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3084" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000C0C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3100" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000C1C" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3104" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000C20" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3128" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000C38" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3132" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000C3C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3136" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000C40" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3152" Vartype="Pointer" Bytesize="8" OffsetHex="00000C50" Description="Pointer to instance of std::_Ref_count_obj&lt;CassowarySolverEngineStructureShared&gt;" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3160" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000C58" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3168" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="00000C60" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3172" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000C64" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3176" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="00000C68" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3180" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000C6C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3184" Vartype="Pointer" Bytesize="8" OffsetHex="00000C70" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3192" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000C78" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3208" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000C88" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3212" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000C8C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3228" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000C9C" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3232" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000CA0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3256" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000CB8" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3260" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000CBC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3264" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000CC0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3280" Vartype="Pointer" Bytesize="8" OffsetHex="00000CD0" Description="Pointer to instance of std::_Ref_count_obj&lt;CassowarySolverEngineStructureShared&gt;" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3288" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000CD8" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3296" Vartype="Pointer" Bytesize="8" OffsetHex="00000CE0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3304" Vartype="String" Bytesize="4" OffsetHex="00000CE8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3308" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000CEC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3312" Vartype="Pointer" Bytesize="8" OffsetHex="00000CF0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3320" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000CF8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3336" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000D08" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3340" Vartype="4 Bytes" Bytesize="4" RLECount="11" OffsetHex="00000D0C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3384" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000D38" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3388" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000D3C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3392" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000D40" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3408" Vartype="Pointer" Bytesize="8" OffsetHex="00000D50" Description="Pointer to instance of std::_Ref_count_obj&lt;CassowarySolverEngineStructureShared&gt;" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3416" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000D58" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3424" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="00000D60" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3448" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000D78" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3464" Vartype="Double" Bytesize="8" OffsetHex="00000D88" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3472" Vartype="4 Bytes" Bytesize="4" RLECount="10" OffsetHex="00000D90" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3512" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000DB8" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3516" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000DBC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3520" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000DC0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3536" Vartype="Pointer" Bytesize="8" OffsetHex="00000DD0" Description="Pointer to instance of std::_Ref_count_obj&lt;CassowarySolverEngineStructureShared&gt;" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3544" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000DD8" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3552" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="00000DE0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3556" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000DE4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3560" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000DE8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3576" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000DF8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3592" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000E08" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3596" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000E0C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3612" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000E1C" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3616" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000E20" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3640" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000E38" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3644" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000E3C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3648" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000E40" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3664" Vartype="Pointer" Bytesize="8" OffsetHex="00000E50" Description="Pointer to instance of std::_Ref_count_obj&lt;CassowarySolverEngineStructureShared&gt;" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3672" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000E58" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3680" Vartype="Pointer" Bytesize="8" OffsetHex="00000E60" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3688" Vartype="Pointer" Bytesize="8" OffsetHex="00000E68" Description="Pointer to instance of FountainEmitter" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3696" Vartype="Float" Bytesize="4" RLECount="3" OffsetHex="00000E70" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3708" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000E7C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3732" Vartype="Float" Bytesize="4" OffsetHex="00000E94" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3736" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000E98" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3740" Vartype="Double" Bytesize="8" OffsetHex="00000E9C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3748" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000EA4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3752" Vartype="Float" Bytesize="4" OffsetHex="00000EA8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3756" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000EAC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3760" Vartype="Double" Bytesize="8" OffsetHex="00000EB0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3768" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000EB8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3776" Vartype="Float" Bytesize="4" RLECount="4" OffsetHex="00000EC0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3792" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000ED0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3796" Vartype="Float" Bytesize="4" OffsetHex="00000ED4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3800" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000ED8" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3808" Vartype="String" Bytesize="4" OffsetHex="00000EE0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3812" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000EE4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3816" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="00000EE8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3820" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000EEC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3824" Vartype="Pointer" Bytesize="8" OffsetHex="00000EF0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3832" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000EF8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3848" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000F08" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3852" Vartype="4 Bytes" Bytesize="4" RLECount="11" OffsetHex="00000F0C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3896" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000F38" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3900" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000F3C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3904" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000F40" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3920" Vartype="Pointer" Bytesize="8" OffsetHex="00000F50" Description="Pointer to instance of std::_Ref_count_obj&lt;CassowarySolverEngineStructureShared&gt;" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3928" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000F58" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3936" Vartype="Pointer" Bytesize="8" OffsetHex="00000F60" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3944" Vartype="Pointer" Bytesize="8" OffsetHex="00000F68" Description="Pointer to instance of FountainEmitter" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3952" Vartype="Float" Bytesize="4" RLECount="3" OffsetHex="00000F70" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3964" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000F7C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3988" Vartype="Float" Bytesize="4" OffsetHex="00000F94" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3992" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000F98" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3996" Vartype="Double" Bytesize="8" OffsetHex="00000F9C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="4004" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000FA4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="4008" Vartype="Float" Bytesize="4" OffsetHex="00000FA8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="4012" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000FAC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="4016" Vartype="Double" Bytesize="8" OffsetHex="00000FB0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="4024" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000FB8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="4032" Vartype="Float" Bytesize="4" RLECount="4" OffsetHex="00000FC0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="4048" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000FD0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="4052" Vartype="Float" Bytesize="4" OffsetHex="00000FD4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="4056" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000FD8" DisplayMethod="Hexadecimal"/>
+        <Element Offset="4064" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="00000FE0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="4068" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000FE4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="4072" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="00000FE8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="4076" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000FEC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="4080" Vartype="Pointer" Bytesize="8" OffsetHex="00000FF0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="4088" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000FF8" DisplayMethod="Unsigned Integer"/>
+      </Elements>
+    </Structure>
+  </Structures>
+  <Comments>===========================================
+ Game Title    : Neverwinter Nights Enhanced Edition
+ Game Version  : 74.8166
+ Game Sponsor  : CODEX
+ Process Name  : nwmain.exe
+ Relevant Info : 32bits/RPG/Mixed data Size
+ Script Version: 1.0 (AOB)
+ CE Version    : 6.7
+ Release date  : 31-Mar-2018
+ Author        : Recifense
+ History:
+ 31-Mar-2018: First Release
+ Features:
+ - Minimum Gold             [1]
+ - God Mode                 [2]
+ - Unlimited Ammo           [3]
+ - Try to prevent Slowdown  [4]
+ - Some Pointers            [5]
+===========================================
+[1] It will not go under 67000;
+[2] For main Hero and Companion;
+[3] For main Hero only;
+[4] For main Hero only (encumbered or magic);
+[4] Used at the table;
+===========================================
+[USAGE]
+1) Run CE67 or greater;
+2) Run Game;
+3) Load the game process "nwmain.exe" in CE;
+4) Load this table and activate the main script;
+5) Now Activate the script of each cheat you want to use;
+6) Game On;
+===========================================
+[HOTKEYS]
+- None defined
+===========================================
+[IMPORTANT]
+Save your game before unsing the cheats.
+===========================================
+[INFO]
+Tested on Win 10 64bits
+===========================================
+Have fun!
+</Comments>
+</CheatTable>

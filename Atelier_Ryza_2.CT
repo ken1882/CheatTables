@@ -5,7 +5,7 @@
       <ID>491</ID>
       <Description>"&gt;&gt; Atelier Ryza 2: Lost Legends and the Secret Fairy"</Description>
       <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
-      <LastState Activated="1"/>
+      <LastState/>
       <Color>808000</Color>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript Async="1">{$lua}
@@ -45,7 +45,6 @@ Ready.disable('Atelier Ryza 2: Lost Legends and the Secret Fairy')
         <CheatEntry>
           <ID>738</ID>
           <Description>"SP"</Description>
-          <LastState Value="5817" RealAddress="1417351D0"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>sp_addr</Address>
@@ -53,7 +52,6 @@ Ready.disable('Atelier Ryza 2: Lost Legends and the Secret Fairy')
         <CheatEntry>
           <ID>2</ID>
           <Description>"Gems"</Description>
-          <LastState Value="9715174" RealAddress="141769CB8"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>gem_addr</Address>
@@ -61,7 +59,6 @@ Ready.disable('Atelier Ryza 2: Lost Legends and the Secret Fairy')
         <CheatEntry>
           <ID>15</ID>
           <Description>"Money"</Description>
-          <LastState Value="47948" RealAddress="1417F3D08"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>money_addr</Address>
@@ -69,7 +66,6 @@ Ready.disable('Atelier Ryza 2: Lost Legends and the Secret Fairy')
         <CheatEntry>
           <ID>19</ID>
           <Description>"Gold Coin"</Description>
-          <LastState Value="999887" RealAddress="1417F3D10"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>money_addr+08</Address>
@@ -77,7 +73,7 @@ Ready.disable('Atelier Ryza 2: Lost Legends and the Secret Fairy')
         <CheatEntry>
           <ID>490</ID>
           <Description>"HP recovery after battle"</Description>
-          <LastState Activated="1"/>
+          <LastState/>
           <Color>E16941</Color>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript Async="1">[ENABLE]
@@ -149,7 +145,7 @@ trace_tactical:
           <ID>852</ID>
           <Description>"Combat Damage Multiplier"</Description>
           <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
-          <LastState Activated="1"/>
+          <LastState/>
           <Color>0000FF</Color>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : Atelier_Ryza_2.exe (paused)
@@ -325,7 +321,6 @@ val_opt_dmgone_enemy:
             <CheatEntry>
               <ID>860</ID>
               <Description>"Enemy Damage Multiplier"</Description>
-              <LastState Value="1" RealAddress="13FF700A4"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>Float</VariableType>
               <Address>val_dmgally_multiplier</Address>
@@ -333,7 +328,6 @@ val_opt_dmgone_enemy:
             <CheatEntry>
               <ID>859</ID>
               <Description>"Player damage multipler"</Description>
-              <LastState Value="1" RealAddress="13FF700A8"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>Float</VariableType>
               <Address>val_dmgenemy_multiplier</Address>
@@ -344,7 +338,7 @@ val_opt_dmgone_enemy:
           <ID>854</ID>
           <Description>"Wait Time Multiplier"</Description>
           <Options moHideChildren="1"/>
-          <LastState Activated="1"/>
+          <LastState/>
           <Color>0000FF</Color>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : Atelier_Ryza_2.exe (paused)
@@ -436,7 +430,6 @@ Atelier_Ryza_2.exe+35E507: 76 07           - jna Atelier_Ryza_2.exe+35E510
             <CheatEntry>
               <ID>858</ID>
               <Description>"Multiplier"</Description>
-              <LastState Value="2" RealAddress="13FF60035"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>Float</VariableType>
               <Address>val_wtmul</Address>
@@ -446,8 +439,8 @@ Atelier_Ryza_2.exe+35E507: 76 07           - jna Atelier_Ryza_2.exe+35E510
         <CheatEntry>
           <ID>832</ID>
           <Description>"Don't Break"</Description>
-          <LastState Activated="1"/>
-          <Color>0000FF</Color>
+          <LastState/>
+          <Color>E16941</Color>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[ENABLE]
 
@@ -489,7 +482,7 @@ dealloc(newmem)
           <ID>722</ID>
           <Description>"Battle result EXP multiplier"</Description>
           <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
-          <LastState Activated="1"/>
+          <LastState/>
           <Color>E16941</Color>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[ENABLE]
@@ -525,7 +518,6 @@ dealloc(newmem)
             <CheatEntry>
               <ID>718</ID>
               <Description>"Times"</Description>
-              <LastState Value="4" RealAddress="13FF40020"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>Byte</VariableType>
               <Address>exp_multiplier</Address>
@@ -536,7 +528,7 @@ dealloc(newmem)
           <ID>523</ID>
           <Description>"Battle result Money multiplier"</Description>
           <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
-          <LastState Activated="1"/>
+          <LastState/>
           <Color>E16941</Color>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript Async="1">[ENABLE]
@@ -571,7 +563,6 @@ dealloc(newmem)
             <CheatEntry>
               <ID>524</ID>
               <Description>"Times"</Description>
-              <LastState Value="4" RealAddress="13FF30020"/>
               <VariableType>Byte</VariableType>
               <Address>money_multiplier</Address>
             </CheatEntry>
@@ -581,7 +572,7 @@ dealloc(newmem)
           <ID>769</ID>
           <Description>"Move speed multiplier"</Description>
           <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
-          <LastState Activated="1"/>
+          <LastState/>
           <Color>E16941</Color>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[ENABLE]
@@ -629,7 +620,6 @@ dealloc(newmem)
             <CheatEntry>
               <ID>770</ID>
               <Description>"Times"</Description>
-              <LastState Value="2" RealAddress="13FF20040"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>Float</VariableType>
               <Address>move_speed</Address>
@@ -640,7 +630,7 @@ dealloc(newmem)
           <ID>767</ID>
           <Description>"Jump height multiplier"</Description>
           <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
-          <LastState Activated="1"/>
+          <LastState/>
           <Color>E16941</Color>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[ENABLE]
@@ -675,7 +665,6 @@ dealloc(newmem)
             <CheatEntry>
               <ID>766</ID>
               <Description>"Times"</Description>
-              <LastState Value="4" RealAddress="13FF10020"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>Float</VariableType>
               <Address>high_jump</Address>
@@ -686,8 +675,8 @@ dealloc(newmem)
           <ID>747</ID>
           <Description>"Change all Item quality"</Description>
           <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
-          <LastState Activated="1"/>
-          <Color>0080FF</Color>
+          <LastState/>
+          <Color>E16941</Color>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[ENABLE]
 
@@ -761,7 +750,6 @@ dealloc(newmem)
             <CheatEntry>
               <ID>746</ID>
               <Description>"Value"</Description>
-              <LastState Value="999" RealAddress="13FF80060"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>2 Bytes</VariableType>
               <Address>quality_value</Address>
@@ -951,7 +939,7 @@ dealloc(newmem)
           <Description>"Item editor"</Description>
           <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
           <LastState/>
-          <Color>0080FF</Color>
+          <Color>E16941</Color>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript Async="1">[ENABLE]
 
@@ -4006,7 +3994,7 @@ dealloc(newmem)
             <CheatEntry>
               <ID>506</ID>
               <Description>"Pointer"</Description>
-              <LastState Value="" RealAddress="F66000000620D8B"/>
+              <LastState Value="" RealAddress="00000000"/>
               <ShowAsSigned>0</ShowAsSigned>
               <Color>008080</Color>
               <GroupHeader>1</GroupHeader>
@@ -4209,7 +4197,7 @@ dealloc(newmem)
           <ID>816</ID>
           <Description>"Created by zachillios"</Description>
           <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
-          <LastState Value="" Activated="1" RealAddress="00000000"/>
+          <LastState Value="" RealAddress="00000000"/>
           <Color>808040</Color>
           <GroupHeader>1</GroupHeader>
           <CheatEntries>
@@ -4699,7 +4687,7 @@ return 'nop'
             <CheatEntry>
               <ID>551</ID>
               <Description>"Atelier Ryza 2: Lost Legends and the Secret Fairy"</Description>
-              <LastState Activated="1"/>
+              <LastState/>
               <Color>E16941</Color>
               <VariableType>Auto Assembler Script</VariableType>
               <AssemblerScript>{$lua}
@@ -4838,7 +4826,7 @@ Register.disable(Register.zachillios)
                 <CheatEntry>
                   <ID>739</ID>
                   <Description>"MainScript"</Description>
-                  <LastState Activated="1"/>
+                  <LastState/>
                   <Color>E16941</Color>
                   <VariableType>Auto Assembler Script</VariableType>
                   <AssemblerScript>/* getBaseAddr ******************************************************
@@ -5558,7 +5546,7 @@ dealloc(newmem)
                     <CheatEntry>
                       <ID>783</ID>
                       <Description>"Pointer"</Description>
-                      <LastState Value="" RealAddress="F66000000620D8B"/>
+                      <LastState Value="" RealAddress="00000000"/>
                       <Color>008080</Color>
                       <GroupHeader>1</GroupHeader>
                       <Address>item_ptr</Address>
@@ -5748,7 +5736,7 @@ Atelier_Ryza_2.exe+55A573: 66 89 43 04              - mov [rbx+04],ax
     <CheatEntry>
       <ID>863</ID>
       <Description>"Basket Capacity"</Description>
-      <LastState Value="200" RealAddress="1417F3C2C"/>
+      <LastState Value="200" Activated="1" RealAddress="1417F3C2C"/>
       <VariableType>4 Bytes</VariableType>
       <Address>Atelier_Ryza_2.exe+17F3C2C</Address>
     </CheatEntry>
@@ -5786,10 +5774,10 @@ Atelier_Ryza_2.exe+55A573: 66 89 43 04              - mov [rbx+04],ax
     <CheatEntry>
       <ID>871</ID>
       <Description>"Last Storage Slot"</Description>
-      <LastState Value="65535" RealAddress="1417E91A0"/>
+      <LastState Value="65535" RealAddress="1417EC6C0"/>
       <ShowAsSigned>0</ShowAsSigned>
       <VariableType>4 Bytes</VariableType>
-      <Address>Atelier_Ryza_2.exe+17725A0+64*1300</Address>
+      <Address>Atelier_Ryza_2.exe+17725A0+64*1388</Address>
     </CheatEntry>
     <CheatEntry>
       <ID>872</ID>
@@ -5803,16 +5791,16 @@ Atelier_Ryza_2.exe+55A573: 66 89 43 04              - mov [rbx+04],ax
       <ID>873</ID>
       <Description>"Pointer"</Description>
       <Options moHideChildren="1"/>
-      <LastState Value="" RealAddress="1417725A0"/>
+      <LastState Value="" RealAddress="1417EC3A0"/>
       <ShowAsSigned>0</ShowAsSigned>
       <Color>008080</Color>
       <GroupHeader>1</GroupHeader>
-      <Address>Atelier_Ryza_2.exe+17725A0+64*0</Address>
+      <Address>1417EC3A0</Address>
       <CheatEntries>
         <CheatEntry>
           <ID>874</ID>
           <Description>"Quantity"</Description>
-          <LastState Value="1" RealAddress="1417725A2"/>
+          <LastState Value="0" RealAddress="1417EC3A2"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>Byte</VariableType>
           <Address>+02</Address>
@@ -5820,7 +5808,7 @@ Atelier_Ryza_2.exe+55A573: 66 89 43 04              - mov [rbx+04],ax
         <CheatEntry>
           <ID>875</ID>
           <Description>"Level"</Description>
-          <LastState Value="16" RealAddress="1417725AB"/>
+          <LastState Value="255" RealAddress="1417EC3AB"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>Byte</VariableType>
           <Address>+0B</Address>
@@ -5828,7 +5816,7 @@ Atelier_Ryza_2.exe+55A573: 66 89 43 04              - mov [rbx+04],ax
         <CheatEntry>
           <ID>876</ID>
           <Description>"CC of Consumables"</Description>
-          <LastState Value="0" RealAddress="1417725AC"/>
+          <LastState Value="0" RealAddress="1417EC3AC"/>
           <ShowAsSigned>1</ShowAsSigned>
           <VariableType>Byte</VariableType>
           <Address>+0C</Address>
@@ -5836,7 +5824,7 @@ Atelier_Ryza_2.exe+55A573: 66 89 43 04              - mov [rbx+04],ax
         <CheatEntry>
           <ID>877</ID>
           <Description>"Trait 1 Level"</Description>
-          <LastState Value="99" RealAddress="1417725AE"/>
+          <LastState Value="1" RealAddress="1417EC3AE"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>Byte</VariableType>
           <Address>+0E</Address>
@@ -5844,7 +5832,7 @@ Atelier_Ryza_2.exe+55A573: 66 89 43 04              - mov [rbx+04],ax
         <CheatEntry>
           <ID>878</ID>
           <Description>"Trait 2 Level"</Description>
-          <LastState Value="99" RealAddress="1417725AF"/>
+          <LastState Value="1" RealAddress="1417EC3AF"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>Byte</VariableType>
           <Address>+0F</Address>
@@ -5852,7 +5840,7 @@ Atelier_Ryza_2.exe+55A573: 66 89 43 04              - mov [rbx+04],ax
         <CheatEntry>
           <ID>879</ID>
           <Description>"Trait 3 Level"</Description>
-          <LastState Value="99" RealAddress="1417725B0"/>
+          <LastState Value="1" RealAddress="1417EC3B0"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>Byte</VariableType>
           <Address>+10</Address>
@@ -5861,7 +5849,7 @@ Atelier_Ryza_2.exe+55A573: 66 89 43 04              - mov [rbx+04],ax
           <ID>880</ID>
           <Description>"Item ID"</Description>
           <DropDownListLink>ItemList</DropDownListLink>
-          <LastState Value="45" RealAddress="1417725A4"/>
+          <LastState Value="65535" RealAddress="1417EC3A4"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>2 Bytes</VariableType>
           <Address>+04</Address>
@@ -5869,7 +5857,7 @@ Atelier_Ryza_2.exe+55A573: 66 89 43 04              - mov [rbx+04],ax
         <CheatEntry>
           <ID>881</ID>
           <Description>"Quality"</Description>
-          <LastState Value="999" RealAddress="1417725A6"/>
+          <LastState Value="0" RealAddress="1417EC3A6"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>2 Bytes</VariableType>
           <Address>+06</Address>
@@ -5878,7 +5866,7 @@ Atelier_Ryza_2.exe+55A573: 66 89 43 04              - mov [rbx+04],ax
           <ID>882</ID>
           <Description>"Trait 1"</Description>
           <DropDownListLink>TraitList</DropDownListLink>
-          <LastState Value="15" RealAddress="1417725B2"/>
+          <LastState Value="341" RealAddress="1417EC3B2"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>2 Bytes</VariableType>
           <Address>+12</Address>
@@ -5887,7 +5875,7 @@ Atelier_Ryza_2.exe+55A573: 66 89 43 04              - mov [rbx+04],ax
           <ID>883</ID>
           <Description>"Trait 2"</Description>
           <DropDownListLink>TraitList</DropDownListLink>
-          <LastState Value="341" RealAddress="1417725B4"/>
+          <LastState Value="341" RealAddress="1417EC3B4"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>2 Bytes</VariableType>
           <Address>+14</Address>
@@ -5896,7 +5884,7 @@ Atelier_Ryza_2.exe+55A573: 66 89 43 04              - mov [rbx+04],ax
           <ID>884</ID>
           <Description>"Trait 3"</Description>
           <DropDownListLink>TraitList</DropDownListLink>
-          <LastState Value="341" RealAddress="1417725B6"/>
+          <LastState Value="341" RealAddress="1417EC3B6"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>2 Bytes</VariableType>
           <Address>+16</Address>
@@ -5905,7 +5893,7 @@ Atelier_Ryza_2.exe+55A573: 66 89 43 04              - mov [rbx+04],ax
           <ID>885</ID>
           <Description>"Effect 1"</Description>
           <DropDownListLink>EffectList</DropDownListLink>
-          <LastState Value="-1" RealAddress="1417725B8"/>
+          <LastState Value="-1" RealAddress="1417EC3B8"/>
           <ShowAsSigned>1</ShowAsSigned>
           <VariableType>2 Bytes</VariableType>
           <Address>+18</Address>
@@ -5914,7 +5902,7 @@ Atelier_Ryza_2.exe+55A573: 66 89 43 04              - mov [rbx+04],ax
           <ID>886</ID>
           <Description>"Effect 2"</Description>
           <DropDownListLink>EffectList</DropDownListLink>
-          <LastState Value="-1" RealAddress="1417725BA"/>
+          <LastState Value="-1" RealAddress="1417EC3BA"/>
           <ShowAsSigned>1</ShowAsSigned>
           <VariableType>2 Bytes</VariableType>
           <Address>+1A</Address>
@@ -5923,7 +5911,7 @@ Atelier_Ryza_2.exe+55A573: 66 89 43 04              - mov [rbx+04],ax
           <ID>887</ID>
           <Description>"Effect 3"</Description>
           <DropDownListLink>EffectList</DropDownListLink>
-          <LastState Value="-1" RealAddress="1417725BC"/>
+          <LastState Value="-1" RealAddress="1417EC3BC"/>
           <ShowAsSigned>1</ShowAsSigned>
           <VariableType>2 Bytes</VariableType>
           <Address>+1C</Address>
@@ -5932,7 +5920,7 @@ Atelier_Ryza_2.exe+55A573: 66 89 43 04              - mov [rbx+04],ax
           <ID>888</ID>
           <Description>"Effect 4"</Description>
           <DropDownListLink>EffectList</DropDownListLink>
-          <LastState Value="-1" RealAddress="1417725BE"/>
+          <LastState Value="-1" RealAddress="1417EC3BE"/>
           <ShowAsSigned>1</ShowAsSigned>
           <VariableType>2 Bytes</VariableType>
           <Address>+1E</Address>
@@ -5941,7 +5929,7 @@ Atelier_Ryza_2.exe+55A573: 66 89 43 04              - mov [rbx+04],ax
           <ID>889</ID>
           <Description>"EV-Effect"</Description>
           <DropDownListLink>EV-EffectList</DropDownListLink>
-          <LastState Value="-1" RealAddress="1417725C0"/>
+          <LastState Value="-1" RealAddress="1417EC3C0"/>
           <ShowAsSigned>1</ShowAsSigned>
           <VariableType>2 Bytes</VariableType>
           <Address>+20</Address>
@@ -5949,7 +5937,7 @@ Atelier_Ryza_2.exe+55A573: 66 89 43 04              - mov [rbx+04],ax
         <CheatEntry>
           <ID>890</ID>
           <Description>"Equipment HP+ 1st"</Description>
-          <LastState Value="0" RealAddress="1417725C4"/>
+          <LastState Value="0" RealAddress="1417EC3C4"/>
           <ShowAsSigned>1</ShowAsSigned>
           <VariableType>2 Bytes</VariableType>
           <Address>+24</Address>
@@ -5957,7 +5945,7 @@ Atelier_Ryza_2.exe+55A573: 66 89 43 04              - mov [rbx+04],ax
         <CheatEntry>
           <ID>891</ID>
           <Description>"Equipment HP+ 2nd"</Description>
-          <LastState Value="0" RealAddress="1417725C6"/>
+          <LastState Value="0" RealAddress="1417EC3C6"/>
           <ShowAsSigned>1</ShowAsSigned>
           <VariableType>2 Bytes</VariableType>
           <Address>+26</Address>
@@ -5965,7 +5953,7 @@ Atelier_Ryza_2.exe+55A573: 66 89 43 04              - mov [rbx+04],ax
         <CheatEntry>
           <ID>892</ID>
           <Description>"Equipment ATK+"</Description>
-          <LastState Value="0" RealAddress="1417725C8"/>
+          <LastState Value="0" RealAddress="1417EC3C8"/>
           <ShowAsSigned>1</ShowAsSigned>
           <VariableType>2 Bytes</VariableType>
           <Address>+28</Address>
@@ -5973,7 +5961,7 @@ Atelier_Ryza_2.exe+55A573: 66 89 43 04              - mov [rbx+04],ax
         <CheatEntry>
           <ID>893</ID>
           <Description>"Equipment DEF+"</Description>
-          <LastState Value="0" RealAddress="1417725CA"/>
+          <LastState Value="0" RealAddress="1417EC3CA"/>
           <ShowAsSigned>1</ShowAsSigned>
           <VariableType>2 Bytes</VariableType>
           <Address>+2A</Address>
@@ -5981,7 +5969,7 @@ Atelier_Ryza_2.exe+55A573: 66 89 43 04              - mov [rbx+04],ax
         <CheatEntry>
           <ID>894</ID>
           <Description>"Equipment SPD+"</Description>
-          <LastState Value="0" RealAddress="1417725CC"/>
+          <LastState Value="0" RealAddress="1417EC3CC"/>
           <ShowAsSigned>1</ShowAsSigned>
           <VariableType>2 Bytes</VariableType>
           <Address>+2C</Address>
@@ -5989,7 +5977,7 @@ Atelier_Ryza_2.exe+55A573: 66 89 43 04              - mov [rbx+04],ax
         <CheatEntry>
           <ID>895</ID>
           <Description>"Trait 1 Locked"</Description>
-          <LastState Value="0" RealAddress="1417725A3"/>
+          <LastState Value="0" RealAddress="1417EC3A3"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>Binary</VariableType>
           <BitStart>3</BitStart>
@@ -6000,7 +5988,7 @@ Atelier_Ryza_2.exe+55A573: 66 89 43 04              - mov [rbx+04],ax
         <CheatEntry>
           <ID>896</ID>
           <Description>"Trait 2 Locked"</Description>
-          <LastState Value="0" RealAddress="1417725A3"/>
+          <LastState Value="0" RealAddress="1417EC3A3"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>Binary</VariableType>
           <BitStart>4</BitStart>
@@ -6011,7 +5999,7 @@ Atelier_Ryza_2.exe+55A573: 66 89 43 04              - mov [rbx+04],ax
         <CheatEntry>
           <ID>897</ID>
           <Description>"Trait 3 Locked"</Description>
-          <LastState Value="0" RealAddress="1417725A3"/>
+          <LastState Value="0" RealAddress="1417EC3A3"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>Binary</VariableType>
           <BitStart>5</BitStart>
@@ -6402,7 +6390,7 @@ function Storage.init()
   cur_addr = getAddress("mem_storage")
   flag_inited = readInteger(module_addr+0x17F3C74)
   if flag_inited == 0 then
-    for i=1,1200 do
+    for i=1,100000 do
       writeBytes(cur_addr,0xFF,0xFF,0x00,0x00,0xFF,0xFF,0x00,0x00,0x00,0x00,0x01,0xFF,0x00,0x00,0x01,0x01,0x01,0x48,0x55,0x01,0x55,0x01,0x55,0x01,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0x6F,0x41,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0x00,0x00,0x00,0x00)
       cur_addr = cur_addr + 100
     end
@@ -6469,6 +6457,8 @@ label(return)
 
 newmem:
   movzx ecx,byte ptr [rdx]
+  cmp r15,C8
+  jne code
   cmp r14,7A120
   jne code
   push rax
@@ -6524,7 +6514,7 @@ Atelier_Ryza_2.exe+CA628C: 4C 89 00        - mov [rax],r8
                 </CheatEntry>
                 <CheatEntry>
                   <ID>911</ID>
-                  <Description>"Save Patch"</Description>
+                  <Description>"Save Custom Storage"</Description>
                   <LastState/>
                   <VariableType>Auto Assembler Script</VariableType>
                   <AssemblerScript>loadlibrary(luaclient-x86_64.dll)
@@ -6605,6 +6595,7 @@ hasrefid:
   mov r10,[rsp+40]
   mov r11,[rsp+48]
   add rsp,20+6*8
+  jmp code
 
 code:
   lea rdx,[Atelier_Ryza_2.exe+11819B0]
@@ -6621,6 +6612,7 @@ address:
   db bytes
   // lea rdx,[Atelier_Ryza_2.exe+11819B0]
 
+unregistersymbol(flag_auto_save_storage)
 dealloc(newmem)
 
 {
