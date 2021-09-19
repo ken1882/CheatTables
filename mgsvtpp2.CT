@@ -1,0 +1,6882 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="34">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>130</ID>
+      <Description>"Player Pointer"</Description>
+      <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : mgsvtpp2.exe
+  Version: 
+  Date   : 2021-05-20
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_CAM_Y,mgsvtpp2.exe,8B 86 90 02 00 00 89) // should be unique
+alloc(newmem,$1000,INJ_CAM_Y)
+
+label(code)
+label(return)
+label(pt_player)
+
+newmem:
+  mov [pt_player],rsi
+  jmp code
+pt_player:
+  dq 0
+registersymbol(pt_player)
+
+code:
+  mov eax,[rsi+00000290]
+  jmp return
+
+INJ_CAM_Y:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_CAM_Y)
+
+[DISABLE]
+
+INJ_CAM_Y:
+  db 8B 86 90 02 00 00
+
+unregistersymbol(pt_player)
+unregistersymbol(INJ_CAM_Y)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: mgsvtpp2.exe+1119B01
+
+mgsvtpp2.exe+1119AD0: F3 0F 10 4C 24 30        - movss xmm1,[rsp+30]
+mgsvtpp2.exe+1119AD6: F3 0F 11 48 28           - movss [rax+28],xmm1
+mgsvtpp2.exe+1119ADB: F3 0F 58 74 24 34        - addss xmm6,[rsp+34]
+mgsvtpp2.exe+1119AE1: 48 8B 03                 - mov rax,[rbx]
+mgsvtpp2.exe+1119AE4: 48 8B CB                 - mov rcx,rbx
+mgsvtpp2.exe+1119AE7: FF 50 18                 - call qword ptr [rax+18]
+mgsvtpp2.exe+1119AEA: 48 8B 86 80 03 00 00     - mov rax,[rsi+00000380]
+mgsvtpp2.exe+1119AF1: 48 8B 8E 80 03 00 00     - mov rcx,[rsi+00000380]
+mgsvtpp2.exe+1119AF8: F3 0F 58 F0              - addss xmm6,xmm0
+mgsvtpp2.exe+1119AFC: F3 0F 11 70 2C           - movss [rax+2C],xmm6
+// ---------- INJECTING HERE ----------
+mgsvtpp2.exe+1119B01: 8B 86 90 02 00 00        - mov eax,[rsi+00000290]
+// ---------- DONE INJECTING  ----------
+mgsvtpp2.exe+1119B07: 89 86 98 02 00 00        - mov [rsi+00000298],eax
+mgsvtpp2.exe+1119B0D: 8B 86 94 02 00 00        - mov eax,[rsi+00000294]
+mgsvtpp2.exe+1119B13: 89 86 9C 02 00 00        - mov [rsi+0000029C],eax
+mgsvtpp2.exe+1119B19: 48 8B 86 68 03 00 00     - mov rax,[rsi+00000368]
+mgsvtpp2.exe+1119B20: 8B B8 14 02 00 00        - mov edi,[rax+00000214]
+mgsvtpp2.exe+1119B26: 48 8B 01                 - mov rax,[rcx]
+mgsvtpp2.exe+1119B29: F3 0F 10 B6 1C 03 00 00  - movss xmm6,[rsi+0000031C]
+mgsvtpp2.exe+1119B31: FF 10                    - call qword ptr [rax]
+mgsvtpp2.exe+1119B33: 48 8D 95 F0 03 00 00     - lea rdx,[rbp+000003F0]
+mgsvtpp2.exe+1119B3A: 48 8B C8                 - mov rcx,rax
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>132</ID>
+          <Description>"Base"</Description>
+          <ShowAsHex>1</ShowAsHex>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>8 Bytes</VariableType>
+          <Address>pt_player</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>134</ID>
+          <Description>"Pitch"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>Float</VariableType>
+          <Address>pt_player</Address>
+          <Offsets>
+            <Offset>290</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>133</ID>
+          <Description>"Yaw"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>Float</VariableType>
+          <Address>pt_player</Address>
+          <Offsets>
+            <Offset>294</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>137</ID>
+          <Description>"Health"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>Float</VariableType>
+          <Address>pt_player</Address>
+          <Offsets>
+            <Offset>19E0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>138</ID>
+          <Description>"Max Health"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>Float</VariableType>
+          <Address>pt_player</Address>
+          <Offsets>
+            <Offset>19E4</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>43</ID>
+      <Description>"GMP (offline)"</Description>
+      <LastState Value="1257990" RealAddress="142C041C8"/>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>mgsvtpp2.exe+2C041C8</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>44</ID>
+      <Description>"GMP (online)"</Description>
+      <LastState Value="11321850" RealAddress="142C041CC"/>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>mgsvtpp2.exe+2C041CC</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>53</ID>
+      <Description>"Demon Point"</Description>
+      <LastState Value="0" Activated="1" RealAddress="142C041DC"/>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>mgsvtpp2.exe+2C041DC</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>49</ID>
+      <Description>"Inf GMP"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+
+aobscanmodule(INJ_GMPO,mgsvtpp2.exe,8B 0A BA 41 81 B1 C4) // should be unique
+alloc(newmem,$1000,INJ_GMPO)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rdx],50000000
+code:
+  mov ecx,[rdx]
+  mov edx,C4B18141
+  jmp return
+
+INJ_GMPO:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJ_GMPO)
+
+aobscanmodule(INJ_GMPO2,mgsvtpp2.exe,8B 01 B9 41 81 B1 C4 3B) // should be unique
+alloc(newmem2,$1000,INJ_GMPO2)
+
+label(code2)
+label(return2)
+
+newmem2:
+  mov [rcx],50000000
+code2:
+  mov eax,[rcx]
+  mov ecx,C4B18141
+  jmp return2
+
+INJ_GMPO2:
+  jmp newmem2
+  nop 2
+return2:
+registersymbol(INJ_GMPO2)
+
+aobscanmodule(INJ_GMP,mgsvtpp2.exe,89 07 80 8B 88 0E 00 00 05) // should be unique
+alloc(newmem3,$1000,INJ_GMP)
+
+label(code3)
+label(return3)
+
+newmem3:
+  mov eax,500000
+code3:
+  mov [rdi],eax
+  or byte ptr [rbx+00000E88],05
+  jmp return3
+
+INJ_GMP:
+  jmp newmem3
+  nop 4
+return3:
+registersymbol(INJ_GMP)
+
+[DISABLE]
+
+INJ_GMPO:
+  db 8B 0A BA 41 81 B1 C4
+
+unregistersymbol(INJ_GMPO)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: mgsvtpp.exe+F69613
+
+mgsvtpp.exe+F695E9: 4D 8B 06              - mov r8,[r14]
+mgsvtpp.exe+F695EC: 41 0F B7 D7           - movzx edx,r15w
+mgsvtpp.exe+F695F0: 49 8B CE              - mov rcx,r14
+mgsvtpp.exe+F695F3: 8B D8                 - mov ebx,eax
+mgsvtpp.exe+F695F5: 41 FF 90 70 04 00 00  - call qword ptr [r8+00000470]
+mgsvtpp.exe+F695FC: 49 8B 8E 40 FE 01 00  - mov rcx,[r14+0001FE40]
+mgsvtpp.exe+F69603: 84 C0                 - test al,al
+mgsvtpp.exe+F69605: 74 1F                 - je mgsvtpp.exe+F69626
+mgsvtpp.exe+F69607: 48 8B 91 18 0A 00 00  - mov rdx,[rcx+00000A18]
+mgsvtpp.exe+F6960E: B8 BF 7E 4E 3B        - mov eax,3B4E7EBF
+// ---------- INJECTING HERE ----------
+mgsvtpp.exe+F69613: 8B 0A                 - mov ecx,[rdx]
+// ---------- DONE INJECTING  ----------
+mgsvtpp.exe+F69615: BA 41 81 B1 C4        - mov edx,C4B18141
+mgsvtpp.exe+F6961A: 3B CA                 - cmp ecx,edx
+mgsvtpp.exe+F6961C: 0F 4F D1              - cmovg edx,ecx
+mgsvtpp.exe+F6961F: 3B D0                 - cmp edx,eax
+mgsvtpp.exe+F69621: 0F 4C C2              - cmovl eax,edx
+mgsvtpp.exe+F69624: EB 05                 - jmp mgsvtpp.exe+F6962B
+mgsvtpp.exe+F69626: 48 8B 01              - mov rax,[rcx]
+mgsvtpp.exe+F69629: FF 10                 - call qword ptr [rax]
+mgsvtpp.exe+F6962B: 3B C3                 - cmp eax,ebx
+mgsvtpp.exe+F6962D: 7D 09                 - jnl mgsvtpp.exe+F69638
+}
+INJ_GMPO2:
+  db 8B 01 B9 41 81 B1 C4
+
+unregistersymbol(INJ_GMPO2)
+dealloc(newmem2)
+
+{
+// ORIGINAL CODE - INJECTION POINT: mgsvtpp.exe+F67C58
+
+mgsvtpp.exe+F67C2A: 45 84 C0              - test r8l,r8l
+mgsvtpp.exe+F67C2D: 0F 84 11 03 00 00     - je mgsvtpp.exe+F67F44
+mgsvtpp.exe+F67C33: 48 8B 01              - mov rax,[rcx]
+mgsvtpp.exe+F67C36: 48 89 5C 24 40        - mov [rsp+40],rbx
+mgsvtpp.exe+F67C3B: 48 89 6C 24 50        - mov [rsp+50],rbp
+mgsvtpp.exe+F67C40: FF 90 70 04 00 00     - call qword ptr [rax+00000470]
+mgsvtpp.exe+F67C46: 84 C0                 - test al,al
+mgsvtpp.exe+F67C48: 74 26                 - je mgsvtpp.exe+F67C70
+mgsvtpp.exe+F67C4A: 48 8B 87 40 FE 01 00  - mov rax,[rdi+0001FE40]
+mgsvtpp.exe+F67C51: 48 8B 88 18 0A 00 00  - mov rcx,[rax+00000A18]
+// ---------- INJECTING HERE ----------
+mgsvtpp.exe+F67C58: 8B 01                 - mov eax,[rcx]
+// ---------- DONE INJECTING  ----------
+mgsvtpp.exe+F67C5A: B9 41 81 B1 C4        - mov ecx,C4B18141
+mgsvtpp.exe+F67C5F: 3B C1                 - cmp eax,ecx
+mgsvtpp.exe+F67C61: 0F 4F C8              - cmovg ecx,eax
+mgsvtpp.exe+F67C64: B8 BF 7E 4E 3B        - mov eax,3B4E7EBF
+mgsvtpp.exe+F67C69: 3B C8                 - cmp ecx,eax
+mgsvtpp.exe+F67C6B: 0F 4C C1              - cmovl eax,ecx
+mgsvtpp.exe+F67C6E: EB 0C                 - jmp mgsvtpp.exe+F67C7C
+mgsvtpp.exe+F67C70: 48 8B 8F 40 FE 01 00  - mov rcx,[rdi+0001FE40]
+mgsvtpp.exe+F67C77: 48 8B 01              - mov rax,[rcx]
+mgsvtpp.exe+F67C7A: FF 10                 - call qword ptr [rax]
+}
+INJ_GMP:
+  db 89 07 80 8B 88 0E 00 00 05
+
+unregistersymbol(INJ_GMP)
+dealloc(newmem3)
+
+{
+// ORIGINAL CODE - INJECTION POINT: mgsvtpp.exe+F73944
+
+mgsvtpp.exe+F73922: 48 C1 E8 20           - shr rax,20
+mgsvtpp.exe+F73926: 41 89 01              - mov [r9],eax
+mgsvtpp.exe+F73929: 48 8B 83 B8 0A 00 00  - mov rax,[rbx+00000AB8]
+mgsvtpp.exe+F73930: 89 08                 - mov [rax],ecx
+mgsvtpp.exe+F73932: 41 8B C3              - mov eax,r11d
+mgsvtpp.exe+F73935: 41 2B C2              - sub eax,r10d
+mgsvtpp.exe+F73938: 3D C0 87 82 FE        - cmp eax,FE8287C0
+mgsvtpp.exe+F7393D: 7C 19                 - jl mgsvtpp.exe+F73958
+mgsvtpp.exe+F7393F: 41 3B C3              - cmp eax,r11d
+mgsvtpp.exe+F73942: 7F 14                 - jg mgsvtpp.exe+F73958
+// ---------- INJECTING HERE ----------
+mgsvtpp.exe+F73944: 89 07                 - mov [rdi],eax
+// ---------- DONE INJECTING  ----------
+mgsvtpp.exe+F73946: 80 8B 88 0E 00 00 05  - or byte ptr [rbx+00000E88],05
+mgsvtpp.exe+F7394D: 48 8B 5C 24 30        - mov rbx,[rsp+30]
+mgsvtpp.exe+F73952: 48 83 C4 20           - add rsp,20
+mgsvtpp.exe+F73956: 5F                    - pop rdi
+mgsvtpp.exe+F73957: C3                    - ret 
+mgsvtpp.exe+F73958: C7 07 C0 87 82 FE     - mov [rdi],FE8287C0
+mgsvtpp.exe+F7395E: 48 8B 5C 24 30        - mov rbx,[rsp+30]
+mgsvtpp.exe+F73963: 48 83 C4 20           - add rsp,20
+mgsvtpp.exe+F73967: 5F                    - pop rdi
+mgsvtpp.exe+F73968: F3 C3                 - repe ret 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>64</ID>
+      <Description>"Clip Ammo"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : mgsvtpp.exe
+  Version: 
+  Date   : 2021-05-05
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_CLIP,mgsvtpp2.exe,44 0F B7 3C 4A) // should be unique
+alloc(newmem,$1000,INJ_CLIP)
+
+label(code)
+label(return)
+label(pt_clip)
+
+newmem:
+  push rax
+  lea rax,[rdx+rcx*2]
+  mov [pt_clip],rax
+  pop rax
+code:
+  movzx r15d,word ptr [rdx+rcx*2]
+  jmp return
+
+pt_clip:
+  dq 0
+registersymbol(pt_clip)
+
+INJ_CLIP:
+  jmp newmem
+return:
+registersymbol(INJ_CLIP)
+
+[DISABLE]
+
+INJ_CLIP:
+  db 44 0F B7 3C 4A
+
+unregistersymbol(pt_clip)
+unregistersymbol(INJ_CLIP)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: mgsvtpp.exe+108D1BC
+
+mgsvtpp.exe+108D185: 0F 85 DA 01 00 00              - jne mgsvtpp.exe+108D365
+mgsvtpp.exe+108D18B: 49 8B 81 C8 00 00 00           - mov rax,[r9+000000C8]
+mgsvtpp.exe+108D192: 4C 8B 60 08                    - mov r12,[rax+08]
+mgsvtpp.exe+108D196: 0F B6 82 DA 03 00 00           - movzx eax,byte ptr [rdx+000003DA]
+mgsvtpp.exe+108D19D: 45 8B 44 24 0C                 - mov r8d,[r12+0C]
+mgsvtpp.exe+108D1A2: 49 8B 54 24 50                 - mov rdx,[r12+50]
+mgsvtpp.exe+108D1A7: 45 0F AF C5                    - imul r8d,r13d
+mgsvtpp.exe+108D1AB: 44 03 C0                       - add r8d,eax
+mgsvtpp.exe+108D1AE: F7 86 D0 03 00 00 00 00 00 08  - test [rsi+000003D0],08000000
+mgsvtpp.exe+108D1B8: 4B 8D 0C 40                    - lea rcx,[r8+r8*2]
+// ---------- INJECTING HERE ----------
+mgsvtpp.exe+108D1BC: 44 0F B7 3C 4A                 - movzx r15d,word ptr [rdx+rcx*2]
+// ---------- DONE INJECTING  ----------
+mgsvtpp.exe+108D1C1: 4B 8D 0C 40                    - lea rcx,[r8+r8*2]
+mgsvtpp.exe+108D1C5: 44 0F B7 74 4A 02              - movzx r14d,word ptr [rdx+rcx*2+02]
+mgsvtpp.exe+108D1CB: 0F 84 18 01 00 00              - je mgsvtpp.exe+108D2E9
+mgsvtpp.exe+108D1D1: 0F B7 86 FE 05 00 00           - movzx eax,word ptr [rsi+000005FE]
+mgsvtpp.exe+108D1D8: 49 8B 59 48                    - mov rbx,[r9+48]
+mgsvtpp.exe+108D1DC: BF C8 3F 00 00                 - mov edi,00003FC8
+mgsvtpp.exe+108D1E1: 66 33 C7                       - xor ax,di
+mgsvtpp.exe+108D1E4: 48 81 C3 F8 02 00 00           - add rbx,000002F8
+mgsvtpp.exe+108D1EB: 66 44 3B F8                    - cmp r15w,ax
+mgsvtpp.exe+108D1EF: 75 10                          - jne mgsvtpp.exe+108D201
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>65</ID>
+          <Description>"Ammo"</Description>
+          <LastState Value="11" RealAddress="7A6AF114"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_clip</Address>
+          <Offsets>
+            <Offset>0</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>139</ID>
+      <Description>"No Damage"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : mgsvtpp2.exe
+  Version: 
+  Date   : 2021-05-20
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_PLAYER_HP_DMG,mgsvtpp2.exe,93 C0 F3 41 0F 5C C8) // should be unique
+alloc(newmem,$1000,INJ_PLAYER_HP_DMG)
+
+label(code)
+label(return)
+
+newmem:
+  xorps xmm8,xmm8
+  xorps xmm7,xmm7
+code:
+  subss xmm1,xmm8
+  jmp return
+
+INJ_PLAYER_HP_DMG+02:
+  jmp newmem
+return:
+registersymbol(INJ_PLAYER_HP_DMG)
+
+[DISABLE]
+
+INJ_PLAYER_HP_DMG+02:
+  db F3 41 0F 5C C8
+
+unregistersymbol(INJ_PLAYER_HP_DMG)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: mgsvtpp2.exe+11F916B
+
+mgsvtpp2.exe+11F9140: 35 2F EA 9D B4     - xor eax,B49DEA2F
+mgsvtpp2.exe+11F9145: 81 F1 AC D5 FB 94  - xor ecx,94FBD5AC
+mgsvtpp2.exe+11F914B: 41 89 4F 40        - mov [r15+40],ecx
+mgsvtpp2.exe+11F914F: 41 89 47 0C        - mov [r15+0C],eax
+mgsvtpp2.exe+11F9153: B8 00 10 00 00     - mov eax,00001000
+mgsvtpp2.exe+11F9158: 66 09 43 22        - or [rbx+22],ax
+mgsvtpp2.exe+11F915C: 0F 2F 37           - comiss xmm6,[rdi]
+mgsvtpp2.exe+11F915F: F3 0F 10 0F        - movss xmm1,[rdi]
+mgsvtpp2.exe+11F9163: F3 0F 10 5F 04     - movss xmm3,[rdi+04]
+mgsvtpp2.exe+11F9168: 0F 93 C0           - setae al
+// ---------- INJECTING HERE ----------
+mgsvtpp2.exe+11F916B: F3 41 0F 5C C8     - subss xmm1,xmm8
+// ---------- DONE INJECTING  ----------
+mgsvtpp2.exe+11F9170: 0F 2F CE           - comiss xmm1,xmm6
+mgsvtpp2.exe+11F9173: 73 03              - jae mgsvtpp2.exe+11F9178
+mgsvtpp2.exe+11F9175: 0F 28 CE           - movaps xmm1,xmm6
+mgsvtpp2.exe+11F9178: 0F 28 C3           - movaps xmm0,xmm3
+mgsvtpp2.exe+11F917B: F3 0F 5C C1        - subss xmm0,xmm1
+mgsvtpp2.exe+11F917F: 0F 2F C6           - comiss xmm0,xmm6
+mgsvtpp2.exe+11F9182: 73 03              - jae mgsvtpp2.exe+11F9187
+mgsvtpp2.exe+11F9184: 0F 28 CB           - movaps xmm1,xmm3
+mgsvtpp2.exe+11F9187: 0F 2F CE           - comiss xmm1,xmm6
+mgsvtpp2.exe+11F918A: F3 0F 11 0F        - movss [rdi],xmm1
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"No Reload"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : mgsvtpp.exe
+  Version: 
+  Date   : 2021-04-30
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_NORELOAD,mgsvtpp2.exe,66 44 89 1C 48 49) // should be unique
+alloc(newmem,$1000,INJ_NORELOAD)
+
+label(code)
+label(return)
+
+newmem:
+  mov r11w,[rax+rcx*2]
+code:
+  mov [rax+rcx*2],r11w
+  jmp return
+
+INJ_NORELOAD:
+  jmp newmem
+return:
+registersymbol(INJ_NORELOAD)
+
+[DISABLE]
+
+INJ_NORELOAD:
+  db 66 44 89 1C 48
+
+unregistersymbol(INJ_NORELOAD)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: mgsvtpp.exe+92CCFC0
+
+mgsvtpp.exe+92CCF9E: FF C8                 - dec eax
+mgsvtpp.exe+92CCFA0: 83 F8 07              - cmp eax,07
+mgsvtpp.exe+92CCFA3: 77 30                 - ja mgsvtpp.exe+92CCFD5
+mgsvtpp.exe+92CCFA5: 44 0F B6 4C 24 28     - movzx r9d,byte ptr [rsp+28]
+mgsvtpp.exe+92CCFAB: 49 8B 42 50           - mov rax,[r10+50]
+mgsvtpp.exe+92CCFAF: 48 8D 0C 49           - lea rcx,[rcx+rcx*2]
+mgsvtpp.exe+92CCFB3: 45 84 C9              - test r9l,r9l
+mgsvtpp.exe+92CCFB6: 74 08                 - je mgsvtpp.exe+92CCFC0
+mgsvtpp.exe+92CCFB8: 66 44 89 5C 48 02     - mov [rax+rcx*2+02],r11w
+mgsvtpp.exe+92CCFBE: EB 05                 - jmp mgsvtpp.exe+92CCFC5
+// ---------- INJECTING HERE ----------
+mgsvtpp.exe+92CCFC0: 66 44 89 1C 48        - mov [rax+rcx*2],r11w
+// ---------- DONE INJECTING  ----------
+mgsvtpp.exe+92CCFC5: 49 8B 4A 58           - mov rcx,[r10+58]
+mgsvtpp.exe+92CCFC9: 45 89 D8              - mov r8d,r11d
+mgsvtpp.exe+92CCFCC: 48 8B 01              - mov rax,[rcx]
+mgsvtpp.exe+92CCFCF: FF A0 00 01 00 00     - jmp qword ptr [rax+00000100]
+mgsvtpp.exe+92CCFD5: F3 C3                 - repe ret 
+mgsvtpp.exe+92CCFD7: F7 D0                 - not eax
+mgsvtpp.exe+92CCFD9: 41 21 C3              - and r11d,eax
+mgsvtpp.exe+92CCFDC: C1 D3 10              - rcl ebx,10
+mgsvtpp.exe+92CCFDF: 44 31 DB              - xor ebx,r11d
+mgsvtpp.exe+92CCFE2: 4C 8D 1D A7 61 27 04  - lea r11,[mgsvtpp.exe+D543190]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>23</ID>
+      <Description>"Unbreable Suppressor"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : mgsvtpp.exe
+  Version: 
+  Date   : 2021-04-30
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_SUPRESSOR,mgsvtpp2.exe,44 0F B6 CF 48 8B 01 41 8B) // should be unique
+alloc(newmem,$1000,INJ_SUPRESSOR)
+
+label(code)
+label(return)
+
+newmem:
+  mov edi,50
+code:
+  movzx r9d,dil
+  mov rax,[rcx]
+  jmp return
+
+INJ_SUPRESSOR:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJ_SUPRESSOR)
+
+[DISABLE]
+
+INJ_SUPRESSOR:
+  db 44 0F B6 CF 48 8B 01
+
+unregistersymbol(INJ_SUPRESSOR)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: mgsvtpp.exe+104200C
+
+mgsvtpp.exe+1041FE1: F7 86 C0 03 00 00 00 00 00 20  - test [rsi+000003C0],20000000
+mgsvtpp.exe+1041FEB: 0F 85 95 00 00 00              - jne mgsvtpp.exe+1042086
+mgsvtpp.exe+1041FF1: 40 0F B6 C7                    - movzx eax,dil
+mgsvtpp.exe+1041FF5: 41 3B C5                       - cmp eax,r13d
+mgsvtpp.exe+1041FF8: 76 05                          - jna mgsvtpp.exe+1041FFF
+mgsvtpp.exe+1041FFA: 41 2A FD                       - sub dil,r13l
+mgsvtpp.exe+1041FFD: EB 03                          - jmp mgsvtpp.exe+1042002
+mgsvtpp.exe+1041FFF: 40 32 FF                       - xor dil,dil
+mgsvtpp.exe+1042002: 48 8B 4C 24 50                 - mov rcx,[rsp+50]
+mgsvtpp.exe+1042007: 44 8B 44 24 38                 - mov r8d,[rsp+38]
+// ---------- INJECTING HERE ----------
+mgsvtpp.exe+104200C: 44 0F B6 CF                    - movzx r9d,dil
+// ---------- DONE INJECTING  ----------
+mgsvtpp.exe+1042010: 48 8B 01                       - mov rax,[rcx]
+mgsvtpp.exe+1042013: 41 8B D4                       - mov edx,r12d
+mgsvtpp.exe+1042016: FF 90 50 01 00 00              - call qword ptr [rax+00000150]
+mgsvtpp.exe+104201C: 40 84 FF                       - test dil,dil
+mgsvtpp.exe+104201F: 75 30                          - jne mgsvtpp.exe+1042051
+mgsvtpp.exe+1042021: 49 8B 4F 08                    - mov rcx,[r15+08]
+mgsvtpp.exe+1042025: 41 B9 0C 00 00 00              - mov r9d,0000000C
+mgsvtpp.exe+104202B: 41 B8 6F DB 1F 89              - mov r8d,891FDB6F
+mgsvtpp.exe+1042031: 48 8B 01                       - mov rax,[rcx]
+mgsvtpp.exe+1042034: 41 8B D4                       - mov edx,r12d
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>24</ID>
+      <Description>"Inf Ammo / Extraction"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : mgsvtpp.exe
+  Version: 
+  Date   : 2021-04-30
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+
+aobscanmodule(INJ_AMMO,mgsvtpp2.exe,66 41 89 14 00) // should be unique
+alloc(newmem,$1000,INJ_AMMO)
+
+label(code)
+label(return)
+label(Lret)
+label(Linf)
+
+newmem:
+  cmp r8,22
+  je code
+  //jmp Linf // 8 4 2C
+Linf:
+  push rbx
+  xor rbx,rbx
+  movzx ebx,word ptr [r8+rax]
+  cmp ebx,edx
+  jbe Lret
+  mov edx,ebx
+
+Lret:
+  pop rbx
+code:
+  mov [r8+rax],dx
+  jmp return
+
+INJ_AMMO:
+  jmp newmem
+return:
+registersymbol(INJ_AMMO)
+
+[DISABLE]
+
+INJ_AMMO:
+  db 66 41 89 14 00
+
+unregistersymbol(INJ_AMMO)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: mgsvtpp.exe+92CD252
+
+mgsvtpp.exe+92CD21C: 48 8D 64 24 08              - lea rsp,[rsp+08]
+mgsvtpp.exe+92CD221: 0F 8B 26 3C 21 FC           - jnp mgsvtpp.exe+54E0E4D
+mgsvtpp.exe+92CD227: 66 0F 1F 84 00 00 00 00 00  - nop word ptr [rax+rax+00000000]
+mgsvtpp.exe+92CD230: 48 63 C2                    - movsxd  rax,edx
+mgsvtpp.exe+92CD233: 4C 8D 04 00                 - lea r8,[rax+rax]
+mgsvtpp.exe+92CD237: 48 8B 81 A0 00 00 00        - mov rax,[rcx+000000A0]
+mgsvtpp.exe+92CD23E: 42 0F B7 14 00              - movzx edx,word ptr [rax+r8]
+mgsvtpp.exe+92CD243: 48 8B 81 98 00 00 00        - mov rax,[rcx+00000098]
+mgsvtpp.exe+92CD24A: 41 39 D1                    - cmp r9d,edx
+mgsvtpp.exe+92CD24D: 66 41 0F 42 D1              - cmovb dx,r9w
+// ---------- INJECTING HERE ----------
+mgsvtpp.exe+92CD252: 66 41 89 14 00              - mov [r8+rax],dx
+// ---------- DONE INJECTING  ----------
+mgsvtpp.exe+92CD257: C3                          - ret 
+mgsvtpp.exe+92CD258: 4D 31 DB                    - xor r11,r11
+mgsvtpp.exe+92CD25B: 4C 0B 1C 24                 - or r11,[rsp]
+mgsvtpp.exe+92CD25F: 48 8D 64 24 08              - lea rsp,[rsp+08]
+mgsvtpp.exe+92CD264: 48 8B 14 24                 - mov rdx,[rsp]
+mgsvtpp.exe+92CD268: 48 89 1C 24                 - mov [rsp],rbx
+mgsvtpp.exe+92CD26C: 48 8D 1D DD D8 3B FC        - lea rbx,[mgsvtpp.exe+568AB50]
+mgsvtpp.exe+92CD273: 48 87 1C 24                 - xchg [rsp],rbx
+mgsvtpp.exe+92CD277: C3                          - ret 
+mgsvtpp.exe+92CD278: 4C 29 3C 24                 - sub [rsp],r15
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>47</ID>
+      <Description>"Inf Item Duration"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : mgsvtpp.exe
+  Version: 
+  Date   : 2021-05-01
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+define(address,"mgsvtpp2.exe"+1286A3F)
+define(bytes,F3 0F 11 7C F8 04)
+
+[ENABLE]
+
+assert(address,bytes)
+alloc(newmem,$1000,"mgsvtpp2.exe"+1286A3F)
+
+label(code)
+label(return)
+label(Lret)
+
+newmem:
+  push rbx
+  movd rbx,xmm8
+  push rbx
+  mov rbx,dword ptr [rax+rdi*8+4]
+  movd xmm8,rbx
+  comiss xmm7,xmm8
+  ja Lret
+  movss xmm7,xmm8
+  jmp Lret
+
+Lret:
+  pop rbx
+  movd xmm8,rbx
+  pop rbx
+code:
+  movss [rax+rdi*8+04],xmm7
+  jmp return
+
+address:
+  jmp newmem
+  nop
+return:
+
+[DISABLE]
+
+address:
+  db bytes
+  // movss [rax+rdi*8+04],xmm7
+
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: mgsvtpp.exe+1286A3F
+
+mgsvtpp.exe+1286A1A: 0F 28 CF           - movaps xmm1,xmm7
+mgsvtpp.exe+1286A1D: 48 8B CD           - mov rcx,rbp
+mgsvtpp.exe+1286A20: E8 AB 06 F7 FF     - call mgsvtpp.exe+11F70D0
+mgsvtpp.exe+1286A25: C6 45 39 01        - mov byte ptr [rbp+39],01
+mgsvtpp.exe+1286A29: 48 8B 46 50        - mov rax,[rsi+50]
+mgsvtpp.exe+1286A2D: F3 0F 10 44 F8 04  - movss xmm0,[rax+rdi*8+04]
+mgsvtpp.exe+1286A33: 0F 2F F0           - comiss xmm6,xmm0
+mgsvtpp.exe+1286A36: 73 07              - jae mgsvtpp.exe+1286A3F
+mgsvtpp.exe+1286A38: F3 0F 5C C6        - subss xmm0,xmm6
+mgsvtpp.exe+1286A3C: 0F 28 F8           - movaps xmm7,xmm0
+// ---------- INJECTING HERE ----------
+mgsvtpp.exe+1286A3F: F3 0F 11 7C F8 04  - movss [rax+rdi*8+04],xmm7
+// ---------- DONE INJECTING  ----------
+mgsvtpp.exe+1286A45: 0F 28 7C 24 20     - movaps xmm7,[rsp+20]
+mgsvtpp.exe+1286A4A: 4C 8B 64 24 78     - mov r12,[rsp+78]
+mgsvtpp.exe+1286A4F: 48 8B 7C 24 70     - mov rdi,[rsp+70]
+mgsvtpp.exe+1286A54: 48 8B 6C 24 68     - mov rbp,[rsp+68]
+mgsvtpp.exe+1286A59: 0F 28 74 24 30     - movaps xmm6,[rsp+30]
+mgsvtpp.exe+1286A5E: 48 8B 5C 24 60     - mov rbx,[rsp+60]
+mgsvtpp.exe+1286A63: 4C 8B 74 24 40     - mov r14,[rsp+40]
+mgsvtpp.exe+1286A68: 48 83 C4 48        - add rsp,48
+mgsvtpp.exe+1286A6C: 41 5F              - pop r15
+mgsvtpp.exe+1286A6E: 5E                 - pop rsi
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>32</ID>
+      <Description>"Max Team LV"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>define(address,"mgsvtpp2.exe"+F9D102)
+define(bytes,01 8B 74 9E 00 00)
+
+define(address2,"mgsvtpp2.exe"+F9D439)
+define(bytes2,01 8B 78 9E 00 00)
+
+define(address3,"mgsvtpp2.exe"+F9CF33)
+define(bytes3,01 8B 70 9E 00 00)
+
+define(address4,"mgsvtpp2.exe"+F9D348)
+define(bytes4,01 8B 84 9E 00 00)
+
+define(address5,"mgsvtpp2.exe"+F9D738)
+define(bytes5,01 8B 80 9E 00 00)
+
+define(address6,"mgsvtpp2.exe"+F9D85C)
+define(bytes6,01 8B 7C 9E 00 00)
+
+define(address7,"mgsvtpp2.exe"+F9D9AB)
+define(bytes7,01 8B 88 9E 00 00)
+
+[ENABLE]
+
+
+assert(address,bytes)
+alloc(newmem,$1000,"mgsvtpp2.exe"+F9D102)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [rbx+00009E74],7ffff
+  jmp return
+
+address:
+  jmp newmem
+  nop
+return:
+
+assert(address2,bytes2)
+alloc(newmem2,$1000,"mgsvtpp2.exe"+F9D439)
+
+label(code2)
+label(return2)
+
+newmem2:
+
+code2:
+  add [rbx+00009E78],7ffff
+  jmp return2
+
+address2:
+  jmp newmem2
+  nop
+return2:
+
+assert(address3,bytes3)
+alloc(newmem3,$1000,"mgsvtpp2.exe"+F9CF33)
+
+label(code3)
+label(return3)
+
+newmem3:
+
+code3:
+  add [rbx+00009E70],7ffff
+  jmp return3
+
+address3:
+  jmp newmem3
+  nop
+return3:
+
+assert(address4,bytes4)
+alloc(newmem4,$1000,"mgsvtpp2.exe"+F9D348)
+
+label(code4)
+label(return4)
+
+newmem4:
+
+code4:
+  add [rbx+00009E84],7ffff
+  jmp return4
+
+address4:
+  jmp newmem4
+  nop
+return4:
+
+assert(address5,bytes5)
+alloc(newmem5,$1000,"mgsvtpp2.exe"+F9D738)
+
+label(code5)
+label(return5)
+
+newmem5:
+
+code5:
+  add [rbx+00009E80],7ffff
+  jmp return5
+
+address5:
+  jmp newmem5
+  nop
+return5:
+
+assert(address6,bytes6)
+alloc(newmem6,$1000,"mgsvtpp2.exe"+F9D85C)
+
+label(code6)
+label(return6)
+
+newmem6:
+
+code6:
+  add [rbx+00009E7C],7ffff
+  jmp return6
+
+address6:
+  jmp newmem6
+  nop
+return6:
+
+assert(address7,bytes7)
+alloc(newmem7,$1000,"mgsvtpp2.exe"+F9D9AB)
+
+label(code7)
+label(return7)
+
+newmem7:
+
+code7:
+  add [rbx+00009E88],7ffff
+  jmp return7
+
+address7:
+  jmp newmem7
+  nop
+return7:
+
+[DISABLE]
+
+address:
+  db bytes
+  // add [rbx+00009E74],ecx
+
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: mgsvtpp.exe+F9D102
+
+mgsvtpp.exe+F9D0CE: 66 FF 83 94 9E 00 00     - inc word ptr [rbx+00009E94]
+mgsvtpp.exe+F9D0D5: 48 8B 83 98 9C 00 00     - mov rax,[rbx+00009C98]
+mgsvtpp.exe+F9D0DC: 41 8B 14 07              - mov edx,[r15+rax]
+mgsvtpp.exe+F9D0E0: 48 8B 83 A0 9C 00 00     - mov rax,[rbx+00009CA0]
+mgsvtpp.exe+F9D0E7: 45 8B 04 07              - mov r8d,[r15+rax]
+mgsvtpp.exe+F9D0EB: 48 8B 83 A8 9C 00 00     - mov rax,[rbx+00009CA8]
+mgsvtpp.exe+F9D0F2: 45 8B 0C 07              - mov r9d,[r15+rax]
+mgsvtpp.exe+F9D0F6: 48 8D 4B 20              - lea rcx,[rbx+20]
+mgsvtpp.exe+F9D0FA: E8 31 B5 84 FF           - call mgsvtpp.exe+7E8630
+mgsvtpp.exe+F9D0FF: 0F B7 C8                 - movzx ecx,ax
+// ---------- INJECTING HERE ----------
+mgsvtpp.exe+F9D102: 01 8B 74 9E 00 00        - add [rbx+00009E74],ecx
+// ---------- DONE INJECTING  ----------
+mgsvtpp.exe+F9D108: B2 09                    - mov dl,09
+mgsvtpp.exe+F9D10A: 66 0F 1F 44 00 00        - nop word ptr [rax+rax+00]
+mgsvtpp.exe+F9D110: 0F B6 CA                 - movzx ecx,dl
+mgsvtpp.exe+F9D113: 66 3B 84 4F D0 EB 39 02  - cmp ax,[rdi+rcx*2+0239EBD0]
+mgsvtpp.exe+F9D11B: 73 0A                    - jae mgsvtpp.exe+F9D127
+mgsvtpp.exe+F9D11D: 80 C2 FF                 - add dl,-01
+mgsvtpp.exe+F9D120: 80 FA 01                 - cmp dl,01
+mgsvtpp.exe+F9D123: 73 EB                    - jae mgsvtpp.exe+F9D110
+mgsvtpp.exe+F9D125: 32 D2                    - xor dl,dl
+mgsvtpp.exe+F9D127: 0F B6 FA                 - movzx edi,dl
+}
+address2:
+  db bytes2
+  // add [rbx+00009E78],ecx
+
+dealloc(newmem2)
+
+{
+// ORIGINAL CODE - INJECTION POINT: mgsvtpp.exe+F9D439
+
+mgsvtpp.exe+F9D409: 48 8D 7B 20                 - lea rdi,[rbx+20]
+mgsvtpp.exe+F9D40D: 48 8B 87 78 9C 00 00        - mov rax,[rdi+00009C78]
+mgsvtpp.exe+F9D414: 41 8B 14 07                 - mov edx,[r15+rax]
+mgsvtpp.exe+F9D418: 48 8B 87 80 9C 00 00        - mov rax,[rdi+00009C80]
+mgsvtpp.exe+F9D41F: 45 8B 04 07                 - mov r8d,[r15+rax]
+mgsvtpp.exe+F9D423: 48 8B 87 88 9C 00 00        - mov rax,[rdi+00009C88]
+mgsvtpp.exe+F9D42A: 45 8B 0C 07                 - mov r9d,[r15+rax]
+mgsvtpp.exe+F9D42E: 48 8B CF                    - mov rcx,rdi
+mgsvtpp.exe+F9D431: E8 9A B7 84 FF              - call mgsvtpp.exe+7E8BD0
+mgsvtpp.exe+F9D436: 0F B7 C8                    - movzx ecx,ax
+// ---------- INJECTING HERE ----------
+mgsvtpp.exe+F9D439: 01 8B 78 9E 00 00           - add [rbx+00009E78],ecx
+// ---------- DONE INJECTING  ----------
+mgsvtpp.exe+F9D43F: B2 09                       - mov dl,09
+mgsvtpp.exe+F9D441: 4C 8D 05 B8 2B 06 FF        - lea r8,[mgsvtpp.exe]
+mgsvtpp.exe+F9D448: 0F 1F 84 00 00 00 00 00     - nop dword ptr [rax+rax+00000000]
+mgsvtpp.exe+F9D450: 0F B6 CA                    - movzx ecx,dl
+mgsvtpp.exe+F9D453: 66 41 3B 84 48 D0 EB 39 02  - cmp ax,[r8+rcx*2+0239EBD0]
+mgsvtpp.exe+F9D45C: 73 0A                       - jae mgsvtpp.exe+F9D468
+mgsvtpp.exe+F9D45E: 80 C2 FF                    - add dl,-01
+mgsvtpp.exe+F9D461: 80 FA 01                    - cmp dl,01
+mgsvtpp.exe+F9D464: 73 EA                       - jae mgsvtpp.exe+F9D450
+mgsvtpp.exe+F9D466: 32 D2                       - xor dl,dl
+}
+address3:
+  db bytes3
+  // add [rbx+00009E70],ecx
+
+dealloc(newmem3)
+
+{
+// ORIGINAL CODE - INJECTION POINT: mgsvtpp.exe+F9CF33
+
+mgsvtpp.exe+F9CF03: 48 8D 73 20              - lea rsi,[rbx+20]
+mgsvtpp.exe+F9CF07: 48 8B 86 78 9C 00 00     - mov rax,[rsi+00009C78]
+mgsvtpp.exe+F9CF0E: 41 8B 14 07              - mov edx,[r15+rax]
+mgsvtpp.exe+F9CF12: 48 8B 86 80 9C 00 00     - mov rax,[rsi+00009C80]
+mgsvtpp.exe+F9CF19: 45 8B 04 07              - mov r8d,[r15+rax]
+mgsvtpp.exe+F9CF1D: 48 8B 86 88 9C 00 00     - mov rax,[rsi+00009C88]
+mgsvtpp.exe+F9CF24: 45 8B 0C 07              - mov r9d,[r15+rax]
+mgsvtpp.exe+F9CF28: 48 8B CE                 - mov rcx,rsi
+mgsvtpp.exe+F9CF2B: E8 80 B5 84 FF           - call mgsvtpp.exe+7E84B0
+mgsvtpp.exe+F9CF30: 0F B7 C8                 - movzx ecx,ax
+// ---------- INJECTING HERE ----------
+mgsvtpp.exe+F9CF33: 01 8B 70 9E 00 00        - add [rbx+00009E70],ecx
+// ---------- DONE INJECTING  ----------
+mgsvtpp.exe+F9CF39: B2 09                    - mov dl,09
+mgsvtpp.exe+F9CF3B: 0F 1F 44 00 00           - nop dword ptr [rax+rax+00]
+mgsvtpp.exe+F9CF40: 0F B6 CA                 - movzx ecx,dl
+mgsvtpp.exe+F9CF43: 66 3B 84 4F D0 EB 39 02  - cmp ax,[rdi+rcx*2+0239EBD0]
+mgsvtpp.exe+F9CF4B: 73 0A                    - jae mgsvtpp.exe+F9CF57
+mgsvtpp.exe+F9CF4D: 80 C2 FF                 - add dl,-01
+mgsvtpp.exe+F9CF50: 80 FA 01                 - cmp dl,01
+mgsvtpp.exe+F9CF53: 73 EB                    - jae mgsvtpp.exe+F9CF40
+mgsvtpp.exe+F9CF55: 32 D2                    - xor dl,dl
+mgsvtpp.exe+F9CF57: 0F B6 FA                 - movzx edi,dl
+}
+address4:
+  db bytes4
+  // add [rbx+00009E84],ecx
+
+dealloc(newmem4)
+
+{
+// ORIGINAL CODE - INJECTION POINT: mgsvtpp.exe+F9D348
+
+mgsvtpp.exe+F9D318: 48 8D 73 20              - lea rsi,[rbx+20]
+mgsvtpp.exe+F9D31C: 48 8B 86 78 9C 00 00     - mov rax,[rsi+00009C78]
+mgsvtpp.exe+F9D323: 41 8B 14 07              - mov edx,[r15+rax]
+mgsvtpp.exe+F9D327: 48 8B 86 80 9C 00 00     - mov rax,[rsi+00009C80]
+mgsvtpp.exe+F9D32E: 45 8B 04 07              - mov r8d,[r15+rax]
+mgsvtpp.exe+F9D332: 48 8B 86 88 9C 00 00     - mov rax,[rsi+00009C88]
+mgsvtpp.exe+F9D339: 45 8B 0C 07              - mov r9d,[r15+rax]
+mgsvtpp.exe+F9D33D: 48 8B CE                 - mov rcx,rsi
+mgsvtpp.exe+F9D340: E8 AB AF 84 FF           - call mgsvtpp.exe+7E82F0
+mgsvtpp.exe+F9D345: 0F B7 C8                 - movzx ecx,ax
+// ---------- INJECTING HERE ----------
+mgsvtpp.exe+F9D348: 01 8B 84 9E 00 00        - add [rbx+00009E84],ecx
+// ---------- DONE INJECTING  ----------
+mgsvtpp.exe+F9D34E: B2 09                    - mov dl,09
+mgsvtpp.exe+F9D350: 0F B6 CA                 - movzx ecx,dl
+mgsvtpp.exe+F9D353: 66 3B 84 4F D0 EB 39 02  - cmp ax,[rdi+rcx*2+0239EBD0]
+mgsvtpp.exe+F9D35B: 73 0A                    - jae mgsvtpp.exe+F9D367
+mgsvtpp.exe+F9D35D: 80 C2 FF                 - add dl,-01
+mgsvtpp.exe+F9D360: 80 FA 01                 - cmp dl,01
+mgsvtpp.exe+F9D363: 73 EB                    - jae mgsvtpp.exe+F9D350
+mgsvtpp.exe+F9D365: 32 D2                    - xor dl,dl
+mgsvtpp.exe+F9D367: 0F B6 FA                 - movzx edi,dl
+mgsvtpp.exe+F9D36A: 66 FF 84 7B E8 9E 00 00  - inc word ptr [rbx+rdi*2+00009EE8]
+}
+address5:
+  db bytes5
+  // add [rbx+00009E80],ecx
+
+dealloc(newmem5)
+
+{
+// ORIGINAL CODE - INJECTION POINT: mgsvtpp.exe+F9D738
+
+mgsvtpp.exe+F9D708: 48 8D 73 20              - lea rsi,[rbx+20]
+mgsvtpp.exe+F9D70C: 48 8B 86 78 9C 00 00     - mov rax,[rsi+00009C78]
+mgsvtpp.exe+F9D713: 41 8B 14 07              - mov edx,[r15+rax]
+mgsvtpp.exe+F9D717: 48 8B 86 80 9C 00 00     - mov rax,[rsi+00009C80]
+mgsvtpp.exe+F9D71E: 45 8B 04 07              - mov r8d,[r15+rax]
+mgsvtpp.exe+F9D722: 48 8B 86 88 9C 00 00     - mov rax,[rsi+00009C88]
+mgsvtpp.exe+F9D729: 45 8B 0C 07              - mov r9d,[r15+rax]
+mgsvtpp.exe+F9D72D: 48 8B CE                 - mov rcx,rsi
+mgsvtpp.exe+F9D730: E8 AB B2 84 FF           - call mgsvtpp.exe+7E89E0
+mgsvtpp.exe+F9D735: 0F B7 C8                 - movzx ecx,ax
+// ---------- INJECTING HERE ----------
+mgsvtpp.exe+F9D738: 01 8B 80 9E 00 00        - add [rbx+00009E80],ecx
+// ---------- DONE INJECTING  ----------
+mgsvtpp.exe+F9D73E: B2 09                    - mov dl,09
+mgsvtpp.exe+F9D740: 0F B6 CA                 - movzx ecx,dl
+mgsvtpp.exe+F9D743: 66 3B 84 4F D0 EB 39 02  - cmp ax,[rdi+rcx*2+0239EBD0]
+mgsvtpp.exe+F9D74B: 73 0A                    - jae mgsvtpp.exe+F9D757
+mgsvtpp.exe+F9D74D: 80 C2 FF                 - add dl,-01
+mgsvtpp.exe+F9D750: 80 FA 01                 - cmp dl,01
+mgsvtpp.exe+F9D753: 73 EB                    - jae mgsvtpp.exe+F9D740
+mgsvtpp.exe+F9D755: 32 D2                    - xor dl,dl
+mgsvtpp.exe+F9D757: 0F B6 FA                 - movzx edi,dl
+mgsvtpp.exe+F9D75A: 66 FF 84 7B 10 9F 00 00  - inc word ptr [rbx+rdi*2+00009F10]
+}
+address6:
+  db bytes6
+  // add [rbx+00009E7C],ecx
+
+dealloc(newmem6)
+
+{
+// ORIGINAL CODE - INJECTION POINT: mgsvtpp.exe+F9D85C
+
+mgsvtpp.exe+F9D82C: 48 8D 73 20                          - lea rsi,[rbx+20]
+mgsvtpp.exe+F9D830: 48 8B 86 78 9C 00 00                 - mov rax,[rsi+00009C78]
+mgsvtpp.exe+F9D837: 41 8B 14 07                          - mov edx,[r15+rax]
+mgsvtpp.exe+F9D83B: 48 8B 86 80 9C 00 00                 - mov rax,[rsi+00009C80]
+mgsvtpp.exe+F9D842: 45 8B 04 07                          - mov r8d,[r15+rax]
+mgsvtpp.exe+F9D846: 48 8B 86 88 9C 00 00                 - mov rax,[rsi+00009C88]
+mgsvtpp.exe+F9D84D: 45 8B 0C 07                          - mov r9d,[r15+rax]
+mgsvtpp.exe+F9D851: 48 8B CE                             - mov rcx,rsi
+mgsvtpp.exe+F9D854: E8 77 AF 84 FF                       - call mgsvtpp.exe+7E87D0
+mgsvtpp.exe+F9D859: 0F B7 C8                             - movzx ecx,ax
+// ---------- INJECTING HERE ----------
+mgsvtpp.exe+F9D85C: 01 8B 7C 9E 00 00                    - add [rbx+00009E7C],ecx
+// ---------- DONE INJECTING  ----------
+mgsvtpp.exe+F9D862: B2 09                                - mov dl,09
+mgsvtpp.exe+F9D864: 66 66 66 66 0F 1F 84 00 00 00 00 00  - nop word ptr [rax+rax+00000000]
+mgsvtpp.exe+F9D870: 0F B6 CA                             - movzx ecx,dl
+mgsvtpp.exe+F9D873: 66 3B 84 4F D0 EB 39 02              - cmp ax,[rdi+rcx*2+0239EBD0]
+mgsvtpp.exe+F9D87B: 73 0A                                - jae mgsvtpp.exe+F9D887
+mgsvtpp.exe+F9D87D: 80 C2 FF                             - add dl,-01
+mgsvtpp.exe+F9D880: 80 FA 01                             - cmp dl,01
+mgsvtpp.exe+F9D883: 73 EB                                - jae mgsvtpp.exe+F9D870
+mgsvtpp.exe+F9D885: 32 D2                                - xor dl,dl
+mgsvtpp.exe+F9D887: 0F B6 FA                             - movzx edi,dl
+}
+address7:
+  db bytes7
+  // add [rbx+00009E88],ecx
+
+dealloc(newmem7)
+
+{
+// ORIGINAL CODE - INJECTION POINT: mgsvtpp.exe+F9D9AB
+
+mgsvtpp.exe+F9D97B: 48 8D 73 20              - lea rsi,[rbx+20]
+mgsvtpp.exe+F9D97F: 48 8B 86 78 9C 00 00     - mov rax,[rsi+00009C78]
+mgsvtpp.exe+F9D986: 41 8B 14 07              - mov edx,[r15+rax]
+mgsvtpp.exe+F9D98A: 48 8B 86 80 9C 00 00     - mov rax,[rsi+00009C80]
+mgsvtpp.exe+F9D991: 45 8B 04 07              - mov r8d,[r15+rax]
+mgsvtpp.exe+F9D995: 48 8B 86 88 9C 00 00     - mov rax,[rsi+00009C88]
+mgsvtpp.exe+F9D99C: 45 8B 0C 07              - mov r9d,[r15+rax]
+mgsvtpp.exe+F9D9A0: 48 8B CE                 - mov rcx,rsi
+mgsvtpp.exe+F9D9A3: E8 08 AB 84 FF           - call mgsvtpp.exe+7E84B0
+mgsvtpp.exe+F9D9A8: 0F B7 C8                 - movzx ecx,ax
+// ---------- INJECTING HERE ----------
+mgsvtpp.exe+F9D9AB: 01 8B 88 9E 00 00        - add [rbx+00009E88],ecx
+// ---------- DONE INJECTING  ----------
+mgsvtpp.exe+F9D9B1: B2 09                    - mov dl,09
+mgsvtpp.exe+F9D9B3: 0F B6 CA                 - movzx ecx,dl
+mgsvtpp.exe+F9D9B6: 66 3B 84 4F D0 EB 39 02  - cmp ax,[rdi+rcx*2+0239EBD0]
+mgsvtpp.exe+F9D9BE: 73 0A                    - jae mgsvtpp.exe+F9D9CA
+mgsvtpp.exe+F9D9C0: 80 C2 FF                 - add dl,-01
+mgsvtpp.exe+F9D9C3: 80 FA 01                 - cmp dl,01
+mgsvtpp.exe+F9D9C6: 73 EB                    - jae mgsvtpp.exe+F9D9B3
+mgsvtpp.exe+F9D9C8: 32 D2                    - xor dl,dl
+mgsvtpp.exe+F9D9CA: 0F B6 FA                 - movzx edi,dl
+mgsvtpp.exe+F9D9CD: 66 FF 84 7B 38 9F 00 00  - inc word ptr [rbx+rdi*2+00009F38]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>140</ID>
+      <Description>"Inf Resources"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : mgsvtpp2.exe
+  Version: 
+  Date   : 2021-05-20
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_INF_RSS,mgsvtpp2.exe,39 DF 7D 2B 42 8D 04 07) // should be unique
+alloc(newmem,$1000,INJ_INF_RSS)
+
+label(code)
+label(return)
+
+newmem:
+  mov ebx,7fffff
+  mov edi,ebx
+  dec edi
+code:
+  cmp edi,ebx
+  jnl mgsvtpp2.exe+60AB51C
+  lea eax,[rdi+r8]
+  jmp return
+
+INJ_INF_RSS:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJ_INF_RSS)
+
+[DISABLE]
+
+INJ_INF_RSS:
+  db 39 DF 7D 2B 42 8D 04 07
+
+unregistersymbol(INJ_INF_RSS)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: mgsvtpp2.exe+60AB4ED
+
+mgsvtpp2.exe+60AB4D1: 41 0F B6 CB     - movzx ecx,r11l
+mgsvtpp2.exe+60AB4D5: 89 C3           - mov ebx,eax
+mgsvtpp2.exe+60AB4D7: E8 D4 A9 8A FA  - call mgsvtpp2.exe+955EB0
+mgsvtpp2.exe+60AB4DC: 89 DF           - mov edi,ebx
+mgsvtpp2.exe+60AB4DE: 39 C2           - cmp edx,eax
+mgsvtpp2.exe+60AB4E0: 0F 4F C2        - cmovg eax,edx
+mgsvtpp2.exe+60AB4E3: 39 D8           - cmp eax,ebx
+mgsvtpp2.exe+60AB4E5: 0F 4C F8        - cmovl edi,eax
+mgsvtpp2.exe+60AB4E8: 45 85 C0        - test r8d,r8d
+mgsvtpp2.exe+60AB4EB: 7E 2F           - jle mgsvtpp2.exe+60AB51C
+// ---------- INJECTING HERE ----------
+mgsvtpp2.exe+60AB4ED: 39 DF           - cmp edi,ebx
+// ---------- DONE INJECTING  ----------
+mgsvtpp2.exe+60AB4EF: 7D 2B           - jnl mgsvtpp2.exe+60AB51C
+mgsvtpp2.exe+60AB4F1: 42 8D 04 07     - lea eax,[rdi+r8]
+mgsvtpp2.exe+60AB4F5: 41 0F B6 D3     - movzx edx,r11l
+mgsvtpp2.exe+60AB4F9: 4C 89 D1        - mov rcx,r10
+mgsvtpp2.exe+60AB4FC: 39 D8           - cmp eax,ebx
+mgsvtpp2.exe+60AB4FE: 0F 4C D8        - cmovl ebx,eax
+mgsvtpp2.exe+60AB501: 41 89 D8        - mov r8d,ebx
+mgsvtpp2.exe+60AB504: E8 87 CB 73 FA  - call mgsvtpp2.exe+7E8090
+mgsvtpp2.exe+60AB509: 29 FB           - sub ebx,edi
+mgsvtpp2.exe+60AB50B: 48 8B 7C 24 20  - mov rdi,[rsp+20]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>115</ID>
+      <Description>"No Hit Box"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : mgsvtpp2.exe
+  Version: 
+  Date   : 2021-05-20
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_HITBOX,mgsvtpp2.exe,40 53 55 41 56 48 83 EC 70 48) // should be unique
+alloc(newmem,$1000,INJ_HITBOX)
+
+label(code)
+label(return)
+
+newmem:
+  ret
+  jmp return
+code:
+  push rbx
+  push rbp
+  push r14
+  jmp return
+
+INJ_HITBOX:
+  jmp newmem
+return:
+registersymbol(INJ_HITBOX)
+
+[DISABLE]
+
+INJ_HITBOX:
+  db 40 53 55 41 56
+
+unregistersymbol(INJ_HITBOX)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: mgsvtpp2.exe+11F71D0
+
+mgsvtpp2.exe+11F71C6: CC                    - int 3 
+mgsvtpp2.exe+11F71C7: CC                    - int 3 
+mgsvtpp2.exe+11F71C8: CC                    - int 3 
+mgsvtpp2.exe+11F71C9: CC                    - int 3 
+mgsvtpp2.exe+11F71CA: CC                    - int 3 
+mgsvtpp2.exe+11F71CB: CC                    - int 3 
+mgsvtpp2.exe+11F71CC: CC                    - int 3 
+mgsvtpp2.exe+11F71CD: CC                    - int 3 
+mgsvtpp2.exe+11F71CE: CC                    - int 3 
+mgsvtpp2.exe+11F71CF: CC                    - int 3 
+// ---------- INJECTING HERE ----------
+mgsvtpp2.exe+11F71D0: 40 53                 - push rbx
+// ---------- DONE INJECTING  ----------
+mgsvtpp2.exe+11F71D2: 55                    - push rbp
+mgsvtpp2.exe+11F71D3: 41 56                 - push r14
+mgsvtpp2.exe+11F71D5: 48 83 EC 70           - sub rsp,70
+mgsvtpp2.exe+11F71D9: 48 8B 41 08           - mov rax,[rcx+08]
+mgsvtpp2.exe+11F71DD: 45 33 C9              - xor r9d,r9d
+mgsvtpp2.exe+11F71E0: 0F 29 74 24 60        - movaps [rsp+60],xmm6
+mgsvtpp2.exe+11F71E5: 44 8B 90 04 02 00 00  - mov r10d,[rax+00000204]
+mgsvtpp2.exe+11F71EC: 44 8B 80 08 02 00 00  - mov r8d,[rax+00000208]
+mgsvtpp2.exe+11F71F3: 48 8B D9              - mov rbx,rcx
+mgsvtpp2.exe+11F71F6: 0F 57 F6              - xorps xmm6,xmm6
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>141</ID>
+      <Description>"Instant Skull Kill"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : mgsvtpp2.exe
+  Version: 
+  Date   : 2021-05-20
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_INSKILL_SKULL,mgsvtpp2.exe,45 0F 2E 0C 0E) // should be unique
+alloc(newmem,$1000,INJ_INSKILL_SKULL)
+
+label(code)
+label(return)
+
+newmem:
+  xorps xmm15,xmm15
+  movd [r14+rcx],xmm15
+code:
+  ucomiss xmm9,[r14+rcx]
+  jmp return
+
+INJ_INSKILL_SKULL:
+  jmp newmem
+return:
+registersymbol(INJ_INSKILL_SKULL)
+
+[DISABLE]
+
+INJ_INSKILL_SKULL:
+  db 45 0F 2E 0C 0E
+
+unregistersymbol(INJ_INSKILL_SKULL)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: mgsvtpp2.exe+187B139
+
+mgsvtpp2.exe+187B0FE: 49 8B 45 38              - mov rax,[r13+38]
+mgsvtpp2.exe+187B102: F3 0F 10 04 A8           - movss xmm0,[rax+rbp*4]
+mgsvtpp2.exe+187B107: F3 41 0F 59 45 48        - mulss xmm0,[r13+48]
+mgsvtpp2.exe+187B10D: F3 0F 58 44 BE 04        - addss xmm0,[rsi+rdi*4+04]
+mgsvtpp2.exe+187B113: F3 0F 11 44 BE 04        - movss [rsi+rdi*4+04],xmm0
+mgsvtpp2.exe+187B119: 49 8B 87 D8 00 00 00     - mov rax,[r15+000000D8]
+mgsvtpp2.exe+187B120: 44 0F 28 54 24 40        - movaps xmm10,[rsp+40]
+mgsvtpp2.exe+187B126: 4C 8B AC 24 D0 00 00 00  - mov r13,[rsp+000000D0]
+mgsvtpp2.exe+187B12E: 48 8B 48 08              - mov rcx,[rax+08]
+mgsvtpp2.exe+187B132: 4D 69 F6 B4 00 00 00     - imul r14,r14,000000B4
+// ---------- INJECTING HERE ----------
+mgsvtpp2.exe+187B139: 45 0F 2E 0C 0E           - ucomiss xmm9,[r14+rcx]
+// ---------- DONE INJECTING  ----------
+mgsvtpp2.exe+187B13E: 75 0C                    - jne mgsvtpp2.exe+187B14C
+mgsvtpp2.exe+187B140: 41 F6 44 0E 10 01        - test byte ptr [r14+rcx+10],01
+mgsvtpp2.exe+187B146: 0F 85 A4 00 00 00        - jne mgsvtpp2.exe+187B1F0
+mgsvtpp2.exe+187B14C: 45 0F 2E 4C 0E 14        - ucomiss xmm9,[r14+rcx+14]
+mgsvtpp2.exe+187B152: 75 0C                    - jne mgsvtpp2.exe+187B160
+mgsvtpp2.exe+187B154: 41 F6 44 0E 24 01        - test byte ptr [r14+rcx+24],01
+mgsvtpp2.exe+187B15A: 0F 85 90 00 00 00        - jne mgsvtpp2.exe+187B1F0
+mgsvtpp2.exe+187B160: 4D 8B 47 18              - mov r8,[r15+18]
+mgsvtpp2.exe+187B164: 41 8B 50 44              - mov edx,[r8+44]
+mgsvtpp2.exe+187B168: 85 D2                    - test edx,edx
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>42</ID>
+      <Description>"Resources"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Value="" Activated="1" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>36</ID>
+          <Description>"Fuel Resources"</Description>
+          <LastState Value="48514" RealAddress="142C1265C"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>2 Bytes</VariableType>
+          <Address>mgsvtpp2.exe+2C1265C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>35</ID>
+          <Description>"Biological Material"</Description>
+          <LastState Value="48514" RealAddress="142C12660"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>2 Bytes</VariableType>
+          <Address>mgsvtpp2.exe+2C12660</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>34</ID>
+          <Description>"Common Metal"</Description>
+          <LastState Value="48514" RealAddress="142C12664"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>2 Bytes</VariableType>
+          <Address>mgsvtpp2.exe+2C12664</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>37</ID>
+          <Description>"Minor Metal"</Description>
+          <LastState Value="48514" RealAddress="142C12668"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>2 Bytes</VariableType>
+          <Address>mgsvtpp2.exe+2C12668</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>48</ID>
+          <Description>"Precious Metal"</Description>
+          <LastState Value="48514" RealAddress="142C1266C"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>2 Bytes</VariableType>
+          <Address>mgsvtpp2.exe+2C1266C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>38</ID>
+          <Description>"Wormwood"</Description>
+          <LastState Value="12000" RealAddress="142C12670"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>2 Bytes</VariableType>
+          <Address>mgsvtpp2.exe+2C12670+0</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>39</ID>
+          <Description>"Black Carrot"</Description>
+          <LastState Value="12000" RealAddress="142C12674"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>2 Bytes</VariableType>
+          <Address>mgsvtpp2.exe+2C12670+4</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>40</ID>
+          <Description>"Golden Crescebt"</Description>
+          <LastState Value="11936" RealAddress="142C12678"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>2 Bytes</VariableType>
+          <Address>mgsvtpp2.exe+2C12670+8</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>41</ID>
+          <Description>"Tarrgaon"</Description>
+          <LastState Value="12000" RealAddress="142C1267C"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>2 Bytes</VariableType>
+          <Address>mgsvtpp2.exe+2C12670+C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>78</ID>
+          <Description>"African Peach"</Description>
+          <LastState Value="12000" RealAddress="142C12680"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>2 Bytes</VariableType>
+          <Address>mgsvtpp2.exe+2C12670+10</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>50</ID>
+          <Description>"Haoma"</Description>
+          <LastState Value="11834" RealAddress="142C1268C"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>2 Bytes</VariableType>
+          <Address>mgsvtpp2.exe+2C12670+1C</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>56</ID>
+          <Description>"Purpurea"</Description>
+          <LastState Value="6130" RealAddress="142C12684"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>2 Bytes</VariableType>
+          <Address>mgsvtpp2.exe+2C12684</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>77</ID>
+          <Description>"Lutea"</Description>
+          <LastState Value="9320" RealAddress="142C12688"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>2 Bytes</VariableType>
+          <Address>mgsvtpp2.exe+2C12688</Address>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>52</ID>
+      <Description>"Inf Vehicle Ammo"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+aobscanmodule(INJ_VEHI_AMMO,mgsvtpp2.exe,66 01 14 48 48 8B 4C 24 70) // should be unique
+alloc(newmem,$1000,INJ_VEHI_AMMO)
+
+label(code)
+label(return)
+
+newmem:
+  cmp edx,ffff
+  jne code
+  xor edx,edx
+
+code:
+  add [rax+rcx*2],dx
+  mov rcx,[rsp+70]
+  jmp return
+
+INJ_VEHI_AMMO:
+  jmp newmem
+  nop 4
+return:
+registersymbol(INJ_VEHI_AMMO)
+
+aobscanmodule(INJ_VEHI_AMMO2,mgsvtpp2.exe,66 01 14 48 48 8B 8D E0 FF FF FF) // should be unique
+alloc(newmem2,$1000,INJ_VEHI_AMMO2)
+
+label(code2)
+label(return2)
+
+newmem2:
+  cmp edx,ffff
+  jne code
+  xor edx,edx
+code2:
+  add [rax+rcx*2],dx
+  mov rcx,[rbp-00000020]
+  jmp return2
+
+INJ_VEHI_AMMO2:
+  jmp newmem2
+  nop 6
+return2:
+registersymbol(INJ_VEHI_AMMO2)
+
+aobscanmodule(INJ_VEHI_AMMO3,mgsvtpp2.exe,66 01 14 48 48 8B 4C 24 70) // should be unique
+alloc(newmem3,$1000,INJ_VEHI_AMMO3)
+
+label(code3)
+label(return3)
+
+newmem3:
+  cmp edx,ffff
+  jne code
+  xor edx,edx
+code3:
+  add [rax+rcx*2],dx
+  mov rcx,[rsp+70]
+  jmp return3
+
+INJ_VEHI_AMMO3:
+  jmp newmem3
+  nop 4
+return3:
+registersymbol(INJ_VEHI_AMMO3)
+
+[DISABLE]
+
+INJ_VEHI_AMMO:
+  db 66 01 14 48 48 8B 4C 24 70
+
+unregistersymbol(INJ_VEHI_AMMO)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: mgsvtpp.exe+6C28EA3
+
+mgsvtpp.exe+6C28E79: 41 8D 4F 09           - lea ecx,[r15+09]
+mgsvtpp.exe+6C28E7D: 0F B6 D1              - movzx edx,cl
+mgsvtpp.exe+6C28E80: 0F A3 D0              - bt eax,edx
+mgsvtpp.exe+6C28E83: 73 22                 - jae mgsvtpp.exe+6C28EA7
+mgsvtpp.exe+6C28E85: 0F B7 45 78           - movzx eax,word ptr [rbp+78]
+mgsvtpp.exe+6C28E89: BA FF FF 00 00        - mov edx,0000FFFF
+mgsvtpp.exe+6C28E8E: 48 8D 0C 40           - lea rcx,[rax+rax*2]
+mgsvtpp.exe+6C28E92: 0F B6 87 48 01 00 00  - movzx eax,byte ptr [rdi+00000148]
+mgsvtpp.exe+6C28E99: 48 01 C1              - add rcx,rax
+mgsvtpp.exe+6C28E9C: 48 8B 87 30 01 00 00  - mov rax,[rdi+00000130]
+// ---------- INJECTING HERE ----------
+mgsvtpp.exe+6C28EA3: 66 01 14 48           - add [rax+rcx*2],dx
+// ---------- DONE INJECTING  ----------
+mgsvtpp.exe+6C28EA7: 48 8B 4C 24 70        - mov rcx,[rsp+70]
+mgsvtpp.exe+6C28EAC: 48 31 E1              - xor rcx,rsp
+mgsvtpp.exe+6C28EAF: E8 AC CE DD FA        - call mgsvtpp.exe+1A05D60
+mgsvtpp.exe+6C28EB4: 48 81 C4 88 00 00 00  - add rsp,00000088
+mgsvtpp.exe+6C28EBB: 41 5F                 - pop r15
+mgsvtpp.exe+6C28EBD: 41 5E                 - pop r14
+mgsvtpp.exe+6C28EBF: 41 5D                 - pop r13
+mgsvtpp.exe+6C28EC1: 41 5C                 - pop r12
+mgsvtpp.exe+6C28EC3: 5F                    - pop rdi
+mgsvtpp.exe+6C28EC4: 5E                    - pop rsi
+}
+INJ_VEHI_AMMO2:
+  db 66 01 14 48 48 8B 8D E0 FF FF FF
+
+unregistersymbol(INJ_VEHI_AMMO2)
+dealloc(newmem2)
+
+{
+// ORIGINAL CODE - INJECTION POINT: mgsvtpp.exe+6C3802B
+
+mgsvtpp.exe+6C37FFD: 41 8B 44 24 74           - mov eax,[r12+74]
+mgsvtpp.exe+6C38002: 0F B6 D1                 - movzx edx,cl
+mgsvtpp.exe+6C38005: 0F A3 D0                 - bt eax,edx
+mgsvtpp.exe+6C38008: 73 25                    - jae mgsvtpp.exe+6C3802F
+mgsvtpp.exe+6C3800A: 41 0F B7 44 24 78        - movzx eax,word ptr [r12+78]
+mgsvtpp.exe+6C38010: BA FF FF 00 00           - mov edx,0000FFFF
+mgsvtpp.exe+6C38015: 48 8D 0C 40              - lea rcx,[rax+rax*2]
+mgsvtpp.exe+6C38019: 41 0F B6 85 48 01 00 00  - movzx eax,byte ptr [r13+00000148]
+mgsvtpp.exe+6C38021: 48 01 C1                 - add rcx,rax
+mgsvtpp.exe+6C38024: 49 8B 85 30 01 00 00     - mov rax,[r13+00000130]
+// ---------- INJECTING HERE ----------
+mgsvtpp.exe+6C3802B: 66 01 14 48              - add [rax+rcx*2],dx
+// ---------- DONE INJECTING  ----------
+mgsvtpp.exe+6C3802F: 48 8B 8D E0 FF FF FF     - mov rcx,[rbp-00000020]
+mgsvtpp.exe+6C38036: 48 31 E1                 - xor rcx,rsp
+mgsvtpp.exe+6C38039: E8 22 DD DC FA           - call mgsvtpp.exe+1A05D60
+mgsvtpp.exe+6C3803E: 4C 8D 9C 24 98 01 00 00  - lea r11,[rsp+00000198]
+mgsvtpp.exe+6C38046: 41 0F 28 B3 E8 FF FF FF  - movaps xmm6,[r11-00000018]
+mgsvtpp.exe+6C3804E: 41 0F 28 BB D8 FF FF FF  - movaps xmm7,[r11-00000028]
+mgsvtpp.exe+6C38056: 45 0F 28 83 C8 FF FF FF  - movaps xmm8,[r11-00000038]
+mgsvtpp.exe+6C3805E: 45 0F 28 8B B8 FF FF FF  - movaps xmm9,[r11-00000048]
+mgsvtpp.exe+6C38066: 45 0F 28 93 A8 FF FF FF  - movaps xmm10,[r11-00000058]
+mgsvtpp.exe+6C3806E: 45 0F 28 9B 98 FF FF FF  - movaps xmm11,[r11-00000068]
+}
+INJ_VEHI_AMMO3:
+  db 66 01 14 48 48 8B 4C 24 70
+
+unregistersymbol(INJ_VEHI_AMMO3)
+dealloc(newmem3)
+
+{
+// ORIGINAL CODE - INJECTION POINT: mgsvtpp.exe+6C28EA3
+
+mgsvtpp.exe+6C28E79: 41 8D 4F 09           - lea ecx,[r15+09]
+mgsvtpp.exe+6C28E7D: 0F B6 D1              - movzx edx,cl
+mgsvtpp.exe+6C28E80: 0F A3 D0              - bt eax,edx
+mgsvtpp.exe+6C28E83: 73 22                 - jae mgsvtpp.exe+6C28EA7
+mgsvtpp.exe+6C28E85: 0F B7 45 78           - movzx eax,word ptr [rbp+78]
+mgsvtpp.exe+6C28E89: BA FF FF 00 00        - mov edx,0000FFFF
+mgsvtpp.exe+6C28E8E: 48 8D 0C 40           - lea rcx,[rax+rax*2]
+mgsvtpp.exe+6C28E92: 0F B6 87 48 01 00 00  - movzx eax,byte ptr [rdi+00000148]
+mgsvtpp.exe+6C28E99: 48 01 C1              - add rcx,rax
+mgsvtpp.exe+6C28E9C: 48 8B 87 30 01 00 00  - mov rax,[rdi+00000130]
+// ---------- INJECTING HERE ----------
+mgsvtpp.exe+6C28EA3: 66 01 14 48           - add [rax+rcx*2],dx
+// ---------- DONE INJECTING  ----------
+mgsvtpp.exe+6C28EA7: 48 8B 4C 24 70        - mov rcx,[rsp+70]
+mgsvtpp.exe+6C28EAC: 48 31 E1              - xor rcx,rsp
+mgsvtpp.exe+6C28EAF: E8 AC CE DD FA        - call mgsvtpp.exe+1A05D60
+mgsvtpp.exe+6C28EB4: 48 81 C4 88 00 00 00  - add rsp,00000088
+mgsvtpp.exe+6C28EBB: 41 5F                 - pop r15
+mgsvtpp.exe+6C28EBD: 41 5E                 - pop r14
+mgsvtpp.exe+6C28EBF: 41 5D                 - pop r13
+mgsvtpp.exe+6C28EC1: 41 5C                 - pop r12
+mgsvtpp.exe+6C28EC3: 5F                    - pop rdi
+mgsvtpp.exe+6C28EC4: 5E                    - pop rsi
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>58</ID>
+      <Description>"Equipments (Development screen)"</Description>
+      <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : mgsvtpp.exe
+  Version: 
+  Date   : 2021-05-05
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_WP_BAK,mgsvtpp2.exe,8B 42 2C 89 41 2C 0F) // should be unique
+alloc(newmem,$1000,INJ_WP_BAK)
+
+label(code)
+label(return)
+label(pt_wp_bak)
+
+newmem:
+  mov [pt_wp_bak],rdx
+code:
+  mov eax,[rdx+2C]
+  mov [rcx+2C],eax
+  jmp return
+
+pt_wp_bak:
+  dq 0
+registersymbol(pt_wp_bak)
+
+INJ_WP_BAK:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_WP_BAK)
+
+[DISABLE]
+
+INJ_WP_BAK:
+  db 8B 42 2C 89 41 2C
+
+unregistersymbol(pt_wp_bak)
+unregistersymbol(INJ_WP_BAK)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: mgsvtpp.exe+5C43885
+
+mgsvtpp.exe+5C43862: 0F B6 42 1D  - movzx eax,byte ptr [rdx+1D]
+mgsvtpp.exe+5C43866: 88 41 1D     - mov [rcx+1D],al
+mgsvtpp.exe+5C43869: 48 8B 42 1E  - mov rax,[rdx+1E]
+mgsvtpp.exe+5C4386D: 48 89 41 1E  - mov [rcx+1E],rax
+mgsvtpp.exe+5C43871: 8B 42 26     - mov eax,[rdx+26]
+mgsvtpp.exe+5C43874: 89 41 26     - mov [rcx+26],eax
+mgsvtpp.exe+5C43877: 0F B6 42 2A  - movzx eax,byte ptr [rdx+2A]
+mgsvtpp.exe+5C4387B: 88 41 2A     - mov [rcx+2A],al
+mgsvtpp.exe+5C4387E: 0F B6 42 2B  - movzx eax,byte ptr [rdx+2B]
+mgsvtpp.exe+5C43882: 88 41 2B     - mov [rcx+2B],al
+// ---------- INJECTING HERE ----------
+mgsvtpp.exe+5C43885: 8B 42 2C     - mov eax,[rdx+2C]
+// ---------- DONE INJECTING  ----------
+mgsvtpp.exe+5C43888: 89 41 2C     - mov [rcx+2C],eax
+mgsvtpp.exe+5C4388B: 0F B6 42 30  - movzx eax,byte ptr [rdx+30]
+mgsvtpp.exe+5C4388F: 88 41 30     - mov [rcx+30],al
+mgsvtpp.exe+5C43892: 0F B6 42 31  - movzx eax,byte ptr [rdx+31]
+mgsvtpp.exe+5C43896: 88 41 31     - mov [rcx+31],al
+mgsvtpp.exe+5C43899: 48 8B 42 32  - mov rax,[rdx+32]
+mgsvtpp.exe+5C4389D: 48 89 41 32  - mov [rcx+32],rax
+mgsvtpp.exe+5C438A1: 8B 42 3A     - mov eax,[rdx+3A]
+mgsvtpp.exe+5C438A4: 89 41 3A     - mov [rcx+3A],eax
+mgsvtpp.exe+5C438A7: 0F B6 42 3E  - movzx eax,byte ptr [rdx+3E]
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>59</ID>
+          <Description>"Primary-Hip"</Description>
+          <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">570:WU S.Pistol I
+571:WU S.Pistol II
+572:WU S.Pistol III
+573:WU S.Pistol IV
+574:WU S.Pistol V
+575:WU S.Pistol CB
+576:WU S.Pistol SB
+577:WU S.Pistol AP
+578:WU S.Pistol 9 IV
+579:WU S.Pistol 9 VII
+560:AM D114 I
+561:AM D114 II
+562:AM D114 III
+563:AM D114 IV
+564:AM D114 CB
+565:AM D114-9
+566:AM D114LB-45 IV
+567:AM D114LB-45 V
+568:AM D114LB-9 V
+569:AM D114LB-9 VII
+580:Burkov I
+581:Burkov II
+582:Burkov III
+583:Burkov V
+584:Burkov TB
+585:Burkov HS
+586:Geist P3 II
+587:Geist P3 III
+588:Geist P3 IV
+589:Geist P3 V
+590:Geist P3 VII
+591:Geist P3 CB
+592:WU S333 III
+593:WU S333 IV
+594:WU S333 V
+595:WU S333 VIII
+596:WU S324LB IV
+597:WU S324LB V
+598:WU S324LB VIII
+599:WU S362SB IV
+600:WU S362SB V
+601:WU S362SB VIII
+602:Uragan-5 III
+603:Uragan-5P
+604:Uragan-5 SLUG
+605:Uragan-5 AIR-S
+606:Zorn-KP III
+607:Zorn-KP IV
+608:Zorn-KP Smoke
+609:Zorn-KP Stun
+610:Zorn-KP Sleep
+102:Adam-SKA SP.
+101:WU S333 CB SP.
+614:Sz.-336 SMG II
+615:Sz.-336 SMG III
+616:Sz.-336 SMG IV
+617:Sz.-336 SMG V
+618:Sz.-336 SMG VI
+619:Sz.-336 SMG HS
+620:Ze'EV III
+621:Ze'EV IV
+622:Ze'EV V
+623:Ze'EV VI
+624:Ze'EV 10 VII
+625:Macht 37 III
+626:Macht 37 IV
+627:Macht 37 V
+628:Macht 37 VII
+629:Macht 37L V
+630:Macht 37L VI
+631:Macht 37K
+103:Macht-P5 Weiss
+632:Riot SMG II
+633:Riot SMG III
+634:Riot SMG IV
+635:Riot SMG V
+637:SVG-76 I
+638:SVG-76 II
+639:SVG-76 III
+640:SVG-76 IV
+641:SVG-76 V
+642:SVG-67 IV
+643:SVG-67 V
+644:SVG-67 VII
+645:SVG-76U III
+646:SVG-76U IV
+647:SVG-76U V
+648:SVG-67U IV
+649:SVG-67U V
+650:SVG-67U VI
+651:PG-76 III
+652:PG-76 IV
+653:PG-76 V
+654:PG-76 VII
+655:PG-76 VIII
+656:PG-67 IV
+657:PG-67 V
+658:PG-67 VI
+659:PG-67 VIII
+660:AM MRS-4 I
+661:AM MRS-4 II
+662:AM MRS-4 III
+663:AM MRS-4 IV
+664:AM MRS-4 V
+665:AM MRS-4R III
+666:AM MRS-4R IV
+667:AM MRS-4R V
+668:AM MRS-4LS III
+669:AM MRS-4LS IV
+670:AM MRS-4LS V
+671:UN-ARC I
+672:UN-ARC II
+673:UN-ARC III
+674:UN-ARC IV
+675:UN-ARC V
+676:UN-ARC-PT III
+677:UN-ARC-PT IV
+678:UN-ARC-HB III
+679:UN-ARC-HB IV
+680:UN-ARC-HB V
+681:UN-ARC-N: II
+682:UN-ARC-N: III
+683:UN-ARC-N: IV
+684:UN-ARC-N: V
+685:G44 III
+686:G44 IV
+687:G44 V
+688:G44 VII
+689:G44K IV
+690:G44K V
+691:G44K VII
+692:G44-9 V
+693:G44-9 VI
+694:G44-9 VIII
+695:G44MG IV
+696:G44MG V
+773:Renov-ICKX SR I
+774:Renov-ICKX SR II
+775:Renov-ICKX SR III
+776:Renov-ICKX SR IV
+777:Renov-ICKX SR V
+778:Renov-ICKX TP II
+779:Renov-ICKX TP III
+780:Renov-ICKX TP IV
+781:Renov-ICKX TP V
+782:M2000-D II
+783:M2000-D III
+784:M2000-D IV
+785:M2000-D V
+786:M2000-D VII
+787:M2000-D VIII
+788:M2000-NL IV
+789:M2000-NL V
+790:M2000-NL VI
+791:M2000-NL VIII
+792:Bambetov SV III
+793:Bambetov SV IV
+794:Bambetov SV V
+795:Bambetov SV VII
+797:AM MRS-71 III
+798:AM MRS-71 IV
+799:AM MRS-71 V
+800:AM MRS-71 VII
+801:AM MRS-73 V
+802:AM MRS-73 VI
+803:AM MRS-73 VIII
+804:AM MRS-73 NL V
+805:AM MRS-73 NL VII
+806:AM MRS-73 NL VIII
+855:AM MRS-4R VII
+807:Brennan LRS-46 IV
+808:Brennan LRS-46 V
+809:Brennan LRS-46 VI
+810:Brennan LRS-46 VIII
+811:Serval AMR-7 V
+812:Serval AMR-7 VII
+813:Serval AMR-7 VIII
+833:GROM-11 II
+834:GROM-11 III
+835:GROM-11 IV
+836:FB MR III
+837:FB MR IV
+838:FB MR V
+839:FB MR NLSP VII
+840:FB MR MK2 IV
+841:FB MR MK2 V
+842:FB MR MK2 VII
+843:Killer Bee III
+844:Killer Bee IV
+845:Killer Bee V
+846:Killer Bee VI
+847:CGM 25 IV
+848:CGM 25 V
+849:CGM 25 VI
+1310:FB MR FLTN V
+1311:FB MR FLTN VI
+1312:FB MR FLTN VIII
+</DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_wp_bak</Address>
+          <Offsets>
+            <Offset>18</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>68</ID>
+          <Description>"Primary-Back"</Description>
+          <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">570:WU S.Pistol I
+571:WU S.Pistol II
+572:WU S.Pistol III
+573:WU S.Pistol IV
+574:WU S.Pistol V
+575:WU S.Pistol CB
+576:WU S.Pistol SB
+577:WU S.Pistol AP
+578:WU S.Pistol 9 IV
+579:WU S.Pistol 9 VII
+560:AM D114 I
+561:AM D114 II
+562:AM D114 III
+563:AM D114 IV
+564:AM D114 CB
+565:AM D114-9
+566:AM D114LB-45 IV
+567:AM D114LB-45 V
+568:AM D114LB-9 V
+569:AM D114LB-9 VII
+580:Burkov I
+581:Burkov II
+582:Burkov III
+583:Burkov V
+584:Burkov TB
+585:Burkov HS
+586:Geist P3 II
+587:Geist P3 III
+588:Geist P3 IV
+589:Geist P3 V
+590:Geist P3 VII
+591:Geist P3 CB
+592:WU S333 III
+593:WU S333 IV
+594:WU S333 V
+595:WU S333 VIII
+596:WU S324LB IV
+597:WU S324LB V
+598:WU S324LB VIII
+599:WU S362SB IV
+600:WU S362SB V
+601:WU S362SB VIII
+602:Uragan-5 III
+603:Uragan-5P
+604:Uragan-5 SLUG
+605:Uragan-5 AIR-S
+606:Zorn-KP III
+607:Zorn-KP IV
+608:Zorn-KP Smoke
+609:Zorn-KP Stun
+610:Zorn-KP Sleep
+102:Adam-SKA SP.
+101:WU S333 CB SP.
+614:Sz.-336 SMG II
+615:Sz.-336 SMG III
+616:Sz.-336 SMG IV
+617:Sz.-336 SMG V
+618:Sz.-336 SMG VI
+619:Sz.-336 SMG HS
+620:Ze'EV III
+621:Ze'EV IV
+622:Ze'EV V
+623:Ze'EV VI
+624:Ze'EV 10 VII
+625:Macht 37 III
+626:Macht 37 IV
+627:Macht 37 V
+628:Macht 37 VII
+629:Macht 37L V
+630:Macht 37L VI
+631:Macht 37K
+103:Macht-P5 Weiss
+632:Riot SMG II
+633:Riot SMG III
+634:Riot SMG IV
+635:Riot SMG V
+637:SVG-76 I
+638:SVG-76 II
+639:SVG-76 III
+640:SVG-76 IV
+641:SVG-76 V
+642:SVG-67 IV
+643:SVG-67 V
+644:SVG-67 VII
+645:SVG-76U III
+646:SVG-76U IV
+647:SVG-76U V
+648:SVG-67U IV
+649:SVG-67U V
+650:SVG-67U VI
+651:PG-76 III
+652:PG-76 IV
+653:PG-76 V
+654:PG-76 VII
+655:PG-76 VIII
+656:PG-67 IV
+657:PG-67 V
+658:PG-67 VI
+659:PG-67 VIII
+660:AM MRS-4 I
+661:AM MRS-4 II
+662:AM MRS-4 III
+663:AM MRS-4 IV
+664:AM MRS-4 V
+665:AM MRS-4R III
+666:AM MRS-4R IV
+667:AM MRS-4R V
+668:AM MRS-4LS III
+669:AM MRS-4LS IV
+670:AM MRS-4LS V
+671:UN-ARC I
+672:UN-ARC II
+673:UN-ARC III
+674:UN-ARC IV
+675:UN-ARC V
+676:UN-ARC-PT III
+677:UN-ARC-PT IV
+678:UN-ARC-HB III
+679:UN-ARC-HB IV
+680:UN-ARC-HB V
+681:UN-ARC-N: II
+682:UN-ARC-N: III
+683:UN-ARC-N: IV
+684:UN-ARC-N: V
+685:G44 III
+686:G44 IV
+687:G44 V
+688:G44 VII
+689:G44K IV
+690:G44K V
+691:G44K VII
+692:G44-9 V
+693:G44-9 VI
+694:G44-9 VIII
+695:G44MG IV
+696:G44MG V
+773:Renov-ICKX SR I
+774:Renov-ICKX SR II
+775:Renov-ICKX SR III
+776:Renov-ICKX SR IV
+777:Renov-ICKX SR V
+778:Renov-ICKX TP II
+779:Renov-ICKX TP III
+780:Renov-ICKX TP IV
+781:Renov-ICKX TP V
+782:M2000-D II
+783:M2000-D III
+784:M2000-D IV
+785:M2000-D V
+786:M2000-D VII
+787:M2000-D VIII
+788:M2000-NL IV
+789:M2000-NL V
+790:M2000-NL VI
+791:M2000-NL VIII
+792:Bambetov SV III
+793:Bambetov SV IV
+794:Bambetov SV V
+795:Bambetov SV VII
+797:AM MRS-71 III
+798:AM MRS-71 IV
+799:AM MRS-71 V
+800:AM MRS-71 VII
+801:AM MRS-73 V
+802:AM MRS-73 VI
+803:AM MRS-73 VIII
+804:AM MRS-73 NL V
+805:AM MRS-73 NL VII
+806:AM MRS-73 NL VIII
+807:Brennan LRS-46 IV
+808:Brennan LRS-46 V
+809:Brennan LRS-46 VI
+810:Brennan LRS-46 VIII
+811:Serval AMR-7 V
+812:Serval AMR-7 VII
+813:Serval AMR-7 VIII
+833:GROM-11 II
+834:GROM-11 III
+835:GROM-11 IV
+836:FB MR III
+837:FB MR IV
+838:FB MR V
+839:FB MR NLSP VII
+840:FB MR MK2 IV
+841:FB MR MK2 V
+842:FB MR MK2 VII
+843:Killer Bee III
+844:Killer Bee IV
+845:Killer Bee V
+846:Killer Bee VI
+847:CGM 25 IV
+848:CGM 25 V
+849:CGM 25 VI
+1310:FB MR FLTN V
+1311:FB MR FLTN VI
+1312:FB MR FLTN VIII
+</DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_wp_bak</Address>
+          <Offsets>
+            <Offset>2C</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>67</ID>
+          <Description>"Secondary"</Description>
+          <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">570:WU S.Pistol I
+571:WU S.Pistol II
+572:WU S.Pistol III
+573:WU S.Pistol IV
+574:WU S.Pistol V
+575:WU S.Pistol CB
+576:WU S.Pistol SB
+577:WU S.Pistol AP
+578:WU S.Pistol 9 IV
+579:WU S.Pistol 9 VII
+560:AM D114 I
+561:AM D114 II
+562:AM D114 III
+563:AM D114 IV
+564:AM D114 CB
+565:AM D114-9
+566:AM D114LB-45 IV
+567:AM D114LB-45 V
+568:AM D114LB-9 V
+569:AM D114LB-9 VII
+580:Burkov I
+581:Burkov II
+582:Burkov III
+583:Burkov V
+584:Burkov TB
+585:Burkov HS
+586:Geist P3 II
+587:Geist P3 III
+588:Geist P3 IV
+589:Geist P3 V
+590:Geist P3 VII
+591:Geist P3 CB
+592:WU S333 III
+593:WU S333 IV
+594:WU S333 V
+595:WU S333 VIII
+596:WU S324LB IV
+597:WU S324LB V
+598:WU S324LB VIII
+599:WU S362SB IV
+600:WU S362SB V
+601:WU S362SB VIII
+602:Uragan-5 III
+603:Uragan-5P
+604:Uragan-5 SLUG
+605:Uragan-5 AIR-S
+606:Zorn-KP III
+607:Zorn-KP IV
+608:Zorn-KP Smoke
+609:Zorn-KP Stun
+610:Zorn-KP Sleep
+102:Adam-SKA SP.
+101:WU S333 CB SP.
+614:Sz.-336 SMG II
+615:Sz.-336 SMG III
+616:Sz.-336 SMG IV
+617:Sz.-336 SMG V
+618:Sz.-336 SMG VI
+619:Sz.-336 SMG HS
+620:Ze'EV III
+621:Ze'EV IV
+622:Ze'EV V
+623:Ze'EV VI
+624:Ze'EV 10 VII
+625:Macht 37 III
+626:Macht 37 IV
+627:Macht 37 V
+628:Macht 37 VII
+629:Macht 37L V
+630:Macht 37L VI
+631:Macht 37K
+103:Macht-P5 Weiss
+632:Riot SMG II
+633:Riot SMG III
+634:Riot SMG IV
+635:Riot SMG V
+637:SVG-76 I
+638:SVG-76 II
+639:SVG-76 III
+640:SVG-76 IV
+641:SVG-76 V
+642:SVG-67 IV
+643:SVG-67 V
+644:SVG-67 VII
+645:SVG-76U III
+646:SVG-76U IV
+647:SVG-76U V
+648:SVG-67U IV
+649:SVG-67U V
+650:SVG-67U VI
+651:PG-76 III
+652:PG-76 IV
+653:PG-76 V
+654:PG-76 VII
+655:PG-76 VIII
+656:PG-67 IV
+657:PG-67 V
+658:PG-67 VI
+659:PG-67 VIII
+660:AM MRS-4 I
+661:AM MRS-4 II
+662:AM MRS-4 III
+663:AM MRS-4 IV
+664:AM MRS-4 V
+665:AM MRS-4R III
+666:AM MRS-4R IV
+667:AM MRS-4R V
+668:AM MRS-4LS III
+669:AM MRS-4LS IV
+670:AM MRS-4LS V
+671:UN-ARC I
+672:UN-ARC II
+673:UN-ARC III
+674:UN-ARC IV
+675:UN-ARC V
+676:UN-ARC-PT III
+677:UN-ARC-PT IV
+678:UN-ARC-HB III
+679:UN-ARC-HB IV
+680:UN-ARC-HB V
+681:UN-ARC-N: II
+682:UN-ARC-N: III
+683:UN-ARC-N: IV
+684:UN-ARC-N: V
+685:G44 III
+686:G44 IV
+687:G44 V
+688:G44 VII
+689:G44K IV
+690:G44K V
+691:G44K VII
+692:G44-9 V
+693:G44-9 VI
+694:G44-9 VIII
+695:G44MG IV
+696:G44MG V
+773:Renov-ICKX SR I
+774:Renov-ICKX SR II
+775:Renov-ICKX SR III
+776:Renov-ICKX SR IV
+777:Renov-ICKX SR V
+778:Renov-ICKX TP II
+779:Renov-ICKX TP III
+780:Renov-ICKX TP IV
+781:Renov-ICKX TP V
+782:M2000-D II
+783:M2000-D III
+784:M2000-D IV
+785:M2000-D V
+786:M2000-D VII
+787:M2000-D VIII
+788:M2000-NL IV
+789:M2000-NL V
+790:M2000-NL VI
+791:M2000-NL VIII
+792:Bambetov SV III
+793:Bambetov SV IV
+794:Bambetov SV V
+795:Bambetov SV VII
+797:AM MRS-71 III
+798:AM MRS-71 IV
+799:AM MRS-71 V
+800:AM MRS-71 VII
+801:AM MRS-73 V
+802:AM MRS-73 VI
+803:AM MRS-73 VIII
+804:AM MRS-73 NL V
+805:AM MRS-73 NL VII
+806:AM MRS-73 NL VIII
+807:Brennan LRS-46 IV
+808:Brennan LRS-46 V
+809:Brennan LRS-46 VI
+810:Brennan LRS-46 VIII
+811:Serval AMR-7 V
+812:Serval AMR-7 VII
+813:Serval AMR-7 VIII
+833:GROM-11 II
+834:GROM-11 III
+835:GROM-11 IV
+836:FB MR III
+837:FB MR IV
+838:FB MR V
+839:FB MR NLSP VII
+840:FB MR MK2 IV
+841:FB MR MK2 V
+842:FB MR MK2 VII
+843:Killer Bee III
+844:Killer Bee IV
+845:Killer Bee V
+846:Killer Bee VI
+847:CGM 25 IV
+848:CGM 25 V
+849:CGM 25 VI
+1310:FB MR FLTN V
+1311:FB MR FLTN VI
+1312:FB MR FLTN VIII
+</DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_wp_bak</Address>
+          <Offsets>
+            <Offset>40</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>81</ID>
+      <Description>"Items (Sortie Prep)"</Description>
+      <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : mgsvtpp2.exe
+  Version: 
+  Date   : 2021-05-08
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_PREP_ITEMS,mgsvtpp2.exe,8B 84 81 84 00 00 00) // should be unique
+alloc(newmem,$1000,INJ_PREP_ITEMS)
+
+label(code)
+label(return)
+label(pt_prep_item)
+
+newmem:
+  test rax,rax
+  jnz code
+  push rbx
+  lea rbx,[rcx+84]
+  mov [pt_prep_item],rbx
+  pop rbx
+
+code:
+  mov eax,[rcx+rax*4+00000084]
+  jmp return
+
+pt_prep_item:
+  dq 0
+registersymbol(pt_prep_item)
+
+INJ_PREP_ITEMS:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJ_PREP_ITEMS)
+
+[DISABLE]
+
+INJ_PREP_ITEMS:
+  db 8B 84 81 84 00 00 00
+
+unregistersymbol(pt_prep_item)
+unregistersymbol(INJ_PREP_ITEMS)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: mgsvtpp2.exe+92DC0F1
+
+mgsvtpp2.exe+92DC0CC: 49 8D 1C 1B           - lea rbx,[r11+rbx]
+mgsvtpp2.exe+92DC0D0: 48 89 8B 5A CC 17 DB  - mov [rbx-24E833A6],rcx
+mgsvtpp2.exe+92DC0D7: 41 FF E2              - jmp r10
+mgsvtpp2.exe+92DC0DA: 31 0F                 - xor [rdi],ecx
+mgsvtpp2.exe+92DC0DC: 1F                    - pop ds
+mgsvtpp2.exe+92DC0DD: 44 00 00              - add [rax],r8l
+mgsvtpp2.exe+92DC0E0: 0F B6 81 B4 03 00 00  - movzx eax,byte ptr [rcx+000003B4]
+mgsvtpp2.exe+92DC0E7: 0F B6 D2              - movzx edx,dl
+mgsvtpp2.exe+92DC0EA: 48 6B C0 3A           - imul rax,rax,3A
+mgsvtpp2.exe+92DC0EE: 48 01 D0              - add rax,rdx
+// ---------- INJECTING HERE ----------
+mgsvtpp2.exe+92DC0F1: 8B 84 81 84 00 00 00  - mov eax,[rcx+rax*4+00000084]
+// ---------- DONE INJECTING  ----------
+mgsvtpp2.exe+92DC0F8: C3                    - ret 
+mgsvtpp2.exe+92DC0F9: 4C 8B 2C 24           - mov r13,[rsp]
+mgsvtpp2.exe+92DC0FD: 48 83 EC F8           - sub rsp,-08
+mgsvtpp2.exe+92DC101: 48 8B 04 24           - mov rax,[rsp]
+mgsvtpp2.exe+92DC105: 48 83 EC F8           - sub rsp,-08
+mgsvtpp2.exe+92DC109: E9 09 F3 C2 03        - jmp mgsvtpp2.exe+CF0B417
+mgsvtpp2.exe+92DC10E: 48 8B 14 24           - mov rdx,[rsp]
+mgsvtpp2.exe+92DC112: F8                    - clc 
+mgsvtpp2.exe+92DC113: 44 29 CA              - sub edx,r9d
+mgsvtpp2.exe+92DC116: 48 8D 64 24 08        - lea rsp,[rsp+08]
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>82</ID>
+          <Description>"Item 1"</Description>
+          <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">0:None
+570:WU S.Pistol I
+571:WU S.Pistol II
+572:WU S.Pistol III
+573:WU S.Pistol IV
+574:WU S.Pistol V
+575:WU S.Pistol CB
+576:WU S.Pistol SB
+577:WU S.Pistol AP
+578:WU S.Pistol 9 IV
+579:WU S.Pistol 9 VII
+560:AM D114 I
+561:AM D114 II
+562:AM D114 III
+563:AM D114 IV
+564:AM D114 CB
+565:AM D114-9
+566:AM D114LB-45 IV
+567:AM D114LB-45 V
+568:AM D114LB-9 V
+569:AM D114LB-9 VII
+580:Burkov I
+581:Burkov II
+582:Burkov III
+583:Burkov V
+584:Burkov TB
+585:Burkov HS
+586:Geist P3 II
+587:Geist P3 III
+588:Geist P3 IV
+589:Geist P3 V
+590:Geist P3 VII
+591:Geist P3 CB
+592:WU S333 III
+593:WU S333 IV
+594:WU S333 V
+595:WU S333 VIII
+596:WU S324LB IV
+597:WU S324LB V
+598:WU S324LB VIII
+599:WU S362SB IV
+600:WU S362SB V
+601:WU S362SB VIII
+602:Uragan-5 III
+603:Uragan-5P
+604:Uragan-5 SLUG
+605:Uragan-5 AIR-S
+606:Zorn-KP III
+607:Zorn-KP IV
+608:Zorn-KP Smoke
+609:Zorn-KP Stun
+610:Zorn-KP Sleep
+102:Adam-SKA SP.
+101:WU S333 CB SP.
+614:Sz.-336 SMG II
+615:Sz.-336 SMG III
+616:Sz.-336 SMG IV
+617:Sz.-336 SMG V
+618:Sz.-336 SMG VI
+619:Sz.-336 SMG HS
+620:Ze'EV III
+621:Ze'EV IV
+622:Ze'EV V
+623:Ze'EV VI
+624:Ze'EV 10 VII
+625:Macht 37 III
+626:Macht 37 IV
+627:Macht 37 V
+628:Macht 37 VII
+629:Macht 37L V
+630:Macht 37L VI
+631:Macht 37K
+103:Macht-P5 Weiss
+632:Riot SMG II
+633:Riot SMG III
+634:Riot SMG IV
+635:Riot SMG V
+637:SVG-76 I
+638:SVG-76 II
+639:SVG-76 III
+640:SVG-76 IV
+641:SVG-76 V
+642:SVG-67 IV
+643:SVG-67 V
+644:SVG-67 VII
+645:SVG-76U III
+646:SVG-76U IV
+647:SVG-76U V
+648:SVG-67U IV
+649:SVG-67U V
+650:SVG-67U VI
+651:PG-76 III
+652:PG-76 IV
+653:PG-76 V
+654:PG-76 VII
+655:PG-76 VIII
+656:PG-67 IV
+657:PG-67 V
+658:PG-67 VI
+659:PG-67 VIII
+660:AM MRS-4 I
+661:AM MRS-4 II
+662:AM MRS-4 III
+663:AM MRS-4 IV
+664:AM MRS-4 V
+665:AM MRS-4R III
+666:AM MRS-4R IV
+667:AM MRS-4R V
+668:AM MRS-4LS III
+669:AM MRS-4LS IV
+670:AM MRS-4LS V
+671:UN-ARC I
+672:UN-ARC II
+673:UN-ARC III
+674:UN-ARC IV
+675:UN-ARC V
+676:UN-ARC-PT III
+677:UN-ARC-PT IV
+678:UN-ARC-HB III
+679:UN-ARC-HB IV
+680:UN-ARC-HB V
+681:UN-ARC-N: II
+682:UN-ARC-N: III
+683:UN-ARC-N: IV
+684:UN-ARC-N: V
+685:G44 III
+686:G44 IV
+687:G44 V
+688:G44 VII
+689:G44K IV
+690:G44K V
+691:G44K VII
+692:G44-9 V
+693:G44-9 VI
+694:G44-9 VIII
+695:G44MG IV
+696:G44MG V
+773:Renov-ICKX SR I
+774:Renov-ICKX SR II
+775:Renov-ICKX SR III
+776:Renov-ICKX SR IV
+777:Renov-ICKX SR V
+778:Renov-ICKX TP II
+779:Renov-ICKX TP III
+780:Renov-ICKX TP IV
+781:Renov-ICKX TP V
+782:M2000-D II
+783:M2000-D III
+784:M2000-D IV
+785:M2000-D V
+786:M2000-D VII
+787:M2000-D VIII
+788:M2000-NL IV
+789:M2000-NL V
+790:M2000-NL VI
+791:M2000-NL VIII
+792:Bambetov SV III
+793:Bambetov SV IV
+794:Bambetov SV V
+795:Bambetov SV VII
+797:AM MRS-71 III
+798:AM MRS-71 IV
+799:AM MRS-71 V
+800:AM MRS-71 VII
+801:AM MRS-73 V
+802:AM MRS-73 VI
+803:AM MRS-73 VIII
+804:AM MRS-73 NL V
+805:AM MRS-73 NL VII
+806:AM MRS-73 NL VIII
+807:Brennan LRS-46 IV
+808:Brennan LRS-46 V
+809:Brennan LRS-46 VI
+810:Brennan LRS-46 VIII
+811:Serval AMR-7 V
+812:Serval AMR-7 VII
+813:Serval AMR-7 VIII
+833:GROM-11 II
+834:GROM-11 III
+835:GROM-11 IV
+836:FB MR III
+837:FB MR IV
+838:FB MR V
+839:FB MR NLSP VII
+840:FB MR MK2 IV
+841:FB MR MK2 V
+842:FB MR MK2 VII
+843:Killer Bee III
+844:Killer Bee IV
+845:Killer Bee V
+846:Killer Bee VI
+847:CGM 25 IV
+848:CGM 25 V
+849:CGM 25 VI
+1310:FB MR FLTN V
+1311:FB MR FLTN VI
+1312:FB MR FLTN VIII
+450:Stealth Camo.
+451:Phantom Cigar
+492:NVG
+456:C.Box(DSRT) I
+457:C.Box(DSRT) II
+458:C.Box(DSRT) III
+461:C.Box(FRST) II
+467:C.Box(APD) II
+468:C.Box(APD) III
+483:Pentazemin
+484:Noctoyanin
+</DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_prep_item</Address>
+          <Offsets>
+            <Offset>0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>89</ID>
+          <Description>"Item 2"</Description>
+          <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">570:WU S.Pistol I
+571:WU S.Pistol II
+572:WU S.Pistol III
+573:WU S.Pistol IV
+574:WU S.Pistol V
+575:WU S.Pistol CB
+576:WU S.Pistol SB
+577:WU S.Pistol AP
+578:WU S.Pistol 9 IV
+579:WU S.Pistol 9 VII
+560:AM D114 I
+561:AM D114 II
+562:AM D114 III
+563:AM D114 IV
+564:AM D114 CB
+565:AM D114-9
+566:AM D114LB-45 IV
+567:AM D114LB-45 V
+568:AM D114LB-9 V
+569:AM D114LB-9 VII
+580:Burkov I
+581:Burkov II
+582:Burkov III
+583:Burkov V
+584:Burkov TB
+585:Burkov HS
+586:Geist P3 II
+587:Geist P3 III
+588:Geist P3 IV
+589:Geist P3 V
+590:Geist P3 VII
+591:Geist P3 CB
+592:WU S333 III
+593:WU S333 IV
+594:WU S333 V
+595:WU S333 VIII
+596:WU S324LB IV
+597:WU S324LB V
+598:WU S324LB VIII
+599:WU S362SB IV
+600:WU S362SB V
+601:WU S362SB VIII
+602:Uragan-5 III
+603:Uragan-5P
+604:Uragan-5 SLUG
+605:Uragan-5 AIR-S
+606:Zorn-KP III
+607:Zorn-KP IV
+608:Zorn-KP Smoke
+609:Zorn-KP Stun
+610:Zorn-KP Sleep
+102:Adam-SKA SP.
+101:WU S333 CB SP.
+614:Sz.-336 SMG II
+615:Sz.-336 SMG III
+616:Sz.-336 SMG IV
+617:Sz.-336 SMG V
+618:Sz.-336 SMG VI
+619:Sz.-336 SMG HS
+620:Ze'EV III
+621:Ze'EV IV
+622:Ze'EV V
+623:Ze'EV VI
+624:Ze'EV 10 VII
+625:Macht 37 III
+626:Macht 37 IV
+627:Macht 37 V
+628:Macht 37 VII
+629:Macht 37L V
+630:Macht 37L VI
+631:Macht 37K
+103:Macht-P5 Weiss
+632:Riot SMG II
+633:Riot SMG III
+634:Riot SMG IV
+635:Riot SMG V
+637:SVG-76 I
+638:SVG-76 II
+639:SVG-76 III
+640:SVG-76 IV
+641:SVG-76 V
+642:SVG-67 IV
+643:SVG-67 V
+644:SVG-67 VII
+645:SVG-76U III
+646:SVG-76U IV
+647:SVG-76U V
+648:SVG-67U IV
+649:SVG-67U V
+650:SVG-67U VI
+651:PG-76 III
+652:PG-76 IV
+653:PG-76 V
+654:PG-76 VII
+655:PG-76 VIII
+656:PG-67 IV
+657:PG-67 V
+658:PG-67 VI
+659:PG-67 VIII
+660:AM MRS-4 I
+661:AM MRS-4 II
+662:AM MRS-4 III
+663:AM MRS-4 IV
+664:AM MRS-4 V
+665:AM MRS-4R III
+666:AM MRS-4R IV
+667:AM MRS-4R V
+668:AM MRS-4LS III
+669:AM MRS-4LS IV
+670:AM MRS-4LS V
+671:UN-ARC I
+672:UN-ARC II
+673:UN-ARC III
+674:UN-ARC IV
+675:UN-ARC V
+676:UN-ARC-PT III
+677:UN-ARC-PT IV
+678:UN-ARC-HB III
+679:UN-ARC-HB IV
+680:UN-ARC-HB V
+681:UN-ARC-N: II
+682:UN-ARC-N: III
+683:UN-ARC-N: IV
+684:UN-ARC-N: V
+685:G44 III
+686:G44 IV
+687:G44 V
+688:G44 VII
+689:G44K IV
+690:G44K V
+691:G44K VII
+692:G44-9 V
+693:G44-9 VI
+694:G44-9 VIII
+695:G44MG IV
+696:G44MG V
+773:Renov-ICKX SR I
+774:Renov-ICKX SR II
+775:Renov-ICKX SR III
+776:Renov-ICKX SR IV
+777:Renov-ICKX SR V
+778:Renov-ICKX TP II
+779:Renov-ICKX TP III
+780:Renov-ICKX TP IV
+781:Renov-ICKX TP V
+782:M2000-D II
+783:M2000-D III
+784:M2000-D IV
+785:M2000-D V
+786:M2000-D VII
+787:M2000-D VIII
+788:M2000-NL IV
+789:M2000-NL V
+790:M2000-NL VI
+791:M2000-NL VIII
+792:Bambetov SV III
+793:Bambetov SV IV
+794:Bambetov SV V
+795:Bambetov SV VII
+797:AM MRS-71 III
+798:AM MRS-71 IV
+799:AM MRS-71 V
+800:AM MRS-71 VII
+801:AM MRS-73 V
+802:AM MRS-73 VI
+803:AM MRS-73 VIII
+804:AM MRS-73 NL V
+805:AM MRS-73 NL VII
+806:AM MRS-73 NL VIII
+807:Brennan LRS-46 IV
+808:Brennan LRS-46 V
+809:Brennan LRS-46 VI
+810:Brennan LRS-46 VIII
+811:Serval AMR-7 V
+812:Serval AMR-7 VII
+813:Serval AMR-7 VIII
+833:GROM-11 II
+834:GROM-11 III
+835:GROM-11 IV
+836:FB MR III
+837:FB MR IV
+838:FB MR V
+839:FB MR NLSP VII
+840:FB MR MK2 IV
+841:FB MR MK2 V
+842:FB MR MK2 VII
+843:Killer Bee III
+844:Killer Bee IV
+845:Killer Bee V
+846:Killer Bee VI
+847:CGM 25 IV
+848:CGM 25 V
+849:CGM 25 VI
+1310:FB MR FLTN V
+1311:FB MR FLTN VI
+1312:FB MR FLTN VIII
+450:Stealth Camo.
+451:Phantom Cigar
+492:NVG
+456:C.Box(DSRT) I
+457:C.Box(DSRT) II
+458:C.Box(DSRT) III
+461:C.Box(FRST) II
+467:C.Box(APD) II
+468:C.Box(APD) III
+483:Pentazemin
+484:Noctoyanin
+</DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_prep_item</Address>
+          <Offsets>
+            <Offset>4</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>90</ID>
+          <Description>"Item 3"</Description>
+          <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">570:WU S.Pistol I
+571:WU S.Pistol II
+572:WU S.Pistol III
+573:WU S.Pistol IV
+574:WU S.Pistol V
+575:WU S.Pistol CB
+576:WU S.Pistol SB
+577:WU S.Pistol AP
+578:WU S.Pistol 9 IV
+579:WU S.Pistol 9 VII
+560:AM D114 I
+561:AM D114 II
+562:AM D114 III
+563:AM D114 IV
+564:AM D114 CB
+565:AM D114-9
+566:AM D114LB-45 IV
+567:AM D114LB-45 V
+568:AM D114LB-9 V
+569:AM D114LB-9 VII
+580:Burkov I
+581:Burkov II
+582:Burkov III
+583:Burkov V
+584:Burkov TB
+585:Burkov HS
+586:Geist P3 II
+587:Geist P3 III
+588:Geist P3 IV
+589:Geist P3 V
+590:Geist P3 VII
+591:Geist P3 CB
+592:WU S333 III
+593:WU S333 IV
+594:WU S333 V
+595:WU S333 VIII
+596:WU S324LB IV
+597:WU S324LB V
+598:WU S324LB VIII
+599:WU S362SB IV
+600:WU S362SB V
+601:WU S362SB VIII
+602:Uragan-5 III
+603:Uragan-5P
+604:Uragan-5 SLUG
+605:Uragan-5 AIR-S
+606:Zorn-KP III
+607:Zorn-KP IV
+608:Zorn-KP Smoke
+609:Zorn-KP Stun
+610:Zorn-KP Sleep
+102:Adam-SKA SP.
+101:WU S333 CB SP.
+614:Sz.-336 SMG II
+615:Sz.-336 SMG III
+616:Sz.-336 SMG IV
+617:Sz.-336 SMG V
+618:Sz.-336 SMG VI
+619:Sz.-336 SMG HS
+620:Ze'EV III
+621:Ze'EV IV
+622:Ze'EV V
+623:Ze'EV VI
+624:Ze'EV 10 VII
+625:Macht 37 III
+626:Macht 37 IV
+627:Macht 37 V
+628:Macht 37 VII
+629:Macht 37L V
+630:Macht 37L VI
+631:Macht 37K
+103:Macht-P5 Weiss
+632:Riot SMG II
+633:Riot SMG III
+634:Riot SMG IV
+635:Riot SMG V
+637:SVG-76 I
+638:SVG-76 II
+639:SVG-76 III
+640:SVG-76 IV
+641:SVG-76 V
+642:SVG-67 IV
+643:SVG-67 V
+644:SVG-67 VII
+645:SVG-76U III
+646:SVG-76U IV
+647:SVG-76U V
+648:SVG-67U IV
+649:SVG-67U V
+650:SVG-67U VI
+651:PG-76 III
+652:PG-76 IV
+653:PG-76 V
+654:PG-76 VII
+655:PG-76 VIII
+656:PG-67 IV
+657:PG-67 V
+658:PG-67 VI
+659:PG-67 VIII
+660:AM MRS-4 I
+661:AM MRS-4 II
+662:AM MRS-4 III
+663:AM MRS-4 IV
+664:AM MRS-4 V
+665:AM MRS-4R III
+666:AM MRS-4R IV
+667:AM MRS-4R V
+668:AM MRS-4LS III
+669:AM MRS-4LS IV
+670:AM MRS-4LS V
+671:UN-ARC I
+672:UN-ARC II
+673:UN-ARC III
+674:UN-ARC IV
+675:UN-ARC V
+676:UN-ARC-PT III
+677:UN-ARC-PT IV
+678:UN-ARC-HB III
+679:UN-ARC-HB IV
+680:UN-ARC-HB V
+681:UN-ARC-N: II
+682:UN-ARC-N: III
+683:UN-ARC-N: IV
+684:UN-ARC-N: V
+685:G44 III
+686:G44 IV
+687:G44 V
+688:G44 VII
+689:G44K IV
+690:G44K V
+691:G44K VII
+692:G44-9 V
+693:G44-9 VI
+694:G44-9 VIII
+695:G44MG IV
+696:G44MG V
+773:Renov-ICKX SR I
+774:Renov-ICKX SR II
+775:Renov-ICKX SR III
+776:Renov-ICKX SR IV
+777:Renov-ICKX SR V
+778:Renov-ICKX TP II
+779:Renov-ICKX TP III
+780:Renov-ICKX TP IV
+781:Renov-ICKX TP V
+782:M2000-D II
+783:M2000-D III
+784:M2000-D IV
+785:M2000-D V
+786:M2000-D VII
+787:M2000-D VIII
+788:M2000-NL IV
+789:M2000-NL V
+790:M2000-NL VI
+791:M2000-NL VIII
+792:Bambetov SV III
+793:Bambetov SV IV
+794:Bambetov SV V
+795:Bambetov SV VII
+797:AM MRS-71 III
+798:AM MRS-71 IV
+799:AM MRS-71 V
+800:AM MRS-71 VII
+801:AM MRS-73 V
+802:AM MRS-73 VI
+803:AM MRS-73 VIII
+804:AM MRS-73 NL V
+805:AM MRS-73 NL VII
+806:AM MRS-73 NL VIII
+807:Brennan LRS-46 IV
+808:Brennan LRS-46 V
+809:Brennan LRS-46 VI
+810:Brennan LRS-46 VIII
+811:Serval AMR-7 V
+812:Serval AMR-7 VII
+813:Serval AMR-7 VIII
+833:GROM-11 II
+834:GROM-11 III
+835:GROM-11 IV
+836:FB MR III
+837:FB MR IV
+838:FB MR V
+839:FB MR NLSP VII
+840:FB MR MK2 IV
+841:FB MR MK2 V
+842:FB MR MK2 VII
+843:Killer Bee III
+844:Killer Bee IV
+845:Killer Bee V
+846:Killer Bee VI
+847:CGM 25 IV
+848:CGM 25 V
+849:CGM 25 VI
+1310:FB MR FLTN V
+1311:FB MR FLTN VI
+1312:FB MR FLTN VIII
+450:Stealth Camo.
+451:Phantom Cigar
+492:NVG
+456:C.Box(DSRT) I
+457:C.Box(DSRT) II
+458:C.Box(DSRT) III
+461:C.Box(FRST) II
+467:C.Box(APD) II
+468:C.Box(APD) III
+483:Pentazemin
+484:Noctoyanin
+</DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_prep_item</Address>
+          <Offsets>
+            <Offset>8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>95</ID>
+          <Description>"Item 4"</Description>
+          <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">570:WU S.Pistol I
+571:WU S.Pistol II
+572:WU S.Pistol III
+573:WU S.Pistol IV
+574:WU S.Pistol V
+575:WU S.Pistol CB
+576:WU S.Pistol SB
+577:WU S.Pistol AP
+578:WU S.Pistol 9 IV
+579:WU S.Pistol 9 VII
+560:AM D114 I
+561:AM D114 II
+562:AM D114 III
+563:AM D114 IV
+564:AM D114 CB
+565:AM D114-9
+566:AM D114LB-45 IV
+567:AM D114LB-45 V
+568:AM D114LB-9 V
+569:AM D114LB-9 VII
+580:Burkov I
+581:Burkov II
+582:Burkov III
+583:Burkov V
+584:Burkov TB
+585:Burkov HS
+586:Geist P3 II
+587:Geist P3 III
+588:Geist P3 IV
+589:Geist P3 V
+590:Geist P3 VII
+591:Geist P3 CB
+592:WU S333 III
+593:WU S333 IV
+594:WU S333 V
+595:WU S333 VIII
+596:WU S324LB IV
+597:WU S324LB V
+598:WU S324LB VIII
+599:WU S362SB IV
+600:WU S362SB V
+601:WU S362SB VIII
+602:Uragan-5 III
+603:Uragan-5P
+604:Uragan-5 SLUG
+605:Uragan-5 AIR-S
+606:Zorn-KP III
+607:Zorn-KP IV
+608:Zorn-KP Smoke
+609:Zorn-KP Stun
+610:Zorn-KP Sleep
+102:Adam-SKA SP.
+101:WU S333 CB SP.
+614:Sz.-336 SMG II
+615:Sz.-336 SMG III
+616:Sz.-336 SMG IV
+617:Sz.-336 SMG V
+618:Sz.-336 SMG VI
+619:Sz.-336 SMG HS
+620:Ze'EV III
+621:Ze'EV IV
+622:Ze'EV V
+623:Ze'EV VI
+624:Ze'EV 10 VII
+625:Macht 37 III
+626:Macht 37 IV
+627:Macht 37 V
+628:Macht 37 VII
+629:Macht 37L V
+630:Macht 37L VI
+631:Macht 37K
+103:Macht-P5 Weiss
+632:Riot SMG II
+633:Riot SMG III
+634:Riot SMG IV
+635:Riot SMG V
+637:SVG-76 I
+638:SVG-76 II
+639:SVG-76 III
+640:SVG-76 IV
+641:SVG-76 V
+642:SVG-67 IV
+643:SVG-67 V
+644:SVG-67 VII
+645:SVG-76U III
+646:SVG-76U IV
+647:SVG-76U V
+648:SVG-67U IV
+649:SVG-67U V
+650:SVG-67U VI
+651:PG-76 III
+652:PG-76 IV
+653:PG-76 V
+654:PG-76 VII
+655:PG-76 VIII
+656:PG-67 IV
+657:PG-67 V
+658:PG-67 VI
+659:PG-67 VIII
+660:AM MRS-4 I
+661:AM MRS-4 II
+662:AM MRS-4 III
+663:AM MRS-4 IV
+664:AM MRS-4 V
+665:AM MRS-4R III
+666:AM MRS-4R IV
+667:AM MRS-4R V
+668:AM MRS-4LS III
+669:AM MRS-4LS IV
+670:AM MRS-4LS V
+671:UN-ARC I
+672:UN-ARC II
+673:UN-ARC III
+674:UN-ARC IV
+675:UN-ARC V
+676:UN-ARC-PT III
+677:UN-ARC-PT IV
+678:UN-ARC-HB III
+679:UN-ARC-HB IV
+680:UN-ARC-HB V
+681:UN-ARC-N: II
+682:UN-ARC-N: III
+683:UN-ARC-N: IV
+684:UN-ARC-N: V
+685:G44 III
+686:G44 IV
+687:G44 V
+688:G44 VII
+689:G44K IV
+690:G44K V
+691:G44K VII
+692:G44-9 V
+693:G44-9 VI
+694:G44-9 VIII
+695:G44MG IV
+696:G44MG V
+773:Renov-ICKX SR I
+774:Renov-ICKX SR II
+775:Renov-ICKX SR III
+776:Renov-ICKX SR IV
+777:Renov-ICKX SR V
+778:Renov-ICKX TP II
+779:Renov-ICKX TP III
+780:Renov-ICKX TP IV
+781:Renov-ICKX TP V
+782:M2000-D II
+783:M2000-D III
+784:M2000-D IV
+785:M2000-D V
+786:M2000-D VII
+787:M2000-D VIII
+788:M2000-NL IV
+789:M2000-NL V
+790:M2000-NL VI
+791:M2000-NL VIII
+792:Bambetov SV III
+793:Bambetov SV IV
+794:Bambetov SV V
+795:Bambetov SV VII
+797:AM MRS-71 III
+798:AM MRS-71 IV
+799:AM MRS-71 V
+800:AM MRS-71 VII
+801:AM MRS-73 V
+802:AM MRS-73 VI
+803:AM MRS-73 VIII
+804:AM MRS-73 NL V
+805:AM MRS-73 NL VII
+806:AM MRS-73 NL VIII
+807:Brennan LRS-46 IV
+808:Brennan LRS-46 V
+809:Brennan LRS-46 VI
+810:Brennan LRS-46 VIII
+811:Serval AMR-7 V
+812:Serval AMR-7 VII
+813:Serval AMR-7 VIII
+833:GROM-11 II
+834:GROM-11 III
+835:GROM-11 IV
+836:FB MR III
+837:FB MR IV
+838:FB MR V
+839:FB MR NLSP VII
+840:FB MR MK2 IV
+841:FB MR MK2 V
+842:FB MR MK2 VII
+843:Killer Bee III
+844:Killer Bee IV
+845:Killer Bee V
+846:Killer Bee VI
+847:CGM 25 IV
+848:CGM 25 V
+849:CGM 25 VI
+1310:FB MR FLTN V
+1311:FB MR FLTN VI
+1312:FB MR FLTN VIII
+450:Stealth Camo.
+451:Phantom Cigar
+492:NVG
+456:C.Box(DSRT) I
+457:C.Box(DSRT) II
+458:C.Box(DSRT) III
+461:C.Box(FRST) II
+467:C.Box(APD) II
+468:C.Box(APD) III
+483:Pentazemin
+484:Noctoyanin
+</DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_prep_item</Address>
+          <Offsets>
+            <Offset>C</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>94</ID>
+          <Description>"Item 5"</Description>
+          <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">570:WU S.Pistol I
+571:WU S.Pistol II
+572:WU S.Pistol III
+573:WU S.Pistol IV
+574:WU S.Pistol V
+575:WU S.Pistol CB
+576:WU S.Pistol SB
+577:WU S.Pistol AP
+578:WU S.Pistol 9 IV
+579:WU S.Pistol 9 VII
+560:AM D114 I
+561:AM D114 II
+562:AM D114 III
+563:AM D114 IV
+564:AM D114 CB
+565:AM D114-9
+566:AM D114LB-45 IV
+567:AM D114LB-45 V
+568:AM D114LB-9 V
+569:AM D114LB-9 VII
+580:Burkov I
+581:Burkov II
+582:Burkov III
+583:Burkov V
+584:Burkov TB
+585:Burkov HS
+586:Geist P3 II
+587:Geist P3 III
+588:Geist P3 IV
+589:Geist P3 V
+590:Geist P3 VII
+591:Geist P3 CB
+592:WU S333 III
+593:WU S333 IV
+594:WU S333 V
+595:WU S333 VIII
+596:WU S324LB IV
+597:WU S324LB V
+598:WU S324LB VIII
+599:WU S362SB IV
+600:WU S362SB V
+601:WU S362SB VIII
+602:Uragan-5 III
+603:Uragan-5P
+604:Uragan-5 SLUG
+605:Uragan-5 AIR-S
+606:Zorn-KP III
+607:Zorn-KP IV
+608:Zorn-KP Smoke
+609:Zorn-KP Stun
+610:Zorn-KP Sleep
+102:Adam-SKA SP.
+101:WU S333 CB SP.
+614:Sz.-336 SMG II
+615:Sz.-336 SMG III
+616:Sz.-336 SMG IV
+617:Sz.-336 SMG V
+618:Sz.-336 SMG VI
+619:Sz.-336 SMG HS
+620:Ze'EV III
+621:Ze'EV IV
+622:Ze'EV V
+623:Ze'EV VI
+624:Ze'EV 10 VII
+625:Macht 37 III
+626:Macht 37 IV
+627:Macht 37 V
+628:Macht 37 VII
+629:Macht 37L V
+630:Macht 37L VI
+631:Macht 37K
+103:Macht-P5 Weiss
+632:Riot SMG II
+633:Riot SMG III
+634:Riot SMG IV
+635:Riot SMG V
+637:SVG-76 I
+638:SVG-76 II
+639:SVG-76 III
+640:SVG-76 IV
+641:SVG-76 V
+642:SVG-67 IV
+643:SVG-67 V
+644:SVG-67 VII
+645:SVG-76U III
+646:SVG-76U IV
+647:SVG-76U V
+648:SVG-67U IV
+649:SVG-67U V
+650:SVG-67U VI
+651:PG-76 III
+652:PG-76 IV
+653:PG-76 V
+654:PG-76 VII
+655:PG-76 VIII
+656:PG-67 IV
+657:PG-67 V
+658:PG-67 VI
+659:PG-67 VIII
+660:AM MRS-4 I
+661:AM MRS-4 II
+662:AM MRS-4 III
+663:AM MRS-4 IV
+664:AM MRS-4 V
+665:AM MRS-4R III
+666:AM MRS-4R IV
+667:AM MRS-4R V
+668:AM MRS-4LS III
+669:AM MRS-4LS IV
+670:AM MRS-4LS V
+671:UN-ARC I
+672:UN-ARC II
+673:UN-ARC III
+674:UN-ARC IV
+675:UN-ARC V
+676:UN-ARC-PT III
+677:UN-ARC-PT IV
+678:UN-ARC-HB III
+679:UN-ARC-HB IV
+680:UN-ARC-HB V
+681:UN-ARC-N: II
+682:UN-ARC-N: III
+683:UN-ARC-N: IV
+684:UN-ARC-N: V
+685:G44 III
+686:G44 IV
+687:G44 V
+688:G44 VII
+689:G44K IV
+690:G44K V
+691:G44K VII
+692:G44-9 V
+693:G44-9 VI
+694:G44-9 VIII
+695:G44MG IV
+696:G44MG V
+773:Renov-ICKX SR I
+774:Renov-ICKX SR II
+775:Renov-ICKX SR III
+776:Renov-ICKX SR IV
+777:Renov-ICKX SR V
+778:Renov-ICKX TP II
+779:Renov-ICKX TP III
+780:Renov-ICKX TP IV
+781:Renov-ICKX TP V
+782:M2000-D II
+783:M2000-D III
+784:M2000-D IV
+785:M2000-D V
+786:M2000-D VII
+787:M2000-D VIII
+788:M2000-NL IV
+789:M2000-NL V
+790:M2000-NL VI
+791:M2000-NL VIII
+792:Bambetov SV III
+793:Bambetov SV IV
+794:Bambetov SV V
+795:Bambetov SV VII
+797:AM MRS-71 III
+798:AM MRS-71 IV
+799:AM MRS-71 V
+800:AM MRS-71 VII
+801:AM MRS-73 V
+802:AM MRS-73 VI
+803:AM MRS-73 VIII
+804:AM MRS-73 NL V
+805:AM MRS-73 NL VII
+806:AM MRS-73 NL VIII
+807:Brennan LRS-46 IV
+808:Brennan LRS-46 V
+809:Brennan LRS-46 VI
+810:Brennan LRS-46 VIII
+811:Serval AMR-7 V
+812:Serval AMR-7 VII
+813:Serval AMR-7 VIII
+833:GROM-11 II
+834:GROM-11 III
+835:GROM-11 IV
+836:FB MR III
+837:FB MR IV
+838:FB MR V
+839:FB MR NLSP VII
+840:FB MR MK2 IV
+841:FB MR MK2 V
+842:FB MR MK2 VII
+843:Killer Bee III
+844:Killer Bee IV
+845:Killer Bee V
+846:Killer Bee VI
+847:CGM 25 IV
+848:CGM 25 V
+849:CGM 25 VI
+1310:FB MR FLTN V
+1311:FB MR FLTN VI
+1312:FB MR FLTN VIII
+450:Stealth Camo.
+451:Phantom Cigar
+492:NVG
+456:C.Box(DSRT) I
+457:C.Box(DSRT) II
+458:C.Box(DSRT) III
+461:C.Box(FRST) II
+467:C.Box(APD) II
+468:C.Box(APD) III
+483:Pentazemin
+484:Noctoyanin
+</DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_prep_item</Address>
+          <Offsets>
+            <Offset>10</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>93</ID>
+          <Description>"Item 6"</Description>
+          <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">570:WU S.Pistol I
+571:WU S.Pistol II
+572:WU S.Pistol III
+573:WU S.Pistol IV
+574:WU S.Pistol V
+575:WU S.Pistol CB
+576:WU S.Pistol SB
+577:WU S.Pistol AP
+578:WU S.Pistol 9 IV
+579:WU S.Pistol 9 VII
+560:AM D114 I
+561:AM D114 II
+562:AM D114 III
+563:AM D114 IV
+564:AM D114 CB
+565:AM D114-9
+566:AM D114LB-45 IV
+567:AM D114LB-45 V
+568:AM D114LB-9 V
+569:AM D114LB-9 VII
+580:Burkov I
+581:Burkov II
+582:Burkov III
+583:Burkov V
+584:Burkov TB
+585:Burkov HS
+586:Geist P3 II
+587:Geist P3 III
+588:Geist P3 IV
+589:Geist P3 V
+590:Geist P3 VII
+591:Geist P3 CB
+592:WU S333 III
+593:WU S333 IV
+594:WU S333 V
+595:WU S333 VIII
+596:WU S324LB IV
+597:WU S324LB V
+598:WU S324LB VIII
+599:WU S362SB IV
+600:WU S362SB V
+601:WU S362SB VIII
+602:Uragan-5 III
+603:Uragan-5P
+604:Uragan-5 SLUG
+605:Uragan-5 AIR-S
+606:Zorn-KP III
+607:Zorn-KP IV
+608:Zorn-KP Smoke
+609:Zorn-KP Stun
+610:Zorn-KP Sleep
+102:Adam-SKA SP.
+101:WU S333 CB SP.
+614:Sz.-336 SMG II
+615:Sz.-336 SMG III
+616:Sz.-336 SMG IV
+617:Sz.-336 SMG V
+618:Sz.-336 SMG VI
+619:Sz.-336 SMG HS
+620:Ze'EV III
+621:Ze'EV IV
+622:Ze'EV V
+623:Ze'EV VI
+624:Ze'EV 10 VII
+625:Macht 37 III
+626:Macht 37 IV
+627:Macht 37 V
+628:Macht 37 VII
+629:Macht 37L V
+630:Macht 37L VI
+631:Macht 37K
+103:Macht-P5 Weiss
+632:Riot SMG II
+633:Riot SMG III
+634:Riot SMG IV
+635:Riot SMG V
+637:SVG-76 I
+638:SVG-76 II
+639:SVG-76 III
+640:SVG-76 IV
+641:SVG-76 V
+642:SVG-67 IV
+643:SVG-67 V
+644:SVG-67 VII
+645:SVG-76U III
+646:SVG-76U IV
+647:SVG-76U V
+648:SVG-67U IV
+649:SVG-67U V
+650:SVG-67U VI
+651:PG-76 III
+652:PG-76 IV
+653:PG-76 V
+654:PG-76 VII
+655:PG-76 VIII
+656:PG-67 IV
+657:PG-67 V
+658:PG-67 VI
+659:PG-67 VIII
+660:AM MRS-4 I
+661:AM MRS-4 II
+662:AM MRS-4 III
+663:AM MRS-4 IV
+664:AM MRS-4 V
+665:AM MRS-4R III
+666:AM MRS-4R IV
+667:AM MRS-4R V
+668:AM MRS-4LS III
+669:AM MRS-4LS IV
+670:AM MRS-4LS V
+671:UN-ARC I
+672:UN-ARC II
+673:UN-ARC III
+674:UN-ARC IV
+675:UN-ARC V
+676:UN-ARC-PT III
+677:UN-ARC-PT IV
+678:UN-ARC-HB III
+679:UN-ARC-HB IV
+680:UN-ARC-HB V
+681:UN-ARC-N: II
+682:UN-ARC-N: III
+683:UN-ARC-N: IV
+684:UN-ARC-N: V
+685:G44 III
+686:G44 IV
+687:G44 V
+688:G44 VII
+689:G44K IV
+690:G44K V
+691:G44K VII
+692:G44-9 V
+693:G44-9 VI
+694:G44-9 VIII
+695:G44MG IV
+696:G44MG V
+773:Renov-ICKX SR I
+774:Renov-ICKX SR II
+775:Renov-ICKX SR III
+776:Renov-ICKX SR IV
+777:Renov-ICKX SR V
+778:Renov-ICKX TP II
+779:Renov-ICKX TP III
+780:Renov-ICKX TP IV
+781:Renov-ICKX TP V
+782:M2000-D II
+783:M2000-D III
+784:M2000-D IV
+785:M2000-D V
+786:M2000-D VII
+787:M2000-D VIII
+788:M2000-NL IV
+789:M2000-NL V
+790:M2000-NL VI
+791:M2000-NL VIII
+792:Bambetov SV III
+793:Bambetov SV IV
+794:Bambetov SV V
+795:Bambetov SV VII
+797:AM MRS-71 III
+798:AM MRS-71 IV
+799:AM MRS-71 V
+800:AM MRS-71 VII
+801:AM MRS-73 V
+802:AM MRS-73 VI
+803:AM MRS-73 VIII
+804:AM MRS-73 NL V
+805:AM MRS-73 NL VII
+806:AM MRS-73 NL VIII
+807:Brennan LRS-46 IV
+808:Brennan LRS-46 V
+809:Brennan LRS-46 VI
+810:Brennan LRS-46 VIII
+811:Serval AMR-7 V
+812:Serval AMR-7 VII
+813:Serval AMR-7 VIII
+833:GROM-11 II
+834:GROM-11 III
+835:GROM-11 IV
+836:FB MR III
+837:FB MR IV
+838:FB MR V
+839:FB MR NLSP VII
+840:FB MR MK2 IV
+841:FB MR MK2 V
+842:FB MR MK2 VII
+843:Killer Bee III
+844:Killer Bee IV
+845:Killer Bee V
+846:Killer Bee VI
+847:CGM 25 IV
+848:CGM 25 V
+849:CGM 25 VI
+1310:FB MR FLTN V
+1311:FB MR FLTN VI
+1312:FB MR FLTN VIII
+450:Stealth Camo.
+451:Phantom Cigar
+492:NVG
+456:C.Box(DSRT) I
+457:C.Box(DSRT) II
+458:C.Box(DSRT) III
+461:C.Box(FRST) II
+467:C.Box(APD) II
+468:C.Box(APD) III
+483:Pentazemin
+484:Noctoyanin
+</DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_prep_item</Address>
+          <Offsets>
+            <Offset>14</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>92</ID>
+          <Description>"Item 7"</Description>
+          <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">570:WU S.Pistol I
+571:WU S.Pistol II
+572:WU S.Pistol III
+573:WU S.Pistol IV
+574:WU S.Pistol V
+575:WU S.Pistol CB
+576:WU S.Pistol SB
+577:WU S.Pistol AP
+578:WU S.Pistol 9 IV
+579:WU S.Pistol 9 VII
+560:AM D114 I
+561:AM D114 II
+562:AM D114 III
+563:AM D114 IV
+564:AM D114 CB
+565:AM D114-9
+566:AM D114LB-45 IV
+567:AM D114LB-45 V
+568:AM D114LB-9 V
+569:AM D114LB-9 VII
+580:Burkov I
+581:Burkov II
+582:Burkov III
+583:Burkov V
+584:Burkov TB
+585:Burkov HS
+586:Geist P3 II
+587:Geist P3 III
+588:Geist P3 IV
+589:Geist P3 V
+590:Geist P3 VII
+591:Geist P3 CB
+592:WU S333 III
+593:WU S333 IV
+594:WU S333 V
+595:WU S333 VIII
+596:WU S324LB IV
+597:WU S324LB V
+598:WU S324LB VIII
+599:WU S362SB IV
+600:WU S362SB V
+601:WU S362SB VIII
+602:Uragan-5 III
+603:Uragan-5P
+604:Uragan-5 SLUG
+605:Uragan-5 AIR-S
+606:Zorn-KP III
+607:Zorn-KP IV
+608:Zorn-KP Smoke
+609:Zorn-KP Stun
+610:Zorn-KP Sleep
+102:Adam-SKA SP.
+101:WU S333 CB SP.
+614:Sz.-336 SMG II
+615:Sz.-336 SMG III
+616:Sz.-336 SMG IV
+617:Sz.-336 SMG V
+618:Sz.-336 SMG VI
+619:Sz.-336 SMG HS
+620:Ze'EV III
+621:Ze'EV IV
+622:Ze'EV V
+623:Ze'EV VI
+624:Ze'EV 10 VII
+625:Macht 37 III
+626:Macht 37 IV
+627:Macht 37 V
+628:Macht 37 VII
+629:Macht 37L V
+630:Macht 37L VI
+631:Macht 37K
+103:Macht-P5 Weiss
+632:Riot SMG II
+633:Riot SMG III
+634:Riot SMG IV
+635:Riot SMG V
+637:SVG-76 I
+638:SVG-76 II
+639:SVG-76 III
+640:SVG-76 IV
+641:SVG-76 V
+642:SVG-67 IV
+643:SVG-67 V
+644:SVG-67 VII
+645:SVG-76U III
+646:SVG-76U IV
+647:SVG-76U V
+648:SVG-67U IV
+649:SVG-67U V
+650:SVG-67U VI
+651:PG-76 III
+652:PG-76 IV
+653:PG-76 V
+654:PG-76 VII
+655:PG-76 VIII
+656:PG-67 IV
+657:PG-67 V
+658:PG-67 VI
+659:PG-67 VIII
+660:AM MRS-4 I
+661:AM MRS-4 II
+662:AM MRS-4 III
+663:AM MRS-4 IV
+664:AM MRS-4 V
+665:AM MRS-4R III
+666:AM MRS-4R IV
+667:AM MRS-4R V
+668:AM MRS-4LS III
+669:AM MRS-4LS IV
+670:AM MRS-4LS V
+671:UN-ARC I
+672:UN-ARC II
+673:UN-ARC III
+674:UN-ARC IV
+675:UN-ARC V
+676:UN-ARC-PT III
+677:UN-ARC-PT IV
+678:UN-ARC-HB III
+679:UN-ARC-HB IV
+680:UN-ARC-HB V
+681:UN-ARC-N: II
+682:UN-ARC-N: III
+683:UN-ARC-N: IV
+684:UN-ARC-N: V
+685:G44 III
+686:G44 IV
+687:G44 V
+688:G44 VII
+689:G44K IV
+690:G44K V
+691:G44K VII
+692:G44-9 V
+693:G44-9 VI
+694:G44-9 VIII
+695:G44MG IV
+696:G44MG V
+773:Renov-ICKX SR I
+774:Renov-ICKX SR II
+775:Renov-ICKX SR III
+776:Renov-ICKX SR IV
+777:Renov-ICKX SR V
+778:Renov-ICKX TP II
+779:Renov-ICKX TP III
+780:Renov-ICKX TP IV
+781:Renov-ICKX TP V
+782:M2000-D II
+783:M2000-D III
+784:M2000-D IV
+785:M2000-D V
+786:M2000-D VII
+787:M2000-D VIII
+788:M2000-NL IV
+789:M2000-NL V
+790:M2000-NL VI
+791:M2000-NL VIII
+792:Bambetov SV III
+793:Bambetov SV IV
+794:Bambetov SV V
+795:Bambetov SV VII
+797:AM MRS-71 III
+798:AM MRS-71 IV
+799:AM MRS-71 V
+800:AM MRS-71 VII
+801:AM MRS-73 V
+802:AM MRS-73 VI
+803:AM MRS-73 VIII
+804:AM MRS-73 NL V
+805:AM MRS-73 NL VII
+806:AM MRS-73 NL VIII
+807:Brennan LRS-46 IV
+808:Brennan LRS-46 V
+809:Brennan LRS-46 VI
+810:Brennan LRS-46 VIII
+811:Serval AMR-7 V
+812:Serval AMR-7 VII
+813:Serval AMR-7 VIII
+833:GROM-11 II
+834:GROM-11 III
+835:GROM-11 IV
+836:FB MR III
+837:FB MR IV
+838:FB MR V
+839:FB MR NLSP VII
+840:FB MR MK2 IV
+841:FB MR MK2 V
+842:FB MR MK2 VII
+843:Killer Bee III
+844:Killer Bee IV
+845:Killer Bee V
+846:Killer Bee VI
+847:CGM 25 IV
+848:CGM 25 V
+849:CGM 25 VI
+1310:FB MR FLTN V
+1311:FB MR FLTN VI
+1312:FB MR FLTN VIII
+450:Stealth Camo.
+451:Phantom Cigar
+492:NVG
+456:C.Box(DSRT) I
+457:C.Box(DSRT) II
+458:C.Box(DSRT) III
+461:C.Box(FRST) II
+467:C.Box(APD) II
+468:C.Box(APD) III
+483:Pentazemin
+484:Noctoyanin
+</DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_prep_item</Address>
+          <Offsets>
+            <Offset>18</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>91</ID>
+          <Description>"Item 8"</Description>
+          <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">570:WU S.Pistol I
+571:WU S.Pistol II
+572:WU S.Pistol III
+573:WU S.Pistol IV
+574:WU S.Pistol V
+575:WU S.Pistol CB
+576:WU S.Pistol SB
+577:WU S.Pistol AP
+578:WU S.Pistol 9 IV
+579:WU S.Pistol 9 VII
+560:AM D114 I
+561:AM D114 II
+562:AM D114 III
+563:AM D114 IV
+564:AM D114 CB
+565:AM D114-9
+566:AM D114LB-45 IV
+567:AM D114LB-45 V
+568:AM D114LB-9 V
+569:AM D114LB-9 VII
+580:Burkov I
+581:Burkov II
+582:Burkov III
+583:Burkov V
+584:Burkov TB
+585:Burkov HS
+586:Geist P3 II
+587:Geist P3 III
+588:Geist P3 IV
+589:Geist P3 V
+590:Geist P3 VII
+591:Geist P3 CB
+592:WU S333 III
+593:WU S333 IV
+594:WU S333 V
+595:WU S333 VIII
+596:WU S324LB IV
+597:WU S324LB V
+598:WU S324LB VIII
+599:WU S362SB IV
+600:WU S362SB V
+601:WU S362SB VIII
+602:Uragan-5 III
+603:Uragan-5P
+604:Uragan-5 SLUG
+605:Uragan-5 AIR-S
+606:Zorn-KP III
+607:Zorn-KP IV
+608:Zorn-KP Smoke
+609:Zorn-KP Stun
+610:Zorn-KP Sleep
+102:Adam-SKA SP.
+101:WU S333 CB SP.
+614:Sz.-336 SMG II
+615:Sz.-336 SMG III
+616:Sz.-336 SMG IV
+617:Sz.-336 SMG V
+618:Sz.-336 SMG VI
+619:Sz.-336 SMG HS
+620:Ze'EV III
+621:Ze'EV IV
+622:Ze'EV V
+623:Ze'EV VI
+624:Ze'EV 10 VII
+625:Macht 37 III
+626:Macht 37 IV
+627:Macht 37 V
+628:Macht 37 VII
+629:Macht 37L V
+630:Macht 37L VI
+631:Macht 37K
+103:Macht-P5 Weiss
+632:Riot SMG II
+633:Riot SMG III
+634:Riot SMG IV
+635:Riot SMG V
+637:SVG-76 I
+638:SVG-76 II
+639:SVG-76 III
+640:SVG-76 IV
+641:SVG-76 V
+642:SVG-67 IV
+643:SVG-67 V
+644:SVG-67 VII
+645:SVG-76U III
+646:SVG-76U IV
+647:SVG-76U V
+648:SVG-67U IV
+649:SVG-67U V
+650:SVG-67U VI
+651:PG-76 III
+652:PG-76 IV
+653:PG-76 V
+654:PG-76 VII
+655:PG-76 VIII
+656:PG-67 IV
+657:PG-67 V
+658:PG-67 VI
+659:PG-67 VIII
+660:AM MRS-4 I
+661:AM MRS-4 II
+662:AM MRS-4 III
+663:AM MRS-4 IV
+664:AM MRS-4 V
+665:AM MRS-4R III
+666:AM MRS-4R IV
+667:AM MRS-4R V
+668:AM MRS-4LS III
+669:AM MRS-4LS IV
+670:AM MRS-4LS V
+671:UN-ARC I
+672:UN-ARC II
+673:UN-ARC III
+674:UN-ARC IV
+675:UN-ARC V
+676:UN-ARC-PT III
+677:UN-ARC-PT IV
+678:UN-ARC-HB III
+679:UN-ARC-HB IV
+680:UN-ARC-HB V
+681:UN-ARC-N: II
+682:UN-ARC-N: III
+683:UN-ARC-N: IV
+684:UN-ARC-N: V
+685:G44 III
+686:G44 IV
+687:G44 V
+688:G44 VII
+689:G44K IV
+690:G44K V
+691:G44K VII
+692:G44-9 V
+693:G44-9 VI
+694:G44-9 VIII
+695:G44MG IV
+696:G44MG V
+773:Renov-ICKX SR I
+774:Renov-ICKX SR II
+775:Renov-ICKX SR III
+776:Renov-ICKX SR IV
+777:Renov-ICKX SR V
+778:Renov-ICKX TP II
+779:Renov-ICKX TP III
+780:Renov-ICKX TP IV
+781:Renov-ICKX TP V
+782:M2000-D II
+783:M2000-D III
+784:M2000-D IV
+785:M2000-D V
+786:M2000-D VII
+787:M2000-D VIII
+788:M2000-NL IV
+789:M2000-NL V
+790:M2000-NL VI
+791:M2000-NL VIII
+792:Bambetov SV III
+793:Bambetov SV IV
+794:Bambetov SV V
+795:Bambetov SV VII
+797:AM MRS-71 III
+798:AM MRS-71 IV
+799:AM MRS-71 V
+800:AM MRS-71 VII
+801:AM MRS-73 V
+802:AM MRS-73 VI
+803:AM MRS-73 VIII
+804:AM MRS-73 NL V
+805:AM MRS-73 NL VII
+806:AM MRS-73 NL VIII
+807:Brennan LRS-46 IV
+808:Brennan LRS-46 V
+809:Brennan LRS-46 VI
+810:Brennan LRS-46 VIII
+811:Serval AMR-7 V
+812:Serval AMR-7 VII
+813:Serval AMR-7 VIII
+833:GROM-11 II
+834:GROM-11 III
+835:GROM-11 IV
+836:FB MR III
+837:FB MR IV
+838:FB MR V
+839:FB MR NLSP VII
+840:FB MR MK2 IV
+841:FB MR MK2 V
+842:FB MR MK2 VII
+843:Killer Bee III
+844:Killer Bee IV
+845:Killer Bee V
+846:Killer Bee VI
+847:CGM 25 IV
+848:CGM 25 V
+849:CGM 25 VI
+1310:FB MR FLTN V
+1311:FB MR FLTN VI
+1312:FB MR FLTN VIII
+450:Stealth Camo.
+451:Phantom Cigar
+492:NVG
+456:C.Box(DSRT) I
+457:C.Box(DSRT) II
+458:C.Box(DSRT) III
+461:C.Box(FRST) II
+467:C.Box(APD) II
+468:C.Box(APD) III
+483:Pentazemin
+484:Noctoyanin
+</DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_prep_item</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>99</ID>
+      <Description>"Support Weapons (Sortie Prep)"</Description>
+      <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : mgsvtpp2.exe
+  Version: 
+  Date   : 2021-05-08
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_PREP_SUP,mgsvtpp2.exe,8B 44 81 64 C3) // should be unique
+alloc(newmem,$1000,INJ_PREP_SUP)
+
+label(code)
+label(return)
+label(pt_prep_sup)
+
+newmem:
+  test rax,rax
+  jnz code
+  push rbx
+  lea rbx,[rcx+64]
+  mov [pt_prep_sup],rbx
+  pop rbx
+
+code:
+  mov eax,[rcx+rax*4+64]
+  ret 
+  jmp return
+
+pt_prep_sup:
+  dq 0
+registersymbol(pt_prep_sup)
+
+INJ_PREP_SUP:
+  jmp newmem
+return:
+registersymbol(INJ_PREP_SUP)
+
+[DISABLE]
+
+INJ_PREP_SUP:
+  db 8B 44 81 64 C3
+
+unregistersymbol(pt_prep_sup)
+unregistersymbol(INJ_PREP_SUP)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: mgsvtpp2.exe+92DFFF1
+
+mgsvtpp2.exe+92DFFCA: 4C 89 24 24           - mov [rsp],r12
+mgsvtpp2.exe+92DFFCE: C1 CB 1D              - ror ebx,1D
+mgsvtpp2.exe+92DFFD1: 4C 8D 25 E0 3B EE 02  - lea r12,[mgsvtpp2.exe+C1C3BB8]
+mgsvtpp2.exe+92DFFD8: 4C 87 24 24           - xchg [rsp],r12
+mgsvtpp2.exe+92DFFDC: C3                    - ret 
+mgsvtpp2.exe+92DFFDD: 8D 66 90              - lea esp,[rsi-70]
+mgsvtpp2.exe+92DFFE0: 0F B6 81 B4 03 00 00  - movzx eax,byte ptr [rcx+000003B4]
+mgsvtpp2.exe+92DFFE7: 0F B6 D2              - movzx edx,dl
+mgsvtpp2.exe+92DFFEA: 48 6B C0 3A           - imul rax,rax,3A
+mgsvtpp2.exe+92DFFEE: 48 01 D0              - add rax,rdx
+// ---------- INJECTING HERE ----------
+mgsvtpp2.exe+92DFFF1: 8B 44 81 64           - mov eax,[rcx+rax*4+64]
+// ---------- DONE INJECTING  ----------
+mgsvtpp2.exe+92DFFF5: C3                    - ret 
+mgsvtpp2.exe+92DFFF6: 59                    - pop rcx
+mgsvtpp2.exe+92DFFF7: 9C                    - pushfq 
+mgsvtpp2.exe+92DFFF8: 57                    - push rdi
+mgsvtpp2.exe+92DFFF9: 0F 44 FA              - cmove edi,edx
+mgsvtpp2.exe+92DFFFC: 48 FF CF              - dec rdi
+mgsvtpp2.exe+92DFFFF: BF ED 4B B8 CE        - mov edi,CEB84BED
+mgsvtpp2.exe+92E0004: 81 C7 AB 24 C3 C3     - add edi,C3C324AB
+mgsvtpp2.exe+92E000A: 81 F7 13 3D D7 12     - xor edi,12D73D13
+mgsvtpp2.exe+92E0010: 48 63 FF              - movsxd  rdi,edi
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>100</ID>
+          <Description>"Support 1"</Description>
+          <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">570:WU S.Pistol I
+571:WU S.Pistol II
+572:WU S.Pistol III
+573:WU S.Pistol IV
+574:WU S.Pistol V
+575:WU S.Pistol CB
+576:WU S.Pistol SB
+577:WU S.Pistol AP
+578:WU S.Pistol 9 IV
+579:WU S.Pistol 9 VII
+560:AM D114 I
+561:AM D114 II
+562:AM D114 III
+563:AM D114 IV
+564:AM D114 CB
+565:AM D114-9
+566:AM D114LB-45 IV
+567:AM D114LB-45 V
+568:AM D114LB-9 V
+569:AM D114LB-9 VII
+580:Burkov I
+581:Burkov II
+582:Burkov III
+583:Burkov V
+584:Burkov TB
+585:Burkov HS
+586:Geist P3 II
+587:Geist P3 III
+588:Geist P3 IV
+589:Geist P3 V
+590:Geist P3 VII
+591:Geist P3 CB
+592:WU S333 III
+593:WU S333 IV
+594:WU S333 V
+595:WU S333 VIII
+596:WU S324LB IV
+597:WU S324LB V
+598:WU S324LB VIII
+599:WU S362SB IV
+600:WU S362SB V
+601:WU S362SB VIII
+602:Uragan-5 III
+603:Uragan-5P
+604:Uragan-5 SLUG
+605:Uragan-5 AIR-S
+606:Zorn-KP III
+607:Zorn-KP IV
+608:Zorn-KP Smoke
+609:Zorn-KP Stun
+610:Zorn-KP Sleep
+102:Adam-SKA SP.
+101:WU S333 CB SP.
+614:Sz.-336 SMG II
+615:Sz.-336 SMG III
+616:Sz.-336 SMG IV
+617:Sz.-336 SMG V
+618:Sz.-336 SMG VI
+619:Sz.-336 SMG HS
+620:Ze'EV III
+621:Ze'EV IV
+622:Ze'EV V
+623:Ze'EV VI
+624:Ze'EV 10 VII
+625:Macht 37 III
+626:Macht 37 IV
+627:Macht 37 V
+628:Macht 37 VII
+629:Macht 37L V
+630:Macht 37L VI
+631:Macht 37K
+103:Macht-P5 Weiss
+632:Riot SMG II
+633:Riot SMG III
+634:Riot SMG IV
+635:Riot SMG V
+637:SVG-76 I
+638:SVG-76 II
+639:SVG-76 III
+640:SVG-76 IV
+641:SVG-76 V
+642:SVG-67 IV
+643:SVG-67 V
+644:SVG-67 VII
+645:SVG-76U III
+646:SVG-76U IV
+647:SVG-76U V
+648:SVG-67U IV
+649:SVG-67U V
+650:SVG-67U VI
+651:PG-76 III
+652:PG-76 IV
+653:PG-76 V
+654:PG-76 VII
+655:PG-76 VIII
+656:PG-67 IV
+657:PG-67 V
+658:PG-67 VI
+659:PG-67 VIII
+660:AM MRS-4 I
+661:AM MRS-4 II
+662:AM MRS-4 III
+663:AM MRS-4 IV
+664:AM MRS-4 V
+665:AM MRS-4R III
+666:AM MRS-4R IV
+667:AM MRS-4R V
+668:AM MRS-4LS III
+669:AM MRS-4LS IV
+670:AM MRS-4LS V
+671:UN-ARC I
+672:UN-ARC II
+673:UN-ARC III
+674:UN-ARC IV
+675:UN-ARC V
+676:UN-ARC-PT III
+677:UN-ARC-PT IV
+678:UN-ARC-HB III
+679:UN-ARC-HB IV
+680:UN-ARC-HB V
+681:UN-ARC-N: II
+682:UN-ARC-N: III
+683:UN-ARC-N: IV
+684:UN-ARC-N: V
+685:G44 III
+686:G44 IV
+687:G44 V
+688:G44 VII
+689:G44K IV
+690:G44K V
+691:G44K VII
+692:G44-9 V
+693:G44-9 VI
+694:G44-9 VIII
+695:G44MG IV
+696:G44MG V
+773:Renov-ICKX SR I
+774:Renov-ICKX SR II
+775:Renov-ICKX SR III
+776:Renov-ICKX SR IV
+777:Renov-ICKX SR V
+778:Renov-ICKX TP II
+779:Renov-ICKX TP III
+780:Renov-ICKX TP IV
+781:Renov-ICKX TP V
+782:M2000-D II
+783:M2000-D III
+784:M2000-D IV
+785:M2000-D V
+786:M2000-D VII
+787:M2000-D VIII
+788:M2000-NL IV
+789:M2000-NL V
+790:M2000-NL VI
+791:M2000-NL VIII
+792:Bambetov SV III
+793:Bambetov SV IV
+794:Bambetov SV V
+795:Bambetov SV VII
+797:AM MRS-71 III
+798:AM MRS-71 IV
+799:AM MRS-71 V
+800:AM MRS-71 VII
+801:AM MRS-73 V
+802:AM MRS-73 VI
+803:AM MRS-73 VIII
+804:AM MRS-73 NL V
+805:AM MRS-73 NL VII
+806:AM MRS-73 NL VIII
+807:Brennan LRS-46 IV
+808:Brennan LRS-46 V
+809:Brennan LRS-46 VI
+810:Brennan LRS-46 VIII
+811:Serval AMR-7 V
+812:Serval AMR-7 VII
+813:Serval AMR-7 VIII
+833:GROM-11 II
+834:GROM-11 III
+835:GROM-11 IV
+836:FB MR III
+837:FB MR IV
+838:FB MR V
+839:FB MR NLSP VII
+840:FB MR MK2 IV
+841:FB MR MK2 V
+842:FB MR MK2 VII
+843:Killer Bee III
+844:Killer Bee IV
+845:Killer Bee V
+846:Killer Bee VI
+847:CGM 25 IV
+848:CGM 25 V
+849:CGM 25 VI
+1310:FB MR FLTN V
+1311:FB MR FLTN VI
+1312:FB MR FLTN VIII
+349:Magazine
+350:Grenade I
+351:Grenade II
+352:Grenade III
+353:Grenade IV
+354:Grenade V
+357:Smoke Grenade I
+358:Smoke Grenade II
+359:Smoke Grenade III
+360:Smoke Grenade IV
+361:Smoke Grenade V
+364:Flare Grenade I
+365:Flare Grenade II
+366:Flare Grenade III
+367:Flare Grenade V
+368:Flare Supply II
+369:Flare Supply III
+370:Flare Supply IV
+371:Flare Supply V
+372:Stun Grenade III
+373:Stun Grenade IV
+374:Stun Grenade V
+377:Sleep Grenade IV
+378:Sleep Grenade V
+387:Bait Bottle III
+388:Bait Bottle IV
+389:Bait Bottle V
+391:C4 I
+392:C4 II
+393:C4 III
+394:C4 IV
+395:C4 V
+397:Decoy II
+398:Decoy III
+399:Decoy IV
+400:Decoy V
+401:Active Decoy III
+402:Active Decoy IV
+403:Active Decoy V
+409:Capture Cage II
+410:Capture Cage III
+411:Capture Cage IV
+412:Capture Cage V
+413:M21 D-Mine III
+414:M21 D-Mine IV
+415:M21 D-Mine V
+421:ATB Mine IV
+422:ATB Mine V
+423:ATB Mine VI
+425:EMN Mine IV
+426:EMN Mine V
+427:EMN Mine VI
+450:Stealth Camo.
+451:Phantom Cigar
+492:NVG
+456:C.Box(DSRT) I
+457:C.Box(DSRT) II
+458:C.Box(DSRT) III
+461:C.Box(FRST) II
+467:C.Box(APD) II
+468:C.Box(APD) III
+483:Pentazemin
+484:Noctoyanin
+</DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_prep_sup</Address>
+          <Offsets>
+            <Offset>0</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>106</ID>
+          <Description>"Support 2"</Description>
+          <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">570:WU S.Pistol I
+571:WU S.Pistol II
+572:WU S.Pistol III
+573:WU S.Pistol IV
+574:WU S.Pistol V
+575:WU S.Pistol CB
+576:WU S.Pistol SB
+577:WU S.Pistol AP
+578:WU S.Pistol 9 IV
+579:WU S.Pistol 9 VII
+560:AM D114 I
+561:AM D114 II
+562:AM D114 III
+563:AM D114 IV
+564:AM D114 CB
+565:AM D114-9
+566:AM D114LB-45 IV
+567:AM D114LB-45 V
+568:AM D114LB-9 V
+569:AM D114LB-9 VII
+580:Burkov I
+581:Burkov II
+582:Burkov III
+583:Burkov V
+584:Burkov TB
+585:Burkov HS
+586:Geist P3 II
+587:Geist P3 III
+588:Geist P3 IV
+589:Geist P3 V
+590:Geist P3 VII
+591:Geist P3 CB
+592:WU S333 III
+593:WU S333 IV
+594:WU S333 V
+595:WU S333 VIII
+596:WU S324LB IV
+597:WU S324LB V
+598:WU S324LB VIII
+599:WU S362SB IV
+600:WU S362SB V
+601:WU S362SB VIII
+602:Uragan-5 III
+603:Uragan-5P
+604:Uragan-5 SLUG
+605:Uragan-5 AIR-S
+606:Zorn-KP III
+607:Zorn-KP IV
+608:Zorn-KP Smoke
+609:Zorn-KP Stun
+610:Zorn-KP Sleep
+102:Adam-SKA SP.
+101:WU S333 CB SP.
+614:Sz.-336 SMG II
+615:Sz.-336 SMG III
+616:Sz.-336 SMG IV
+617:Sz.-336 SMG V
+618:Sz.-336 SMG VI
+619:Sz.-336 SMG HS
+620:Ze'EV III
+621:Ze'EV IV
+622:Ze'EV V
+623:Ze'EV VI
+624:Ze'EV 10 VII
+625:Macht 37 III
+626:Macht 37 IV
+627:Macht 37 V
+628:Macht 37 VII
+629:Macht 37L V
+630:Macht 37L VI
+631:Macht 37K
+103:Macht-P5 Weiss
+632:Riot SMG II
+633:Riot SMG III
+634:Riot SMG IV
+635:Riot SMG V
+637:SVG-76 I
+638:SVG-76 II
+639:SVG-76 III
+640:SVG-76 IV
+641:SVG-76 V
+642:SVG-67 IV
+643:SVG-67 V
+644:SVG-67 VII
+645:SVG-76U III
+646:SVG-76U IV
+647:SVG-76U V
+648:SVG-67U IV
+649:SVG-67U V
+650:SVG-67U VI
+651:PG-76 III
+652:PG-76 IV
+653:PG-76 V
+654:PG-76 VII
+655:PG-76 VIII
+656:PG-67 IV
+657:PG-67 V
+658:PG-67 VI
+659:PG-67 VIII
+660:AM MRS-4 I
+661:AM MRS-4 II
+662:AM MRS-4 III
+663:AM MRS-4 IV
+664:AM MRS-4 V
+665:AM MRS-4R III
+666:AM MRS-4R IV
+667:AM MRS-4R V
+668:AM MRS-4LS III
+669:AM MRS-4LS IV
+670:AM MRS-4LS V
+671:UN-ARC I
+672:UN-ARC II
+673:UN-ARC III
+674:UN-ARC IV
+675:UN-ARC V
+676:UN-ARC-PT III
+677:UN-ARC-PT IV
+678:UN-ARC-HB III
+679:UN-ARC-HB IV
+680:UN-ARC-HB V
+681:UN-ARC-N: II
+682:UN-ARC-N: III
+683:UN-ARC-N: IV
+684:UN-ARC-N: V
+685:G44 III
+686:G44 IV
+687:G44 V
+688:G44 VII
+689:G44K IV
+690:G44K V
+691:G44K VII
+692:G44-9 V
+693:G44-9 VI
+694:G44-9 VIII
+695:G44MG IV
+696:G44MG V
+773:Renov-ICKX SR I
+774:Renov-ICKX SR II
+775:Renov-ICKX SR III
+776:Renov-ICKX SR IV
+777:Renov-ICKX SR V
+778:Renov-ICKX TP II
+779:Renov-ICKX TP III
+780:Renov-ICKX TP IV
+781:Renov-ICKX TP V
+782:M2000-D II
+783:M2000-D III
+784:M2000-D IV
+785:M2000-D V
+786:M2000-D VII
+787:M2000-D VIII
+788:M2000-NL IV
+789:M2000-NL V
+790:M2000-NL VI
+791:M2000-NL VIII
+792:Bambetov SV III
+793:Bambetov SV IV
+794:Bambetov SV V
+795:Bambetov SV VII
+797:AM MRS-71 III
+798:AM MRS-71 IV
+799:AM MRS-71 V
+800:AM MRS-71 VII
+801:AM MRS-73 V
+802:AM MRS-73 VI
+803:AM MRS-73 VIII
+804:AM MRS-73 NL V
+805:AM MRS-73 NL VII
+806:AM MRS-73 NL VIII
+807:Brennan LRS-46 IV
+808:Brennan LRS-46 V
+809:Brennan LRS-46 VI
+810:Brennan LRS-46 VIII
+811:Serval AMR-7 V
+812:Serval AMR-7 VII
+813:Serval AMR-7 VIII
+833:GROM-11 II
+834:GROM-11 III
+835:GROM-11 IV
+836:FB MR III
+837:FB MR IV
+838:FB MR V
+839:FB MR NLSP VII
+840:FB MR MK2 IV
+841:FB MR MK2 V
+842:FB MR MK2 VII
+843:Killer Bee III
+844:Killer Bee IV
+845:Killer Bee V
+846:Killer Bee VI
+847:CGM 25 IV
+848:CGM 25 V
+849:CGM 25 VI
+1310:FB MR FLTN V
+1311:FB MR FLTN VI
+1312:FB MR FLTN VIII
+349:Magazine
+350:Grenade I
+351:Grenade II
+352:Grenade III
+353:Grenade IV
+354:Grenade V
+357:Smoke Grenade I
+358:Smoke Grenade II
+359:Smoke Grenade III
+360:Smoke Grenade IV
+361:Smoke Grenade V
+364:Flare Grenade I
+365:Flare Grenade II
+366:Flare Grenade III
+367:Flare Grenade V
+368:Flare Supply II
+369:Flare Supply III
+370:Flare Supply IV
+371:Flare Supply V
+372:Stun Grenade III
+373:Stun Grenade IV
+374:Stun Grenade V
+377:Sleep Grenade IV
+378:Sleep Grenade V
+387:Bait Bottle III
+388:Bait Bottle IV
+389:Bait Bottle V
+391:C4 I
+392:C4 II
+393:C4 III
+394:C4 IV
+395:C4 V
+397:Decoy II
+398:Decoy III
+399:Decoy IV
+400:Decoy V
+401:Active Decoy III
+402:Active Decoy IV
+403:Active Decoy V
+409:Capture Cage II
+410:Capture Cage III
+411:Capture Cage IV
+412:Capture Cage V
+413:M21 D-Mine III
+414:M21 D-Mine IV
+415:M21 D-Mine V
+421:ATB Mine IV
+422:ATB Mine V
+423:ATB Mine VI
+425:EMN Mine IV
+426:EMN Mine V
+427:EMN Mine VI
+450:Stealth Camo.
+451:Phantom Cigar
+492:NVG
+456:C.Box(DSRT) I
+457:C.Box(DSRT) II
+458:C.Box(DSRT) III
+461:C.Box(FRST) II
+467:C.Box(APD) II
+468:C.Box(APD) III
+483:Pentazemin
+484:Noctoyanin
+</DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_prep_sup</Address>
+          <Offsets>
+            <Offset>4</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>105</ID>
+          <Description>"Support 3"</Description>
+          <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">570:WU S.Pistol I
+571:WU S.Pistol II
+572:WU S.Pistol III
+573:WU S.Pistol IV
+574:WU S.Pistol V
+575:WU S.Pistol CB
+576:WU S.Pistol SB
+577:WU S.Pistol AP
+578:WU S.Pistol 9 IV
+579:WU S.Pistol 9 VII
+560:AM D114 I
+561:AM D114 II
+562:AM D114 III
+563:AM D114 IV
+564:AM D114 CB
+565:AM D114-9
+566:AM D114LB-45 IV
+567:AM D114LB-45 V
+568:AM D114LB-9 V
+569:AM D114LB-9 VII
+580:Burkov I
+581:Burkov II
+582:Burkov III
+583:Burkov V
+584:Burkov TB
+585:Burkov HS
+586:Geist P3 II
+587:Geist P3 III
+588:Geist P3 IV
+589:Geist P3 V
+590:Geist P3 VII
+591:Geist P3 CB
+592:WU S333 III
+593:WU S333 IV
+594:WU S333 V
+595:WU S333 VIII
+596:WU S324LB IV
+597:WU S324LB V
+598:WU S324LB VIII
+599:WU S362SB IV
+600:WU S362SB V
+601:WU S362SB VIII
+602:Uragan-5 III
+603:Uragan-5P
+604:Uragan-5 SLUG
+605:Uragan-5 AIR-S
+606:Zorn-KP III
+607:Zorn-KP IV
+608:Zorn-KP Smoke
+609:Zorn-KP Stun
+610:Zorn-KP Sleep
+102:Adam-SKA SP.
+101:WU S333 CB SP.
+614:Sz.-336 SMG II
+615:Sz.-336 SMG III
+616:Sz.-336 SMG IV
+617:Sz.-336 SMG V
+618:Sz.-336 SMG VI
+619:Sz.-336 SMG HS
+620:Ze'EV III
+621:Ze'EV IV
+622:Ze'EV V
+623:Ze'EV VI
+624:Ze'EV 10 VII
+625:Macht 37 III
+626:Macht 37 IV
+627:Macht 37 V
+628:Macht 37 VII
+629:Macht 37L V
+630:Macht 37L VI
+631:Macht 37K
+103:Macht-P5 Weiss
+632:Riot SMG II
+633:Riot SMG III
+634:Riot SMG IV
+635:Riot SMG V
+637:SVG-76 I
+638:SVG-76 II
+639:SVG-76 III
+640:SVG-76 IV
+641:SVG-76 V
+642:SVG-67 IV
+643:SVG-67 V
+644:SVG-67 VII
+645:SVG-76U III
+646:SVG-76U IV
+647:SVG-76U V
+648:SVG-67U IV
+649:SVG-67U V
+650:SVG-67U VI
+651:PG-76 III
+652:PG-76 IV
+653:PG-76 V
+654:PG-76 VII
+655:PG-76 VIII
+656:PG-67 IV
+657:PG-67 V
+658:PG-67 VI
+659:PG-67 VIII
+660:AM MRS-4 I
+661:AM MRS-4 II
+662:AM MRS-4 III
+663:AM MRS-4 IV
+664:AM MRS-4 V
+665:AM MRS-4R III
+666:AM MRS-4R IV
+667:AM MRS-4R V
+668:AM MRS-4LS III
+669:AM MRS-4LS IV
+670:AM MRS-4LS V
+671:UN-ARC I
+672:UN-ARC II
+673:UN-ARC III
+674:UN-ARC IV
+675:UN-ARC V
+676:UN-ARC-PT III
+677:UN-ARC-PT IV
+678:UN-ARC-HB III
+679:UN-ARC-HB IV
+680:UN-ARC-HB V
+681:UN-ARC-N: II
+682:UN-ARC-N: III
+683:UN-ARC-N: IV
+684:UN-ARC-N: V
+685:G44 III
+686:G44 IV
+687:G44 V
+688:G44 VII
+689:G44K IV
+690:G44K V
+691:G44K VII
+692:G44-9 V
+693:G44-9 VI
+694:G44-9 VIII
+695:G44MG IV
+696:G44MG V
+773:Renov-ICKX SR I
+774:Renov-ICKX SR II
+775:Renov-ICKX SR III
+776:Renov-ICKX SR IV
+777:Renov-ICKX SR V
+778:Renov-ICKX TP II
+779:Renov-ICKX TP III
+780:Renov-ICKX TP IV
+781:Renov-ICKX TP V
+782:M2000-D II
+783:M2000-D III
+784:M2000-D IV
+785:M2000-D V
+786:M2000-D VII
+787:M2000-D VIII
+788:M2000-NL IV
+789:M2000-NL V
+790:M2000-NL VI
+791:M2000-NL VIII
+792:Bambetov SV III
+793:Bambetov SV IV
+794:Bambetov SV V
+795:Bambetov SV VII
+797:AM MRS-71 III
+798:AM MRS-71 IV
+799:AM MRS-71 V
+800:AM MRS-71 VII
+801:AM MRS-73 V
+802:AM MRS-73 VI
+803:AM MRS-73 VIII
+804:AM MRS-73 NL V
+805:AM MRS-73 NL VII
+806:AM MRS-73 NL VIII
+807:Brennan LRS-46 IV
+808:Brennan LRS-46 V
+809:Brennan LRS-46 VI
+810:Brennan LRS-46 VIII
+811:Serval AMR-7 V
+812:Serval AMR-7 VII
+813:Serval AMR-7 VIII
+833:GROM-11 II
+834:GROM-11 III
+835:GROM-11 IV
+836:FB MR III
+837:FB MR IV
+838:FB MR V
+839:FB MR NLSP VII
+840:FB MR MK2 IV
+841:FB MR MK2 V
+842:FB MR MK2 VII
+843:Killer Bee III
+844:Killer Bee IV
+845:Killer Bee V
+846:Killer Bee VI
+847:CGM 25 IV
+848:CGM 25 V
+849:CGM 25 VI
+1310:FB MR FLTN V
+1311:FB MR FLTN VI
+1312:FB MR FLTN VIII
+349:Magazine
+350:Grenade I
+351:Grenade II
+352:Grenade III
+353:Grenade IV
+354:Grenade V
+357:Smoke Grenade I
+358:Smoke Grenade II
+359:Smoke Grenade III
+360:Smoke Grenade IV
+361:Smoke Grenade V
+364:Flare Grenade I
+365:Flare Grenade II
+366:Flare Grenade III
+367:Flare Grenade V
+368:Flare Supply II
+369:Flare Supply III
+370:Flare Supply IV
+371:Flare Supply V
+372:Stun Grenade III
+373:Stun Grenade IV
+374:Stun Grenade V
+377:Sleep Grenade IV
+378:Sleep Grenade V
+387:Bait Bottle III
+388:Bait Bottle IV
+389:Bait Bottle V
+391:C4 I
+392:C4 II
+393:C4 III
+394:C4 IV
+395:C4 V
+397:Decoy II
+398:Decoy III
+399:Decoy IV
+400:Decoy V
+401:Active Decoy III
+402:Active Decoy IV
+403:Active Decoy V
+409:Capture Cage II
+410:Capture Cage III
+411:Capture Cage IV
+412:Capture Cage V
+413:M21 D-Mine III
+414:M21 D-Mine IV
+415:M21 D-Mine V
+421:ATB Mine IV
+422:ATB Mine V
+423:ATB Mine VI
+425:EMN Mine IV
+426:EMN Mine V
+427:EMN Mine VI
+450:Stealth Camo.
+451:Phantom Cigar
+492:NVG
+456:C.Box(DSRT) I
+457:C.Box(DSRT) II
+458:C.Box(DSRT) III
+461:C.Box(FRST) II
+467:C.Box(APD) II
+468:C.Box(APD) III
+483:Pentazemin
+484:Noctoyanin
+</DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_prep_sup</Address>
+          <Offsets>
+            <Offset>8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>104</ID>
+          <Description>"Support 4"</Description>
+          <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">570:WU S.Pistol I
+571:WU S.Pistol II
+572:WU S.Pistol III
+573:WU S.Pistol IV
+574:WU S.Pistol V
+575:WU S.Pistol CB
+576:WU S.Pistol SB
+577:WU S.Pistol AP
+578:WU S.Pistol 9 IV
+579:WU S.Pistol 9 VII
+560:AM D114 I
+561:AM D114 II
+562:AM D114 III
+563:AM D114 IV
+564:AM D114 CB
+565:AM D114-9
+566:AM D114LB-45 IV
+567:AM D114LB-45 V
+568:AM D114LB-9 V
+569:AM D114LB-9 VII
+580:Burkov I
+581:Burkov II
+582:Burkov III
+583:Burkov V
+584:Burkov TB
+585:Burkov HS
+586:Geist P3 II
+587:Geist P3 III
+588:Geist P3 IV
+589:Geist P3 V
+590:Geist P3 VII
+591:Geist P3 CB
+592:WU S333 III
+593:WU S333 IV
+594:WU S333 V
+595:WU S333 VIII
+596:WU S324LB IV
+597:WU S324LB V
+598:WU S324LB VIII
+599:WU S362SB IV
+600:WU S362SB V
+601:WU S362SB VIII
+602:Uragan-5 III
+603:Uragan-5P
+604:Uragan-5 SLUG
+605:Uragan-5 AIR-S
+606:Zorn-KP III
+607:Zorn-KP IV
+608:Zorn-KP Smoke
+609:Zorn-KP Stun
+610:Zorn-KP Sleep
+102:Adam-SKA SP.
+101:WU S333 CB SP.
+614:Sz.-336 SMG II
+615:Sz.-336 SMG III
+616:Sz.-336 SMG IV
+617:Sz.-336 SMG V
+618:Sz.-336 SMG VI
+619:Sz.-336 SMG HS
+620:Ze'EV III
+621:Ze'EV IV
+622:Ze'EV V
+623:Ze'EV VI
+624:Ze'EV 10 VII
+625:Macht 37 III
+626:Macht 37 IV
+627:Macht 37 V
+628:Macht 37 VII
+629:Macht 37L V
+630:Macht 37L VI
+631:Macht 37K
+103:Macht-P5 Weiss
+632:Riot SMG II
+633:Riot SMG III
+634:Riot SMG IV
+635:Riot SMG V
+637:SVG-76 I
+638:SVG-76 II
+639:SVG-76 III
+640:SVG-76 IV
+641:SVG-76 V
+642:SVG-67 IV
+643:SVG-67 V
+644:SVG-67 VII
+645:SVG-76U III
+646:SVG-76U IV
+647:SVG-76U V
+648:SVG-67U IV
+649:SVG-67U V
+650:SVG-67U VI
+651:PG-76 III
+652:PG-76 IV
+653:PG-76 V
+654:PG-76 VII
+655:PG-76 VIII
+656:PG-67 IV
+657:PG-67 V
+658:PG-67 VI
+659:PG-67 VIII
+660:AM MRS-4 I
+661:AM MRS-4 II
+662:AM MRS-4 III
+663:AM MRS-4 IV
+664:AM MRS-4 V
+665:AM MRS-4R III
+666:AM MRS-4R IV
+667:AM MRS-4R V
+668:AM MRS-4LS III
+669:AM MRS-4LS IV
+670:AM MRS-4LS V
+671:UN-ARC I
+672:UN-ARC II
+673:UN-ARC III
+674:UN-ARC IV
+675:UN-ARC V
+676:UN-ARC-PT III
+677:UN-ARC-PT IV
+678:UN-ARC-HB III
+679:UN-ARC-HB IV
+680:UN-ARC-HB V
+681:UN-ARC-N: II
+682:UN-ARC-N: III
+683:UN-ARC-N: IV
+684:UN-ARC-N: V
+685:G44 III
+686:G44 IV
+687:G44 V
+688:G44 VII
+689:G44K IV
+690:G44K V
+691:G44K VII
+692:G44-9 V
+693:G44-9 VI
+694:G44-9 VIII
+695:G44MG IV
+696:G44MG V
+773:Renov-ICKX SR I
+774:Renov-ICKX SR II
+775:Renov-ICKX SR III
+776:Renov-ICKX SR IV
+777:Renov-ICKX SR V
+778:Renov-ICKX TP II
+779:Renov-ICKX TP III
+780:Renov-ICKX TP IV
+781:Renov-ICKX TP V
+782:M2000-D II
+783:M2000-D III
+784:M2000-D IV
+785:M2000-D V
+786:M2000-D VII
+787:M2000-D VIII
+788:M2000-NL IV
+789:M2000-NL V
+790:M2000-NL VI
+791:M2000-NL VIII
+792:Bambetov SV III
+793:Bambetov SV IV
+794:Bambetov SV V
+795:Bambetov SV VII
+797:AM MRS-71 III
+798:AM MRS-71 IV
+799:AM MRS-71 V
+800:AM MRS-71 VII
+801:AM MRS-73 V
+802:AM MRS-73 VI
+803:AM MRS-73 VIII
+804:AM MRS-73 NL V
+805:AM MRS-73 NL VII
+806:AM MRS-73 NL VIII
+807:Brennan LRS-46 IV
+808:Brennan LRS-46 V
+809:Brennan LRS-46 VI
+810:Brennan LRS-46 VIII
+811:Serval AMR-7 V
+812:Serval AMR-7 VII
+813:Serval AMR-7 VIII
+833:GROM-11 II
+834:GROM-11 III
+835:GROM-11 IV
+836:FB MR III
+837:FB MR IV
+838:FB MR V
+839:FB MR NLSP VII
+840:FB MR MK2 IV
+841:FB MR MK2 V
+842:FB MR MK2 VII
+843:Killer Bee III
+844:Killer Bee IV
+845:Killer Bee V
+846:Killer Bee VI
+847:CGM 25 IV
+848:CGM 25 V
+849:CGM 25 VI
+1310:FB MR FLTN V
+1311:FB MR FLTN VI
+1312:FB MR FLTN VIII
+349:Magazine
+350:Grenade I
+351:Grenade II
+352:Grenade III
+353:Grenade IV
+354:Grenade V
+357:Smoke Grenade I
+358:Smoke Grenade II
+359:Smoke Grenade III
+360:Smoke Grenade IV
+361:Smoke Grenade V
+364:Flare Grenade I
+365:Flare Grenade II
+366:Flare Grenade III
+367:Flare Grenade V
+368:Flare Supply II
+369:Flare Supply III
+370:Flare Supply IV
+371:Flare Supply V
+372:Stun Grenade III
+373:Stun Grenade IV
+374:Stun Grenade V
+377:Sleep Grenade IV
+378:Sleep Grenade V
+387:Bait Bottle III
+388:Bait Bottle IV
+389:Bait Bottle V
+391:C4 I
+392:C4 II
+393:C4 III
+394:C4 IV
+395:C4 V
+397:Decoy II
+398:Decoy III
+399:Decoy IV
+400:Decoy V
+401:Active Decoy III
+402:Active Decoy IV
+403:Active Decoy V
+409:Capture Cage II
+410:Capture Cage III
+411:Capture Cage IV
+412:Capture Cage V
+413:M21 D-Mine III
+414:M21 D-Mine IV
+415:M21 D-Mine V
+421:ATB Mine IV
+422:ATB Mine V
+423:ATB Mine VI
+425:EMN Mine IV
+426:EMN Mine V
+427:EMN Mine VI
+450:Stealth Camo.
+451:Phantom Cigar
+492:NVG
+456:C.Box(DSRT) I
+457:C.Box(DSRT) II
+458:C.Box(DSRT) III
+461:C.Box(FRST) II
+467:C.Box(APD) II
+468:C.Box(APD) III
+483:Pentazemin
+484:Noctoyanin
+</DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_prep_sup</Address>
+          <Offsets>
+            <Offset>C</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>103</ID>
+          <Description>"Support 5"</Description>
+          <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">570:WU S.Pistol I
+571:WU S.Pistol II
+572:WU S.Pistol III
+573:WU S.Pistol IV
+574:WU S.Pistol V
+575:WU S.Pistol CB
+576:WU S.Pistol SB
+577:WU S.Pistol AP
+578:WU S.Pistol 9 IV
+579:WU S.Pistol 9 VII
+560:AM D114 I
+561:AM D114 II
+562:AM D114 III
+563:AM D114 IV
+564:AM D114 CB
+565:AM D114-9
+566:AM D114LB-45 IV
+567:AM D114LB-45 V
+568:AM D114LB-9 V
+569:AM D114LB-9 VII
+580:Burkov I
+581:Burkov II
+582:Burkov III
+583:Burkov V
+584:Burkov TB
+585:Burkov HS
+586:Geist P3 II
+587:Geist P3 III
+588:Geist P3 IV
+589:Geist P3 V
+590:Geist P3 VII
+591:Geist P3 CB
+592:WU S333 III
+593:WU S333 IV
+594:WU S333 V
+595:WU S333 VIII
+596:WU S324LB IV
+597:WU S324LB V
+598:WU S324LB VIII
+599:WU S362SB IV
+600:WU S362SB V
+601:WU S362SB VIII
+602:Uragan-5 III
+603:Uragan-5P
+604:Uragan-5 SLUG
+605:Uragan-5 AIR-S
+606:Zorn-KP III
+607:Zorn-KP IV
+608:Zorn-KP Smoke
+609:Zorn-KP Stun
+610:Zorn-KP Sleep
+102:Adam-SKA SP.
+101:WU S333 CB SP.
+614:Sz.-336 SMG II
+615:Sz.-336 SMG III
+616:Sz.-336 SMG IV
+617:Sz.-336 SMG V
+618:Sz.-336 SMG VI
+619:Sz.-336 SMG HS
+620:Ze'EV III
+621:Ze'EV IV
+622:Ze'EV V
+623:Ze'EV VI
+624:Ze'EV 10 VII
+625:Macht 37 III
+626:Macht 37 IV
+627:Macht 37 V
+628:Macht 37 VII
+629:Macht 37L V
+630:Macht 37L VI
+631:Macht 37K
+103:Macht-P5 Weiss
+632:Riot SMG II
+633:Riot SMG III
+634:Riot SMG IV
+635:Riot SMG V
+637:SVG-76 I
+638:SVG-76 II
+639:SVG-76 III
+640:SVG-76 IV
+641:SVG-76 V
+642:SVG-67 IV
+643:SVG-67 V
+644:SVG-67 VII
+645:SVG-76U III
+646:SVG-76U IV
+647:SVG-76U V
+648:SVG-67U IV
+649:SVG-67U V
+650:SVG-67U VI
+651:PG-76 III
+652:PG-76 IV
+653:PG-76 V
+654:PG-76 VII
+655:PG-76 VIII
+656:PG-67 IV
+657:PG-67 V
+658:PG-67 VI
+659:PG-67 VIII
+660:AM MRS-4 I
+661:AM MRS-4 II
+662:AM MRS-4 III
+663:AM MRS-4 IV
+664:AM MRS-4 V
+665:AM MRS-4R III
+666:AM MRS-4R IV
+667:AM MRS-4R V
+668:AM MRS-4LS III
+669:AM MRS-4LS IV
+670:AM MRS-4LS V
+671:UN-ARC I
+672:UN-ARC II
+673:UN-ARC III
+674:UN-ARC IV
+675:UN-ARC V
+676:UN-ARC-PT III
+677:UN-ARC-PT IV
+678:UN-ARC-HB III
+679:UN-ARC-HB IV
+680:UN-ARC-HB V
+681:UN-ARC-N: II
+682:UN-ARC-N: III
+683:UN-ARC-N: IV
+684:UN-ARC-N: V
+685:G44 III
+686:G44 IV
+687:G44 V
+688:G44 VII
+689:G44K IV
+690:G44K V
+691:G44K VII
+692:G44-9 V
+693:G44-9 VI
+694:G44-9 VIII
+695:G44MG IV
+696:G44MG V
+773:Renov-ICKX SR I
+774:Renov-ICKX SR II
+775:Renov-ICKX SR III
+776:Renov-ICKX SR IV
+777:Renov-ICKX SR V
+778:Renov-ICKX TP II
+779:Renov-ICKX TP III
+780:Renov-ICKX TP IV
+781:Renov-ICKX TP V
+782:M2000-D II
+783:M2000-D III
+784:M2000-D IV
+785:M2000-D V
+786:M2000-D VII
+787:M2000-D VIII
+788:M2000-NL IV
+789:M2000-NL V
+790:M2000-NL VI
+791:M2000-NL VIII
+792:Bambetov SV III
+793:Bambetov SV IV
+794:Bambetov SV V
+795:Bambetov SV VII
+797:AM MRS-71 III
+798:AM MRS-71 IV
+799:AM MRS-71 V
+800:AM MRS-71 VII
+801:AM MRS-73 V
+802:AM MRS-73 VI
+803:AM MRS-73 VIII
+804:AM MRS-73 NL V
+805:AM MRS-73 NL VII
+806:AM MRS-73 NL VIII
+807:Brennan LRS-46 IV
+808:Brennan LRS-46 V
+809:Brennan LRS-46 VI
+810:Brennan LRS-46 VIII
+811:Serval AMR-7 V
+812:Serval AMR-7 VII
+813:Serval AMR-7 VIII
+833:GROM-11 II
+834:GROM-11 III
+835:GROM-11 IV
+836:FB MR III
+837:FB MR IV
+838:FB MR V
+839:FB MR NLSP VII
+840:FB MR MK2 IV
+841:FB MR MK2 V
+842:FB MR MK2 VII
+843:Killer Bee III
+844:Killer Bee IV
+845:Killer Bee V
+846:Killer Bee VI
+847:CGM 25 IV
+848:CGM 25 V
+849:CGM 25 VI
+1310:FB MR FLTN V
+1311:FB MR FLTN VI
+1312:FB MR FLTN VIII
+349:Magazine
+350:Grenade I
+351:Grenade II
+352:Grenade III
+353:Grenade IV
+354:Grenade V
+357:Smoke Grenade I
+358:Smoke Grenade II
+359:Smoke Grenade III
+360:Smoke Grenade IV
+361:Smoke Grenade V
+364:Flare Grenade I
+365:Flare Grenade II
+366:Flare Grenade III
+367:Flare Grenade V
+368:Flare Supply II
+369:Flare Supply III
+370:Flare Supply IV
+371:Flare Supply V
+372:Stun Grenade III
+373:Stun Grenade IV
+374:Stun Grenade V
+377:Sleep Grenade IV
+378:Sleep Grenade V
+387:Bait Bottle III
+388:Bait Bottle IV
+389:Bait Bottle V
+391:C4 I
+392:C4 II
+393:C4 III
+394:C4 IV
+395:C4 V
+397:Decoy II
+398:Decoy III
+399:Decoy IV
+400:Decoy V
+401:Active Decoy III
+402:Active Decoy IV
+403:Active Decoy V
+409:Capture Cage II
+410:Capture Cage III
+411:Capture Cage IV
+412:Capture Cage V
+413:M21 D-Mine III
+414:M21 D-Mine IV
+415:M21 D-Mine V
+421:ATB Mine IV
+422:ATB Mine V
+423:ATB Mine VI
+425:EMN Mine IV
+426:EMN Mine V
+427:EMN Mine VI
+450:Stealth Camo.
+451:Phantom Cigar
+492:NVG
+456:C.Box(DSRT) I
+457:C.Box(DSRT) II
+458:C.Box(DSRT) III
+461:C.Box(FRST) II
+467:C.Box(APD) II
+468:C.Box(APD) III
+483:Pentazemin
+484:Noctoyanin
+</DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_prep_sup</Address>
+          <Offsets>
+            <Offset>10</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>102</ID>
+          <Description>"Support 6"</Description>
+          <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">570:WU S.Pistol I
+571:WU S.Pistol II
+572:WU S.Pistol III
+573:WU S.Pistol IV
+574:WU S.Pistol V
+575:WU S.Pistol CB
+576:WU S.Pistol SB
+577:WU S.Pistol AP
+578:WU S.Pistol 9 IV
+579:WU S.Pistol 9 VII
+560:AM D114 I
+561:AM D114 II
+562:AM D114 III
+563:AM D114 IV
+564:AM D114 CB
+565:AM D114-9
+566:AM D114LB-45 IV
+567:AM D114LB-45 V
+568:AM D114LB-9 V
+569:AM D114LB-9 VII
+580:Burkov I
+581:Burkov II
+582:Burkov III
+583:Burkov V
+584:Burkov TB
+585:Burkov HS
+586:Geist P3 II
+587:Geist P3 III
+588:Geist P3 IV
+589:Geist P3 V
+590:Geist P3 VII
+591:Geist P3 CB
+592:WU S333 III
+593:WU S333 IV
+594:WU S333 V
+595:WU S333 VIII
+596:WU S324LB IV
+597:WU S324LB V
+598:WU S324LB VIII
+599:WU S362SB IV
+600:WU S362SB V
+601:WU S362SB VIII
+602:Uragan-5 III
+603:Uragan-5P
+604:Uragan-5 SLUG
+605:Uragan-5 AIR-S
+606:Zorn-KP III
+607:Zorn-KP IV
+608:Zorn-KP Smoke
+609:Zorn-KP Stun
+610:Zorn-KP Sleep
+102:Adam-SKA SP.
+101:WU S333 CB SP.
+614:Sz.-336 SMG II
+615:Sz.-336 SMG III
+616:Sz.-336 SMG IV
+617:Sz.-336 SMG V
+618:Sz.-336 SMG VI
+619:Sz.-336 SMG HS
+620:Ze'EV III
+621:Ze'EV IV
+622:Ze'EV V
+623:Ze'EV VI
+624:Ze'EV 10 VII
+625:Macht 37 III
+626:Macht 37 IV
+627:Macht 37 V
+628:Macht 37 VII
+629:Macht 37L V
+630:Macht 37L VI
+631:Macht 37K
+103:Macht-P5 Weiss
+632:Riot SMG II
+633:Riot SMG III
+634:Riot SMG IV
+635:Riot SMG V
+637:SVG-76 I
+638:SVG-76 II
+639:SVG-76 III
+640:SVG-76 IV
+641:SVG-76 V
+642:SVG-67 IV
+643:SVG-67 V
+644:SVG-67 VII
+645:SVG-76U III
+646:SVG-76U IV
+647:SVG-76U V
+648:SVG-67U IV
+649:SVG-67U V
+650:SVG-67U VI
+651:PG-76 III
+652:PG-76 IV
+653:PG-76 V
+654:PG-76 VII
+655:PG-76 VIII
+656:PG-67 IV
+657:PG-67 V
+658:PG-67 VI
+659:PG-67 VIII
+660:AM MRS-4 I
+661:AM MRS-4 II
+662:AM MRS-4 III
+663:AM MRS-4 IV
+664:AM MRS-4 V
+665:AM MRS-4R III
+666:AM MRS-4R IV
+667:AM MRS-4R V
+668:AM MRS-4LS III
+669:AM MRS-4LS IV
+670:AM MRS-4LS V
+671:UN-ARC I
+672:UN-ARC II
+673:UN-ARC III
+674:UN-ARC IV
+675:UN-ARC V
+676:UN-ARC-PT III
+677:UN-ARC-PT IV
+678:UN-ARC-HB III
+679:UN-ARC-HB IV
+680:UN-ARC-HB V
+681:UN-ARC-N: II
+682:UN-ARC-N: III
+683:UN-ARC-N: IV
+684:UN-ARC-N: V
+685:G44 III
+686:G44 IV
+687:G44 V
+688:G44 VII
+689:G44K IV
+690:G44K V
+691:G44K VII
+692:G44-9 V
+693:G44-9 VI
+694:G44-9 VIII
+695:G44MG IV
+696:G44MG V
+773:Renov-ICKX SR I
+774:Renov-ICKX SR II
+775:Renov-ICKX SR III
+776:Renov-ICKX SR IV
+777:Renov-ICKX SR V
+778:Renov-ICKX TP II
+779:Renov-ICKX TP III
+780:Renov-ICKX TP IV
+781:Renov-ICKX TP V
+782:M2000-D II
+783:M2000-D III
+784:M2000-D IV
+785:M2000-D V
+786:M2000-D VII
+787:M2000-D VIII
+788:M2000-NL IV
+789:M2000-NL V
+790:M2000-NL VI
+791:M2000-NL VIII
+792:Bambetov SV III
+793:Bambetov SV IV
+794:Bambetov SV V
+795:Bambetov SV VII
+797:AM MRS-71 III
+798:AM MRS-71 IV
+799:AM MRS-71 V
+800:AM MRS-71 VII
+801:AM MRS-73 V
+802:AM MRS-73 VI
+803:AM MRS-73 VIII
+804:AM MRS-73 NL V
+805:AM MRS-73 NL VII
+806:AM MRS-73 NL VIII
+807:Brennan LRS-46 IV
+808:Brennan LRS-46 V
+809:Brennan LRS-46 VI
+810:Brennan LRS-46 VIII
+811:Serval AMR-7 V
+812:Serval AMR-7 VII
+813:Serval AMR-7 VIII
+833:GROM-11 II
+834:GROM-11 III
+835:GROM-11 IV
+836:FB MR III
+837:FB MR IV
+838:FB MR V
+839:FB MR NLSP VII
+840:FB MR MK2 IV
+841:FB MR MK2 V
+842:FB MR MK2 VII
+843:Killer Bee III
+844:Killer Bee IV
+845:Killer Bee V
+846:Killer Bee VI
+847:CGM 25 IV
+848:CGM 25 V
+849:CGM 25 VI
+1310:FB MR FLTN V
+1311:FB MR FLTN VI
+1312:FB MR FLTN VIII
+349:Magazine
+350:Grenade I
+351:Grenade II
+352:Grenade III
+353:Grenade IV
+354:Grenade V
+357:Smoke Grenade I
+358:Smoke Grenade II
+359:Smoke Grenade III
+360:Smoke Grenade IV
+361:Smoke Grenade V
+364:Flare Grenade I
+365:Flare Grenade II
+366:Flare Grenade III
+367:Flare Grenade V
+368:Flare Supply II
+369:Flare Supply III
+370:Flare Supply IV
+371:Flare Supply V
+372:Stun Grenade III
+373:Stun Grenade IV
+374:Stun Grenade V
+377:Sleep Grenade IV
+378:Sleep Grenade V
+387:Bait Bottle III
+388:Bait Bottle IV
+389:Bait Bottle V
+391:C4 I
+392:C4 II
+393:C4 III
+394:C4 IV
+395:C4 V
+397:Decoy II
+398:Decoy III
+399:Decoy IV
+400:Decoy V
+401:Active Decoy III
+402:Active Decoy IV
+403:Active Decoy V
+409:Capture Cage II
+410:Capture Cage III
+411:Capture Cage IV
+412:Capture Cage V
+413:M21 D-Mine III
+414:M21 D-Mine IV
+415:M21 D-Mine V
+421:ATB Mine IV
+422:ATB Mine V
+423:ATB Mine VI
+425:EMN Mine IV
+426:EMN Mine V
+427:EMN Mine VI
+450:Stealth Camo.
+451:Phantom Cigar
+492:NVG
+456:C.Box(DSRT) I
+457:C.Box(DSRT) II
+458:C.Box(DSRT) III
+461:C.Box(FRST) II
+467:C.Box(APD) II
+468:C.Box(APD) III
+483:Pentazemin
+484:Noctoyanin
+</DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_prep_sup</Address>
+          <Offsets>
+            <Offset>14</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>101</ID>
+          <Description>"Support 7"</Description>
+          <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">570:WU S.Pistol I
+571:WU S.Pistol II
+572:WU S.Pistol III
+573:WU S.Pistol IV
+574:WU S.Pistol V
+575:WU S.Pistol CB
+576:WU S.Pistol SB
+577:WU S.Pistol AP
+578:WU S.Pistol 9 IV
+579:WU S.Pistol 9 VII
+560:AM D114 I
+561:AM D114 II
+562:AM D114 III
+563:AM D114 IV
+564:AM D114 CB
+565:AM D114-9
+566:AM D114LB-45 IV
+567:AM D114LB-45 V
+568:AM D114LB-9 V
+569:AM D114LB-9 VII
+580:Burkov I
+581:Burkov II
+582:Burkov III
+583:Burkov V
+584:Burkov TB
+585:Burkov HS
+586:Geist P3 II
+587:Geist P3 III
+588:Geist P3 IV
+589:Geist P3 V
+590:Geist P3 VII
+591:Geist P3 CB
+592:WU S333 III
+593:WU S333 IV
+594:WU S333 V
+595:WU S333 VIII
+596:WU S324LB IV
+597:WU S324LB V
+598:WU S324LB VIII
+599:WU S362SB IV
+600:WU S362SB V
+601:WU S362SB VIII
+602:Uragan-5 III
+603:Uragan-5P
+604:Uragan-5 SLUG
+605:Uragan-5 AIR-S
+606:Zorn-KP III
+607:Zorn-KP IV
+608:Zorn-KP Smoke
+609:Zorn-KP Stun
+610:Zorn-KP Sleep
+102:Adam-SKA SP.
+101:WU S333 CB SP.
+614:Sz.-336 SMG II
+615:Sz.-336 SMG III
+616:Sz.-336 SMG IV
+617:Sz.-336 SMG V
+618:Sz.-336 SMG VI
+619:Sz.-336 SMG HS
+620:Ze'EV III
+621:Ze'EV IV
+622:Ze'EV V
+623:Ze'EV VI
+624:Ze'EV 10 VII
+625:Macht 37 III
+626:Macht 37 IV
+627:Macht 37 V
+628:Macht 37 VII
+629:Macht 37L V
+630:Macht 37L VI
+631:Macht 37K
+103:Macht-P5 Weiss
+632:Riot SMG II
+633:Riot SMG III
+634:Riot SMG IV
+635:Riot SMG V
+637:SVG-76 I
+638:SVG-76 II
+639:SVG-76 III
+640:SVG-76 IV
+641:SVG-76 V
+642:SVG-67 IV
+643:SVG-67 V
+644:SVG-67 VII
+645:SVG-76U III
+646:SVG-76U IV
+647:SVG-76U V
+648:SVG-67U IV
+649:SVG-67U V
+650:SVG-67U VI
+651:PG-76 III
+652:PG-76 IV
+653:PG-76 V
+654:PG-76 VII
+655:PG-76 VIII
+656:PG-67 IV
+657:PG-67 V
+658:PG-67 VI
+659:PG-67 VIII
+660:AM MRS-4 I
+661:AM MRS-4 II
+662:AM MRS-4 III
+663:AM MRS-4 IV
+664:AM MRS-4 V
+665:AM MRS-4R III
+666:AM MRS-4R IV
+667:AM MRS-4R V
+668:AM MRS-4LS III
+669:AM MRS-4LS IV
+670:AM MRS-4LS V
+671:UN-ARC I
+672:UN-ARC II
+673:UN-ARC III
+674:UN-ARC IV
+675:UN-ARC V
+676:UN-ARC-PT III
+677:UN-ARC-PT IV
+678:UN-ARC-HB III
+679:UN-ARC-HB IV
+680:UN-ARC-HB V
+681:UN-ARC-N: II
+682:UN-ARC-N: III
+683:UN-ARC-N: IV
+684:UN-ARC-N: V
+685:G44 III
+686:G44 IV
+687:G44 V
+688:G44 VII
+689:G44K IV
+690:G44K V
+691:G44K VII
+692:G44-9 V
+693:G44-9 VI
+694:G44-9 VIII
+695:G44MG IV
+696:G44MG V
+773:Renov-ICKX SR I
+774:Renov-ICKX SR II
+775:Renov-ICKX SR III
+776:Renov-ICKX SR IV
+777:Renov-ICKX SR V
+778:Renov-ICKX TP II
+779:Renov-ICKX TP III
+780:Renov-ICKX TP IV
+781:Renov-ICKX TP V
+782:M2000-D II
+783:M2000-D III
+784:M2000-D IV
+785:M2000-D V
+786:M2000-D VII
+787:M2000-D VIII
+788:M2000-NL IV
+789:M2000-NL V
+790:M2000-NL VI
+791:M2000-NL VIII
+792:Bambetov SV III
+793:Bambetov SV IV
+794:Bambetov SV V
+795:Bambetov SV VII
+797:AM MRS-71 III
+798:AM MRS-71 IV
+799:AM MRS-71 V
+800:AM MRS-71 VII
+801:AM MRS-73 V
+802:AM MRS-73 VI
+803:AM MRS-73 VIII
+804:AM MRS-73 NL V
+805:AM MRS-73 NL VII
+806:AM MRS-73 NL VIII
+807:Brennan LRS-46 IV
+808:Brennan LRS-46 V
+809:Brennan LRS-46 VI
+810:Brennan LRS-46 VIII
+811:Serval AMR-7 V
+812:Serval AMR-7 VII
+813:Serval AMR-7 VIII
+833:GROM-11 II
+834:GROM-11 III
+835:GROM-11 IV
+836:FB MR III
+837:FB MR IV
+838:FB MR V
+839:FB MR NLSP VII
+840:FB MR MK2 IV
+841:FB MR MK2 V
+842:FB MR MK2 VII
+843:Killer Bee III
+844:Killer Bee IV
+845:Killer Bee V
+846:Killer Bee VI
+847:CGM 25 IV
+848:CGM 25 V
+849:CGM 25 VI
+1310:FB MR FLTN V
+1311:FB MR FLTN VI
+1312:FB MR FLTN VIII
+349:Magazine
+350:Grenade I
+351:Grenade II
+352:Grenade III
+353:Grenade IV
+354:Grenade V
+357:Smoke Grenade I
+358:Smoke Grenade II
+359:Smoke Grenade III
+360:Smoke Grenade IV
+361:Smoke Grenade V
+364:Flare Grenade I
+365:Flare Grenade II
+366:Flare Grenade III
+367:Flare Grenade V
+368:Flare Supply II
+369:Flare Supply III
+370:Flare Supply IV
+371:Flare Supply V
+372:Stun Grenade III
+373:Stun Grenade IV
+374:Stun Grenade V
+377:Sleep Grenade IV
+378:Sleep Grenade V
+387:Bait Bottle III
+388:Bait Bottle IV
+389:Bait Bottle V
+391:C4 I
+392:C4 II
+393:C4 III
+394:C4 IV
+395:C4 V
+397:Decoy II
+398:Decoy III
+399:Decoy IV
+400:Decoy V
+401:Active Decoy III
+402:Active Decoy IV
+403:Active Decoy V
+409:Capture Cage II
+410:Capture Cage III
+411:Capture Cage IV
+412:Capture Cage V
+413:M21 D-Mine III
+414:M21 D-Mine IV
+415:M21 D-Mine V
+421:ATB Mine IV
+422:ATB Mine V
+423:ATB Mine VI
+425:EMN Mine IV
+426:EMN Mine V
+427:EMN Mine VI
+450:Stealth Camo.
+451:Phantom Cigar
+492:NVG
+456:C.Box(DSRT) I
+457:C.Box(DSRT) II
+458:C.Box(DSRT) III
+461:C.Box(FRST) II
+467:C.Box(APD) II
+468:C.Box(APD) III
+483:Pentazemin
+484:Noctoyanin
+</DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_prep_sup</Address>
+          <Offsets>
+            <Offset>18</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>107</ID>
+          <Description>"Support 8"</Description>
+          <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">570:WU S.Pistol I
+571:WU S.Pistol II
+572:WU S.Pistol III
+573:WU S.Pistol IV
+574:WU S.Pistol V
+575:WU S.Pistol CB
+576:WU S.Pistol SB
+577:WU S.Pistol AP
+578:WU S.Pistol 9 IV
+579:WU S.Pistol 9 VII
+560:AM D114 I
+561:AM D114 II
+562:AM D114 III
+563:AM D114 IV
+564:AM D114 CB
+565:AM D114-9
+566:AM D114LB-45 IV
+567:AM D114LB-45 V
+568:AM D114LB-9 V
+569:AM D114LB-9 VII
+580:Burkov I
+581:Burkov II
+582:Burkov III
+583:Burkov V
+584:Burkov TB
+585:Burkov HS
+586:Geist P3 II
+587:Geist P3 III
+588:Geist P3 IV
+589:Geist P3 V
+590:Geist P3 VII
+591:Geist P3 CB
+592:WU S333 III
+593:WU S333 IV
+594:WU S333 V
+595:WU S333 VIII
+596:WU S324LB IV
+597:WU S324LB V
+598:WU S324LB VIII
+599:WU S362SB IV
+600:WU S362SB V
+601:WU S362SB VIII
+602:Uragan-5 III
+603:Uragan-5P
+604:Uragan-5 SLUG
+605:Uragan-5 AIR-S
+606:Zorn-KP III
+607:Zorn-KP IV
+608:Zorn-KP Smoke
+609:Zorn-KP Stun
+610:Zorn-KP Sleep
+102:Adam-SKA SP.
+101:WU S333 CB SP.
+614:Sz.-336 SMG II
+615:Sz.-336 SMG III
+616:Sz.-336 SMG IV
+617:Sz.-336 SMG V
+618:Sz.-336 SMG VI
+619:Sz.-336 SMG HS
+620:Ze'EV III
+621:Ze'EV IV
+622:Ze'EV V
+623:Ze'EV VI
+624:Ze'EV 10 VII
+625:Macht 37 III
+626:Macht 37 IV
+627:Macht 37 V
+628:Macht 37 VII
+629:Macht 37L V
+630:Macht 37L VI
+631:Macht 37K
+103:Macht-P5 Weiss
+632:Riot SMG II
+633:Riot SMG III
+634:Riot SMG IV
+635:Riot SMG V
+637:SVG-76 I
+638:SVG-76 II
+639:SVG-76 III
+640:SVG-76 IV
+641:SVG-76 V
+642:SVG-67 IV
+643:SVG-67 V
+644:SVG-67 VII
+645:SVG-76U III
+646:SVG-76U IV
+647:SVG-76U V
+648:SVG-67U IV
+649:SVG-67U V
+650:SVG-67U VI
+651:PG-76 III
+652:PG-76 IV
+653:PG-76 V
+654:PG-76 VII
+655:PG-76 VIII
+656:PG-67 IV
+657:PG-67 V
+658:PG-67 VI
+659:PG-67 VIII
+660:AM MRS-4 I
+661:AM MRS-4 II
+662:AM MRS-4 III
+663:AM MRS-4 IV
+664:AM MRS-4 V
+665:AM MRS-4R III
+666:AM MRS-4R IV
+667:AM MRS-4R V
+668:AM MRS-4LS III
+669:AM MRS-4LS IV
+670:AM MRS-4LS V
+671:UN-ARC I
+672:UN-ARC II
+673:UN-ARC III
+674:UN-ARC IV
+675:UN-ARC V
+676:UN-ARC-PT III
+677:UN-ARC-PT IV
+678:UN-ARC-HB III
+679:UN-ARC-HB IV
+680:UN-ARC-HB V
+681:UN-ARC-N: II
+682:UN-ARC-N: III
+683:UN-ARC-N: IV
+684:UN-ARC-N: V
+685:G44 III
+686:G44 IV
+687:G44 V
+688:G44 VII
+689:G44K IV
+690:G44K V
+691:G44K VII
+692:G44-9 V
+693:G44-9 VI
+694:G44-9 VIII
+695:G44MG IV
+696:G44MG V
+773:Renov-ICKX SR I
+774:Renov-ICKX SR II
+775:Renov-ICKX SR III
+776:Renov-ICKX SR IV
+777:Renov-ICKX SR V
+778:Renov-ICKX TP II
+779:Renov-ICKX TP III
+780:Renov-ICKX TP IV
+781:Renov-ICKX TP V
+782:M2000-D II
+783:M2000-D III
+784:M2000-D IV
+785:M2000-D V
+786:M2000-D VII
+787:M2000-D VIII
+788:M2000-NL IV
+789:M2000-NL V
+790:M2000-NL VI
+791:M2000-NL VIII
+792:Bambetov SV III
+793:Bambetov SV IV
+794:Bambetov SV V
+795:Bambetov SV VII
+797:AM MRS-71 III
+798:AM MRS-71 IV
+799:AM MRS-71 V
+800:AM MRS-71 VII
+801:AM MRS-73 V
+802:AM MRS-73 VI
+803:AM MRS-73 VIII
+804:AM MRS-73 NL V
+805:AM MRS-73 NL VII
+806:AM MRS-73 NL VIII
+807:Brennan LRS-46 IV
+808:Brennan LRS-46 V
+809:Brennan LRS-46 VI
+810:Brennan LRS-46 VIII
+811:Serval AMR-7 V
+812:Serval AMR-7 VII
+813:Serval AMR-7 VIII
+833:GROM-11 II
+834:GROM-11 III
+835:GROM-11 IV
+836:FB MR III
+837:FB MR IV
+838:FB MR V
+839:FB MR NLSP VII
+840:FB MR MK2 IV
+841:FB MR MK2 V
+842:FB MR MK2 VII
+843:Killer Bee III
+844:Killer Bee IV
+845:Killer Bee V
+846:Killer Bee VI
+847:CGM 25 IV
+848:CGM 25 V
+849:CGM 25 VI
+1310:FB MR FLTN V
+1311:FB MR FLTN VI
+1312:FB MR FLTN VIII
+349:Magazine
+350:Grenade I
+351:Grenade II
+352:Grenade III
+353:Grenade IV
+354:Grenade V
+357:Smoke Grenade I
+358:Smoke Grenade II
+359:Smoke Grenade III
+360:Smoke Grenade IV
+361:Smoke Grenade V
+364:Flare Grenade I
+365:Flare Grenade II
+366:Flare Grenade III
+367:Flare Grenade V
+368:Flare Supply II
+369:Flare Supply III
+370:Flare Supply IV
+371:Flare Supply V
+372:Stun Grenade III
+373:Stun Grenade IV
+374:Stun Grenade V
+377:Sleep Grenade IV
+378:Sleep Grenade V
+387:Bait Bottle III
+388:Bait Bottle IV
+389:Bait Bottle V
+391:C4 I
+392:C4 II
+393:C4 III
+394:C4 IV
+395:C4 V
+397:Decoy II
+398:Decoy III
+399:Decoy IV
+400:Decoy V
+401:Active Decoy III
+402:Active Decoy IV
+403:Active Decoy V
+409:Capture Cage II
+410:Capture Cage III
+411:Capture Cage IV
+412:Capture Cage V
+413:M21 D-Mine III
+414:M21 D-Mine IV
+415:M21 D-Mine V
+421:ATB Mine IV
+422:ATB Mine V
+423:ATB Mine VI
+425:EMN Mine IV
+426:EMN Mine V
+427:EMN Mine VI
+450:Stealth Camo.
+451:Phantom Cigar
+492:NVG
+456:C.Box(DSRT) I
+457:C.Box(DSRT) II
+458:C.Box(DSRT) III
+461:C.Box(FRST) II
+467:C.Box(APD) II
+468:C.Box(APD) III
+483:Pentazemin
+484:Noctoyanin
+</DropDownList>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_prep_sup</Address>
+          <Offsets>
+            <Offset>1C</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>109</ID>
+      <Description>"No auto cancel DD wait"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : mgsvtpp2.exe
+  Version: 
+  Date   : 2021-05-09
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_DD_WAIT,mgsvtpp2.exe,F3 0F 11 0B 0F 87 46 FF FF FF) // should be unique
+alloc(newmem,$1000,INJ_DD_WAIT)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rbx],(float)3.0
+  movd xmm1,[rbx]
+code:
+  movss [rbx],xmm1
+  ja mgsvtpp2.exe+CABDE7
+  jmp return
+
+INJ_DD_WAIT:
+  jmp newmem
+  nop 5
+return:
+registersymbol(INJ_DD_WAIT)
+
+[DISABLE]
+
+INJ_DD_WAIT:
+  db F3 0F 11 0B 0F 87 46 FF FF FF
+
+unregistersymbol(INJ_DD_WAIT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: mgsvtpp2.exe+CABE97
+
+mgsvtpp2.exe+CABE73: 75 09                 - jne mgsvtpp2.exe+CABE7E
+mgsvtpp2.exe+CABE75: 0C 01                 - or al,01
+mgsvtpp2.exe+CABE77: 88 43 0D              - mov [rbx+0D],al
+mgsvtpp2.exe+CABE7A: 41 C6 01 01           - mov byte ptr [r9],01
+mgsvtpp2.exe+CABE7E: 48 8B 42 38           - mov rax,[rdx+38]
+mgsvtpp2.exe+CABE82: F3 0F 10 0B           - movss xmm1,[rbx]
+mgsvtpp2.exe+CABE86: F3 0F 10 04 B8        - movss xmm0,[rax+rdi*4]
+mgsvtpp2.exe+CABE8B: F3 0F 59 42 48        - mulss xmm0,[rdx+48]
+mgsvtpp2.exe+CABE90: F3 0F 5C C8           - subss xmm1,xmm0
+mgsvtpp2.exe+CABE94: 0F 2F CC              - comiss xmm1,xmm4
+// ---------- INJECTING HERE ----------
+mgsvtpp2.exe+CABE97: F3 0F 11 0B           - movss [rbx],xmm1
+// ---------- DONE INJECTING  ----------
+mgsvtpp2.exe+CABE9B: 0F 87 46 FF FF FF     - ja mgsvtpp2.exe+CABDE7
+mgsvtpp2.exe+CABEA1: 48 8B 46 70           - mov rax,[rsi+70]
+mgsvtpp2.exe+CABEA5: 8B D7                 - mov edx,edi
+mgsvtpp2.exe+CABEA7: 48 8B 48 28           - mov rcx,[rax+28]
+mgsvtpp2.exe+CABEAB: 48 8B 01              - mov rax,[rcx]
+mgsvtpp2.exe+CABEAE: FF 50 60              - call qword ptr [rax+60]
+mgsvtpp2.exe+CABEB1: B9 FF FF 00 00        - mov ecx,0000FFFF
+mgsvtpp2.exe+CABEB6: 81 60 54 C3 F9 3F EE  - and [rax+54],EE3FF9C3
+mgsvtpp2.exe+CABEBD: 66 89 88 C2 00 00 00  - mov [rax+000000C2],cx
+mgsvtpp2.exe+CABEC4: C7 40 5C 00 00 F0 41  - mov [rax+5C],41F00000
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>112</ID>
+      <Description>"Inf Stun Arm Battery"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : mgsvtpp2.exe
+  Version: 
+  Date   : 2021-05-19
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_STARM_CHARGE,mgsvtpp2.exe,F3 0F 11 5C 88 1C) // should be unique
+alloc(newmem,$1000,INJ_STARM_CHARGE)
+
+label(code)
+label(return)
+
+newmem:
+  movss xmm3,xmm2
+code:
+  movss [rax+rcx*4+1C],xmm3
+  jmp return
+
+INJ_STARM_CHARGE:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_STARM_CHARGE)
+
+[DISABLE]
+
+INJ_STARM_CHARGE:
+  db F3 0F 11 5C 88 1C
+
+unregistersymbol(INJ_STARM_CHARGE)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: mgsvtpp2.exe+9A05300
+
+mgsvtpp2.exe+9A052DD: 0F 28 CA           - movaps xmm1,xmm2
+mgsvtpp2.exe+9A052E0: F3 0F 5C CB        - subss xmm1,xmm3
+mgsvtpp2.exe+9A052E4: 0F 2F C8           - comiss xmm1,xmm0
+mgsvtpp2.exe+9A052E7: 73 03              - jae mgsvtpp2.exe+9A052EC
+mgsvtpp2.exe+9A052E9: 0F 28 DA           - movaps xmm3,xmm2
+mgsvtpp2.exe+9A052EC: 48 8B 46 28        - mov rax,[rsi+28]
+mgsvtpp2.exe+9A052F0: 8B 54 24 60        - mov edx,[rsp+60]
+mgsvtpp2.exe+9A052F4: 89 E9              - mov ecx,ebp
+mgsvtpp2.exe+9A052F6: 41 BF F0 D2 00 00  - mov r15d,0000D2F0
+mgsvtpp2.exe+9A052FC: 66 45 39 F8        - cmp r8w,r15w
+// ---------- INJECTING HERE ----------
+mgsvtpp2.exe+9A05300: F3 0F 11 5C 88 1C  - movss [rax+rcx*4+1C],xmm3
+// ---------- DONE INJECTING  ----------
+mgsvtpp2.exe+9A05306: 48 8B 46 20        - mov rax,[rsi+20]
+mgsvtpp2.exe+9A0530A: 66 45 0F 42 F8     - cmovb r15w,r8w
+mgsvtpp2.exe+9A0530F: 44 8B 44 24 68     - mov r8d,[rsp+68]
+mgsvtpp2.exe+9A05314: 48 8D 4E 20        - lea rcx,[rsi+20]
+mgsvtpp2.exe+9A05318: 45 0F B7 F7        - movzx r14d,r15w
+mgsvtpp2.exe+9A0531C: 45 89 F1           - mov r9d,r14d
+mgsvtpp2.exe+9A0531F: FF 90 C0 00 00 00  - call qword ptr [rax+000000C0]
+mgsvtpp2.exe+9A05325: 48 8B 4E 28        - mov rcx,[rsi+28]
+mgsvtpp2.exe+9A05329: 8B 54 24 60        - mov edx,[rsp+60]
+mgsvtpp2.exe+9A0532D: 48 8B 01           - mov rax,[rcx]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>114</ID>
+      <Description>"Instant Stun Arm Charge"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : mgsvtpp2.exe
+  Version: 
+  Date   : 2021-05-19
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_INS_STARM,mgsvtpp2.exe,F3 0F 11 BB 94 03 00 00) // should be unique
+alloc(newmem,$1000,INJ_INS_STARM)
+
+label(code)
+label(return)
+
+newmem:
+  movss xmm7,xmm8
+code:
+  movss [rbx+00000394],xmm7
+  jmp return
+
+INJ_INS_STARM:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJ_INS_STARM)
+
+[DISABLE]
+
+INJ_INS_STARM:
+  db F3 0F 11 BB 94 03 00 00
+
+unregistersymbol(INJ_INS_STARM)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: mgsvtpp2.exe+9719D81
+
+mgsvtpp2.exe+9719D5E: EB 06                    - jmp mgsvtpp2.exe+9719D66
+mgsvtpp2.exe+9719D60: 8D 90 FF FF FF FF        - lea edx,[rax-00000001]
+mgsvtpp2.exe+9719D66: F3 43 0F 10 4C FD 08     - movss xmm1,[r13+r15*8+08]
+mgsvtpp2.exe+9719D6D: 39 D6                    - cmp esi,edx
+mgsvtpp2.exe+9719D6F: 0F 28 C7                 - movaps xmm0,xmm7
+mgsvtpp2.exe+9719D72: F3 0F 5C C1              - subss xmm0,xmm1
+mgsvtpp2.exe+9719D76: 0F 42 D6                 - cmovb edx,esi
+mgsvtpp2.exe+9719D79: 0F 2F C2                 - comiss xmm0,xmm2
+mgsvtpp2.exe+9719D7C: 72 03                    - jb mgsvtpp2.exe+9719D81
+mgsvtpp2.exe+9719D7E: 0F 28 F9                 - movaps xmm7,xmm1
+// ---------- INJECTING HERE ----------
+mgsvtpp2.exe+9719D81: F3 0F 11 BB 94 03 00 00  - movss [rbx+00000394],xmm7
+// ---------- DONE INJECTING  ----------
+mgsvtpp2.exe+9719D89: 88 93 EE 03 00 00        - mov [rbx+000003EE],dl
+mgsvtpp2.exe+9719D8F: 40 38 FA                 - cmp dl,dil
+mgsvtpp2.exe+9719D92: 75 09                    - jne mgsvtpp2.exe+9719D9D
+mgsvtpp2.exe+9719D94: 83 8B D0 03 00 00 02     - or dword ptr [rbx+000003D0],02
+mgsvtpp2.exe+9719D9B: EB 07                    - jmp mgsvtpp2.exe+9719DA4
+mgsvtpp2.exe+9719D9D: 83 A3 D0 03 00 00 FD     - and dword ptr [rbx+000003D0],-03
+mgsvtpp2.exe+9719DA4: 39 FA                    - cmp edx,edi
+mgsvtpp2.exe+9719DA6: 74 03                    - je mgsvtpp2.exe+9719DAB
+mgsvtpp2.exe+9719DA8: 8D 7A 01                 - lea edi,[rdx+01]
+mgsvtpp2.exe+9719DAB: 39 FE                    - cmp esi,edi
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry Color="20000000">
+      <Description>WriteResources</Description>
+      <AddressString>mgsvtpp2.exe+59E7BCF</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>8D</Byte>
+        <Byte>04</Byte>
+        <Byte>3F</Byte>
+      </Before>
+      <Actual>
+        <Byte>09</Byte>
+        <Byte>04</Byte>
+        <Byte>31</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>8B</Byte>
+        <Byte>F8</Byte>
+        <Byte>11</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+  <Structures StructVersion="2">
+    <Structure Name="unnamed structure" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="0" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000000" DisplayMethod="Signed Integer"/>
+        <Element Offset="4" Vartype="4 Bytes" Bytesize="4" RLECount="35" OffsetHex="00000004" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="144" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000090" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="160" Vartype="4 Bytes" Bytesize="4" RLECount="13" OffsetHex="000000A0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="212" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000D4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="216" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000D8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="220" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000000DC" DisplayMethod="Hexadecimal"/>
+        <Element Offset="236" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="000000EC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="248" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000F8" DisplayMethod="Hexadecimal"/>
+        <Element Offset="252" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000FC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="256" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000100" DisplayMethod="Signed Integer"/>
+        <Element Offset="260" Vartype="4 Bytes" Bytesize="4" RLECount="7" OffsetHex="00000104" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="288" Vartype="Double" Bytesize="8" OffsetHex="00000120" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="296" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000128" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="308" Vartype="Pointer" Bytesize="8" OffsetHex="00000134" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="316" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="0000013C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="336" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000150" DisplayMethod="Hexadecimal"/>
+        <Element Offset="340" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000154" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="344" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000158" DisplayMethod="Hexadecimal"/>
+        <Element Offset="368" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000170" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="372" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000174" DisplayMethod="Hexadecimal"/>
+        <Element Offset="396" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000018C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="400" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000190" DisplayMethod="Hexadecimal"/>
+        <Element Offset="416" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000001A0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="424" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="000001A8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="432" Vartype="4 Bytes" Bytesize="4" RLECount="7" OffsetHex="000001B0" DisplayMethod="Hexadecimal"/>
+        <Element Offset="460" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="000001CC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="472" Vartype="4 Bytes" Bytesize="4" OffsetHex="000001D8" DisplayMethod="Hexadecimal"/>
+        <Element Offset="476" Vartype="4 Bytes" Bytesize="4" OffsetHex="000001DC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="480" Vartype="4 Bytes" Bytesize="4" OffsetHex="000001E0" DisplayMethod="Hexadecimal"/>
+        <Element Offset="484" Vartype="Pointer" Bytesize="8" OffsetHex="000001E4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="492" Vartype="Float" Bytesize="4" OffsetHex="000001EC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="496" Vartype="4 Bytes" Bytesize="4" OffsetHex="000001F0" DisplayMethod="Hexadecimal"/>
+        <Element Offset="500" Vartype="Pointer" Bytesize="8" OffsetHex="000001F4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="508" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000001FC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="516" Vartype="Pointer" Bytesize="8" OffsetHex="00000204" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="524" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="0000020C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="544" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="00000220" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="552" Vartype="4 Bytes" Bytesize="4" RLECount="7" OffsetHex="00000228" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="580" Vartype="Pointer" Bytesize="8" RLECount="6" OffsetHex="00000244" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="628" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000274" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="644" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000284" DisplayMethod="Hexadecimal"/>
+        <Element Offset="652" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="0000028C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="660" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="00000294" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="684" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="000002AC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="696" Vartype="4 Bytes" Bytesize="4" OffsetHex="000002B8" DisplayMethod="Hexadecimal"/>
+        <Element Offset="700" Vartype="4 Bytes" Bytesize="4" OffsetHex="000002BC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="704" Vartype="4 Bytes" Bytesize="4" OffsetHex="000002C0" DisplayMethod="Hexadecimal"/>
+        <Element Offset="708" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="000002C4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="728" Vartype="4 Bytes" Bytesize="4" OffsetHex="000002D8" DisplayMethod="Hexadecimal"/>
+        <Element Offset="732" Vartype="4 Bytes" Bytesize="4" OffsetHex="000002DC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="736" Vartype="4 Bytes" Bytesize="4" OffsetHex="000002E0" DisplayMethod="Hexadecimal"/>
+        <Element Offset="740" Vartype="Pointer" Bytesize="8" OffsetHex="000002E4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="748" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000002EC" DisplayMethod="Hexadecimal"/>
+        <Element Offset="756" Vartype="Pointer" Bytesize="8" OffsetHex="000002F4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="764" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000002FC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="772" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000304" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="788" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000314" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="796" Vartype="Pointer" Bytesize="8" RLECount="7" OffsetHex="0000031C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="852" Vartype="4 Bytes" Bytesize="4" RLECount="32" OffsetHex="00000354" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="980" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="000003D4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="996" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="000003E4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1020" Vartype="Pointer" Bytesize="8" OffsetHex="000003FC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1028" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000404" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1044" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000414" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1048" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000418" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1052" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000041C" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1056" Vartype="4 Bytes" Bytesize="4" RLECount="128" OffsetHex="00000420" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1568" Vartype="Float" Bytesize="4" OffsetHex="00000620" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1572" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000624" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1576" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000628" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1580" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000062C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1584" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000630" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1588" Vartype="Pointer" Bytesize="8" OffsetHex="00000634" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1596" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="0000063C" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1604" Vartype="Pointer" Bytesize="8" OffsetHex="00000644" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1612" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="0000064C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1620" Vartype="Pointer" Bytesize="8" RLECount="5" OffsetHex="00000654" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1660" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="0000067C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1668" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000684" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1684" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000694" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1692" Vartype="Pointer" Bytesize="8" OffsetHex="0000069C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1700" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="000006A4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1724" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000006BC" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1732" Vartype="4 Bytes" Bytesize="4" OffsetHex="000006C4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1736" Vartype="4 Bytes" Bytesize="4" OffsetHex="000006C8" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1740" Vartype="4 Bytes" Bytesize="4" OffsetHex="000006CC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1744" Vartype="4 Bytes" Bytesize="4" OffsetHex="000006D0" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1748" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="000006D4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1752" Vartype="4 Bytes" Bytesize="4" OffsetHex="000006D8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1756" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="000006DC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1772" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000006EC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1780" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="000006F4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1784" Vartype="4 Bytes" Bytesize="4" OffsetHex="000006F8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1788" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="000006FC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1804" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="0000070C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1812" Vartype="String" Bytesize="5" OffsetHex="00000714" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1817" Vartype="Byte" Bytesize="1" RLECount="3" OffsetHex="00000719" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1820" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="0000071C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1836" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="0000072C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1844" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="00000734" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1868" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="0000074C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1876" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="00000754" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1900" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="0000076C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1912" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000778" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1916" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000077C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1920" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000780" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1924" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="00000784" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1928" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000788" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1932" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="0000078C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1948" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="0000079C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1960" Vartype="4 Bytes" Bytesize="4" OffsetHex="000007A8" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1964" Vartype="4 Bytes" Bytesize="4" OffsetHex="000007AC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1968" Vartype="4 Bytes" Bytesize="4" OffsetHex="000007B0" DisplayMethod="Hexadecimal"/>
+        <Element Offset="1972" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="000007B4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1984" Vartype="Double" Bytesize="8" OffsetHex="000007C0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="1992" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="000007C8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2004" Vartype="Pointer" Bytesize="8" OffsetHex="000007D4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2012" Vartype="4 Bytes" Bytesize="4" RLECount="125" OffsetHex="000007DC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2512" Vartype="Double" Bytesize="8" OffsetHex="000009D0" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2520" Vartype="4 Bytes" Bytesize="4" OffsetHex="000009D8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2524" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="000009DC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2540" Vartype="4 Bytes" Bytesize="4" RLECount="10" OffsetHex="000009EC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2580" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000A14" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2584" Vartype="4 Bytes" Bytesize="4" RLECount="13" OffsetHex="00000A18" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2636" Vartype="Double" Bytesize="8" OffsetHex="00000A4C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2644" Vartype="4 Bytes" Bytesize="4" RLECount="12" OffsetHex="00000A54" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2692" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000A84" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2696" Vartype="4 Bytes" Bytesize="4" RLECount="13" OffsetHex="00000A88" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2748" Vartype="Double" Bytesize="8" OffsetHex="00000ABC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2756" Vartype="4 Bytes" Bytesize="4" RLECount="12" OffsetHex="00000AC4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2804" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000AF4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2808" Vartype="4 Bytes" Bytesize="4" RLECount="13" OffsetHex="00000AF8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2860" Vartype="Double" Bytesize="8" OffsetHex="00000B2C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2868" Vartype="4 Bytes" Bytesize="4" RLECount="12" OffsetHex="00000B34" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2916" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000B64" DisplayMethod="Hexadecimal"/>
+        <Element Offset="2920" Vartype="4 Bytes" Bytesize="4" RLECount="13" OffsetHex="00000B68" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2972" Vartype="Double" Bytesize="8" OffsetHex="00000B9C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="2980" Vartype="4 Bytes" Bytesize="4" RLECount="12" OffsetHex="00000BA4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3028" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000BD4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3032" Vartype="4 Bytes" Bytesize="4" RLECount="13" OffsetHex="00000BD8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3084" Vartype="Double" Bytesize="8" OffsetHex="00000C0C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3092" Vartype="4 Bytes" Bytesize="4" RLECount="12" OffsetHex="00000C14" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3140" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000C44" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3144" Vartype="4 Bytes" Bytesize="4" RLECount="13" OffsetHex="00000C48" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3196" Vartype="Double" Bytesize="8" OffsetHex="00000C7C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3204" Vartype="4 Bytes" Bytesize="4" RLECount="12" OffsetHex="00000C84" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3252" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000CB4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3256" Vartype="4 Bytes" Bytesize="4" RLECount="13" OffsetHex="00000CB8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3308" Vartype="Double" Bytesize="8" OffsetHex="00000CEC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3316" Vartype="4 Bytes" Bytesize="4" RLECount="12" OffsetHex="00000CF4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3364" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000D24" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3368" Vartype="4 Bytes" Bytesize="4" RLECount="13" OffsetHex="00000D28" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3420" Vartype="Double" Bytesize="8" OffsetHex="00000D5C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3428" Vartype="4 Bytes" Bytesize="4" RLECount="12" OffsetHex="00000D64" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3476" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000D94" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3480" Vartype="4 Bytes" Bytesize="4" RLECount="13" OffsetHex="00000D98" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3532" Vartype="Double" Bytesize="8" OffsetHex="00000DCC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3540" Vartype="4 Bytes" Bytesize="4" RLECount="12" OffsetHex="00000DD4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3588" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000E04" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3592" Vartype="4 Bytes" Bytesize="4" RLECount="13" OffsetHex="00000E08" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3644" Vartype="Double" Bytesize="8" OffsetHex="00000E3C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3652" Vartype="4 Bytes" Bytesize="4" RLECount="12" OffsetHex="00000E44" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3700" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000E74" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3704" Vartype="4 Bytes" Bytesize="4" RLECount="13" OffsetHex="00000E78" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3756" Vartype="Double" Bytesize="8" OffsetHex="00000EAC" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3764" Vartype="4 Bytes" Bytesize="4" RLECount="12" OffsetHex="00000EB4" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3812" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000EE4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3816" Vartype="4 Bytes" Bytesize="4" RLECount="13" OffsetHex="00000EE8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3868" Vartype="Double" Bytesize="8" OffsetHex="00000F1C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3876" Vartype="4 Bytes" Bytesize="4" RLECount="12" OffsetHex="00000F24" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3924" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000F54" DisplayMethod="Hexadecimal"/>
+        <Element Offset="3928" Vartype="4 Bytes" Bytesize="4" RLECount="13" OffsetHex="00000F58" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3980" Vartype="Double" Bytesize="8" OffsetHex="00000F8C" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="3988" Vartype="4 Bytes" Bytesize="4" RLECount="12" OffsetHex="00000F94" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="4036" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000FC4" DisplayMethod="Hexadecimal"/>
+        <Element Offset="4040" Vartype="4 Bytes" Bytesize="4" RLECount="13" OffsetHex="00000FC8" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="4092" Vartype="2 Bytes" Bytesize="2" OffsetHex="00000FFC" DisplayMethod="Unsigned Integer"/>
+      </Elements>
+    </Structure>
+  </Structures>
+</CheatTable>

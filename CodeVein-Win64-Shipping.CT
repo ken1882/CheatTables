@@ -1,0 +1,2562 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="29">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"Unlimited Stamina"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript Async="1">[ENABLE]
+aobscanmodule(stamina,CodeVein-Win64-Shipping.exe,F3 0F 5D C6 0F 28 F8 48)
+stamina:
+  nop 4
+registersymbol(stamina)
+
+[DISABLE]
+stamina:
+  db F3 0F 5D C6
+unregistersymbol(stamina)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "CodeVein-Win64-Shipping.exe"+609D55F
+
+"CodeVein-Win64-Shipping.exe"+609D536: F3 0F 58 C6              -  addss xmm0,xmm6
+"CodeVein-Win64-Shipping.exe"+609D53A: 48 89 D9                 -  mov rcx,rbx
+"CodeVein-Win64-Shipping.exe"+609D53D: F3 0F 5F 05 83 CE AB FC  -  maxss xmm0,[CodeVein-Win64-Shipping.exe+2B5A3C8]
+"CodeVein-Win64-Shipping.exe"+609D545: 0F 28 C8                 -  movaps xmm1,xmm0
+"CodeVein-Win64-Shipping.exe"+609D548: FF 90 A0 00 00 00        -  call qword ptr [rax+000000A0]
+"CodeVein-Win64-Shipping.exe"+609D54E: 48 8B 03                 -  mov rax,[rbx]
+"CodeVein-Win64-Shipping.exe"+609D551: 48 89 D9                 -  mov rcx,rbx
+"CodeVein-Win64-Shipping.exe"+609D554: FF 90 30 01 00 00        -  call qword ptr [rax+00000130]
+"CodeVein-Win64-Shipping.exe"+609D55A: 0F 2F F7                 -  comiss xmm6,xmm7
+"CodeVein-Win64-Shipping.exe"+609D55D: 72 07                    -  jb CodeVein-Win64-Shipping.exe+609D566
+// ---------- INJECTING HERE ----------
+"CodeVein-Win64-Shipping.exe"+609D55F: F3 0F 5D C6              -  minss xmm0,xmm6
+"CodeVein-Win64-Shipping.exe"+609D563: 0F 28 F8                 -  movaps xmm7,xmm0
+// ---------- DONE INJECTING  ----------
+"CodeVein-Win64-Shipping.exe"+609D566: 48 89 F9                 -  mov rcx,rdi
+"CodeVein-Win64-Shipping.exe"+609D569: F3 0F 11 BF 60 02 00 00  -  movss [rdi+00000260],xmm7
+"CodeVein-Win64-Shipping.exe"+609D571: E8 3A BF 43 FA           -  call CodeVein-Win64-Shipping.exe+4D94B0
+"CodeVein-Win64-Shipping.exe"+609D576: 0F 28 7C 24 20           -  movaps xmm7,[rsp+20]
+"CodeVein-Win64-Shipping.exe"+609D57B: 48 8B 5C 24 50           -  mov rbx,[rsp+50]
+"CodeVein-Win64-Shipping.exe"+609D580: 0F 28 74 24 30           -  movaps xmm6,[rsp+30]
+"CodeVein-Win64-Shipping.exe"+609D585: 48 83 C4 40              -  add rsp,40
+"CodeVein-Win64-Shipping.exe"+609D589: 5F                       -  pop rdi
+"CodeVein-Win64-Shipping.exe"+609D58A: C3                       -  ret 
+"CodeVein-Win64-Shipping.exe"+609D58B: CC                       -  int 3 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>9</ID>
+      <Description>"Unlimited Ichor"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript Async="1">[ENABLE]
+aobscanmodule(ichor,CodeVein-Win64-Shipping.exe,F3 41 0F 5D C0 0F 28 F8 31)
+ichor:
+  nop 5
+registersymbol(ichor)
+
+[DISABLE]
+ichor:
+  db F3 41 0F 5D C0
+unregistersymbol(ichor)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "CodeVein-Win64-Shipping.exe"+63DF241
+
+"CodeVein-Win64-Shipping.exe"+63DF211: 0F 28 C8                 -  movaps xmm1,xmm0
+"CodeVein-Win64-Shipping.exe"+63DF214: FF 90 A0 00 00 00        -  call qword ptr [rax+000000A0]
+"CodeVein-Win64-Shipping.exe"+63DF21A: 0F 28 B4 24 90 00 00 00  -  movaps xmm6,[rsp+00000090]
+"CodeVein-Win64-Shipping.exe"+63DF222: 48 8B 9C 24 B0 00 00 00  -  mov rbx,[rsp+000000B0]
+"CodeVein-Win64-Shipping.exe"+63DF22A: 48 8B 07                 -  mov rax,[rdi]
+"CodeVein-Win64-Shipping.exe"+63DF22D: 48 89 F9                 -  mov rcx,rdi
+"CodeVein-Win64-Shipping.exe"+63DF230: FF 50 78                 -  call qword ptr [rax+78]
+"CodeVein-Win64-Shipping.exe"+63DF233: 44 0F 2F C7              -  comiss xmm8,xmm7
+"CodeVein-Win64-Shipping.exe"+63DF237: 48 8B BC 24 B8 00 00 00  -  mov rdi,[rsp+000000B8]
+"CodeVein-Win64-Shipping.exe"+63DF23F: 72 08                    -  jb CodeVein-Win64-Shipping.exe+63DF249
+// ---------- INJECTING HERE ----------
+"CodeVein-Win64-Shipping.exe"+63DF241: F3 41 0F 5D C0           -  minss xmm0,xmm8
+// ---------- DONE INJECTING  ----------
+"CodeVein-Win64-Shipping.exe"+63DF246: 0F 28 F8                 -  movaps xmm7,xmm0
+"CodeVein-Win64-Shipping.exe"+63DF249: 31 C0                    -  xor eax,eax
+"CodeVein-Win64-Shipping.exe"+63DF24B: F3 0F 11 BE 00 05 00 00  -  movss [rsi+00000500],xmm7
+"CodeVein-Win64-Shipping.exe"+63DF253: 48 8D 54 24 30           -  lea rdx,[rsp+30]
+"CodeVein-Win64-Shipping.exe"+63DF258: 48 89 44 24 50           -  mov [rsp+50],rax
+"CodeVein-Win64-Shipping.exe"+63DF25D: 89 44 24 60              -  mov [rsp+60],eax
+"CodeVein-Win64-Shipping.exe"+63DF261: 8D 48 10                 -  lea ecx,[rax+10]
+"CodeVein-Win64-Shipping.exe"+63DF264: E8 67 9A FA F9           -  call CodeVein-Win64-Shipping.exe+388CD0
+"CodeVein-Win64-Shipping.exe"+63DF269: 44 0F 28 44 24 70        -  movaps xmm8,[rsp+70]
+"CodeVein-Win64-Shipping.exe"+63DF26F: 0F 28 BC 24 80 00 00 00  -  movaps xmm7,[rsp+00000080]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>64</ID>
+      <Description>"Unlimited Items"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript Async="1">[ENABLE]
+aobscanmodule(items,CodeVein-Win64-Shipping.exe,29 F0 4C 89 B4 24 B0 00 00 00)
+items:
+  nop 2
+registersymbol(items)
+
+[DISABLE]
+items:
+  db 29 F0
+unregistersymbol(items)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "CodeVein-Win64-Shipping.exe"+63DBE7A
+
+"CodeVein-Win64-Shipping.exe"+63DBE5E: 30 C0                       -  xor al,al
+"CodeVein-Win64-Shipping.exe"+63DBE60: 48 8B BC 24 A0 00 00 00     -  mov rdi,[rsp+000000A0]
+"CodeVein-Win64-Shipping.exe"+63DBE68: 48 81 C4 80 00 00 00        -  add rsp,00000080
+"CodeVein-Win64-Shipping.exe"+63DBE6F: 5E                          -  pop rsi
+"CodeVein-Win64-Shipping.exe"+63DBE70: 5D                          -  pop rbp
+"CodeVein-Win64-Shipping.exe"+63DBE71: 5B                          -  pop rbx
+"CodeVein-Win64-Shipping.exe"+63DBE72: C3                          -  ret 
+"CodeVein-Win64-Shipping.exe"+63DBE73: 8B 43 14                    -  mov eax,[rbx+14]
+"CodeVein-Win64-Shipping.exe"+63DBE76: 39 F0                       -  cmp eax,esi
+"CodeVein-Win64-Shipping.exe"+63DBE78: 7C E4                       -  jl CodeVein-Win64-Shipping.exe+63DBE5E
+// ---------- INJECTING HERE ----------
+"CodeVein-Win64-Shipping.exe"+63DBE7A: 29 F0                       -  sub eax,esi
+"CodeVein-Win64-Shipping.exe"+63DBE7C: 4C 89 B4 24 B0 00 00 00     -  mov [rsp+000000B0],r14
+// ---------- DONE INJECTING  ----------
+"CodeVein-Win64-Shipping.exe"+63DBE84: 44 0F B6 73 10              -  movzx r14d,byte ptr [rbx+10]
+"CodeVein-Win64-Shipping.exe"+63DBE89: 0F B6 73 11                 -  movzx esi,byte ptr [rbx+11]
+"CodeVein-Win64-Shipping.exe"+63DBE8D: 89 43 14                    -  mov [rbx+14],eax
+"CodeVein-Win64-Shipping.exe"+63DBE90: 0F 85 23 01 00 00           -  jne CodeVein-Win64-Shipping.exe+63DBFB9
+"CodeVein-Win64-Shipping.exe"+63DBE96: 48 8B 0B                    -  mov rcx,[rbx]
+"CodeVein-Win64-Shipping.exe"+63DBE99: 48 83 C1 60                 -  add rcx,60
+"CodeVein-Win64-Shipping.exe"+63DBE9D: 48 8B 01                    -  mov rax,[rcx]
+"CodeVein-Win64-Shipping.exe"+63DBEA0: FF 50 20                    -  call qword ptr [rax+20]
+"CodeVein-Win64-Shipping.exe"+63DBEA3: 84 C0                       -  test al,al
+"CodeVein-Win64-Shipping.exe"+63DBEA5: 0F 84 0E 01 00 00           -  je CodeVein-Win64-Shipping.exe+63DBFB9
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1345</ID>
+      <Description>"Zero Weapon Weight (drops ichor too)"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript Async="1">[ENABLE]
+aobscanmodule(wpnWeight,CodeVein-Win64-Shipping.exe,F3 0F 10 81 90 00 00 00 C3)
+wpnWeight:
+  db 0F 57 C0 90 90 90 90 90
+registersymbol(wpnWeight)
+
+[DISABLE]
+wpnWeight:
+  db F3 0F 10 81 90 00 00 00
+unregistersymbol(wpnWeight)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "CodeVein-Win64-Shipping.exe"+7DA8D10
+
+"CodeVein-Win64-Shipping.exe"+7DA8CF6: 9D                       -  popfq 
+"CodeVein-Win64-Shipping.exe"+7DA8CF7: 4D 89 F9                 -  mov r9,r15
+"CodeVein-Win64-Shipping.exe"+7DA8CFA: 4C 87 8E 1C 7E 71 AE     -  xchg [rsi-518E81E4],r9
+"CodeVein-Win64-Shipping.exe"+7DA8D01: 48 8D 64 24 F8           -  lea rsp,[rsp-08]
+"CodeVein-Win64-Shipping.exe"+7DA8D06: 4C 89 2C 24              -  mov [rsp],r13
+"CodeVein-Win64-Shipping.exe"+7DA8D0A: C3                       -  ret 
+"CodeVein-Win64-Shipping.exe"+7DA8D0B: 01 0F                    -  add [rdi],ecx
+"CodeVein-Win64-Shipping.exe"+7DA8D0D: 1F                       -  pop ds
+"CodeVein-Win64-Shipping.exe"+7DA8D0E: 40                       - db 40  // SHORTENED TO HIT INJECTION FROM:  add bl,sil
+"CodeVein-Win64-Shipping.exe"+7DA8D0F: 00                       - db 00  // SHORTENED TO HIT INJECTION FROM:  add bl,dh
+// ---------- INJECTING HERE ----------
+"CodeVein-Win64-Shipping.exe"+7DA8D10: F3 0F 10 81 90 00 00 00  -  movss xmm0,[rcx+00000090]
+// ---------- DONE INJECTING  ----------
+"CodeVein-Win64-Shipping.exe"+7DA8D18: C3                       -  ret 
+"CodeVein-Win64-Shipping.exe"+7DA8D19: C3                       -  ret 
+"CodeVein-Win64-Shipping.exe"+7DA8D1A: 0F 89 F0 81 C6 2D        -  jns 175A10F10
+"CodeVein-Win64-Shipping.exe"+7DA8D20: FA                       -  cli 
+"CodeVein-Win64-Shipping.exe"+7DA8D21: F4                       -  hlt 
+"CodeVein-Win64-Shipping.exe"+7DA8D22: CE                       -  into 
+"CodeVein-Win64-Shipping.exe"+7DA8D23: 29 F0                    -  sub eax,esi
+"CodeVein-Win64-Shipping.exe"+7DA8D25: BE 8F 8D 3E 71           -  mov esi,713E8D8F
+"CodeVein-Win64-Shipping.exe"+7DA8D2A: 25 FF BF C7 31           -  and eax,31C7BFFF
+"CodeVein-Win64-Shipping.exe"+7DA8D2F: 25 FF 3F 18 40           -  and eax,40183FFF
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>47</ID>
+      <Description>"Player Pointer"</Description>
+      <Options moHideChildren="1"/>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript Async="1">[ENABLE]
+aobscanmodule(player,CodeVein-Win64-Shipping.exe,48 01 C0 48 8B 3C C1 48 85 FF 0F 84 1F)
+alloc(newmem,$1000,player)
+
+label(code)
+label(return)
+label(playerPtr)
+
+newmem:
+  mov rdi,playerPtr
+  mov [rdi],rcx
+code:
+  add rax,rax
+  mov rdi,[rcx+rax*8]
+  jmp return
+
+playerPtr:
+  dq 0
+
+player:
+  jmp newmem
+  nop 2
+return:
+registersymbol(player)
+registersymbol(playerPtr)
+
+[DISABLE]
+player:
+  db 48 01 C0 48 8B 3C C1
+unregistersymbol(player)
+unregistersymbol(playerPtr)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "CodeVein-Win64-Shipping.exe"+F05B20F
+
+"CodeVein-Win64-Shipping.exe"+F05B1E4: 66 66 66 2E 0F 1F 84 00 00 00 00 00  -  nop cs:[rax+rax+00000000]
+"CodeVein-Win64-Shipping.exe"+F05B1F0: 48 63 45 F3                          -  movsxd  rax,dword ptr [rbp-0D]
+"CodeVein-Win64-Shipping.exe"+F05B1F4: 48 8B 4D D7                          -  mov rcx,[rbp-29]
+"CodeVein-Win64-Shipping.exe"+F05B1F8: 44 39 F0                             -  cmp eax,r14d
+"CodeVein-Win64-Shipping.exe"+F05B1FB: 75 0F                                -  jne CodeVein-Win64-Shipping.exe+F05B20C
+"CodeVein-Win64-Shipping.exe"+F05B1FD: 4C 39 6D E7                          -  cmp [rbp-19],r13
+"CodeVein-Win64-Shipping.exe"+F05B201: 75 09                                -  jne CodeVein-Win64-Shipping.exe+F05B20C
+"CodeVein-Win64-Shipping.exe"+F05B203: 4C 39 D9                             -  cmp rcx,r11
+"CodeVein-Win64-Shipping.exe"+F05B206: 0F 84 54 01 00 00                    -  je CodeVein-Win64-Shipping.exe+F05B360
+"CodeVein-Win64-Shipping.exe"+F05B20C: 48 8B 09                             -  mov rcx,[rcx]
+// ---------- INJECTING HERE ----------
+"CodeVein-Win64-Shipping.exe"+F05B20F: 48 01 C0                             -  add rax,rax
+"CodeVein-Win64-Shipping.exe"+F05B212: 48 8B 3C C1                          -  mov rdi,[rcx+rax*8]
+// ---------- DONE INJECTING  ----------
+"CodeVein-Win64-Shipping.exe"+F05B216: 48 85 FF                             -  test rdi,rdi
+"CodeVein-Win64-Shipping.exe"+F05B219: 0F 84 1F 01 00 00                    -  je CodeVein-Win64-Shipping.exe+F05B33E
+"CodeVein-Win64-Shipping.exe"+F05B21F: E8 2C 0C 24 F3                       -  call CodeVein-Win64-Shipping.exe+229BE50
+"CodeVein-Win64-Shipping.exe"+F05B224: 48 8B 57 10                          -  mov rdx,[rdi+10]
+"CodeVein-Win64-Shipping.exe"+F05B228: 4C 8D 80 88 00 00 00                 -  lea r8,[rax+00000088]
+"CodeVein-Win64-Shipping.exe"+F05B22F: 49 63 40 08                          -  movsxd  rax,dword ptr [r8+08]
+"CodeVein-Win64-Shipping.exe"+F05B233: 3B 82 90 00 00 00                    -  cmp eax,[rdx+00000090]
+"CodeVein-Win64-Shipping.exe"+F05B239: 0F 8F FF 00 00 00                    -  jg CodeVein-Win64-Shipping.exe+F05B33E
+"CodeVein-Win64-Shipping.exe"+F05B23F: 48 89 C1                             -  mov rcx,rax
+"CodeVein-Win64-Shipping.exe"+F05B242: 48 8B 82 88 00 00 00                 -  mov rax,[rdx+00000088]
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>57</ID>
+          <Description>"Unlimited Health"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript Async="1">[ENABLE]
+aobscanmodule(health,CodeVein-Win64-Shipping.exe,F3 0F 5D C6 0F 28 C8 48 8B)
+alloc(newmem,$1000,health)
+
+label(code)
+label(return)
+
+newmem:
+  mov rax,playerPtr
+  mov rax,[rax]
+  cmp [rax+3A*8],rbx
+  je code
+  minss xmm0,xmm6
+code:
+  movaps xmm1,xmm0
+  jmp return
+
+health:
+  jmp newmem
+  nop 2
+return:
+registersymbol(health)
+
+[DISABLE]
+health:
+  db F3 0F 5D C6 0F 28 C8
+unregistersymbol(health)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "CodeVein-Win64-Shipping.exe"+609D074
+
+"CodeVein-Win64-Shipping.exe"+609D04C: 48 89 F9                          -  mov rcx,rdi
+"CodeVein-Win64-Shipping.exe"+609D04F: 0F 28 F1                          -  movaps xmm6,xmm1
+"CodeVein-Win64-Shipping.exe"+609D052: FF 90 A8 00 00 00                 -  call qword ptr [rax+000000A8]
+"CodeVein-Win64-Shipping.exe"+609D058: 48 8B 07                          -  mov rax,[rdi]
+"CodeVein-Win64-Shipping.exe"+609D05B: 48 89 F9                          -  mov rcx,rdi
+"CodeVein-Win64-Shipping.exe"+609D05E: F3 0F 11 83 F8 01 00 00           -  movss [rbx+000001F8],xmm0
+"CodeVein-Win64-Shipping.exe"+609D066: FF 90 B8 00 00 00                 -  call qword ptr [rax+000000B8]
+"CodeVein-Win64-Shipping.exe"+609D06C: 0F 57 C9                          -  xorps xmm1,xmm1
+"CodeVein-Win64-Shipping.exe"+609D06F: 0F 2F F1                          -  comiss xmm6,xmm1
+"CodeVein-Win64-Shipping.exe"+609D072: 72 07                             -  jb CodeVein-Win64-Shipping.exe+609D07B
+// ---------- INJECTING HERE ----------
+"CodeVein-Win64-Shipping.exe"+609D074: F3 0F 5D C6                       -  minss xmm0,xmm6
+"CodeVein-Win64-Shipping.exe"+609D078: 0F 28 C8                          -  movaps xmm1,xmm0
+// ---------- DONE INJECTING  ----------
+"CodeVein-Win64-Shipping.exe"+609D07B: 48 8B 07                          -  mov rax,[rdi]
+"CodeVein-Win64-Shipping.exe"+609D07E: 48 89 F9                          -  mov rcx,rdi
+"CodeVein-Win64-Shipping.exe"+609D081: F3 0F 11 8B FC 01 00 00           -  movss [rbx+000001FC],xmm1
+"CodeVein-Win64-Shipping.exe"+609D089: FF 90 D0 00 00 00                 -  call qword ptr [rax+000000D0]
+"CodeVein-Win64-Shipping.exe"+609D08F: 84 C0                             -  test al,al
+"CodeVein-Win64-Shipping.exe"+609D091: 74 43                             -  je CodeVein-Win64-Shipping.exe+609D0D6
+"CodeVein-Win64-Shipping.exe"+609D093: 0F 2F B3 F8 01 00 00              -  comiss xmm6,[rbx+000001F8]
+"CodeVein-Win64-Shipping.exe"+609D09A: 73 46                             -  jae CodeVein-Win64-Shipping.exe+609D0E2
+"CodeVein-Win64-Shipping.exe"+609D09C: 48 8B 07                          -  mov rax,[rdi]
+"CodeVein-Win64-Shipping.exe"+609D09F: 48 89 F9                          -  mov rcx,rdi
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>53</ID>
+          <Description>"Show/Hide"</Description>
+          <Options moHideChildren="1"/>
+          <LastState Value="" RealAddress="00000000"/>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>12</ID>
+              <Description>"Player"</Description>
+              <LastState RealAddress="00000000"/>
+              <VariableType>String</VariableType>
+              <Length>0</Length>
+              <Unicode>0</Unicode>
+              <CodePage>0</CodePage>
+              <ZeroTerminate>1</ZeroTerminate>
+              <Address>playerPtr</Address>
+              <Offsets>
+                <Offset>0</Offset>
+                <Offset>3A*8</Offset>
+              </Offsets>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>67</ID>
+                  <Description>"Level"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+1E8</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>56</ID>
+                  <Description>"Haze"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+548</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>33</ID>
+                  <Description>"Current Health"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+1FC</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>48</ID>
+                  <Description>"Maximum Health"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+204</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>49</ID>
+                  <Description>"Current Stamina"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+260</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>50</ID>
+                  <Description>"Maximum Stamina"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>51</ID>
+                  <Description>"Current Ichor"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+500</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>52</ID>
+                  <Description>"Maximum Ichor"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+508</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1295</ID>
+                  <Description>"Balance"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+2D0</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1267</ID>
+                  <Description>"Weapons???"</Description>
+                  <LastState RealAddress="00000000"/>
+                  <VariableType>String</VariableType>
+                  <Length>0</Length>
+                  <Unicode>0</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>+20</Address>
+                  <Offsets>
+                    <Offset>0</Offset>
+                    <Offset>298+58</Offset>
+                    <Offset>10*8</Offset>
+                    <Offset>2B8</Offset>
+                  </Offsets>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>1269</ID>
+                      <Description>"Weapon X"</Description>
+                      <LastState RealAddress="00000000"/>
+                      <VariableType>String</VariableType>
+                      <Length>0</Length>
+                      <Unicode>0</Unicode>
+                      <CodePage>0</CodePage>
+                      <ZeroTerminate>1</ZeroTerminate>
+                      <Address>+0*20</Address>
+                      <CheatEntries>
+                        <CheatEntry>
+                          <ID>1270</ID>
+                          <Description>"Quality"</Description>
+                          <VariableType>4 Bytes</VariableType>
+                          <Address>+14</Address>
+                        </CheatEntry>
+                        <CheatEntry>
+                          <ID>1271</ID>
+                          <Description>"Quantity"</Description>
+                          <VariableType>4 Bytes</VariableType>
+                          <Address>+1C</Address>
+                        </CheatEntry>
+                        <CheatEntry>
+                          <ID>1268</ID>
+                          <Description>"Stats"</Description>
+                          <ShowAsHex>1</ShowAsHex>
+                          <VariableType>8 Bytes</VariableType>
+                          <Address>+8</Address>
+                          <Offsets>
+                            <Offset>0</Offset>
+                          </Offsets>
+                          <CheatEntries>
+                            <CheatEntry>
+                              <ID>1272</ID>
+                              <Description>"Name 1"</Description>
+                              <VariableType>String</VariableType>
+                              <Length>256</Length>
+                              <Unicode>1</Unicode>
+                              <CodePage>0</CodePage>
+                              <ZeroTerminate>1</ZeroTerminate>
+                              <Address>+38</Address>
+                              <Offsets>
+                                <Offset>0</Offset>
+                              </Offsets>
+                            </CheatEntry>
+                            <CheatEntry>
+                              <ID>1273</ID>
+                              <Description>"Name 2"</Description>
+                              <VariableType>String</VariableType>
+                              <Length>256</Length>
+                              <Unicode>1</Unicode>
+                              <CodePage>0</CodePage>
+                              <ZeroTerminate>1</ZeroTerminate>
+                              <Address>+50</Address>
+                              <Offsets>
+                                <Offset>0</Offset>
+                              </Offsets>
+                            </CheatEntry>
+                            <CheatEntry>
+                              <ID>1275</ID>
+                              <Description>"Weight"</Description>
+                              <VariableType>Float</VariableType>
+                              <Address>+F0</Address>
+                            </CheatEntry>
+                            <CheatEntry>
+                              <ID>1274</ID>
+                              <Description>"Base Damage 1"</Description>
+                              <VariableType>Float</VariableType>
+                              <Address>+F8</Address>
+                            </CheatEntry>
+                            <CheatEntry>
+                              <ID>1285</ID>
+                              <Description>"Base Damage 2"</Description>
+                              <VariableType>Float</VariableType>
+                              <Address>+FC</Address>
+                            </CheatEntry>
+                            <CheatEntry>
+                              <ID>1284</ID>
+                              <Description>"Base Damage 3"</Description>
+                              <VariableType>Float</VariableType>
+                              <Address>+100</Address>
+                            </CheatEntry>
+                            <CheatEntry>
+                              <ID>1286</ID>
+                              <Description>"Blood (Attack)"</Description>
+                              <VariableType>Float</VariableType>
+                              <Address>+104</Address>
+                            </CheatEntry>
+                            <CheatEntry>
+                              <ID>1287</ID>
+                              <Description>"Fire (Attack)"</Description>
+                              <VariableType>Float</VariableType>
+                              <Address>+108</Address>
+                            </CheatEntry>
+                            <CheatEntry>
+                              <ID>1288</ID>
+                              <Description>"Ice (Attack)"</Description>
+                              <VariableType>Float</VariableType>
+                              <Address>+10C</Address>
+                            </CheatEntry>
+                            <CheatEntry>
+                              <ID>1289</ID>
+                              <Description>"Lightning (Attack)"</Description>
+                              <VariableType>Float</VariableType>
+                              <Address>+110</Address>
+                            </CheatEntry>
+                            <CheatEntry>
+                              <ID>1276</ID>
+                              <Description>"Slash (Defense)"</Description>
+                              <VariableType>Float</VariableType>
+                              <Address>+120</Address>
+                            </CheatEntry>
+                            <CheatEntry>
+                              <ID>1277</ID>
+                              <Description>"Crush (Defense)"</Description>
+                              <VariableType>Float</VariableType>
+                              <Address>+124</Address>
+                            </CheatEntry>
+                            <CheatEntry>
+                              <ID>1278</ID>
+                              <Description>"Pierce (Defense)"</Description>
+                              <VariableType>Float</VariableType>
+                              <Address>+128</Address>
+                            </CheatEntry>
+                            <CheatEntry>
+                              <ID>1279</ID>
+                              <Description>"Blood (Defense)"</Description>
+                              <VariableType>Float</VariableType>
+                              <Address>+12C</Address>
+                            </CheatEntry>
+                            <CheatEntry>
+                              <ID>1280</ID>
+                              <Description>"Fire (Defense)"</Description>
+                              <VariableType>Float</VariableType>
+                              <Address>+130</Address>
+                            </CheatEntry>
+                            <CheatEntry>
+                              <ID>1281</ID>
+                              <Description>"Ice (Defense)"</Description>
+                              <VariableType>Float</VariableType>
+                              <Address>+134</Address>
+                            </CheatEntry>
+                            <CheatEntry>
+                              <ID>1282</ID>
+                              <Description>"Lightning (Defense)"</Description>
+                              <VariableType>Float</VariableType>
+                              <Address>+138</Address>
+                            </CheatEntry>
+                            <CheatEntry>
+                              <ID>1283</ID>
+                              <Description>"Stamina Reduction"</Description>
+                              <VariableType>Float</VariableType>
+                              <Address>+13C</Address>
+                            </CheatEntry>
+                            <CheatEntry>
+                              <ID>1290</ID>
+                              <Description>"Stun"</Description>
+                              <VariableType>Float</VariableType>
+                              <Address>+14C</Address>
+                            </CheatEntry>
+                            <CheatEntry>
+                              <ID>1291</ID>
+                              <Description>"Inhibit"</Description>
+                              <VariableType>Float</VariableType>
+                              <Address>+150</Address>
+                            </CheatEntry>
+                            <CheatEntry>
+                              <ID>1292</ID>
+                              <Description>"Slow"</Description>
+                              <VariableType>Float</VariableType>
+                              <Address>+154</Address>
+                            </CheatEntry>
+                          </CheatEntries>
+                        </CheatEntry>
+                      </CheatEntries>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>550</ID>
+      <Description>"pox911 scripts"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>1260</ID>
+          <Description>"Current Highlighted Skill"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+
+aobscanmodule(CurSkillAOB,CodeVein-Win64-Shipping.exe,F3 41 0F 59 46 78) // should be unique
+alloc(newmem,$1000,"CodeVein-Win64-Shipping.exe"+7E3F7ED)
+
+label(code)
+label(return)
+label(SkillData)
+registersymbol(SkillData)
+
+newmem:
+
+code:
+  mov [SkillData],r14
+  mulss xmm0,[r14+78]
+  jmp return
+  SkillData:
+
+CurSkillAOB:
+  jmp newmem
+  nop
+return:
+registersymbol(CurSkillAOB)
+
+[DISABLE]
+
+CurSkillAOB:
+  db F3 41 0F 59 46 78
+
+unregistersymbol(CurSkillAOB)
+unregistersymbol(SkillData)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "CodeVein-Win64-Shipping.exe"+7E3F7ED
+
+"CodeVein-Win64-Shipping.exe"+7E3F7C5: 48 8D 0D EC 21 D2 FA     -  lea rcx,[CodeVein-Win64-Shipping.exe+2B619B8]
+"CodeVein-Win64-Shipping.exe"+7E3F7CC: E8 8F 1B D5 F8           -  call CodeVein-Win64-Shipping.exe+B91360
+"CodeVein-Win64-Shipping.exe"+7E3F7D1: 8B 47 08                 -  mov eax,[rdi+08]
+"CodeVein-Win64-Shipping.exe"+7E3F7D4: C1 E8 1D                 -  shr eax,1D
+"CodeVein-Win64-Shipping.exe"+7E3F7D7: A8 01                    -  test al,01
+"CodeVein-Win64-Shipping.exe"+7E3F7D9: 75 0A                    -  jne CodeVein-Win64-Shipping.exe+7E3F7E5
+"CodeVein-Win64-Shipping.exe"+7E3F7DB: 48 89 D9                 -  mov rcx,rbx
+"CodeVein-Win64-Shipping.exe"+7E3F7DE: E8 4D 00 8E F9           -  call CodeVein-Win64-Shipping.exe+171F830
+"CodeVein-Win64-Shipping.exe"+7E3F7E3: EB 08                    -  jmp CodeVein-Win64-Shipping.exe+7E3F7ED
+"CodeVein-Win64-Shipping.exe"+7E3F7E5: F3 0F 10 05 DB AB D1 FA  -  movss xmm0,[CodeVein-Win64-Shipping.exe+2B5A3C8]
+// ---------- INJECTING HERE ----------
+"CodeVein-Win64-Shipping.exe"+7E3F7ED: F3 41 0F 59 46 78        -  mulss xmm0,[r14+78]
+// ---------- DONE INJECTING  ----------
+"CodeVein-Win64-Shipping.exe"+7E3F7F3: 48 8B 5C 24 30           -  mov rbx,[rsp+30]
+"CodeVein-Win64-Shipping.exe"+7E3F7F8: 48 8B 74 24 38           -  mov rsi,[rsp+38]
+"CodeVein-Win64-Shipping.exe"+7E3F7FD: 48 8B 7C 24 40           -  mov rdi,[rsp+40]
+"CodeVein-Win64-Shipping.exe"+7E3F802: 48 83 C4 20              -  add rsp,20
+"CodeVein-Win64-Shipping.exe"+7E3F806: 41 5E                    -  pop r14
+"CodeVein-Win64-Shipping.exe"+7E3F808: C3                       -  ret 
+"CodeVein-Win64-Shipping.exe"+7E3F809: CC                       -  int 3 
+"CodeVein-Win64-Shipping.exe"+7E3F80A: 48 29 ED                 -  sub rbp,rbp
+"CodeVein-Win64-Shipping.exe"+7E3F80D: 4C 8D 1C 24              -  lea r11,[rsp]
+"CodeVein-Win64-Shipping.exe"+7E3F811: 49 81 C3 2A DB 41 9C     -  add r11,9C41DB2A
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>545</ID>
+              <Description>"Cost"</Description>
+              <VariableType>Float</VariableType>
+              <Address>SkillData</Address>
+              <Offsets>
+                <Offset>78</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>546</ID>
+              <Description>"CoolDown"</Description>
+              <VariableType>Float</VariableType>
+              <Address>SkillData</Address>
+              <Offsets>
+                <Offset>80</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>547</ID>
+              <Description>"Recast Delay"</Description>
+              <VariableType>Float</VariableType>
+              <Address>SkillData</Address>
+              <Offsets>
+                <Offset>88</Offset>
+                <Offset>70</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>548</ID>
+              <Description>"Animation Speed"</Description>
+              <VariableType>Float</VariableType>
+              <Address>SkillData</Address>
+              <Offsets>
+                <Offset>8c</Offset>
+                <Offset>70</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1246</ID>
+          <Description>"Current Highlighted Weapon"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : CodeVein-Win64-Shipping.exe
+  Version: 
+  Date   : 2019-09-30
+  Author : Turk
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(CurWeapAOB,CodeVein-Win64-Shipping.exe,4D 8B 40 08 88 44 24 20) // should be unique
+alloc(newmem,$1000,"CodeVein-Win64-Shipping.exe"+6651F68)
+
+label(code)
+label(return)
+label(WeaponData)
+registersymbol(WeaponData)
+
+newmem:
+
+code:
+  mov [WeaponData],r8
+  mov r8,[r8+08]
+  mov [rsp+20],al
+  jmp return
+  WeaponData:
+
+CurWeapAOB:
+  jmp newmem
+  nop
+  nop
+  nop
+return:
+registersymbol(CurWeapAOB)
+
+[DISABLE]
+
+CurWeapAOB:
+  db 4D 8B 40 08 88 44 24 20
+
+unregistersymbol(CurWeapAOB)
+unregistersymbol(WeaponData)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "CodeVein-Win64-Shipping.exe"+6651F68
+
+"CodeVein-Win64-Shipping.exe"+6651F49: 48 89 D8                 -  mov rax,rbx
+"CodeVein-Win64-Shipping.exe"+6651F4C: 48 8B 5C 24 40           -  mov rbx,[rsp+40]
+"CodeVein-Win64-Shipping.exe"+6651F51: 48 83 C4 30              -  add rsp,30
+"CodeVein-Win64-Shipping.exe"+6651F55: 5F                       -  pop rdi
+"CodeVein-Win64-Shipping.exe"+6651F56: C3                       -  ret 
+"CodeVein-Win64-Shipping.exe"+6651F57: 0F B6 40 18              -  movzx eax,byte ptr [rax+18]
+"CodeVein-Win64-Shipping.exe"+6651F5B: 48 89 DA                 -  mov rdx,rbx
+"CodeVein-Win64-Shipping.exe"+6651F5E: 45 8B 48 14              -  mov r9d,[r8+14]
+"CodeVein-Win64-Shipping.exe"+6651F62: 48 89 F9                 -  mov rcx,rdi
+"CodeVein-Win64-Shipping.exe"+6651F65: 4C 8B 17                 -  mov r10,[rdi]
+// ---------- INJECTING HERE ----------
+"CodeVein-Win64-Shipping.exe"+6651F68: 4D 8B 40 08              -  mov r8,[r8+08]
+"CodeVein-Win64-Shipping.exe"+6651F6C: 88 44 24 20              -  mov [rsp+20],al
+// ---------- DONE INJECTING  ----------
+"CodeVein-Win64-Shipping.exe"+6651F70: 41 FF 92 98 00 00 00     -  call qword ptr [r10+00000098]
+"CodeVein-Win64-Shipping.exe"+6651F77: 48 89 D8                 -  mov rax,rbx
+"CodeVein-Win64-Shipping.exe"+6651F7A: 48 8B 5C 24 40           -  mov rbx,[rsp+40]
+"CodeVein-Win64-Shipping.exe"+6651F7F: 48 83 C4 30              -  add rsp,30
+"CodeVein-Win64-Shipping.exe"+6651F83: 5F                       -  pop rdi
+"CodeVein-Win64-Shipping.exe"+6651F84: C3                       -  ret 
+"CodeVein-Win64-Shipping.exe"+6651F85: CC                       -  int 3 
+"CodeVein-Win64-Shipping.exe"+6651F86: 41 53                    -  push r11
+"CodeVein-Win64-Shipping.exe"+6651F88: 49 F7 D3                 -  not r11
+"CodeVein-Win64-Shipping.exe"+6651F8B: 4C 21 1C 24              -  and [rsp],r11
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1247</ID>
+              <Description>"Weapon Pointer"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>8 Bytes</VariableType>
+              <Address>WeaponData</Address>
+              <Offsets>
+                <Offset>8</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1248</ID>
+              <Description>"Quantity"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>WeaponData</Address>
+              <Offsets>
+                <Offset>1c</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1249</ID>
+              <Description>"Quality"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>WeaponData</Address>
+              <Offsets>
+                <Offset>14</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1250</ID>
+              <Description>"Transformation"</Description>
+              <DropDownList DisplayValueAsItem="1">0:None
+1:Alleviation
+2:Fortification
+3:Intensification
+4:Gifts
+5:Devour
+6:Fire
+7:Ice
+8:Lightning
+9:Venom
+10:Stun
+11:Inhibit
+12:Slow
+</DropDownList>
+              <VariableType>Byte</VariableType>
+              <Address>WeaponData</Address>
+              <Offsets>
+                <Offset>18</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1297</ID>
+              <Description>"Stats"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>8 Bytes</VariableType>
+              <Address>WeaponData</Address>
+              <Offsets>
+                <Offset>0</Offset>
+                <Offset>8</Offset>
+              </Offsets>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>1298</ID>
+                  <Description>"Name 1"</Description>
+                  <VariableType>String</VariableType>
+                  <Length>256</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>0</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1299</ID>
+                  <Description>"Name 2"</Description>
+                  <VariableType>String</VariableType>
+                  <Length>256</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>+50</Address>
+                  <Offsets>
+                    <Offset>0</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1300</ID>
+                  <Description>"Weight"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+F0</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1301</ID>
+                  <Description>"Base Damage 1"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+F8</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1302</ID>
+                  <Description>"Base Damage 2"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+FC</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1303</ID>
+                  <Description>"Base Damage 3"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+100</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1304</ID>
+                  <Description>"Blood (Attack)"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+104</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1305</ID>
+                  <Description>"Fire (Attack)"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+108</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1306</ID>
+                  <Description>"Ice (Attack)"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+10C</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1307</ID>
+                  <Description>"Lightning (Attack)"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+110</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1308</ID>
+                  <Description>"Slash (Defense)"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+120</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1309</ID>
+                  <Description>"Crush (Defense)"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+124</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1310</ID>
+                  <Description>"Pierce (Defense)"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+128</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1311</ID>
+                  <Description>"Blood (Defense)"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+12C</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1312</ID>
+                  <Description>"Fire (Defense)"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+130</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1313</ID>
+                  <Description>"Ice (Defense)"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+134</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1314</ID>
+                  <Description>"Lightning (Defense)"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+138</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1315</ID>
+                  <Description>"Stamina Reduction"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+13C</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1316</ID>
+                  <Description>"Stun"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+14C</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1317</ID>
+                  <Description>"Inhibit"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+150</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1318</ID>
+                  <Description>"Slow"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+154</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1251</ID>
+          <Description>"Current Highlighted Blood Veil"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : CodeVein-Win64-Shipping.exe
+  Version: 
+  Date   : 2019-09-30
+  Author : Turk
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(CurVeilAOB,CodeVein-Win64-Shipping.exe,4C 8B 40 08 4D 85 C0 74 E1) // should be unique
+alloc(newmem,$1000,"CodeVein-Win64-Shipping.exe"+64B3337)
+
+label(code)
+label(return)
+label(VeilData)
+registersymbol(VeilData)
+
+newmem:
+
+code:
+  mov [VeilData],rax
+  mov r8,[rax+08]
+  test r8,r8
+  jmp return
+  VeilData:
+
+CurVeilAOB:
+  jmp newmem
+  nop
+  nop
+return:
+registersymbol(CurVeilAOB)
+
+[DISABLE]
+
+CurVeilAOB:
+  db 4C 8B 40 08 4D 85 C0
+
+unregistersymbol(CurVeilAOB)
+unregistersymbol(VeilData)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "CodeVein-Win64-Shipping.exe"+64B3337
+
+"CodeVein-Win64-Shipping.exe"+64B3319: 48 89 C2                                   -  mov rdx,rax
+"CodeVein-Win64-Shipping.exe"+64B331C: 48 85 C0                                   -  test rax,rax
+"CodeVein-Win64-Shipping.exe"+64B331F: 75 16                                      -  jne CodeVein-Win64-Shipping.exe+64B3337
+"CodeVein-Win64-Shipping.exe"+64B3321: 48 89 D9                                   -  mov rcx,rbx
+"CodeVein-Win64-Shipping.exe"+64B3324: E8 A7 1C 6A FA                             -  call CodeVein-Win64-Shipping.exe+B54FD0
+"CodeVein-Win64-Shipping.exe"+64B3329: 48 89 D8                                   -  mov rax,rbx
+"CodeVein-Win64-Shipping.exe"+64B332C: 48 8B 5C 24 40                             -  mov rbx,[rsp+40]
+"CodeVein-Win64-Shipping.exe"+64B3331: 48 83 C4 30                                -  add rsp,30
+"CodeVein-Win64-Shipping.exe"+64B3335: 5F                                         -  pop rdi
+"CodeVein-Win64-Shipping.exe"+64B3336: C3                                         -  ret 
+// ---------- INJECTING HERE ----------
+"CodeVein-Win64-Shipping.exe"+64B3337: 4C 8B 40 08                                -  mov r8,[rax+08]
+"CodeVein-Win64-Shipping.exe"+64B333B: 4D 85 C0                                   -  test r8,r8
+// ---------- DONE INJECTING  ----------
+"CodeVein-Win64-Shipping.exe"+64B333E: 74 E1                                      -  je CodeVein-Win64-Shipping.exe+64B3321
+"CodeVein-Win64-Shipping.exe"+64B3340: 0F B6 40 18                                -  movzx eax,byte ptr [rax+18]
+"CodeVein-Win64-Shipping.exe"+64B3344: 48 89 F9                                   -  mov rcx,rdi
+"CodeVein-Win64-Shipping.exe"+64B3347: 44 8B 4A 14                                -  mov r9d,[rdx+14]
+"CodeVein-Win64-Shipping.exe"+64B334B: 48 89 DA                                   -  mov rdx,rbx
+"CodeVein-Win64-Shipping.exe"+64B334E: 4C 8B 17                                   -  mov r10,[rdi]
+"CodeVein-Win64-Shipping.exe"+64B3351: 88 44 24 20                                -  mov [rsp+20],al
+"CodeVein-Win64-Shipping.exe"+64B3355: 41 FF 92 A0 00 00 00                       -  call qword ptr [r10+000000A0]
+"CodeVein-Win64-Shipping.exe"+64B335C: 48 89 D8                                   -  mov rax,rbx
+"CodeVein-Win64-Shipping.exe"+64B335F: 48 8B 5C 24 40                             -  mov rbx,[rsp+40]
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1252</ID>
+              <Description>"Veil Pointer"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>8 Bytes</VariableType>
+              <Address>VeilData</Address>
+              <Offsets>
+                <Offset>8</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1253</ID>
+              <Description>"Quantity"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>VeilData</Address>
+              <Offsets>
+                <Offset>1c</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1254</ID>
+              <Description>"Quality"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>VeilData</Address>
+              <Offsets>
+                <Offset>14</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1255</ID>
+              <Description>"Transformation"</Description>
+              <DropDownList DisplayValueAsItem="1">0:None
+1:Alleviation
+2:Fortification
+3:Intensification
+4:Gifts
+5:Devour
+6:Fire
+7:Ice
+8:Lightning
+9:Venom
+10:Stun
+11:Inhibit
+12:Slow
+</DropDownList>
+              <VariableType>Byte</VariableType>
+              <Address>VeilData</Address>
+              <Offsets>
+                <Offset>18</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1256</ID>
+          <Description>"Current Highlighted Item"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : CodeVein-Win64-Shipping.exe
+  Version: 
+  Date   : 2019-09-30
+  Author : Turk
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(CurItemAOB,CodeVein-Win64-Shipping.exe,1A 0F 10 00 0F 10 48 10) // should be unique
+alloc(newmem,$1000,"CodeVein-Win64-Shipping.exe"+612A86F)
+
+label(code)
+label(return)
+label(ItemData)
+registersymbol(ItemData)
+
+newmem:
+
+code:
+  mov [ItemData],rax
+  movups xmm0,[rax]
+  movups xmm1,[rax+10]
+  jmp return
+  ItemData:
+
+CurItemAOB+01:
+  jmp newmem
+  nop
+  nop
+return:
+registersymbol(CurItemAOB)
+
+[DISABLE]
+
+CurItemAOB+01:
+  db 0F 10 00 0F 10 48 10
+
+unregistersymbol(CurItemAOB)
+unregistersymbol(ItemData)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: "CodeVein-Win64-Shipping.exe"+612A86F
+
+"CodeVein-Win64-Shipping.exe"+612A842: 48 89 44 24 30                 -  mov [rsp+30],rax
+"CodeVein-Win64-Shipping.exe"+612A847: E8 44 62 91 FA                 -  call CodeVein-Win64-Shipping.exe+A40A90
+"CodeVein-Win64-Shipping.exe"+612A84C: 48 89 C2                       -  mov rdx,rax
+"CodeVein-Win64-Shipping.exe"+612A84F: 4C 8D 4C 24 30                 -  lea r9,[rsp+30]
+"CodeVein-Win64-Shipping.exe"+612A854: 41 B8 2B 00 00 00              -  mov r8d,0000002B
+"CodeVein-Win64-Shipping.exe"+612A85A: 48 89 F9                       -  mov rcx,rdi
+"CodeVein-Win64-Shipping.exe"+612A85D: E8 2E 11 82 FA                 -  call CodeVein-Win64-Shipping.exe+94B990
+"CodeVein-Win64-Shipping.exe"+612A862: 48 8B 84 24 A8 00 00 00        -  mov rax,[rsp+000000A8]
+"CodeVein-Win64-Shipping.exe"+612A86A: 48 85 C0                       -  test rax,rax
+"CodeVein-Win64-Shipping.exe"+612A86D: 74 1A                          -  je CodeVein-Win64-Shipping.exe+612A889
+// ---------- INJECTING HERE ----------
+"CodeVein-Win64-Shipping.exe"+612A86F: 0F 10 00                       -  movups xmm0,[rax]
+"CodeVein-Win64-Shipping.exe"+612A872: 0F 10 48 10                    -  movups xmm1,[rax+10]
+// ---------- DONE INJECTING  ----------
+"CodeVein-Win64-Shipping.exe"+612A876: 0F 11 03                       -  movups [rbx],xmm0
+"CodeVein-Win64-Shipping.exe"+612A879: F2 0F 10 40 20                 -  movsd xmm0,[rax+20]
+"CodeVein-Win64-Shipping.exe"+612A87E: 0F 11 4B 10                    -  movups [rbx+10],xmm1
+"CodeVein-Win64-Shipping.exe"+612A882: F2 0F 11 43 20                 -  movsd [rbx+20],xmm0
+"CodeVein-Win64-Shipping.exe"+612A887: EB 29                          -  jmp CodeVein-Win64-Shipping.exe+612A8B2
+"CodeVein-Win64-Shipping.exe"+612A889: 48 89 43 10                    -  mov [rbx+10],rax
+"CodeVein-Win64-Shipping.exe"+612A88D: 48 89 43 18                    -  mov [rbx+18],rax
+"CodeVein-Win64-Shipping.exe"+612A891: 48 89 43 20                    -  mov [rbx+20],rax
+"CodeVein-Win64-Shipping.exe"+612A895: 48 89 33                       -  mov [rbx],rsi
+"CodeVein-Win64-Shipping.exe"+612A898: 48 89 73 08                    -  mov [rbx+08],rsi
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1257</ID>
+              <Description>"Item Pointer"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>8 Bytes</VariableType>
+              <Address>ItemData</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1258</ID>
+              <Description>"Item Function?"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>8 Bytes</VariableType>
+              <Address>ItemData</Address>
+              <Offsets>
+                <Offset>8</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1259</ID>
+              <Description>"Quantity Held"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>ItemData</Address>
+              <Offsets>
+                <Offset>14</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1319</ID>
+              <Description>"Stats"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>8 Bytes</VariableType>
+              <Address>ItemData</Address>
+              <Offsets>
+                <Offset>0</Offset>
+                <Offset>0</Offset>
+              </Offsets>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>1320</ID>
+                  <Description>"Name 1"</Description>
+                  <VariableType>String</VariableType>
+                  <Length>256</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>0</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>1321</ID>
+                  <Description>"Name 2"</Description>
+                  <VariableType>String</VariableType>
+                  <Length>256</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>+50</Address>
+                  <Offsets>
+                    <Offset>0</Offset>
+                  </Offsets>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>549</ID>
+          <Description>"No Cooldown On Skills"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+
+aobscanmodule(NoCoolDownAOB,CodeVein-Win64-Shipping.exe,F3 0F 59 B3 50 05 00 00) // should be unique
+alloc(newmem,$1000,"CodeVein-Win64-Shipping.exe"+65FF92D)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mulss xmm6,[_A]
+  jmp return
+  _A:
+
+NoCoolDownAOB:
+  jmp newmem
+  nop
+  nop
+  nop
+return:
+registersymbol(NoCoolDownAOB)
+
+[DISABLE]
+
+NoCoolDownAOB:
+  db F3 0F 59 B3 50 05 00 00
+
+unregistersymbol(NoCoolDownAOB)
+dealloc(newmem)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>552</ID>
+          <Description>"Accessory Cost Bypass"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+
+aobscanmodule(AccCostAOB,CodeVein-Win64-Shipping.exe,8B 85 50 01 00 00 89 86) // should be unique
+alloc(newmem,$1000,AccCostAOB)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov eax,1
+  jmp return
+
+AccCostAOB:
+  jmp newmem
+  nop
+return:
+registersymbol(AccCostAOB)
+
+[DISABLE]
+
+AccCostAOB:
+  db 8B 85 50 01 00 00
+
+unregistersymbol(AccCostAOB)
+dealloc(newmem)
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1215</ID>
+          <Description>"Bypass Customization Reset"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+
+aobscanmodule(CustBypassAOB,CodeVein-Win64-Shipping.exe,41 0F B6 D6 48 89 F1 E8 * * * * 48 8b 07) // should be unique
+alloc(newmem,$1000,CustBypassAOB)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  movzx edx,r14l
+  mov rcx,rsi
+  jmp return
+
+CustBypassAOB:
+  jmp newmem
+  nop
+  nop
+CustBypassAOB+c:
+return:
+registersymbol(CustBypassAOB)
+
+[DISABLE]
+
+CustBypassAOB:
+  db 41 0F B6 D6 48 89 F1
+
+unregistersymbol(CustBypassAOB)
+dealloc(newmem)
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>551</ID>
+      <Description>"zachillios scripts"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>1216</ID>
+          <Description>"Highlighted Item Editor"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : CodeVein-Win64-Shipping.exe
+  Version: 
+  Date   : 2019-09-26
+  Author : Zach
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(Item_Pointer,CodeVein-Win64-Shipping.exe,0F 10 48 10 0F 11 03 F2 0F 10 40 20 0F) // should be unique
+alloc(newmem,$1000,Item_Pointer)
+globalalloc(ItemPointer,4)
+label(code)
+label(return)
+
+newmem:
+mov [ItemPointer],rax
+code:
+  movups xmm1,[rax+10]
+  movups [rbx],xmm0
+  jmp return
+
+Item_Pointer:
+  jmp newmem
+  nop 2
+return:
+registersymbol(Item_Pointer)
+
+[DISABLE]
+
+Item_Pointer:
+  db 0F 10 48 10 0F 11 03
+
+unregistersymbol(Item_Pointer)
+dealloc(newmem)
+dealloc(ItemPointer)
+{
+// ORIGINAL CODE - INJECTION POINT: "CodeVein-Win64-Shipping.exe"+612A872
+
+"CodeVein-Win64-Shipping.exe"+612A847: E8 44 62 91 FA                 -  call CodeVein-Win64-Shipping.exe+A40A90
+"CodeVein-Win64-Shipping.exe"+612A84C: 48 89 C2                       -  mov rdx,rax
+"CodeVein-Win64-Shipping.exe"+612A84F: 4C 8D 4C 24 30                 -  lea r9,[rsp+30]
+"CodeVein-Win64-Shipping.exe"+612A854: 41 B8 2B 00 00 00              -  mov r8d,0000002B
+"CodeVein-Win64-Shipping.exe"+612A85A: 48 89 F9                       -  mov rcx,rdi
+"CodeVein-Win64-Shipping.exe"+612A85D: E8 2E 11 82 FA                 -  call CodeVein-Win64-Shipping.exe+94B990
+"CodeVein-Win64-Shipping.exe"+612A862: 48 8B 84 24 A8 00 00 00        -  mov rax,[rsp+000000A8]
+"CodeVein-Win64-Shipping.exe"+612A86A: 48 85 C0                       -  test rax,rax
+"CodeVein-Win64-Shipping.exe"+612A86D: 74 1A                          -  je CodeVein-Win64-Shipping.exe+612A889
+"CodeVein-Win64-Shipping.exe"+612A86F: 0F 10 00                       -  movups xmm0,[rax]
+// ---------- INJECTING HERE ----------
+"CodeVein-Win64-Shipping.exe"+612A872: 0F 10 48 10                    -  movups xmm1,[rax+10]
+"CodeVein-Win64-Shipping.exe"+612A876: 0F 11 03                       -  movups [rbx],xmm0
+// ---------- DONE INJECTING  ----------
+"CodeVein-Win64-Shipping.exe"+612A879: F2 0F 10 40 20                 -  movsd xmm0,[rax+20]
+"CodeVein-Win64-Shipping.exe"+612A87E: 0F 11 4B 10                    -  movups [rbx+10],xmm1
+"CodeVein-Win64-Shipping.exe"+612A882: F2 0F 11 43 20                 -  movsd [rbx+20],xmm0
+"CodeVein-Win64-Shipping.exe"+612A887: EB 29                          -  jmp CodeVein-Win64-Shipping.exe+612A8B2
+"CodeVein-Win64-Shipping.exe"+612A889: 48 89 43 10                    -  mov [rbx+10],rax
+"CodeVein-Win64-Shipping.exe"+612A88D: 48 89 43 18                    -  mov [rbx+18],rax
+"CodeVein-Win64-Shipping.exe"+612A891: 48 89 43 20                    -  mov [rbx+20],rax
+"CodeVein-Win64-Shipping.exe"+612A895: 48 89 33                       -  mov [rbx],rsi
+"CodeVein-Win64-Shipping.exe"+612A898: 48 89 73 08                    -  mov [rbx+08],rsi
+"CodeVein-Win64-Shipping.exe"+612A89C: 66 C7 43 10 08 10              -  mov word ptr [rbx+10],1008
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1217</ID>
+              <Description>"Quantity"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>ItemPointer</Address>
+              <Offsets>
+                <Offset>14</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1218</ID>
+              <Description>"Max Quantity"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>ItemPointer</Address>
+              <Offsets>
+                <Offset>18</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>1219</ID>
+              <Description>"ID"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <VariableType>Array of byte</VariableType>
+              <ByteLength>3</ByteLength>
+              <Address>ItemPointer</Address>
+              <Offsets>
+                <Offset>1</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>591</ID>
+          <Description>"Highlighted Weapon Editor"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : CodeVein-Win64-Shipping.exe
+  Version: 
+  Date   : 2019-10-01
+  Author : Zach
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(Weapon_Scan,CodeVein-Win64-Shipping.exe,0F 10 48 10 0F 11 4B 10 48 8B 9C 24 90 00 00 00 48 81 C4 80 00 00 00 5F C3 CC 48 29 C0 41 50 48 F7 D0) // should be unique
+alloc(newmem,$1000,Weapon_Scan)
+globalalloc(WeaponScan,8)
+label(code)
+label(return)
+
+newmem:
+mov [WeaponScan],rax
+code:
+  movups xmm1,[rax+10]
+  movups [rbx+10],xmm1
+  jmp return
+
+Weapon_Scan:
+  jmp newmem
+  nop 3
+return:
+registersymbol(Weapon_Scan)
+
+[DISABLE]
+
+Weapon_Scan:
+  db 0F 10 48 10 0F 11 4B 10 48 8B 9C 24 90 00 00 00 48 81 C4 80 00 00 00 5F C3 CC 48 29 C0 41 50 48 F7 D0
+
+unregistersymbol(Weapon_Scan)
+dealloc(newmem)
+dealloc(WeaponScan)
+{
+// ORIGINAL CODE - INJECTION POINT: "CodeVein-Win64-Shipping.exe"+7BEA357
+
+"CodeVein-Win64-Shipping.exe"+7BEA32E: 48 89 C2                 -  mov rdx,rax
+"CodeVein-Win64-Shipping.exe"+7BEA331: 4C 8D 4C 24 30           -  lea r9,[rsp+30]
+"CodeVein-Win64-Shipping.exe"+7BEA336: 41 B8 3D 00 00 00        -  mov r8d,0000003D
+"CodeVein-Win64-Shipping.exe"+7BEA33C: 48 89 F9                 -  mov rcx,rdi
+"CodeVein-Win64-Shipping.exe"+7BEA33F: E8 7C 1C D6 F8           -  call CodeVein-Win64-Shipping.exe+94BFC0
+"CodeVein-Win64-Shipping.exe"+7BEA344: 48 8B 84 24 A8 00 00 00  -  mov rax,[rsp+000000A8]
+"CodeVein-Win64-Shipping.exe"+7BEA34C: 48 85 C0                 -  test rax,rax
+"CodeVein-Win64-Shipping.exe"+7BEA34F: 74 0E                    -  je CodeVein-Win64-Shipping.exe+7BEA35F
+"CodeVein-Win64-Shipping.exe"+7BEA351: 0F 10 00                 -  movups xmm0,[rax]
+"CodeVein-Win64-Shipping.exe"+7BEA354: 0F 11 03                 -  movups [rbx],xmm0
+// ---------- INJECTING HERE ----------
+"CodeVein-Win64-Shipping.exe"+7BEA357: 0F 10 48 10              -  movups xmm1,[rax+10]
+"CodeVein-Win64-Shipping.exe"+7BEA35B: 0F 11 4B 10              -  movups [rbx+10],xmm1
+// ---------- DONE INJECTING  ----------
+"CodeVein-Win64-Shipping.exe"+7BEA35F: 48 8B 9C 24 90 00 00 00  -  mov rbx,[rsp+00000090]
+"CodeVein-Win64-Shipping.exe"+7BEA367: 48 81 C4 80 00 00 00     -  add rsp,00000080
+"CodeVein-Win64-Shipping.exe"+7BEA36E: 5F                       -  pop rdi
+"CodeVein-Win64-Shipping.exe"+7BEA36F: C3                       -  ret 
+"CodeVein-Win64-Shipping.exe"+7BEA370: CC                       -  int 3 
+"CodeVein-Win64-Shipping.exe"+7BEA371: 48 29 C0                 -  sub rax,rax
+"CodeVein-Win64-Shipping.exe"+7BEA374: 41 50                    -  push r8
+"CodeVein-Win64-Shipping.exe"+7BEA376: 48 F7 D0                 -  not rax
+"CodeVein-Win64-Shipping.exe"+7BEA379: 48 F7 14 24              -  not [rsp]
+"CodeVein-Win64-Shipping.exe"+7BEA37D: 48 23 04 24              -  and rax,[rsp]
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>587</ID>
+              <Description>"Forge"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>WeaponScan</Address>
+              <Offsets>
+                <Offset>14</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>593</ID>
+          <Description>"Highlighted Blood Veil Editor"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : CodeVein-Win64-Shipping.exe
+  Version: 
+  Date   : 2019-10-01
+  Author : Zach
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(bCode_Scan,CodeVein-Win64-Shipping.exe,0F 10 48 10 0F 11 4B 10 48 8B 9C 24 90 00 00 00 48 81 C4 80 00 00 00 5F C3 CC 00) // should be unique
+alloc(newmem,$1000,bCode_Scan)
+globalalloc(bCodeScan,4)
+label(code)
+label(return)
+
+newmem:
+mov [bCodeScan],rax
+code:
+  movups xmm1,[rax+10]
+  movups [rbx+10],xmm1
+  jmp return
+
+bCode_Scan:
+  jmp newmem
+  nop 3
+return:
+registersymbol(bCode_Scan)
+
+[DISABLE]
+
+bCode_Scan:
+  db 0F 10 48 10 0F 11 4B 10
+
+unregistersymbol(bCode_Scan)
+dealloc(newmem)
+dealloc(bCodeScan)
+{
+// ORIGINAL CODE - INJECTION POINT: "CodeVein-Win64-Shipping.exe"+7BC65B7
+
+"CodeVein-Win64-Shipping.exe"+7BC658E: 48 89 C2                 -  mov rdx,rax
+"CodeVein-Win64-Shipping.exe"+7BC6591: 4C 8D 4C 24 30           -  lea r9,[rsp+30]
+"CodeVein-Win64-Shipping.exe"+7BC6596: 41 B8 2D 00 00 00        -  mov r8d,0000002D
+"CodeVein-Win64-Shipping.exe"+7BC659C: 48 89 F9                 -  mov rcx,rdi
+"CodeVein-Win64-Shipping.exe"+7BC659F: E8 1C 5A D8 F8           -  call CodeVein-Win64-Shipping.exe+94BFC0
+"CodeVein-Win64-Shipping.exe"+7BC65A4: 48 8B 84 24 A8 00 00 00  -  mov rax,[rsp+000000A8]
+"CodeVein-Win64-Shipping.exe"+7BC65AC: 48 85 C0                 -  test rax,rax
+"CodeVein-Win64-Shipping.exe"+7BC65AF: 74 0E                    -  je CodeVein-Win64-Shipping.exe+7BC65BF
+"CodeVein-Win64-Shipping.exe"+7BC65B1: 0F 10 00                 -  movups xmm0,[rax]
+"CodeVein-Win64-Shipping.exe"+7BC65B4: 0F 11 03                 -  movups [rbx],xmm0
+// ---------- INJECTING HERE ----------
+"CodeVein-Win64-Shipping.exe"+7BC65B7: 0F 10 48 10              -  movups xmm1,[rax+10]
+"CodeVein-Win64-Shipping.exe"+7BC65BB: 0F 11 4B 10              -  movups [rbx+10],xmm1
+// ---------- DONE INJECTING  ----------
+"CodeVein-Win64-Shipping.exe"+7BC65BF: 48 8B 9C 24 90 00 00 00  -  mov rbx,[rsp+00000090]
+"CodeVein-Win64-Shipping.exe"+7BC65C7: 48 81 C4 80 00 00 00     -  add rsp,00000080
+"CodeVein-Win64-Shipping.exe"+7BC65CE: 5F                       -  pop rdi
+"CodeVein-Win64-Shipping.exe"+7BC65CF: C3                       -  ret 
+"CodeVein-Win64-Shipping.exe"+7BC65D0: CC                       -  int 3 
+"CodeVein-Win64-Shipping.exe"+7BC65D1: 00 00                    -  add [rax],al
+"CodeVein-Win64-Shipping.exe"+7BC65D3: 00 00                    -  add [rax],al
+"CodeVein-Win64-Shipping.exe"+7BC65D5: 41 54                    -  push r12
+"CodeVein-Win64-Shipping.exe"+7BC65D7: 49 F7 D4                 -  not r12
+"CodeVein-Win64-Shipping.exe"+7BC65DA: 4C 21 24 24              -  and [rsp],r12
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>594</ID>
+              <Description>"Forge"</Description>
+              <VariableType>4 Bytes</VariableType>
+              <Address>bCodeScan</Address>
+              <Offsets>
+                <Offset>14</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>13020</ID>
+      <Description>"Cielos scripts"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>16344</ID>
+          <Description>"enable .3 (walk/jump/noclip)"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <Color>FF0000</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript Async="1">[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+define(walkkeyiddefault,14)
+define(sprintkeyiddefault,10)
+define(walkspeed,(float)0.3)
+define(sprintspeed,(float)1.295)
+aobscanmodule(playerCoordReadAOB,CodeVein-Win64-Shipping.exe,48 ** ** 50 49 ** ** ** ** 00 00 44 ** ** ** ** ** ** F2 0F ** ** ** ** ** ** 48 ** ** 74 ** 0F ** ** ** ** 00 00 48 ** ** ** 0F ** ** F3 0F ** ** ** 0F ** ** ** 0F ** ** ** F3 0F)
+registersymbol(playerCoordReadAOB)
+
+label(pPlayerCoordInfo)
+registersymbol(pPlayerCoordInfo)
+
+alloc(newmem,2048,playerCoordReadAOB+1f) //"CodeVein-Win64-Shipping.exe"+6CA4C94)
+label(returnhere)
+label(originalcode_playerCoordReadAOB)
+registersymbol(originalcode_playerCoordReadAOB)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+push rbx
+mov rbx,pPlayerCoordInfo
+mov [rbx],rax
+pop rbx
+
+originalcode_playerCoordReadAOB:
+readmem(playerCoordReadAOB+1f,7)
+//movaps xmm1,[rax+000001A0]
+
+exit:
+jmp returnhere
+
+///
+pPlayerCoordInfo:
+dq 0
+///
+
+playerCoordReadAOB+1f: //"CodeVein-Win64-Shipping.exe"+6CA4C94:
+jmp newmem
+nop 2
+returnhere:
+
+///******************************///
+aobscanmodule(someMoveSpeedReadAOB,CodeVein-Win64-Shipping.exe,F3 0F ** ** ** ** 00 00 80 ** ** ** 00 00 ** 75 ** 48 ** ** 0F ** ** 48)
+registersymbol(someMoveSpeedReadAOB)
+
+label(dMoveSpeed)
+registersymbol(dMoveSpeed)
+label(bWalkKeyID)
+registersymbol(bWalkKeyID)
+label(bWalkKeyPressed)
+registersymbol(bWalkKeyPressed)
+label(dWalkSpeed)
+registersymbol(dWalkSpeed)
+
+label(bSprintKeyID)
+registersymbol(bSprintKeyID)
+label(bSprintKeyPressed)
+registersymbol(bSprintKeyPressed)
+label(dSprintSpeed)
+registersymbol(dSprintSpeed)
+
+alloc(newmem3,2048,someMoveSpeedReadAOB) //"CodeVein-Win64-Shipping.exe"+DD69C1D)
+label(returnhere3)
+label(originalcode3_someMoveSpeedReadAOB)
+registersymbol(originalcode3_someMoveSpeedReadAOB)
+label(exit3)
+
+newmem3: //this is allocated memory, you have read,write,execute access
+//place your code here
+{
++a:   0004/002c
++1a4: 0/(float)2000
++210: 3F000000/45000000
++234: (float)40/0
++240: (float)1300/(float)360
+
+}
+push rax
+//cmp dword ptr [rdi+1a4],0
+//jne end
+//cmp word ptr [rdi+a],4
+//jne end
+mov rax,pPlayerCoordInfo
+mov rax,[rax]
+cmp [rdi+f8],rax
+jne end3
+
+cmp dword ptr [rdi+2f0],0
+mov rax,dMoveSpeed
+movss [rax],xmm0
+
+mov rax,bWalkKeyPressed
+cmp byte ptr [rax],1
+je @f
+mov rax,bSprintKeyPressed
+cmp byte ptr [rax],1
+je @f
+jmp end3
+
+@@:
+mulss xmm0,[rax+4]
+mov rax,dMoveSpeed
+movss [rax],xmm0
+jmp end3
+
+end3:
+pop rax
+
+originalcode3_someMoveSpeedReadAOB:
+readmem(someMoveSpeedReadAOB,8)
+//movss [rdi+000002F0],xmm0
+
+exit3:
+jmp returnhere3
+
+///
+dMoveSpeed:
+dd 0
+bWalkKeyID:
+dd walkkeyiddefault
+bWalkKeyPressed:
+dd 0
+dWalkSpeed:
+dd walkspeed
+bSprintKeyID:
+dd sprintkeyiddefault
+bSprintKeyPressed:
+dd 0
+dSprintSpeed:
+dd sprintspeed
+///
+
+someMoveSpeedReadAOB: //"CodeVein-Win64-Shipping.exe"+DD69C1D:
+jmp newmem3
+nop 3
+returnhere3:
+
+///******************************///
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+playerCoordReadAOB+1f: //"CodeVein-Win64-Shipping.exe"+6CA4C94:
+readmem(originalcode_playerCoordReadAOB,7)
+//db 0F 28 88 A0 01 00 00
+//Alt: movaps xmm1,[rax+000001A0]
+unregistersymbol(originalcode_playerCoordReadAOB)
+
+unregistersymbol(pPlayerCoordInfo)
+
+///******************************///
+dealloc(newmem3)
+someMoveSpeedReadAOB: //"CodeVein-Win64-Shipping.exe"+DD69C1D:
+readmem(originalcode3_someMoveSpeedReadAOB,8)
+//db F3 0F 11 87 F0 02 00 00
+//Alt: movss [rdi+000002F0],xmm0
+unregistersymbol(originalcode3_someMoveSpeedReadAOB)
+
+unregistersymbol(dMoveSpeed)
+unregistersymbol(bWalkKeyID)
+unregistersymbol(bWalkKeyPressed)
+unregistersymbol(dWalkSpeed)
+unregistersymbol(bSprintKeyID)
+unregistersymbol(bSprintKeyPressed)
+unregistersymbol(dSprintSpeed)
+
+///******************************///
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>16345</ID>
+              <Description>"walk/sprint keys"</Description>
+              <Options moHideChildren="1"/>
+              <LastState/>
+              <Color>FF0000</Color>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript Async="1">[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+//modified from TheyCallMeTim13's lua keylistener script
+//http://fearlessrevolution.com/viewtopic.php?f=4&amp;t=6041&amp;start=60#p62657
+{$lua}
+local function walkkeyLuaThread(thread2)
+	local addr2 = getAddressSafe('bWalkKeyPressed')
+	local addr3 = getAddressSafe('bSprintKeyPressed')
+	while RunWalkkeyLuaThreadLoop do
+        sleep(100)
+		if addr2 then
+            if ( isKeyPressed( readInteger('bWalkKeyID') ) ) then
+			    writeBytes(addr2, 1)
+            else
+                writeBytes(addr2, 0)
+            end
+		else
+			addr2 = getAddressSafe('bWalkKeyPressed')
+		end
+		if addr3 then
+            if ( isKeyPressed( readInteger('bSprintKeyID') ) ) then
+			    writeBytes(addr3, 1)
+            else
+                writeBytes(addr3, 0)
+            end
+		else
+			addr3 = getAddressSafe('bSprintKeyPressed')
+		end
+	end
+	thread2.terminate()
+--    while RunWalkkeyLuaThreadLoop do
+--          if ( isKeyPressed(VK_CAPITAL) ) then
+--              writeBytes("bWalkKeyPressed" ,1)
+--          else
+--              writeBytes("bWalkKeyPressed" ,0)
+--          end
+--    end
+--    thread2.terminate()
+end
+----------------------------------
+if syntaxcheck then return end
+RunWalkkeyLuaThreadLoop = true
+createThread(walkkeyLuaThread)
+{$asm}
+
+///*****************************************///
+
+
+
+
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+{$lua}
+if syntaxcheck then return end
+RunWalkkeyLuaThreadLoop = false
+{$asm}
+
+///*****************************************///
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>16346</ID>
+                  <Description>"walk key"</Description>
+                  <DropDownList ReadOnly="1" DescriptionOnly="1" DisplayValueAsItem="1">10:SHIFT key
+11:CTRL key
+12:ALT key
+14:CAPS LOCK key
+04:Middle Mouse Button
+05:X1 Mouse Button
+06:X2 Moust Button
+09:TAB key
+</DropDownList>
+                  <ShowAsHex>1</ShowAsHex>
+                  <Color>008000</Color>
+                  <VariableType>Byte</VariableType>
+                  <Address>bWalkKeyID</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>16347</ID>
+                      <Description>"speed"</Description>
+                      <Color>008000</Color>
+                      <VariableType>Float</VariableType>
+                      <Address>+8</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>16348</ID>
+                  <Description>"sprint key"</Description>
+                  <DropDownList ReadOnly="1" DescriptionOnly="1" DisplayValueAsItem="1">10:SHIFT key
+11:CTRL key
+12:ALT key
+14:CAPS LOCK key
+04:Middle Mouse Button
+05:X1 Mouse Button
+06:X2 Moust Button
+09:TAB key
+</DropDownList>
+                  <ShowAsHex>1</ShowAsHex>
+                  <Color>008000</Color>
+                  <VariableType>Byte</VariableType>
+                  <Address>bSprintKeyID</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>16349</ID>
+                      <Description>"speed"</Description>
+                      <Color>008000</Color>
+                      <VariableType>Float</VariableType>
+                      <Address>+8</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>16350</ID>
+              <Description>"jump key"</Description>
+              <Options moHideChildren="1"/>
+              <LastState/>
+              <Color>FF0000</Color>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript Async="1">[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+aobscanmodule(someCoordRead2AOB,CodeVein-Win64-Shipping.exe,48 ** ** ** 48 ** ** 0F 84 ** ** ** ** 48 ** ** ** ** 00 00 8B ** ** ** ** ** F2 0F ** ** ** ** ** ** 48 ** ** 74 ** 0F ** ** ** ** 00 00 48 ** ** ** 0F ** ** F3 0F ** ** ** 0F)
+registersymbol(someCoordRead2AOB)
+
+label(bJumpKeyID)
+registersymbol(bJumpKeyID)
+label(bJumpKeyPressed)
+registersymbol(bJumpKeyPressed)
+label(dJumpHeightInterval)
+registersymbol(dJumpHeightInterval)
+
+alloc(newmem2,2048,someCoordRead2AOB+27) //"CodeVein-Win64-Shipping.exe"+D6AF37C)
+label(returnhere2)
+label(originalcode2_someCoordRead2AOB)
+registersymbol(originalcode2_someCoordRead2AOB)
+label(exit2)
+
+newmem2: //this is allocated memory, you have read,write,execute access
+//place your code here
+push rbx
+
+mov rbx,pPlayerCoordInfo
+cmp [rbx],rax
+jne end2
+
+mov rbx,bJumpKeyPressed
+cmp byte ptr [rbx],1
+je @f
+mov dword ptr [rbx+4],0
+jmp end2
+
+@@:
+cmp dword ptr [rbx+4],#1800 //#2300
+jg @f
+inc dword ptr [rbx+4]
+mov rbx,dJumpHeightInterval
+movss xmm1,[rbx]
+db 48 8D 98
+readmem(someCoordRead2AOB+2a,4)
+//lea rbx,[rax+1a0]
+addss xmm1,[rbx+8]
+movss [rbx+8],xmm1
+
+end2:
+pop rbx
+
+originalcode2_someCoordRead2AOB:
+readmem(someCoordRead2AOB+27,7)
+//movaps xmm1,[rax+000001A0]
+
+exit2:
+jmp returnhere2
+
+///
+bJumpKeyID:
+dd 05
+bJumpKeyPressed:
+dd 0
+dd 0
+dJumpHeightInterval:
+dd (float)0.078
+
+///
+
+someCoordRead2AOB+27: //"CodeVein-Win64-Shipping.exe"+D6AF37C:
+jmp newmem2
+nop 2
+returnhere2:
+
+///*****************************************///
+//modified from TheyCallMeTim13's lua keylistener script
+//http://fearlessrevolution.com/viewtopic.php?f=4&amp;t=6041&amp;start=60#p62657
+{$lua}
+local function jumpkeyLuaThread(thread6)
+	local addr6 = getAddressSafe('bJumpKeyPressed')
+	while JumpKeyLuaThreadLoop do
+        sleep(100)
+		if addr6 then
+            if ( isKeyPressed( readInteger('bJumpKeyID') ) ) then
+			    writeBytes(addr6, 1)
+            else
+                writeBytes(addr6, 0)
+            end
+		else
+			addr6 = getAddressSafe('bJumpKeyPressed')
+		end
+	end
+	thread6.terminate()
+--    while JumpKeyLuaThreadLoop do
+--          if ( isKeyPressed(VK_CAPITAL) ) then
+--              writeBytes("bJumpKeyPressed" ,1)
+--          else
+--              writeBytes("bJumpKeyPressed" ,0)
+--          end
+--    end
+--    thread6.terminate()
+end
+----------------------------------
+if syntaxcheck then return end
+JumpKeyLuaThreadLoop = true
+createThread(jumpkeyLuaThread)
+{$asm}
+
+///*****************************************///
+
+
+
+
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+{$lua}
+if syntaxcheck then return end
+JumpKeyLuaThreadLoop = false
+{$asm}
+
+///*****************************************///
+dealloc(newmem2)
+someCoordRead2AOB+27: //"CodeVein-Win64-Shipping.exe"+D6AF37C:
+readmem(originalcode2_someCoordRead2AOB,7)
+//db 0F 28 88 A0 01 00 00
+//Alt: movaps xmm1,[rax+000001A0]
+unregistersymbol(originalcode2_someCoordRead2AOB)
+
+unregistersymbol(bJumpKeyID)
+unregistersymbol(bJumpKeyPressed)
+unregistersymbol(dJumpHeightInterval)
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>16351</ID>
+                  <Description>"key"</Description>
+                  <Options moHideChildren="1"/>
+                  <DropDownList ReadOnly="1" DescriptionOnly="1" DisplayValueAsItem="1">10:SHIFT key
+11:CTRL key
+12:ALT key
+14:CAPS LOCK key
+04:Middle Mouse Button
+05:X1 Mouse Button
+06:X2 Moust Button
+</DropDownList>
+                  <ShowAsHex>1</ShowAsHex>
+                  <Color>008000</Color>
+                  <VariableType>Byte</VariableType>
+                  <Address>bJumpKeyID</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>16352</ID>
+                      <Description>""</Description>
+                      <Color>008000</Color>
+                      <VariableType>Byte</VariableType>
+                      <Address>+4</Address>
+                      <CheatEntries>
+                        <CheatEntry>
+                          <ID>16353</ID>
+                          <Description>""</Description>
+                          <Color>008000</Color>
+                          <VariableType>4 Bytes</VariableType>
+                          <Address>+4</Address>
+                        </CheatEntry>
+                      </CheatEntries>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>16359</ID>
+              <Description>"no-clip"</Description>
+              <LastState/>
+              <Color>FF0000</Color>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript Async="1">[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+define(noclipbasespeed,(float)10)
+
+aobscanmodule(someNV3WritesAOB,CodeVein-Win64-Shipping.exe,C7 ** ** ** 00 00 ** ** ** ** 89 ** 8B ** ** 89 ** ** 8B ** ** 89 ** ** 8B ** ** 89 ** ** 8B ** ** 89 ** ** 8B ** ** 89 ** ** 8B ** ** 89)
+registersymbol(someNV3WritesAOB)
+
+label(aNV3)
+registersymbol(aNV3)
+
+alloc(newmem,2048,someNV3WritesAOB+2a) //"CodeVein-Win64-Shipping.exe"+48F9DB5)
+label(returnhere)
+label(originalcode_someNV3WritesAOB)
+registersymbol(originalcode_someNV3WritesAOB)
+label(exit)
+
+newmem: //this is allocated memory, you have read,write,execute access
+//place your code here
+db 48 8D
+readmem(someNV3WritesAOB+2b,2)
+//lea rax,[rbx+60]
+mov rcx,aNV3
+movss xmm0,[rax]
+movss [rcx],xmm0
+movss xmm0,[rax+4]
+movss [rcx+4],xmm0
+movss xmm0,[rax+8]
+movss [rcx+8],xmm0
+
+originalcode_someNV3WritesAOB:
+readmem(someNV3WritesAOB+2a,6)
+//mov eax,[rbx+60]
+//mov [rbx+18],eax
+
+exit:
+jmp returnhere
+
+///
+aNV3:
+///
+
+someNV3WritesAOB+2a: //"CodeVein-Win64-Shipping.exe"+48F9DB5:
+jmp newmem
+nop
+returnhere:
+
+///*********************************************///
+aobscanmodule(NV2ReadsAOB,CodeVein-Win64-Shipping.exe,66 ** 48 ** ** ** ** 00 00 0F ** 01 48 ** ** ** ** 00 00 0F ** ** ** 0F ** ** ** 0F ** ** ** 0F)
+registersymbol(NV2ReadsAOB)
+
+label(aNV2)
+registersymbol(aNV2)
+
+alloc(newmem2,2048,NV2ReadsAOB+9) //"CodeVein-Win64-Shipping.exe"+B60A2A7)
+label(returnhere2)
+label(originalcode2_NV2ReadsAOB)
+registersymbol(originalcode2_NV2ReadsAOB)
+label(exit2)
+
+newmem2: //this is allocated memory, you have read,write,execute access
+//place your code here
+push rax
+mov rax,aNV2
+
+movss xmm0,[rcx]
+movss [rax],xmm0
+movss xmm0,[rcx+4]
+movss [rax+4],xmm0
+
+pop rax
+
+originalcode2_NV2ReadsAOB:
+readmem(NV2ReadsAOB+9,10)
+//movups xmm0,[rcx]
+//lea rcx,[rcx+00000080]
+
+exit2:
+jmp returnhere2
+
+///
+aNV2:
+///
+
+NV2ReadsAOB+9: //"CodeVein-Win64-Shipping.exe"+B60A2A7:
+jmp newmem2
+nop 5
+returnhere2:
+
+///*********************************************///
+aobscanmodule(someInputBaseReadAOB,CodeVein-Win64-Shipping.exe,8B ** ** 48 8B ** ** ** ** ** 89 ** ** ** 00 00 8B ** ** 89 ** ** ** 00 00 48)
+registersymbol(someInputBaseReadAOB)
+
+label(pInputBase)
+registersymbol(pInputBase)
+
+alloc(newmem3,2048,someInputBaseReadAOB+a) //"CodeVein-Win64-Shipping.exe"+F855322)
+label(returnhere3)
+label(originalcode3_someInputBaseReadAOB)
+registersymbol(originalcode3_someInputBaseReadAOB)
+label(exit3)
+
+newmem3: //this is allocated memory, you have read,write,execute access
+//place your code here
+readmem(someInputBaseReadAOB+a,6)
+//mov [rbp+90],eax
+
+mov rax,pInputBase
+mov [rax],rdx
+jmp exit3
+
+originalcode3_someInputBaseReadAOB:
+readmem(someInputBaseReadAOB+a,6)
+//mov [rbp+00000090],eax
+
+exit3:
+jmp returnhere3
+
+///
+pInputBase:
+///
+
+someInputBaseReadAOB+a: //"CodeVein-Win64-Shipping.exe"+F855322:
+jmp newmem3
+nop
+returnhere3:
+
+///*********************************************///
+aobscanmodule(someCoordWritesAOB,CodeVein-Win64-Shipping.exe,0F ** ** ** ** 00 00 B2 ** 44 0F ** ** ** ** 00 00 44 0F ** ** ** ** 00 00 EB)
+registersymbol(someCoordWritesAOB)
+
+label(bNoClip)
+registersymbol(bNoClip)
+
+alloc(newmem4,2048,someCoordWritesAOB+9) //"CodeVein-Win64-Shipping.exe"+DF938A2)
+label(returnhere4)
+label(originalcode4_someCoordWritesAOB)
+registersymbol(originalcode4_someCoordWritesAOB)
+label(exit4)
+
+newmem4: //this is allocated memory, you have read,write,execute access
+//place your code here
+push rax
+mov rax,bNoClip
+cmp byte ptr [rax],1
+jne end4
+mov rax,pPlayerCoordInfo
+cmp [rax],rbx
+//je @f
+//cmp [rax],rdi
+//jne end4
+//mov rax,[rax+1a0]
+//cmp [rdi+1a0],rax
+jne end4
+
+//cmp [rax+1a8],rax
+
+@@:
+//store registers, xmms
+//push rax
+push r8
+push r9
+sub rsp,10
+movdqu dqword [rsp],xmm0
+xorps xmm0,xmm0
+sub rsp,10
+movdqu dqword [rsp],xmm3
+xorps xmm3,xmm3
+sub rsp,10
+movdqu dqword [rsp],xmm4
+xorps xmm4,xmm4
+
+//prepare coord
+readmem(someCoordWritesAOB+9,2)
+db 28
+readmem(someCoordWritesAOB+c,5)
+//movaps xmm13,[rbx+1a0]
+
+//do y
+//get delta y
+mov r8,pInputBase
+mov r8,[r8]
+test r8,r8
+jz regsxmmsrestore4
+lea r8,[r8+50]
+movss xmm4,[r8]
+shufps xmm4,xmm4,c0 //broadcast except 4th
+
+//apply speed
+mov eax,noclipbasespeed
+movd xmm3,eax
+//mov rax,dMoveSpeed
+//mulss xmm3,[rax]
+xorps xmm0,xmm0
+comiss xmm0,[r8+60]
+je @f
+comiss xmm0,[r8+60]
+mov eax,(float)0.5
+movd xmm0,eax
+mulss xmm3,xmm0
+@@:
+shufps xmm3,xmm3,00 //broadcast
+mulps xmm4,xmm3
+
+//apply vector
+mov r9,aNV3
+test r9,r9
+jz @f
+movups xmm3,[r9]
+mulps xmm4,xmm3
+
+//update new coord
+addps xmm13,xmm4
+
+//do x
+//get delta x
+movss xmm4,[r8+60]
+shufps xmm4,xmm4,e0 //copy to 2nd
+
+//apply speed
+mov eax,noclipbasespeed
+movd xmm3,eax
+//mov rax,dMoveSpeed
+//mulss xmm3,[rax]
+comiss xmm0,[r8]
+je @f
+mov eax,(float)0.5
+movd xmm0,eax
+mulss xmm3,xmm0
+@@:
+shufps xmm3,xmm3,e0 //copy to 2nd
+mulps xmm4,xmm3
+
+//apply vector
+mov r9,aNV2
+test r9,r9
+jz @f
+movups xmm3,[r9]
+mulps xmm4,xmm3
+
+//update new coord
+addps xmm13,xmm4
+
+regsxmmsrestore4:
+//restore registers, xmms
+movdqu xmm4,dqword [rsp]
+add rsp,10
+movdqu xmm3,dqword [rsp]
+add rsp,10
+movdqu xmm0,dqword [rsp]
+add rsp,10
+pop r9
+pop r8
+//pop rax
+
+end4:
+pop rax
+
+originalcode4_someCoordWritesAOB:
+readmem(someCoordWritesAOB+9,8)
+//movaps [rbx+000001A0],xmm13
+
+exit4:
+jmp returnhere4
+
+///
+bNoClip:
+///
+
+someCoordWritesAOB+9: //"CodeVein-Win64-Shipping.exe"+DF938A2:
+jmp newmem4
+nop 3
+returnhere4:
+
+///*********************************************///
+
+
+
+
+
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+dealloc(newmem)
+someNV3WritesAOB+2a: //"CodeVein-Win64-Shipping.exe"+48F9DB5:
+readmem(originalcode_someNV3WritesAOB,6)
+//db 8B 43 60 89 43 18
+//Alt: mov eax,[rbx+60]
+//Alt: mov [rbx+18],eax
+unregistersymbol(originalcode_someNV3WritesAOB)
+
+unregistersymbol(aNV3)
+
+///*********************************************///
+dealloc(newmem2)
+NV2ReadsAOB+9: //"CodeVein-Win64-Shipping.exe"+B60A2A7:
+readmem(originalcode2_NV2ReadsAOB,10)
+//db 0F 10 01 48 8D 89 80 00 00 00
+//Alt: movups xmm0,[rcx]
+//Alt: lea rcx,[rcx+00000080]
+unregistersymbol(originalcode2_NV2ReadsAOB)
+
+unregistersymbol(aNV2)
+
+///*********************************************///
+dealloc(newmem3)
+someInputBaseReadAOB+a: //"CodeVein-Win64-Shipping.exe"+F855322:
+readmem(originalcode3_someInputBaseReadAOB,6)
+//db 89 85 90 00 00 00
+//Alt: mov [rbp+00000090],eax
+unregistersymbol(originalcode3_someInputBaseReadAOB)
+
+unregistersymbol(pInputBase)
+
+///*********************************************///
+dealloc(newmem4)
+someCoordWritesAOB+9: //"CodeVein-Win64-Shipping.exe"+DF938A2:
+readmem(originalcode4_someCoordWritesAOB,8)
+//db 44 0F 29 AB A0 01 00 00
+//Alt: movaps [rbx+000001A0],xmm13
+unregistersymbol(originalcode4_someCoordWritesAOB)
+
+unregistersymbol(bNoClip)
+
+///*********************************************///
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>16360</ID>
+                  <Description>"status"</Description>
+                  <DropDownList ReadOnly="1" DescriptionOnly="1" DisplayValueAsItem="1">*:activate no-clip first
+0:disabled
+1:enabled
+</DropDownList>
+                  <Color>008000</Color>
+                  <VariableType>Byte</VariableType>
+                  <Address>bNoClip</Address>
+                  <Hotkeys>
+                    <Hotkey>
+                      <Action>Set Value</Action>
+                      <Keys>
+                        <Key>96</Key>
+                        <Key>106</Key>
+                      </Keys>
+                      <Value>1</Value>
+                      <ID>0</ID>
+                      <ActivateSound TTS="">no-clip Activated</ActivateSound>
+                    </Hotkey>
+                    <Hotkey>
+                      <Action>Set Value</Action>
+                      <Keys>
+                        <Key>96</Key>
+                        <Key>111</Key>
+                      </Keys>
+                      <Value>0</Value>
+                      <ID>1</ID>
+                      <ActivateSound TTS="">no-clip deactivated</ActivateSound>
+                    </Hotkey>
+                  </Hotkeys>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>16354</ID>
+              <Description>"[player coords]"</Description>
+              <LastState Value="" RealAddress="00000000"/>
+              <Color>000080</Color>
+              <VariableType>Array of byte</VariableType>
+              <ByteLength>0</ByteLength>
+              <Address>pPlayerCoordInfo</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>16361</ID>
+                  <Description>"don't freeze any pointers"</Description>
+                  <LastState Value="" RealAddress="00000000"/>
+                  <Color>808080</Color>
+                  <GroupHeader>1</GroupHeader>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>16355</ID>
+                  <Description>""</Description>
+                  <Color>0000FF</Color>
+                  <VariableType>Float</VariableType>
+                  <Address>+1a0</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>16356</ID>
+                  <Description>""</Description>
+                  <Color>0000FF</Color>
+                  <VariableType>Float</VariableType>
+                  <Address>+1a4</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>16357</ID>
+                  <Description>""</Description>
+                  <Color>0000FF</Color>
+                  <VariableType>Float</VariableType>
+                  <Address>+1a8</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

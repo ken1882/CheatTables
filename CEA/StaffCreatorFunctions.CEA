@@ -1,0 +1,97 @@
+{$lua}
+------------------------------ ENABLE ------------------------------
+[ENABLE]
+
+-- Somking Whale
+local defaultStats1 = 0x74975800 -- 0x1BC07F00 -- 0x973C5000
+local defaultStats2 = 0x58D0214E -- 0x58D0614E -- 0x58D0214E
+local defaultStats3 = 0x03CE7F00 -- 0x1BC07F00 -- 0x0B807F00
+local defaultStats4 = 0x950C -- 0x9D54 -- 0x8810
+
+local sizeAddr = '[ptrStaffArraySizeHook]+9E6C'
+local maxAddr = '[ptrStaffArraySizeHook]+9E6E'
+local mulAddr = 'fltStaffCapHook'
+
+local array1Addr = '[ptrStaffHook+20]'
+local array2Addr = '[ptrStaffHook+28]'
+local array3Addr = '[ptrStaffHook+30]'
+local array4Addr = '[ptrStaffHook+38]'
+
+local stats1Addr = '[ptrStaffHook]'
+local stats2Addr = '[ptrStaffHook+8]'
+local stats3Addr = '[ptrStaffHook+10]'
+local stats4Addr = '[ptrStaffHook+18]'
+
+
+function CreateStaffMembers(count, stats1, stats2, stats3, stats4)
+	if count == nil then
+		count = 1
+	end
+	if stats1 == nil then
+		stats1 = defaultStats1
+	end
+	if stats2 == nil then
+		stats2 = defaultStats2
+	end
+	if stats3 == nil then
+		stats3 = defaultStats3
+	end
+	if stats4 == nil then
+		stats4 = defaultStats4
+	end
+	if count < 1 then
+		Logger.errorf('Count was less than 1. Value given: %d', count)
+		return
+	end
+
+	if getAddressSafe(sizeAddr) == 0 
+	or getAddressSafe(array1Addr) == 0 
+	or getAddressSafe(array2Addr) == 0 
+	or getAddressSafe(array3Addr) == 0 
+	or getAddressSafe(array4Addr) == 0 
+	or getAddressSafe(maxAddr) == 0 then
+		msg = 'Needed addresses not set. Exit then re-enter the "Staff Management".'
+		Logger.error(msg)
+		error(msg)
+		return
+	end
+	local max = readSmallInteger(maxAddr)
+	local maxMul = 1
+	if getAddressSafe(mulAddr) ~= 0 then
+		maxMul = readFloat(mulAddr)
+	end
+	max = max * maxMul
+	local addr1 = getAddressSafe(array1Addr)
+	local addr2 = getAddressSafe(array2Addr)
+	local addr3 = getAddressSafe(array3Addr)
+	local addr4 = getAddressSafe(array4Addr)
+	for i = 1, count do
+		local size = readSmallInteger(sizeAddr)
+		if size > max then
+			print(string.format('Staff Array Max is: %d; Current size: %d', max, size))
+			return
+		end
+		if addr1 ~= 0 and addr2 ~= 0 and addr3 ~= 0 and addr4 ~= 0 then
+			local na1 = addr1 + size * 4
+			local na2 = addr2 + size * 4
+			local na3 = addr3 + size * 4
+			local na4 = addr4 + size * 2
+			writeInteger(na1, stats1)
+			writeInteger(na2, stats2)
+			writeInteger(na3, stats3)
+			writeSmallInteger(na4, stats4)
+			writeSmallInteger(sizeAddr, size + 1)
+		end
+	end
+end
+
+
+function CopyStaffMember(count)
+	local stats1 = readInteger(stats1Addr)
+	local stats2 = readInteger(stats2Addr)
+	local stats3 = readInteger(stats3Addr)
+	local stats4 = readSmallInteger(stats4Addr)
+	CreateStaffMembers(count, stats1, stats2, stats3, stats4)
+end
+------------------------------ DISABLE ------------------------------
+[DISABLE]

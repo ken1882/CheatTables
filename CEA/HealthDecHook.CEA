@@ -1,0 +1,160 @@
+{
+	Process			: mgsvtpp.exe  -  (x64)
+	Module			: mgsvtpp.exe
+	Game Title		: mgsvtpp
+	Game Version	: 1.0.15.1
+	CE Version		: 6.83
+	Script Version	: 0.0.1
+	Date			: 12/18/19
+	Author			: TheyCallMeTim13
+	Name			: HealthDecHook
+
+	Health Dec Hook
+}
+
+{$STRICT}
+
+define(address, mgsvtpp.exe+11F15AB)
+define(bytes, F3 41 0F 5C C8)
+
+////
+//// ------------------------------ ENABLE ------------------------------
+[ENABLE]
+// aobScanModule(aobHealthDecHook, mgsvtpp.exe, F3xxxxxxF3xxxxxxxx0F93xxF3xxxxxxxx0F2Fxx73xx0F28xx0F28)
+i2aobScanModule(aobHealthDecHook, mgsvtpp.exe, F3xxxxxxF3xxxxxxxx0F93xxF3xxxxxxxx0F2Fxx73xx0F28xx0F28)
+define(injHealthDecHook, aobHealthDecHook+C)
+// assert(injHealthDecHook, bytes)
+i2assert(injHealthDecHook, bytes)
+registerSymbol(injHealthDecHook)
+
+alloc(memHealthDecHook, 0x400, injHealthDecHook)
+
+label(fltHealthDecHook)
+registerSymbol(fltHealthDecHook)
+label(flgHealthDecHook)
+registerSymbol(flgHealthDecHook)
+// 00:Disabled
+// 01:Infinite Health
+// 02:Decrease Multiplier
+
+label(ptrHealthDecHook)
+registerSymbol(ptrHealthDecHook)
+
+label(n_code)
+label(o_code)
+label(exit)
+label(return)
+
+memHealthDecHook:
+	fltHealthDecHook:
+		dd (float)0.125
+	align 10
+	flgHealthDecHook:
+		db 00
+	align 10
+	ptrHealthDecHook:
+		dq 0
+	align 10 CC
+	n_code:
+		pushfq
+		mov [ptrHealthDecHook],rdi
+		cmp byte ptr [flgHealthDecHook],0
+		je o_code
+		cmp byte ptr [flgHealthDecHook],1
+		jne @f
+			movss xmm1,xmm3
+			xorps xmm8,xmm8
+			xorps xmm7,xmm7
+			jmp exit
+		@@:
+		cmp byte ptr [flgHealthDecHook],2
+		jne @f
+			mulss xmm8,[fltHealthDecHook]
+			jmp o_code
+		@@:
+		mov byte ptr [flgHealthDecHook],0
+	o_code:
+		subss xmm1,xmm8
+	exit:
+		popfq
+		jmp return
+
+
+////
+//// ---------- Injection Point ----------
+injHealthDecHook:
+	jmp n_code
+	return:
+
+
+////
+//// ------------------------------ DISABLE ------------------------------
+[DISABLE]
+////
+//// ---------- Injection Point ----------
+injHealthDecHook:
+	db bytes
+
+unregisterSymbol(injHealthDecHook)
+
+unregisterSymbol(fltHealthDecHook)
+unregisterSymbol(flgHealthDecHook)
+
+unregisterSymbol(ptrHealthDecHook)
+
+dealloc(memHealthDecHook)
+
+{
+//// Injection Point: mgsvtpp.exe+11F15AB  -  00000001411F15AB
+//// AOB address: 00000001411F159F  -  mgsvtpp.exe+11F159F
+//// Process: mgsvtpp.exe  -  0000000140000000
+//// Module: mgsvtpp.exe  -  0000000140000000
+//// Module Size: 000000000E1B1000
+mgsvtpp.exe+11F1559:  35 2FEA9DB4                 -  xor eax,B49DEA2F                   [BFFFDD55]
+mgsvtpp.exe+11F155E:  41 89 4F 3C                 -  mov [r15+3C],ecx                   
+mgsvtpp.exe+11F1562:  41 8B 4F 04                 -  mov ecx,[r15+04]                   
+mgsvtpp.exe+11F1566:  41 89 47 08                 -  mov [r15+08],eax                   
+mgsvtpp.exe+11F156A:  41 8B 47 0C                 -  mov eax,[r15+0C]                   
+mgsvtpp.exe+11F156E:  81 F1 2FEA9DB4              -  xor ecx,B49DEA2F                   [BFFFDD55]
+mgsvtpp.exe+11F1574:  35 2FEA9DB4                 -  xor eax,B49DEA2F                   [BFFFDD55]
+mgsvtpp.exe+11F1579:  3B C1                       -  cmp eax,ecx                        
+mgsvtpp.exe+11F157B:  0F47 C8                     -  cmova ecx,eax                      
+mgsvtpp.exe+11F157E:  8B C1                       -  mov eax,ecx                        
+mgsvtpp.exe+11F1580:  35 2FEA9DB4                 -  xor eax,B49DEA2F                   [BFFFDD55]
+mgsvtpp.exe+11F1585:  81 F1 ACD5FB94              -  xor ecx,94FBD5AC                   [0AF5E009]
+mgsvtpp.exe+11F158B:  41 89 4F 40                 -  mov [r15+40],ecx                   
+mgsvtpp.exe+11F158F:  41 89 47 0C                 -  mov [r15+0C],eax                   
+mgsvtpp.exe+11F1593:  B8 00100000                 -  mov eax,00001000                   
+mgsvtpp.exe+11F1598:  66 09 43 22                 -  or [rbx+22],ax                     
+mgsvtpp.exe+11F159C:  0F2F 37                     -  comiss xmm6,[rdi]                  
+mgsvtpp.exe+11F159F:  F3 0F10 0F                  -  movss xmm1,[rdi]                   <<<--- AOB Starts Here
+mgsvtpp.exe+11F15A3:  F3 0F10 5F 04               -  movss xmm3,[rdi+04]                
+mgsvtpp.exe+11F15A8:  0F93 C0                     -  setae al                           
+////  INJECTING START  ----------------------------------------------------------
+mgsvtpp.exe+11F15AB:  F3 41 0F5C C8               -  subss xmm1,xmm8                    
+////  INJECTING END  ----------------------------------------------------------
+mgsvtpp.exe+11F15B0:  0F2F CE                     -  comiss xmm1,xmm6                   
+mgsvtpp.exe+11F15B3:  73 03                       -  jae 1411F15B8                      
+mgsvtpp.exe+11F15B5:  0F28 CE                     -  movaps xmm1,xmm6                   
+mgsvtpp.exe+11F15B8:  0F28 C3                     -  movaps xmm0,xmm3                   
+mgsvtpp.exe+11F15BB:  F3 0F5C C1                  -  subss xmm0,xmm1                    
+mgsvtpp.exe+11F15BF:  0F2F C6                     -  comiss xmm0,xmm6                   
+mgsvtpp.exe+11F15C2:  73 03                       -  jae 1411F15C7                      
+mgsvtpp.exe+11F15C4:  0F28 CB                     -  movaps xmm1,xmm3                   
+mgsvtpp.exe+11F15C7:  0F2F CE                     -  comiss xmm1,xmm6                   
+mgsvtpp.exe+11F15CA:  F3 0F11 0F                  -  movss [rdi],xmm1                   
+mgsvtpp.exe+11F15CE:  F3 45 0F58 D8               -  addss xmm11,xmm8                   
+mgsvtpp.exe+11F15D3:  77 13                       -  ja 1411F15E8                       
+mgsvtpp.exe+11F15D5:  B9 00200000                 -  mov ecx,00002000                   
+mgsvtpp.exe+11F15DA:  66 85 4B 22                 -  test [rbx+22],cx                   
+mgsvtpp.exe+11F15DE:  74 08                       -  je 1411F15E8                       
+mgsvtpp.exe+11F15E0:  41 83 8D B4000000 04        -  or dword ptr [r13+000000B4],04     
+mgsvtpp.exe+11F15E8:  45 32 FF                    -  xor r15l,r15l                      
+mgsvtpp.exe+11F15EB:  84 C0                       -  test al,al                         
+mgsvtpp.exe+11F15ED:  0F85 7B030000               -  jne 1411F196E                      
+mgsvtpp.exe+11F15F3:  0F2F 37                     -  comiss xmm6,[rdi]                  
+//// Template: I2CEA_AOBFullInjectionWithValues
+//// Generated with: I2 Cheat Engine Auto Assembler Script Template Generator
+//// Code Happy, Code Freely, Be Awesome.
+}
+

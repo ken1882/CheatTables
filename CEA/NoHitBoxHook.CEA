@@ -1,0 +1,103 @@
+{
+	Process			: mgsvtpp.exe  -  (x64)
+	Module			: mgsvtpp.exe
+	Game Title		: mgsvtpp
+	Game Version	: 1.0.14.0
+	CE Version		: 6.81
+	Script Version	: 0.0.1
+	Date			: 08/04/18
+	Author			: TheyCallMeTim13
+	Name			: NoHitBoxHook
+
+	No Hit Box Hook
+
+	+0  : 40535541564883EC70488Bxxxx45xxxx0F29xxxxxx448Bxxxxxxxxxx448B
+}
+
+{$STRICT}
+
+define(address, mgsvtpp.exe+11F02F0)
+define(bytes, 40 53)
+
+////
+//// ------------------------------ ENABLE ------------------------------
+[ENABLE]
+// aobScanModule(aobNoHitBoxHook, mgsvtpp.exe, 40535541564883EC70488Bxxxx45xxxx0F29xxxxxx448Bxxxxxxxxxx448B)
+i2aobScanModule(aobNoHitBoxHook, mgsvtpp.exe, 40535541564883EC70488Bxxxx45xxxx0F29xxxxxx448Bxxxxxxxxxx448B)
+define(injNoHitBoxHook, aobNoHitBoxHook)
+// assert(injNoHitBoxHook, bytes)
+i2assert(injNoHitBoxHook, bytes)
+registerSymbol(injNoHitBoxHook)
+
+
+////
+//// ---------- Injection Point ----------
+injNoHitBoxHook:
+	ret
+	nop
+
+
+////
+//// ------------------------------ DISABLE ------------------------------
+[DISABLE]
+////
+//// ---------- Injection Point ----------
+injNoHitBoxHook:
+	db bytes
+
+unregisterSymbol(injNoHitBoxHook)
+
+{
+//// Injection Point: mgsvtpp.exe+11F02F0  -  00000001411F02F0
+//// AOB address: 00000001411F02F0  -  mgsvtpp.exe+11F02F0
+//// Process: mgsvtpp.exe  -  0000000140000000
+//// Module: mgsvtpp.exe  -  0000000140000000
+//// Module Size: 000000000DFCB000
+mgsvtpp.exe+11F02DC:  CC                          -  int 3                              
+mgsvtpp.exe+11F02DD:  CC                          -  int 3                              
+mgsvtpp.exe+11F02DE:  CC                          -  int 3                              
+mgsvtpp.exe+11F02DF:  CC                          -  int 3                              
+mgsvtpp.exe+11F02E0:  CC                          -  int 3                              
+mgsvtpp.exe+11F02E1:  CC                          -  int 3                              
+mgsvtpp.exe+11F02E2:  CC                          -  int 3                              
+mgsvtpp.exe+11F02E3:  CC                          -  int 3                              
+mgsvtpp.exe+11F02E4:  CC                          -  int 3                              
+mgsvtpp.exe+11F02E5:  CC                          -  int 3                              
+mgsvtpp.exe+11F02E6:  CC                          -  int 3                              
+mgsvtpp.exe+11F02E7:  CC                          -  int 3                              
+mgsvtpp.exe+11F02E8:  CC                          -  int 3                              
+mgsvtpp.exe+11F02E9:  CC                          -  int 3                              
+mgsvtpp.exe+11F02EA:  CC                          -  int 3                              
+mgsvtpp.exe+11F02EB:  CC                          -  int 3                              
+mgsvtpp.exe+11F02EC:  CC                          -  int 3                              
+mgsvtpp.exe+11F02ED:  CC                          -  int 3                              
+mgsvtpp.exe+11F02EE:  CC                          -  int 3                              
+mgsvtpp.exe+11F02EF:  CC                          -  int 3                              
+////  INJECTING START  ----------------------------------------------------------
+mgsvtpp.exe+11F02F0:  40 53                       -  push rbx                           <<<--- AOB Starts Here
+////  INJECTING END  ----------------------------------------------------------
+mgsvtpp.exe+11F02F2:  55                          -  push rbp                           
+mgsvtpp.exe+11F02F3:  41 56                       -  push r14                           
+mgsvtpp.exe+11F02F5:  48 83 EC 70                 -  sub rsp,70                         
+mgsvtpp.exe+11F02F9:  48 8B 41 08                 -  mov rax,[rcx+08]                   
+mgsvtpp.exe+11F02FD:  45 33 C9                    -  xor r9d,r9d                        
+mgsvtpp.exe+11F0300:  0F29 74 24 60               -  movaps [rsp+60],xmm6               
+mgsvtpp.exe+11F0305:  44 8B 90 04020000           -  mov r10d,[rax+00000204]            
+mgsvtpp.exe+11F030C:  44 8B 80 08020000           -  mov r8d,[rax+00000208]             
+mgsvtpp.exe+11F0313:  48 8B D9                    -  mov rbx,rcx                        
+mgsvtpp.exe+11F0316:  0F57 F6                     -  xorps xmm6,xmm6                    
+mgsvtpp.exe+11F0319:  F3 0F10 88 2C020000         -  movss xmm1,[rax+0000022C]          
+mgsvtpp.exe+11F0321:  41 C1 EA 02                 -  shr r10d,02                        
+mgsvtpp.exe+11F0325:  45 8B D9                    -  mov r11d,r9d                       
+mgsvtpp.exe+11F0328:  41 80 E2 01                 -  and r10l,01                        
+mgsvtpp.exe+11F032C:  41 83 F8 04                 -  cmp r8d,04                         
+mgsvtpp.exe+11F0330:  0F8C B0000000               -  jl 1411F03E6                       
+mgsvtpp.exe+11F0336:  41 8D 40 FC                 -  lea eax,[r8-04]                    
+mgsvtpp.exe+11F033A:  41 8B C9                    -  mov ecx,r9d                        
+mgsvtpp.exe+11F033D:  C1 E8 02                    -  shr eax,02                         
+mgsvtpp.exe+11F0340:  FF C0                       -  inc eax                            
+//// Template: I2CEA_AOBInjection
+//// Generated with: I2 Cheat Engine Auto Assembler Script Template Generator
+//// Code Happy, Code Freely, Be Awesome.
+}
+

@@ -1,0 +1,131 @@
+{
+	Process			: mgsvtpp.exe  -  (x64)
+	Module			: mgsvtpp.exe
+	Game Title		: Metal Gear Solid 5 Phantom Pain
+	Game Version	: 1.0.15.1
+	CE Version		: 6.83
+	Script Version	: 5.0.1
+	Date			: 12/19/19
+	Author			: TheyCallMeTim13
+	Name			: ResourcesOnlineHook
+
+	Resources Online Hook
+
+	+4  : 44xxxxxx48xxxxxxxxxxxx39xx0F4Fxx45
+}
+
+{$STRICT}
+
+define(address, mgsvtpp.exe+A91C3E6)
+define(bytes, 48 8B 83 18 0A 00 00)
+
+////
+//// ------------------------------ ENABLE ------------------------------
+[ENABLE]
+// aobScanModule(aobResourcesOnlineHook, mgsvtpp.exe, 44xxxxxx48xxxxxxxxxxxx39xx0F4Fxx45)
+i2aobScanModule(aobResourcesOnlineHook, mgsvtpp.exe, 44xxxxxx48xxxxxxxxxxxx39xx0F4Fxx45)
+define(injResourcesOnlineHook, aobResourcesOnlineHook+4)
+// assert(injResourcesOnlineHook, bytes)
+i2assert(injResourcesOnlineHook, bytes)
+registerSymbol(injResourcesOnlineHook)
+
+alloc(memResourcesOnlineHook, 0x400, injResourcesOnlineHook)
+
+label(ptrResourcesOnlineHook)
+registerSymbol(ptrResourcesOnlineHook)
+
+label(n_code)
+label(o_code)
+label(exit)
+label(return)
+
+memResourcesOnlineHook:
+	ptrResourcesOnlineHook:
+		dq 0
+	align 10 CC
+	n_code:
+		mov [ptrResourcesHook],rax
+		mov [ptrResourcesOnlineHook],rax
+	o_code:
+		mov rax,[rbx+00000A18]
+	exit:
+		jmp return
+
+
+////
+//// ---------- Injection Point ----------
+injResourcesOnlineHook:
+	jmp n_code
+	nop
+	nop
+	return:
+
+
+////
+//// ------------------------------ DISABLE ------------------------------
+[DISABLE]
+////
+//// ---------- Injection Point ----------
+injResourcesOnlineHook:
+	db bytes
+
+unregisterSymbol(injResourcesOnlineHook)
+
+unregisterSymbol(ptrResourcesOnlineHook)
+
+dealloc(memResourcesOnlineHook)
+
+{
+//// Injection Point: mgsvtpp.exe+A91C3E6  -  000000014A91C3E6
+//// AOB address: 000000014A91C3E2  -  mgsvtpp.exe+A91C3E2
+//// Process: mgsvtpp.exe  -  0000000140000000
+//// Module: mgsvtpp.exe  -  0000000140000000
+//// Module Size: 000000000DFCB000
+mgsvtpp.exe+A91C39B:  56                          -  push rsi                           
+mgsvtpp.exe+A91C39C:  48 8D 32                    -  lea rsi,[rdx]                      
+mgsvtpp.exe+A91C39F:  48 87 34 24                 -  xchg [rsp],rsi                     
+mgsvtpp.exe+A91C3A3:  48 8D 89 BDCDDE21           -  lea rcx,[rcx+21DECDBD]             
+mgsvtpp.exe+A91C3AA:  C3                          -  ret                                
+mgsvtpp.exe+A91C3AB:  3D 0F1F4000                 -  cmp eax,00401F0F                   
+mgsvtpp.exe+A91C3B0:  53                          -  push rbx                           
+mgsvtpp.exe+A91C3B1:  48 83 EC 20                 -  sub rsp,20                         
+mgsvtpp.exe+A91C3B5:  48 8B 01                    -  mov rax,[rcx]                      
+mgsvtpp.exe+A91C3B8:  48 89 CB                    -  mov rbx,rcx                        
+mgsvtpp.exe+A91C3BB:  FF 50 58                    -  call qword ptr [rax+58]            
+mgsvtpp.exe+A91C3BE:  41 B8 C08782FE              -  mov r8d,FE8287C0                   [(float)-46.4645]
+mgsvtpp.exe+A91C3C4:  41 B9 404B4C00              -  mov r9d,004C4B40                   [00010001]
+mgsvtpp.exe+A91C3CA:  84 C0                       -  test al,al                         
+mgsvtpp.exe+A91C3CC:  48 8B 83 100A0000           -  mov rax,[rbx+00000A10]             
+mgsvtpp.exe+A91C3D3:  74 48                       -  je 14A91C41D                       
+mgsvtpp.exe+A91C3D5:  44 39 00                    -  cmp [rax],r8d                      
+mgsvtpp.exe+A91C3D8:  BA 4181B1C4                 -  mov edx,C4B18141                   [00000000]
+mgsvtpp.exe+A91C3DD:  B9 010934C3                 -  mov ecx,C3340901                   [00000000]
+mgsvtpp.exe+A91C3E2:  44 0F4F 00                  -  cmovg r8d,[rax]                    <<<--- AOB Starts Here
+////  INJECTING START  ----------------------------------------------------------
+mgsvtpp.exe+A91C3E6:  48 8B 83 180A0000           -  mov rax,[rbx+00000A18]             
+////  INJECTING END  ----------------------------------------------------------
+mgsvtpp.exe+A91C3ED:  39 10                       -  cmp [rax],edx                      
+mgsvtpp.exe+A91C3EF:  0F4F 10                     -  cmovg edx,[rax]                    
+mgsvtpp.exe+A91C3F2:  45 39 C8                    -  cmp r8d,r9d                        
+mgsvtpp.exe+A91C3F5:  B8 BF7E4E3B                 -  mov eax,3B4E7EBF                   [00000000]
+mgsvtpp.exe+A91C3FA:  45 0F4C C8                  -  cmovl r9d,r8d                      
+mgsvtpp.exe+A91C3FE:  39 C2                       -  cmp edx,eax                        
+mgsvtpp.exe+A91C400:  0F4C C2                     -  cmovl eax,edx                      
+mgsvtpp.exe+A91C403:  41 01 C1                    -  add r9d,eax                        
+mgsvtpp.exe+A91C406:  B8 FFC99A3B                 -  mov eax,3B9AC9FF                   [00000000]
+mgsvtpp.exe+A91C40B:  41 39 C9                    -  cmp r9d,ecx                        
+mgsvtpp.exe+A91C40E:  41 0F4F C9                  -  cmovg ecx,r9d                      
+mgsvtpp.exe+A91C412:  39 C1                       -  cmp ecx,eax                        
+mgsvtpp.exe+A91C414:  0F4C C1                     -  cmovl eax,ecx                      
+mgsvtpp.exe+A91C417:  48 83 C4 20                 -  add rsp,20                         
+mgsvtpp.exe+A91C41B:  5B                          -  pop rbx                            
+mgsvtpp.exe+A91C41C:  C3                          -  ret                                
+mgsvtpp.exe+A91C41D:  44 39 00                    -  cmp [rax],r8d                      
+mgsvtpp.exe+A91C420:  44 0F4F 00                  -  cmovg r8d,[rax]                    
+mgsvtpp.exe+A91C424:  45 39 C8                    -  cmp r8d,r9d                        
+mgsvtpp.exe+A91C427:  45 0F4C C8                  -  cmovl r9d,r8d                      
+//// Template: I2CEA_AOBFullInjection
+//// Generated with: I2 Cheat Engine Auto Assembler Script Template Generator
+//// Code Happy, Code Freely, Be Awesome.
+}
+
