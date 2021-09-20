@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="34">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"Inf Ammo"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+{$lua}
+res = AOBScan("89 48 0C 49 63 46 44")
+if res ~= nil then
+  size = stringlist_getCount(res)
+  for i=0,size-1 do
+    writeBytes(res[i], 0x90, 0x90, 0x90)
+  end
+end
+{$asm}
+
+
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+{$lua}
+res = AOBScan("90 90 90 49 63 46 44")
+if res ~= nil then
+  size = stringlist_getCount(res)
+  for i=0,size-1 do
+    writeBytes(res[i], 0x89, 0x48, 0x0c)
+  end
+end
+{$asm}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"Inf SP"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : The Shadow of Yidhra.exe
+  Version:
+  Date   : 2021-04-16
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+define(address,PlayerController:set_Energy+53 )
+define(bytes,F3 0F 11 AE 64 01 00 00)
+
+[ENABLE]
+
+assert(address,bytes)
+alloc(newmem,$1000,PlayerController:set_Energy+53 )
+
+label(code)
+label(return)
+
+newmem:
+  push rax
+  mov rax,(float)100.0
+  movd xmm5,rax
+  pop rax
+code:
+  movss [rsi+00000164],xmm5
+  jmp return
+
+address:
+  jmp newmem
+  nop 3
+return:
+
+[DISABLE]
+
+address:
+  db bytes
+  // movss [rsi+00000164],xmm5
+
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: PlayerController:set_Energy+53
+
+PlayerController:set_Energy+28: F3 0F 2A D0                    - cvtsi2ss xmm2,eax
+PlayerController:set_Energy+2c: F3 0F 5A D2                    - cvtss2sd xmm2,xmm2
+PlayerController:set_Energy+30: F2 0F 5A D2                    - cvtsd2ss xmm2,xmm2
+PlayerController:set_Energy+34: F2 0F 5A C9                    - cvtsd2ss xmm1,xmm1
+PlayerController:set_Energy+38: F2 0F 5A C0                    - cvtsd2ss xmm0,xmm0
+PlayerController:set_Energy+3c: 66 90                          - nop 2
+PlayerController:set_Energy+3e: 49 BB B0 C9 FF E6 4A 01 00 00  - mov r11,UnityEngine:Mathf:Clamp
+PlayerController:set_Energy+48: 41 FF D3                       - call r11
+PlayerController:set_Energy+4b: F3 0F 5A C0                    - cvtss2sd xmm0,xmm0
+PlayerController:set_Energy+4f: F2 0F 5A E8                    - cvtsd2ss xmm5,xmm0
+// ---------- INJECTING HERE ----------
+PlayerController:set_Energy+53: F3 0F 11 AE 64 01 00 00        - movss [rsi+00000164],xmm5
+// ---------- DONE INJECTING  ----------
+PlayerController:set_Energy+5b: 48 8B 75 F8                    - mov rsi,[rbp-08]
+PlayerController:set_Energy+5f: 48 8D 65 00                    - lea rsp,[rbp+00]
+PlayerController:set_Energy+63: 5D                             - pop rbp
+PlayerController:set_Energy+64: C3                             - ret
+14AE6F07BF5: 00 00                          - add [rax],al
+14AE6F07BF7: 00 01                          - add [rcx],al
+14AE6F07BF9: 04 02                          - add al,02
+14AE6F07BFB: 05 04 03 01 50                 - add eax,50010304
+14AE6F07C00: 00 00                          - add [rax],al
+14AE6F07C02: 00 00                          - add [rax],al
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"Inf HP"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : The Shadow of Yidhra.exe
+  Version: 
+  Date   : 2021-04-16
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+define(address,BaseObject:set_Life+53)
+define(bytes,F3 0F 11 6E 44)
+
+[ENABLE]
+
+assert(address,bytes)
+alloc(newmem,$1000,BaseObject:set_Life+53)
+
+label(code)
+label(return)
+
+newmem:
+  push rax
+  mov rax,(float)100.0
+  movd xmm5,rax
+  pop rax
+code:
+  movss [rsi+44],xmm5
+  jmp return
+
+address:
+  jmp newmem
+return:
+
+[DISABLE]
+
+address:
+  db bytes
+  // movss [rsi+44],xmm5
+
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: BaseObject:set_Life+53
+
+BaseObject:set_Life+25: F3 0F 2A D0                    - cvtsi2ss xmm2,eax
+BaseObject:set_Life+29: F3 0F 5A D2                    - cvtss2sd xmm2,xmm2
+BaseObject:set_Life+2d: F2 0F 5A D2                    - cvtsd2ss xmm2,xmm2
+BaseObject:set_Life+31: F2 0F 5A C9                    - cvtsd2ss xmm1,xmm1
+BaseObject:set_Life+35: F2 0F 5A C0                    - cvtsd2ss xmm0,xmm0
+BaseObject:set_Life+39: 48 8D 64 24 00                 - lea rsp,[rsp+00]
+BaseObject:set_Life+3e: 49 BB 70 C4 2D E0 2F 02 00 00  - mov r11,UnityEngine:Mathf:Clamp
+BaseObject:set_Life+48: 41 FF D3                       - call r11
+BaseObject:set_Life+4b: F3 0F 5A C0                    - cvtss2sd xmm0,xmm0
+BaseObject:set_Life+4f: F2 0F 5A E8                    - cvtsd2ss xmm5,xmm0
+// ---------- INJECTING HERE ----------
+BaseObject:set_Life+53: F3 0F 11 6E 44                 - movss [rsi+44],xmm5
+// ---------- DONE INJECTING  ----------
+BaseObject:set_Life+58: 48 8B 75 F8                    - mov rsi,[rbp-08]
+BaseObject:set_Life+5c: 48 8D 65 00                    - lea rsp,[rbp+00]
+BaseObject:set_Life+60: 5D                             - pop rbp
+BaseObject:set_Life+61: C3                             - ret 
+22FE24A9402: 00 00                          - add [rax],al
+22FE24A9404: 00 00                          - add [rax],al
+22FE24A9406: 00 00                          - add [rax],al
+22FE24A9408: 01 04 02                       - add [rdx+rax],eax
+22FE24A940B: 05 04 03 01 50                 - add eax,50010304
+22FE24A9410: 00 00                          - add [rax],al
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>
