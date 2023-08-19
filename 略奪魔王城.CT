@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>10</ID>
+      <Description>"Inf HR"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : 略奪?魔王城.exe
+  Version: 
+  Date   : 2023-06-14
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_HR,8B 49 3C 3B C1) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  push ebx
+  mov ebx,[ecx+40]
+  mov [ecx+3C],ebx
+  pop ebx
+code:
+  mov ecx,[ecx+3C]
+  cmp eax,ecx
+  jmp return
+
+INJ_HR:
+  jmp newmem
+return:
+registersymbol(INJ_HR)
+
+[DISABLE]
+
+INJ_HR:
+  db 8B 49 3C 3B C1
+
+unregistersymbol(INJ_HR)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 1A71ADC6
+
+1A71ADA8: 8D 4C 91 10        - lea ecx,[ecx+edx*4+10]
+1A71ADAC: 8B 09              - mov ecx,[ecx]
+1A71ADAE: 89 4C 24 04        - mov [esp+04],ecx
+1A71ADB2: 89 04 24           - mov [esp],eax
+1A71ADB5: 39 00              - cmp [eax],eax
+1A71ADB7: E8 4C A2 CF FF     - call 1A415008
+1A71ADBC: 8B 47 3C           - mov eax,[edi+3C]
+1A71ADBF: 8B 4F 0C           - mov ecx,[edi+0C]
+1A71ADC2: 8B D1              - mov edx,ecx
+1A71ADC4: 39 12              - cmp [edx],edx
+// ---------- INJECTING HERE ----------
+1A71ADC6: 8B 49 3C           - mov ecx,[ecx+3C]
+// ---------- DONE INJECTING  ----------
+1A71ADC9: 3B C1              - cmp eax,ecx
+1A71ADCB: 0F 84 9B 02 00 00  - je 1A71B06C
+1A71ADD1: 8B 47 0C           - mov eax,[edi+0C]
+1A71ADD4: 8B C8              - mov ecx,eax
+1A71ADD6: 39 09              - cmp [ecx],ecx
+1A71ADD8: 8B 40 3C           - mov eax,[eax+3C]
+1A71ADDB: 89 47 3C           - mov [edi+3C],eax
+1A71ADDE: 89 45 E4           - mov [ebp-1C],eax
+1A71ADE1: 3D 0F 27 00 00     - cmp eax,0000270F
+1A71ADE6: 7E 07              - jle 1A71ADEF
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"Unlimited Troop Deploy"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : 略奪?魔王城.exe
+  Version: 
+  Date   : 2023-06-13
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_INF_DEPLOY,89 08 8B 47 18 89) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  inc ecx
+code:
+  mov [eax],ecx
+  mov eax,[edi+18]
+  jmp return
+
+INJ_INF_DEPLOY:
+  jmp newmem
+return:
+registersymbol(INJ_INF_DEPLOY)
+
+[DISABLE]
+
+INJ_INF_DEPLOY:
+  db 89 08 8B 47 18
+
+unregistersymbol(INJ_INF_DEPLOY)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 00D12921
+
+00D128FE: 8B C2              - mov eax,edx
+00D12900: 39 00              - cmp [eax],eax
+00D12902: 8B 85 B4 FE FF FF  - mov eax,[ebp-0000014C]
+00D12908: 8B 92 F0 00 00 00  - mov edx,[edx+000000F0]
+00D1290E: 4A                 - dec edx
+00D1290F: 39 00              - cmp [eax],eax
+00D12911: 8B 40 18           - mov eax,[eax+18]
+00D12914: 39 50 0C           - cmp [eax+0C],edx
+00D12917: 0F 86 27 47 00 00  - jbe 00D17044
+00D1291D: 8D 44 90 10        - lea eax,[eax+edx*4+10]
+// ---------- INJECTING HERE ----------
+00D12921: 89 08              - mov [eax],ecx
+// ---------- DONE INJECTING  ----------
+00D12923: 8B 47 18           - mov eax,[edi+18]
+00D12926: 89 04 24           - mov [esp],eax
+00D12929: 39 00              - cmp [eax],eax
+00D1292B: E8 58 EB FF FF     - call 00D11488
+00D12930: 8B 47 20           - mov eax,[edi+20]
+00D12933: 8B 4F 0C           - mov ecx,[edi+0C]
+00D12936: 8B D1              - mov edx,ecx
+00D12938: 39 12              - cmp [edx],edx
+00D1293A: 8B 89 F0 00 00 00  - mov ecx,[ecx+000000F0]
+00D12940: 49                 - dec ecx
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"Unlimited Troop Deploy 2"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : 略奪?魔王城.exe
+  Version: 
+  Date   : 2023-06-14
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+
+aobscan(INJ_INF_DEPLOY2,89 08 8B 47 18 89) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  inc ecx
+code:
+  mov [eax],ecx
+  mov eax,[edi+18]
+  jmp return
+
+INJ_INF_DEPLOY2:
+  jmp newmem
+return:
+registersymbol(INJ_INF_DEPLOY2)
+
+[DISABLE]
+
+INJ_INF_DEPLOY2:
+  db 89 08 8B 47 18
+
+unregistersymbol(INJ_INF_DEPLOY2)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 139917A9
+
+13991786: 8B C2              - mov eax,edx
+13991788: 39 00              - cmp [eax],eax
+1399178A: 8B 85 B4 FE FF FF  - mov eax,[ebp-0000014C]
+13991790: 8B 92 F0 00 00 00  - mov edx,[edx+000000F0]
+13991796: 4A                 - dec edx
+13991797: 39 00              - cmp [eax],eax
+13991799: 8B 40 18           - mov eax,[eax+18]
+1399179C: 39 50 0C           - cmp [eax+0C],edx
+1399179F: 0F 86 27 47 00 00  - jbe 13995ECC
+139917A5: 8D 44 90 10        - lea eax,[eax+edx*4+10]
+// ---------- INJECTING HERE ----------
+139917A9: 89 08              - mov [eax],ecx
+// ---------- DONE INJECTING  ----------
+139917AB: 8B 47 18           - mov eax,[edi+18]
+139917AE: 89 04 24           - mov [esp],eax
+139917B1: 39 00              - cmp [eax],eax
+139917B3: E8 08 EE FF FF     - call 139905C0
+139917B8: 8B 47 20           - mov eax,[edi+20]
+139917BB: 8B 4F 0C           - mov ecx,[edi+0C]
+139917BE: 8B D1              - mov edx,ecx
+139917C0: 39 12              - cmp [edx],edx
+139917C2: 8B 89 F0 00 00 00  - mov ecx,[ecx+000000F0]
+139917C8: 49                 - dec ecx
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"Insane Dragon Attack Speed"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : 略奪?魔王城.exe
+  Version: 
+  Date   : 2023-06-14
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_ATK_SPD,16 B8 18 DD 85 E8 FD FF FF D9 C9 DE C1 D9 5F 20 D9 47 20) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  push eax
+  mov eax,(float)0.1
+  mov [edi+30],eax
+  pop eax
+code:
+  fstp dword ptr [edi+20]
+  fld dword ptr [edi+20]
+  jmp return
+
+INJ_ATK_SPD+0D:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_ATK_SPD)
+
+[DISABLE]
+
+INJ_ATK_SPD+0D:
+  db D9 5F 20 D9 47 20
+
+unregistersymbol(INJ_ATK_SPD)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 015532C2
+
+01553299: 8D 0C 89           - lea ecx,[ecx+ecx*4]
+0155329C: 81 C1 96 00 00 00  - add ecx,00000096
+015532A2: 3B C1              - cmp eax,ecx
+015532A4: 0F 8D FB 01 00 00  - jnl 015534A5
+015532AA: D9 47 20           - fld dword ptr [edi+20]
+015532AD: DD 9D E8 FD FF FF  - fstp qword ptr [ebp-00000218]
+015532B3: E8 A0 16 B8 18     - call 1A0D4958
+015532B8: DD 85 E8 FD FF FF  - fld qword ptr [ebp-00000218]
+015532BE: D9 C9              - fxch st(1)
+015532C0: DE C1              - faddp 
+// ---------- INJECTING HERE ----------
+015532C2: D9 5F 20           - fstp dword ptr [edi+20]
+// ---------- DONE INJECTING  ----------
+015532C5: D9 47 20           - fld dword ptr [edi+20]
+015532C8: D9 47 30           - fld dword ptr [edi+30]
+015532CB: DF F1              - fcomip st(0),st(1)
+015532CD: DD D8              - fstp st(0)
+015532CF: 0F 8A B7 04 00 00  - jp 0155378C
+015532D5: 0F 87 B1 04 00 00  - ja 0155378C
+015532DB: D9 EE              - fldz 
+015532DD: D9 5F 20           - fstp dword ptr [edi+20]
+015532E0: 8B 47 0C           - mov eax,[edi+0C]
+015532E3: 39 00              - cmp [eax],eax
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"Super Dragon Range"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : 略奪?魔王城.exe
+  Version: 
+  Date   : 2023-06-14
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_DRAGON_RANGE,81 C1 96 00 00 00 3B C1 0F 8D B7) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  add ecx,FFF
+  jmp return
+
+INJ_DRAGON_RANGE:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_DRAGON_RANGE)
+
+[DISABLE]
+
+INJ_DRAGON_RANGE:
+  db 81 C1 96 00 00 00
+
+unregistersymbol(INJ_DRAGON_RANGE)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 015531E0
+
+015531BF: 8B 85 34 FE FF FF  - mov eax,[ebp-000001CC]
+015531C5: 03 C8              - add ecx,eax
+015531C7: 8B 85 38 FE FF FF  - mov eax,[ebp-000001C8]
+015531CD: C1 E1 02           - shl ecx,02
+015531D0: 03 CA              - add ecx,edx
+015531D2: 83 C1 10           - add ecx,10
+015531D5: 8B 09              - mov ecx,[ecx]
+015531D7: 8D 0C 89           - lea ecx,[ecx+ecx*4]
+015531DA: C1 E1 02           - shl ecx,02
+015531DD: 8D 0C 89           - lea ecx,[ecx+ecx*4]
+// ---------- INJECTING HERE ----------
+015531E0: 81 C1 96 00 00 00  - add ecx,00000096
+// ---------- DONE INJECTING  ----------
+015531E6: 3B C1              - cmp eax,ecx
+015531E8: 0F 8D B7 02 00 00  - jnl 015534A5
+015531EE: 8B 85 44 FE FF FF  - mov eax,[ebp-000001BC]
+015531F4: 89 04 24           - mov [esp],eax
+015531F7: E8 64 CD FE FF     - call 0153FF60
+015531FC: 89 85 38 FE FF FF  - mov [ebp-000001C8],eax
+01553202: 8B 47 0C           - mov eax,[edi+0C]
+01553205: 39 00              - cmp [eax],eax
+01553207: 8B 50 24           - mov edx,[eax+24]
+0155320A: B9 0A 00 00 00     - mov ecx,0000000A
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>8</ID>
+      <Description>"Insane Medusa Attack Speed"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : 略奪?魔王城.exe (paused)
+  Version: 
+  Date   : 2023-06-14
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_STK_SPD_MEDUSA,D9 5F 20 D9 47 20 D9 47 2C DF F1 DD D8 0F 8A 1F) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  push eax
+  mov eax,(float)0.1
+  mov [edi+2C],eax
+  pop eax
+code:
+  fstp dword ptr [edi+20]
+  fld dword ptr [edi+20]
+  jmp return
+
+INJ_STK_SPD_MEDUSA:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_STK_SPD_MEDUSA)
+
+[DISABLE]
+
+INJ_STK_SPD_MEDUSA:
+  db D9 5F 20 D9 47 20
+
+unregistersymbol(INJ_STK_SPD_MEDUSA)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 1399F91A
+
+1399F8F3: E8 F0 F7 70 06     - call 1A0AF0E8
+1399F8F8: 89 04 24           - mov [esp],eax
+1399F8FB: E8 CC 0D D7 06     - call 1A7106CC
+1399F900: D9 47 20           - fld dword ptr [edi+20]
+1399F903: DD 9D 10 FF FF FF  - fstp qword ptr [ebp-000000F0]
+1399F909: 8B C0              - mov eax,eax
+1399F90B: E8 48 50 73 06     - call 1A0D4958
+1399F910: DD 85 10 FF FF FF  - fld qword ptr [ebp-000000F0]
+1399F916: D9 C9              - fxch st(1)
+1399F918: DE C1              - faddp 
+// ---------- INJECTING HERE ----------
+1399F91A: D9 5F 20           - fstp dword ptr [edi+20]
+// ---------- DONE INJECTING  ----------
+1399F91D: D9 47 20           - fld dword ptr [edi+20]
+1399F920: D9 47 2C           - fld dword ptr [edi+2C]
+1399F923: DF F1              - fcomip st(0),st(1)
+1399F925: DD D8              - fstp st(0)
+1399F927: 0F 8A 1F 05 00 00  - jp 1399FE4C
+1399F92D: 0F 87 19 05 00 00  - ja 1399FE4C
+1399F933: D9 EE              - fldz 
+1399F935: D9 5F 20           - fstp dword ptr [edi+20]
+1399F938: 33 F6              - xor esi,esi
+1399F93A: 33 DB              - xor ebx,ebx
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>14</ID>
+      <Description>"OP Minotaur"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : 略奪?魔王城.exe (paused)
+  Version: 
+  Date   : 2023-06-14
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_MINOTAUR,00 83 EC 04 8B 47 28 50 DB 04 24) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  push ebx
+  mov [edi+28],FF
+  mov ebx,(float)0.1
+  mov [edi+2C],ebx
+  pop ebx
+code:
+  mov eax,[edi+28]
+  push eax
+  fild dword ptr [esp]
+  jmp return
+
+INJ_MINOTAUR+04:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJ_MINOTAUR)
+
+[DISABLE]
+
+INJ_MINOTAUR+04:
+  db 8B 47 28 50 DB 04 24
+
+unregistersymbol(INJ_MINOTAUR)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 0155210F
+
+015520E6: 90                 - nop 
+015520E7: E8 9C 71 EB 18     - call 1A409288
+015520EC: 89 85 F8 FD FF FF  - mov [ebp-00000208],eax
+015520F2: 8D 85 90 FE FF FF  - lea eax,[ebp-00000170]
+015520F8: 8D 8D 30 FF FF FF  - lea ecx,[ebp-000000D0]
+015520FE: 89 4C 24 04        - mov [esp+04],ecx
+01552102: 89 04 24           - mov [esp],eax
+01552105: 8B C0              - mov eax,eax
+01552107: E8 B4 56 00 00     - call 015577C0
+0155210C: 83 EC 04           - sub esp,04
+// ---------- INJECTING HERE ----------
+0155210F: 8B 47 28           - mov eax,[edi+28]
+// ---------- DONE INJECTING  ----------
+01552112: 50                 - push eax
+01552113: DB 04 24           - fild dword ptr [esp]
+01552116: D9 1C 24           - fstp dword ptr [esp]
+01552119: D9 04 24           - fld dword ptr [esp]
+0155211C: 83 C4 04           - add esp,04
+0155211F: 8D 85 38 FF FF FF  - lea eax,[ebp-000000C8]
+01552125: D9 5C 24 0C        - fstp dword ptr [esp+0C]
+01552129: 8B 8D 30 FF FF FF  - mov ecx,[ebp-000000D0]
+0155212F: 89 4C 24 04        - mov [esp+04],ecx
+01552133: 8B 8D 34 FF FF FF  - mov ecx,[ebp-000000CC]
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>
