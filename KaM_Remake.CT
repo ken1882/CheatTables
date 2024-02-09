@@ -5,7 +5,7 @@
       <ID>31</ID>
       <Description>"No Food Consumption"</Description>
       <Options moHideChildren="1"/>
-      <LastState/>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : KaM_Remake.exe
   Version: 
@@ -32,8 +32,14 @@ newmem:
   cmp [eax+8],ebx
   jne Lret
   cmp [eax+10],F
-  jbe Lret
+  jbe Lcitizen
   mov ebx,[val_min_food]
+  cmp [eax+24],ebx
+  jg Lret
+  inc dword ptr [eax+24]
+  jmp Lret
+Lcitizen:
+  mov ebx,10
   cmp [eax+24],ebx
   jg Lret
   inc dword ptr [eax+24]
@@ -103,6 +109,7 @@ KaM_Remake.exe+73AAA9: 8B 18              - mov ebx,[eax]
         <CheatEntry>
           <ID>55</ID>
           <Description>"Player Number"</Description>
+          <LastState Value="1" RealAddress="001B004D"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>val_player_num_fc</Address>
@@ -110,6 +117,7 @@ KaM_Remake.exe+73AAA9: 8B 18              - mov ebx,[eax]
         <CheatEntry>
           <ID>32</ID>
           <Description>"Condition Threshold"</Description>
+          <LastState Value="3000" RealAddress="001B0051"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>val_min_food</Address>
@@ -120,7 +128,7 @@ KaM_Remake.exe+73AAA9: 8B 18              - mov ebx,[eax]
       <ID>53</ID>
       <Description>"Unit Godmode"</Description>
       <Options moHideChildren="1"/>
-      <LastState/>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : KaM_Remake.exe
   Version: 
@@ -219,6 +227,7 @@ KaM_Remake.exe+737941: 75 06           - jne KaM_Remake.exe+737949
         <CheatEntry>
           <ID>56</ID>
           <Description>"Player Number"</Description>
+          <LastState Value="1" RealAddress="130A0030"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>val_player_num_ug</Address>
@@ -229,6 +238,7 @@ KaM_Remake.exe+737941: 75 06           - jne KaM_Remake.exe+737949
           <DropDownList ReadOnly="1" DisplayValueAsItem="1">0:Disable
 1:Enable
 </DropDownList>
+          <LastState Value="0" RealAddress="130A0034"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>val_insta_kill</Address>
@@ -1380,7 +1390,7 @@ KaM_Remake.exe+736236: 59                 - pop ecx
     <CheatEntry>
       <ID>63</ID>
       <Description>"Last Storage Item"</Description>
-      <LastState Activated="1"/>
+      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : KaM_Remake.exe
   Version: 
@@ -1682,6 +1692,7 @@ dealloc(newmem)
             <CheatEntry>
               <ID>8</ID>
               <Description>"Min Food"</Description>
+              <LastState Value="3000" RealAddress="001B0051"/>
               <VariableType>4 Bytes</VariableType>
               <Address>val_min_food</Address>
             </CheatEntry>
