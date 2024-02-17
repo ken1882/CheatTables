@@ -1,0 +1,1177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>33</ID>
+      <Description>"[[SCRIPTS]]"</Description>
+      <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
+      <LastState Value="" Activated="1" RealAddress="00000000"/>
+      <Color>FF0000</Color>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>161</ID>
+          <Description>"Instant Peasant Spawn"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+
+aobscanmodule(instantPeasantSpawn,Stronghold2.exe,01 BE 38 10 00 00) // should be unique
+alloc(newmem,$30)
+
+label(code)
+label(return)
+
+newmem:
+  mov edi,#4000
+code:
+  add [esi+00001038],edi
+  jmp return
+
+instantPeasantSpawn:
+  jmp newmem
+  nop
+return:
+registersymbol(instantPeasantSpawn)
+
+[DISABLE]
+
+instantPeasantSpawn:
+  db 01 BE 38 10 00 00
+
+unregistersymbol(instantPeasantSpawn)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Stronghold2.exe+1DCC5
+
+Stronghold2.exe+1DCA0: 89 96 34 10 00 00              - mov [esi+00001034],edx
+Stronghold2.exe+1DCA6: 85 FF                          - test edi,edi
+Stronghold2.exe+1DCA8: 79 1B                          - jns Stronghold2.exe+1DCC5
+Stronghold2.exe+1DCAA: 8B 8E 9C 07 00 00              - mov ecx,[esi+0000079C]
+Stronghold2.exe+1DCB0: 2B 8E 98 07 00 00              - sub ecx,[esi+00000798]
+Stronghold2.exe+1DCB6: C1 F9 03                       - sar ecx,03
+Stronghold2.exe+1DCB9: 03 C8                          - add ecx,eax
+Stronghold2.exe+1DCBB: 83 F9 04                       - cmp ecx,04
+Stronghold2.exe+1DCBE: 73 05                          - jae Stronghold2.exe+1DCC5
+Stronghold2.exe+1DCC0: BF 05 00 00 00                 - mov edi,00000005
+// ---------- INJECTING HERE ----------
+Stronghold2.exe+1DCC5: 01 BE 38 10 00 00              - add [esi+00001038],edi
+// ---------- DONE INJECTING  ----------
+Stronghold2.exe+1DCCB: 8B 86 38 10 00 00              - mov eax,[esi+00001038]
+Stronghold2.exe+1DCD1: 3D A0 0F 00 00                 - cmp eax,00000FA0
+Stronghold2.exe+1DCD6: 7C 0C                          - jl Stronghold2.exe+1DCE4
+Stronghold2.exe+1DCD8: C7 86 38 10 00 00 A0 0F 00 00  - mov [esi+00001038],00000FA0
+Stronghold2.exe+1DCE2: EB 0E                          - jmp Stronghold2.exe+1DCF2
+Stronghold2.exe+1DCE4: 85 C0                          - test eax,eax
+Stronghold2.exe+1DCE6: 79 0A                          - jns Stronghold2.exe+1DCF2
+Stronghold2.exe+1DCE8: C7 86 38 10 00 00 00 00 00 00  - mov [esi+00001038],00000000
+Stronghold2.exe+1DCF2: 85 FF                          - test edi,edi
+Stronghold2.exe+1DCF4: 75 0A                          - jne Stronghold2.exe+1DD00
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>25</ID>
+          <Description>"No Peasant Spawn Limit- Basic"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(PeasantSpawnLimit1,Stronghold2.exe,0F 83 EE 00 00 00 83) // should be unique
+PeasantSpawnLimit1:
+  nop 6
+registersymbol(PeasantSpawnLimit1)
+
+[DISABLE]
+PeasantSpawnLimit1:
+  db 0F 83 EE 00 00 00
+unregistersymbol(PeasantSpawnLimit1)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>27</ID>
+          <Description>"No Peasant Spawn Limit- Ultimate"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(noPeasantSpawnLimitUltimate,Stronghold2.exe,0F 83 40 01 00 00 8B) // should be unique
+noPeasantSpawnLimitUltimate:
+  nop 6
+registersymbol(noPeasantSpawnLimitUltimate)
+aobscanmodule(PeasantSpawnLimit1,Stronghold2.exe,0F 83 EE 00 00 00 83) // should be unique
+PeasantSpawnLimit1:
+  nop 6
+registersymbol(PeasantSpawnLimit1)
+[DISABLE]
+noPeasantSpawnLimitUltimate:
+  db 0F 83 40 01 00 00
+PeasantSpawnLimit1:
+  db 0F 83 EE 00 00 00
+unregistersymbol(PeasantSpawnLimit1)
+unregistersymbol(noPeasantSpawnLimitUltimate)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>28</ID>
+          <Description>"Build Anywhere"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(buildAnywhere2,Stronghold2.exe,0F 84 E8 00 00 00 A1 p,p,p,p 50 6A 18)
+registersymbol(buildAnywhere2)
+buildAnywhere2:
+  nop 6
+aobscanmodule(buildAnywhere1,Stronghold2.exe,0F 84 25 02 00 00 80 3D)
+registersymbol(buildAnywhere1)
+buildAnywhere1:
+  nop 6
+aobscanmodule(buildAnywhere3,Stronghold2.exe,84 C0 75 47 83 FE 02) // should be unique
+buildAnywhere3:
+  inc al
+registersymbol(buildAnywhere3)
+[DISABLE]
+buildAnywhere2:
+  db 0F 84 E8 00 00 00
+unregistersymbol(buildAnywhere2)
+buildAnywhere1:
+ db 0F 84 25 02 00 00
+unregistersymbol(buildAnywhere1)
+buildAnywhere3:
+  db 84 C0 75 47 83 FE 02
+unregistersymbol(buildAnywhere3)
+
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>67</ID>
+          <Description>"No Zoom Limit"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(noZoomLimit,Stronghold2.exe,3A C3 75 0C D9 45 FC) // should be unique
+noZoomLimit:
+  inc al
+registersymbol(noZoomLimit)
+
+[DISABLE]
+noZoomLimit:
+  db 3A C3 75 0C D9 45 FC
+unregistersymbol(noZoomLimit)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>71</ID>
+          <Description>"Super Speed"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+aobscanmodule(instTravel,Stronghold2.exe,D9 45 F4 D9 9E D4 00 00 00) // should be unique
+instTravel:
+ nop 3
+instTravel+9:
+ nop 3
+registersymbol(instTravel)
+
+[DISABLE]
+
+instTravel:
+  db D9 45 F4 D9 9E D4 00 00 00 D9 45 F8
+
+unregistersymbol(instTravel)
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>175</ID>
+          <Description>"Selected Unit God Mod"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Stronghold2.exe
+  Version: 
+  Date   : 2024-02-10
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_SEL_GODMODE,Stronghold2.exe,8B 10 8B C8 8B 82 FC 00 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov [eax+48],(float)2000000000.0
+  mov [eax+4C],(float)2000000000.0
+code:
+  mov edx,[eax]
+  mov ecx,eax
+  mov eax,[edx+000000FC]
+  jmp return
+
+INJ_SEL_GODMODE:
+  jmp newmem
+  nop 5
+return:
+registersymbol(INJ_SEL_GODMODE)
+
+[DISABLE]
+
+INJ_SEL_GODMODE:
+  db 8B 10 8B C8 8B 82 FC 00 00 00
+
+unregistersymbol(INJ_SEL_GODMODE)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Stronghold2.exe+F1CBA
+
+Stronghold2.exe+F1C94: 50                    - push eax
+Stronghold2.exe+F1C95: 68 98 0E 2F 01        - push Stronghold2.exe+EB0E98
+Stronghold2.exe+F1C9A: B9 28 87 B2 00        - mov ecx,Stronghold2.exe+6E8728
+Stronghold2.exe+F1C9F: E8 BC 76 27 00        - call Stronghold2.exe+369360
+Stronghold2.exe+F1CA4: 85 C0                 - test eax,eax
+Stronghold2.exe+F1CA6: 74 1E                 - je Stronghold2.exe+F1CC6
+Stronghold2.exe+F1CA8: 80 B8 AA 02 00 00 00  - cmp byte ptr [eax+000002AA],00
+Stronghold2.exe+F1CAF: 75 09                 - jne Stronghold2.exe+F1CBA
+Stronghold2.exe+F1CB1: 80 B8 A8 02 00 00 00  - cmp byte ptr [eax+000002A8],00
+Stronghold2.exe+F1CB8: 74 0C                 - je Stronghold2.exe+F1CC6
+// ---------- INJECTING HERE ----------
+Stronghold2.exe+F1CBA: 8B 10                 - mov edx,[eax]
+// ---------- DONE INJECTING  ----------
+Stronghold2.exe+F1CBC: 8B C8                 - mov ecx,eax
+Stronghold2.exe+F1CBE: 8B 82 FC 00 00 00     - mov eax,[edx+000000FC]
+Stronghold2.exe+F1CC4: FF D0                 - call eax
+Stronghold2.exe+F1CC6: 8B 8E 6C 12 00 00     - mov ecx,[esi+0000126C]
+Stronghold2.exe+F1CCC: 2B 8E 68 12 00 00     - sub ecx,[esi+00001268]
+Stronghold2.exe+F1CD2: 47                    - inc edi
+Stronghold2.exe+F1CD3: C1 F9 03              - sar ecx,03
+Stronghold2.exe+F1CD6: 3B F9                 - cmp edi,ecx
+Stronghold2.exe+F1CD8: 72 A6                 - jb Stronghold2.exe+F1C80
+Stronghold2.exe+F1CDA: 5F                    - pop edi
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>178</ID>
+          <Description>"Inf Stockpile"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+
+aobscanmodule(INJ_INF_MAT,Stronghold2.exe,89 84 BE E8 00 00 00) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  cmp eax,8
+  jge code
+  mov eax,8
+code:
+  mov [esi+edi*4+000000E8],eax
+  jmp return
+
+INJ_INF_MAT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJ_INF_MAT)
+
+aobscanmodule(INJ_INF_STOCK,Stronghold2.exe,89 B4 91 E8 00 00 00) // should be unique
+alloc(newmem2,$1000)
+
+label(code2)
+label(return2)
+
+newmem2:
+  mov esi,8
+code2:
+  mov [ecx+edx*4+000000E8],esi
+  jmp return2
+
+INJ_INF_STOCK:
+  jmp newmem2
+  nop 2
+return2:
+registersymbol(INJ_INF_STOCK)
+
+[DISABLE]
+
+INJ_INF_MAT:
+  db 89 84 BE E8 00 00 00
+
+unregistersymbol(INJ_INF_MAT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Stronghold2.exe+B40A6
+
+Stronghold2.exe+B4086: 8B 4D 0C              - mov ecx,[ebp+0C]
+Stronghold2.exe+B4089: 57                    - push edi
+Stronghold2.exe+B408A: 8B 7D 08              - mov edi,[ebp+08]
+Stronghold2.exe+B408D: 39 8C BE 60 01 00 00  - cmp [esi+edi*4+00000160],ecx
+Stronghold2.exe+B4094: 75 50                 - jne Stronghold2.exe+B40E6
+Stronghold2.exe+B4096: 8B 84 BE E8 00 00 00  - mov eax,[esi+edi*4+000000E8]
+Stronghold2.exe+B409D: 8B 55 10              - mov edx,[ebp+10]
+Stronghold2.exe+B40A0: 3B C2                 - cmp eax,edx
+Stronghold2.exe+B40A2: 72 42                 - jb Stronghold2.exe+B40E6
+Stronghold2.exe+B40A4: 2B C2                 - sub eax,edx
+// ---------- INJECTING HERE ----------
+Stronghold2.exe+B40A6: 89 84 BE E8 00 00 00  - mov [esi+edi*4+000000E8],eax
+// ---------- DONE INJECTING  ----------
+Stronghold2.exe+B40AD: 8B 46 58              - mov eax,[esi+58]
+Stronghold2.exe+B40B0: 83 F8 20              - cmp eax,20
+Stronghold2.exe+B40B3: 73 09                 - jae Stronghold2.exe+B40BE
+Stronghold2.exe+B40B5: 8B 04 85 D8 8B B2 00  - mov eax,[eax*4+Stronghold2.exe+6E8BD8]
+Stronghold2.exe+B40BC: EB 02                 - jmp Stronghold2.exe+B40C0
+Stronghold2.exe+B40BE: 33 C0                 - xor eax,eax
+Stronghold2.exe+B40C0: 52                    - push edx
+Stronghold2.exe+B40C1: 51                    - push ecx
+Stronghold2.exe+B40C2: 8B C8                 - mov ecx,eax
+Stronghold2.exe+B40C4: E8 97 1F F6 FF        - call Stronghold2.exe+16060
+}
+INJ_INF_STOCK:
+  db 89 B4 91 E8 00 00 00
+
+unregistersymbol(INJ_INF_STOCK)
+dealloc(newmem2)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Stronghold2.exe+B4034
+
+Stronghold2.exe+B4017: 85 C0                 - test eax,eax
+Stronghold2.exe+B4019: 75 58                 - jne Stronghold2.exe+B4073
+Stronghold2.exe+B401B: 8B B4 91 E8 00 00 00  - mov esi,[ecx+edx*4+000000E8]
+Stronghold2.exe+B4022: 8B 5D 10              - mov ebx,[ebp+10]
+Stronghold2.exe+B4025: 57                    - push edi
+Stronghold2.exe+B4026: 03 F3                 - add esi,ebx
+Stronghold2.exe+B4028: E8 43 D8 FF FF        - call Stronghold2.exe+B1870
+Stronghold2.exe+B402D: 83 C4 04              - add esp,04
+Stronghold2.exe+B4030: 3B F0                 - cmp esi,eax
+Stronghold2.exe+B4032: 77 3F                 - ja Stronghold2.exe+B4073
+// ---------- INJECTING HERE ----------
+Stronghold2.exe+B4034: 89 B4 91 E8 00 00 00  - mov [ecx+edx*4+000000E8],esi
+// ---------- DONE INJECTING  ----------
+Stronghold2.exe+B403B: 89 BC 91 60 01 00 00  - mov [ecx+edx*4+00000160],edi
+Stronghold2.exe+B4042: 8B 49 58              - mov ecx,[ecx+58]
+Stronghold2.exe+B4045: 83 F9 20              - cmp ecx,20
+Stronghold2.exe+B4048: 73 17                 - jae Stronghold2.exe+B4061
+Stronghold2.exe+B404A: 8B 0C 8D D8 8B B2 00  - mov ecx,[ecx*4+Stronghold2.exe+6E8BD8]
+Stronghold2.exe+B4051: 53                    - push ebx
+Stronghold2.exe+B4052: 57                    - push edi
+Stronghold2.exe+B4053: E8 48 1F F6 FF        - call Stronghold2.exe+15FA0
+Stronghold2.exe+B4058: 5F                    - pop edi
+Stronghold2.exe+B4059: 5E                    - pop esi
+}
+</AssemblerScript>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>41</ID>
+      <Description>"[[POINTERS]]"</Description>
+      <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
+      <LastState Activated="1"/>
+      <Color>FF8000</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>108</ID>
+          <Description>"Instances Of Castle Stats"</Description>
+          <Options moHideChildren="1"/>
+          <LastState Value="" RealAddress="00000000"/>
+          <Color>0000FF</Color>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>3</ID>
+              <Description>"Base -&gt;"</Description>
+              <LastState Value="01027970" RealAddress="2F832EB8"/>
+              <ShowAsHex>1</ShowAsHex>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>Stronghold2.exe+6E8BDC</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>5</ID>
+                  <Description>"Honor"</Description>
+                  <LastState Value="0" RealAddress="2F832ED4"/>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>0F91F0</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+1C</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>8</ID>
+                  <Description>"Gold"</Description>
+                  <LastState Value="350" RealAddress="2F833EC8"/>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>0F91F0</Color>
+                  <VariableType>Float</VariableType>
+                  <Address>+1010</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>6</ID>
+                  <Description>"Popularity"</Description>
+                  <LastState Value="80" RealAddress="2F833EE0"/>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>+1028</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>12</ID>
+                  <Description>"Current Pop Visual"</Description>
+                  <LastState Value="0" RealAddress="2F833EEC"/>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+1034</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>4</ID>
+                  <Description>"Max Beds"</Description>
+                  <LastState Value="8" RealAddress="2F833EE8"/>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+1030</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>17</ID>
+                  <Description>"Rate of Spawning (Set and Freeze at 4000 for quick Spawn)"</Description>
+                  <LastState Value="16" RealAddress="2F833EF0"/>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+1038</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>154</ID>
+                  <Description>"------------STOCKPILE-------------"</Description>
+                  <LastState Value="" RealAddress="00000000"/>
+                  <Color>FF0000</Color>
+                  <GroupHeader>1</GroupHeader>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>13</ID>
+                  <Description>"Wood"</Description>
+                  <LastState Value="0" RealAddress="2F833E18"/>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>408000</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+F60</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>117</ID>
+                  <Description>"Stone"</Description>
+                  <LastState Value="0" RealAddress="2F833E1C"/>
+                  <Color>408000</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+F64</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>118</ID>
+                  <Description>"Iron"</Description>
+                  <LastState Value="0" RealAddress="2F833E20"/>
+                  <Color>408000</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+F68</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>124</ID>
+                  <Description>"Pitch"</Description>
+                  <LastState Value="0" RealAddress="2F833E38"/>
+                  <Color>408000</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+F80</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>125</ID>
+                  <Description>"Candles"</Description>
+                  <LastState Value="0" RealAddress="2F833E3C"/>
+                  <Color>408000</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+F84</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>126</ID>
+                  <Description>"Wool"</Description>
+                  <LastState Value="0" RealAddress="2F833E40"/>
+                  <Color>408000</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+F88</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>127</ID>
+                  <Description>"Cloth"</Description>
+                  <LastState Value="0" RealAddress="2F833E44"/>
+                  <Color>408000</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+F8C</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>119</ID>
+                  <Description>"Wheat"</Description>
+                  <LastState Value="0" RealAddress="2F833E24"/>
+                  <Color>408000</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+F6C</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>120</ID>
+                  <Description>"Flour"</Description>
+                  <LastState Value="0" RealAddress="2F833E28"/>
+                  <Color>408000</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+F70</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>121</ID>
+                  <Description>"Hops"</Description>
+                  <LastState Value="0" RealAddress="2F833E2C"/>
+                  <Color>408000</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+F74</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>122</ID>
+                  <Description>"Ale"</Description>
+                  <LastState Value="0" RealAddress="2F833E30"/>
+                  <Color>408000</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+F78</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>123</ID>
+                  <Description>"Grapes"</Description>
+                  <LastState Value="0" RealAddress="2F833E34"/>
+                  <Color>408000</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+F7C</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>155</ID>
+                  <Description>"------------GRANARY-------------"</Description>
+                  <LastState Value="" RealAddress="00000000"/>
+                  <Color>FF0000</Color>
+                  <GroupHeader>1</GroupHeader>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>116</ID>
+                  <Description>"Apple Fruit"</Description>
+                  <LastState Value="0" RealAddress="2F833E6C"/>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>187D83</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+FB4</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>114</ID>
+                  <Description>"Bread"</Description>
+                  <LastState Value="0" RealAddress="2F833E70"/>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>187D83</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+FB8</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>113</ID>
+                  <Description>"Cheese"</Description>
+                  <LastState Value="0" RealAddress="2F833E74"/>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>187D83</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+FBC</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>112</ID>
+                  <Description>"Meat"</Description>
+                  <LastState Value="0" RealAddress="2F833E78"/>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>187D83</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+FC0</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>157</ID>
+                  <Description>"------------KITCHEN-------------"</Description>
+                  <LastState Value="" RealAddress="00000000"/>
+                  <Color>FF0000</Color>
+                  <GroupHeader>1</GroupHeader>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>134</ID>
+                  <Description>"Wine"</Description>
+                  <LastState Value="0" RealAddress="2F833E60"/>
+                  <Color>117AEE</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+FA8</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>133</ID>
+                  <Description>"Vegetables"</Description>
+                  <LastState Value="0" RealAddress="2F833E5C"/>
+                  <Color>117AEE</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+FA4</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>129</ID>
+                  <Description>"Eels"</Description>
+                  <LastState Value="0" RealAddress="2F833E4C"/>
+                  <Color>117AEE</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+F94</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>130</ID>
+                  <Description>"Geese"</Description>
+                  <LastState Value="0" RealAddress="2F833E50"/>
+                  <Color>117AEE</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+F98</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>132</ID>
+                  <Description>"Pigs"</Description>
+                  <LastState Value="0" RealAddress="2F833E58"/>
+                  <Color>117AEE</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+FA0</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>156</ID>
+                  <Description>"------------ARMORY-------------"</Description>
+                  <LastState Value="" RealAddress="00000000"/>
+                  <Color>FF0000</Color>
+                  <GroupHeader>1</GroupHeader>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>145</ID>
+                  <Description>"Bows"</Description>
+                  <LastState Value="0" RealAddress="2F833E8C"/>
+                  <Color>0000FF</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+FD4</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>146</ID>
+                  <Description>"Crossbows"</Description>
+                  <LastState Value="0" RealAddress="2F833E90"/>
+                  <Color>0000FF</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+FD8</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>148</ID>
+                  <Description>"Swords"</Description>
+                  <LastState Value="0" RealAddress="2F833E94"/>
+                  <Color>0000FF</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+FDC</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>149</ID>
+                  <Description>"Maces"</Description>
+                  <LastState Value="0" RealAddress="2F833E98"/>
+                  <Color>0000FF</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+FE0</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>150</ID>
+                  <Description>"Pikes"</Description>
+                  <LastState Value="0" RealAddress="2F833E9C"/>
+                  <Color>0000FF</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+FE4</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>151</ID>
+                  <Description>"Spears"</Description>
+                  <LastState Value="0" RealAddress="2F833EA0"/>
+                  <Color>0000FF</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+FE8</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>152</ID>
+                  <Description>"Amour"</Description>
+                  <LastState Value="0" RealAddress="2F833EA4"/>
+                  <Color>0000FF</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+FEC</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>153</ID>
+                  <Description>"Leather Amour"</Description>
+                  <LastState Value="0" RealAddress="2F833EA8"/>
+                  <Color>0000FF</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+FF0</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>181</ID>
+          <Description>"Current Place Building"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Stronghold2.exe
+  Version: 
+  Date   : 2024-02-17
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_BUILDING,Stronghold2.exe,89 46 10 8B 45 10) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+label(pt_building)
+
+newmem:
+  mov [pt_building],esi
+  jmp code
+
+pt_building:
+  dd 0
+registersymbol(pt_building)
+
+code:
+  mov [esi+10],eax
+  mov eax,[ebp+10]
+  jmp return
+
+INJ_BUILDING:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_BUILDING)
+
+[DISABLE]
+
+INJ_BUILDING:
+  db 89 46 10 8B 45 10
+
+unregistersymbol(pt_building)
+unregistersymbol(INJ_BUILDING)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Stronghold2.exe+1EA9D8
+
+Stronghold2.exe+1EA9AF: 74 14                          - je Stronghold2.exe+1EA9C5
+Stronghold2.exe+1EA9B1: 39 05 C8 21 1E 01              - cmp [Stronghold2.exe+6C21C8],eax
+Stronghold2.exe+1EA9B7: 75 0C                          - jne Stronghold2.exe+1EA9C5
+Stronghold2.exe+1EA9B9: 81 3D CC 21 1E 01 10 27 00 00  - cmp [Stronghold2.exe+6C21CC],00002710
+Stronghold2.exe+1EA9C3: 76 10                          - jna Stronghold2.exe+1EA9D5
+Stronghold2.exe+1EA9C5: 3A CB                          - cmp cl,bl
+Stronghold2.exe+1EA9C7: 0F 84 94 00 00 00              - je Stronghold2.exe+1EAA61
+Stronghold2.exe+1EA9CD: 3B F8                          - cmp edi,eax
+Stronghold2.exe+1EA9CF: 0F 85 8C 00 00 00              - jne Stronghold2.exe+1EAA61
+Stronghold2.exe+1EA9D5: 8B 4D 08                       - mov ecx,[ebp+08]
+// ---------- INJECTING HERE ----------
+Stronghold2.exe+1EA9D8: 89 46 10                       - mov [esi+10],eax
+// ---------- DONE INJECTING  ----------
+Stronghold2.exe+1EA9DB: 8B 45 10                       - mov eax,[ebp+10]
+Stronghold2.exe+1EA9DE: 89 0E                          - mov [esi],ecx
+Stronghold2.exe+1EA9E0: 89 46 14                       - mov [esi+14],eax
+Stronghold2.exe+1EA9E3: 88 56 05                       - mov [esi+05],dl
+Stronghold2.exe+1EA9E6: 88 5E 07                       - mov [esi+07],bl
+Stronghold2.exe+1EA9E9: 89 5E 28                       - mov [esi+28],ebx
+Stronghold2.exe+1EA9EC: 88 56 0C                       - mov [esi+0C],dl
+Stronghold2.exe+1EA9EF: 38 5E 2E                       - cmp [esi+2E],bl
+Stronghold2.exe+1EA9F2: 74 17                          - je Stronghold2.exe+1EAA0B
+Stronghold2.exe+1EA9F4: 38 5E 2C                       - cmp [esi+2C],bl
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>182</ID>
+              <Description>"Name"</Description>
+              <DropDownList DisplayValueAsItem="1">1:Stockpile
+2:Saw Pit
+3:Wheat Farm
+4:Stone Quarry
+5:Mill
+6:Bakery
+7:Granary
+8:Fletcher's Workshop
+9:Poleturner's Workshop
+10:Armory
+11:Inn
+12:Hops Farm
+13:Brewery
+14:Blacksmith's Workshop
+15:Iron Mine
+16:Treasury
+17:Ox Tether
+18:Hovel
+19:Lookout Tower
+20:Wooden Keep
+21:Small Keep
+22:Keep
+23:Large Keep
+24:Barracks
+25:Vineyard
+26:Lord's Kitchen
+27:Vintner's Workshop
+28:Eel Pond
+30:Small Gatehouse
+31:Main Gate
+32:Large Gatehouse
+33:Wooden Gatehouse
+34:Stairwell
+35:Bastion
+36:Round Tower
+37:Square Tower
+38:Great Tower
+39:Pig Farm
+41:Dairy Farm
+42:Apple Farm
+43:Hunter's Post
+44:Wooden Platform
+45:Vegtable Farm
+46:Well
+47:Water Pot
+49:Courthouse
+51:Torturer's Guild
+52:Guard Post
+53:Gallows
+54:Burning Post
+55:Executioner's Block
+56:Gibbet
+57:Strenching Rack
+58:Stocks
+59:Flogging Post
+60:Torture Wheel
+61:Humiliation Mask
+62:Branding Chair
+63:Bedroom Chamber
+64:Market
+65:Mercenary Post
+66:Falconer's Post
+67:Pitch Rig
+68:Engineer's Guild
+69:Gong Pit
+70:Siege Camp
+71:Bee Hive
+72:Candler's Workshop
+73:Statue
+74:Armorer's Workshop
+75:Weaver's Workshop
+76:Sheep Farm
+77:Tanner's Workshop
+78:War Hound Cage
+79:Apothecary
+80:Church
+81:Stables
+83:Carter Post
+84:Monastery
+85:Musician's Guild
+86:Man Trap
+87:Killing Pit
+88:Sally Port
+89:Tunnel Entrance
+90:Jousting
+91:Traveling Fair
+92:Bandit Camp
+94:Bridge
+95:Beacon
+97:Post
+98:Sign
+</DropDownList>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>pt_building</Address>
+              <Offsets>
+                <Offset>10</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>184</ID>
+          <Description>"Current Wall Building"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Stronghold2.exe
+  Version: 
+  Date   : 2024-02-17
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_BUILD_WALL,Stronghold2.exe,89 51 08 66 C7 41 20 00 01) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+label(pt_bwall)
+
+newmem:
+  mov [pt_bwall],ecx
+  jmp code
+
+pt_bwall:
+  dd 0
+registersymbol(pt_bwall)
+
+code:
+  mov [ecx+08],edx
+  mov word ptr [ecx+20],0100
+  jmp return
+
+INJ_BUILD_WALL:
+  jmp newmem
+  nop 4
+return:
+registersymbol(INJ_BUILD_WALL)
+
+[DISABLE]
+
+INJ_BUILD_WALL:
+  db 89 51 08 66 C7 41 20 00 01
+
+unregistersymbol(pt_bwall)
+unregistersymbol(INJ_BUILD_WALL)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Stronghold2.exe+1EABC7
+
+Stronghold2.exe+1EABAF: CC                    - int 3 
+Stronghold2.exe+1EABB0: 55                    - push ebp
+Stronghold2.exe+1EABB1: 8B EC                 - mov ebp,esp
+Stronghold2.exe+1EABB3: 33 C0                 - xor eax,eax
+Stronghold2.exe+1EABB5: 38 41 04              - cmp [ecx+04],al
+Stronghold2.exe+1EABB8: 74 05                 - je Stronghold2.exe+1EABBF
+Stronghold2.exe+1EABBA: A3 AC 92 1A 01        - mov [Stronghold2.exe+6892AC],eax
+Stronghold2.exe+1EABBF: 8B 55 08              - mov edx,[ebp+08]
+Stronghold2.exe+1EABC2: 89 11                 - mov [ecx],edx
+Stronghold2.exe+1EABC4: 8B 55 0C              - mov edx,[ebp+0C]
+// ---------- INJECTING HERE ----------
+Stronghold2.exe+1EABC7: 89 51 08              - mov [ecx+08],edx
+// ---------- DONE INJECTING  ----------
+Stronghold2.exe+1EABCA: 66 C7 41 20 00 01     - mov word ptr [ecx+20],0100
+Stronghold2.exe+1EABD0: C7 41 04 00 01 00 00  - mov [ecx+04],00000100
+Stronghold2.exe+1EABD7: A1 D0 94 79 01        - mov eax,[Stronghold2.exe+C794D0]
+Stronghold2.exe+1EABDC: 89 41 10              - mov [ecx+10],eax
+Stronghold2.exe+1EABDF: 8B 15 D4 94 79 01     - mov edx,[Stronghold2.exe+C794D4]
+Stronghold2.exe+1EABE5: 89 51 14              - mov [ecx+14],edx
+Stronghold2.exe+1EABE8: A1 D0 94 79 01        - mov eax,[Stronghold2.exe+C794D0]
+Stronghold2.exe+1EABED: 89 41 18              - mov [ecx+18],eax
+Stronghold2.exe+1EABF0: 8B 15 D4 94 79 01     - mov edx,[Stronghold2.exe+C794D4]
+Stronghold2.exe+1EABF6: 89 51 1C              - mov [ecx+1C],edx
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>185</ID>
+              <Description>"Name"</Description>
+              <DropDownList ReadOnly="1" DisplayValueAsItem="1">0:Wooden Wall
+1:Single Wall
+2:Double Wall
+3:Triple Wall
+</DropDownList>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>pt_bwall</Address>
+              <Offsets>
+                <Offset>8</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>165</ID>
+          <Description>"Selected Unit Pointer"</Description>
+          <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Stronghold2.exe
+  Version:
+  Date   : 2024-02-10
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+
+aobscanmodule(INJ_SEL_UNIT,Stronghold2.exe,7A 5B D9 46 4C) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+label(pt_sel_unit)
+label(pt_sel_unit2)
+label(Lret)
+label(Lnormal)
+
+newmem:
+  push eax
+  mov eax,[esi+1C]
+  cmp eax,54 // Horse
+  jne Lnormal
+  mov [pt_sel_unit2],esi
+  jmp Lret
+Lnormal:
+  mov [pt_sel_unit],esi
+Lret:
+  pop eax
+  jmp code
+pt_sel_unit:
+  dd 0
+pt_sel_unit2:
+  dd 0
+registersymbol(pt_sel_unit)
+registersymbol(pt_sel_unit2)
+
+code:
+  jp Stronghold2.exe+E3C81
+  fld dword ptr [esi+4C]
+  jmp return
+
+INJ_SEL_UNIT:
+  jmp newmem
+  nop 4
+return:
+registersymbol(INJ_SEL_UNIT)
+
+[DISABLE]
+
+INJ_SEL_UNIT:
+  db 7A 5B D9 46 4C
+
+unregistersymbol(pt_sel_unit)
+unregistersymbol(pt_sel_unit2)
+unregistersymbol(INJ_SEL_UNIT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Stronghold2.exe+E3C24
+
+Stronghold2.exe+E3BFE: E8 BD C1 32 00        - call Stronghold2.exe+40FDC0
+Stronghold2.exe+E3C03: D9 EE                 - fldz
+Stronghold2.exe+E3C05: D8 56 48              - fcom dword ptr [esi+48]
+Stronghold2.exe+E3C08: 8B 15 D4 07 72 00     - mov edx,[Stronghold2.exe+5007D4]
+Stronghold2.exe+E3C0E: 8B C8                 - mov ecx,eax
+Stronghold2.exe+E3C10: 03 8B B4 01 00 00     - add ecx,[ebx+000001B4]
+Stronghold2.exe+E3C16: 8B 1A                 - mov ebx,[edx]
+Stronghold2.exe+E3C18: C7 45 FC 14 00 00 00  - mov [ebp-04],00000014
+Stronghold2.exe+E3C1F: DF E0                 - fnstsw ax
+Stronghold2.exe+E3C21: F6 C4 05              - test ah,05
+// ---------- INJECTING HERE ----------
+Stronghold2.exe+E3C24: 7A 5B                 - jp Stronghold2.exe+E3C81
+// ---------- DONE INJECTING  ----------
+Stronghold2.exe+E3C26: D9 46 4C              - fld dword ptr [esi+4C]
+Stronghold2.exe+E3C29: DC 0D 18 8E 7C 00     - fmul qword ptr [Stronghold2.exe+5A8E18]
+Stronghold2.exe+E3C2F: D9 7D FE              - fnstcw [ebp-02]
+Stronghold2.exe+E3C32: D8 76 48              - fdiv dword ptr [esi+48]
+Stronghold2.exe+E3C35: 0F B7 45 FE           - movzx eax,word ptr [ebp-02]
+Stronghold2.exe+E3C39: 0D 00 0C 00 00        - or eax,00000C00
+Stronghold2.exe+E3C3E: 89 45 F8              - mov [ebp-08],eax
+Stronghold2.exe+E3C41: D9 6D F8              - fldcw [ebp-08]
+Stronghold2.exe+E3C44: DF 7D F4              - fistp qword ptr [ebp-0C]
+Stronghold2.exe+E3C47: 8B 45 F4              - mov eax,[ebp-0C]
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>166</ID>
+              <Description>"Pointer"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>pt_sel_unit</Address>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>167</ID>
+                  <Description>"HP"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>+0</Address>
+                  <Offsets>
+                    <Offset>4C</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>171</ID>
+                  <Description>"MHP"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>+0</Address>
+                  <Offsets>
+                    <Offset>48</Offset>
+                  </Offsets>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>172</ID>
+              <Description>"Horse Pointer"</Description>
+              <ShowAsHex>1</ShowAsHex>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>pt_sel_unit2</Address>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>173</ID>
+                  <Description>"HP"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>+0</Address>
+                  <Offsets>
+                    <Offset>4C</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>174</ID>
+                  <Description>"MHP"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>Float</VariableType>
+                  <Address>+0</Address>
+                  <Offsets>
+                    <Offset>48</Offset>
+                  </Offsets>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

@@ -1,0 +1,1057 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="34">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>158</ID>
+      <Description>"ENABLE----ME :)"</Description>
+      <Options moHideChildren="1"/>
+      <LastState/>
+      <Color>008000</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{$lua}
+if syntaxcheck then return end
+[ENABLE]
+if not Auth then Auth=0 end
+if Auth == 0 then
+ showMessage("Author:  PeaceBeUponYou")
+ Auth = 1
+end
+function attchProc(procName)
+  local cticks = 0
+  local maxticks = 500
+  local clockTime = 100
+  if not getProcessIDFromProcessName(procName) then
+     messageDialog("Required Process is unavailable!",mtError,mbOK)
+     error()
+  else while process ~= procName and cticks &lt;= maxticks do
+     openProcess(procName)
+     sleep(clockTime)
+     end
+  end
+end
+--attchProc()
+local procName = "Stronghold2.exe"
+if process ~= procName then
+   rect = messageDialog('Attach Process?' ,mtConfirmation, mbYes, mbNo)
+   if rect == mrYes then
+      attchProc(procName)
+   elseif rect == mrNo then
+      error("End is Here!")
+      end
+end
+
+
+[DISABLE]
+for i = 0,memrec.Count-1 do
+  local a = memrec.Child[i]
+  a.Active = false
+end
+
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>33</ID>
+          <Description>"[[SCRIPTS]]"</Description>
+          <Options moHideChildren="1"/>
+          <LastState Value="" RealAddress="00000000"/>
+          <Color>FF0000</Color>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1</ID>
+              <Description>"Gold"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+aobscanmodule(gold,Stronghold2.exe,D9 87 10 10 00 00 D9 9D)
+alloc(newmem,$100)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  fld dword ptr [limit]
+  jmp return
+limit:
+  dd (float)10000
+gold:
+  jmp newmem
+  nop
+return:
+registersymbol(gold)
+
+[DISABLE]
+
+gold:
+  db D9 87 10 10 00 00
+
+unregistersymbol(gold)
+dealloc(newmem)
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>25</ID>
+              <Description>"No Peasant Spawn Limit- Basic"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+aobscanmodule(PeasantSpawnLimit1,Stronghold2.exe,0F 83 EE 00 00 00 83) // should be unique
+PeasantSpawnLimit1:
+  nop 6
+registersymbol(PeasantSpawnLimit1)
+
+[DISABLE]
+PeasantSpawnLimit1:
+  db 0F 83 EE 00 00 00
+unregistersymbol(PeasantSpawnLimit1)
+
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>28</ID>
+              <Description>"Build Anywhere"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+aobscanmodule(buildAnywhere2,Stronghold2.exe,0F 84 E8 00 00 00 A1 p,p,p,p 50 6A 18)
+registersymbol(buildAnywhere2)
+buildAnywhere2:
+  nop 6
+aobscanmodule(buildAnywhere1,Stronghold2.exe,0F 84 25 02 00 00 80 3D)
+registersymbol(buildAnywhere1)
+buildAnywhere1:
+  nop 6
+aobscanmodule(buildAnywhere3,Stronghold2.exe,84 C0 75 47 83 FE 02) // should be unique
+buildAnywhere3:
+  inc al
+registersymbol(buildAnywhere3)
+[DISABLE]
+buildAnywhere2:
+  db 0F 84 E8 00 00 00
+unregistersymbol(buildAnywhere2)
+buildAnywhere1:
+ db 0F 84 25 02 00 00
+unregistersymbol(buildAnywhere1)
+buildAnywhere3:
+  db 84 C0 75 47 83 FE 02
+unregistersymbol(buildAnywhere3)
+
+
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>67</ID>
+              <Description>"No Zoom Limit"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+aobscanmodule(noZoomLimit,Stronghold2.exe,3A C3 75 0C D9 45 FC) // should be unique
+noZoomLimit:
+  inc al
+registersymbol(noZoomLimit)
+
+[DISABLE]
+noZoomLimit:
+  db 3A C3 75 0C D9 45 FC
+unregistersymbol(noZoomLimit)
+
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>71</ID>
+              <Description>"Super Speed"</Description>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+aobscanmodule(instTravel,Stronghold2.exe,D9 45 F4 D9 9E D4 00 00 00) // should be unique
+instTravel:
+ nop 3
+instTravel+9:
+ nop 3
+registersymbol(instTravel)
+
+[DISABLE]
+
+instTravel:
+  db D9 45 F4 D9 9E D4 00 00 00 D9 45 F8
+
+unregistersymbol(instTravel)
+
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>110</ID>
+              <Description>"Teleport"</Description>
+              <Options moHideChildren="1"/>
+              <LastState/>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[ENABLE]
+aobscanmodule(teleport,Stronghold2.exe,CC CC 55 8B EC 51 8B 45 08 D9 01 D8 20 D9 5D FC) // should be unique
+alloc(newmem,$100)
+registersymbol(teleport tele)
+label(baseMouseCoordinate tele)
+label(return)
+Stronghold2.exe+DB8360:
+baseMouseCoordinate:
+
+teleport+09:
+  jmp newmem
+  nop 2
+return:
+
+newmem:
+  cmp [tele],01
+  je @f
+  fld [baseMouseCoordinate]
+  fstp [ecx]
+  fld [baseMouseCoordinate+8]
+  fstp [ecx+4]
+  @@:
+  fld dword ptr [ecx]
+  fsub dword ptr [eax]
+  fstp dword ptr [ebp-04]
+  jmp return
+tele:
+  dd 00
+[DISABLE]
+
+teleport+09:
+  db D9 01 D8 20 D9 5D FC
+
+unregistersymbol(teleport)
+dealloc(newmem)
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>111</ID>
+                  <Description>"Set Teleport(F1: Start Teleport , F2: Stop/Release Teleport)"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>tele</Address>
+                  <Hotkeys>
+                    <Hotkey>
+                      <Action>Set Value</Action>
+                      <Keys>
+                        <Key>113</Key>
+                      </Keys>
+                      <Value>1</Value>
+                      <ID>0</ID>
+                      <ActivateSound>Deactivate</ActivateSound>
+                    </Hotkey>
+                    <Hotkey>
+                      <Action>Set Value</Action>
+                      <Keys>
+                        <Key>112</Key>
+                      </Keys>
+                      <Value>0</Value>
+                      <ID>1</ID>
+                      <ActivateSound>Activate</ActivateSound>
+                    </Hotkey>
+                  </Hotkeys>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>41</ID>
+          <Description>"[[POINTERS]]"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <Color>FF8000</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+
+
+ 
+ 
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>108</ID>
+              <Description>"Instances Of Castle Stats"</Description>
+              <Options moHideChildren="1"/>
+              <LastState Value="" RealAddress="00000000"/>
+              <Color>0AF5A3</Color>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>3</ID>
+                  <Description>"Base -&gt;"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>Stronghold2.exe+6E6C08</Address>
+                  <Offsets>
+                    <Offset>0</Offset>
+                  </Offsets>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>5</ID>
+                      <Description>"Honor"</Description>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>12DDED</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+1C</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>8</ID>
+                      <Description>"Gold"</Description>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>12DDED</Color>
+                      <VariableType>Float</VariableType>
+                      <Address>+1010</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>6</ID>
+                      <Description>"Popularity"</Description>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <VariableType>Float</VariableType>
+                      <Address>+1028</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>12</ID>
+                      <Description>"Current Pop Visual"</Description>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+1034</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>4</ID>
+                      <Description>"Max Beds"</Description>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+1030</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>17</ID>
+                      <Description>"Rate of Spawning (Set and Freeze at 4000 for quick Spawn)"</Description>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+1038</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>154</ID>
+                      <Description>"------------STOCKPILE-------------"</Description>
+                      <LastState Value="" RealAddress="00000000"/>
+                      <Color>FF0000</Color>
+                      <GroupHeader>1</GroupHeader>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>13</ID>
+                      <Description>"Wood"</Description>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>3EC1AD</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+F60</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>117</ID>
+                      <Description>"Stone"</Description>
+                      <Color>3EC1AD</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+F64</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>118</ID>
+                      <Description>"Iron"</Description>
+                      <Color>3EC1AD</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+F68</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>124</ID>
+                      <Description>"Pitch"</Description>
+                      <Color>3EC1AD</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+F80</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>125</ID>
+                      <Description>"Candles"</Description>
+                      <Color>3EC1AD</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+F84</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>126</ID>
+                      <Description>"Wool"</Description>
+                      <Color>3EC1AD</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+F88</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>127</ID>
+                      <Description>"Cloth"</Description>
+                      <Color>3EC1AD</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+F8C</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>119</ID>
+                      <Description>"Wheat"</Description>
+                      <Color>3EC1AD</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+F6C</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>120</ID>
+                      <Description>"Flour"</Description>
+                      <Color>3EC1AD</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+F70</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>121</ID>
+                      <Description>"Hops"</Description>
+                      <Color>3EC1AD</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+F74</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>122</ID>
+                      <Description>"Ale"</Description>
+                      <Color>3EC1AD</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+F78</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>123</ID>
+                      <Description>"Grapes"</Description>
+                      <Color>3EC1AD</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+F7C</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>155</ID>
+                      <Description>"------------GRANARY-------------"</Description>
+                      <LastState Value="" RealAddress="00000000"/>
+                      <Color>FF0000</Color>
+                      <GroupHeader>1</GroupHeader>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>116</ID>
+                      <Description>"Apple Fruit"</Description>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>60ACDF</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+FB4</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>114</ID>
+                      <Description>"Bread"</Description>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>60ACDF</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+FB8</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>113</ID>
+                      <Description>"Cheese"</Description>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>60ACDF</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+FBC</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>112</ID>
+                      <Description>"Meat"</Description>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>60ACDF</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+FC0</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>157</ID>
+                      <Description>"------------KITCHEN-------------"</Description>
+                      <LastState Value="" RealAddress="00000000"/>
+                      <Color>FF0000</Color>
+                      <GroupHeader>1</GroupHeader>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>134</ID>
+                      <Description>"Wine"</Description>
+                      <Color>117AEE</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+FA8</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>133</ID>
+                      <Description>"Vegetables"</Description>
+                      <Color>117AEE</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+FA4</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>129</ID>
+                      <Description>"Eels"</Description>
+                      <Color>117AEE</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+F94</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>130</ID>
+                      <Description>"Geese"</Description>
+                      <Color>117AEE</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+F98</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>132</ID>
+                      <Description>"Pigs"</Description>
+                      <Color>117AEE</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+FA0</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>156</ID>
+                      <Description>"------------ARMORY-------------"</Description>
+                      <LastState Value="" RealAddress="00000000"/>
+                      <Color>FF0000</Color>
+                      <GroupHeader>1</GroupHeader>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>145</ID>
+                      <Description>"Bows"</Description>
+                      <Color>0000FF</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+FD4</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>146</ID>
+                      <Description>"Crossbows"</Description>
+                      <Color>0000FF</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+FD8</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>148</ID>
+                      <Description>"Swords"</Description>
+                      <Color>0000FF</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+FDC</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>149</ID>
+                      <Description>"Maces"</Description>
+                      <Color>0000FF</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+FE0</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>150</ID>
+                      <Description>"Pikes"</Description>
+                      <Color>0000FF</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+FE4</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>151</ID>
+                      <Description>"Spears"</Description>
+                      <Color>0000FF</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+FE8</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>152</ID>
+                      <Description>"Amour"</Description>
+                      <Color>0000FF</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+FEC</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>153</ID>
+                      <Description>"Leather Amour"</Description>
+                      <Color>0000FF</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+FF0</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>107</ID>
+              <Description>"Instances Of Selected Entity(Player Entities Only)"</Description>
+              <Options moHideChildren="1"/>
+              <LastState Value="" RealAddress="00000000"/>
+              <Color>0AF5A3</Color>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>36</ID>
+                  <Description>"Base PTR -&gt;"</Description>
+                  <Options moManualExpandCollapse="1"/>
+                  <ShowAsHex>1</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>Stronghold2.exe+DB6C58</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>37</ID>
+                      <Description>"Team ID"</Description>
+                      <ShowAsHex>1</ShowAsHex>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+4</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>38</ID>
+                      <Description>"Selected Entity Base"</Description>
+                      <ShowAsHex>1</ShowAsHex>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+C</Address>
+                      <Offsets>
+                        <Offset>0</Offset>
+                      </Offsets>
+                      <CheatEntries>
+                        <CheatEntry>
+                          <ID>50</ID>
+                          <Description>"Visual Coordinate X"</Description>
+                          <Options moHideChildren="1"/>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <VariableType>Float</VariableType>
+                          <Address>+0</Address>
+                          <Offsets>
+                            <Offset>38</Offset>
+                          </Offsets>
+                        </CheatEntry>
+                        <CheatEntry>
+                          <ID>51</ID>
+                          <Description>"Visual Coordinate Y"</Description>
+                          <Options moHideChildren="1"/>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <VariableType>Float</VariableType>
+                          <Address>+0</Address>
+                          <Offsets>
+                            <Offset>3C</Offset>
+                          </Offsets>
+                        </CheatEntry>
+                        <CheatEntry>
+                          <ID>52</ID>
+                          <Description>"Visual Coordinate Z"</Description>
+                          <Options moHideChildren="1"/>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <VariableType>Float</VariableType>
+                          <Address>+0</Address>
+                          <Offsets>
+                            <Offset>40</Offset>
+                          </Offsets>
+                        </CheatEntry>
+                        <CheatEntry>
+                          <ID>57</ID>
+                          <Description>"Coordinate X"</Description>
+                          <Options moHideChildren="1"/>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <VariableType>Float</VariableType>
+                          <Address>+0</Address>
+                          <Offsets>
+                            <Offset>CC</Offset>
+                          </Offsets>
+                        </CheatEntry>
+                        <CheatEntry>
+                          <ID>58</ID>
+                          <Description>"Coordinate Z"</Description>
+                          <Options moHideChildren="1"/>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <VariableType>Float</VariableType>
+                          <Address>+0</Address>
+                          <Offsets>
+                            <Offset>D0</Offset>
+                          </Offsets>
+                        </CheatEntry>
+                        <CheatEntry>
+                          <ID>63</ID>
+                          <Description>"Final Coordinate X"</Description>
+                          <Options moHideChildren="1"/>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <VariableType>Float</VariableType>
+                          <Address>+0</Address>
+                          <Offsets>
+                            <Offset>108</Offset>
+                          </Offsets>
+                        </CheatEntry>
+                        <CheatEntry>
+                          <ID>64</ID>
+                          <Description>"Final Coordinate Z"</Description>
+                          <Options moHideChildren="1"/>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <VariableType>Float</VariableType>
+                          <Address>+0</Address>
+                          <Offsets>
+                            <Offset>10C</Offset>
+                          </Offsets>
+                        </CheatEntry>
+                        <CheatEntry>
+                          <ID>39</ID>
+                          <Description>"Current Health"</Description>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <VariableType>Float</VariableType>
+                          <Address>+0</Address>
+                          <Offsets>
+                            <Offset>4C</Offset>
+                          </Offsets>
+                        </CheatEntry>
+                        <CheatEntry>
+                          <ID>40</ID>
+                          <Description>"Max Health"</Description>
+                          <Options moHideChildren="1"/>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <VariableType>Float</VariableType>
+                          <Address>+0</Address>
+                          <Offsets>
+                            <Offset>48</Offset>
+                          </Offsets>
+                        </CheatEntry>
+                        <CheatEntry>
+                          <ID>72</ID>
+                          <Description>"Pointer To Entity's Basic Stuff"</Description>
+                          <ShowAsHex>1</ShowAsHex>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <VariableType>Float</VariableType>
+                          <Address>+0</Address>
+                          <Offsets>
+                            <Offset>174</Offset>
+                          </Offsets>
+                          <CheatEntries>
+                            <CheatEntry>
+                              <ID>73</ID>
+                              <Description>"Name"</Description>
+                              <ShowAsSigned>0</ShowAsSigned>
+                              <VariableType>String</VariableType>
+                              <Length>15</Length>
+                              <Unicode>0</Unicode>
+                              <CodePage>0</CodePage>
+                              <ZeroTerminate>1</ZeroTerminate>
+                              <Address>+0</Address>
+                              <Offsets>
+                                <Offset>4</Offset>
+                              </Offsets>
+                            </CheatEntry>
+                            <CheatEntry>
+                              <ID>74</ID>
+                              <Description>"Movement Animation"</Description>
+                              <ShowAsSigned>0</ShowAsSigned>
+                              <VariableType>Float</VariableType>
+                              <Address>+0</Address>
+                              <Offsets>
+                                <Offset>40</Offset>
+                              </Offsets>
+                            </CheatEntry>
+                            <CheatEntry>
+                              <ID>75</ID>
+                              <Description>"Movement Speed"</Description>
+                              <ShowAsSigned>0</ShowAsSigned>
+                              <VariableType>Float</VariableType>
+                              <Address>+0</Address>
+                              <Offsets>
+                                <Offset>44</Offset>
+                              </Offsets>
+                            </CheatEntry>
+                            <CheatEntry>
+                              <ID>76</ID>
+                              <Description>"Vulnerability"</Description>
+                              <ShowAsSigned>0</ShowAsSigned>
+                              <VariableType>Float</VariableType>
+                              <Address>+0</Address>
+                              <Offsets>
+                                <Offset>84</Offset>
+                              </Offsets>
+                            </CheatEntry>
+                            <CheatEntry>
+                              <ID>77</ID>
+                              <Description>"Base Melee Damage "</Description>
+                              <ShowAsSigned>0</ShowAsSigned>
+                              <VariableType>Float</VariableType>
+                              <Address>+0</Address>
+                              <Offsets>
+                                <Offset>90</Offset>
+                              </Offsets>
+                            </CheatEntry>
+                            <CheatEntry>
+                              <ID>80</ID>
+                              <Description>"Base Health"</Description>
+                              <ShowAsSigned>0</ShowAsSigned>
+                              <VariableType>Float</VariableType>
+                              <Address>+0</Address>
+                              <Offsets>
+                                <Offset>50</Offset>
+                              </Offsets>
+                            </CheatEntry>
+                          </CheatEntries>
+                        </CheatEntry>
+                      </CheatEntries>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>106</ID>
+              <Description>"Instances Of Selected Entity(All)"</Description>
+              <Options moHideChildren="1"/>
+              <LastState/>
+              <Color>0AF5A3</Color>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{$lua}
+[ENABLE]
+if syntaxcheck then return end
+if t then object_destroy(t); t=nil end
+local MainPTR1 = getAddress('Stronghold2.exe+DB6C58')
+local MainPTR2 = getAddress('Stronghold2.exe+6E66D0')
+firstBase = readInteger(MainPTR1 + 0x1268)
+
+function calculatingDynamicOffset()
+  if not MainPTR1 then return 0; end
+  totalNumberOfEntities1 = readInteger(MainPTR1 + 0x126C)
+  if not totalNumberOfEntities1 then return end
+  entityDifference = totalNumberOfEntities1 - firstBase
+  entityCount = entityDifference &gt;&gt; 3
+  dynamicOffsets = {}
+  for i=0 , entityCount do
+      newVal = getAddress(firstBase+ i*8)
+      finalBaseToDynamicOffsets = readInteger(newVal+4)
+      --print(finalBaseToDynamicOffsets &gt;&gt; 0x10)
+      if not finalBaseToDynamicOffsets then return end
+      dynamicOffsets[i+1] = finalBaseToDynamicOffsets &gt;&gt; 0x10
+  end
+  return dynamicOffsets
+end
+
+function calculatingWhichEntityIsSelected()
+  if not arryOfOffsets then return 0; end
+  if #arryOfOffsets == 0 then return 0; end
+  secondBase = readInteger(MainPTR2 + 8)
+  for i=0, #arryOfOffsets-1 do
+      BaseAddressToAllEntities = readPointer(secondBase + arryOfOffsets[i+1]*4)
+      if readBytes(BaseAddressToAllEntities + 0x2A8) == 1 then
+         return BaseAddressToAllEntities
+      elseif readBytes(BaseAddressToAllEntities + 0x2AA) == 1 then
+         return BaseAddressToAllEntities
+      end
+  end
+  return 0
+end
+t = createTimer()
+t.Interval = 100
+t.OnTimer = function()
+  arryOfOffsets = calculatingDynamicOffset()
+  if arryOfOffsets == 0 then return end
+  baseAddressToSelectedEntity = calculatingWhichEntityIsSelected()
+ -- print(getAddress(baseAddressToSelectedEntity), baseAddressToSelectedEntity)
+  if baseAddressToSelectedEntity ~= 0 then
+    unregisterSymbol('BaseAddress')
+    registerSymbol('BaseAddress',baseAddressToSelectedEntity)
+  end
+  --printf('%X',baseAddressToSelectedEntity)
+end
+[DISABLE]
+object_destroy(t)
+t = nil
+
+
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>42</ID>
+                  <Description>"PTR--&gt;"</Description>
+                  <ShowAsHex>1</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>BaseAddress</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>45</ID>
+                      <Description>"Current Health"</Description>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <VariableType>Float</VariableType>
+                      <Address>+4C</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>46</ID>
+                      <Description>"Max Health"</Description>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <VariableType>Float</VariableType>
+                      <Address>+48</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>109</ID>
+              <Description>"Instances Of Selected Building"</Description>
+              <Options moHideChildren="1"/>
+              <LastState Value="" RealAddress="00000000"/>
+              <Color>0AF5A3</Color>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>87</ID>
+                  <Description>"Base-&gt;"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>Stronghold2.exe+DB6BB0</Address>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>88</ID>
+                      <Description>"ID"</Description>
+                      <ShowAsHex>1</ShowAsHex>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <VariableType>2 Bytes</VariableType>
+                      <Address>+7A</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>89</ID>
+                      <Description>"Selected Building"</Description>
+                      <ShowAsHex>1</ShowAsHex>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>+74</Address>
+                      <Offsets>
+                        <Offset>0</Offset>
+                      </Offsets>
+                      <CheatEntries>
+                        <CheatEntry>
+                          <ID>90</ID>
+                          <Description>"Name"</Description>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <VariableType>String</VariableType>
+                          <Length>15</Length>
+                          <Unicode>0</Unicode>
+                          <CodePage>0</CodePage>
+                          <ZeroTerminate>1</ZeroTerminate>
+                          <Address>+A0</Address>
+                          <Offsets>
+                            <Offset>4</Offset>
+                          </Offsets>
+                        </CheatEntry>
+                        <CheatEntry>
+                          <ID>91</ID>
+                          <Description>"Current Health"</Description>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <VariableType>Float</VariableType>
+                          <Address>+4C</Address>
+                        </CheatEntry>
+                        <CheatEntry>
+                          <ID>92</ID>
+                          <Description>"Max Health"</Description>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <VariableType>Float</VariableType>
+                          <Address>+48</Address>
+                        </CheatEntry>
+                        <CheatEntry>
+                          <ID>93</ID>
+                          <Description>"Visual Coordinate X"</Description>
+                          <Options moHideChildren="1"/>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <VariableType>Float</VariableType>
+                          <Address>+38</Address>
+                        </CheatEntry>
+                        <CheatEntry>
+                          <ID>94</ID>
+                          <Description>"Visual Coordinate Y"</Description>
+                          <Options moHideChildren="1"/>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <VariableType>Float</VariableType>
+                          <Address>+3C</Address>
+                        </CheatEntry>
+                        <CheatEntry>
+                          <ID>95</ID>
+                          <Description>"Visual Coordinate Z"</Description>
+                          <Options moHideChildren="1"/>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <VariableType>Float</VariableType>
+                          <Address>+40</Address>
+                        </CheatEntry>
+                        <CheatEntry>
+                          <ID>96</ID>
+                          <Description>"Coordinate X"</Description>
+                          <Options moHideChildren="1"/>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <VariableType>Float</VariableType>
+                          <Address>+84</Address>
+                        </CheatEntry>
+                        <CheatEntry>
+                          <ID>97</ID>
+                          <Description>"Coordinate Y"</Description>
+                          <Options moHideChildren="1"/>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <VariableType>Float</VariableType>
+                          <Address>+88</Address>
+                        </CheatEntry>
+                        <CheatEntry>
+                          <ID>98</ID>
+                          <Description>"Coordinate Z"</Description>
+                          <Options moHideChildren="1"/>
+                          <ShowAsSigned>0</ShowAsSigned>
+                          <VariableType>Float</VariableType>
+                          <Address>+8C</Address>
+                        </CheatEntry>
+                      </CheatEntries>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>66</ID>
+              <Description>"Camera Zoom"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <Color>3EDE21</Color>
+              <VariableType>Float</VariableType>
+              <Address>Stronghold2.exe+6E3A38</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>68</ID>
+              <Description>"Game Speed"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <Color>3EDE21</Color>
+              <VariableType>Double</VariableType>
+              <Address>Stronghold2.exe+506178</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>82</ID>
+              <Description>"Base Ranged Damage -&gt;Archers"</Description>
+              <Color>3EDE21</Color>
+              <VariableType>Float</VariableType>
+              <Address>Stronghold2.exe+5A6534</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>84</ID>
+              <Description>"Base Ranged Damage -&gt;CrossBow Men"</Description>
+              <Color>3EDE21</Color>
+              <VariableType>Float</VariableType>
+              <Address>Stronghold2.exe+59C538</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>104</ID>
+              <Description>"Mouse Coordinates1"</Description>
+              <Color>3EDE21</Color>
+              <VariableType>Float</VariableType>
+              <Address>Stronghold2.exe+DB8360</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>105</ID>
+              <Description>"Mouse Coordinates2"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <Color>3EDE21</Color>
+              <VariableType>Float</VariableType>
+              <Address>Stronghold2.exe+DB8368</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <Signature>
+    <SignedHash HashSize="132">0n.=vO4[yZ1qrhq]_S4=D31}^5Oj#YbqY=KxVcAW]BTTUR9#77DF]_rdT/ifvsPN*denkP^X{)xGz}LMA0Pl_9w^zBcfS[Qp1Nu@s8nSVrj5ehSlkR^g,4YWda-/U:QDj)uB4wfRWm5cO_+C]ZN;Yg_L=-?/E;Wf4g6dW</SignedHash>
+    <PublicKey Size="6202">82_tPL3MO!Z+n;yP-S6bWkO_DaBpr_Z+=FbAdCP407XMnH9]OY00E1ZBfAE.E}%(6H.lx.4YfS1-g;qIPZ/ELoGK0+*gqkW1+b)yHY,vc28no-Shb;rqdfHSkwxcKwi!TV1:HsN3pLbx!zu3:3p%,hrENkIujXX#wh{=M#d(LBqvV=0hcIO1hEkq39DOiN$?/MALh.^woF2yS?D=o?57Lg11O*(W004/lPDc$28VUda01Zh/L^b0%03-ka03-,o0002t0GOBn000SaNLh0L00D^s00D^tGnX){000XBX.fHrSWQeiV^dIPVPtP(WiEJaZ}y:R002BccyM83Yh]pGVr6G)ZapIJyT2kJX:FVjS2ayAO;jeHXlY1#a%EF]PE:!hYhyWNB0oMLJa^@IZE$U6bYUQPZES9HI)R*IVPtP(WjbziI(EciVJ^+ecsh7)aCB:uB0+$tVr3v$O.8_1Z+pZIH7,)SV:++1AU8QKF+Y/XGd3)BGB7bYFEBVSF+7YNF+-0dIyE.SARr)hARr)jJ_H{DWM);2L]EQZZES9HI(x%YJtAmybZ_N@FL!r$E[X97Z+pfZF+!LoFEBDMGBPc4WM)aMd2V!Jcr9+oBO+Q@JaS{aIz)l2V^(P5bZKvHAaZ18I$;gOb#y%/A_QBeY.JQpcx]Y!B4}7Ua5@t9ZgVbSWN%[,E?N,PFL,@aFEK7KFCrj#ZES9HI%H!#B4}7Ua5@t9aCLHQE@l(YFJxmcWo%[[Wo}qHFEK7LFCrj#ZES9HI(f%jbZ;KLZ+V.#XmoUNIxjD7b1q=IZ)=OGV^dIQaA/FIZ+ypGa4#[}FfSq=cx]NMb2?l!a7_4.B4}7Ua5@t9ZgVbSWN%[,E?N,PFL,@aFEK7KFKulvA_QBeY.JQpb96.@bUh,ybaZe!FE4I$E?5PEVr4F4Z+4DlVQ=:oE-*^1RC#b@FH(W5Z+[8GWkq(nZge9eAb4$TZgV/wbW(wzJtAmybZ_N@FK%-#VPtP(WiDfHZ7,CXa4#[}FfVgdd2nSfQe_@+b#h}6Qe_c%A_QBeY.JQpbZKU0JtAmybZ_N@FK%-#VPtP(WiDfHZ7,0bW?axjE-*]5Ab4$TZgV/icxh%mB4}7Ua5@t9ZgVbSWN%[,E?N,PFJ+XXW-l::FfSq=cx]YxLvm$dbZ;H0Z+OcpB0+$tVr3vuXm50Hb7+gHATlv7F)4;cX;Me1cXKHsAb4$XIzw]0VRU6gVRU6ZA}G.CFfB1LEiy1vF+Z6hFgi3cD:.-WFfbw?cx]YxO;bmrW[d)mbY)pvGB7eQEip1JF+Z})F+-9aIy5sYFf{=bFd]s$ZE!kGWprU:VRT[cVRU6ZA}G.CFfB1MEipD!GBG,cFgi3dD:.-WFfbw?WMevJZ+py6bUh,zZDD6,FK{+WA_P.RZ++@SXm4.jLvL)va!qe!Wj!J?A_P.RZ++@SXm4.jNkc/Wa(Km7Y-K$nb5ch[AW20-HZeIiHZ3wPF)M#%ZE#IZI!SJGbYX5_Wl2OmB6w_ZE?@3GIyE/BVPrRAF*cDUGche?IW#gYVmD*9Ej2hfF:RA0Fkv%eWFjDVZE#IZIz)=^b!{yCbV*:#B4K22Vr4pHZ*0g;I(f%jbZ;KLZ+V#?H*S_CGh#3.GBq$]EoEXfG%aFeV;K-_Gc!3dWn)oqG-75VAb4$XO-)vaa%pF2ZeeUhZ*0[BWo}pyL[H#SZE!ARX:FMzFgQ6jFfutUG%.c@EoL={Vl6piVP!35IAmclF:AvkW-vJ-AarSFW.#!DX:QG7VRUJ4ZapF}A_P}WW?b8AQe_@+Y._.LZ+DyzG(nFYFfcDMFfcGMA_P}WW?b8BQe_@+Y._.LZ+DyzG(nFYFfcDMFfcGMA_P}WW?b84Wpi)Ab#!TOZdGn,bUh,6A_PdWX:XY?Z*_UJQ+dEpWj!J;A_PdWX:XZ5X=SI9SVU:UWo}n6Z+DyzF+h[KAZ2*IW.#%5cx7x@L{[hhZgXjGZapF}H!}tWAUt=(a7_4+NNIC*Z+qA*AUtwpW.#:4aXuhCa%5(YY-u2KbVYV[I$;jUX;V;lB4cu8VRU6:A_P^gMRs(LX;N0LVQyn)Nkly(cx]YlX:!9SH840iHZU=dEi@G:F*d}]G-53_V[^]2W.kSFF*=CfHfAt6A_P^gMRs(LcW7m9Jt8tNGB7PMF*cDMR53O;G%z_eGAl4OIxsLIAais?c62()Z*S9NVRB[bXJu{5Jt9G5Z)=O2P-t(-Z+ypGa3C?/E-?e_S7}l!Z,CMkA{;B5JaS{aI(5hmb96.@bUI.UbZKvHJtAXoZgypIbY*}BAais?c62($VRB)?Wprh7b3Gzva(K*QX;DO:WiN1UXCQQMAYpKDY-wX+bZKvHFLrKZE?5PEVr4FHXm50Hb7+gHA{;B5JaS{aI(5hmb96.@bUI.UbZKvHJtA^qc4cHDAais?c62(vZgX@DZewLhL[H#SZE!AWX:FMxW.ZrAIWaLUW.A4BEoCw@I4wCjFk(q/HaRgkF:9AjF+!9NAais?c62(-Xk}6aA}G.CFfB1LEiyS(F+7/fGdeXgD:.-WFfbw?b96.@bUJfyW@^L9a%DkhWo}pmB0+$tVr3vuXm50Hb7+gHATlv7F)4;cX;Me1cXKHsAais?c62(pXkl):Wn=]fFCs5KAUtwpW.$$XAais?c62(nV^}b6ZapG%VRmI=A_P^gMRs(LX;N0LVQyn)Nkly(cx]YlX:!9SVKg*_VPQ8oEn[fZGc7bZG%zh/WHUG_W.irvWinx9GGRG6A_P^gMRs(LcW7m9Jt8tNGB7PMGA%JSR5CF-GcY/dGb:DPIxsLIAais?c62()Z*S9NVRB[bXJu{5Jt9G5Z)=O2P-t(-Z+ypGa3C?/E-?e_S7}l!Z,CMkA_P^gMRs(LV]yP,XJuqPA{:B?J_H{DWM);SX(]fSMRs(LVPkY?Z+DyzV^dMDWpZ=7WFjDQbVYV[I(fifVQpn{WpZ.pB4%:LZ6INAaBOK}VRUJ4ZZCFjWG-Q3Z)=OGaA/FIZ+ypGa3FMVAZcx3XJs#NZf7DdJ_H{DWM);SX(]fSMRs(LVPkY?Z+DyzWMy)]c4cHDAais?c62($VRB)?Wprh7b3GzsZ+F#Fa(%;6AZBuJZ6INAaBOK}VRUJ4ZZCFjWG-Q3Z)=OGaA/FIZ+ypGa3FMVAZcx3XJs#NZf7DdJ_H{DWM);SX(]fSMRs(LVPkY?Z+Dyzb76L6WFjDQbVYV[I%#fmbYX5_Wl2OmB6w_ZE?@3GIyE/BVPrRAF*cDUGche?IW#gYVmD*9Ej2hfF:RA0Fkv%eWFjDQbVYV[I)KMgZapG0FfuSLF*{SNHdHb)Ix^djG(3tOH99abA_P^gMRs(Lb8lvJcVTj6L1$%dbUh,LWN%[,AW(#.bZ;KLZ+U,oF*lG6C_7B2WN(wKDIy=qbVYV[I%8.IZf9j:Jt8k6FFqhVFLGpNI#XqFJ_H_Vcx]Y@O+%,vb98TVc_IUKcx]Y@O+%wna%pyDWJYptZ6I?WQe_d3X;N0LVQyn)Nkly(cx]YlX:!9SVKg*_VPQ8oEn[fZGc7bZG%zh/WHUG_W.irvWinx9GGRG6A_P^gQe_d3WN%{2ZDnqBNkly(VPtP(WjbVUV]+eMaA/FIZ+ypGa5@$$HZ)9bV:yf.V]VTcF+Gz}Enzn?FfBATGdE@oGhs6@GiD,nb97Q:W.$/jX:iC{VQfTiV_8t1ZgfdRJtBB+a4uwNWI8o4I5^;jGC3[YF:8/-W.QfpEjeRhWi4hnWMMHeVq]XEFgYSGJ_H_Va%5(YL{hbha%pgMX;V;mAUrQ{WM);2L]FU!JTG]Ucx]ZPWprUaAUr;KaA9L;Wpp5AZe%=oaw0!I[4Cvk000Z7Nkl/ZScS!yTg,X?RmXp8X7:S:zVCc?$H9*BOOwz#B[Sbc5:Tu!8e+tapbE9PJQOJvJR,n?2.O,Ec.Eq1ML_]mh}NQAB{fSsYDC(3l=udBgA:#Gu@s!n[(eXZ=%T^P9];;0mKP*++juB0wC2p-Yu2pw_F5.AclyicfmI-:g7E*vwI8+;(.hp=XQ{ok*Uyh#fYOd1U,[O*qCYYJ6Kf/cMDpYRmk4?YrjS^;;(qCCB=lZ7][q-%9;0rY[aCM7ibZii6bJ@0.1GIcq*3Fy35HfKQR#U[0!%WYN]/UZ?;/zh7Saa#wUR}!19NAXS^PIj517:FouBZXZ?o$Bb;vX,2Q!vW-p;7xegp+*V7Az33gnB.jTW+TaKMGdb89i?f!/:R07rou7yzBcu*w+,^MO;;FV)#M(.LPa0uI19%X}6t6d{D[Q#mLzA+,=fD]kXXCVbE^tWA_eyMfZc#UmDV?IeKog/=tA8b-1rQf9+8VPtpHa9Lovfy[giK$QsxR%vERmgekDr$j3lq+X_+kk!zi![W)Y.!0)h3Ed*61jA0S9Qjd0I+SylOnR1E4m@#4i,4EO9C]/lZ0PAsl%nsrh#{?,6_#d!u]bxDk}u+*gt0)JK]O/;*=DtI4,aCFfn+vOcMbV0QmA3KV;xoBW.2ak-7uIXK{7J(kX=/eT?CDcC3J+CmjaCl@R8j?ATY{eBZc5$7:W3wcG:U9%1*LN5=J0+rX!EHtsbuRdZkH)nS/UaFb}3T+_2.$kVL3g41K5A9!xhZs8VObc+*Qo2x_%Kbf7%q7!-.PU^^4A7i/pc5SpG6H1ffkWBpPf1i=G-g%Sc7z0pF8kPIc1-q5{3nMcF4V@})WuoWrA/4nL.FzpIKA+OJCLs::5vJ}F$3rBn.6*3t.ScnQ810u;:o#4jGzBSA)@d:Fvr{zNDwQ$q:kO)#@ri5vLBnrvMAU*wgJ-[Y==m61SNs9VF43R^IvTl(XQRE)5dN;dYN9!}S.z3kNmW8otcwqv%:g4DZ)iqZlq:_}HBGyOLES%bS#dn0@O@{:yoGO])6uDzJMDFW%[=ckA2@b4W0!?HU,8,F51{g*Iu=4zoAgS68YtT@f73bO65H]0#yD%=;0g5PyE]kXFBiIU)8TeeNyrEYGqzE[+]Fe,cf8_xa?TC]c/bjXTO?zsK%F}}Eim$%-H}h(T^}[z$4zs3dbpTYA[J+z,4uU6CLQ.Y=k/D^8]@O#IAG5f31;@O?BLj#QTm^**pza$,orH1(@s3@$aP0QuY.A3E=wxn)/tas3?#imml^.?c#!qc,w1C.m0oa=BG$CR^P#^JnsuC@ODo]duHjAuX?Dw+g44=*G+A-Gklro3Z8q[GZj!117bq$lolcgz-KX5nRL*{z-]cqHvFW*:EFQ0mX+S]NI-#[y/hYufOR,OB4/Uy8uJ/7)TszhVJD}%Pd-0E0XW%YbR$b^{F5,^+h1Vmd)0#FsK2ZNH9N@OMR*j)$y8RU-37tZtY%P%vZjd0F#.=CRn=zg[lXFvB[y!6U/NfXEKfAJ4@@9S$H=:KU9sM/zjRDxBcP(#Lo(fH@qP%AVYa406UzSnZ35t35rOrYurMQ%u9#LblcZlG=IX.tz@U.I6u][0o[ICqvW^n-m[tgUk2z4x$tWt,qro.;+:I@JV^JRvbcjEbrf76YeblR*ymvVYh?Aym:eqax-8U@G![a.STd(Xm!LAs1zM*H2(PT-[]A/oyru[Rfsm,Vkw@p5:_R7dZ9#r,Mh3$9d!R=:dfHp8f6L.hne7GMY@3WeHJRE2*5rB6FcyHP^s*_3O3;h,P.B-1U?a0gQsFlv+Ko%2E-ibHU9b$uv@c9-A)aq#j)tlMg?0u^%$2:0[J8PiCBY=B[VQUvXvcDo[2:r#ZCZ(^}-dM[426?u7qSOr[WuDV$,;;dCJ)T)Q!o0nI_8Xuw6GUqQnH]lmvYD?]UWEv4+Uyue#.^g7[z[[tTboP78JetIM4=Kj]#E3d!7-FMy2$4^K#%xnM3i*YXA:*)[j={/AZO$)xc2E]kg9Wo5_JpCdfs=?1qd}Boa]jIt=Ulp/eOx4iz1Y0Wgz[Q/ml_jbNyO.RW:l[b#HaKHA]Pe6T^]nXAyMO#PpqzT/2_l;I(6yv+(*5FqFZsgnKF8A!-otP+Cq?VY:^#cRN_V80(r^?vkP5EUHrbQwJ[MCjE-l0AOc@wuIuY!=)v6Yry5XZ,hj^Mur]g/C/CRyw(B1uWsb4)BEyr*.lTSX$T{RgW,FyU2-=.BSPJi{S$g,fs2h$dR5WG:r8R/;{(MF6M7B[:?7BO;w9o!dO27)_!,C-_JkQrs38nlUYqd]N%Yu_a5JMOxhXMX-kzWxvY#Ls@G1dl*R5Tnr$e]KB0zxEmG0M5d!3_!gUC$W{D#FUZg%[)IibV=znPz.1w=#L(CEGWkTgjDEVjyMkoH)6{0SY5!Th56o]L(uIX:.s^U9PrXh-^jUiZs*BtXZXh7e{ku:d4=l5ZMBvNp_y%C(f3Lq!3Ri8q(^XS[aps[o,;w[Rl[[pMAIsDojPo-bmnmWZpYex#,Gm$%,]g2o=[MU3!nK[Rt5vkynltILr1vz*^o$pR}ZG%rR[bAAHA7,-lDTch#Fh!0Gd=kY*4ibPqPfO,]/szvPCUe-?:1w+(gN[1}-QOBv228aW{!I!l7MHj-WB%)u}+MdY8wZdKyXBY0Mh.KKKbrHAs=z##R}SI/a2kF/UE;HH):j^UXqGgeo.u#@CCRi3*Np^Rm3k6Y36ZycL+lYKz]8?Rj1]9$88[zA/2PsY=ikn}v]:n+A3=+H3cakxiy$#cWn!5TYugiqV$!4F*CBB#}eoy-CDxI,o8hbfzUECp4*,%EghzR7l3^3#x%IUNJZ#MQYeBElxa0KnO?#)Rf4S$GA_=)LgLpx.^]zYmE;i62MDK9sLlPX-zgs[,YJ%9Y$8)tBFP@4qLJd0oz1W%p%GbK9oUAf(rMpd/!/P^Ou545yfW-^!q=)8Q94lMI*5.h+^qvSeB+^+C,x@x^#Ghtdt@,gt__/V.Q71X0G@Puo{?mgmv1Y(RoNx05OB^24wHU.a$(O-=09kC)o3#9mjMAE3-(bd1gIBXbM0^LP_XcpDHdj#H^[$EEm:$fg%(G9Coa^7dSSo:.bv//[IaoG-2hkQcZ-I8;G5^I={n4*KIJ$20H.)g=b;!P,1xW]i,pLk*]dx#ls1]B9fv@]Ua@XnJR=HybndsuzGQU$omZ(mukj,%hg+PtJ?7{s=.5!:=JsF#m,xWdEK:rt9wv77.ZY_eZycH,1/2,j$kGcnS$F/MiJbFNC9ZA@nJsqYZ;,pskQVkHFyur5_mp*y:3X@N5l$gqQnhDuZ}D:?tw%p+i$$q$PHYk0z[dDLCZ+jvKpZ-m3c;y*Z#jkL:1D/x-9XEl*_*Yu@HTQwc%jRvUgWPz8x[FEAz.BVAy#$W(NVZ7D^:/P@clRm5o@-ET[n?O?X+xN}0KK:sQRgM}BGhs9]xOi6_Z,aZs#Ax,N?40]o+L5xPL-lyWU04a(@^xJi%zjT*AEf_)1tmXMbbO?%TO#ztu-N,*I+V:)asE*#9l,6Gdi6c,XpMS;E6!Ya9gsS!3MGRqC#K(Me8!ZbI]Q_J^ffi[N1f!Z39Dw0JgGblue)psa{D4[$DQPN)!0RZWp^/5l%/bxdF%Lt__N9.mldoAadRu)Ko5zGzUDI432A:oxRKrq[oRl(9mDjOGb,7@%3dt4Uqk#cuVTp.xYlev{I=lgw.]-u79H{yVL;HpFQRB*DbkQ*OB^_zG{OuQxCehL5p002ovPDHLkV1k4I0001tc{M@O?MPo[7_!s]CJMRRK2r5(z=f.FG3]k]oIoCDmm+DLB?V,ub9YB,!IRK$9Di#ZpW]?@*eUNP.FR-70WS,,DdY1f31!Z+:9]Z$/fiiik6nwXx];d}a!SnJ$=BVjXX6wmLg,6)p8,_{I-wT,eWQ)y%u;X,:i_H5!50</PublicKey>
+  </Signature>
+</CheatTable>
