@@ -1,0 +1,2685 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>356715</ID>
+      <Description>"&lt;=== Auto attach to process  (For game version 1.2)"</Description>
+      <Options moDeactivateChildrenAsWell="1"/>
+      <Color>0000FF</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript Async="1">[ENABLE]
+{$lua}
+if syntaxcheck then return end
+  if(getCEVersion() &lt; 7.4) then
+    ShowMessage('Warning! CE version should be 7.4 or above')
+  end
+
+   local pcss = 'Against the Storm.exe' -- name of game exe
+ openProcess(pcss)
+ getMainForm().caption = "Table Created By Tuuuup!"
+  if (readInteger(process) == readInteger(pcss)) and (readInteger(process) ~= nil) then
+        -- mono_initialize()
+LaunchMonoDataCollector()
+else
+ShowMessage('The process Against the Storm.exe is NOT found!')
+return "nop"
+end
+{$asm}
+//LuaCall(function cycleFullCompact(sender,force) local state = not(compactmenuitem.Caption == 'Compact View Mode'); if force~=nil then state = not force end; compactmenuitem.Caption = state and 'Compact View Mode' or 'Full View Mode'; getMainForm().Splitter1.Visible = state; getMainForm().Panel4.Visible    = state; getMainForm().Panel5.Visible    = state; end; function addCompactMenu() if compactmenualreadyexists then return end; local parent = getMainForm().Menu.Items; compactmenuitem = createMenuItem(parent); parent.add(compactmenuitem); compactmenuitem.Caption = 'Compact View Mode'; compactmenuitem.OnClick = cycleFullCompact; compactmenualreadyexists = 'yes'; end; addCompactMenu(); cycleFullCompact(nil,true))
+[DISABLE]
+ 
+{$lua}
+if monopipe~=nil then monopipe.Destroy() ; monopipe=nil end  -- mono disable
+{$asm}
+//LuaCall(cycleFullCompact(nil,false))
+
+
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>795</ID>
+          <Description>"Game Settings"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript Async="1">{  Game Executable   : Against the Storm.exe
+   Author            : Tuuup!
+   Executable Version: 2021.3.27.16379
+   Script Date       : 2024-01-04
+}
+[ENABLE]
+aobscanregion(settings,Eremite.View.HUD.GoodSlot:SetUpIcon+5,Eremite.View.HUD.GoodSlot:SetUpIcon+94,488D1283380049??????????????????41FFD3)
+registersymbol(settings settingsbkp gset)
+alloc(newmem,128,settings)
+label(return gset)
+label(settingsbkp)
+newmem:
+
+  lea rdx,[rdx]
+  mov [gset],rax
+  cmp dword ptr [rax],00
+  jmp return
+  
+settingsbkp:
+readmem(settings,6)
+gset:
+dq 0
+settings:
+  jmp newmem
+  nop
+return:
+
+[DISABLE]
+settings:
+ // db 48 8D 12 83 38 00
+readmem(settingsbkp,6)
+unregistersymbol(*)
+dealloc(*)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Eremite.View.HUD.GoodSlot:SetUpIcon+58
+
+35BF8DAE1: 00 00                          - add [rax],al
+35BF8DAE3: 00 00                          - add [rax],al
+35BF8DAE5: 00 00                          - add [rax],al
+35BF8DAE7: 00 00                          - add [rax],al
+35BF8DAE9: 00 00                          - add [rax],al
+35BF8DAEB: 00 00                          - add [rax],al
+35BF8DAED: 00 00                          - add [rax],al
+35BF8DAEF: 00 55 48                       - add [rbp+48],dl
+Eremite.View.HUD.GoodSlot:SetUpIcon+2: 8B EC                          - mov ebp,esp
+Eremite.View.HUD.GoodSlot:SetUpIcon+4: 48 83 EC 60                    - sub rsp,60
+Eremite.View.HUD.GoodSlot:SetUpIcon+8: 48 89 75 F8                    - mov [rbp-08],rsi
+Eremite.View.HUD.GoodSlot:SetUpIcon+c: 48 8B F1                       - mov rsi,rcx
+Eremite.View.HUD.GoodSlot:SetUpIcon+f: 48 8B 46 18                    - mov rax,[rsi+18]
+Eremite.View.HUD.GoodSlot:SetUpIcon+13: 48 89 45 C0                    - mov [rbp-40],rax
+Eremite.View.HUD.GoodSlot:SetUpIcon+17: 48 8D AD 00 00 00 00           - lea rbp,[rbp+00000000]
+Eremite.View.HUD.GoodSlot:SetUpIcon+1e: 49 BB 10 9C 6E 5C 03 00 00 00  - mov r11,Eremite.MB:get_Settings
+Eremite.View.HUD.GoodSlot:SetUpIcon+28: 41 FF D3                       - call r11
+Eremite.View.HUD.GoodSlot:SetUpIcon+2b: 48 8D 4E 40                    - lea rcx,[rsi+40]
+Eremite.View.HUD.GoodSlot:SetUpIcon+2f: 48 8B 11                       - mov rdx,[rcx]
+Eremite.View.HUD.GoodSlot:SetUpIcon+32: 48 89 55 C8                    - mov [rbp-38],rdx
+Eremite.View.HUD.GoodSlot:SetUpIcon+36: 48 8B 49 08                    - mov rcx,[rcx+08]
+Eremite.View.HUD.GoodSlot:SetUpIcon+3a: 48 89 4D D0                    - mov [rbp-30],rcx
+Eremite.View.HUD.GoodSlot:SetUpIcon+3e: 48 8B C8                       - mov rcx,rax
+Eremite.View.HUD.GoodSlot:SetUpIcon+41: 48 8B D5                       - mov rdx,rbp
+Eremite.View.HUD.GoodSlot:SetUpIcon+44: 48 83 C2 D8                    - add rdx,-28
+Eremite.View.HUD.GoodSlot:SetUpIcon+48: 4C 8B 45 C8                    - mov r8,[rbp-38]
+Eremite.View.HUD.GoodSlot:SetUpIcon+4c: 4C 89 45 D8                    - mov [rbp-28],r8
+Eremite.View.HUD.GoodSlot:SetUpIcon+50: 4C 8B 45 D0                    - mov r8,[rbp-30]
+Eremite.View.HUD.GoodSlot:SetUpIcon+54: 4C 89 45 E0                    - mov [rbp-20],r8
+Eremite.View.HUD.GoodSlot:SetUpIcon+58: 48 8D 12                       - lea rdx,[rdx]
+// ---------- INJECTING HERE ----------
+Eremite.View.HUD.GoodSlot:SetUpIcon+5b: 83 38 00                       - cmp dword ptr [rax],00
+// ---------- DONE INJECTING  ----------
+Eremite.View.HUD.GoodSlot:SetUpIcon+5e: 49 BB A0 DB F8 5B 03 00 00 00  - mov r11,Eremite.Model.Settings:GetGood
+Eremite.View.HUD.GoodSlot:SetUpIcon+68: 41 FF D3                       - call r11
+Eremite.View.HUD.GoodSlot:SetUpIcon+6b: 48 8B C8                       - mov rcx,rax
+Eremite.View.HUD.GoodSlot:SetUpIcon+6e: 48 8B 45 C0                    - mov rax,[rbp-40]
+Eremite.View.HUD.GoodSlot:SetUpIcon+72: 48 8B 51 60                    - mov rdx,[rcx+60]
+Eremite.View.HUD.GoodSlot:SetUpIcon+76: 48 8B C8                       - mov rcx,rax
+Eremite.View.HUD.GoodSlot:SetUpIcon+79: 83 38 00                       - cmp dword ptr [rax],00
+Eremite.View.HUD.GoodSlot:SetUpIcon+7c: 66 90                          - nop 2
+Eremite.View.HUD.GoodSlot:SetUpIcon+7e: 49 BB E0 EA E3 74 03 00 00 00  - mov r11,UnityEngine.UI.Image:set_sprite
+Eremite.View.HUD.GoodSlot:SetUpIcon+88: 41 FF D3                       - call r11
+Eremite.View.HUD.GoodSlot:SetUpIcon+8b: 48 8B 75 F8                    - mov rsi,[rbp-08]
+Eremite.View.HUD.GoodSlot:SetUpIcon+8f: 48 8D 65 00                    - lea rsp,[rbp+00]
+Eremite.View.HUD.GoodSlot:SetUpIcon+93: 5D                             - pop rbp
+Eremite.View.HUD.GoodSlot:SetUpIcon+94: C3                             - ret 
+35BF8DB85: 00 00                          - add [rax],al
+35BF8DB87: 00 01                          - add [rcx],al
+35BF8DB89: 04 02                          - add al,02
+35BF8DB8B: 05 04 03 01 50                 - add eax,50010304
+35BF8DB90: 00 00                          - add [rax],al
+35BF8DB92: 00 00                          - add [rax],al
+35BF8DB94: 00 00                          - add [rax],al
+35BF8DB96: 00 00                          - add [rax],al
+35BF8DB98: 00 00                          - add [rax],al
+35BF8DB9A: 00 00                          - add [rax],al
+35BF8DB9C: 00 00                          - add [rax],al
+35BF8DB9E: 00 00                          - add [rax],al
+Eremite.Model.Settings:GetGood: 55                             - push rbp
+Eremite.Model.Settings:GetGood+1: 48 8B EC                       - mov rbp,rsp
+Eremite.Model.Settings:GetGood+4: 48 83 EC 30                    - sub rsp,30
+Eremite.Model.Settings:GetGood+8: 48 89 4D F8                    - mov [rbp-08],rcx
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>455</ID>
+              <Description>"base address settings"</Description>
+              <ShowAsSigned>1</ShowAsSigned>
+              <GroupHeader>1</GroupHeader>
+              <Address>gset</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>356775</ID>
+                  <Description>"gameplayRaces"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+540</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356776</ID>
+                  <Description>"NeedsConsumptionTime"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+544</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356777</ID>
+                  <Description>"GladesIndicatorHidingSpeed"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+7C8</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356778</ID>
+                  <Description>"RefundRemovedConstruction"</Description>
+                  <VariableType>Byte</VariableType>
+                  <Address>+7CC</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356779</ID>
+                  <Description>"RefundRemovedBuilding"</Description>
+                  <VariableType>Byte</VariableType>
+                  <Address>+7CD</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356780</ID>
+                  <Description>"tradesRoutesPaymentInterval"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+7D0</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356781</ID>
+                  <Description>"maxProductionLimit"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+7D4</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356782</ID>
+                  <Description>"backButtonCooldown"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+7D8</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356783</ID>
+                  <Description>"autoSaveInterval"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+7DC</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356784</ID>
+                  <Description>"seasonChangedPopupEnabled"</Description>
+                  <VariableType>Byte</VariableType>
+                  <Address>+7E0</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356736</ID>
+                  <Description>"minReputationSpeed"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>60</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356737</ID>
+                  <Description>"minHarvestingSpeed"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>64</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356738</ID>
+                  <Description>"maxPlantingSpeed"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>68</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356739</ID>
+                  <Description>"minPlantingSpeed"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>6C</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356740</ID>
+                  <Description>"maxHarvestingSpeed"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>70</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356741</ID>
+                  <Description>"minProductionSpeed"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>74</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356742</ID>
+                  <Description>"maxProductionSpeed"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>78</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356743</ID>
+                  <Description>"minFuelConsumptionRate"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>7C</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356744</ID>
+                  <Description>"maxFuelConsumptionRate"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>80</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356745</ID>
+                  <Description>"minSeasonLengthRate"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>84</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356746</ID>
+                  <Description>"maxSeasonLengthRate"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>88</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356747</ID>
+                  <Description>"minVillagerAbsoluteSpeed"</Description>
+                  <Color>00FF00</Color>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>8C</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356748</ID>
+                  <Description>"maxVillagerAbsoluteSpeed"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>90</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356749</ID>
+                  <Description>"minVillagerBreakTimeRate"</Description>
+                  <Color>00FF00</Color>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>94</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356750</ID>
+                  <Description>"maxVillagerBreakTimeRate"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356751</ID>
+                  <Description>"minTraderIntervalRate"</Description>
+                  <Color>00FF00</Color>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>9C</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356752</ID>
+                  <Description>"maxTraderIntervalRate"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>A0</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356753</ID>
+                  <Description>"minNewcomersIntervalRate"</Description>
+                  <Color>00FF00</Color>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>A4</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356754</ID>
+                  <Description>"maxNewcomersIntervalRate"</Description>
+                  <Color>00FF00</Color>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>A8</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356755</ID>
+                  <Description>"minTradingSellValueRate"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>AC</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356756</ID>
+                  <Description>"maxTradingSellValueRate"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>B0</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356757</ID>
+                  <Description>"minResolveToReputationRate"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>B4</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356758</ID>
+                  <Description>"maxResolveToReputationRate"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>B8</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356759</ID>
+                  <Description>"minLeavingRate"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>BC</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356760</ID>
+                  <Description>"maxLeavingRate"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>C0</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356761</ID>
+                  <Description>"minConstructionSpeedRate"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>C4</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356762</ID>
+                  <Description>"maxConstructionSpeedRate"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>C8</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356763</ID>
+                  <Description>"minRelicsWorkingTimeRate"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>CC</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356764</ID>
+                  <Description>"maxRelicsWorkingTimeRate"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>D0</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356765</ID>
+                  <Description>"minMerchSlots"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>D4</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356766</ID>
+                  <Description>"maxMerchSlots"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>D8</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356767</ID>
+                  <Description>"minTradeRoutesSpeed"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>DC</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356768</ID>
+                  <Description>"maxTradeRoutesSpeed"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>E0</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356769</ID>
+                  <Description>"minBlightRate"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>E4</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356770</ID>
+                  <Description>"maxBlightRate"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>E8</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356771</ID>
+                  <Description>"minCorruptionPerCystPerSecond"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>EC</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356772</ID>
+                  <Description>"maxCorruptionPerCystPerSecond"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>F0</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356773</ID>
+                  <Description>"minHearthRange"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>F4</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356774</ID>
+                  <Description>"maxHearthRange"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+268</Address>
+                  <Offsets>
+                    <Offset>F8</Offset>
+                  </Offsets>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>594</ID>
+          <Description>"Hearth burning time"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript Async="1">{  Game Executable   : Against the Storm.exe
+   Author            : Tuuup!
+   Executable Version: 2021.3.27.16379
+   Script Date       : 2023-08-28
+}
+[ENABLE]
+aobscanregion(burnheart,Eremite.Buildings.Hearth:ClampBurningTime+18,Buildings.Hearth:ClampBurningTime+74,F3 0F 10 80 AC 00 00 00 F3 0F 5A C0 F3)
+registersymbol(burnheart burnheartbkp hburn)
+alloc(newmem,128,burnheart)
+label(return hburn)
+label(burnheartbkp)
+
+newmem:
+  mov [hburn],rax
+  movss xmm0,[rax+000000AC]
+  jmp return
+  
+burnheartbkp:
+readmem(burnheart,8)
+hburn:
+dq 0
+burnheart:
+  jmp newmem
+  nop 3
+return:
+
+[DISABLE]
+burnheart:
+ // db F3 0F 10 80 AC 00 00 00
+readmem(burnheartbkp,8)
+unregistersymbol(*)
+dealloc(*)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Eremite.Buildings.Hearth:ClampBurningTime+18
+
+Eremite.Services.EffectsService:GetFuelRate+ad: F2 0F 5A C9                    - cvtsd2ss xmm1,xmm1
+Eremite.Services.EffectsService:GetFuelRate+b1: F2 0F 5A C0                    - cvtsd2ss xmm0,xmm0
+Eremite.Services.EffectsService:GetFuelRate+b5: 90                             - nop 
+Eremite.Services.EffectsService:GetFuelRate+b6: 49 BB 40 DE FC 72 00 00 00 00  - mov r11,UnityEngine.Mathf:Clamp
+Eremite.Services.EffectsService:GetFuelRate+c0: 41 FF D3                       - call r11
+Eremite.Services.EffectsService:GetFuelRate+c3: F3 0F 5A C0                    - cvtss2sd xmm0,xmm0
+Eremite.Services.EffectsService:GetFuelRate+c7: F2 0F 5A C0                    - cvtsd2ss xmm0,xmm0
+Eremite.Services.EffectsService:GetFuelRate+cb: 48 8B 75 F8                    - mov rsi,[rbp-08]
+Eremite.Services.EffectsService:GetFuelRate+cf: 48 8D 65 00                    - lea rsp,[rbp+00]
+Eremite.Services.EffectsService:GetFuelRate+d3: 5D                             - pop rbp
+Eremite.Services.EffectsService:GetFuelRate+d4: C3                             - ret 
+352365185: 00 00                          - add [rax],al
+352365187: 00 01                          - add [rcx],al
+352365189: 04 02                          - add al,02
+35236518B: 05 04 03 01 50                 - add eax,50010304
+352365190: 00 00                          - add [rax],al
+352365192: 00 00                          - add [rax],al
+352365194: 00 00                          - add [rax],al
+352365196: 00 00                          - add [rax],al
+352365198: 00 00                          - add [rax],al
+35236519A: 00 00                          - add [rax],al
+35236519C: 00 00                          - add [rax],al
+35236519E: 00 00                          - add [rax],al
+Eremite.Buildings.Hearth:ClampBurningTime: 55                             - push rbp
+Eremite.Buildings.Hearth:ClampBurningTime+1: 48 8B EC                       - mov rbp,rsp
+Eremite.Buildings.Hearth:ClampBurningTime+4: 48 83 EC 30                    - sub rsp,30
+Eremite.Buildings.Hearth:ClampBurningTime+8: 48 89 75 F8                    - mov [rbp-08],rsi
+Eremite.Buildings.Hearth:ClampBurningTime+c: 48 8B F1                       - mov rsi,rcx
+Eremite.Buildings.Hearth:ClampBurningTime+f: F3 0F 11 4D F0                 - movss [rbp-10],xmm1
+Eremite.Buildings.Hearth:ClampBurningTime+14: 48 8B 46 70                    - mov rax,[rsi+70]
+// ---------- INJECTING HERE ----------
+Eremite.Buildings.Hearth:ClampBurningTime+18: F3 0F 10 80 AC 00 00 00        - movss xmm0,[rax+000000AC]
+// ---------- DONE INJECTING  ----------
+Eremite.Buildings.Hearth:ClampBurningTime+20: F3 0F 5A C0                    - cvtss2sd xmm0,xmm0
+Eremite.Buildings.Hearth:ClampBurningTime+24: F3 0F 10 4D F0                 - movss xmm1,[rbp-10]
+Eremite.Buildings.Hearth:ClampBurningTime+29: F3 0F 5A C9                    - cvtss2sd xmm1,xmm1
+Eremite.Buildings.Hearth:ClampBurningTime+2d: F2 0F 58 C1                    - addsd xmm0,xmm1
+Eremite.Buildings.Hearth:ClampBurningTime+31: 66 0F 57 C9                    - xorpd xmm1,xmm1
+Eremite.Buildings.Hearth:ClampBurningTime+35: 48 8B 46 78                    - mov rax,[rsi+78]
+Eremite.Buildings.Hearth:ClampBurningTime+39: F3 0F 10 90 50 01 00 00        - movss xmm2,[rax+00000150]
+Eremite.Buildings.Hearth:ClampBurningTime+41: F3 0F 5A D2                    - cvtss2sd xmm2,xmm2
+Eremite.Buildings.Hearth:ClampBurningTime+45: F2 0F 5A D2                    - cvtsd2ss xmm2,xmm2
+Eremite.Buildings.Hearth:ClampBurningTime+49: F2 0F 5A C9                    - cvtsd2ss xmm1,xmm1
+Eremite.Buildings.Hearth:ClampBurningTime+4d: F2 0F 5A C0                    - cvtsd2ss xmm0,xmm0
+Eremite.Buildings.Hearth:ClampBurningTime+51: 48 8D 64 24 00                 - lea rsp,[rsp+00]
+Eremite.Buildings.Hearth:ClampBurningTime+56: 49 BB 40 DE FC 72 00 00 00 00  - mov r11,UnityEngine.Mathf:Clamp
+Eremite.Buildings.Hearth:ClampBurningTime+60: 41 FF D3                       - call r11
+Eremite.Buildings.Hearth:ClampBurningTime+63: F3 0F 5A C0                    - cvtss2sd xmm0,xmm0
+Eremite.Buildings.Hearth:ClampBurningTime+67: F2 0F 5A C0                    - cvtsd2ss xmm0,xmm0
+Eremite.Buildings.Hearth:ClampBurningTime+6b: 48 8B 75 F8                    - mov rsi,[rbp-08]
+Eremite.Buildings.Hearth:ClampBurningTime+6f: 48 8D 65 00                    - lea rsp,[rbp+00]
+Eremite.Buildings.Hearth:ClampBurningTime+73: 5D                             - pop rbp
+Eremite.Buildings.Hearth:ClampBurningTime+74: C3                             - ret 
+352365215: 00 00                          - add [rax],al
+352365217: 00 01                          - add [rcx],al
+352365219: 04 02                          - add al,02
+35236521B: 05 04 03 01 50                 - add eax,50010304
+352365220: 00 00                          - add [rax],al
+352365222: 00 00                          - add [rax],al
+352365224: 00 00                          - add [rax],al
+352365226: 00 00                          - add [rax],al
+352365228: 00 00                          - add [rax],al
+35236522A: 00 00                          - add [rax],al
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>595</ID>
+              <Description>"base address"</Description>
+              <ShowAsSigned>1</ShowAsSigned>
+              <GroupHeader>1</GroupHeader>
+              <Address>hburn</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>596</ID>
+                  <Description>"isUsingFire"</Description>
+                  <VariableType>Byte</VariableType>
+                  <Address>+A8</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>597</ID>
+                  <Description>"wasIgnited"</Description>
+                  <VariableType>Byte</VariableType>
+                  <Address>+A9</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>598</ID>
+                  <Description>"burningTimeLeft"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+AC</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>599</ID>
+                  <Description>"stopSacrificeAfterStorm"</Description>
+                  <VariableType>Byte</VariableType>
+                  <Address>+B0</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>600</ID>
+                  <Description>"corruption"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+B8</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>612</ID>
+          <Description>"Instant build? (still needs materials)"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{  Game Executable   : Against the Storm.exe
+   Author            : Tuuup!
+   Executable Version: 2021.3.27.16379
+   Script Date       : 2023-08-28
+}
+[ENABLE]
+aobscanregion(instantbuild,Eremite.Buildings.Building:CalculateProgress,Eremite.Buildings.Building:CalculateProgress+4e,E8 F3 0F 10 40 38 F3)
+registersymbol(instantbuild instantbuildbkp)
+alloc(newmem,128,instantbuild)
+label(return)
+label(instantbuildbkp)
+newmem:
+ mov [rax+38],(float)1
+  movss xmm0,[rax+38]
+  jmp return
+  
+instantbuildbkp:
+readmem(instantbuild+01,5)
+
+instantbuild+01:
+  jmp newmem
+return:
+
+[DISABLE]
+instantbuild+01:
+ // db F3 0F 10 40 38
+readmem(instantbuildbkp,5)
+unregistersymbol(*)
+dealloc(*)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Eremite.Buildings.Building:CalculateProgress+23
+
+3523B2BF6: 00 00                          - add [rax],al
+3523B2BF8: 00 00                          - add [rax],al
+3523B2BFA: 00 00                          - add [rax],al
+3523B2BFC: 00 00                          - add [rax],al
+3523B2BFE: 00 41 BB                       - add [rcx-45],al
+3523B2C01: 20 02                          - and [rdx],al
+3523B2C03: 26 64 41 FF D3                 - call r11
+3523B2C08: 04 68                          - add al,68
+3523B2C0A: E5 46                          - in eax,46
+3523B2C0C: 6E                             - outsb 
+3523B2C0D: 00 00                          - add [rax],al
+3523B2C0F: 00 00                          - add [rax],al
+3523B2C11: 00 00                          - add [rax],al
+3523B2C13: 00 00                          - add [rax],al
+3523B2C15: 00 00                          - add [rax],al
+3523B2C17: 00 00                          - add [rax],al
+3523B2C19: 00 00                          - add [rax],al
+3523B2C1B: 00 00                          - add [rax],al
+3523B2C1D: 00 00                          - add [rax],al
+3523B2C1F: 00 55 48                       - add [rbp+48],dl
+Eremite.Buildings.Building:CalculateProgress+2: 8B EC                          - mov ebp,esp
+Eremite.Buildings.Building:CalculateProgress+4: 48 83 EC 60                    - sub rsp,60
+Eremite.Buildings.Building:CalculateProgress+8: 48 89 75 F8                    - mov [rbp-08],rsi
+Eremite.Buildings.Building:CalculateProgress+c: 48 8B F1                       - mov rsi,rcx
+Eremite.Buildings.Building:CalculateProgress+f: 48 8B 06                       - mov rax,[rsi]
+Eremite.Buildings.Building:CalculateProgress+12: FF 90 A0 02 00 00              - call qword ptr [rax+000002A0]
+Eremite.Buildings.Building:CalculateProgress+18: 48 8B C8                       - mov rcx,rax
+Eremite.Buildings.Building:CalculateProgress+1b: 48 89 4D E0                    - mov [rbp-20],rcx
+Eremite.Buildings.Building:CalculateProgress+1f: 48 89 45 E8                    - mov [rbp-18],rax
+Eremite.Buildings.Building:CalculateProgress+23: F3 0F 10 40 38                 - movss xmm0,[rax+38]
+// ---------- INJECTING HERE ----------
+Eremite.Buildings.Building:CalculateProgress+28: F3 0F 5A C0                    - cvtss2sd xmm0,xmm0
+// ---------- DONE INJECTING  ----------
+Eremite.Buildings.Building:CalculateProgress+2c: F2 0F 11 45 D8                 - movsd [rbp-28],xmm0
+Eremite.Buildings.Building:CalculateProgress+31: 48 8B CE                       - mov rcx,rsi
+Eremite.Buildings.Building:CalculateProgress+34: 48 8B 06                       - mov rax,[rsi]
+Eremite.Buildings.Building:CalculateProgress+37: FF 90 A0 02 00 00              - call qword ptr [rax+000002A0]
+Eremite.Buildings.Building:CalculateProgress+3d: 48 63 40 3C                    - movsxd  rax,dword ptr [rax+3C]
+Eremite.Buildings.Building:CalculateProgress+41: F3 0F 2A C0                    - cvtsi2ss xmm0,eax
+Eremite.Buildings.Building:CalculateProgress+45: F3 0F 5A C0                    - cvtss2sd xmm0,xmm0
+Eremite.Buildings.Building:CalculateProgress+49: F2 0F 11 45 C0                 - movsd [rbp-40],xmm0
+Eremite.Buildings.Building:CalculateProgress+4e: 48 8B CE                       - mov rcx,rsi
+Eremite.Buildings.Building:CalculateProgress+51: 48 8B 06                       - mov rax,[rsi]
+Eremite.Buildings.Building:CalculateProgress+54: FF 90 98 02 00 00              - call qword ptr [rax+00000298]
+Eremite.Buildings.Building:CalculateProgress+5a: F2 0F 10 45 C0                 - movsd xmm0,[rbp-40]
+Eremite.Buildings.Building:CalculateProgress+5f: F3 0F 10 88 C0 00 00 00        - movss xmm1,[rax+000000C0]
+Eremite.Buildings.Building:CalculateProgress+67: F3 0F 5A C9                    - cvtss2sd xmm1,xmm1
+Eremite.Buildings.Building:CalculateProgress+6b: F2 0F 59 C1                    - mulsd xmm0,xmm1
+Eremite.Buildings.Building:CalculateProgress+6f: F2 0F 11 45 C8                 - movsd [rbp-38],xmm0
+Eremite.Buildings.Building:CalculateProgress+74: 66 90                          - nop 2
+Eremite.Buildings.Building:CalculateProgress+76: 49 BB D0 8B 0B 52 03 00 00 00  - mov r11,Eremite.GameMB:get_EffectsService
+Eremite.Buildings.Building:CalculateProgress+80: 41 FF D3                       - call r11
+Eremite.Buildings.Building:CalculateProgress+83: 48 8B C8                       - mov rcx,rax
+Eremite.Buildings.Building:CalculateProgress+86: 48 8B 00                       - mov rax,[rax]
+Eremite.Buildings.Building:CalculateProgress+89: 49 BA F0 2C 6F 5B 03 00 00 00  - mov r10,000000035B6F2CF0
+Eremite.Buildings.Building:CalculateProgress+93: FF 50 90                       - call qword ptr [rax-70]
+Eremite.Buildings.Building:CalculateProgress+96: F3 0F 5A C8                    - cvtss2sd xmm1,xmm0
+Eremite.Buildings.Building:CalculateProgress+9a: F2 0F 10 45 C8                 - movsd xmm0,[rbp-38]
+Eremite.Buildings.Building:CalculateProgress+9f: F2 0F 59 C1                    - mulsd xmm0,xmm1
+Eremite.Buildings.Building:CalculateProgress+a3: F2 0F 11 45 D0                 - movsd [rbp-30],xmm0
+Eremite.Buildings.Building:CalculateProgress+a8: 48 8D 64 24 00                 - lea rsp,[rsp+00]
+Eremite.Buildings.Building:CalculateProgress+ad: 90                             - nop 
+Eremite.Buildings.Building:CalculateProgress+ae: 49 BB 50 51 D6 3F 03 00 00 00  - mov r11,UnityEngine.Time:get_deltaTime
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>717</ID>
+          <Description>"Meta pointers v2 (Embark points + more)"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript Async="1">{  Game Executable   : Against the Storm.exe
+   Author            : Tuuup!
+   Executable Version: 2021.3.27.16379
+   Script Date       : 2023-12-10
+}
+[ENABLE]
+aobscanregion(metaserv,Eremite.Services.MetaStateService:get_Perks,Eremite.Services.MetaStateService:get_Perks+1e,48 8B 46 38 48 8B 80 98 00 00 00)
+registersymbol(metaserv metaservbkp metas)
+alloc(newmem,128,metaserv)
+label(return metas)
+label(metaservbkp)
+
+newmem:
+ mov [metas],rsi
+  mov rax,[rsi+38]
+  mov rax,[rax+00000098]
+  jmp return
+  
+metaservbkp:
+readmem(metaserv,11)
+metas:
+dq 0
+metaserv:
+  jmp newmem
+  nop 6
+return:
+
+[DISABLE]
+metaserv:
+ // db 48 8B 46 38 48 8B 80 98 00 00 00
+readmem(metaservbkp,11)
+unregistersymbol(*)
+dealloc(*)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Eremite.Services.MetaStateService:get_Perks+b
+
+373E852CD: 73 29                          - jae 373E852F8
+373E852CF: 49 BB 38 BA FF 61 03 00 00 00  - mov r11,0000000361FFBA38
+373E852D9: 4D 3B D3                       - cmp r10,r11
+373E852DC: 75 0D                          - jne 373E852EB
+373E852DE: 49 BB E0 3A 00 62 03 00 00 00  - mov r11,0000000362003AE0
+373E852E8: 41 FF 23                       - jmp qword ptr [r11]
+373E852EB: 49 BB F8 3A 00 62 03 00 00 00  - mov r11,0000000362003AF8
+373E852F5: 41 FF 23                       - jmp qword ptr [r11]
+373E852F8: 75 0D                          - jne 373E85307
+373E852FA: 49 BB 10 3B 00 62 03 00 00 00  - mov r11,0000000362003B10
+373E85304: 41 FF 23                       - jmp qword ptr [r11]
+373E85307: 49 BB 30 3B 00 62 03 00 00 00  - mov r11,0000000362003B30
+373E85311: 41 FF 23                       - jmp qword ptr [r11]
+373E85314: 00 00                          - add [rax],al
+373E85316: 00 00                          - add [rax],al
+373E85318: 01 00                          - add [rax],eax
+373E8531A: 00 00                          - add [rax],al
+373E8531C: 00 00                          - add [rax],al
+373E8531E: 00 00                          - add [rax],al
+373E85320: 00 00                          - add [rax],al
+373E85322: 00 00                          - add [rax],al
+373E85324: 00 00                          - add [rax],al
+373E85326: 00 00                          - add [rax],al
+373E85328: 00 00                          - add [rax],al
+373E8532A: 00 00                          - add [rax],al
+373E8532C: 00 00                          - add [rax],al
+373E8532E: 00 00                          - add [rax],al
+Eremite.Services.MetaStateService:get_Perks: 48 83 EC 08                    - sub rsp,08
+Eremite.Services.MetaStateService:get_Perks+4: 48 89 34 24                    - mov [rsp],rsi
+Eremite.Services.MetaStateService:get_Perks+8: 48 8B F1                       - mov rsi,rcx
+// ---------- INJECTING HERE ----------
+Eremite.Services.MetaStateService:get_Perks+b: 48 8B 46 38                    - mov rax,[rsi+38]
+// ---------- DONE INJECTING  ----------
+Eremite.Services.MetaStateService:get_Perks+f: 48 8B 80 98 00 00 00           - mov rax,[rax+00000098]
+Eremite.Services.MetaStateService:get_Perks+16: 48 8B 34 24                    - mov rsi,[rsp]
+Eremite.Services.MetaStateService:get_Perks+1a: 48 83 C4 08                    - add rsp,08
+Eremite.Services.MetaStateService:get_Perks+1e: C3                             - ret 
+373E8534F: 00 01                          - add [rcx],al
+373E85351: 04 01                          - add al,01
+373E85353: 00 04 02                       - add [rdx+rax],al
+373E85356: 00 00                          - add [rax],al
+373E85358: 00 00                          - add [rax],al
+373E8535A: 00 00                          - add [rax],al
+373E8535C: 00 00                          - add [rax],al
+373E8535E: 00 00                          - add [rax],al
+Eremite.Model.Meta.GoalsUnlockMetaRewardModel:OnConsume: 55                             - push rbp
+Eremite.Model.Meta.GoalsUnlockMetaRewardModel:OnConsume+1: 48 8B EC                       - mov rbp,rsp
+Eremite.Model.Meta.GoalsUnlockMetaRewardModel:OnConsume+4: 48 83 EC 30                    - sub rsp,30
+Eremite.Model.Meta.GoalsUnlockMetaRewardModel:OnConsume+8: 48 8D 64 24 00                 - lea rsp,[rsp+00]
+Eremite.Model.Meta.GoalsUnlockMetaRewardModel:OnConsume+d: 90                             - nop 
+Eremite.Model.Meta.GoalsUnlockMetaRewardModel:OnConsume+e: 49 BB 10 52 E8 73 03 00 00 00  - mov r11,Eremite.SO:get_MetaStateService
+Eremite.Model.Meta.GoalsUnlockMetaRewardModel:OnConsume+18: 41 FF D3                       - call r11
+Eremite.Model.Meta.GoalsUnlockMetaRewardModel:OnConsume+1b: 48 8B C8                       - mov rcx,rax
+Eremite.Model.Meta.GoalsUnlockMetaRewardModel:OnConsume+1e: 48 8B 00                       - mov rax,[rax]
+Eremite.Model.Meta.GoalsUnlockMetaRewardModel:OnConsume+21: 49 BA 38 BA FF 61 03 00 00 00  - mov r10,0000000361FFBA38
+Eremite.Model.Meta.GoalsUnlockMetaRewardModel:OnConsume+2b: FF 50 F8                       - call qword ptr [rax-08]
+Eremite.Model.Meta.GoalsUnlockMetaRewardModel:OnConsume+2e: C6 80 B6 00 00 00 01           - mov byte ptr [rax+000000B6],01
+Eremite.Model.Meta.GoalsUnlockMetaRewardModel:OnConsume+35: 48 8D 65 00                    - lea rsp,[rbp+00]
+Eremite.Model.Meta.GoalsUnlockMetaRewardModel:OnConsume+39: 5D                             - pop rbp
+Eremite.Model.Meta.GoalsUnlockMetaRewardModel:OnConsume+3a: C3                             - ret 
+373E8539B: 00 00                          - add [rax],al
+373E8539D: 00 00                          - add [rax],al
+373E8539F: 00 01                          - add [rcx],al
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>228</ID>
+              <Description>"&lt;== Script Information"</Description>
+              <Options moHideChildren="1"/>
+              <Color>0000FF</Color>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[enable]
+define(test,LUDO)
+
+{$LUA}
+getMainForm().CommentButton.doClick()
+return "nop"
+{$ASM}
+
+[disable]
+
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>718</ID>
+              <Description>"base address"</Description>
+              <ShowAsSigned>1</ShowAsSigned>
+              <GroupHeader>1</GroupHeader>
+              <Address>metas</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>719</ID>
+                  <Description>"level"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>10</Offset>
+                    <Offset>20</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>720</ID>
+                  <Description>"exp"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>14</Offset>
+                    <Offset>20</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>721</ID>
+                  <Description>"targetExp"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>18</Offset>
+                    <Offset>20</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>722</ID>
+                  <Description>"session"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>1C</Offset>
+                    <Offset>38</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>723</ID>
+                  <Description>"gamesStarted"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>20</Offset>
+                    <Offset>38</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>724</ID>
+                  <Description>"gamesFinished"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>24</Offset>
+                    <Offset>38</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>725</ID>
+                  <Description>"gamesWon"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>28</Offset>
+                    <Offset>38</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>726</ID>
+                  <Description>"gamesLost"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>2C</Offset>
+                    <Offset>38</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>727</ID>
+                  <Description>"timeSpentInGame"</Description>
+                  <VariableType>Double</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>30</Offset>
+                    <Offset>38</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>728</ID>
+                  <Description>"timeSpentInCurrentSession"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>38</Offset>
+                    <Offset>38</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>729</ID>
+                  <Description>"highestWonDifficulty"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>3C</Offset>
+                    <Offset>38</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>730</ID>
+                  <Description>"bonusReputationRewardsPicks"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>30</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>731</ID>
+                  <Description>"bonusPreparationPoints"</Description>
+                  <Color>00FF00</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>34</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>732</ID>
+                  <Description>"bonusSeasonRewardsAmount"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>38</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>733</ID>
+                  <Description>"bonusCaravans"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>3C</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>734</ID>
+                  <Description>"bonusTradeRoutesLimit"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>40</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>735</ID>
+                  <Description>"bonusCapitalVision"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>44</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>736</ID>
+                  <Description>"bonusTownsVision"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>48</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>737</ID>
+                  <Description>"bonusEmbarkRange"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>4C</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>738</ID>
+                  <Description>"bonusTraderMerchSlots"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>50</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>739</ID>
+                  <Description>"rawDepositsChargesBonus"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>54</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>740</ID>
+                  <Description>"globalBuildingStorageBonus"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>58</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>741</ID>
+                  <Description>"bonusCornerstonesRerolls"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>00FF00</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>5C</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>742</ID>
+                  <Description>"bonusGracePeriod"</Description>
+                  <Color>00FF00</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>60</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>743</ID>
+                  <Description>"globalCapacityBonus"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>64</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>744</ID>
+                  <Description>"unlockedHubs"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>68</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>745</ID>
+                  <Description>"bonusFarmArea"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>6C</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>746</ID>
+                  <Description>"currencyMultiplayer"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>70</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>747</ID>
+                  <Description>"tradersIntervalBonusRate"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>74</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>748</ID>
+                  <Description>"traderSellPriceBonusRates"</Description>
+                  <Color>00FF00</Color>
+                  <VariableType>Float</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>78</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>749</ID>
+                  <Description>"traderMerchandisePriceBonusRates"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>7C</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>750</ID>
+                  <Description>"reputationPenaltyBonusRate"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>80</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>751</ID>
+                  <Description>"globalSpeedBonusRate"</Description>
+                  <Color>00FF00</Color>
+                  <VariableType>Float</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>84</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>752</ID>
+                  <Description>"fuelConsumptionBonusRate"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>88</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>753</ID>
+                  <Description>"newcommersGoodsBonusRate"</Description>
+                  <Color>00FF00</Color>
+                  <VariableType>Float</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>8C</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>754</ID>
+                  <Description>"globalProductionSpeedBonusRate"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>90</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>755</ID>
+                  <Description>"hearthSacraficeTimeBonusRate"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>94</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>756</ID>
+                  <Description>"farmingBonusRate"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>98</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>757</ID>
+                  <Description>"constructionSpeedBonusRate"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>9C</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>758</ID>
+                  <Description>"relicsWorkingSpeedBonusRate"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>A0</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>759</ID>
+                  <Description>"bonusEmbarkGoodsAmount"</Description>
+                  <ShowAsSigned>1</ShowAsSigned>
+                  <Color>00FF00</Color>
+                  <VariableType>Float</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>A4</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>760</ID>
+                  <Description>"globalExtraProductionChanceBonus"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>A8</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>761</ID>
+                  <Description>"grassAmountBonusRatio"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>AC</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>762</ID>
+                  <Description>"tradeRoutesEnabled"</Description>
+                  <VariableType>Byte</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>B0</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>763</ID>
+                  <Description>"timedOrdersEnabled"</Description>
+                  <VariableType>Byte</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>B1</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>764</ID>
+                  <Description>"consumptionControlEnabled"</Description>
+                  <VariableType>Byte</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>B2</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>765</ID>
+                  <Description>"dailyChallengeEnabled"</Description>
+                  <VariableType>Byte</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>B3</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>766</ID>
+                  <Description>"customGameEnabled"</Description>
+                  <VariableType>Byte</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>B4</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>767</ID>
+                  <Description>"reputationRewardsRerollEnabled"</Description>
+                  <VariableType>Byte</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>B5</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>768</ID>
+                  <Description>"goalsEnabled"</Description>
+                  <VariableType>Byte</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>B6</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>769</ID>
+                  <Description>"rainpunkEnabled"</Description>
+                  <VariableType>Byte</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>B7</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356787</ID>
+                  <Description>"mineUpgradesEnabled"</Description>
+                  <VariableType>Byte</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>B8</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356788</ID>
+                  <Description>"blightPostUpgradesEnabled"</Description>
+                  <VariableType>Byte</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>B9</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356789</ID>
+                  <Description>"mainStorageHaulersEnabled"</Description>
+                  <VariableType>Byte</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>BA</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356790</ID>
+                  <Description>"secondaryStorageHaulersEnabled"</Description>
+                  <VariableType>Byte</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>BB</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356791</ID>
+                  <Description>"homeEnbabled"</Description>
+                  <VariableType>Byte</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>BC</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>773</ID>
+                  <Description>"homeEnbabled"</Description>
+                  <VariableType>Byte</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>BB</Offset>
+                    <Offset>98</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>774</ID>
+                  <Description>"isIronman"</Description>
+                  <VariableType>Byte</VariableType>
+                  <Address>+38</Address>
+                  <Offsets>
+                    <Offset>B0</Offset>
+                  </Offsets>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>665</ID>
+          <Description>"No charges lost deposit? v2"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{  Game Executable   : Against the Storm.exe
+   Author            : Tuuup!
+   Executable Version: 2021.3.27.16379
+   Script Date       : 2023-12-10
+}
+[ENABLE]
+aobscanregion(depositcharges,Eremite.MapObjects.ResourceDeposit:RemoveCharge,Eremite.MapObjects.ResourceDeposit:RemoveCharge+30,FF C9 45 33 C0 33)
+registersymbol(depositcharges depositchargesbkp)
+alloc(depositchargesbkp,2,depositcharges)
+
+depositchargesbkp:
+readmem(depositcharges,2)
+
+depositcharges:
+nop 2
+
+[DISABLE]
+depositcharges:
+ // db FF C9 45 33 C0
+readmem(depositchargesbkp,2)
+unregistersymbol(*)
+dealloc(*)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Eremite.MapObjects.ResourceDeposit:RemoveCharge+1b
+
+37408BBEB: 05 04 03 01 50                 - add eax,50010304
+37408BBF0: 00 00                          - add [rax],al
+37408BBF2: 00 00                          - add [rax],al
+37408BBF4: 00 00                          - add [rax],al
+37408BBF6: 00 00                          - add [rax],al
+37408BBF8: 00 00                          - add [rax],al
+37408BBFA: 00 00                          - add [rax],al
+37408BBFC: 00 00                          - add [rax],al
+37408BBFE: 00 00                          - add [rax],al
+37408BC00: 00 00                          - add [rax],al
+37408BC02: 41 BB 20 02 5A 23              - mov r11d,235A0220
+37408BC08: 41 FF D3                       - call r11
+37408BC0B: 04 38                          - add al,38
+37408BC0D: 82 67 6E 00                    - and byte ptr [rdi+6E],00
+37408BC11: 00 00                          - add [rax],al
+37408BC13: 00 00                          - add [rax],al
+37408BC15: 00 00                          - add [rax],al
+37408BC17: 00 00                          - add [rax],al
+37408BC19: 00 00                          - add [rax],al
+37408BC1B: 00 00                          - add [rax],al
+37408BC1D: 00 00                          - add [rax],al
+37408BC1F: 00 55 48                       - add [rbp+48],dl
+Eremite.MapObjects.ResourceDeposit:RemoveCharge+2: 8B EC                          - mov ebp,esp
+Eremite.MapObjects.ResourceDeposit:RemoveCharge+4: 48 83 EC 30                    - sub rsp,30
+Eremite.MapObjects.ResourceDeposit:RemoveCharge+8: 48 89 75 F8                    - mov [rbp-08],rsi
+Eremite.MapObjects.ResourceDeposit:RemoveCharge+c: 48 8B F1                       - mov rsi,rcx
+Eremite.MapObjects.ResourceDeposit:RemoveCharge+f: 48 8B 46 28                    - mov rax,[rsi+28]
+Eremite.MapObjects.ResourceDeposit:RemoveCharge+13: 48 8B 4E 28                    - mov rcx,[rsi+28]
+Eremite.MapObjects.ResourceDeposit:RemoveCharge+17: 48 63 49 3C                    - movsxd  rcx,dword ptr [rcx+3C]
+Eremite.MapObjects.ResourceDeposit:RemoveCharge+1b: FF C9                          - dec ecx
+// ---------- INJECTING HERE ----------
+Eremite.MapObjects.ResourceDeposit:RemoveCharge+1d: 45 33 C0                       - xor r8d,r8d
+// ---------- DONE INJECTING  ----------
+Eremite.MapObjects.ResourceDeposit:RemoveCharge+20: 33 D2                          - xor edx,edx
+Eremite.MapObjects.ResourceDeposit:RemoveCharge+22: 44 3B C1                       - cmp r8d,ecx
+Eremite.MapObjects.ResourceDeposit:RemoveCharge+25: 48 0F 4F CA                    - cmovg rcx,rdx
+Eremite.MapObjects.ResourceDeposit:RemoveCharge+29: 89 48 3C                       - mov [rax+3C],ecx
+Eremite.MapObjects.ResourceDeposit:RemoveCharge+2c: 66 90                          - nop 2
+Eremite.MapObjects.ResourceDeposit:RemoveCharge+2e: 49 BB DB BC 08 74 03 00 00 00  - mov r11,000000037408BCDB
+Eremite.MapObjects.ResourceDeposit:RemoveCharge+38: 41 FF D3                       - call r11
+Eremite.MapObjects.ResourceDeposit:RemoveCharge+3b: 48 8B C8                       - mov rcx,rax
+Eremite.MapObjects.ResourceDeposit:RemoveCharge+3e: 48 8B 00                       - mov rax,[rax]
+Eremite.MapObjects.ResourceDeposit:RemoveCharge+41: 49 BA E8 1A 33 72 03 00 00 00  - mov r10,0000000372331AE8
+Eremite.MapObjects.ResourceDeposit:RemoveCharge+4b: FF 50 B8                       - call qword ptr [rax-48]
+Eremite.MapObjects.ResourceDeposit:RemoveCharge+4e: 48 8B C8                       - mov rcx,rax
+Eremite.MapObjects.ResourceDeposit:RemoveCharge+51: 48 8B D6                       - mov rdx,rsi
+Eremite.MapObjects.ResourceDeposit:RemoveCharge+54: 83 38 00                       - cmp dword ptr [rax],00
+Eremite.MapObjects.ResourceDeposit:RemoveCharge+57: 48 8D AD 00 00 00 00           - lea rbp,[rbp+00000000]
+Eremite.MapObjects.ResourceDeposit:RemoveCharge+5e: 49 BB B3 BC 08 74 03 00 00 00  - mov r11,000000037408BCB3
+Eremite.MapObjects.ResourceDeposit:RemoveCharge+68: 41 FF D3                       - call r11
+Eremite.MapObjects.ResourceDeposit:RemoveCharge+6b: 48 8B 75 F8                    - mov rsi,[rbp-08]
+Eremite.MapObjects.ResourceDeposit:RemoveCharge+6f: 48 8D 65 00                    - lea rsp,[rbp+00]
+Eremite.MapObjects.ResourceDeposit:RemoveCharge+73: 5D                             - pop rbp
+Eremite.MapObjects.ResourceDeposit:RemoveCharge+74: C3                             - ret 
+37408BC95: 00 00                          - add [rax],al
+37408BC97: 00 01                          - add [rcx],al
+37408BC99: 04 02                          - add al,02
+37408BC9B: 05 04 03 01 50                 - add eax,50010304
+37408BCA0: 00 00                          - add [rax],al
+37408BCA2: 00 00                          - add [rax],al
+37408BCA4: 00 00                          - add [rax],al
+37408BCA6: 00 00                          - add [rax],al
+37408BCA8: 00 00                          - add [rax],al
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>776</ID>
+          <Description>"Reputation"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript Async="1">{  Game Executable   : Against the Storm.exe
+   Author            : Tuuup!
+   Executable Version: 2021.3.27.16379
+   Script Date       : 2023-08-28
+}
+[ENABLE]
+aobscanregion(queenrep,Eremite.Services.StateService:get_GameObjectives+b,Eremite.Services.StateService:get_GameObjectives+1b,48 8B 46 48 48 8B 40 78 48)
+registersymbol(queenrep queenrepbkp rep)
+alloc(newmem,128,queenrep)
+label(return rep)
+label(queenrepbkp)
+
+newmem:
+
+  mov rax,[rsi+48]
+  mov rax,[rax+78]
+  mov [rep],rax
+  jmp return
+  
+queenrepbkp:
+readmem(queenrep,8)
+rep:
+dq 0
+queenrep:
+  jmp newmem
+  nop 3
+return:
+
+[DISABLE]
+queenrep:
+ // db 48 8B 46 48 48 8B 40 78
+readmem(queenrepbkp,8)
+unregistersymbol(*)
+dealloc(*)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Eremite.Services.StateService:get_GameObjectives+b
+
+328FC46A5: 41 FF 23                       - jmp qword ptr [r11]
+328FC46A8: 75 0D                          - jne 328FC46B7
+328FC46AA: 49 BB 30 57 1B 73 03 00 00 00  - mov r11,00000003731B5730
+328FC46B4: 41 FF 23                       - jmp qword ptr [r11]
+328FC46B7: 49 BB F8 B3 16 73 03 00 00 00  - mov r11,000000037316B3F8
+328FC46C1: 4D 3B D3                       - cmp r10,r11
+328FC46C4: 75 0D                          - jne 328FC46D3
+328FC46C6: 49 BB B0 57 1B 73 03 00 00 00  - mov r11,00000003731B57B0
+328FC46D0: 41 FF 23                       - jmp qword ptr [r11]
+328FC46D3: 49 BB 38 58 1B 73 03 00 00 00  - mov r11,00000003731B5838
+328FC46DD: 41 FF 23                       - jmp qword ptr [r11]
+328FC46E0: 01 00                          - add [rax],eax
+328FC46E2: 00 00                          - add [rax],al
+328FC46E4: 00 00                          - add [rax],al
+328FC46E6: 00 00                          - add [rax],al
+328FC46E8: 00 00                          - add [rax],al
+328FC46EA: 00 00                          - add [rax],al
+328FC46EC: 00 00                          - add [rax],al
+328FC46EE: 00 00                          - add [rax],al
+328FC46F0: 00 00                          - add [rax],al
+328FC46F2: 00 00                          - add [rax],al
+328FC46F4: 00 00                          - add [rax],al
+328FC46F6: 00 00                          - add [rax],al
+328FC46F8: 00 00                          - add [rax],al
+328FC46FA: 00 00                          - add [rax],al
+328FC46FC: 00 00                          - add [rax],al
+328FC46FE: 00 00                          - add [rax],al
+Eremite.Services.StateService:get_GameObjectives: 48 83 EC 08                    - sub rsp,08
+Eremite.Services.StateService:get_GameObjectives+4: 48 89 34 24                    - mov [rsp],rsi
+Eremite.Services.StateService:get_GameObjectives+8: 48 8B F1                       - mov rsi,rcx
+// ---------- INJECTING HERE ----------
+Eremite.Services.StateService:get_GameObjectives+b: 48 8B 46 48                    - mov rax,[rsi+48]
+// ---------- DONE INJECTING  ----------
+Eremite.Services.StateService:get_GameObjectives+f: 48 8B 40 78                    - mov rax,[rax+78]
+Eremite.Services.StateService:get_GameObjectives+13: 48 8B 34 24                    - mov rsi,[rsp]
+Eremite.Services.StateService:get_GameObjectives+17: 48 83 C4 08                    - add rsp,08
+Eremite.Services.StateService:get_GameObjectives+1b: C3                             - ret 
+328FC471C: 00 00                          - add [rax],al
+328FC471E: 00 00                          - add [rax],al
+328FC4720: 01 04 01                       - add [rcx+rax],eax
+328FC4723: 00 04 02                       - add [rdx+rax],al
+328FC4726: 00 00                          - add [rax],al
+328FC4728: 00 00                          - add [rax],al
+328FC472A: 00 00                          - add [rax],al
+328FC472C: 00 00                          - add [rax],al
+328FC472E: 00 00                          - add [rax],al
+328FC4730: 00 00                          - add [rax],al
+328FC4732: 00 00                          - add [rax],al
+328FC4734: 00 00                          - add [rax],al
+328FC4736: 00 00                          - add [rax],al
+328FC4738: 00 00                          - add [rax],al
+328FC473A: 41 BB F0 0E 4A 23              - mov r11d,234A0EF0
+328FC4740: 41 FF D3                       - call r11
+328FC4743: 08 78 D0                       - or [rax-30],bh
+328FC4746: 6B 79 03 00                    - imul edi,[rcx+03],00
+328FC474A: 00 00                          - add [rax],al
+328FC474C: 00 00                          - add [rax],al
+328FC474E: 00 00                          - add [rax],al
+328FC4750: 00 00                          - add [rax],al
+328FC4752: 00 00                          - add [rax],al
+328FC4754: 00 00                          - add [rax],al
+328FC4756: 00 00                          - add [rax],al
+328FC4758: 00 00                          - add [rax],al
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>777</ID>
+              <Description>"base address"</Description>
+              <ShowAsSigned>1</ShowAsSigned>
+              <GroupHeader>1</GroupHeader>
+              <Address>rep</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>778</ID>
+                  <Description>"finished"</Description>
+                  <VariableType>Byte</VariableType>
+                  <Address>+18</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>779</ID>
+                  <Description>"reputation"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+1C</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>780</ID>
+                  <Description>"reputationPenalty Queen's Impatience"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+20</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>781</ID>
+                  <Description>"reputationPenaltyRate"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+24</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>782</ID>
+                  <Description>"gracePeriodLeft"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+28</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>783</ID>
+                  <Description>"hasWon"</Description>
+                  <VariableType>Byte</VariableType>
+                  <Address>+2C</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>784</ID>
+                  <Description>"hasLost"</Description>
+                  <VariableType>Byte</VariableType>
+                  <Address>+2D</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>666</ID>
+          <Description>"Selected deposit v2"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{  Game Executable   : Against the Storm.exe
+   Author            : Tuuup!
+   Executable Version: 2021.3.27.16379
+   Script Date       : 2023-12-10
+}
+[ENABLE]
+aobscanregion(selecdeposit,Eremite.MapObjects.UI.DepositPanel:SetUpCharges,Eremite.MapObjects.UI.DepositPanel:SetUpCharges+30,83 3A 00 48 8B 49 28 48 63 49 3C)
+registersymbol(selecdeposit selecdepositbkp depo)
+alloc(newmem,128,selecdeposit)
+label(return depo)
+label(selecdepositbkp)
+
+newmem:
+  mov [depo],rdx
+  cmp dword ptr [rdx],00
+  mov rcx,[rcx+28]
+  jmp return
+  
+selecdepositbkp:
+readmem(selecdeposit,7)
+depo:
+dq 0
+selecdeposit:
+  jmp newmem
+  nop 2
+return:
+
+[DISABLE]
+selecdeposit:
+ // db 83 3A 00 48 8B 49 28
+readmem(selecdepositbkp,7)
+unregistersymbol(*)
+dealloc(*)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Eremite.MapObjects.UI.DepositPanel:SetUpCharges+1a
+
+Eremite.Buildings.Hearth:ClampBurningTime+50: F2 0F 5A C0                    - cvtsd2ss xmm0,xmm0
+Eremite.Buildings.Hearth:ClampBurningTime+54: 66 90                          - nop 2
+Eremite.Buildings.Hearth:ClampBurningTime+56: 49 BB 60 DA EF 72 00 00 00 00  - mov r11,UnityEngine.Mathf:Clamp
+Eremite.Buildings.Hearth:ClampBurningTime+60: 41 FF D3                       - call r11
+Eremite.Buildings.Hearth:ClampBurningTime+63: F3 0F 5A C0                    - cvtss2sd xmm0,xmm0
+Eremite.Buildings.Hearth:ClampBurningTime+67: F2 0F 5A C0                    - cvtsd2ss xmm0,xmm0
+Eremite.Buildings.Hearth:ClampBurningTime+6b: 48 8B 75 F8                    - mov rsi,[rbp-08]
+Eremite.Buildings.Hearth:ClampBurningTime+6f: 48 8D 65 00                    - lea rsp,[rbp+00]
+Eremite.Buildings.Hearth:ClampBurningTime+73: 5D                             - pop rbp
+Eremite.Buildings.Hearth:ClampBurningTime+74: C3                             - ret 
+37408BAB5: 00 00                          - add [rax],al
+37408BAB7: 00 01                          - add [rcx],al
+37408BAB9: 04 02                          - add al,02
+37408BABB: 05 04 03 01 50                 - add eax,50010304
+37408BAC0: 00 00                          - add [rax],al
+37408BAC2: 00 00                          - add [rax],al
+37408BAC4: 00 00                          - add [rax],al
+37408BAC6: 00 00                          - add [rax],al
+37408BAC8: 00 00                          - add [rax],al
+37408BACA: 00 00                          - add [rax],al
+37408BACC: 00 00                          - add [rax],al
+37408BACE: 00 00                          - add [rax],al
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges: 55                             - push rbp
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+1: 48 8B EC                       - mov rbp,rsp
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+4: 48 83 EC 50                    - sub rsp,50
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+8: 48 89 75 F8                    - mov [rbp-08],rsi
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+c: 48 8B F1                       - mov rsi,rcx
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+f: 48 8B 46 48                    - mov rax,[rsi+48]
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+13: 48 8B 4E 70                    - mov rcx,[rsi+70]
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+17: 48 8B D1                       - mov rdx,rcx
+// ---------- INJECTING HERE ----------
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+1a: 83 3A 00                       - cmp dword ptr [rdx],00
+// ---------- DONE INJECTING  ----------
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+1d: 48 8B 49 28                    - mov rcx,[rcx+28]
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+21: 48 63 49 3C                    - movsxd  rcx,dword ptr [rcx+3C]
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+25: F3 0F 2A C1                    - cvtsi2ss xmm0,ecx
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+29: F3 0F 5A C0                    - cvtss2sd xmm0,xmm0
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+2d: 48 8B 4E 70                    - mov rcx,[rsi+70]
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+31: 48 8B D1                       - mov rdx,rcx
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+34: 83 3A 00                       - cmp dword ptr [rdx],00
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+37: 48 8B 49 28                    - mov rcx,[rcx+28]
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+3b: 48 63 49 40                    - movsxd  rcx,dword ptr [rcx+40]
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+3f: F3 0F 2A C9                    - cvtsi2ss xmm1,ecx
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+43: F3 0F 5A C9                    - cvtss2sd xmm1,xmm1
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+47: F2 0F 5E C1                    - divsd xmm0,xmm1
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+4b: 48 8B C8                       - mov rcx,rax
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+4e: F2 0F 10 C8                    - movsd xmm1,xmm0
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+52: F2 0F 5A C9                    - cvtsd2ss xmm1,xmm1
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+56: 48 8B 00                       - mov rax,[rax]
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+59: FF 90 F8 01 00 00              - call qword ptr [rax+000001F8]
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+5f: 48 8B 46 40                    - mov rax,[rsi+40]
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+63: 48 89 45 F0                    - mov [rbp-10],rax
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+67: 48 8B 46 70                    - mov rax,[rsi+70]
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+6b: 48 8B C8                       - mov rcx,rax
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+6e: 83 39 00                       - cmp dword ptr [rcx],00
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+71: 48 8B 40 28                    - mov rax,[rax+28]
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+75: 48 63 40 3C                    - movsxd  rax,dword ptr [rax+3C]
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+79: 48 89 45 D8                    - mov [rbp-28],rax
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+7d: B9 68 E0 25 6E                 - mov ecx,6E25E068
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+82: 48 8D 6D 00                    - lea rbp,[rbp+00]
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+86: 49 BB D0 0F 63 23 00 00 00 00  - mov r11,System.Object:__icall_wrapper_ves_icall_object_new_specific
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+90: 41 FF D3                       - call r11
+Eremite.MapObjects.UI.DepositPanel:SetUpCharges+93: 48 8B 4D D8                    - mov rcx,[rbp-28]
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>602</ID>
+              <Description>"base address"</Description>
+              <ShowAsSigned>1</ShowAsSigned>
+              <GroupHeader>1</GroupHeader>
+              <Address>depo</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>603</ID>
+                  <Description>"Value"</Description>
+                  <VariableType>String</VariableType>
+                  <Length>128</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>+28</Address>
+                  <Offsets>
+                    <Offset>14</Offset>
+                    <Offset>10</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>604</ID>
+                  <Description>"isActive"</Description>
+                  <VariableType>Byte</VariableType>
+                  <Address>+28</Address>
+                  <Offsets>
+                    <Offset>24</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>605</ID>
+                  <Description>"chargesLeft"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+28</Address>
+                  <Offsets>
+                    <Offset>3C</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>606</ID>
+                  <Description>"maxCharges"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+28</Address>
+                  <Offsets>
+                    <Offset>40</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>607</ID>
+                  <Description>"isAvailable"</Description>
+                  <VariableType>Byte</VariableType>
+                  <Address>+28</Address>
+                  <Offsets>
+                    <Offset>44</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356785</ID>
+                  <Description>"canRegenerate"</Description>
+                  <VariableType>Byte</VariableType>
+                  <Address>+30</Address>
+                  <Offsets>
+                    <Offset>B8</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356786</ID>
+                  <Description>"regenerationTime"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+30</Address>
+                  <Offsets>
+                    <Offset>BC</Offset>
+                  </Offsets>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>573</ID>
+          <Description>"Selected race (press the arrow next to the portrait?) v2"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{  Game Executable   : Against the Storm.exe
+   Author            : Tuuup!
+   Executable Version: 2021.3.27.16379
+   Script Date       : 2023-08-28
+}
+[ENABLE]
+aobscanregion(selectedrace,Eremite.Characters.UI.RaceNeedTooltip:Show+28,Eremite.Characters.UI.RaceNeedTooltip:Show+A8,0F B6 00 85 C0 74 1C)
+registersymbol(selectedrace selectedracebkp race)
+alloc(newmem,128,selectedrace)
+label(return race)
+label(selectedracebkp)
+
+newmem:
+  mov [race],rcx
+  movzx eax,byte ptr [rax]
+  test eax,eax
+  jmp return
+  
+selectedracebkp:
+readmem(selectedrace,5)
+race:
+dq 0
+selectedrace:
+  jmp newmem
+return:
+
+[DISABLE]
+selectedrace:
+ // db 0F B6 00 85 C0
+readmem(selectedracebkp,5)
+unregistersymbol(*)
+dealloc(*)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Eremite.Characters.UI.RaceNeedTooltip:Show+28
+
+Eremite.Sound.RaceAmbientManager+&lt;&gt;c__DisplayClass10_0:&lt;PlayAmbient&gt;b__0+13: 48 8B 56 18                    - mov rdx,[rsi+18]
+Eremite.Sound.RaceAmbientManager+&lt;&gt;c__DisplayClass10_0:&lt;PlayAmbient&gt;b__0+17: 48 8D AD 00 00 00 00           - lea rbp,[rbp+00000000]
+Eremite.Sound.RaceAmbientManager+&lt;&gt;c__DisplayClass10_0:&lt;PlayAmbient&gt;b__0+1e: 49 BB A0 4A 3C 52 03 00 00 00  - mov r11,Eremite.Sound.RaceAmbientManager:PlayAmbient
+Eremite.Sound.RaceAmbientManager+&lt;&gt;c__DisplayClass10_0:&lt;PlayAmbient&gt;b__0+28: 41 FF D3                       - call r11
+Eremite.Sound.RaceAmbientManager+&lt;&gt;c__DisplayClass10_0:&lt;PlayAmbient&gt;b__0+2b: 48 8B 75 F8                    - mov rsi,[rbp-08]
+Eremite.Sound.RaceAmbientManager+&lt;&gt;c__DisplayClass10_0:&lt;PlayAmbient&gt;b__0+2f: 48 8D 65 00                    - lea rsp,[rbp+00]
+Eremite.Sound.RaceAmbientManager+&lt;&gt;c__DisplayClass10_0:&lt;PlayAmbient&gt;b__0+33: 5D                             - pop rbp
+Eremite.Sound.RaceAmbientManager+&lt;&gt;c__DisplayClass10_0:&lt;PlayAmbient&gt;b__0+34: C3                             - ret 
+3523EC545: 00 00                          - add [rax],al
+3523EC547: 00 01                          - add [rcx],al
+3523EC549: 04 02                          - add al,02
+3523EC54B: 05 04 03 01 50                 - add eax,50010304
+3523EC550: 00 00                          - add [rax],al
+3523EC552: 00 00                          - add [rax],al
+3523EC554: 00 00                          - add [rax],al
+3523EC556: 00 00                          - add [rax],al
+3523EC558: 00 00                          - add [rax],al
+3523EC55A: 00 00                          - add [rax],al
+3523EC55C: 00 00                          - add [rax],al
+3523EC55E: 00 00                          - add [rax],al
+Eremite.Characters.UI.RaceNeedTooltip:Show: 55                             - push rbp
+Eremite.Characters.UI.RaceNeedTooltip:Show+1: 48 8B EC                       - mov rbp,rsp
+Eremite.Characters.UI.RaceNeedTooltip:Show+4: 48 83 EC 40                    - sub rsp,40
+Eremite.Characters.UI.RaceNeedTooltip:Show+8: 48 89 7D F0                    - mov [rbp-10],rdi
+Eremite.Characters.UI.RaceNeedTooltip:Show+c: 4C 89 75 F8                    - mov [rbp-08],r14
+Eremite.Characters.UI.RaceNeedTooltip:Show+10: 4C 8B F1                       - mov r14,rcx
+Eremite.Characters.UI.RaceNeedTooltip:Show+13: 48 89 55 E8                    - mov [rbp-18],rdx
+Eremite.Characters.UI.RaceNeedTooltip:Show+17: 49 8B F8                       - mov rdi,r8
+Eremite.Characters.UI.RaceNeedTooltip:Show+1a: 4C 89 4D E0                    - mov [rbp-20],r9
+Eremite.Characters.UI.RaceNeedTooltip:Show+1e: 48 B8 E9 C0 37 41 03 00 00 00  - mov rax,000000034137C0E9
+// ---------- INJECTING HERE ----------
+Eremite.Characters.UI.RaceNeedTooltip:Show+28: 0F B6 00                       - movzx eax,byte ptr [rax]
+// ---------- DONE INJECTING  ----------
+Eremite.Characters.UI.RaceNeedTooltip:Show+2b: 85 C0                          - test eax,eax
+Eremite.Characters.UI.RaceNeedTooltip:Show+2d: 74 1C                          - je Eremite.Characters.UI.RaceNeedTooltip:Show+4b
+Eremite.Characters.UI.RaceNeedTooltip:Show+2f: 49 BA B8 F2 33 4B 03 00 00 00  - mov r10,000000034B33F2B8
+Eremite.Characters.UI.RaceNeedTooltip:Show+39: 48 8B CF                       - mov rcx,rdi
+Eremite.Characters.UI.RaceNeedTooltip:Show+3c: 66 90                          - nop 2
+Eremite.Characters.UI.RaceNeedTooltip:Show+3e: 49 BB 6F C6 3E 52 03 00 00 00  - mov r11,00000003523EC66F
+Eremite.Characters.UI.RaceNeedTooltip:Show+48: 41 FF D3                       - call r11
+Eremite.Characters.UI.RaceNeedTooltip:Show+4b: 48 8B 45 E0                    - mov rax,[rbp-20]
+Eremite.Characters.UI.RaceNeedTooltip:Show+4f: 49 89 86 B0 00 00 00           - mov [r14+000000B0],rax
+Eremite.Characters.UI.RaceNeedTooltip:Show+56: 49 89 BE A8 00 00 00           - mov [r14+000000A8],rdi
+Eremite.Characters.UI.RaceNeedTooltip:Show+5d: 49 8B CE                       - mov rcx,r14
+Eremite.Characters.UI.RaceNeedTooltip:Show+60: 48 8D 64 24 00                 - lea rsp,[rsp+00]
+Eremite.Characters.UI.RaceNeedTooltip:Show+65: 90                             - nop 
+Eremite.Characters.UI.RaceNeedTooltip:Show+66: 49 BB D0 05 3F 52 03 00 00 00  - mov r11,Eremite.Characters.UI.RaceNeedTooltip:SetUpIcon
+Eremite.Characters.UI.RaceNeedTooltip:Show+70: 41 FF D3                       - call r11
+Eremite.Characters.UI.RaceNeedTooltip:Show+73: 49 8B CE                       - mov rcx,r14
+Eremite.Characters.UI.RaceNeedTooltip:Show+76: 49 BB 50 06 3F 52 03 00 00 00  - mov r11,Eremite.Characters.UI.RaceNeedTooltip:SetUpDynamicTexts
+Eremite.Characters.UI.RaceNeedTooltip:Show+80: 41 FF D3                       - call r11
+Eremite.Characters.UI.RaceNeedTooltip:Show+83: 49 8B CE                       - mov rcx,r14
+Eremite.Characters.UI.RaceNeedTooltip:Show+86: 48 8B 55 E8                    - mov rdx,[rbp-18]
+Eremite.Characters.UI.RaceNeedTooltip:Show+8a: 45 33 C0                       - xor r8d,r8d
+Eremite.Characters.UI.RaceNeedTooltip:Show+8d: 90                             - nop 
+Eremite.Characters.UI.RaceNeedTooltip:Show+8e: 49 BB 70 CB 37 52 03 00 00 00  - mov r11,Eremite.Tooltip:AnimateShow
+Eremite.Characters.UI.RaceNeedTooltip:Show+98: 41 FF D3                       - call r11
+Eremite.Characters.UI.RaceNeedTooltip:Show+9b: 48 8B 7D F0                    - mov rdi,[rbp-10]
+Eremite.Characters.UI.RaceNeedTooltip:Show+9f: 4C 8B 75 F8                    - mov r14,[rbp-08]
+Eremite.Characters.UI.RaceNeedTooltip:Show+a3: 48 8D 65 00                    - lea rsp,[rbp+00]
+Eremite.Characters.UI.RaceNeedTooltip:Show+a7: 5D                             - pop rbp
+Eremite.Characters.UI.RaceNeedTooltip:Show+a8: C3                             - ret 
+3523EC609: 00 00                          - add [rax],al
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>574</ID>
+              <Description>"base address"</Description>
+              <ShowAsSigned>1</ShowAsSigned>
+              <GroupHeader>1</GroupHeader>
+              <Address>race</Address>
+              <Offsets>
+                <Offset>0</Offset>
+              </Offsets>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>356735</ID>
+                  <Description>"Value"</Description>
+                  <VariableType>String</VariableType>
+                  <Length>128</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>+B0</Address>
+                  <Offsets>
+                    <Offset>14</Offset>
+                    <Offset>58</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356716</ID>
+                  <Description>"isActive"</Description>
+                  <VariableType>Byte</VariableType>
+                  <Address>+B0</Address>
+                  <Offsets>
+                    <Offset>160</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356717</ID>
+                  <Description>"isEssential"</Description>
+                  <VariableType>Byte</VariableType>
+                  <Address>+B0</Address>
+                  <Offsets>
+                    <Offset>161</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356718</ID>
+                  <Description>"order"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+B0</Address>
+                  <Offsets>
+                    <Offset>164</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356719</ID>
+                  <Description>"baseSpeed"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+B0</Address>
+                  <Offsets>
+                    <Offset>168</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356720</ID>
+                  <Description>"initialResolve"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+B0</Address>
+                  <Offsets>
+                    <Offset>16C</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356721</ID>
+                  <Description>"minResolve"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+B0</Address>
+                  <Offsets>
+                    <Offset>170</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356722</ID>
+                  <Description>"maxResolve"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+B0</Address>
+                  <Offsets>
+                    <Offset>174</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356723</ID>
+                  <Description>"resolvePositveChangePerSec"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+B0</Address>
+                  <Offsets>
+                    <Offset>178</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356724</ID>
+                  <Description>"resolveNegativeChangePerSec"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+B0</Address>
+                  <Offsets>
+                    <Offset>17C</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356725</ID>
+                  <Description>"resolveNegativeChangeDiffFactor"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+B0</Address>
+                  <Offsets>
+                    <Offset>180</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356726</ID>
+                  <Description>"reputationPerSec"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+B0</Address>
+                  <Offsets>
+                    <Offset>184</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356727</ID>
+                  <Description>"minPopulationToGainReputation"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+B0</Address>
+                  <Offsets>
+                    <Offset>188</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356728</ID>
+                  <Description>"resolveForReputationTreshold"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+B0</Address>
+                  <Offsets>
+                    <Offset>18C</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356729</ID>
+                  <Description>"maxReputationFromResolvePerSec"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+B0</Address>
+                  <Offsets>
+                    <Offset>194</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356730</ID>
+                  <Description>"reputationTresholdIncreasePerReputation"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+B0</Address>
+                  <Offsets>
+                    <Offset>198</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356731</ID>
+                  <Description>"resolveToReputationRatio"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+B0</Address>
+                  <Offsets>
+                    <Offset>19C</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356732</ID>
+                  <Description>"populationToReputationRatio"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+B0</Address>
+                  <Offsets>
+                    <Offset>1A0</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356733</ID>
+                  <Description>"needsInterval"</Description>
+                  <VariableType>Float</VariableType>
+                  <Address>+B0</Address>
+                  <Offsets>
+                    <Offset>1A4</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>356734</ID>
+                  <Description>"hungerTolerance"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>+B0</Address>
+                  <Offsets>
+                    <Offset>1A8</Offset>
+                  </Offsets>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>356794</ID>
+      <Description>"Inf Ore Mine"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Against the Storm.exe
+  Version: 
+  Date   : 2024-04-04
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+define(address,Eremite.MapObjects.Ore:RemoveMainCharge+56)
+define(bytes,FF C9 89 08 B8 01 00 00 00)
+
+[ENABLE]
+
+
+assert(address,bytes)
+alloc(newmem,$1000,Eremite.MapObjects.Ore:RemoveMainCharge+56)
+
+label(code)
+label(return)
+
+newmem:
+  inc ecx
+code:
+  dec ecx
+  mov [rax],ecx
+  mov eax,00000001
+  jmp return
+
+address:
+  jmp newmem
+  nop 4
+return:
+
+[DISABLE]
+
+address:
+  db bytes
+  // dec ecx
+  // mov [rax],ecx
+  // mov eax,00000001
+
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Eremite.MapObjects.Ore:RemoveMainCharge+56
+
+Eremite.MapObjects.Ore:RemoveMainCharge+33: 33 C0                          - xor eax,eax
+Eremite.MapObjects.Ore:RemoveMainCharge+35: EB 28                          - jmp Eremite.MapObjects.Ore:RemoveMainCharge+5f
+Eremite.MapObjects.Ore:RemoveMainCharge+37: 48 8B 47 20                    - mov rax,[rdi+20]
+Eremite.MapObjects.Ore:RemoveMainCharge+3b: 48 8B 40 18                    - mov rax,[rax+18]
+Eremite.MapObjects.Ore:RemoveMainCharge+3f: 48 63 CE                       - movsxd  rcx,esi
+Eremite.MapObjects.Ore:RemoveMainCharge+42: 39 48 18                       - cmp [rax+18],ecx
+Eremite.MapObjects.Ore:RemoveMainCharge+45: 0F 86 22 00 00 00              - jbe Eremite.MapObjects.Ore:RemoveMainCharge+6d
+Eremite.MapObjects.Ore:RemoveMainCharge+4b: 48 8D 44 88 20                 - lea rax,[rax+rcx*4+20]
+Eremite.MapObjects.Ore:RemoveMainCharge+50: 48 8B D0                       - mov rdx,rax
+Eremite.MapObjects.Ore:RemoveMainCharge+53: 48 63 08                       - movsxd  rcx,dword ptr [rax]
+// ---------- INJECTING HERE ----------
+Eremite.MapObjects.Ore:RemoveMainCharge+56: FF C9                          - dec ecx
+// ---------- DONE INJECTING  ----------
+Eremite.MapObjects.Ore:RemoveMainCharge+58: 89 08                          - mov [rax],ecx
+Eremite.MapObjects.Ore:RemoveMainCharge+5a: B8 01 00 00 00                 - mov eax,00000001
+Eremite.MapObjects.Ore:RemoveMainCharge+5f: 48 8B 34 24                    - mov rsi,[rsp]
+Eremite.MapObjects.Ore:RemoveMainCharge+63: 48 8B 7C 24 08                 - mov rdi,[rsp+08]
+Eremite.MapObjects.Ore:RemoveMainCharge+68: 48 83 C4 18                    - add rsp,18
+Eremite.MapObjects.Ore:RemoveMainCharge+6c: C3                             - ret 
+Eremite.MapObjects.Ore:RemoveMainCharge+6d: BA 46 00 00 00                 - mov edx,00000046
+Eremite.MapObjects.Ore:RemoveMainCharge+72: B9 46 01 00 00                 - mov ecx,00000146
+Eremite.MapObjects.Ore:RemoveMainCharge+77: 48 8D AD 00 00 00 00           - lea rbp,[rbp+00000000]
+Eremite.MapObjects.Ore:RemoveMainCharge+7e: 49 BB 60 1F 54 1A 12 02 00 00  - mov r11,000002121A541F60
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>Eremite.Controller.Effects.HookTracker`1[T_REF]:Fire+45</Description>
+      <AddressString>1E32A1CFB15</AddressString>
+      <Before>
+        <Byte>63</Byte>
+        <Byte>48</Byte>
+        <Byte>28</Byte>
+        <Byte>FF</Byte>
+        <Byte>C1</Byte>
+      </Before>
+      <Actual>
+        <Byte>89</Byte>
+        <Byte>48</Byte>
+        <Byte>28</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>45</Byte>
+        <Byte>F8</Byte>
+        <Byte>48</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+  <Structures StructVersion="2">
+    <Structure Name="party" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="0" Vartype="Pointer" Bytesize="8" OffsetHex="00000000" DisplayMethod="unsigned integer"/>
+        <Element Offset="8" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000008" DisplayMethod="unsigned integer"/>
+        <Element Offset="16" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="00000010" DisplayMethod="unsigned integer"/>
+        <Element Offset="40" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000028" DisplayMethod="unsigned integer"/>
+        <Element Offset="48" Vartype="Pointer" Bytesize="8" RLECount="5" OffsetHex="00000030" DisplayMethod="unsigned integer"/>
+        <Element Offset="88" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="00000058" DisplayMethod="unsigned integer"/>
+        <Element Offset="92" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000005C" DisplayMethod="unsigned integer"/>
+        <Element Offset="96" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000060" DisplayMethod="unsigned integer"/>
+        <Element Offset="112" Vartype="4 Bytes" Bytesize="4" RLECount="10" OffsetHex="00000070" DisplayMethod="unsigned integer"/>
+        <Element Offset="152" Vartype="Pointer" Bytesize="8" OffsetHex="00000098" DisplayMethod="unsigned integer"/>
+        <Element Offset="160" Vartype="4 Bytes" Bytesize="4" RLECount="16" OffsetHex="000000A0" DisplayMethod="unsigned integer"/>
+        <Element Offset="224" Vartype="Pointer" Bytesize="8" OffsetHex="000000E0" DisplayMethod="unsigned integer"/>
+        <Element Offset="232" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000000E8" DisplayMethod="unsigned integer"/>
+        <Element Offset="248" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="000000F8" DisplayMethod="unsigned integer"/>
+        <Element Offset="264" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000108" DisplayMethod="unsigned integer"/>
+        <Element Offset="272" Vartype="Pointer" Bytesize="8" RLECount="7" OffsetHex="00000110" DisplayMethod="unsigned integer"/>
+        <Element Offset="328" Vartype="Byte" Bytesize="1" RLECount="4" OffsetHex="00000148" DisplayMethod="unsigned integer"/>
+        <Element Offset="332" Vartype="4 Bytes" Bytesize="4" RLECount="11" OffsetHex="0000014C" DisplayMethod="unsigned integer"/>
+        <Element Offset="376" Vartype="Pointer" Bytesize="8" OffsetHex="00000178" DisplayMethod="unsigned integer"/>
+        <Element Offset="384" Vartype="4 Bytes" Bytesize="4" RLECount="16" OffsetHex="00000180" DisplayMethod="unsigned integer"/>
+        <Element Offset="448" Vartype="Pointer" Bytesize="8" OffsetHex="000001C0" DisplayMethod="unsigned integer"/>
+        <Element Offset="456" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000001C8" DisplayMethod="unsigned integer"/>
+        <Element Offset="472" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="000001D8" DisplayMethod="unsigned integer"/>
+        <Element Offset="488" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000001E8" DisplayMethod="unsigned integer"/>
+        <Element Offset="496" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="000001F0" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="TSKBattleNote" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="16" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000010" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="unnamed structure" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="0" Vartype="Pointer" Bytesize="8" OffsetHex="00000000" DisplayMethod="unsigned integer"/>
+        <Element Offset="8" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000008" DisplayMethod="unsigned integer"/>
+        <Element Offset="16" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="00000010" DisplayMethod="unsigned integer"/>
+        <Element Offset="40" Vartype="Pointer" Bytesize="8" OffsetHex="00000028" DisplayMethod="unsigned integer">
+          <Structure Name="Autocreated from 2729CB31EE0" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+            <Elements>
+              <Element Offset="0" Vartype="Pointer" Bytesize="8" OffsetHex="00000000" DisplayMethod="unsigned integer"/>
+              <Element Offset="8" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000008" DisplayMethod="unsigned integer"/>
+              <Element Offset="16" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="00000010" DisplayMethod="unsigned integer"/>
+              <Element Offset="40" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000028" DisplayMethod="unsigned integer"/>
+              <Element Offset="48" Vartype="Pointer" Bytesize="8" RLECount="8" OffsetHex="00000030" DisplayMethod="unsigned integer"/>
+              <Element Offset="112" Vartype="4 Bytes" Bytesize="4" RLECount="10" OffsetHex="00000070" DisplayMethod="unsigned integer"/>
+              <Element Offset="152" Vartype="Pointer" Bytesize="8" OffsetHex="00000098" DisplayMethod="unsigned integer"/>
+              <Element Offset="160" Vartype="4 Bytes" Bytesize="4" RLECount="32" OffsetHex="000000A0" DisplayMethod="unsigned integer"/>
+              <Element Offset="288" Vartype="Pointer" Bytesize="8" OffsetHex="00000120" DisplayMethod="unsigned integer"/>
+              <Element Offset="296" Vartype="4 Bytes" Bytesize="4" RLECount="16" OffsetHex="00000128" DisplayMethod="unsigned integer"/>
+              <Element Offset="360" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000168" DisplayMethod="unsigned integer"/>
+              <Element Offset="376" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000178" DisplayMethod="unsigned integer"/>
+              <Element Offset="400" Vartype="Float" Bytesize="4" RLECount="8" OffsetHex="00000190" DisplayMethod="unsigned integer"/>
+              <Element Offset="432" Vartype="Pointer" Bytesize="8" OffsetHex="000001B0" DisplayMethod="unsigned integer"/>
+              <Element Offset="440" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000001B8" DisplayMethod="unsigned integer"/>
+              <Element Offset="448" Vartype="Pointer" Bytesize="8" OffsetHex="000001C0" DisplayMethod="unsigned integer"/>
+              <Element Offset="456" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="000001C8" DisplayMethod="unsigned integer"/>
+              <Element Offset="476" Vartype="Double" Bytesize="8" OffsetHex="000001DC" DisplayMethod="unsigned integer"/>
+              <Element Offset="484" Vartype="Float" Bytesize="4" RLECount="7" OffsetHex="000001E4" DisplayMethod="unsigned integer"/>
+              <Element Offset="512" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000200" DisplayMethod="unsigned integer"/>
+              <Element Offset="528" Vartype="Pointer" Bytesize="8" OffsetHex="00000210" DisplayMethod="unsigned integer"/>
+              <Element Offset="536" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000218" DisplayMethod="unsigned integer"/>
+              <Element Offset="560" Vartype="Float" Bytesize="4" RLECount="8" OffsetHex="00000230" DisplayMethod="unsigned integer"/>
+              <Element Offset="592" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000250" DisplayMethod="unsigned integer"/>
+              <Element Offset="600" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000258" DisplayMethod="unsigned integer"/>
+              <Element Offset="616" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000268" DisplayMethod="unsigned integer"/>
+              <Element Offset="636" Vartype="Double" Bytesize="8" OffsetHex="0000027C" DisplayMethod="unsigned integer"/>
+              <Element Offset="644" Vartype="Float" Bytesize="4" RLECount="11" OffsetHex="00000284" DisplayMethod="unsigned integer"/>
+              <Element Offset="688" Vartype="Pointer" Bytesize="8" OffsetHex="000002B0" DisplayMethod="unsigned integer"/>
+              <Element Offset="696" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="000002B8" DisplayMethod="unsigned integer"/>
+              <Element Offset="720" Vartype="Float" Bytesize="4" RLECount="9" OffsetHex="000002D0" DisplayMethod="unsigned integer"/>
+              <Element Offset="756" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000002F4" DisplayMethod="unsigned integer"/>
+              <Element Offset="764" Vartype="4 Bytes" Bytesize="4" OffsetHex="000002FC" DisplayMethod="hexadecimal"/>
+              <Element Offset="768" Vartype="Pointer" Bytesize="8" OffsetHex="00000300" DisplayMethod="unsigned integer"/>
+              <Element Offset="776" Vartype="4 Bytes" Bytesize="4" RLECount="18" OffsetHex="00000308" DisplayMethod="unsigned integer"/>
+              <Element Offset="848" Vartype="Pointer" Bytesize="8" OffsetHex="00000350" DisplayMethod="unsigned integer"/>
+              <Element Offset="856" Vartype="4 Bytes" Bytesize="4" RLECount="15" OffsetHex="00000358" DisplayMethod="unsigned integer"/>
+              <Element Offset="916" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000394" DisplayMethod="hexadecimal"/>
+              <Element Offset="920" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000398" DisplayMethod="unsigned integer"/>
+              <Element Offset="928" Vartype="Pointer" Bytesize="8" OffsetHex="000003A0" DisplayMethod="unsigned integer"/>
+              <Element Offset="936" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="000003A8" DisplayMethod="unsigned integer"/>
+              <Element Offset="960" Vartype="Float" Bytesize="4" RLECount="9" OffsetHex="000003C0" DisplayMethod="unsigned integer"/>
+              <Element Offset="996" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="000003E4" DisplayMethod="unsigned integer"/>
+              <Element Offset="1008" Vartype="Pointer" Bytesize="8" OffsetHex="000003F0" DisplayMethod="unsigned integer"/>
+              <Element Offset="1016" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="000003F8" DisplayMethod="unsigned integer"/>
+              <Element Offset="1040" Vartype="Float" Bytesize="4" RLECount="8" OffsetHex="00000410" DisplayMethod="unsigned integer"/>
+              <Element Offset="1072" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000430" DisplayMethod="unsigned integer"/>
+              <Element Offset="1088" Vartype="Pointer" Bytesize="8" OffsetHex="00000440" DisplayMethod="unsigned integer"/>
+              <Element Offset="1096" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000448" DisplayMethod="unsigned integer"/>
+              <Element Offset="1120" Vartype="Float" Bytesize="4" RLECount="9" OffsetHex="00000460" DisplayMethod="unsigned integer"/>
+              <Element Offset="1156" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000484" DisplayMethod="unsigned integer"/>
+              <Element Offset="1168" Vartype="Pointer" Bytesize="8" OffsetHex="00000490" DisplayMethod="unsigned integer"/>
+              <Element Offset="1176" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000498" DisplayMethod="unsigned integer"/>
+              <Element Offset="1200" Vartype="Float" Bytesize="4" RLECount="8" OffsetHex="000004B0" DisplayMethod="unsigned integer"/>
+              <Element Offset="1232" Vartype="Pointer" Bytesize="8" OffsetHex="000004D0" DisplayMethod="unsigned integer"/>
+              <Element Offset="1240" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000004D8" DisplayMethod="unsigned integer"/>
+              <Element Offset="1248" Vartype="Pointer" Bytesize="8" OffsetHex="000004E0" DisplayMethod="unsigned integer"/>
+              <Element Offset="1256" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="000004E8" DisplayMethod="unsigned integer"/>
+              <Element Offset="1280" Vartype="Float" Bytesize="4" RLECount="8" OffsetHex="00000500" DisplayMethod="unsigned integer"/>
+              <Element Offset="1312" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000520" DisplayMethod="unsigned integer"/>
+              <Element Offset="1328" Vartype="Pointer" Bytesize="8" OffsetHex="00000530" DisplayMethod="unsigned integer"/>
+              <Element Offset="1336" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000538" DisplayMethod="unsigned integer"/>
+              <Element Offset="1360" Vartype="Float" Bytesize="4" RLECount="8" OffsetHex="00000550" DisplayMethod="unsigned integer"/>
+              <Element Offset="1392" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000570" DisplayMethod="unsigned integer"/>
+              <Element Offset="1408" Vartype="Pointer" Bytesize="8" OffsetHex="00000580" DisplayMethod="unsigned integer"/>
+              <Element Offset="1416" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000588" DisplayMethod="unsigned integer"/>
+              <Element Offset="1440" Vartype="Float" Bytesize="4" RLECount="8" OffsetHex="000005A0" DisplayMethod="unsigned integer"/>
+              <Element Offset="1472" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000005C0" DisplayMethod="unsigned integer"/>
+              <Element Offset="1488" Vartype="Pointer" Bytesize="8" OffsetHex="000005D0" DisplayMethod="unsigned integer"/>
+              <Element Offset="1496" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="000005D8" DisplayMethod="unsigned integer"/>
+              <Element Offset="1520" Vartype="Float" Bytesize="4" RLECount="8" OffsetHex="000005F0" DisplayMethod="unsigned integer"/>
+              <Element Offset="1552" Vartype="Pointer" Bytesize="8" OffsetHex="00000610" DisplayMethod="unsigned integer"/>
+              <Element Offset="1560" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000618" DisplayMethod="unsigned integer"/>
+              <Element Offset="1568" Vartype="Pointer" Bytesize="8" OffsetHex="00000620" DisplayMethod="unsigned integer"/>
+              <Element Offset="1576" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000628" DisplayMethod="unsigned integer"/>
+              <Element Offset="1600" Vartype="Float" Bytesize="4" RLECount="8" OffsetHex="00000640" DisplayMethod="unsigned integer"/>
+              <Element Offset="1632" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000660" DisplayMethod="unsigned integer"/>
+              <Element Offset="1648" Vartype="Pointer" Bytesize="8" OffsetHex="00000670" DisplayMethod="unsigned integer"/>
+              <Element Offset="1656" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000678" DisplayMethod="unsigned integer"/>
+              <Element Offset="1680" Vartype="Float" Bytesize="4" RLECount="8" OffsetHex="00000690" DisplayMethod="unsigned integer"/>
+              <Element Offset="1712" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000006B0" DisplayMethod="unsigned integer"/>
+              <Element Offset="1728" Vartype="Pointer" Bytesize="8" OffsetHex="000006C0" DisplayMethod="unsigned integer"/>
+              <Element Offset="1736" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="000006C8" DisplayMethod="unsigned integer"/>
+              <Element Offset="1756" Vartype="Double" Bytesize="8" OffsetHex="000006DC" DisplayMethod="unsigned integer"/>
+              <Element Offset="1764" Vartype="Float" Bytesize="4" RLECount="7" OffsetHex="000006E4" DisplayMethod="unsigned integer"/>
+              <Element Offset="1792" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000700" DisplayMethod="unsigned integer"/>
+              <Element Offset="1808" Vartype="Pointer" Bytesize="8" OffsetHex="00000710" DisplayMethod="unsigned integer"/>
+              <Element Offset="1816" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000718" DisplayMethod="unsigned integer"/>
+              <Element Offset="1840" Vartype="Float" Bytesize="4" RLECount="8" OffsetHex="00000730" DisplayMethod="unsigned integer"/>
+              <Element Offset="1872" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000750" DisplayMethod="unsigned integer"/>
+              <Element Offset="1888" Vartype="Pointer" Bytesize="8" OffsetHex="00000760" DisplayMethod="unsigned integer"/>
+              <Element Offset="1896" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000768" DisplayMethod="unsigned integer"/>
+              <Element Offset="1916" Vartype="Double" Bytesize="8" OffsetHex="0000077C" DisplayMethod="unsigned integer"/>
+              <Element Offset="1924" Vartype="Float" Bytesize="4" RLECount="7" OffsetHex="00000784" DisplayMethod="unsigned integer"/>
+              <Element Offset="1952" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000007A0" DisplayMethod="unsigned integer"/>
+              <Element Offset="1968" Vartype="Pointer" Bytesize="8" OffsetHex="000007B0" DisplayMethod="unsigned integer"/>
+              <Element Offset="1976" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="000007B8" DisplayMethod="unsigned integer"/>
+              <Element Offset="2000" Vartype="Float" Bytesize="4" RLECount="8" OffsetHex="000007D0" DisplayMethod="unsigned integer"/>
+              <Element Offset="2032" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000007F0" DisplayMethod="unsigned integer"/>
+              <Element Offset="2048" Vartype="Pointer" Bytesize="8" OffsetHex="00000800" DisplayMethod="unsigned integer"/>
+              <Element Offset="2056" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000808" DisplayMethod="unsigned integer"/>
+              <Element Offset="2076" Vartype="Double" Bytesize="8" OffsetHex="0000081C" DisplayMethod="unsigned integer"/>
+              <Element Offset="2084" Vartype="Float" Bytesize="4" RLECount="7" OffsetHex="00000824" DisplayMethod="unsigned integer"/>
+              <Element Offset="2112" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000840" DisplayMethod="unsigned integer"/>
+              <Element Offset="2128" Vartype="Pointer" Bytesize="8" OffsetHex="00000850" DisplayMethod="unsigned integer"/>
+              <Element Offset="2136" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000858" DisplayMethod="unsigned integer"/>
+              <Element Offset="2160" Vartype="Float" Bytesize="4" RLECount="8" OffsetHex="00000870" DisplayMethod="unsigned integer"/>
+              <Element Offset="2192" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000890" DisplayMethod="unsigned integer"/>
+              <Element Offset="2208" Vartype="Pointer" Bytesize="8" OffsetHex="000008A0" DisplayMethod="unsigned integer"/>
+              <Element Offset="2216" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="000008A8" DisplayMethod="unsigned integer"/>
+              <Element Offset="2236" Vartype="Double" Bytesize="8" OffsetHex="000008BC" DisplayMethod="unsigned integer"/>
+              <Element Offset="2244" Vartype="Float" Bytesize="4" RLECount="7" OffsetHex="000008C4" DisplayMethod="unsigned integer"/>
+              <Element Offset="2272" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000008E0" DisplayMethod="unsigned integer"/>
+              <Element Offset="2288" Vartype="Pointer" Bytesize="8" OffsetHex="000008F0" DisplayMethod="unsigned integer"/>
+              <Element Offset="2296" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="000008F8" DisplayMethod="unsigned integer"/>
+              <Element Offset="2320" Vartype="Float" Bytesize="4" RLECount="8" OffsetHex="00000910" DisplayMethod="unsigned integer"/>
+              <Element Offset="2352" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000930" DisplayMethod="unsigned integer"/>
+              <Element Offset="2368" Vartype="Pointer" Bytesize="8" OffsetHex="00000940" DisplayMethod="unsigned integer"/>
+              <Element Offset="2376" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000948" DisplayMethod="unsigned integer"/>
+              <Element Offset="2396" Vartype="Double" Bytesize="8" OffsetHex="0000095C" DisplayMethod="unsigned integer"/>
+              <Element Offset="2404" Vartype="Float" Bytesize="4" RLECount="7" OffsetHex="00000964" DisplayMethod="unsigned integer"/>
+              <Element Offset="2432" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000980" DisplayMethod="unsigned integer"/>
+              <Element Offset="2448" Vartype="Pointer" Bytesize="8" OffsetHex="00000990" DisplayMethod="unsigned integer"/>
+              <Element Offset="2456" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000998" DisplayMethod="unsigned integer"/>
+              <Element Offset="2480" Vartype="Float" Bytesize="4" RLECount="8" OffsetHex="000009B0" DisplayMethod="unsigned integer"/>
+              <Element Offset="2512" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000009D0" DisplayMethod="unsigned integer"/>
+              <Element Offset="2528" Vartype="Pointer" Bytesize="8" OffsetHex="000009E0" DisplayMethod="unsigned integer"/>
+              <Element Offset="2536" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="000009E8" DisplayMethod="unsigned integer"/>
+              <Element Offset="2556" Vartype="Double" Bytesize="8" OffsetHex="000009FC" DisplayMethod="unsigned integer"/>
+              <Element Offset="2564" Vartype="Float" Bytesize="4" RLECount="7" OffsetHex="00000A04" DisplayMethod="unsigned integer"/>
+              <Element Offset="2592" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000A20" DisplayMethod="unsigned integer"/>
+              <Element Offset="2608" Vartype="Pointer" Bytesize="8" OffsetHex="00000A30" DisplayMethod="unsigned integer"/>
+              <Element Offset="2616" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000A38" DisplayMethod="unsigned integer"/>
+              <Element Offset="2640" Vartype="Float" Bytesize="4" RLECount="10" OffsetHex="00000A50" DisplayMethod="unsigned integer"/>
+              <Element Offset="2680" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000A78" DisplayMethod="unsigned integer"/>
+              <Element Offset="2688" Vartype="Pointer" Bytesize="8" OffsetHex="00000A80" DisplayMethod="unsigned integer"/>
+              <Element Offset="2696" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000A88" DisplayMethod="unsigned integer"/>
+              <Element Offset="2716" Vartype="Double" Bytesize="8" OffsetHex="00000A9C" DisplayMethod="unsigned integer"/>
+              <Element Offset="2724" Vartype="Float" Bytesize="4" RLECount="9" OffsetHex="00000AA4" DisplayMethod="unsigned integer"/>
+              <Element Offset="2760" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000AC8" DisplayMethod="unsigned integer"/>
+              <Element Offset="2768" Vartype="Pointer" Bytesize="8" OffsetHex="00000AD0" DisplayMethod="unsigned integer"/>
+              <Element Offset="2776" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000AD8" DisplayMethod="unsigned integer"/>
+              <Element Offset="2800" Vartype="Float" Bytesize="4" RLECount="8" OffsetHex="00000AF0" DisplayMethod="unsigned integer"/>
+              <Element Offset="2832" Vartype="Pointer" Bytesize="8" OffsetHex="00000B10" DisplayMethod="unsigned integer"/>
+              <Element Offset="2840" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000B18" DisplayMethod="unsigned integer"/>
+              <Element Offset="2848" Vartype="Pointer" Bytesize="8" OffsetHex="00000B20" DisplayMethod="unsigned integer"/>
+              <Element Offset="2856" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000B28" DisplayMethod="unsigned integer"/>
+              <Element Offset="2876" Vartype="Double" Bytesize="8" OffsetHex="00000B3C" DisplayMethod="unsigned integer"/>
+              <Element Offset="2884" Vartype="Float" Bytesize="4" RLECount="7" OffsetHex="00000B44" DisplayMethod="unsigned integer"/>
+              <Element Offset="2912" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000B60" DisplayMethod="unsigned integer"/>
+              <Element Offset="2928" Vartype="Pointer" Bytesize="8" OffsetHex="00000B70" DisplayMethod="unsigned integer"/>
+              <Element Offset="2936" Vartype="4 Bytes" Bytesize="4" RLECount="18" OffsetHex="00000B78" DisplayMethod="unsigned integer"/>
+              <Element Offset="3008" Vartype="Pointer" Bytesize="8" OffsetHex="00000BC0" DisplayMethod="unsigned integer"/>
+              <Element Offset="3016" Vartype="4 Bytes" Bytesize="4" RLECount="18" OffsetHex="00000BC8" DisplayMethod="unsigned integer"/>
+              <Element Offset="3088" Vartype="Pointer" Bytesize="8" OffsetHex="00000C10" DisplayMethod="unsigned integer"/>
+              <Element Offset="3096" Vartype="4 Bytes" Bytesize="4" RLECount="14" OffsetHex="00000C18" DisplayMethod="unsigned integer"/>
+              <Element Offset="3152" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000C50" DisplayMethod="hexadecimal"/>
+              <Element Offset="3156" Vartype="4 Bytes" Bytesize="4" RLECount="3" OffsetHex="00000C54" DisplayMethod="unsigned integer"/>
+              <Element Offset="3168" Vartype="Pointer" Bytesize="8" OffsetHex="00000C60" DisplayMethod="unsigned integer"/>
+              <Element Offset="3176" Vartype="4 Bytes" Bytesize="4" RLECount="6" OffsetHex="00000C68" DisplayMethod="unsigned integer"/>
+              <Element Offset="3200" Vartype="Float" Bytesize="4" RLECount="8" OffsetHex="00000C80" DisplayMethod="unsigned integer"/>
+              <Element Offset="3232" Vartype="Pointer" Bytesize="8" OffsetHex="00000CA0" DisplayMethod="unsigned integer"/>
+              <Element Offset="3240" Vartype="Float" Bytesize="4" RLECount="2" OffsetHex="00000CA8" DisplayMethod="unsigned integer"/>
+              <Element Offset="3248" Vartype="Pointer" Bytesize="8" OffsetHex="00000CB0" DisplayMethod="unsigned integer"/>
+              <Element Offset="3256" Vartype="4 Bytes" Bytesize="4" RLECount="18" OffsetHex="00000CB8" DisplayMethod="unsigned integer"/>
+              <Element Offset="3328" Vartype="Pointer" Bytesize="8" OffsetHex="00000D00" DisplayMethod="unsigned integer"/>
+              <Element Offset="3336" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000D08" DisplayMethod="unsigned integer"/>
+              <Element Offset="3356" Vartype="Double" Bytesize="8" OffsetHex="00000D1C" DisplayMethod="unsigned integer"/>
+              <Element Offset="3364" Vartype="Float" Bytesize="4" RLECount="7" OffsetHex="00000D24" DisplayMethod="unsigned integer"/>
+              <Element Offset="3392" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000D40" DisplayMethod="unsigned integer"/>
+              <Element Offset="3408" Vartype="Pointer" Bytesize="8" OffsetHex="00000D50" DisplayMethod="unsigned integer"/>
+              <Element Offset="3416" Vartype="4 Bytes" Bytesize="4" RLECount="16" OffsetHex="00000D58" DisplayMethod="unsigned integer"/>
+              <Element Offset="3480" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000D98" DisplayMethod="unsigned integer"/>
+              <Element Offset="3496" Vartype="4 Bytes" Bytesize="4" RLECount="18" OffsetHex="00000DA8" DisplayMethod="unsigned integer"/>
+              <Element Offset="3568" Vartype="Pointer" Bytesize="8" OffsetHex="00000DF0" DisplayMethod="unsigned integer"/>
+              <Element Offset="3576" Vartype="4 Bytes" Bytesize="4" RLECount="14" OffsetHex="00000DF8" DisplayMethod="unsigned integer"/>
+              <Element Offset="3632" Vartype="Pointer" Bytesize="8" OffsetHex="00000E30" DisplayMethod="unsigned integer"/>
+              <Element Offset="3640" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000E38" DisplayMethod="unsigned integer"/>
+              <Element Offset="3648" Vartype="Pointer" Bytesize="8" OffsetHex="00000E40" DisplayMethod="unsigned integer"/>
+              <Element Offset="3656" Vartype="4 Bytes" Bytesize="4" RLECount="18" OffsetHex="00000E48" DisplayMethod="unsigned integer"/>
+              <Element Offset="3728" Vartype="Pointer" Bytesize="8" OffsetHex="00000E90" DisplayMethod="unsigned integer"/>
+              <Element Offset="3736" Vartype="4 Bytes" Bytesize="4" RLECount="18" OffsetHex="00000E98" DisplayMethod="unsigned integer"/>
+              <Element Offset="3808" Vartype="Pointer" Bytesize="8" OffsetHex="00000EE0" DisplayMethod="unsigned integer"/>
+              <Element Offset="3816" Vartype="4 Bytes" Bytesize="4" RLECount="18" OffsetHex="00000EE8" DisplayMethod="unsigned integer"/>
+              <Element Offset="3888" Vartype="Pointer" Bytesize="8" OffsetHex="00000F30" DisplayMethod="unsigned integer"/>
+              <Element Offset="3896" Vartype="4 Bytes" Bytesize="4" RLECount="18" OffsetHex="00000F38" DisplayMethod="unsigned integer"/>
+              <Element Offset="3968" Vartype="Pointer" Bytesize="8" OffsetHex="00000F80" DisplayMethod="unsigned integer"/>
+              <Element Offset="3976" Vartype="4 Bytes" Bytesize="4" RLECount="18" OffsetHex="00000F88" DisplayMethod="unsigned integer"/>
+              <Element Offset="4048" Vartype="Pointer" Bytesize="8" OffsetHex="00000FD0" DisplayMethod="unsigned integer"/>
+              <Element Offset="4056" Vartype="4 Bytes" Bytesize="4" RLECount="10" OffsetHex="00000FD8" DisplayMethod="unsigned integer"/>
+            </Elements>
+          </Structure>
+        </Element>
+        <Element Offset="48" Vartype="Pointer" Bytesize="8" RLECount="6" OffsetHex="00000030" DisplayMethod="unsigned integer"/>
+        <Element Offset="96" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000060" DisplayMethod="unsigned integer"/>
+        <Element Offset="104" Vartype="Pointer" Bytesize="8" OffsetHex="00000068" DisplayMethod="unsigned integer"/>
+        <Element Offset="112" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000070" DisplayMethod="unsigned integer"/>
+        <Element Offset="128" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000080" DisplayMethod="unsigned integer"/>
+        <Element Offset="144" Vartype="4 Bytes" Bytesize="4" RLECount="12" OffsetHex="00000090" DisplayMethod="unsigned integer"/>
+        <Element Offset="192" Vartype="Pointer" Bytesize="8" OffsetHex="000000C0" DisplayMethod="unsigned integer"/>
+        <Element Offset="200" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="000000C8" DisplayMethod="unsigned integer"/>
+        <Element Offset="216" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="000000D8" DisplayMethod="unsigned integer"/>
+        <Element Offset="232" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000000E8" DisplayMethod="unsigned integer"/>
+        <Element Offset="240" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="000000F0" DisplayMethod="unsigned integer"/>
+        <Element Offset="256" Vartype="4 Bytes" Bytesize="4" RLECount="4" OffsetHex="00000100" DisplayMethod="unsigned integer"/>
+        <Element Offset="272" Vartype="Pointer" Bytesize="8" OffsetHex="00000110" DisplayMethod="unsigned integer"/>
+        <Element Offset="280" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000118" DisplayMethod="unsigned integer"/>
+        <Element Offset="288" Vartype="Pointer" Bytesize="8" RLECount="2" OffsetHex="00000120" DisplayMethod="unsigned integer"/>
+        <Element Offset="304" Vartype="Float" Bytesize="4" RLECount="4" OffsetHex="00000130" DisplayMethod="unsigned integer"/>
+        <Element Offset="320" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000140" DisplayMethod="hexadecimal"/>
+        <Element Offset="324" Vartype="4 Bytes" Bytesize="4" RLECount="5" OffsetHex="00000144" DisplayMethod="unsigned integer"/>
+        <Element Offset="344" Vartype="Pointer" Bytesize="8" RLECount="3" OffsetHex="00000158" DisplayMethod="unsigned integer"/>
+        <Element Offset="368" Vartype="4 Bytes" Bytesize="4" RLECount="12" OffsetHex="00000170" DisplayMethod="unsigned integer"/>
+        <Element Offset="416" Vartype="Pointer" Bytesize="8" OffsetHex="000001A0" DisplayMethod="unsigned integer"/>
+        <Element Offset="424" Vartype="4 Bytes" Bytesize="4" RLECount="10" OffsetHex="000001A8" DisplayMethod="unsigned integer"/>
+        <Element Offset="464" Vartype="Pointer" Bytesize="8" OffsetHex="000001D0" DisplayMethod="unsigned integer"/>
+        <Element Offset="472" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000001D8" DisplayMethod="unsigned integer"/>
+        <Element Offset="480" Vartype="Pointer" Bytesize="8" RLECount="4" OffsetHex="000001E0" DisplayMethod="unsigned integer"/>
+      </Elements>
+    </Structure>
+  </Structures>
+</CheatTable>
