@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>9</ID>
+      <Description>"Character"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Value="" Activated="1" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>6</ID>
+          <Description>"Mining Speed (D: 0)"</Description>
+          <LastState Value="7.5" RealAddress="246DB8524A0"/>
+          <VariableType>Double</VariableType>
+          <Address>"Factorio.exe"+01ADF270</Address>
+          <Offsets>
+            <Offset>220</Offset>
+            <Offset>0</Offset>
+            <Offset>2D0</Offset>
+            <Offset>30</Offset>
+            <Offset>78</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>7</ID>
+          <Description>"Crafting Speed (D: 0)"</Description>
+          <LastState Value="1.5" RealAddress="246DB852488"/>
+          <VariableType>Double</VariableType>
+          <Address>"Factorio.exe"+01ADF270</Address>
+          <Offsets>
+            <Offset>208</Offset>
+            <Offset>0</Offset>
+            <Offset>2D0</Offset>
+            <Offset>38</Offset>
+            <Offset>78</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>8</ID>
+          <Description>"Run Speed (D: 0)"</Description>
+          <LastState Value="0" RealAddress="246C7183D90"/>
+          <VariableType>Double</VariableType>
+          <Address>"Factorio.exe"+01ADF270</Address>
+          <Offsets>
+            <Offset>1D0</Offset>
+            <Offset>30</Offset>
+            <Offset>78</Offset>
+            <Offset>10</Offset>
+            <Offset>360</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>10</ID>
+          <Description>"Research Speed (D: 0)"</Description>
+          <LastState Value="0.9" RealAddress="246DB852440"/>
+          <VariableType>Double</VariableType>
+          <Address>"Factorio.exe"+01ADF270</Address>
+          <Offsets>
+            <Offset>1C0</Offset>
+            <Offset>0</Offset>
+            <Offset>2D0</Offset>
+            <Offset>428</Offset>
+            <Offset>80</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>12</ID>
+      <Description>"Evo Factor (0.00-1.00)"</Description>
+      <LastState Value="0.455705077086899" RealAddress="246DB851C68"/>
+      <VariableType>Double</VariableType>
+      <Address>"Factorio.exe"+01ADF270</Address>
+      <Offsets>
+        <Offset>38</Offset>
+        <Offset>8</Offset>
+        <Offset>2D0</Offset>
+        <Offset>30</Offset>
+        <Offset>78</Offset>
+      </Offsets>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>16</ID>
+      <Description>"Inf Ammo"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : factorio.exe
+  Version: 
+  Date   : 2024-05-16
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_INF_AMMO,factorio.exe,F3 0F 11 4F 18) // should be unique
+alloc(newmem,$1000,INJ_INF_AMMO)
+
+label(code)
+label(return)
+
+newmem:
+  push rax
+  xor rax,rax
+  mov eax,(float)1.0
+  movd xmm1,eax
+  pop eax
+code:
+  movss [rdi+18],xmm1
+  jmp return
+
+INJ_INF_AMMO:
+  jmp newmem
+return:
+registersymbol(INJ_INF_AMMO)
+
+[DISABLE]
+
+INJ_INF_AMMO:
+  db F3 0F 11 4F 18
+
+unregistersymbol(INJ_INF_AMMO)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: factorio.Shooter::useAmmo+54
+
+factorio.Shooter::useAmmo+26: 49 8B E8                 - mov rbp,r8
+factorio.Shooter::useAmmo+29: E8 62 02 C6 FF           - call factorio.exe+8830E0
+factorio.Shooter::useAmmo+2E: F3 0F 10 4F 18           - movss xmm1,[rdi+18]
+factorio.Shooter::useAmmo+33: F3 0F 10 80 98 00 00 00  - movss xmm0,[rax+factorio.dtor_list_head+68]
+factorio.Shooter::useAmmo+3B: 48 8B 44 24 58           - mov rax,[rsp+58]
+factorio.Shooter::useAmmo+40: F3 0F 59 40 6C           - mulss xmm0,[rax+6C]
+factorio.Shooter::useAmmo+45: F3 0F 5D 47 18           - minss xmm0,[rdi+18]
+factorio.Shooter::useAmmo+4A: F3 0F 5C C8              - subss xmm1,xmm0
+factorio.Shooter::useAmmo+4E: 0F 57 C0                 - xorps xmm0,xmm0
+factorio.Shooter::useAmmo+51: 0F 2E C8                 - ucomiss xmm1,xmm0
+// ---------- INJECTING HERE ----------
+factorio.Shooter::useAmmo+54: F3 0F 11 4F 18           - movss [rdi+18],xmm1
+// ---------- DONE INJECTING  ----------
+factorio.Shooter::useAmmo+59: 7A 29                    - jp factorio.Shooter::useAmmo+84
+factorio.Shooter::useAmmo+5B: 75 27                    - jne factorio.Shooter::useAmmo+84
+factorio.Shooter::useAmmo+5D: 84 DB                    - test bl,bl
+factorio.Shooter::useAmmo+5F: 75 05                    - jne factorio.Shooter::useAmmo+66
+factorio.Shooter::useAmmo+61: 45 33 C0                 - xor r8d,r8d
+factorio.Shooter::useAmmo+64: EB 0B                    - jmp factorio.Shooter::useAmmo+71
+factorio.Shooter::useAmmo+66: 48 8B 86 38 03 00 00     - mov rax,[rsi+factorio.ssprintf_buffer+1F8]
+factorio.Shooter::useAmmo+6D: 4C 8B 04 D8              - mov r8,[rax+rbx*8]
+factorio.Shooter::useAmmo+71: 45 33 C9                 - xor r9d,r9d
+factorio.Shooter::useAmmo+74: 48 8B CD                 - mov rcx,rbp
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>38</ID>
+      <Description>"Inf Consumes"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : factorio.exe
+  Version: 
+  Date   : 2024-05-19
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INF_ITEM,factorio.exe,89 01 4D 8B F0) // should be unique
+alloc(newmem,$1000,INF_ITEM)
+
+label(code)
+label(return)
+
+newmem:
+  inc eax
+code:
+  mov [rcx],eax
+  mov r14,r8
+  jmp return
+
+INF_ITEM:
+  jmp newmem
+return:
+registersymbol(INF_ITEM)
+
+[DISABLE]
+
+INF_ITEM:
+  db 89 01 4D 8B F0
+
+unregistersymbol(INF_ITEM)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: factorio.exe+8A2E55
+
+factorio.exe+8A2E30: 48 89 5C 24 08  - mov [rsp+08],rbx
+factorio.exe+8A2E35: 48 89 6C 24 10  - mov [rsp+10],rbp
+factorio.exe+8A2E3A: 48 89 74 24 18  - mov [rsp+18],rsi
+factorio.exe+8A2E3F: 48 89 7C 24 20  - mov [rsp+20],rdi
+factorio.exe+8A2E44: 41 56           - push r14
+factorio.exe+8A2E46: 48 83 EC 40     - sub rsp,40
+factorio.exe+8A2E4A: 8B 01           - mov eax,[rcx]
+factorio.exe+8A2E4C: 41 8B E9        - mov ebp,r9d
+factorio.exe+8A2E4F: 0F B7 59 06     - movzx ebx,word ptr [rcx+06]
+factorio.exe+8A2E53: 2B C2           - sub eax,edx
+// ---------- INJECTING HERE ----------
+factorio.exe+8A2E55: 89 01           - mov [rcx],eax
+// ---------- DONE INJECTING  ----------
+factorio.exe+8A2E57: 4D 8B F0        - mov r14,r8
+factorio.exe+8A2E5A: 8B F2           - mov esi,edx
+factorio.exe+8A2E5C: 48 8B F9        - mov rdi,rcx
+factorio.exe+8A2E5F: 4D 85 C0        - test r8,r8
+factorio.exe+8A2E62: 75 58           - jne factorio.exe+8A2EBC
+factorio.exe+8A2E64: 85 C0           - test eax,eax
+factorio.exe+8A2E66: 75 07           - jne factorio.exe+8A2E6F
+factorio.exe+8A2E68: E8 B3 CD FF FF  - call factorio.ItemStack::clearInternal
+factorio.exe+8A2E6D: EB 12           - jmp factorio.exe+8A2E81
+factorio.exe+8A2E6F: 48 8B 49 08     - mov rcx,[rcx+08]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>35</ID>
+      <Description>"Quick drill"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : factorio.exe
+  Version: 
+  Date   : 2024-05-16
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_QUICK_DRILL,factorio.exe,F2 0F 11 87 60 02 00 00 4C) // should be unique
+alloc(newmem,$1000,INJ_QUICK_DRILL)
+
+label(code)
+label(return)
+label(Lret)
+
+newmem:
+  push rax
+  movq rax,xmm1
+  push rax
+  mov rax,(double)0.98
+  movq xmm1,rax
+  comisd xmm0,xmm1
+  jae Lret
+  movsd xmm0,xmm1
+Lret:
+  pop rax
+  movq xmm1,rax
+  pop rax
+code:
+  movsd [rdi+factorio.ssprintf_buffer+120],xmm0
+  jmp return
+
+INJ_QUICK_DRILL:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJ_QUICK_DRILL)
+
+[DISABLE]
+
+INJ_QUICK_DRILL:
+  db F2 0F 11 87 60 02 00 00
+
+unregistersymbol(INJ_QUICK_DRILL)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: factorio.MiningDrill::performMining+9D
+
+factorio.MiningDrill::performMining+64: 48 8B 81 48 01 00 00     - mov rax,[rcx+factorio.ssprintf_buffer+8]
+factorio.MiningDrill::performMining+6B: F2 0F 10 81 60 02 00 00  - movsd xmm0,[rcx+factorio.ssprintf_buffer+120]
+factorio.MiningDrill::performMining+73: 33 DB                    - xor ebx,ebx
+factorio.MiningDrill::performMining+75: 4C 8D 05 BC A3 38 01     - lea r8,[factorio.ResourceMiningCollector::`vftable']
+factorio.MiningDrill::performMining+7C: 66 0F 2F 40 08           - comisd xmm0,[rax+08]
+factorio.MiningDrill::performMining+81: 0F 82 28 02 00 00        - jb factorio.MiningDrill::performMining+2AF
+factorio.MiningDrill::performMining+87: 4C 8D B1 B0 01 00 00     - lea r14,[rcx+factorio.ssprintf_buffer+70]
+factorio.MiningDrill::performMining+8E: 66 90                    - nop 2
+factorio.MiningDrill::performMining+90: F2 0F 10 87 60 02 00 00  - movsd xmm0,[rdi+factorio.ssprintf_buffer+120]
+factorio.MiningDrill::performMining+98: F2 0F 5C 40 08           - subsd xmm0,[rax+08]
+// ---------- INJECTING HERE ----------
+factorio.MiningDrill::performMining+9D: F2 0F 11 87 60 02 00 00  - movsd [rdi+factorio.ssprintf_buffer+120],xmm0
+// ---------- DONE INJECTING  ----------
+factorio.MiningDrill::performMining+A5: 4C 89 75 87              - mov [rbp-79],r14
+factorio.MiningDrill::performMining+A9: 0F 57 C9                 - xorps xmm1,xmm1
+factorio.MiningDrill::performMining+AC: F3 0F 7F 4D 8F           - movdqu [rbp-71],xmm1
+factorio.MiningDrill::performMining+B1: 48 89 5D 9F              - mov [rbp-61],rbx
+factorio.MiningDrill::performMining+B5: 48 8B 87 80 00 00 00     - mov rax,[rdi+factorio.dtor_list_head+50]
+factorio.MiningDrill::performMining+BC: 0F B6 8F 98 00 00 00     - movzx ecx,byte ptr [rdi+factorio.dtor_list_head+68]
+factorio.MiningDrill::performMining+C3: 48 8B 80 38 03 00 00     - mov rax,[rax+factorio.ssprintf_buffer+1F8]
+factorio.MiningDrill::performMining+CA: 48 8B 14 C8              - mov rdx,[rax+rcx*8]
+factorio.MiningDrill::performMining+CE: 48 8B 87 B8 02 00 00     - mov rax,[rdi+factorio.ssprintf_buffer+178]
+factorio.MiningDrill::performMining+D5: 48 8D 4D 87              - lea rcx,[rbp-79]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>14</ID>
+      <Description>"Inf Mine"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : factorio.exe
+  Version: 
+  Date   : 2024-05-15
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_INF_MINE,Factorio.exe,89 81 88 00 00 00 85) // should be unique
+alloc(newmem,$1000,INJ_INF_MINE)
+
+label(code)
+label(return)
+
+newmem:
+  mov eax,ffff
+code:
+  mov [rcx+Factorio.dtor_list_head+58],eax
+  jmp return
+
+INJ_INF_MINE:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_INF_MINE)
+
+[DISABLE]
+
+INJ_INF_MINE:
+  db 89 81 88 00 00 00
+
+unregistersymbol(INJ_INF_MINE)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Factorio.ResourceEntity::mineMe+112
+
+Factorio.ResourceEntity::mineMe+EF: C6 44 24 30 52     - mov byte ptr [rsp+30],52
+Factorio.ResourceEntity::mineMe+F4: 48 89 5C 24 38     - mov [rsp+38],rbx
+Factorio.ResourceEntity::mineMe+F9: 48 8D 54 24 30     - lea rdx,[rsp+30]
+Factorio.ResourceEntity::mineMe+FE: 48 8B CB           - mov rcx,rbx
+Factorio.ResourceEntity::mineMe+101: E8 5A F1 F3 FF     - call Factorio.Entity::dispatchGameAction
+Factorio.ResourceEntity::mineMe+106: 90                 - nop 
+Factorio.ResourceEntity::mineMe+107: EB 28              - jmp Factorio.ResourceEntity::mineMe+131
+Factorio.ResourceEntity::mineMe+109: 45 85 C9           - test r9d,r9d
+Factorio.ResourceEntity::mineMe+10C: 74 3C              - je Factorio.ResourceEntity::mineMe+14A
+Factorio.ResourceEntity::mineMe+10E: 41 8D 41 FF        - lea eax,[r9-01]
+// ---------- INJECTING HERE ----------
+Factorio.ResourceEntity::mineMe+112: 89 81 88 00 00 00  - mov [rcx+Factorio.dtor_list_head+58],eax
+// ---------- DONE INJECTING  ----------
+Factorio.ResourceEntity::mineMe+118: 85 C0              - test eax,eax
+Factorio.ResourceEntity::mineMe+11A: 75 2E              - jne Factorio.ResourceEntity::mineMe+14A
+Factorio.ResourceEntity::mineMe+11C: C6 44 24 30 52     - mov byte ptr [rsp+30],52
+Factorio.ResourceEntity::mineMe+121: 48 89 5C 24 38     - mov [rsp+38],rbx
+Factorio.ResourceEntity::mineMe+126: 48 8D 54 24 30     - lea rdx,[rsp+30]
+Factorio.ResourceEntity::mineMe+12B: E8 30 F1 F3 FF     - call Factorio.Entity::dispatchGameAction
+Factorio.ResourceEntity::mineMe+130: 90                 - nop 
+Factorio.ResourceEntity::mineMe+131: 48 8D 4C 24 30     - lea rcx,[rsp+30]
+Factorio.ResourceEntity::mineMe+136: E8 55 56 CF FF     - call Factorio.GameAction::destroyValue
+Factorio.ResourceEntity::mineMe+13B: 0F B6 43 58        - movzx eax,byte ptr [rbx+58]
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>Code :movsd [rdi+factorio._tls+118],xmm0</Description>
+      <AddressString>factorio.exe+68EFCB</AddressString>
+      <Before>
+        <Byte>F2</Byte>
+        <Byte>48</Byte>
+        <Byte>0F</Byte>
+        <Byte>2A</Byte>
+        <Byte>C0</Byte>
+      </Before>
+      <Actual>
+        <Byte>F2</Byte>
+        <Byte>0F</Byte>
+        <Byte>11</Byte>
+        <Byte>87</Byte>
+        <Byte>78</Byte>
+        <Byte>04</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>5C</Byte>
+        <Byte>24</Byte>
+        <Byte>38</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+  <Comments>Info about this table:
+</Comments>
+</CheatTable>

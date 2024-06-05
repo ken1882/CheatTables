@@ -1,0 +1,735 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="42">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"Allow building on water"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Palworld-Win64-Shipping.exe
+  Version: 
+  Date   : 2024-01-26
+  Author : CactusPie
+}
+
+[ENABLE]
+aobscanmodule(INJECT,Palworld-Win64-Shipping.exe,74 0E 0F B6 4E 30) // should be unique
+
+INJECT: // patches je to jmp
+  db EB 0E
+
+[DISABLE]
+INJECT: // patches jmp to je
+  db 74 0E
+{
+// ORIGINAL CODE - INJECTION POINT: 7FF636B81223
+
+7FF636B81200: 48 89 10                 - mov [rax],rdx
+7FF636B81203: 48 8D 54 24 60           - lea rdx,[rsp+60]
+7FF636B81208: E8 D3 7D 12 00           - call 7FF636CA8FE0
+7FF636B8120D: 48 8B 4C 24 60           - mov rcx,[rsp+60]
+7FF636B81212: 84 C0                    - test al,al
+7FF636B81214: 0F 94 C3                 - sete bl
+7FF636B81217: 48 85 C9                 - test rcx,rcx
+7FF636B8121A: 74 05                    - je 7FF636B81221
+7FF636B8121C: E8 2F D2 2A 00           - call 7FF636E2E450
+7FF636B81221: 84 DB                    - test bl,bl
+// ---------- INJECTING HERE ----------
+7FF636B81223: 74 0E                    - je 7FF636B81233
+// ---------- DONE INJECTING  ----------
+7FF636B81225: 0F B6 4E 30              - movzx ecx,byte ptr [rsi+30]
+7FF636B81229: B2 13                    - mov dl,13
+7FF636B8122B: E8 10 B1 10 00           - call 7FF636C8C340
+7FF636B81230: 88 46 30                 - mov [rsi+30],al
+7FF636B81233: 4C 8D 9C 24 60 02 00 00  - lea r11,[rsp+00000260]
+7FF636B8123B: 49 8B 5B 28              - mov rbx,[r11+28]
+7FF636B8123F: 49 8B 73 30              - mov rsi,[r11+30]
+7FF636B81243: 41 0F 28 73 F0           - movaps xmm6,[r11-10]
+7FF636B81248: 41 0F 28 7B E0           - movaps xmm7,[r11-20]
+7FF636B8124D: 45 0F 28 43 D0           - movaps xmm8,[r11-30]
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"Building in mid air"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Palworld-Win64-Shipping.exe
+  Version: 
+  Date   : 2024-01-27
+  Author : Matt
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+aobscanmodule(INJECT,Palworld-Win64-Shipping.exe,0F 84 8C 00 00 00 48 8D 8D) // should be unique
+
+INJECT: // nop the je instruction
+  db 90 90 90 90 90 90
+
+[DISABLE]
+
+INJECT: // restore je instruction
+  db 0F 84 8C 00 00 00
+{
+// ORIGINAL CODE - INJECTION POINT: 7FF79677DC23
+
+7FF79677DBF8: 48 8D 54 24 70        - lea rdx,[rsp+70]
+7FF79677DBFD: 48 8B CE              - mov rcx,rsi
+7FF79677DC00: C6 44 24 20 01        - mov byte ptr [rsp+20],01
+7FF79677DC05: 44 8B C8              - mov r9d,eax
+7FF79677DC08: E8 23 1D 1F 02        - call 7FF79896F930
+7FF79677DC0D: 48 8B 4C 24 60        - mov rcx,[rsp+60]
+7FF79677DC12: 48 85 C9              - test rcx,rcx
+7FF79677DC15: 74 05                 - je 7FF79677DC1C
+7FF79677DC17: E8 C4 A6 29 00        - call 7FF796A182E0
+7FF79677DC1C: F6 85 BD 00 00 00 01  - test byte ptr [rbp+000000BD],01
+// ---------- INJECTING HERE ----------
+7FF79677DC23: 0F 84 8C 00 00 00     - je 7FF79677DCB5
+// ---------- DONE INJECTING  ----------
+7FF79677DC29: 48 8D 8D E0 00 00 00  - lea rcx,[rbp+000000E0]
+7FF79677DC30: E8 2B 85 53 00        - call 7FF796CB6160
+7FF79677DC35: 48 85 C0              - test rax,rax
+7FF79677DC38: 0F 84 85 00 00 00     - je 7FF79677DCC3
+7FF79677DC3E: F7 40 08 00 00 00 60  - test [rax+08],60000000
+7FF79677DC45: 75 7C                 - jne 7FF79677DCC3
+7FF79677DC47: 41 B8 01 00 00 00     - mov r8d,00000001
+7FF79677DC4D: 48 8D 15 4C 7E 2A 04  - lea rdx,[7FF79AA25AA0]
+7FF79677DC54: 48 8D 8D 80 01 00 00  - lea rcx,[rbp+00000180]
+7FF79677DC5B: 48 8B D8              - mov rbx,rax
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"Disable world collision"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Palworld-Win64-Shipping.exe
+  Version: 
+  Date   : 2024-01-24
+  Author : CactusPie
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Palworld-Win64-Shipping.exe,74 07 B0 14 E9 2F 01 00 00) // should be unique
+
+INJECT:
+  // Patches je to jmp
+  db EB 07
+
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  // Reverts jmp back to je
+  db 74 07
+
+unregistersymbol(INJECT)
+{
+// ORIGINAL CODE - INJECTION POINT: 7FF6A51EA3EF
+
+7FF6A51EA3CE: 4C 8D 7A 30              - lea r15,[rdx+30]
+7FF6A51EA3D2: 0F B6 12                 - movzx edx,byte ptr [rdx]
+7FF6A51EA3D5: 33 ED                    - xor ebp,ebp
+7FF6A51EA3D7: 4D 8B C6                 - mov r8,r14
+7FF6A51EA3DA: 49 89 6B 10              - mov [r11+10],rbp
+7FF6A51EA3DE: 4D 8B CC                 - mov r9,r12
+7FF6A51EA3E1: 4D 89 7B A8              - mov [r11-58],r15
+7FF6A51EA3E5: 48 8B CF                 - mov rcx,rdi
+7FF6A51EA3E8: E8 83 DD 00 00           - call 7FF6A51F8170
+7FF6A51EA3ED: 84 C0                    - test al,al
+// ---------- INJECTING HERE ----------
+7FF6A51EA3EF: 74 07                    - je 7FF6A51EA3F8
+// ---------- DONE INJECTING  ----------
+7FF6A51EA3F1: B0 14                    - mov al,14
+7FF6A51EA3F3: E9 2F 01 00 00           - jmp 7FF6A51EA527
+7FF6A51EA3F8: 0F B6 0B                 - movzx ecx,byte ptr [rbx]
+7FF6A51EA3FB: 85 C9                    - test ecx,ecx
+7FF6A51EA3FD: 0F 84 22 01 00 00        - je 7FF6A51EA525
+7FF6A51EA403: 83 F9 01                 - cmp ecx,01
+7FF6A51EA406: 0F 85 19 01 00 00        - jne 7FF6A51EA525
+7FF6A51EA40C: 48 8B CF                 - mov rcx,rdi
+7FF6A51EA40F: E8 9C 78 10 00           - call 7FF6A52F1CB0
+7FF6A51EA414: F3 0F 10 80 C4 06 00 00  - movss xmm0,[rax+000006C4]
+}
+</AssemblerScript>
+      <Hotkeys>
+        <Hotkey>
+          <Action>Toggle Activation</Action>
+          <Keys>
+            <Key>119</Key>
+          </Keys>
+          <Description>Disable collision checking</Description>
+          <ID>0</ID>
+        </Hotkey>
+      </Hotkeys>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"Allow building close to palbox"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Palworld-Win64-Shipping.exe
+  Version: 
+  Date   : 2024-01-30
+  Author : Matt
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+aobscanmodule(INJECT,Palworld-Win64-Shipping.exe,74 15 48 8B 9E A8 02 00 00 B2 02) // should be unique
+
+INJECT:
+  db EB 15 48 8B 9E A8 02 00 00
+
+
+[DISABLE]
+
+INJECT:
+  db 74 15 48 8B 9E A8 02 00 00
+
+
+{
+// ORIGINAL CODE - INJECTION POINT: 7FF6E4E98385
+
+7FF6E4E98356: 48 8D 44 24 50           - lea rax,[rsp+50]
+7FF6E4E9835B: 0F 29 44 24 70           - movaps [rsp+70],xmm0
+7FF6E4E98360: 0F 10 44 24 30           - movups xmm0,[rsp+30]
+7FF6E4E98365: 48 89 44 24 20           - mov [rsp+20],rax
+7FF6E4E9836A: F2 0F 11 4D 80           - movsd [rbp-80],xmm1
+7FF6E4E9836F: F2 0F 10 4C 24 40        - movsd xmm1,[rsp+40]
+7FF6E4E98375: 0F 29 45 90              - movaps [rbp-70],xmm0
+7FF6E4E98379: F2 0F 11 4D A0           - movsd [rbp-60],xmm1
+7FF6E4E9837E: E8 4D 69 1C 00           - call 7FF6E505ECD0
+7FF6E4E98383: 84 C0                    - test al,al
+// ---------- INJECTING HERE ----------
+7FF6E4E98385: 74 15                    - je 7FF6E4E9839C
+// ---------- DONE INJECTING  ----------
+7FF6E4E98387: 48 8B 9E A8 02 00 00     - mov rbx,[rsi+000002A8]
+7FF6E4E9838E: B2 02                    - mov dl,02
+7FF6E4E98390: 0F B6 4B 30              - movzx ecx,byte ptr [rbx+30]
+7FF6E4E98394: E8 47 0C 0F 00           - call 7FF6E4F88FE0
+7FF6E4E98399: 88 43 30                 - mov [rbx+30],al
+7FF6E4E9839C: 4C 8D 9C 24 30 02 00 00  - lea r11,[rsp+00000230]
+7FF6E4E983A4: 49 8B 5B 20              - mov rbx,[r11+20]
+7FF6E4E983A8: 49 8B 73 28              - mov rsi,[r11+28]
+7FF6E4E983AC: 49 8B 7B 30              - mov rdi,[r11+30]
+7FF6E4E983B0: 49 8B E3                 - mov rsp,r11
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF63487F727</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF634880F2D</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF636B81223</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF636B875AC</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FFDA768C2D2</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FFD86311BA2</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF636BFB605</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF639E712B4</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF636BFB443</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF636C0217C</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF636BFB5D9</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF6370CE156</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF636C02000</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF6370CE156</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF636C020B2</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF636C2C503</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF636CA9063</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF6375D6A1E</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF6375F23E2</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF637A3F66F</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF637A8F6E8</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF637A8F845</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF637AB6A8C</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF637A9600C</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF634E0F919</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF637A9604D</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF637AB6A63</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF637A96118</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF637AB6A9F</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF637F7D5DE</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF637F7343D</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF637F73491</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF637ED45A9</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF637F7CF9E</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF637F7CFCF</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF637F7361F</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FF639163E8D</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FFDA7693EBD</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FFDA7693C80</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FFDA7695605</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FFDA76984A7</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FFDA7693D1D</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FFDA7693EC9</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FFDA76F263C</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FFDA7693F12</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FFDA76F041D</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FFDA76984A7</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FFDA76AA496</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FFDA7693F66</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FFDA768AF8F</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FFDA769846C</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FFDA768AF99</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FFDA7693F57</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FFDA76F03FF</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FFDA7693F0B</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :?? </Description>
+      <AddressString>7FFDA76639E5</AddressString>
+      <Before/>
+      <Actual>
+        <Byte>00</Byte>
+      </Actual>
+      <After/>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>

@@ -8,6 +8,14 @@
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : DankaguPL.exe
   Version: 
+  Date   : 2024-05-24
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+{ Game   : DankaguPL.exe
+  Version: 
   Date   : 2024-02-12
   Author : Compeador
 }
@@ -34,6 +42,27 @@ INJ_FULLHP:
   jmp newmem
 return:
 registersymbol(INJ_FULLHP)
+
+aobscanmodule(INJ_FULLHP2,GameAssembly.dll,F3 0F 11 49 10 0F 2F) // should be unique
+alloc(newmem2,$1000,INJ_FULLHP2)
+
+label(code2)
+label(return2)
+
+newmem2:
+  push rax
+  xor rax,rax,
+  mov eax,(float)100.0
+  movd xmm1,eax
+  pop rax
+code2:
+  movss [rcx+10],xmm1
+  jmp return2
+
+INJ_FULLHP2:
+  jmp newmem2
+return2:
+registersymbol(INJ_FULLHP2)
 
 [DISABLE]
 
@@ -70,12 +99,54 @@ GameAssembly.dll+3B7C27: C3                    - ret
 GameAssembly.dll+3B7C28: CC                    - int 3 
 GameAssembly.dll+3B7C29: CC                    - int 3 
 }
+INJ_FULLHP2:
+  db F3 0F 11 49 10
+
+unregistersymbol(INJ_FULLHP2)
+dealloc(newmem2)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+56AEA3
+
+GameAssembly.dll+56AE88: 48 8B D9              - mov rbx,rcx
+GameAssembly.dll+56AE8B: E8 10 85 D9 FF        - call GameAssembly.dll+3033A0
+GameAssembly.dll+56AE90: C7 43 10 00 00 00 00  - mov [rbx+10],00000000
+GameAssembly.dll+56AE97: 48 83 C4 20           - add rsp,20
+GameAssembly.dll+56AE9B: 5B                    - pop rbx
+GameAssembly.dll+56AE9C: C3                    - ret 
+GameAssembly.dll+56AE9D: CC                    - int 3 
+GameAssembly.dll+56AE9E: CC                    - int 3 
+GameAssembly.dll+56AE9F: CC                    - int 3 
+GameAssembly.dll+56AEA0: 0F 57 C0              - xorps xmm0,xmm0
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+56AEA3: F3 0F 11 49 10        - movss [rcx+10],xmm1
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+56AEA8: 0F 2F C1              - comiss xmm0,xmm1
+GameAssembly.dll+56AEAB: 76 0A                 - jna GameAssembly.dll+56AEB7
+GameAssembly.dll+56AEAD: C7 41 10 00 00 00 00  - mov [rcx+10],00000000
+GameAssembly.dll+56AEB4: 0F 57 C9              - xorps xmm1,xmm1
+GameAssembly.dll+56AEB7: 0F 2F 0D 9A 58 BA 01  - comiss xmm1,[GameAssembly.dll+2110758]
+GameAssembly.dll+56AEBE: 76 07                 - jna GameAssembly.dll+56AEC7
+GameAssembly.dll+56AEC0: C7 41 10 00 00 C8 42  - mov [rcx+10],42C80000
+GameAssembly.dll+56AEC7: C3                    - ret 
+GameAssembly.dll+56AEC8: CC                    - int 3 
+GameAssembly.dll+56AEC9: CC                    - int 3 
+}
 </AssemblerScript>
+      <Hotkeys>
+        <Hotkey>
+          <Action>Toggle Activation</Action>
+          <Keys>
+            <Key>96</Key>
+          </Keys>
+          <ID>0</ID>
+        </Hotkey>
+      </Hotkeys>
     </CheatEntry>
     <CheatEntry>
       <ID>10</ID>
       <Description>"Auto Mode"</Description>
-      <LastState Activated="1"/>
+      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : DankaguPL.exe
   Version: 
@@ -108,7 +179,7 @@ INJ_PERFECT:
 return:
 registersymbol(INJ_PERFECT)
 
-aobscanmodule(INJ_AUTO,GameAssembly.dll,0F 2F B3 CC 00 00 00) // should be unique
+aobscanmodule(INJ_AUTO,GameAssembly.dll,0F 2F B3 D4 00 00 00) // should be unique
 alloc(newmem2,$1000,INJ_AUTO)
 
 label(code2)
@@ -130,7 +201,7 @@ Lret2:
   jmp return2
 
 code2:
-  comiss xmm6,[rbx+000000CC]
+  comiss xmm6,[rbx+000000D4]
   jmp return2
 
 INJ_AUTO:
@@ -175,44 +246,53 @@ GameAssembly.dll+7ADF39: E9 53 FF FF FF        - jmp GameAssembly.dll+7ADE91
 GameAssembly.dll+7ADF3E: 45 38 67 30           - cmp [r15+30],r12l
 }
 INJ_AUTO:
-  db 0F 2F B3 CC 00 00 00
+  db 0F 2F B3 D4 00 00 00
 
 unregistersymbol(INJ_AUTO)
 dealloc(newmem2)
 
 {
-// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+7ADF0A
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+6DF001
 
-GameAssembly.dll+7ADEDF: 48 8B 48 10           - mov rcx,[rax+10]
-GameAssembly.dll+7ADEE3: 48 85 C9              - test rcx,rcx
-GameAssembly.dll+7ADEE6: 0F 84 CB 01 00 00     - je GameAssembly.dll+7AE0B7
-GameAssembly.dll+7ADEEC: F3 0F 10 4F 2C        - movss xmm1,[rdi+2C]
-GameAssembly.dll+7ADEF1: 45 33 C0              - xor r8d,r8d
-GameAssembly.dll+7ADEF4: E8 77 F9 FF FF        - call GameAssembly.dll+7AD870
-GameAssembly.dll+7ADEF9: 48 85 C0              - test rax,rax
-GameAssembly.dll+7ADEFC: 0F 84 B5 01 00 00     - je GameAssembly.dll+7AE0B7
-GameAssembly.dll+7ADF02: 0F 28 F7              - movaps xmm6,xmm7
-GameAssembly.dll+7ADF05: F3 0F 5C 70 18        - subss xmm6,[rax+18]
+GameAssembly.dll+6DEFD5: 0F 84 DF 01 00 00     - je GameAssembly.dll+6DF1BA
+GameAssembly.dll+6DEFDB: F3 0F 10 4F 2C        - movss xmm1,[rdi+2C]
+GameAssembly.dll+6DEFE0: 45 33 C0              - xor r8d,r8d
+GameAssembly.dll+6DEFE3: E8 68 F9 FF FF        - call GameAssembly.dll+6DE950
+GameAssembly.dll+6DEFE8: 48 85 C0              - test rax,rax
+GameAssembly.dll+6DEFEB: 0F 84 C9 01 00 00     - je GameAssembly.dll+6DF1BA
+GameAssembly.dll+6DEFF1: 0F 28 C7              - movaps xmm0,xmm7
+GameAssembly.dll+6DEFF4: 41 0F 28 F0           - movaps xmm6,xmm8
+GameAssembly.dll+6DEFF8: F3 0F 58 40 18        - addss xmm0,[rax+18]
+GameAssembly.dll+6DEFFD: F3 0F 5C F0           - subss xmm6,xmm0
 // ---------- INJECTING HERE ----------
-GameAssembly.dll+7ADF0A: 0F 2F B3 CC 00 00 00  - comiss xmm6,[rbx+000000CC]
+GameAssembly.dll+6DF001: 0F 2F B3 D4 00 00 00  - comiss xmm6,[rbx+000000D4]
 // ---------- DONE INJECTING  ----------
-GameAssembly.dll+7ADF11: 72 2B                 - jb GameAssembly.dll+7ADF3E
-GameAssembly.dll+7ADF13: 4C 89 64 24 28        - mov [rsp+28],r12
-GameAssembly.dll+7ADF18: 41 B9 04 00 00 00     - mov r9d,00000004
-GameAssembly.dll+7ADF1E: 44 8B C6              - mov r8d,esi
-GameAssembly.dll+7ADF21: F3 0F 11 74 24 20     - movss [rsp+20],xmm6
-GameAssembly.dll+7ADF27: 8B D5                 - mov edx,ebp
-GameAssembly.dll+7ADF29: 48 8B CB              - mov rcx,rbx
-GameAssembly.dll+7ADF2C: E8 8F 01 00 00        - call GameAssembly.dll+7AE0C0
-GameAssembly.dll+7ADF31: FF C6                 - inc esi
-GameAssembly.dll+7ADF33: 49 83 C6 08           - add r14,08
+GameAssembly.dll+6DF008: 72 2B                 - jb GameAssembly.dll+6DF035
+GameAssembly.dll+6DF00A: 4C 89 64 24 28        - mov [rsp+28],r12
+GameAssembly.dll+6DF00F: 41 B9 04 00 00 00     - mov r9d,00000004
+GameAssembly.dll+6DF015: 44 8B C6              - mov r8d,esi
+GameAssembly.dll+6DF018: F3 0F 11 74 24 20     - movss [rsp+20],xmm6
+GameAssembly.dll+6DF01E: 8B D5                 - mov edx,ebp
+GameAssembly.dll+6DF020: 48 8B CB              - mov rcx,rbx
+GameAssembly.dll+6DF023: E8 98 01 00 00        - call GameAssembly.dll+6DF1C0
+GameAssembly.dll+6DF028: FF C6                 - inc esi
+GameAssembly.dll+6DF02A: 49 83 C6 08           - add r14,08
 }
 </AssemblerScript>
+      <Hotkeys>
+        <Hotkey>
+          <Action>Toggle Activation</Action>
+          <Keys>
+            <Key>97</Key>
+          </Keys>
+          <ID>0</ID>
+        </Hotkey>
+      </Hotkeys>
     </CheatEntry>
     <CheatEntry>
       <ID>20</ID>
       <Description>"Easier Perfect"</Description>
-      <LastState Activated="1"/>
+      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : DankaguPL.exe
   Version: 
@@ -298,6 +378,15 @@ GameAssembly.dll+A4CE0F: 85 C0                    - test eax,eax
 GameAssembly.dll+A4CE11: 78 13                    - js GameAssembly.dll+A4CE26
 }
 </AssemblerScript>
+      <Hotkeys>
+        <Hotkey>
+          <Action>Toggle Activation</Action>
+          <Keys>
+            <Key>98</Key>
+          </Keys>
+          <ID>0</ID>
+        </Hotkey>
+      </Hotkeys>
     </CheatEntry>
     <CheatEntry>
       <ID>22</ID>
@@ -377,6 +466,15 @@ GameAssembly.dll+5CECB8: 48 8B D0              - mov rdx,rax
 GameAssembly.dll+5CECBB: 48 8B CB              - mov rcx,rbx
 }
 </AssemblerScript>
+      <Hotkeys>
+        <Hotkey>
+          <Action>Toggle Activation</Action>
+          <Keys>
+            <Key>99</Key>
+          </Keys>
+          <ID>0</ID>
+        </Hotkey>
+      </Hotkeys>
       <CheatEntries>
         <CheatEntry>
           <ID>23</ID>

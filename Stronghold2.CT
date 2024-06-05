@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<CheatTable CheatEngineTableVersion="45">
+<CheatTable CheatEngineTableVersion="42">
   <CheatEntries>
     <CheatEntry>
       <ID>33</ID>
@@ -261,7 +261,7 @@ Stronghold2.exe+F1CDA: 5F                    - pop edi
         <CheatEntry>
           <ID>178</ID>
           <Description>"Inf Stockpile"</Description>
-          <LastState/>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[ENABLE]
 
@@ -393,17 +393,23 @@ Stronghold2.exe+B4059: 5E                    - pop esi
 </AssemblerScript>
       <CheatEntries>
         <CheatEntry>
+          <ID>186</ID>
+          <Description>"Game Speed"</Description>
+          <LastState Value="90" RealAddress="01A96518"/>
+          <VariableType>4 Bytes</VariableType>
+          <Address>Stronghold2.exe+E46518</Address>
+        </CheatEntry>
+        <CheatEntry>
           <ID>108</ID>
           <Description>"Instances Of Castle Stats"</Description>
           <Options moHideChildren="1"/>
-          <LastState Value="" RealAddress="00000000"/>
+          <LastState Value="" Activated="1" RealAddress="00000000"/>
           <Color>0000FF</Color>
           <GroupHeader>1</GroupHeader>
           <CheatEntries>
             <CheatEntry>
               <ID>3</ID>
               <Description>"Base -&gt;"</Description>
-              <LastState Value="01027970" RealAddress="2F832EB8"/>
               <ShowAsHex>1</ShowAsHex>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>4 Bytes</VariableType>
@@ -415,7 +421,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>5</ID>
                   <Description>"Honor"</Description>
-                  <LastState Value="0" RealAddress="2F832ED4"/>
                   <ShowAsSigned>0</ShowAsSigned>
                   <Color>0F91F0</Color>
                   <VariableType>4 Bytes</VariableType>
@@ -424,7 +429,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>8</ID>
                   <Description>"Gold"</Description>
-                  <LastState Value="350" RealAddress="2F833EC8"/>
                   <ShowAsSigned>0</ShowAsSigned>
                   <Color>0F91F0</Color>
                   <VariableType>Float</VariableType>
@@ -433,7 +437,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>6</ID>
                   <Description>"Popularity"</Description>
-                  <LastState Value="80" RealAddress="2F833EE0"/>
                   <ShowAsSigned>0</ShowAsSigned>
                   <VariableType>Float</VariableType>
                   <Address>+1028</Address>
@@ -441,7 +444,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>12</ID>
                   <Description>"Current Pop Visual"</Description>
-                  <LastState Value="0" RealAddress="2F833EEC"/>
                   <ShowAsSigned>0</ShowAsSigned>
                   <VariableType>4 Bytes</VariableType>
                   <Address>+1034</Address>
@@ -449,7 +451,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>4</ID>
                   <Description>"Max Beds"</Description>
-                  <LastState Value="8" RealAddress="2F833EE8"/>
                   <ShowAsSigned>0</ShowAsSigned>
                   <VariableType>4 Bytes</VariableType>
                   <Address>+1030</Address>
@@ -457,7 +458,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>17</ID>
                   <Description>"Rate of Spawning (Set and Freeze at 4000 for quick Spawn)"</Description>
-                  <LastState Value="16" RealAddress="2F833EF0"/>
                   <ShowAsSigned>0</ShowAsSigned>
                   <VariableType>4 Bytes</VariableType>
                   <Address>+1038</Address>
@@ -472,7 +472,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>13</ID>
                   <Description>"Wood"</Description>
-                  <LastState Value="0" RealAddress="2F833E18"/>
                   <ShowAsSigned>0</ShowAsSigned>
                   <Color>408000</Color>
                   <VariableType>4 Bytes</VariableType>
@@ -481,7 +480,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>117</ID>
                   <Description>"Stone"</Description>
-                  <LastState Value="0" RealAddress="2F833E1C"/>
                   <Color>408000</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>+F64</Address>
@@ -489,7 +487,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>118</ID>
                   <Description>"Iron"</Description>
-                  <LastState Value="0" RealAddress="2F833E20"/>
                   <Color>408000</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>+F68</Address>
@@ -497,7 +494,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>124</ID>
                   <Description>"Pitch"</Description>
-                  <LastState Value="0" RealAddress="2F833E38"/>
                   <Color>408000</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>+F80</Address>
@@ -505,7 +501,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>125</ID>
                   <Description>"Candles"</Description>
-                  <LastState Value="0" RealAddress="2F833E3C"/>
                   <Color>408000</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>+F84</Address>
@@ -513,7 +508,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>126</ID>
                   <Description>"Wool"</Description>
-                  <LastState Value="0" RealAddress="2F833E40"/>
                   <Color>408000</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>+F88</Address>
@@ -521,7 +515,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>127</ID>
                   <Description>"Cloth"</Description>
-                  <LastState Value="0" RealAddress="2F833E44"/>
                   <Color>408000</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>+F8C</Address>
@@ -529,7 +522,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>119</ID>
                   <Description>"Wheat"</Description>
-                  <LastState Value="0" RealAddress="2F833E24"/>
                   <Color>408000</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>+F6C</Address>
@@ -537,7 +529,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>120</ID>
                   <Description>"Flour"</Description>
-                  <LastState Value="0" RealAddress="2F833E28"/>
                   <Color>408000</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>+F70</Address>
@@ -545,7 +536,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>121</ID>
                   <Description>"Hops"</Description>
-                  <LastState Value="0" RealAddress="2F833E2C"/>
                   <Color>408000</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>+F74</Address>
@@ -553,7 +543,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>122</ID>
                   <Description>"Ale"</Description>
-                  <LastState Value="0" RealAddress="2F833E30"/>
                   <Color>408000</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>+F78</Address>
@@ -561,7 +550,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>123</ID>
                   <Description>"Grapes"</Description>
-                  <LastState Value="0" RealAddress="2F833E34"/>
                   <Color>408000</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>+F7C</Address>
@@ -576,7 +564,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>116</ID>
                   <Description>"Apple Fruit"</Description>
-                  <LastState Value="0" RealAddress="2F833E6C"/>
                   <ShowAsSigned>0</ShowAsSigned>
                   <Color>187D83</Color>
                   <VariableType>4 Bytes</VariableType>
@@ -585,7 +572,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>114</ID>
                   <Description>"Bread"</Description>
-                  <LastState Value="0" RealAddress="2F833E70"/>
                   <ShowAsSigned>0</ShowAsSigned>
                   <Color>187D83</Color>
                   <VariableType>4 Bytes</VariableType>
@@ -594,7 +580,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>113</ID>
                   <Description>"Cheese"</Description>
-                  <LastState Value="0" RealAddress="2F833E74"/>
                   <ShowAsSigned>0</ShowAsSigned>
                   <Color>187D83</Color>
                   <VariableType>4 Bytes</VariableType>
@@ -603,7 +588,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>112</ID>
                   <Description>"Meat"</Description>
-                  <LastState Value="0" RealAddress="2F833E78"/>
                   <ShowAsSigned>0</ShowAsSigned>
                   <Color>187D83</Color>
                   <VariableType>4 Bytes</VariableType>
@@ -619,7 +603,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>134</ID>
                   <Description>"Wine"</Description>
-                  <LastState Value="0" RealAddress="2F833E60"/>
                   <Color>117AEE</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>+FA8</Address>
@@ -627,7 +610,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>133</ID>
                   <Description>"Vegetables"</Description>
-                  <LastState Value="0" RealAddress="2F833E5C"/>
                   <Color>117AEE</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>+FA4</Address>
@@ -635,7 +617,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>129</ID>
                   <Description>"Eels"</Description>
-                  <LastState Value="0" RealAddress="2F833E4C"/>
                   <Color>117AEE</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>+F94</Address>
@@ -643,7 +624,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>130</ID>
                   <Description>"Geese"</Description>
-                  <LastState Value="0" RealAddress="2F833E50"/>
                   <Color>117AEE</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>+F98</Address>
@@ -651,7 +631,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>132</ID>
                   <Description>"Pigs"</Description>
-                  <LastState Value="0" RealAddress="2F833E58"/>
                   <Color>117AEE</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>+FA0</Address>
@@ -666,7 +645,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>145</ID>
                   <Description>"Bows"</Description>
-                  <LastState Value="0" RealAddress="2F833E8C"/>
                   <Color>0000FF</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>+FD4</Address>
@@ -674,7 +652,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>146</ID>
                   <Description>"Crossbows"</Description>
-                  <LastState Value="0" RealAddress="2F833E90"/>
                   <Color>0000FF</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>+FD8</Address>
@@ -682,7 +659,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>148</ID>
                   <Description>"Swords"</Description>
-                  <LastState Value="0" RealAddress="2F833E94"/>
                   <Color>0000FF</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>+FDC</Address>
@@ -690,7 +666,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>149</ID>
                   <Description>"Maces"</Description>
-                  <LastState Value="0" RealAddress="2F833E98"/>
                   <Color>0000FF</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>+FE0</Address>
@@ -698,7 +673,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>150</ID>
                   <Description>"Pikes"</Description>
-                  <LastState Value="0" RealAddress="2F833E9C"/>
                   <Color>0000FF</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>+FE4</Address>
@@ -706,7 +680,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>151</ID>
                   <Description>"Spears"</Description>
-                  <LastState Value="0" RealAddress="2F833EA0"/>
                   <Color>0000FF</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>+FE8</Address>
@@ -714,7 +687,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>152</ID>
                   <Description>"Amour"</Description>
-                  <LastState Value="0" RealAddress="2F833EA4"/>
                   <Color>0000FF</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>+FEC</Address>
@@ -722,7 +694,6 @@ Stronghold2.exe+B4059: 5E                    - pop esi
                 <CheatEntry>
                   <ID>153</ID>
                   <Description>"Leather Amour"</Description>
-                  <LastState Value="0" RealAddress="2F833EA8"/>
                   <Color>0000FF</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>+FF0</Address>

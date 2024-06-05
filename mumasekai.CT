@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="42">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"Inf second jump"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : mumasekai.exe
+  Version: 
+  Date   : 2023-10-23
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_INF_JUMP,89 87 B8 01 00 00 E9) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  xor eax,eax
+code:
+  mov [edi+000001B8],eax
+  jmp return
+
+INJ_INF_JUMP:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_INF_JUMP)
+
+[DISABLE]
+
+INJ_INF_JUMP:
+  db 89 87 B8 01 00 00
+
+unregistersymbol(INJ_INF_JUMP)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 011D13C6
+
+011D139E: 8B 4D 94              - mov ecx,[ebp-6C]
+011D13A1: 89 4C 24 0C           - mov [esp+0C],ecx
+011D13A5: 8B 4D 98              - mov ecx,[ebp-68]
+011D13A8: 89 4C 24 10           - mov [esp+10],ecx
+011D13AC: 89 44 24 04           - mov [esp+04],eax
+011D13B0: 89 3C 24              - mov [esp],edi
+011D13B3: E8 20 D8 00 00        - call 011DEBD8
+011D13B8: C6 87 C0 01 00 00 01  - mov byte ptr [edi+000001C0],01
+011D13BF: 8B 87 B8 01 00 00     - mov eax,[edi+000001B8]
+011D13C5: 40                    - inc eax
+// ---------- INJECTING HERE ----------
+011D13C6: 89 87 B8 01 00 00     - mov [edi+000001B8],eax
+// ---------- DONE INJECTING  ----------
+011D13CC: E9 74 00 00 00        - jmp 011D1445
+011D13D1: 0F B6 87 E4 00 00 00  - movzx eax,byte ptr [edi+000000E4]
+011D13D8: 85 C0                 - test eax,eax
+011D13DA: 0F 85 65 00 00 00     - jne 011D1445
+011D13E0: 0F B6 87 C0 01 00 00  - movzx eax,byte ptr [edi+000001C0]
+011D13E7: 85 C0                 - test eax,eax
+011D13E9: 0F 84 56 00 00 00     - je 011D1445
+011D13EF: 8B 87 B0 01 00 00     - mov eax,[edi+000001B0]
+011D13F5: 8B 8F AC 01 00 00     - mov ecx,[edi+000001AC]
+011D13FB: 3B C1                 - cmp eax,ecx
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>
