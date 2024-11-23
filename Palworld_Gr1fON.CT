@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"Stamina"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Pal  
+  Version: 
+  Date   : 2024-01-30
+  Author : Gr1fON
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Palworld-Win64-Shipping.exe,48 8B 81 F0 02 00 00 48 89 02 48 8B C2) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [rcx+2F0],(int)1000000
+  mov rax,[rcx+2F0]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 48 8B 81 F0 02 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Palworld-Win64-Shipping.UPalCharacterParameterComponent::GetSP
+
+Palworld-Win64-Shipping.FDefaultGameMoviePlayer::IsInitialized: 0F B6 81 58 01 00 00  - movzx eax,byte ptr [rcx+00000158]
+Palworld-Win64-Shipping.UGizmoElementGroup::GetConstantScale+7: C3                    - ret 
+Palworld-Win64-Shipping.UGizmoElementGroup::GetConstantScale+8: CC                    - int 3 
+Palworld-Win64-Shipping.exe+2878CC9: CC                    - int 3 
+Palworld-Win64-Shipping.exe+2878CCA: CC                    - int 3 
+Palworld-Win64-Shipping.exe+2878CCB: CC                    - int 3 
+Palworld-Win64-Shipping.exe+2878CCC: CC                    - int 3 
+Palworld-Win64-Shipping.exe+2878CCD: CC                    - int 3 
+Palworld-Win64-Shipping.exe+2878CCE: CC                    - int 3 
+Palworld-Win64-Shipping.exe+2878CCF: CC                    - int 3 
+// ---------- INJECTING HERE ----------
+Palworld-Win64-Shipping.UPalCharacterParameterComponent::GetSP: 48 8B 81 F0 02 00 00  - mov rax,[rcx+Palworld-Win64-Shipping.GCurrentNumDrawCallsRHIPtr]
+// ---------- DONE INJECTING  ----------
+Palworld-Win64-Shipping.UPalCharacterParameterComponent::GetSP+7: 48 89 02              - mov [rdx],rax
+Palworld-Win64-Shipping.UPalCharacterParameterComponent::GetSP+A: 48 8B C2              - mov rax,rdx
+Palworld-Win64-Shipping.UPalCharacterParameterComponent::GetSP+D: C3                    - ret 
+Palworld-Win64-Shipping.exe+2878CDE: CC                    - int 3 
+Palworld-Win64-Shipping.exe+2878CDF: CC                    - int 3 
+Palworld-Win64-Shipping.UPalCharacterParameterComponent::GetSanity: 48 8B 89 08 01 00 00  - mov rcx,[rcx+00000108]
+Palworld-Win64-Shipping.UPalCharacterParameterComponent::GetSanity+7: 48 85 C9              - test rcx,rcx
+Palworld-Win64-Shipping.UPalCharacterParameterComponent::GetSanity+A: 75 04                 - jne Palworld-Win64-Shipping.UPalCharacterParameterComponent::GetSanity+10
+Palworld-Win64-Shipping.UPalCharacterParameterComponent::GetSanity+C: 0F 57 C0              - xorps xmm0,xmm0
+Palworld-Win64-Shipping.UPalCharacterParameterComponent::GetSanity+F: C3                    - ret 
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>3</ID>
+      <Description>"Weight"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Pal  
+  Version: 
+  Date   : 2024-01-30
+  Author : Gr1fON
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Palworld-Win64-Shipping.exe,F3 0F 11 B3 50 01 00 00 72) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  movss xmm6,[Weight]
+code:
+  movss [rbx+00000150],xmm6
+  jmp return
+
+Weight:
+dd (float)0
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db F3 0F 11 B3 50 01 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Palworld-Win64-Shipping.UPalPlayerInventoryData::UpdateCurrentInventoryWeight+29
+
+Palworld-Win64-Shipping.exe+2AE824F: CC                       - int 3 
+Palworld-Win64-Shipping.UPalPlayerInventoryData::UpdateCurrentInventoryWeight: 40 53                    - push rbx
+Palworld-Win64-Shipping.UPalPlayerInventoryData::UpdateCurrentInventoryWeight+2: 48 83 EC 30              - sub rsp,30
+Palworld-Win64-Shipping.UPalPlayerInventoryData::UpdateCurrentInventoryWeight+6: 0F 29 74 24 20           - movaps [rsp+20],xmm6
+Palworld-Win64-Shipping.UPalPlayerInventoryData::UpdateCurrentInventoryWeight+B: 48 8B D9                 - mov rbx,rcx
+Palworld-Win64-Shipping.UPalPlayerInventoryData::UpdateCurrentInventoryWeight+E: E8 DD B7 FD FF           - call Palworld-Win64-Shipping.UPalPlayerInventoryData::CalculateInventoryWeight
+Palworld-Win64-Shipping.UPalPlayerInventoryData::UpdateCurrentInventoryWeight+13: F3 0F 10 8B 50 01 00 00  - movss xmm1,[rbx+00000150]
+Palworld-Win64-Shipping.UPalPlayerInventoryData::UpdateCurrentInventoryWeight+1B: 0F 28 F0                 - movaps xmm6,xmm0
+Palworld-Win64-Shipping.UPalPlayerInventoryData::UpdateCurrentInventoryWeight+1E: F3 0F 10 83 54 01 00 00  - movss xmm0,[rbx+00000154]
+Palworld-Win64-Shipping.UPalPlayerInventoryData::UpdateCurrentInventoryWeight+26: 0F 2F C8                 - comiss xmm1,xmm0
+// ---------- INJECTING HERE ----------
+Palworld-Win64-Shipping.UPalPlayerInventoryData::UpdateCurrentInventoryWeight+29: F3 0F 11 B3 50 01 00 00  - movss [rbx+00000150],xmm6
+// ---------- DONE INJECTING  ----------
+Palworld-Win64-Shipping.UPalPlayerInventoryData::UpdateCurrentInventoryWeight+31: 72 0E                    - jb Palworld-Win64-Shipping.UPalPlayerInventoryData::UpdateCurrentInventoryWeight+41
+Palworld-Win64-Shipping.UPalPlayerInventoryData::UpdateCurrentInventoryWeight+33: 0F 2F F0                 - comiss xmm6,xmm0
+Palworld-Win64-Shipping.UPalPlayerInventoryData::UpdateCurrentInventoryWeight+36: 73 25                    - jae Palworld-Win64-Shipping.UPalPlayerInventoryData::UpdateCurrentInventoryWeight+5D
+Palworld-Win64-Shipping.UPalPlayerInventoryData::UpdateCurrentInventoryWeight+38: 48 8D 8B A0 00 00 00     - lea rcx,[rbx+Palworld-Win64-Shipping.LowLevelTasks::FSchedulerTls::ActiveScheduler]
+Palworld-Win64-Shipping.UPalPlayerInventoryData::UpdateCurrentInventoryWeight+3F: EB 0C                    - jmp Palworld-Win64-Shipping.UPalPlayerInventoryData::UpdateCurrentInventoryWeight+4D
+Palworld-Win64-Shipping.UPalPlayerInventoryData::UpdateCurrentInventoryWeight+41: 0F 2F F0                 - comiss xmm6,xmm0
+Palworld-Win64-Shipping.UPalPlayerInventoryData::UpdateCurrentInventoryWeight+44: 72 17                    - jb Palworld-Win64-Shipping.UPalPlayerInventoryData::UpdateCurrentInventoryWeight+5D
+Palworld-Win64-Shipping.UPalPlayerInventoryData::UpdateCurrentInventoryWeight+46: 48 8D 8B 90 00 00 00     - lea rcx,[rbx+Palworld-Win64-Shipping.LowLevelTasks::FSchedulerTls::WorkerType]
+Palworld-Win64-Shipping.UPalPlayerInventoryData::UpdateCurrentInventoryWeight+4D: 48 8D 54 24 40           - lea rdx,[rsp+40]
+Palworld-Win64-Shipping.UPalPlayerInventoryData::UpdateCurrentInventoryWeight+52: F3 0F 11 74 24 40        - movss [rsp+40],xmm6
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"Damage"</Description>
+      <Options moHideChildren="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Pal
+  Version:
+  Date   : 2024-01-30
+  Author : Gr1fON
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(DamageMultiplier,Palworld-Win64-Shipping.exe,8B 97 60 01 00 00 48 8B CB) // should be unique
+alloc(newmem,$1000,DamageMultiplier)
+
+label(code)
+label(return)
+label(damageMulti)
+registersymbol(damageMulti)
+
+newmem:
+  mov edx,[rdi+00000160]
+  imul edx,[damageMulti]
+code:
+  jmp return
+damageMulti:
+  dd (int)100
+DamageMultiplier:
+  jmp newmem
+  nop
+return:
+registersymbol(DamageMultiplier)
+
+[DISABLE]
+
+DamageMultiplier:
+  db 8B 97 60 01 00 00
+
+unregistersymbol(DamageMultiplier)
+dealloc(newmem)
+unregistersymbol(damageMulti)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Palworld-WinGDK-Shipping.exe+2A567C5
+
+Palworld-WinGDK-Shipping.exe+2A567A2: E8 D9 A7 C6 FF     - call Palworld-WinGDK-Shipping.exe+26C0F80
+Palworld-WinGDK-Shipping.exe+2A567A7: 48 8B 4F 10        - mov rcx,[rdi+10]
+Palworld-WinGDK-Shipping.exe+2A567AB: 4C 8D 40 30        - lea r8,[rax+30]
+Palworld-WinGDK-Shipping.exe+2A567AF: 48 63 40 38        - movsxd  rax,dword ptr [rax+38]
+Palworld-WinGDK-Shipping.exe+2A567B3: 3B 41 38           - cmp eax,[rcx+38]
+Palworld-WinGDK-Shipping.exe+2A567B6: 7F 25              - jg Palworld-WinGDK-Shipping.exe+2A567DD
+Palworld-WinGDK-Shipping.exe+2A567B8: 48 8B D0           - mov rdx,rax
+Palworld-WinGDK-Shipping.exe+2A567BB: 48 8B 41 30        - mov rax,[rcx+30]
+Palworld-WinGDK-Shipping.exe+2A567BF: 4C 39 04 D0        - cmp [rax+rdx*8],r8
+Palworld-WinGDK-Shipping.exe+2A567C3: 75 18              - jne Palworld-WinGDK-Shipping.exe+2A567DD
+// ---------- INJECTING HERE ----------
+Palworld-WinGDK-Shipping.exe+2A567C5: 8B 97 60 01 00 00  - mov edx,[rdi+00000160]
+// ---------- DONE INJECTING  ----------
+Palworld-WinGDK-Shipping.exe+2A567CB: 48 8B CB           - mov rcx,rbx
+Palworld-WinGDK-Shipping.exe+2A567CE: 48 8B 5C 24 48     - mov rbx,[rsp+48]
+Palworld-WinGDK-Shipping.exe+2A567D3: 48 83 C4 30        - add rsp,30
+Palworld-WinGDK-Shipping.exe+2A567D7: 5F                 - pop rdi
+Palworld-WinGDK-Shipping.exe+2A567D8: E9 93 37 FF FF     - jmp Palworld-WinGDK-Shipping.exe+2A49F70
+Palworld-WinGDK-Shipping.exe+2A567DD: 48 8B 5C 24 48     - mov rbx,[rsp+48]
+Palworld-WinGDK-Shipping.exe+2A567E2: B8 01 00 00 00     - mov eax,00000001
+Palworld-WinGDK-Shipping.exe+2A567E7: 48 83 C4 30        - add rsp,30
+Palworld-WinGDK-Shipping.exe+2A567EB: 5F                 - pop rdi
+Palworld-WinGDK-Shipping.exe+2A567EC: C3                 - ret
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>5</ID>
+          <Description>"Нет описания"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>damageMulti</Address>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"Endless arrows and Pal Sphere"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Pal
+  Version:
+  Date   : 2024-01-31
+  Author : Gr1fON
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Palworld-Win64-Shipping.exe,40 55 53 41 55 41 57 48 8D 6C 24 C1 48 81 EC ** 00 00 00 45 8B F8 4C 8B) // should be unique
+INJECT:
+  ret
+  nop
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 40 55
+unregistersymbol(INJECT)
+
+
+{
+// ORIGINAL CODE - INJECTION POINT: Palworld-Win64-Shipping.UPalPlayerInventoryData::RequestConsume
+
+Palworld-Win64-Shipping.UPalPlayerInventoryData::RequestAddItem+43: 48 83 C4 20           - add rsp,20
+Palworld-Win64-Shipping.UPalPlayerInventoryData::RequestAddItem+47: 5F                    - pop rdi
+Palworld-Win64-Shipping.UPalPlayerInventoryData::RequestAddItem+48: C3                    - ret
+Palworld-Win64-Shipping.UPalPlayerInventoryData::RequestAddItem+49: CC                    - int 3
+Palworld-Win64-Shipping.exe+2ADDDBA: CC                    - int 3
+Palworld-Win64-Shipping.exe+2ADDDBB: CC                    - int 3
+Palworld-Win64-Shipping.exe+2ADDDBC: CC                    - int 3
+Palworld-Win64-Shipping.exe+2ADDDBD: CC                    - int 3
+Palworld-Win64-Shipping.exe+2ADDDBE: CC                    - int 3
+Palworld-Win64-Shipping.exe+2ADDDBF: CC                    - int 3
+// ---------- INJECTING HERE ----------
+Palworld-Win64-Shipping.UPalPlayerInventoryData::RequestConsume: 40 55                 - push rbp
+// ---------- DONE INJECTING  ----------
+Palworld-Win64-Shipping.UPalPlayerInventoryData::RequestConsume+2: 53                    - push rbx
+Palworld-Win64-Shipping.UPalPlayerInventoryData::RequestConsume+3: 41 55                 - push r13
+Palworld-Win64-Shipping.UPalPlayerInventoryData::RequestConsume+5: 41 57                 - push r15
+Palworld-Win64-Shipping.UPalPlayerInventoryData::RequestConsume+7: 48 8D 6C 24 C1        - lea rbp,[rsp-3F]
+Palworld-Win64-Shipping.UPalPlayerInventoryData::RequestConsume+C: 48 81 EC D8 00 00 00  - sub rsp,Palworld-Win64-Shipping.ExecutionResourceImpl::ExecutionResourceStack
+Palworld-Win64-Shipping.UPalPlayerInventoryData::RequestConsume+13: 45 8B F8              - mov r15d,r8d
+Palworld-Win64-Shipping.UPalPlayerInventoryData::RequestConsume+16: 4C 8B EA              - mov r13,rdx
+Palworld-Win64-Shipping.UPalPlayerInventoryData::RequestConsume+19: 48 8B D9              - mov rbx,rcx
+Palworld-Win64-Shipping.UPalPlayerInventoryData::RequestConsume+1C: E8 CF 6E 05 00        - call Palworld-Win64-Shipping.UPalUtility::GetItemIDManager
+Palworld-Win64-Shipping.UPalPlayerInventoryData::RequestConsume+21: 48 85 C0              - test rax,rax
+}
+
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>7</ID>
+      <Description>"SpeedHack"</Description>
+      <Options moHideChildren="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Pal
+  Version:
+  Date   : 2024-02-04
+  Author : Gr1fON
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,Palworld-Win64-Shipping.exe,2B 48 85 DB 74 07 F3 0F 10 4B 64) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+label(rate)
+registersymbol(rate)
+
+newmem:
+  cmp [rbx+160],0
+  je code
+  movss xmm1,[rate]
+  movss [rbx+64],xmm1
+code:
+  movss xmm1,[rbx+64]
+  jmp return
+rate:
+  dd (float)10.0
+INJECT+06:
+  jmp newmem
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+06:
+  db F3 0F 10 4B 64
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+unregistersymbol(rate)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Palworld-Win64-Shipping.exe+475E4BA
+
+Palworld-WinGDK-Shipping.exe+475E49E: 75 15                    - jne Palworld-WinGDK-Shipping.exe+475E4B5
+Palworld-WinGDK-Shipping.exe+475E4A0: 48 85 DB                 - test rbx,rbx
+Palworld-WinGDK-Shipping.exe+475E4A3: 74 3B                    - je Palworld-WinGDK-Shipping.exe+475E4E0
+Palworld-WinGDK-Shipping.exe+475E4A5: 48 8B 03                 - mov rax,[rbx]
+Palworld-WinGDK-Shipping.exe+475E4A8: 48 8B CB                 - mov rcx,rbx
+Palworld-WinGDK-Shipping.exe+475E4AB: FF 90 D0 04 00 00        - call qword ptr [rax+000004D0]
+Palworld-WinGDK-Shipping.exe+475E4B1: 84 C0                    - test al,al
+Palworld-WinGDK-Shipping.exe+475E4B3: 74 2B                    - je Palworld-WinGDK-Shipping.exe+475E4E0
+Palworld-WinGDK-Shipping.exe+475E4B5: 48 85 DB                 - test rbx,rbx
+Palworld-WinGDK-Shipping.exe+475E4B8: 74 07                    - je Palworld-WinGDK-Shipping.exe+475E4C1
+// ---------- INJECTING HERE ----------
+Palworld-WinGDK-Shipping.exe+475E4BA: F3 0F 10 4B 64           - movss xmm1,[rbx+64]
+// ---------- DONE INJECTING  ----------
+Palworld-WinGDK-Shipping.exe+475E4BF: EB 08                    - jmp Palworld-WinGDK-Shipping.exe+475E4C9
+Palworld-WinGDK-Shipping.exe+475E4C1: F3 0F 10 0D CF 33 43 01  - movss xmm1,[Palworld-WinGDK-Shipping.D3D12SDKVersion+3150]
+Palworld-WinGDK-Shipping.exe+475E4C9: 48 8B 4E 28              - mov rcx,[rsi+28]
+Palworld-WinGDK-Shipping.exe+475E4CD: 4C 8B CE                 - mov r9,rsi
+Palworld-WinGDK-Shipping.exe+475E4D0: F3 0F 59 CE              - mulss xmm1,xmm6
+Palworld-WinGDK-Shipping.exe+475E4D4: 44 8B C7                 - mov r8d,edi
+Palworld-WinGDK-Shipping.exe+475E4D7: 48 8B 01                 - mov rax,[rcx]
+Palworld-WinGDK-Shipping.exe+475E4DA: FF 90 A8 03 00 00        - call qword ptr [rax+000003A8]
+Palworld-WinGDK-Shipping.exe+475E4E0: 48 8B 5C 24 40           - mov rbx,[rsp+40]
+Palworld-WinGDK-Shipping.exe+475E4E5: 48 8B 6C 24 48           - mov rbp,[rsp+48]
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>8</ID>
+          <Description>"Rate"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>Float</VariableType>
+          <Address>rate</Address>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

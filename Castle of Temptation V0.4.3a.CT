@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"Auto Assemble script"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Castle of Temptation V0.4.3a
+  Version: 
+  Date   : 2023-11-08
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_ARU,F3 41 0F 10 47 28 F3) // should be unique
+alloc(newmem,$1000,INJ_ARU)
+
+label(code)
+label(return)
+label(pt_aru)
+label(Lret)
+
+newmem:
+  push rax
+  mov rax,[r15+20]
+  cmp rax,101
+  jne Lret
+  mov eax,[r15+1C]
+  cmp eax,0
+  jne Lret
+  mov eax,[r15+28]
+  mov [pt_aru],r15
+Lret:
+  pop rax
+  jmp code
+pt_aru:
+  dq 0
+registersymbol(pt_aru)
+code:
+  movss xmm0,[r15+28]
+  jmp return
+
+INJ_ARU:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_ARU)
+
+[DISABLE]
+
+INJ_ARU:
+  db F3 41 0F 10 47 28
+
+unregistersymbol(INJ_ARU)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 0577B9F7
+
+0577B9CC: 83 38 00                       - cmp dword ptr [rax],00
+0577B9CF: 49 BB 20 61 75 05 00 00 00 00  - mov r11,0000000005756120
+0577B9D9: 41 FF D3                       - call r11
+0577B9DC: 48 83 C4 20                    - add rsp,20
+0577B9E0: 4C 8B F8                       - mov r15,rax
+0577B9E3: 49 8B C7                       - mov rax,r15
+0577B9E6: 48 85 C0                       - test rax,rax
+0577B9E9: 0F 84 42 00 00 00              - je 0577BA31
+0577B9EF: 48 8B 46 50                    - mov rax,[rsi+50]
+0577B9F3: 41 83 3F 00                    - cmp dword ptr [r15],00
+// ---------- INJECTING HERE ----------
+0577B9F7: F3 41 0F 10 47 28              - movss xmm0,[r15+28]
+// ---------- DONE INJECTING  ----------
+0577B9FD: F3 0F 5A C0                    - cvtss2sd xmm0,xmm0
+0577BA01: F2 0F 5A E8                    - cvtsd2ss xmm5,xmm0
+0577BA05: F3 0F 11 6D E4                 - movss [rbp-1C],xmm5
+0577BA0A: F3 0F 10 45 E4                 - movss xmm0,[rbp-1C]
+0577BA0F: F3 0F 5A C0                    - cvtss2sd xmm0,xmm0
+0577BA13: F2 0F 5A E8                    - cvtsd2ss xmm5,xmm0
+0577BA17: F3 0F 11 6D E4                 - movss [rbp-1C],xmm5
+0577BA1C: 83 38 00                       - cmp dword ptr [rax],00
+0577BA1F: F3 0F 10 45 E4                 - movss xmm0,[rbp-1C]
+0577BA24: F3 0F 5A C0                    - cvtss2sd xmm0,xmm0
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>7</ID>
+          <Description>"No description"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>Float</VariableType>
+          <Address>pt_aru</Address>
+          <Offsets>
+            <Offset>28</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>14</ID>
+      <Description>"No description"</Description>
+      <VariableType>Float</VariableType>
+      <Address>3297EC58</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>15</ID>
+      <Description>"No description"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>4 Bytes</VariableType>
+      <Address>3297EC30+20</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>16</ID>
+      <Description>"Auto Assemble script"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Castle of Temptation V0.4.3a
+  Version: 
+  Date   : 2023-11-08
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_INVUL,F3 0F 11 68 28 48 8B 75 F8 C9 C3 00 00 00 00 00 00 00 00 34) // should be unique
+alloc(newmem,$1000,INJ_INVUL)
+
+label(code)
+label(return)
+label(Lret)
+label(pt_god)
+
+newmem:
+  push rbx
+  mov ebx,[rax+20]
+  cmp ebx,1
+  jne Lret
+  mov ebx,[rax+10]
+  cmp ebx,32975578
+  jne Lret
+  mov ebx,[rax+30]
+  cmp ebx,10034328
+  jne Lret
+  mov [pt_god],rax
+Lret:
+  pop rbx
+  jmp code
+
+pt_god:
+  dq 0
+registersymbol(pt_god)
+
+code:
+  movss [rax+28],xmm5
+  jmp return
+
+INJ_INVUL:
+  jmp newmem
+return:
+registersymbol(INJ_INVUL)
+
+[DISABLE]
+
+INJ_INVUL:
+  db F3 0F 11 68 28
+
+unregistersymbol(INJ_INVUL)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 050836A9
+
+0508367E: F2 0F 10 45 E0  - movsd xmm0,[rbp-20]
+05083683: F2 0F 10 4D D8  - movsd xmm1,[rbp-28]
+05083688: F2 0F 59 CA     - mulsd xmm1,xmm2
+0508368C: F2 0F 58 C1     - addsd xmm0,xmm1
+05083690: F2 0F 5A E8     - cvtsd2ss xmm5,xmm0
+05083694: F3 0F 11 6D F4  - movss [rbp-0C],xmm5
+05083699: 83 38 00        - cmp dword ptr [rax],00
+0508369C: F3 0F 10 45 F4  - movss xmm0,[rbp-0C]
+050836A1: F3 0F 5A C0     - cvtss2sd xmm0,xmm0
+050836A5: F2 0F 5A E8     - cvtsd2ss xmm5,xmm0
+// ---------- INJECTING HERE ----------
+050836A9: F3 0F 11 68 28  - movss [rax+28],xmm5
+// ---------- DONE INJECTING  ----------
+050836AE: 48 8B 75 F8     - mov rsi,[rbp-08]
+050836B2: C9              - leave 
+050836B3: C3              - ret 
+050836B4: 00 00           - add [rax],al
+050836B6: 00 00           - add [rax],al
+050836B8: 00 00           - add [rax],al
+050836BA: 00 00           - add [rax],al
+050836BC: 34 01           - xor al,01
+050836BE: 00 00           - add [rax],al
+050836C0: 44 01 00        - add [rax],r8d
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>17</ID>
+          <Description>"No description"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>Float</VariableType>
+          <Address>pt_god</Address>
+          <Offsets>
+            <Offset>28</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>18</ID>
+      <Description>"No description"</Description>
+      <ShowAsSigned>0</ShowAsSigned>
+      <VariableType>Float</VariableType>
+      <Address>2B02EFE8</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>19</ID>
+      <Description>"No Description"</Description>
+      <VariableType>Float</VariableType>
+      <Address>2B02EF28</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

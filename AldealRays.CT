@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries/>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>Code :sub [rbx+4C],eax</Description>
+      <AddressString>GameAssembly.dll+269AAA</AddressString>
+      <Before>
+        <Byte>74</Byte>
+        <Byte>30</Byte>
+        <Byte>8B</Byte>
+        <Byte>40</Byte>
+        <Byte>18</Byte>
+      </Before>
+      <Actual>
+        <Byte>29</Byte>
+        <Byte>43</Byte>
+        <Byte>4C</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>83</Byte>
+        <Byte>C4</Byte>
+        <Byte>20</Byte>
+        <Byte>5B</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :mov eax,[rbx+000005FC]</Description>
+      <AddressString>GameAssembly.dll+2FF7AB</AddressString>
+      <Before>
+        <Byte>B8</Byte>
+        <Byte>04</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>8B</Byte>
+        <Byte>83</Byte>
+        <Byte>FC</Byte>
+        <Byte>05</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>74</Byte>
+        <Byte>05</Byte>
+        <Byte>83</Byte>
+        <Byte>F8</Byte>
+        <Byte>03</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+  <Comments>Info about this table:
+</Comments>
+</CheatTable>
