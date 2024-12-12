@@ -4,38 +4,32 @@
     <CheatEntry>
       <ID>9</ID>
       <Description>"Full Groove Gague"</Description>
-      <LastState/>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : DankaguPL.exe
-  Version: 
-  Date   : 2024-05-24
+  Version:
+  Date   : 2024-12-07
   Author : Compeador
 
   This script does blah blah blah
 }
 
-{ Game   : DankaguPL.exe
-  Version: 
-  Date   : 2024-02-12
-  Author : Compeador
-}
-
 [ENABLE]
 
-aobscanmodule(INJ_FULLHP,GameAssembly.dll,F3 0F 11 49 10 0F) // should be unique
-alloc(newmem,$1000,INJ_FULLHP)
+aobscanmodule(INJ_FULLHP,GameAssembly.dll,F3 0F 11 40 08 76) // should be unique
+alloc(newmem,$1000)
 
 label(code)
 label(return)
 
 newmem:
-  push rax
-  xor rax,rax,
-  mov eax,(float)100.0
-  movd xmm1,eax
-  pop rax
+  push rbx
+  xor rbx,rbx
+  mov ebx,(float)100.0
+  movd xmm0,ebx
+  pop rbx
 code:
-  movss [rcx+10],xmm1
+  movss [eax+08],xmm0
   jmp return
 
 INJ_FULLHP:
@@ -43,94 +37,40 @@ INJ_FULLHP:
 return:
 registersymbol(INJ_FULLHP)
 
-aobscanmodule(INJ_FULLHP2,GameAssembly.dll,F3 0F 11 49 10 0F 2F) // should be unique
-alloc(newmem2,$1000,INJ_FULLHP2)
-
-label(code2)
-label(return2)
-
-newmem2:
-  push rax
-  xor rax,rax,
-  mov eax,(float)100.0
-  movd xmm1,eax
-  pop rax
-code2:
-  movss [rcx+10],xmm1
-  jmp return2
-
-INJ_FULLHP2:
-  jmp newmem2
-return2:
-registersymbol(INJ_FULLHP2)
-
 [DISABLE]
 
 INJ_FULLHP:
-  db F3 0F 11 49 10
+  db F3 0F 11 40 08
 
 unregistersymbol(INJ_FULLHP)
 dealloc(newmem)
 
 {
-// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+3B7C03
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+1620231
 
-GameAssembly.dll+3B7BF7: CC                    - int 3 
-GameAssembly.dll+3B7BF8: CC                    - int 3 
-GameAssembly.dll+3B7BF9: CC                    - int 3 
-GameAssembly.dll+3B7BFA: CC                    - int 3 
-GameAssembly.dll+3B7BFB: CC                    - int 3 
-GameAssembly.dll+3B7BFC: CC                    - int 3 
-GameAssembly.dll+3B7BFD: CC                    - int 3 
-GameAssembly.dll+3B7BFE: CC                    - int 3 
-GameAssembly.dll+3B7BFF: CC                    - int 3 
-GameAssembly.dll+3B7C00: 0F 57 C0              - xorps xmm0,xmm0
+GameAssembly.dll+162021C: CC                    - int 3
+GameAssembly.dll+162021D: CC                    - int 3
+GameAssembly.dll+162021E: CC                    - int 3
+GameAssembly.dll+162021F: CC                    - int 3
+GameAssembly.dll+1620220: 55                    - push ebp
+GameAssembly.dll+1620221: 8B EC                 - mov ebp,esp
+GameAssembly.dll+1620223: 8B 45 08              - mov eax,[ebp+08]
+GameAssembly.dll+1620226: 0F 57 C9              - xorps xmm1,xmm1
+GameAssembly.dll+1620229: F3 0F 10 45 0C        - movss xmm0,[ebp+0C]
+GameAssembly.dll+162022E: 0F 2F C8              - comiss xmm1,xmm0
 // ---------- INJECTING HERE ----------
-GameAssembly.dll+3B7C03: F3 0F 11 49 10        - movss [rcx+10],xmm1
+GameAssembly.dll+1620231: F3 0F 11 40 08        - movss [eax+08],xmm0
 // ---------- DONE INJECTING  ----------
-GameAssembly.dll+3B7C08: 0F 2F C1              - comiss xmm0,xmm1
-GameAssembly.dll+3B7C0B: 76 0A                 - jna GameAssembly.dll+3B7C17
-GameAssembly.dll+3B7C0D: C7 41 10 00 00 00 00  - mov [rcx+10],00000000
-GameAssembly.dll+3B7C14: 0F 57 C9              - xorps xmm1,xmm1
-GameAssembly.dll+3B7C17: 0F 2F 0D 86 D9 D0 01  - comiss xmm1,[GameAssembly.dll+20C55A4]
-GameAssembly.dll+3B7C1E: 76 07                 - jna GameAssembly.dll+3B7C27
-GameAssembly.dll+3B7C20: C7 41 10 00 00 C8 42  - mov [rcx+10],42C80000
-GameAssembly.dll+3B7C27: C3                    - ret 
-GameAssembly.dll+3B7C28: CC                    - int 3 
-GameAssembly.dll+3B7C29: CC                    - int 3 
-}
-INJ_FULLHP2:
-  db F3 0F 11 49 10
-
-unregistersymbol(INJ_FULLHP2)
-dealloc(newmem2)
-
-{
-// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+56AEA3
-
-GameAssembly.dll+56AE88: 48 8B D9              - mov rbx,rcx
-GameAssembly.dll+56AE8B: E8 10 85 D9 FF        - call GameAssembly.dll+3033A0
-GameAssembly.dll+56AE90: C7 43 10 00 00 00 00  - mov [rbx+10],00000000
-GameAssembly.dll+56AE97: 48 83 C4 20           - add rsp,20
-GameAssembly.dll+56AE9B: 5B                    - pop rbx
-GameAssembly.dll+56AE9C: C3                    - ret 
-GameAssembly.dll+56AE9D: CC                    - int 3 
-GameAssembly.dll+56AE9E: CC                    - int 3 
-GameAssembly.dll+56AE9F: CC                    - int 3 
-GameAssembly.dll+56AEA0: 0F 57 C0              - xorps xmm0,xmm0
-// ---------- INJECTING HERE ----------
-GameAssembly.dll+56AEA3: F3 0F 11 49 10        - movss [rcx+10],xmm1
-// ---------- DONE INJECTING  ----------
-GameAssembly.dll+56AEA8: 0F 2F C1              - comiss xmm0,xmm1
-GameAssembly.dll+56AEAB: 76 0A                 - jna GameAssembly.dll+56AEB7
-GameAssembly.dll+56AEAD: C7 41 10 00 00 00 00  - mov [rcx+10],00000000
-GameAssembly.dll+56AEB4: 0F 57 C9              - xorps xmm1,xmm1
-GameAssembly.dll+56AEB7: 0F 2F 0D 9A 58 BA 01  - comiss xmm1,[GameAssembly.dll+2110758]
-GameAssembly.dll+56AEBE: 76 07                 - jna GameAssembly.dll+56AEC7
-GameAssembly.dll+56AEC0: C7 41 10 00 00 C8 42  - mov [rcx+10],42C80000
-GameAssembly.dll+56AEC7: C3                    - ret 
-GameAssembly.dll+56AEC8: CC                    - int 3 
-GameAssembly.dll+56AEC9: CC                    - int 3 
+GameAssembly.dll+1620236: 76 0A                 - jna GameAssembly.dll+1620242
+GameAssembly.dll+1620238: C7 40 08 00 00 00 00  - mov [eax+08],00000000
+GameAssembly.dll+162023F: 0F 57 C0              - xorps xmm0,xmm0
+GameAssembly.dll+1620242: 0F 2F 05 A8 2E EF 5E  - comiss xmm0,[GameAssembly.dll+1B62EA8]
+GameAssembly.dll+1620249: 76 07                 - jna GameAssembly.dll+1620252
+GameAssembly.dll+162024B: C7 40 08 00 00 C8 42  - mov [eax+08],42C80000
+GameAssembly.dll+1620252: 5D                    - pop ebp
+GameAssembly.dll+1620253: C3                    - ret
+GameAssembly.dll+1620254: CC                    - int 3
+GameAssembly.dll+1620255: CC                    - int 3
 }
 </AssemblerScript>
       <Hotkeys>
@@ -292,7 +232,7 @@ GameAssembly.dll+6DF02A: 49 83 C6 08           - add r14,08
     <CheatEntry>
       <ID>20</ID>
       <Description>"Easier Perfect"</Description>
-      <LastState/>
+      <LastState Activated="1"/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : DankaguPL.exe
   Version: 
@@ -487,6 +427,89 @@ GameAssembly.dll+5CECBB: 48 8B CB              - mov rcx,rbx
           </Offsets>
         </CheatEntry>
       </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>27</ID>
+      <Description>"Force Perfect"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : DankaguPL.exe
+  Version: 
+  Date   : 2024-12-07
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT,GameAssembly.dll,57 75 14 68 BC 10 48 5F E8 55) // should be unique
+alloc(newmem,$1000)
+
+label(code)
+label(return)
+
+newmem:
+  mov edi,(float)0.03
+  mov [ebp+A0],edi
+  mov [ebp+BC],edi
+  xor edi,edi
+  mov [ebp+10],edi
+  mov [ebp+20],edi
+  mov [ebp+48],edi
+  mov [ebp+50],edi
+  mov [ebp+64],edi
+  mov [ebp+70],edi
+  mov [ebp+74],edi
+  mov [ebp+84],edi
+code:
+  push edi
+  jne GameAssembly.dll+15A6485
+  push GameAssembly.dll+20F10BC
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 57 75 14 68 BC 10 48 5F
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: GameAssembly.dll+15A646E
+
+GameAssembly.dll+15A6457: 5D                    - pop ebp
+GameAssembly.dll+15A6458: C3                    - ret 
+GameAssembly.dll+15A6459: E8 E2 9D C1 FE        - call GameAssembly.dll+1C0240
+GameAssembly.dll+15A645E: CC                    - int 3 
+GameAssembly.dll+15A645F: CC                    - int 3 
+GameAssembly.dll+15A6460: 55                    - push ebp
+GameAssembly.dll+15A6461: 8B EC                 - mov ebp,esp
+GameAssembly.dll+15A6463: 80 3D CC 32 58 5F 00  - cmp byte ptr [GameAssembly.dll+21F32CC],00
+GameAssembly.dll+15A646A: 56                    - push esi
+GameAssembly.dll+15A646B: 8B 75 08              - mov esi,[ebp+08]
+// ---------- INJECTING HERE ----------
+GameAssembly.dll+15A646E: 57                    - push edi
+// ---------- DONE INJECTING  ----------
+GameAssembly.dll+15A646F: 75 14                 - jne GameAssembly.dll+15A6485
+GameAssembly.dll+15A6471: 68 BC 10 48 5F        - push GameAssembly.dll+20F10BC
+GameAssembly.dll+15A6476: E8 55 9C C1 FE        - call GameAssembly.dll+1C00D0
+GameAssembly.dll+15A647B: 83 C4 04              - add esp,04
+GameAssembly.dll+15A647E: C6 05 CC 32 58 5F 01  - mov byte ptr [GameAssembly.dll+21F32CC],01
+GameAssembly.dll+15A6485: 80 7E 20 00           - cmp byte ptr [esi+20],00
+GameAssembly.dll+15A6489: 8B 7D 10              - mov edi,[ebp+10]
+GameAssembly.dll+15A648C: 0F 85 55 01 00 00     - jne GameAssembly.dll+15A65E7
+GameAssembly.dll+15A6492: 80 3D D2 32 58 5F 00  - cmp byte ptr [GameAssembly.dll+21F32D2],00
+GameAssembly.dll+15A6499: 75 1E                 - jne GameAssembly.dll+15A64B9
+}
+</AssemblerScript>
     </CheatEntry>
   </CheatEntries>
   <CheatCodes>

@@ -11,7 +11,6 @@
         <CheatEntry>
           <ID>6</ID>
           <Description>"Mining Speed (D: 0)"</Description>
-          <LastState Value="7.5" RealAddress="246DB8524A0"/>
           <VariableType>Double</VariableType>
           <Address>"Factorio.exe"+01ADF270</Address>
           <Offsets>
@@ -25,7 +24,6 @@
         <CheatEntry>
           <ID>7</ID>
           <Description>"Crafting Speed (D: 0)"</Description>
-          <LastState Value="1.5" RealAddress="246DB852488"/>
           <VariableType>Double</VariableType>
           <Address>"Factorio.exe"+01ADF270</Address>
           <Offsets>
@@ -39,7 +37,6 @@
         <CheatEntry>
           <ID>8</ID>
           <Description>"Run Speed (D: 0)"</Description>
-          <LastState Value="0" RealAddress="246C7183D90"/>
           <VariableType>Double</VariableType>
           <Address>"Factorio.exe"+01ADF270</Address>
           <Offsets>
@@ -53,7 +50,6 @@
         <CheatEntry>
           <ID>10</ID>
           <Description>"Research Speed (D: 0)"</Description>
-          <LastState Value="0.9" RealAddress="246DB852440"/>
           <VariableType>Double</VariableType>
           <Address>"Factorio.exe"+01ADF270</Address>
           <Offsets>
@@ -69,7 +65,6 @@
     <CheatEntry>
       <ID>12</ID>
       <Description>"Evo Factor (0.00-1.00)"</Description>
-      <LastState Value="0.455705077086899" RealAddress="246DB851C68"/>
       <VariableType>Double</VariableType>
       <Address>"Factorio.exe"+01ADF270</Address>
       <Offsets>
