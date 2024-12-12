@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"Instant Kill"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : game.exe
+  Version: 
+  Date   : 2024-10-31
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+define(address,7FFD39B91C23)
+define(bytes,44 89 42 08 48 83 C4 28)
+
+[ENABLE]
+
+
+assert(address,bytes)
+alloc(newmem,$1000,7FFD39B91C23)
+
+label(code)
+label(return)
+label(pt_ehp)
+
+newmem:
+  mov [pt_ehp],rdx
+  xor r8,r8
+  jmp code
+
+pt_ehp:
+  dq 0
+registersymbol(pt_ehp)
+code:
+  mov [rdx+08],r8d
+  add rsp,28
+  jmp return
+
+
+
+address:
+  jmp newmem
+  nop 3
+return:
+
+[DISABLE]
+
+address:
+  db bytes
+  // mov [rdx+08],r8d
+  // add rsp,28
+
+unregistersymbol(pt_ehp)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 7FFD39B91C23
+
+7FFD39B91C08: 48 8B 52 10        - mov rdx,[rdx+10]
+7FFD39B91C0C: 8B 49 18           - mov ecx,[rcx+18]
+7FFD39B91C0F: 8B 42 0C           - mov eax,[rdx+0C]
+7FFD39B91C12: 85 C0              - test eax,eax
+7FFD39B91C14: 7C 1B              - jl 7FFD39B91C31
+7FFD39B91C16: 85 C9              - test ecx,ecx
+7FFD39B91C18: 7C 12              - jl 7FFD39B91C2C
+7FFD39B91C1A: 3B C8              - cmp ecx,eax
+7FFD39B91C1C: 44 8B C0           - mov r8d,eax
+7FFD39B91C1F: 44 0F 4E C1        - cmovle r8d,ecx
+// ---------- INJECTING HERE ----------
+7FFD39B91C23: 44 89 42 08        - mov [rdx+08],r8d
+// ---------- DONE INJECTING  ----------
+7FFD39B91C27: 48 83 C4 28        - add rsp,28
+7FFD39B91C2B: C3                 - ret 
+7FFD39B91C2C: 45 33 C0           - xor r8d,r8d
+7FFD39B91C2F: EB F2              - jmp 7FFD39B91C23
+7FFD39B91C31: 8B D0              - mov edx,eax
+7FFD39B91C33: 33 C9              - xor ecx,ecx
+7FFD39B91C35: FF 15 A5 C3 B4 FF  - call qword ptr [7FFD396DDFE0]
+7FFD39B91C3B: CC                 - int 3 
+7FFD39B91C3C: 19 04 01           - sbb [rcx+rax],eax
+7FFD39B91C3F: 00 04 42           - add [rdx+rax*2],al
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>5</ID>
+          <Description>"No description"</Description>
+          <LastState Value="55884667" RealAddress="30D133939C0"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_ehp</Address>
+          <Offsets>
+            <Offset>8</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

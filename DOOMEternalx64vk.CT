@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>4</ID>
+      <Description>"Infinite Ammo"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+
+aobscanmodule(ammo_aob,DOOMEternalx64vk.exe,03 7B 40 89 7B 40)
+alloc(newmem,$1000,"DOOMEternalx64vk.exe"+1C18A60)
+
+label(code)
+label(return)
+
+newmem:
+cmp esi,0
+jg @f
+xor esi,esi
+mov [rbx+40],3e7
+code:
+add edi,[rbx+40]
+mov [rbx+40],edi
+jmp return
+
+ammo_aob:
+jmp newmem
+nop
+return:
+registersymbol(ammo_aob)
+
+[DISABLE]
+
+ammo_aob:
+db 03 7B 40 89 7B 40
+
+unregistersymbol(ammo_aob)
+dealloc(newmem)
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>6</ID>
+      <Description>"Unlimited Jumps"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+
+aobscanmodule(jumps_aob,DOOMEternalx64vk.exe,89 83 80 41 00 00)
+alloc(newmem,$1000,"DOOMEternalx64vk.exe"+A58774)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+
+jmp return
+
+jumps_aob:
+jmp newmem
+nop
+return:
+registersymbol(jumps_aob)
+
+[DISABLE]
+
+jumps_aob:
+db 89 83 80 41 00 00
+
+unregistersymbol(jumps_aob)
+dealloc(newmem)
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>16273</ID>
+      <Description>"More CHEATS AVAILABLE HERE"</Description>
+      <Color>0000FF</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{$LUA}
+  if syntaxcheck then return end
+  [ENABLE]
+
+--Updated table! (Start)
+    --messageDialog('Enable Dark Mode?', mtInformation,mbYes,mbNo)
+    if messageDialog("Updated table with more cheats available!\r\n\r\nYou will need Mod Engine to get more cheats and the new updated table\r\n\r\nDownload Mod Engine?", mtConfirmation, mbYes, mbNo) ==mrYes then
+       shellExecute("https://modengine.net")
+    else
+    end
+--Updated table! (End)
+  [DISABLE]
+
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <LuaScript>--Updated table! (Start)
+    --messageDialog('Enable Dark Mode?', mtInformation,mbYes,mbNo)
+    if messageDialog("Updated table with more cheats available!\r\n\r\nYou will need Mod Engine to get more cheats and the new updated table\r\n\r\nDownload Mod Engine?", mtConfirmation, mbYes, mbNo) ==mrYes then
+       shellExecute("https://modengine.net")
+    else
+    end
+--Updated table! (End)
+
+</LuaScript>
+</CheatTable>

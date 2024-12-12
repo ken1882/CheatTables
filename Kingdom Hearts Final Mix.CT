@@ -1,0 +1,1089 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="26">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"Kingdom Hearts Final Mix 1.5 (Epic Games)"</Description>
+      <Options moHideChildren="1"/>
+	  <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>10</ID>
+          <Description>"Enable"</Description>
+          <Options moHideChildren="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+		  
+alloc(newmem,4096)
+
+label(MainBasePtr)
+registersymbol(MainBasePtr)
+label(ItemCategories)
+registersymbol(ItemCategories)
+
+"KINGDOM HEARTS FINAL MIX.exe"+2E1BAF0:
+MainBasePtr:
+
+newmem:
+ItemCategories:
+db 1
+db 1
+db 1
+db 1
+db 0
+db 1
+db 1
+db 1
+db 7
+db 7
+db 7
+db 7
+db 7
+db 7
+db 7
+db 7
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 0
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 2
+db 0
+db 0
+db 0
+db 0
+db 0
+db 0
+db 0
+db 0
+db 0
+db 3
+db 3
+db 3
+db 3
+db 3
+db 3
+db 3
+db 3
+db 3
+db 3
+db 3
+db 3
+db 3
+db 3
+db 3
+db 3
+db 3
+db 3
+db 3
+db 3
+db 3
+db 3
+db 4
+db 4
+db 4
+db 4
+db 4
+db 4
+db 4
+db 4
+db 4
+db 4
+db 4
+db 4
+db 4
+db 4
+db 4
+db 0
+db 5
+db 5
+db 5
+db 5
+db 5
+db 5
+db 5
+db 5
+db 5
+db 5
+db 5
+db 5
+db 5
+db 5
+db 5
+db 0
+db 0
+db 0
+db 0
+db 0
+db 0
+db 0
+db 0
+db 1
+db 1
+db 1
+db 0
+db 0
+db 0
+db 0
+db 8
+db 8
+db 8
+db 6
+db 6
+db 6
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 9
+db 9
+db 9
+db 9
+db 9
+db 9
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 8
+db 7
+db 0
+db 7
+db 7
+db 7
+db 7
+db 7
+db 7
+db 7
+db 7
+db 7
+db 7
+db 7
+db 7
+db 7
+db 7
+db 7
+db 7
+db 7
+db 7
+db 7
+db 7
+db 7
+db 7
+db 7
+
+[DISABLE]
+
+unregistersymbol(MainBasePtr)
+unregistersymbol(ItemCategories)
+
+dealloc(newmem)
+</AssemblerScript>
+        <CheatEntries>
+			<CheatEntry>
+              <ID>100</ID>
+              <Description>"[Scripts]"</Description>
+              <Options moHideChildren="1"/>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>200</ID>
+                  <Description>"Damage Modifier Script (God Mode, One Hit Kill, etc.)"</Description>
+                  <Options moHideChildren="1"/>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>[ENABLE]
+
+aobscanmodule(DamageModAOB,$process,41 03 C6 48 89 5C 24 30 8B 5F 40) // should be unique
+registersymbol(DamageModAOB)
+alloc(newmem,1024,DamageModAOB)
+
+label(return)
+label(GodMode)
+registersymbol(GodMode)
+label(OneHitKill)
+registersymbol(OneHitKill)
+label(fEnemyDamageMult)
+registersymbol(fEnemyDamageMult)
+label(fHeroDamageMult)
+registersymbol(fHeroDamageMult)
+label(HeroCannotDie)
+registersymbol(HeroCannotDie)
+
+newmem:
+  movd xmm0,r14d
+  cvtdq2ps xmm0,xmm0
+  cmp qword ptr [rdi+000000C8],0
+  je EnemyHit
+HeroHit:
+  comiss xmm0,[ZeroFloat]
+  jb HeroDamageHit
+  jmp CleanUp
+HeroDamageHit:
+  cmp [fHeroDamageMult],(float)0.0
+  je CheckGodMode
+  mulss xmm0,[fHeroDamageMult]
+CheckGodMode:
+  cmp [GodMode],1
+  jne CheckHeroCannotDie
+  xorps xmm0,xmm0
+  jmp CleanUp
+CheckHeroCannotDie:
+  cmp [HeroCannotDie],1
+  jne CleanUp
+  mulss xmm0,[NegOneFloat]
+  cvtss2si r14d,xmm0
+  cmp r14d,eax
+  jl @F
+  xorps xmm0,xmm0
+@@:
+  mulss xmm0,[NegOneFloat]
+  jmp CleanUp  
+EnemyHit:
+  comiss xmm0,[ZeroFloat]
+  jb EnemyDamageHit
+  jmp CleanUp
+EnemyDamageHit:
+  cmp [fEnemyDamageMult],(float)0.0
+  je CheckOneHitKill
+  mulss xmm0,[fEnemyDamageMult]
+CheckOneHitKill:
+  cmp [OneHitKill],1
+  jne CleanUp
+  movss xmm0,[OneHitKillHP]
+  jmp CleanUp
+
+CleanUp:    
+  cvtss2si r14d,xmm0
+  add eax,r14d
+  mov [rsp+30],rbx
+  jmp return
+
+ZeroFloat:
+dq (float)0.0
+OneHitKillHP:
+dq (float)-99999.0
+NegOneFloat:
+dq (float)-1.0
+GodMode:
+dq 0
+OneHitKill:
+dq 0
+fEnemyDamageMult:
+dq (float)4.0
+fHeroDamageMult:
+dq (float)0.5
+HeroCannotDie:
+dq 1
+
+DamageModAOB:
+  jmp newmem
+  nop
+  nop
+  nop
+return:
+
+[DISABLE]
+
+DamageModAOB:
+  db 41 03 C6 48 89 5C 24 30
+
+unregistersymbol(DamageModAOB)
+unregistersymbol(GodMode)
+unregistersymbol(OneHitKill)
+unregistersymbol(fEnemyDamageMult)
+unregistersymbol(fHeroDamageMult)
+unregistersymbol(HeroCannotDie)
+
+dealloc(newmem)
+</AssemblerScript>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>201</ID>
+                      <Description>"God Mode"</Description>
+                      <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">0:Off
+1:On
+</DropDownList>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>GodMode</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>202</ID>
+                      <Description>"Hero Damage Multiplier (Set to 0.0 = Off; Otherwise multiplier so 0.5 is half damage to hero party)"</Description>
+                      <VariableType>Float</VariableType>
+                      <Address>fHeroDamageMult</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>204</ID>
+                      <Description>"Hero Cannot Die (If On and God Mode Off, Then You Take Damage Until The Hit Will Kill You)"</Description>
+                      <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">0:Off
+1:On
+</DropDownList>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>HeroCannotDie</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>205</ID>
+                      <Description>"One Hit Kill"</Description>
+                      <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">0:Off
+1:On
+</DropDownList>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>OneHitKill</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>206</ID>
+                      <Description>"Enemy Damage Multiplier (Set to Zero = Off; Otherwise multiplier to damage you deal to enemies)"</Description>
+                      <VariableType>Float</VariableType>
+                      <Address>fEnemyDamageMult</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>209</ID>
+                  <Description>"Infinite MP"</Description>
+                  <Options moHideChildren="1"/>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>[ENABLE]
+
+aobscanmodule(InfMPAOB,$process,41 03 C6 48 89 5C 24 30 8B 5F 48) // should be unique
+alloc(newmem,1024,InfMPAOB)
+registersymbol(InfMPAOB)
+
+label(return)
+label(originalcode)
+
+newmem:
+  test r14d,r14d
+  jns originalcode
+  cmp qword ptr [rdi+000000C8],0
+  je originalcode
+  xor r14,r14
+  
+originalcode:
+  add eax,r14d
+  mov [rsp+30],rbx
+  jmp return 
+
+InfMPAOB:
+  jmp newmem
+  nop
+  nop
+  nop
+return:
+
+[DISABLE]
+
+InfMPAOB:
+  db 41 03 C6 48 89 5C 24 30
+
+unregistersymbol(InfMPAOB)
+
+dealloc(newmem)
+</AssemblerScript>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>210</ID>
+                  <Description>"EXP Multiplier"</Description>
+                  <Options moHideChildren="1"/>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>[ENABLE]
+
+aobscanmodule(ExpMultAOB,$process,41 03 5F 40 BF 01 00 00 00) // should be unique
+alloc(newmem,1024,ExpMultAOB)
+registersymbol(ExpMultAOB)
+
+label(return)
+label(originalcode)
+label(fEXPMult)
+registersymbol(fEXPMult)
+
+newmem:
+  push ebx
+  fild dword ptr [rsp]
+  fmul dword ptr [fEXPMult]
+  fistp dword ptr [rsp]
+  pop ebx
+  
+originalcode:
+  add ebx,[r15+40]
+  mov edi,00000001
+  jmp return 
+
+fEXPMult:
+dd (float)5.0
+
+ExpMultAOB:
+  jmp newmem
+  nop
+  nop
+  nop
+  nop
+return:
+
+[DISABLE]
+
+ExpMultAOB:
+  db 41 03 5F 40 BF 01 00 00 00
+
+unregistersymbol(ExpMultAOB)
+unregistersymbol(fEXPMult)
+
+dealloc(newmem)
+</AssemblerScript>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>211</ID>
+                      <Description>"EXP Multiplier"</Description>
+                      <VariableType>Float</VariableType>
+                      <Address>fEXPMult</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>215</ID>
+                  <Description>"Infinite Items In Stock When Moving Into Personal Inventory"</Description>
+                  <Options moHideChildren="1"/>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>[ENABLE]
+
+aobscanmodule(InfItemsPersonalInventoryAOB,$process,FE 8C 03 99 04 00 00 45 0F B6 48 25) // should be unique
+registersymbol(InfItemsPersonalInventoryAOB)
+
+InfItemsPersonalInventoryAOB:
+  db 90 90 90 90 90 90 90
+
+[DISABLE]
+
+InfItemsPersonalInventoryAOB:
+  db FE 8C 03 99 04 00 00
+
+unregistersymbol(InfItemsPersonalInventoryAOB)
+</AssemblerScript>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>220</ID>
+                  <Description>"Discarding/Selling Items Adds One Instead of Taking Away"</Description>
+                  <Options moHideChildren="1"/>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>[ENABLE]
+
+aobscanmodule(DiscardItemsAOB,$process,FE 8C 01 99 04 00 00 48 8B CB) // should be unique
+registersymbol(DiscardItemsAOB)
+
+aobscanmodule(SellingItemsAOB,$process,28 82 99 04 00 00 E8) // should be unique
+registersymbol(SellingItemsAOB)
+
+DiscardItemsAOB:
+  db FF 84 08 99 04 00 00
+
+SellingItemsAOB:
+  db 00 82 99 04 00 00
+  
+[DISABLE]
+
+DiscardItemsAOB:
+  db FE 8C 01 99 04 00 00
+
+SellingItemsAOB:
+  db 28 82 99 04 00 00
+
+unregistersymbol(DiscardItemsAOB)
+unregistersymbol(SellingItemsAOB)
+</AssemblerScript>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>225</ID>
+                  <Description>"Inventory Options (Add Category/Specific Item, Set Minimum You Have At Least 1 Of) (When Viewing Items)"</Description>
+                  <Options moHideChildren="1"/>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>[ENABLE]
+
+aobscanmodule(InventoryOptionsAOB,$process,44 38 B4 07 99 04 00 00 74 48) // should be unique
+alloc(newmem,1024,InventoryOptionsAOB)
+registersymbol(InventoryOptionsAOB)
+
+label(return)
+label(originalcode)
+label(MinAmt)
+registersymbol(MinAmt)
+label(SetMinItems)
+registersymbol(SetMinItems)
+label(CategoryToAdd)
+registersymbol(CategoryToAdd)
+label(SpecificItemToAdd)
+registersymbol(SpecificItemToAdd)
+
+newmem:
+  mov [R15Save],r15
+  mov [R14Save],r14
+  cmp [SpecificItemToAdd],0
+  je CheckCategoryToAdd
+  cmp edi,[SpecificItemToAdd]
+  jne CheckCategoryToAdd
+  mov r14l,[MinAmt]
+  mov [rdi+rax+00000499],r14l
+  xor r14,r14
+CheckCategoryToAdd:
+  cmp byte ptr [CategoryToAdd],0
+  jle CheckSetMinItems
+  mov r15,ItemCategories
+  add r15,rdi
+  dec r15
+  mov r14l,[CategoryToAdd]
+  cmp [r15],r14l
+  jne CheckSetMinItems
+  mov r14l,[MinAmt]
+  mov [rdi+rax+00000499],r14l
+  xor r14,r14
+CheckSetMinItems:
+  mov r14,[R14Save]
+  mov r15,[R15Save]
+  cmp [SetMinItems],0
+  je originalcode
+  cmp [rdi+rax+0000499],r14l
+  je originalcode
+  mov r14l,[MinAmt]
+  mov [rdi+rax+00000499],r14l
+  xor r14,r14
+  
+originalcode:
+  cmp [rdi+rax+00000499],r14l
+  jmp return 
+
+R14Save:
+dq 0
+R15Save:
+dq 0
+SetMinItems:
+dq 0
+CategoryToAdd:
+dq 0
+SpecificItemToAdd:
+dq 0
+MinAmt:
+dq #25
+
+InventoryOptionsAOB:
+  jmp newmem
+  nop
+  nop
+  nop
+return:
+
+[DISABLE]
+
+InventoryOptionsAOB:
+  db 44 38 B4 07 99 04 00 00
+
+unregistersymbol(InventoryOptionsAOB)
+unregistersymbol(MinAmt)
+unregistersymbol(SetMinItems)
+unregistersymbol(CategoryToAdd)
+unregistersymbol(SpecificItemToAdd)
+
+dealloc(newmem)
+</AssemblerScript>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>226</ID>
+                      <Description>"Set Minimum Amount If You Have At Least 1"</Description>
+                      <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">0:Off
+1:On
+</DropDownList>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>SetMinItems</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>227</ID>
+                      <Description>"Minimum Amount"</Description>
+                      <VariableType>Byte</VariableType>
+                      <Address>MinAmt</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>228</ID>
+                      <Description>"Category of Items To Add"</Description>
+                      <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">0:Nothing
+1:Consumables
+2:Accessories
+3:Keyblades
+4:Staves
+5:Shields
+6:Stat Up Items
+7:Materials
+8:Key Items
+</DropDownList>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>CategoryToAdd</Address>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>229</ID>
+                      <Description>"Specific Item To Add"</Description>
+                      <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">0:Nothing
+1:Potion
+2:Hi-Potion
+3:Ether
+4:Elixir
+5:Dummy Consumable Item
+6:Mega-Potion
+7:Mega-Ether
+8:Megalixir
+9:Fury Stone
+10:Power Stone
+11:Energy Stone
+12:Blazing Stone
+13:Frost Stone
+14:Lightning Stone
+15:Dazzling Stone
+16:Stormy Stone
+17:Protect Chain
+18:Protera Chain
+19:Protega Chain
+20:Fire Ring
+21:Fira Ring
+22:Firaga Ring
+23:Blizzard Ring
+24:Blizzara Ring
+25:Blizzaga Band
+26:Thunder Ring
+27:Thundara Ring
+28:Thundaga Ring
+29:Ability Stud
+30:Guard Earring
+31:Master Earring
+32:Chaos Ring
+33:Dark Ring
+34:Element Ring
+35:Three Stars
+36:Power Chain
+37:Golem Chain
+38:Titan Chain
+39:Energy Bangle
+40:Angel Bangle
+41:Gaia Bangle
+42:Magic Armlet
+43:Rune Armlet
+44:Atlas Armlet
+45:Heartguard
+46:Ribbon
+47:Crystal Crown
+48:Brave Warrior
+49:Ifrit's Horn
+50:Inferno Band
+51:White Fang
+52:Ray of Light
+53:Holy Circlet
+54:Raven's Claw
+55:Omega Arts
+56:EXP Earring
+58:EXP Ring
+59:EXP Bracelet
+60:EXP Necklace
+61:Firagun Band
+62:Blizzagun Band
+63:Thundagun Band
+64:Ifrit Belt
+65:Shiva Belt
+66:Ramuh Belt
+67:Moogle Badge
+68:Cosmic Arts
+69:Royal Crown
+70:Prime Cap
+71:Obsidian Ring
+81:Kingdom Key
+82:Dream Sword
+83:Dream Shield
+84:Dream Rod
+85:Wooden Sword
+86:Jungle Key
+87:Three Wishes
+88:Fairy Harp
+89:Pumpkinhead
+90:Crabclaw
+91:Divine Rose
+92:Spellbinder
+93:Olympia
+94:Lionheart
+95:Metal Chocobo
+96:Oathkeeper
+97:Oblivion
+98:Lady Luck
+99:Wishing Star
+100:Ultima Weapon
+101:Diamond Dust
+102:One-Winged Angel
+103:Mage's Staff
+104:Morning Star
+105:Shooting Star
+106:Magus Staff
+107:Wisdom Staff
+108:Warhammer
+109:Silver Mallet
+110:Grand Mallet
+111:Lord Fortune
+112:Violetta
+113:Dream Rod
+114:Save the Queen
+115:Wizard's Relic
+116:Meteor Strike
+117:Fantasista
+119:Knight's Shield
+120:Mythril Shield
+121:Onyx Shield
+122:Stout Shield
+123:Golem Shield
+124:Adamant Shield
+125:Smasher
+126:Gigas Fist
+127:Genji Shield
+128:Herc's Shield
+129:Dream Shield
+130:Save the King
+131:Defender
+132:Mighty Shield
+133:Seven Elements
+142:Tent
+143:Camping Set
+144:Cottage
+149:Ansem's Report 11
+150:Ansem's Report 12
+151:Ansem's Report 13
+152:Power Up
+153:Defense Up
+154:AP Up
+155:Serenity Power
+156:Dark Matter
+157:Mythril Stone
+158:Fire Arts
+159:Blizzard Arts
+160:Thunder Arts
+161:Cure Arts
+162:Gravity Arts
+163:Stop Arts
+164:Aero Arts
+165:Shiitake Rank
+166:Matsutake Rank
+167:Mystery Mold
+168:Ansem's Report 1
+169:Ansem's Report 2
+170:Ansem's Report 3
+171:Ansem's Report 4
+172:Ansem's Report 5
+173:Ansem's Report 6
+174:Ansem's Report 7
+175:Ansem's Report 8
+176:Ansem's Report 9
+177:Ansem's Report 10
+178:Khama vol. 8
+179:Salegg vol. 6
+180:Azal vol. 3
+181:Mava vol. 3
+182:Mava vol. 6
+183:Theon vol. 6
+184:Nahara vol.5
+185:Hafet vol. 4
+186:Empty Bottle
+187:Old Book
+188:Emblem Piece (188)
+189:Emblem Piece (189)
+190:Emblem Piece (190)
+191:Emblem Piece (191)
+192:Log
+193:Cloth
+194:Rope
+195:Seagull Egg
+196:Fish
+197:Mushroom
+198:Coconut
+199:Drinking Water
+200:Navi-G Piece (200)
+201:Navi-G Piece (201)
+202:Navi-Gummi (202)
+203:Navi-G Piece (203)
+204:Navi-G Piece (204)
+205:Navi-Gummi (205)
+206:Watergleam
+207:Naturespark
+208:Fireglow
+209:Earthshine
+210:Crystal Trident
+211:Postcard
+212:Torn Page (212)
+213:Torn Page (213)
+214:Torn Page (214)
+215:Torn Page (215)
+216:Torn Page (216)
+217:Slide 1
+218:Slide 2
+219:Slide 3
+220:Slide 4
+221:Slide 5
+222:Slide 6
+223:Footprints
+224:Claw Marks
+225:Stench
+226:Antenna
+227:Forget-Me-Not
+228:Jack-in-the-Box
+229:Entry Pass
+230:Hero License
+231:Pretty Stone
+233:Lucis Shard
+234:Lucid Gem
+235:Lucid Crystal
+236:Spirit Shard
+237:Spirit Gem
+238:Power Shard
+239:Power Gem
+240:Power Crystal
+241:Blaze Shard
+242:Blaze Gem
+243:Frost Shard
+244:Frost Gem
+245:Thunder Shard
+246:Thunder Gem
+247:Shiny Crystal
+248:Bright Shard
+249:Bright Gem
+250:Bright Crystal
+251:Mystery Goo
+252:Gale
+253:Mythril Shard
+254:Mythril
+255:Orichalcum
+</DropDownList>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>SpecificItemToAdd</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>				
+                <CheatEntry>
+                  <ID>230</ID>
+                  <Description>"Munny Multiplier"</Description>
+                  <Options moHideChildren="1"/>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>[ENABLE]
+
+aobscanmodule(MunnyMultAOB,$process,41 8D 04 10 89 41 1C) // should be unique
+alloc(newmem,1024,MunnyMultAOB)
+registersymbol(MunnyMultAOB)
+
+label(return)
+label(originalcode)
+label(fMunnyMult)
+registersymbol(fMunnyMult)
+
+newmem:
+  test rdx,rdx
+  js originalcode
+  push edx
+  fild dword ptr [rsp]
+  fmul dword ptr [fMunnyMult]
+  fistp dword ptr [rsp]
+  pop edx
+  
+originalcode:
+  lea eax,[r8+rdx]
+  mov [rcx+1C],eax
+  jmp return 
+
+fMunnyMult:
+dq (float)10.0
+
+MunnyMultAOB:
+  jmp newmem
+  nop
+  nop
+return:
+
+[DISABLE]
+
+MunnyMultAOB:
+  db 41 8D 04 10 89 41 1C
+
+unregistersymbol(MunnyMultAOB)
+unregistersymbol(fMunnyMult)
+
+dealloc(newmem)
+</AssemblerScript>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>231</ID>
+                      <Description>"Munny Multiplier"</Description>
+                      <VariableType>Float</VariableType>
+                      <Address>fMunnyMult</Address>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+			  </CheatEntries>
+			</CheatEntry>
+            <CheatEntry>
+              <ID>4000</ID>
+              <Description>"Pointers"</Description>
+              <Options moHideChildren="1"/>
+			  <GroupHeader>1</GroupHeader>
+			  <CheatEntries>
+                <CheatEntry>
+                  <ID>4100</ID>
+                  <Description>"Munny"</Description>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>MainBasePtr</Address>
+				  <Offsets>
+					<Offset>1C</Offset>
+				  </Offsets>
+                </CheatEntry>			  
+			  </CheatEntries>
+			</CheatEntry>
+		</CheatEntries>
+		</CheatEntry>
+	   </CheatEntries>
+	</CheatEntry>
+	</CheatEntries>
+<LuaScript>
+function lua_aobscan(name,module,bytes,index)
+  index = index - 1
+  if(module == "") then
+    local resultSet = AOBScan(bytes)
+      if(resultSet == nil) then
+        unregisterSymbol(name)
+        print(name.." not found")
+      else
+        unregisterSymbol(name)
+        registerSymbol(name,resultSet[index])
+        resultSet.destroy()
+      end
+  else
+    if(getModuleSize(module) == nil) then
+      print("Module "..module.." not found")
+    else
+      local memScanner = createMemScan()
+      local memFoundList = createFoundList(memScanner)
+      memScanner.firstScan(
+        soExactValue,vtByteArray,rtRounded,bytes,nil,
+        getAddress(module),(getAddress(module)+getModuleSize(module)),"",
+        fsmNotAligned,"",true,false,false,false)
+      memScanner.waitTillDone()
+      memFoundList.initialize()
+        if(memFoundList.Count == 0) then
+          unregisterSymbol(name)
+          print(name.." in module "..module.." not found")
+        else
+          unregisterSymbol(name)
+          registerSymbol(name,memFoundList.Address[index])
+        end
+      memScanner.destroy()
+      memFoundList.destroy()
+    end
+  end
+end
+</LuaScript>
+</CheatTable>
