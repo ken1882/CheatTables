@@ -29,6 +29,7 @@ label(val_inskill)
 newmem:
   push rax
   mov rax,[rdi+28]
+  add rax,[rdi+B8]
   test rax,rax
   jnz Lkill
   // mhp
@@ -105,7 +106,7 @@ GameAssembly.dll+57C902: 3B D8           - cmp ebx,eax
         <CheatEntry>
           <ID>20</ID>
           <Description>"Instant Kill"</Description>
-          <LastState Activated="1"/>
+          <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>[ENABLE]
 //code from here to '[DISABLE]' will be used to enable the cheat
@@ -122,7 +123,7 @@ val_inskill:
         <CheatEntry>
           <ID>19</ID>
           <Description>"debug"</Description>
-          <LastState Value="1" RealAddress="7FFE9299003E"/>
+          <LastState Value="0" RealAddress="7FFB2F000041"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
           <Address>val_inskill</Address>
