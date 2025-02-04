@@ -471,7 +471,7 @@ UnityPlayer.dll+FEE1D: 0F 11 09           - movups [rcx],xmm1
     <CheatEntry>
       <ID>19</ID>
       <Description>"Quick Act"</Description>
-      <LastState Activated="1"/>
+      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : twinkle_starknightsX.exe
   Version:
