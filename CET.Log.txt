@@ -1,0 +1,1248 @@
+2025-03-09 01:18:29 [DEBUG] Starting AutoAttach for process: MonsterHunterWilds.exe
+2025-03-09 01:18:29 [DEBUG] AutoAttach timer started with interval: 100ms
+2025-03-09 01:18:29 [INFO] Theme 'Theme.Bearded-Arc.Min' not found. Attempting to load themes.
+2025-03-09 01:18:29 [INFO] Found 30 items in the 'miTable' component.
+2025-03-09 01:18:29 [DEBUG] Found JSON theme: Theme.Bearded-Arc.Min.json
+2025-03-09 01:18:29 [DEBUG] Found JSON theme: Theme.Dark-Cyan.Min.json
+2025-03-09 01:18:29 [DEBUG] Found JSON theme: Theme.Dark-Green.Min.json
+2025-03-09 01:18:29 [DEBUG] Found JSON theme: Theme.Dark-Orange.Min.json
+2025-03-09 01:18:29 [DEBUG] Found JSON theme: Theme.Dark-Purple.Min.json
+2025-03-09 01:18:29 [DEBUG] Found JSON theme: Theme.Dark-Red.Min.json
+2025-03-09 01:18:29 [DEBUG] Found JSON theme: Theme.Radical.Min.json
+2025-03-09 01:18:29 [INFO] Found 7 JSON themes.
+2025-03-09 01:18:29 [INFO] Loading theme: Theme.Bearded-Arc.Min
+2025-03-09 01:18:29 [INFO] Table file Theme.Bearded-Arc.Min.json read successfully.
+2025-03-09 01:18:29 [INFO] Successfully loaded theme: Theme.Bearded-Arc.Min
+2025-03-09 01:18:29 [INFO] Loading theme: Theme.Dark-Cyan.Min
+2025-03-09 01:18:29 [INFO] Table file Theme.Dark-Cyan.Min.json read successfully.
+2025-03-09 01:18:29 [INFO] Successfully loaded theme: Theme.Dark-Cyan.Min
+2025-03-09 01:18:29 [INFO] Loading theme: Theme.Dark-Green.Min
+2025-03-09 01:18:29 [INFO] Table file Theme.Dark-Green.Min.json read successfully.
+2025-03-09 01:18:29 [INFO] Successfully loaded theme: Theme.Dark-Green.Min
+2025-03-09 01:18:29 [INFO] Loading theme: Theme.Dark-Orange.Min
+2025-03-09 01:18:29 [INFO] Table file Theme.Dark-Orange.Min.json read successfully.
+2025-03-09 01:18:29 [INFO] Successfully loaded theme: Theme.Dark-Orange.Min
+2025-03-09 01:18:29 [INFO] Loading theme: Theme.Dark-Purple.Min
+2025-03-09 01:18:29 [INFO] Table file Theme.Dark-Purple.Min.json read successfully.
+2025-03-09 01:18:29 [INFO] Successfully loaded theme: Theme.Dark-Purple.Min
+2025-03-09 01:18:29 [INFO] Loading theme: Theme.Dark-Red.Min
+2025-03-09 01:18:29 [INFO] Table file Theme.Dark-Red.Min.json read successfully.
+2025-03-09 01:18:29 [INFO] Successfully loaded theme: Theme.Dark-Red.Min
+2025-03-09 01:18:29 [INFO] Loading theme: Theme.Radical.Min
+2025-03-09 01:18:29 [INFO] Table file Theme.Radical.Min.json read successfully.
+2025-03-09 01:18:29 [INFO] Successfully loaded theme: Theme.Radical.Min
+2025-03-09 01:18:29 [INFO] Updated TreeView background color and font.
+2025-03-09 01:18:29 [INFO] Updated Address List checkbox and list colors.
+2025-03-09 01:18:29 [INFO] Updated 'SLOGAN_STR' font color.
+2025-03-09 01:18:29 [INFO] Updated Main Form colors.
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Table Config —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Table Config —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Table State —] ()->' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Table State —] ()->': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— State: Save —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— State: Save —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'State: Save Table State : Profile — Easy ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'State: Save Table State : Profile — Easy ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'State: Save Table State : Profile — Medium ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'State: Save Table State : Profile — Medium ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'State: Save Table State : Profile — Extreme ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'State: Save Table State : Profile — Extreme ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— State: Load —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— State: Load —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'State: Load Table State : None ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'State: Load Table State : None ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'State: Load Table State : Profile — Easy ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'State: Load Table State : Profile — Easy ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'State: Load Table State : Profile — Medium ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'State: Load Table State : Profile — Medium ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'State: Load Table State : Profile — Extreme ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'State: Load Table State : Profile — Extreme ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Table Color State —] ()->' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Table Color State —] ()->': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Form Manager: Update Theme Selector ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Form Manager: Update Theme Selector ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Theme Selector —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Theme Selector —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Theme.Bearded-Arc.Min' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Theme.Bearded-Arc.Min': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Theme.Dark-Orange.Min' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Theme.Dark-Orange.Min': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Theme.Dark-Purple.Min' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Theme.Dark-Purple.Min': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Theme.Dark-Cyan.Min' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Theme.Dark-Cyan.Min': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Theme.Radical.Min' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Theme.Radical.Min': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Theme.Dark-Green.Min' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Theme.Dark-Green.Min': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Theme.Dark-Red.Min' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Theme.Dark-Red.Min': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Quick Links —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Quick Links —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Link: Close Game ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Link: Close Game ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Link: Start Game ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Link: Start Game ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Attach To Process ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Attach To Process ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Link: Support Me On Patreon ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Link: Support Me On Patreon ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— About Table —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— About Table —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Table Requirements ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Table Requirements ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Table Activation ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Table Activation ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Scripts —] ()->' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Scripts —] ()->': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Teleporter ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Teleporter ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Teleporter: Save Coordinates ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Teleporter: Save Coordinates ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Current Location —] ()->' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Current Location —] ()->': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[C] X-Coordinate' Reason: Float Type | Color: 0x8A73FF
+2025-03-09 01:18:29 [DEBUG] Skipping '[C] X-Coordinate': Color already set to #8A73FF
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[C] Y-Coordinate' Reason: Float Type | Color: 0x8A73FF
+2025-03-09 01:18:29 [DEBUG] Skipping '[C] Y-Coordinate': Color already set to #8A73FF
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[C] Z-Coordinate' Reason: Float Type | Color: 0x8A73FF
+2025-03-09 01:18:29 [DEBUG] Skipping '[C] Z-Coordinate': Color already set to #8A73FF
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Teleporter: Load Saved Coordinates ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Teleporter: Load Saved Coordinates ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Saved Location —] ()->' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Saved Location —] ()->': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[S] X-Coordinate' Reason: User-defined values | Color: 0xEC8CF3
+2025-03-09 01:18:29 [DEBUG] Skipping '[S] X-Coordinate': Color already set to #EC8CF3
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[S] Y-Coordinate' Reason: User-defined values | Color: 0xEC8CF3
+2025-03-09 01:18:29 [DEBUG] Skipping '[S] Y-Coordinate': Color already set to #EC8CF3
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[S] Z-Coordinate' Reason: User-defined values | Color: 0xEC8CF3
+2025-03-09 01:18:29 [DEBUG] Skipping '[S] Z-Coordinate': Color already set to #EC8CF3
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Teleporter: Load Backup Coordinates ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Teleporter: Load Backup Coordinates ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Backup Location —] ()->' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Backup Location —] ()->': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[B] X-Coordinate' Reason: User-defined values | Color: 0xEC8CF3
+2025-03-09 01:18:29 [DEBUG] Skipping '[B] X-Coordinate': Color already set to #EC8CF3
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[B] Y-Coordinate' Reason: User-defined values | Color: 0xEC8CF3
+2025-03-09 01:18:29 [DEBUG] Skipping '[B] Y-Coordinate': Color already set to #EC8CF3
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[B] Z-Coordinate' Reason: User-defined values | Color: 0xEC8CF3
+2025-03-09 01:18:29 [DEBUG] Skipping '[B] Z-Coordinate': Color already set to #EC8CF3
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Teleporter: Teleport To Waypoint ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Teleporter: Teleport To Waypoint ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Also Works For Objectives' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Also Works For Objectives': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Waypoint Location —] ()->' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Waypoint Location —] ()->': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[C] X-Coordinate' Reason: Float Type | Color: 0x8A73FF
+2025-03-09 01:18:29 [DEBUG] Skipping '[C] X-Coordinate': Color already set to #8A73FF
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[C] Y-Coordinate' Reason: Float Type | Color: 0x8A73FF
+2025-03-09 01:18:29 [DEBUG] Skipping '[C] Y-Coordinate': Color already set to #8A73FF
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[C] Z-Coordinate' Reason: Float Type | Color: 0x8A73FF
+2025-03-09 01:18:29 [DEBUG] Skipping '[C] Z-Coordinate': Color already set to #8A73FF
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Teleporter Save Manager —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Teleporter Save Manager —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Teleporter: Add Save ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Teleporter: Add Save ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Teleporter: Delete Save ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Teleporter: Delete Save ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Teleporter: Print Saves ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Teleporter: Print Saves ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Teleporter: Rename Save ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Teleporter: Rename Save ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Teleporter: Create Memory Records ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Teleporter: Create Memory Records ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Teleporter: Write Saves To Table File ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Teleporter: Write Saves To Table File ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Teleporter Saves —] ()->' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Teleporter Saves —] ()->': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Teleport To: 'Plains — Base Camp' ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Teleport To: 'Plains — Base Camp' ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Teleport To: 'Plains — Jack' ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Teleport To: 'Plains — Jack' ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Teleport To: 'Plains — Kunafa, Windsong Village' ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Teleport To: 'Plains — Kunafa, Windsong Village' ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Teleport To: 'Plains — Nata' ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Teleport To: 'Plains — Nata' ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Teleport To: 'Plains — Olivia' ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Teleport To: 'Plains — Olivia' ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Teleport To: 'Plains — Smithy' ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Teleport To: 'Plains — Smithy' ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Entities —] ()->' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Entities —] ()->': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Disable AI ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Disable AI ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'On Part Health Decrease ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'On Part Health Decrease ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Type:' Reason: User-defined values | Color: 0xEC8CF3
+2025-03-09 01:18:29 [DEBUG] Skipping 'Type:': Color already set to #EC8CF3
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Multiplier:' Reason: User-defined values | Color: 0xEC8CF3
+2025-03-09 01:18:29 [DEBUG] Skipping 'Multiplier:': Color already set to #EC8CF3
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Debug —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Debug —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0010] — Damage Value' Reason: Float Type | Color: 0x8A73FF
+2025-03-09 01:18:29 [DEBUG] Skipping '[0010] — Damage Value': Color already set to #8A73FF
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Infinite Carcass Pickup ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Infinite Carcass Pickup ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Reward Container —]' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Reward Container —]': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0018] — Picked Count' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0018] — Picked Count': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Pickup 1 —]' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Pickup 1 —]': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Artian Parts Data —]' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Artian Parts Data —]': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Yet To Be Implemented.' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Yet To Be Implemented.': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[001C] — Item ID' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[001C] — Item ID': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0020] — Item Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0020] — Item Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0020] — Over Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0020] — Over Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[002C] — Enemy ID' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[002C] — Enemy ID': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Pickup 2 —]' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Pickup 2 —]': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Artian Parts Data —]' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Artian Parts Data —]': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Yet To Be Implemented.' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Yet To Be Implemented.': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[001C] — Item ID' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[001C] — Item ID': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0020] — Item Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0020] — Item Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0020] — Over Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0020] — Over Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[002C] — Enemy ID' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[002C] — Enemy ID': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Pickup 3 —]' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Pickup 3 —]': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Artian Parts Data —]' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Artian Parts Data —]': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Yet To Be Implemented.' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Yet To Be Implemented.': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[001C] — Item ID' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[001C] — Item ID': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0020] — Item Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0020] — Item Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0020] — Over Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0020] — Over Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[002C] — Enemy ID' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[002C] — Enemy ID': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'On Wound Health Decrease ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'On Wound Health Decrease ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Type:' Reason: User-defined values | Color: 0xEC8CF3
+2025-03-09 01:18:29 [DEBUG] Skipping 'Type:': Color already set to #EC8CF3
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Multiplier:' Reason: User-defined values | Color: 0xEC8CF3
+2025-03-09 01:18:29 [DEBUG] Skipping 'Multiplier:': Color already set to #EC8CF3
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Debug —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Debug —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0010] — Damage Value' Reason: Float Type | Color: 0x8A73FF
+2025-03-09 01:18:29 [DEBUG] Skipping '[0010] — Damage Value': Color already set to #8A73FF
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Force Enemies To Target Otomo ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Force Enemies To Target Otomo ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Misc. —] ()->' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Misc. —] ()->': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'On Zenny Work ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'On Zenny Work ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Increase — Type:' Reason: User-defined values | Color: 0xEC8CF3
+2025-03-09 01:18:29 [DEBUG] Skipping 'Increase — Type:': Color already set to #EC8CF3
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Increase — Multiplier:' Reason: User-defined values | Color: 0xEC8CF3
+2025-03-09 01:18:29 [DEBUG] Skipping 'Increase — Multiplier:': Color already set to #EC8CF3
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Debug —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Debug —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0038] — Money' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0038] — Money': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Decrease — Type:' Reason: User-defined values | Color: 0xEC8CF3
+2025-03-09 01:18:29 [DEBUG] Skipping 'Decrease — Type:': Color already set to #EC8CF3
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Decrease — Multiplier:' Reason: User-defined values | Color: 0xEC8CF3
+2025-03-09 01:18:29 [DEBUG] Skipping 'Decrease — Multiplier:': Color already set to #EC8CF3
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Debug —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Debug —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0038] — Money' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0038] — Money': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Highlight Interactables ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Highlight Interactables ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Quest —] ()->' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Quest —] ()->': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Instantly Finish Active Quest ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Instantly Finish Active Quest ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Facility —] ()->' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Facility —] ()->': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Unlock All Forging Recipes ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Unlock All Forging Recipes ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Unlock All Crafting Recipes ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Unlock All Crafting Recipes ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'No Forging Material Requirement ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'No Forging Material Requirement ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Weapon —] ()->' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Weapon —] ()->': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Damage Multiplier ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Damage Multiplier ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Multiplier:' Reason: User-defined values | Color: 0xEC8CF3
+2025-03-09 01:18:29 [DEBUG] Skipping 'Multiplier:': Color already set to #EC8CF3
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'No Bowgun Ammo Usage ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'No Bowgun Ammo Usage ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'No Kijin Gauge Usage ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'No Kijin Gauge Usage ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'No Weapon Sharpness Usage ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'No Weapon Sharpness Usage ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Vitality —] ()->' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Vitality —] ()->': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'No Stamina Usage ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'No Stamina Usage ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'On Health Decrease ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'On Health Decrease ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Type:' Reason: User-defined values | Color: 0xEC8CF3
+2025-03-09 01:18:29 [DEBUG] Skipping 'Type:': Color already set to #EC8CF3
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Multiplier:' Reason: User-defined values | Color: 0xEC8CF3
+2025-03-09 01:18:29 [DEBUG] Skipping 'Multiplier:': Color already set to #EC8CF3
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Debug —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Debug —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0038] — Red Health' Reason: Float Type | Color: 0x8A73FF
+2025-03-09 01:18:29 [DEBUG] Skipping '[0038] — Red Health': Color already set to #8A73FF
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[003C] — Requested Total Damage' Reason: Float Type | Color: 0x8A73FF
+2025-03-09 01:18:29 [DEBUG] Skipping '[003C] — Requested Total Damage': Color already set to #8A73FF
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Disable Hunger Decrease Timer ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Disable Hunger Decrease Timer ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Helper —] ()->' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Helper —] ()->': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Vitality Helper Functions —] ()->' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Vitality Helper Functions —] ()->': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Restore Health ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Restore Health ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Add Hot Drink Buff ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Add Hot Drink Buff ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Add Immunizer Buff ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Add Immunizer Buff ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Add Cold Drink Buff ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Add Cold Drink Buff ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Save Data Helper Functions —] ()->' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Save Data Helper Functions —] ()->': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Save Data Slot —] ()->' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Save Data Slot —] ()->': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Save Data To Apply It To:' Reason: User-defined values | Color: 0xEC8CF3
+2025-03-09 01:18:29 [DEBUG] Skipping 'Save Data To Apply It To:': Color already set to #EC8CF3
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Play Time Helper Functions —] ()->' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Play Time Helper Functions —] ()->': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Reset Play Time ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Reset Play Time ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Add 1 Hour Play Time ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Add 1 Hour Play Time ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Remove 1 Hour Play Time ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Remove 1 Hour Play Time ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Add 3 Hour Play Time ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Add 3 Hour Play Time ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Remove 3 Hour Play Time ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Remove 3 Hour Play Time ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Add 6 Hour Play Time ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Add 6 Hour Play Time ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Remove 6 Hour Play Time ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Remove 6 Hour Play Time ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— User Data Helper Functions —] ()->' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— User Data Helper Functions —] ()->': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Fill Lucky Vouchers ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Fill Lucky Vouchers ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Add 10,000z ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Add 10,000z ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Add 100,000z ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Add 100,000z ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Add 1,000,000z ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Add 1,000,000z ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Add 10,000 Guild Points ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Add 10,000 Guild Points ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Add 100,000 Guild Points ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Add 100,000 Guild Points ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Add 1,000,000 Guild Points ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Add 1,000,000 Guild Points ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Pointer —] ()->' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Pointer —] ()->': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Player —] ()->' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Player —] ()->': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Player Status Hook ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Player Status Hook ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Player Status —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Player Status —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Player Health Hook ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Player Health Hook ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Player Health —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Player Health —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0030] — Extra Max Health' Reason: Float Type | Color: 0x8A73FF
+2025-03-09 01:18:29 [DEBUG] Skipping '[0030] — Extra Max Health': Color already set to #8A73FF
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0034] — Skill Extra Max Health' Reason: Float Type | Color: 0x8A73FF
+2025-03-09 01:18:29 [DEBUG] Skipping '[0034] — Skill Extra Max Health': Color already set to #8A73FF
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0038] — Red Health' Reason: Float Type | Color: 0x8A73FF
+2025-03-09 01:18:29 [DEBUG] Skipping '[0038] — Red Health': Color already set to #8A73FF
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[003C] — Requested Total Damage' Reason: Float Type | Color: 0x8A73FF
+2025-03-09 01:18:29 [DEBUG] Skipping '[003C] — Requested Total Damage': Color already set to #8A73FF
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0040] — Requested Total Damage No Die' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0040] — Requested Total Damage No Die': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0044] — Requested Total Red Health' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0044] — Requested Total Red Health': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0048] — Requested Total Red Damage' Reason: Float Type | Color: 0x8A73FF
+2025-03-09 01:18:29 [DEBUG] Skipping '[0048] — Requested Total Red Damage': Color already set to #8A73FF
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0050] — Red Recover Timer' Reason: Float Type | Color: 0x8A73FF
+2025-03-09 01:18:29 [DEBUG] Skipping '[0050] — Red Recover Timer': Color already set to #8A73FF
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0054] — Red Recover Time Rate' Reason: Float Type | Color: 0x8A73FF
+2025-03-09 01:18:29 [DEBUG] Skipping '[0054] — Red Recover Time Rate': Color already set to #8A73FF
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0058] — Auto Recover Timer Skill' Reason: Float Type | Color: 0x8A73FF
+2025-03-09 01:18:29 [DEBUG] Skipping '[0058] — Auto Recover Timer Skill': Color already set to #8A73FF
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[005D] — Request Reset Health' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[005D] — Request Reset Health': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[005F] — Is Force Die' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[005F] — Is Force Die': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0060] — Is No Damage' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0060] — Is No Damage': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0061] — Stop Reduce Extra Max Health Timer' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0061] — Stop Reduce Extra Max Health Timer': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Player Stamina Hook ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Player Stamina Hook ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Player Stamina —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Player Stamina —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0050] — Prev Stamina Rate Trigger' Reason: Float Type | Color: 0x8A73FF
+2025-03-09 01:18:29 [DEBUG] Skipping '[0050] — Prev Stamina Rate Trigger': Color already set to #8A73FF
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0054] — Prev Stamina Guard Rate Trigger' Reason: Float Type | Color: 0x8A73FF
+2025-03-09 01:18:29 [DEBUG] Skipping '[0054] — Prev Stamina Guard Rate Trigger': Color already set to #8A73FF
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0058] — Temp Max Stamina' Reason: Float Type | Color: 0x8A73FF
+2025-03-09 01:18:29 [DEBUG] Skipping '[0058] — Temp Max Stamina': Color already set to #8A73FF
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[005C] — Auto Max Reduce Timer' Reason: Float Type | Color: 0x8A73FF
+2025-03-09 01:18:29 [DEBUG] Skipping '[005C] — Auto Max Reduce Timer': Color already set to #8A73FF
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0060] — Auto Max Reduce Time Rate' Reason: Float Type | Color: 0x8A73FF
+2025-03-09 01:18:29 [DEBUG] Skipping '[0060] — Auto Max Reduce Time Rate': Color already set to #8A73FF
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0064] — Request Use Stamina Trigger' Reason: Float Type | Color: 0x8A73FF
+2025-03-09 01:18:29 [DEBUG] Skipping '[0064] — Request Use Stamina Trigger': Color already set to #8A73FF
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0068] — Request Use Stamina Continuous' Reason: Float Type | Color: 0x8A73FF
+2025-03-09 01:18:29 [DEBUG] Skipping '[0068] — Request Use Stamina Continuous': Color already set to #8A73FF
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[006C] — Request Use Stamina Guard' Reason: Float Type | Color: 0x8A73FF
+2025-03-09 01:18:29 [DEBUG] Skipping '[006C] — Request Use Stamina Guard': Color already set to #8A73FF
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0070] — Request Add Stamina' Reason: Float Type | Color: 0x8A73FF
+2025-03-09 01:18:29 [DEBUG] Skipping '[0070] — Request Add Stamina': Color already set to #8A73FF
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0074] — Request Add Max Stamina' Reason: Float Type | Color: 0x8A73FF
+2025-03-09 01:18:29 [DEBUG] Skipping '[0074] — Request Add Max Stamina': Color already set to #8A73FF
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0078] — Request Set Max Stamina Tough' Reason: Float Type | Color: 0x8A73FF
+2025-03-09 01:18:29 [DEBUG] Skipping '[0078] — Request Set Max Stamina Tough': Color already set to #8A73FF
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[007C] — Is Stamina No Use' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[007C] — Is Stamina No Use': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[007D] — Request Reset Stamina' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[007D] — Request Reset Stamina': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[007E] — Is Stop Recover' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[007E] — Is Stop Recover': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[007F] — Is Stop Auto Reduce Max Stamina' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[007F] — Is Stop Auto Reduce Max Stamina': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0080] — Request Heal Stamina Max' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0080] — Request Heal Stamina Max': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0081] — Request Reset Auto Reduce Timer' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0081] — Request Reset Auto Reduce Timer': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Player Transform Hook ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Player Transform Hook ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Player Transform —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Player Transform —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0030] — X-Coordinate' Reason: Float Type | Color: 0x8A73FF
+2025-03-09 01:18:29 [DEBUG] Skipping '[0030] — X-Coordinate': Color already set to #8A73FF
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0034] — Y-Coordinate' Reason: Float Type | Color: 0x8A73FF
+2025-03-09 01:18:29 [DEBUG] Skipping '[0034] — Y-Coordinate': Color already set to #8A73FF
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0038] — Z-Coordinate' Reason: Float Type | Color: 0x8A73FF
+2025-03-09 01:18:29 [DEBUG] Skipping '[0038] — Z-Coordinate': Color already set to #8A73FF
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Weapons —] ()->' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Weapons —] ()->': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Weapon Gun Ammo Hook ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Weapon Gun Ammo Hook ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Weapon Gun Ammo —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Weapon Gun Ammo —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0010] — Loaded Ammo' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0010] — Loaded Ammo': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0020] — Backup Ammo' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0020] — Backup Ammo': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0030] — Limit Ammo' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0030] — Limit Ammo': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Quest Director —] ()->' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Quest Director —] ()->': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Quest Data Hook ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Quest Data Hook ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Quest Data —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Quest Data —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0038] — Mission ID' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0038] — Mission ID': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[003C] — Mission Type' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[003C] — Mission Type': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0044] — Is Recommended' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0044] — Is Recommended': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Quest Director Hook ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Quest Director Hook ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Quest Director —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Quest Director —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0068] — Quest Die Count' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0068] — Quest Die Count': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[008F] — Is Used Meal Skill Life' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[008F] — Is Used Meal Skill Life': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0093] — Is Use Lucky Ticket' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0093] — Is Use Lucky Ticket': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0094] — Is First Main Story' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0094] — Is First Main Story': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Active Quest Data Hook ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Active Quest Data Hook ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Active Quest Data —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Active Quest Data —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0020] — Mission ID' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0020] — Mission ID': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0070] — Remaining Money' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0070] — Remaining Money': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0074] — HR Point' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0074] — HR Point': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0078] — Add Point' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0078] — Add Point': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0098] — Quest Type' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0098] — Quest Type': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[00A2] — Index' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[00A2] — Index': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[00A4] — Quest Life' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[00A4] — Quest Life': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[00A6] — Quest Lvl' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[00A6] — Quest Lvl': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[00A9] — Is Setting Supply' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[00A9] — Is Setting Supply': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[00AA] — Time Limit' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[00AA] — Time Limit': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Save Data Manager —] ()->' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Save Data Manager —] ()->': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Selected Save Data Slot —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Selected Save Data Slot —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Selected Save Data:' Reason: User-defined values | Color: 0xEC8CF3
+2025-03-09 01:18:29 [INFO] Updating color for 'Selected Save Data:': Old (#DBEC22) -> New (#EC8CF3)
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— User Data —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— User Data —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Money Hook ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Money Hook ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Money —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Money —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0000] — Money' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0000] — Money': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Points Hook ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Points Hook ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Hunter Points —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Hunter Points —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0000] — Points' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0000] — Points': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Basic Param Hook ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Basic Param Hook ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Basic Param —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Basic Param —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0010] — Char Name' Reason: String Type | Color: 0x85EC3C
+2025-03-09 01:18:29 [DEBUG] Skipping '[0010] — Char Name': Color already set to #85EC3C
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0018] — Otomo Name' Reason: String Type | Color: 0x85EC3C
+2025-03-09 01:18:29 [DEBUG] Skipping '[0018] — Otomo Name': Color already set to #85EC3C
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0020] — Seikret Name' Reason: String Type | Color: 0x85EC3C
+2025-03-09 01:18:29 [DEBUG] Skipping '[0020] — Seikret Name': Color already set to #85EC3C
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0028] — Pugee Name' Reason: String Type | Color: 0x85EC3C
+2025-03-09 01:18:29 [DEBUG] Skipping '[0028] — Pugee Name': Color already set to #85EC3C
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Total Money Hook ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Total Money Hook ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Total Money —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Total Money —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0000] — Total Money' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0000] — Total Money': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Lucky Ticket Hook ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Lucky Ticket Hook ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Lucky Ticket —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Lucky Ticket —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0000] — Lucky Ticket' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0000] — Lucky Ticket': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Guild Point Hook ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Guild Point Hook ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Guild Points —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Guild Points —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0000] — Guild Points' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0000] — Guild Points': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Hunter Points Hook ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Hunter Points Hook ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Hunter Points —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Hunter Points —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0000] — Hunter Points' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0000] — Hunter Points': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Character Data —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Character Data —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Otomo Hook ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Otomo Hook ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Otomo —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Otomo —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0010] — Level' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0010] — Level': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0020] — Current Exp' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0020] — Current Exp': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0030] — Stock Exp' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0030] — Stock Exp': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Basic Param Hook ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Basic Param Hook ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Basic Param —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Basic Param —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0010] — Char Name' Reason: String Type | Color: 0x85EC3C
+2025-03-09 01:18:29 [DEBUG] Skipping '[0010] — Char Name': Color already set to #85EC3C
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0018] — Otomo Name' Reason: String Type | Color: 0x85EC3C
+2025-03-09 01:18:29 [DEBUG] Skipping '[0018] — Otomo Name': Color already set to #85EC3C
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0020] — Seikret Name' Reason: String Type | Color: 0x85EC3C
+2025-03-09 01:18:29 [DEBUG] Skipping '[0020] — Seikret Name': Color already set to #85EC3C
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0028] — Pugee Name' Reason: String Type | Color: 0x85EC3C
+2025-03-09 01:18:29 [DEBUG] Skipping '[0028] — Pugee Name': Color already set to #85EC3C
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'User Save Param Hook ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'User Save Param Hook ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— User Save Param —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— User Save Param —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[03AC] — Active' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[03AC] — Active': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0010] — Hunter ID' Reason: String Type | Color: 0x85EC3C
+2025-03-09 01:18:29 [DEBUG] Skipping '[0010] — Hunter ID': Color already set to #85EC3C
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0014] — Hunter ID Short' Reason: String Type | Color: 0x85EC3C
+2025-03-09 01:18:29 [DEBUG] Skipping '[0014] — Hunter ID Short': Color already set to #85EC3C
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[03A8] — Play Time' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[03A8] — Play Time': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Inventory Data —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Inventory Data —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Inventory Hook ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Inventory Hook ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Inventory —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Inventory —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Box —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Box —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Helper —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Helper —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Previous Slot ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Previous Slot ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Default Slot ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Default Slot ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Next Slot ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Next Slot ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Values —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Values —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0000] — Selected Slot' Reason: User-defined values | Color: 0xEC8CF3
+2025-03-09 01:18:29 [INFO] Updating color for '[0000] — Selected Slot': Old (#DBEC22) -> New (#EC8CF3)
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0010] — Item ID Fixed' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0010] — Item ID Fixed': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0012] — Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0012] — Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Pouch —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Pouch —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Helper —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Helper —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Previous Slot ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Previous Slot ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Default Slot ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Default Slot ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Next Slot ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Next Slot ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Values —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Values —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0000] — Selected Slot' Reason: User-defined values | Color: 0xEC8CF3
+2025-03-09 01:18:29 [INFO] Updating color for '[0000] — Selected Slot': Old (#DBEC22) -> New (#EC8CF3)
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0010] — Item ID Fixed' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0010] — Item ID Fixed': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0012] — Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0012] — Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Accessory —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Accessory —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Helper —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Helper —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Previous Slot ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Previous Slot ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Default Slot ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Default Slot ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Next Slot ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Next Slot ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Values —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Values —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0000] — Selected Slot' Reason: User-defined values | Color: 0xEC8CF3
+2025-03-09 01:18:29 [INFO] Updating color for '[0000] — Selected Slot': Old (#DBEC22) -> New (#EC8CF3)
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0010] — ID' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0010] — ID': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0014] — Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0014] — Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Hunter Profile Data —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Hunter Profile Data —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Medal Hook ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Medal Hook ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Medal —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Medal —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0020] — ?' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0020] — ?': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0020] — 'Eastward Wings' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0020] — 'Eastward Wings' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0020] — 'Windward Lands' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0020] — 'Windward Lands' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0020] — 'Shadow in the Downpour' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0020] — 'Shadow in the Downpour' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0020] — 'Guardians of the Forge' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0020] — 'Guardians of the Forge' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0020] — 'Bringer of Harmony' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0020] — 'Bringer of Harmony' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0020] — 'New Ecosystems' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0020] — 'New Ecosystems' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0020] — 'A Bitter Environment' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0020] — 'A Bitter Environment' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0021] — 'Beyond the Black Wings' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0021] — 'Beyond the Black Wings' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0021] — 'One Corner of the World' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0021] — 'One Corner of the World' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0021] — 'A True Hunter Is Never Satisfied' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0021] — 'A True Hunter Is Never Satisfied' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0021] — 'Let the Investigations Begin!' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0021] — 'Let the Investigations Begin!' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0021] — 'The Hunt Is On!' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0021] — 'The Hunt Is On!' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0021] — 'A Step Toward Mutual Understanding' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0021] — 'A Step Toward Mutual Understanding' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0021] — 'East to West, A Hunter Never Rests' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0021] — 'East to West, A Hunter Never Rests' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0021] — 'Angling for a Bite' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0021] — 'Angling for a Bite' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0022] — 'Mmm, So Tasty!' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0022] — 'Mmm, So Tasty!' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0022] — 'Was It a Meal to Remember?' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0022] — 'Was It a Meal to Remember?' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0022] — 'The Bigger They Are...' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0022] — 'The Bigger They Are...' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0022] — 'Hunter-Assassin' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0022] — 'Hunter-Assassin' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0022] — 'Hit 'Em Where It Hurts!' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0022] — 'Hit 'Em Where It Hurts!' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0022] — 'A Prize Held High' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0022] — 'A Prize Held High' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0022] — 'I Caught a Shooting Star!' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0022] — 'I Caught a Shooting Star!' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0022] — 'Monster (Squid) Hunter' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0022] — 'Monster (Squid) Hunter' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0023] — 'A-fish-ionado' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0023] — 'A-fish-ionado' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0023] — 'Camp Master'' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0023] — 'Camp Master'': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0023] — 'Glamper'' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0023] — 'Glamper'': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0023] — 'A Keen-eyed Observation'' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0023] — 'A Keen-eyed Observation'': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0023] — 'Ride-or-Die Companion' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0023] — 'Ride-or-Die Companion' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0023] — 'Established Hunter' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0023] — 'Established Hunter' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0023] — 'Impregnable Defense' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0023] — 'Impregnable Defense' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0023] — 'Power Is Everything' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0023] — 'Power Is Everything' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0024] — 'Someone Worth Following' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0024] — 'Someone Worth Following' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0024] — 'A Legacy Restored' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0024] — 'A Legacy Restored' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0024] — 'Bourgeois Hunter' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0024] — 'Bourgeois Hunter' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0024] — 'Explorer of The Eastlands' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0024] — 'Explorer of The Eastlands' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0024] — 'Monster Ph.D.' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0024] — 'Monster Ph.D.' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0024] — 'Seasoned Hunter' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0024] — 'Seasoned Hunter' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0024] — 'Miniature Crown' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0024] — 'Miniature Crown' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0024] — 'Miniature Crown Collector' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0024] — 'Miniature Crown Collector' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0025] — 'Miniature Crown Master' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0025] — 'Miniature Crown Master' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0025] — 'Giant Crown' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0025] — 'Giant Crown' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0025] — 'Giant Crown Collector' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0025] — 'Giant Crown Collector' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0025] — 'Giant Crown Master' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0025] — 'Giant Crown Master' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0025] — 'Capture Pro' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0025] — 'Capture Pro' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0025] — 'Monster Slayer' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0025] — 'Monster Slayer' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0025] — 'Top of the Food Chain' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0025] — 'Top of the Food Chain' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0025] — 'Hunters United' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0025] — 'Hunters United' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0026] — 'Hunters United Forever' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0026] — 'Hunters United Forever' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0026] — 'Gossip Hunter' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0026] — 'Gossip Hunter' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0026] — 'Newly Forged Bonds' Unlocked' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0026] — 'Newly Forged Bonds' Unlocked': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Quest Clear Counter Hook ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Quest Clear Counter Hook ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Assignment Clear Num —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Assignment Clear Num —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0020] — Fixed ID' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0020] — Fixed ID': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0024] — Total Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0024] — Total Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Main Weapon Use Num —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Main Weapon Use Num —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0020] — Great Sword Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0020] — Great Sword Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0024] — Sword And Shield Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0024] — Sword And Shield Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0028] — Dual Blades Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0028] — Dual Blades Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[002C] — Long Sword Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[002C] — Long Sword Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0030] — Hammer Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0030] — Hammer Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0034] — Hunting Horn Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0034] — Hunting Horn Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0038] — Lance Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0038] — Lance Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[003C] — Gunlance Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[003C] — Gunlance Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0040] — Switch Axe Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0040] — Switch Axe Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0044] — Charge Blade Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0044] — Charge Blade Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0048] — Insect Glaive Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0048] — Insect Glaive Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[004C] — Light Bowgun Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[004C] — Light Bowgun Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0050] — Heavy Bowgun Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0050] — Heavy Bowgun Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0054] — Bow Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0054] — Bow Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Sub Weapon Use Num —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Sub Weapon Use Num —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0020] — Great Sword Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0020] — Great Sword Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0024] — Sword And Shield Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0024] — Sword And Shield Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0028] — Dual Blades Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0028] — Dual Blades Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[002C] — Long Sword Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[002C] — Long Sword Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0030] — Hammer Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0030] — Hammer Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0034] — Hunting Horn Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0034] — Hunting Horn Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0038] — Lance Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0038] — Lance Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[003C] — Gunlance Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[003C] — Gunlance Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0040] — Switch Axe Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0040] — Switch Axe Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0044] — Charge Blade Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0044] — Charge Blade Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0048] — Insect Glaive Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0048] — Insect Glaive Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[004C] — Light Bowgun Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[004C] — Light Bowgun Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0050] — Heavy Bowgun Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0050] — Heavy Bowgun Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0054] — Bow Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0054] — Bow Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Optional Quest Clear Num —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Optional Quest Clear Num —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0020] — Fixed ID' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0020] — Fixed ID': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0024] — Total Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0024] — Total Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Main Weapon Use Num —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Main Weapon Use Num —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0020] — Great Sword Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0020] — Great Sword Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0024] — Sword And Shield Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0024] — Sword And Shield Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0028] — Dual Blades Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0028] — Dual Blades Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[002C] — Long Sword Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[002C] — Long Sword Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0030] — Hammer Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0030] — Hammer Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0034] — Hunting Horn Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0034] — Hunting Horn Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0038] — Lance Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0038] — Lance Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[003C] — Gunlance Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[003C] — Gunlance Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0040] — Switch Axe Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0040] — Switch Axe Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0044] — Charge Blade Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0044] — Charge Blade Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0048] — Insect Glaive Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0048] — Insect Glaive Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[004C] — Light Bowgun Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[004C] — Light Bowgun Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0050] — Heavy Bowgun Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0050] — Heavy Bowgun Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0054] — Bow Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0054] — Bow Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Sub Weapon Use Num —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Sub Weapon Use Num —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0020] — Great Sword Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0020] — Great Sword Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0024] — Sword And Shield Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0024] — Sword And Shield Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0028] — Dual Blades Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0028] — Dual Blades Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[002C] — Long Sword Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[002C] — Long Sword Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0030] — Hammer Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0030] — Hammer Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0034] — Hunting Horn Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0034] — Hunting Horn Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0038] — Lance Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0038] — Lance Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[003C] — Gunlance Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[003C] — Gunlance Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0040] — Switch Axe Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0040] — Switch Axe Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0044] — Charge Blade Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0044] — Charge Blade Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0048] — Insect Glaive Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0048] — Insect Glaive Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[004C] — Light Bowgun Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[004C] — Light Bowgun Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0050] — Heavy Bowgun Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0050] — Heavy Bowgun Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0054] — Bow Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0054] — Bow Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Field Survey Clear Num —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Field Survey Clear Num —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0020] — Fixed ID' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0020] — Fixed ID': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0024] — Total Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0024] — Total Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Main Weapon Use Num —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Main Weapon Use Num —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0020] — Great Sword Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0020] — Great Sword Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0024] — Sword And Shield Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0024] — Sword And Shield Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0028] — Dual Blades Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0028] — Dual Blades Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[002C] — Long Sword Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[002C] — Long Sword Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0030] — Hammer Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0030] — Hammer Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0034] — Hunting Horn Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0034] — Hunting Horn Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0038] — Lance Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0038] — Lance Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[003C] — Gunlance Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[003C] — Gunlance Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0040] — Switch Axe Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0040] — Switch Axe Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0044] — Charge Blade Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0044] — Charge Blade Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0048] — Insect Glaive Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0048] — Insect Glaive Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[004C] — Light Bowgun Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[004C] — Light Bowgun Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0050] — Heavy Bowgun Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0050] — Heavy Bowgun Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0054] — Bow Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0054] — Bow Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Sub Weapon Use Num —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Sub Weapon Use Num —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0020] — Great Sword Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0020] — Great Sword Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0024] — Sword And Shield Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0024] — Sword And Shield Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0028] — Dual Blades Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0028] — Dual Blades Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[002C] — Long Sword Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[002C] — Long Sword Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0030] — Hammer Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0030] — Hammer Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0034] — Hunting Horn Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0034] — Hunting Horn Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0038] — Lance Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0038] — Lance Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[003C] — Gunlance Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[003C] — Gunlance Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0040] — Switch Axe Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0040] — Switch Axe Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0044] — Charge Blade Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0044] — Charge Blade Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0048] — Insect Glaive Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0048] — Insect Glaive Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[004C] — Light Bowgun Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[004C] — Light Bowgun Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0050] — Heavy Bowgun Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0050] — Heavy Bowgun Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0054] — Bow Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0054] — Bow Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Boss Report Param Hook ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Boss Report Param Hook ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Helper —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Helper —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Previous Slot ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Previous Slot ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Default Slot ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Default Slot ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Next Slot ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Next Slot ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Selected Slot —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Selected Slot —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0000] — Selected Slot' Reason: User-defined values | Color: 0xEC8CF3
+2025-03-09 01:18:29 [INFO] Updating color for '[0000] — Selected Slot': Old (#DBEC22) -> New (#EC8CF3)
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Boss Report Param —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Boss Report Param —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0028] — Enemy State' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0028] — Enemy State': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[002C] — Fixed ID' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[002C] — Fixed ID': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0030] — Slaying Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0030] — Slaying Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0034] — Capture Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0034] — Capture Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0038] — Min Size' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0038] — Min Size': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[003C] — Max Size' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[003C] — Max Size': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Zako Report Param Hook ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Zako Report Param Hook ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Helper —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Helper —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Previous Slot ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Previous Slot ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Default Slot ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Default Slot ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Next Slot ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Next Slot ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Selected Slot —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Selected Slot —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0000] — Selected Slot' Reason: User-defined values | Color: 0xEC8CF3
+2025-03-09 01:18:29 [INFO] Updating color for '[0000] — Selected Slot': Old (#DBEC22) -> New (#EC8CF3)
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Zako Report Param —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Zako Report Param —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0028] — Enemy State' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0028] — Enemy State': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[002C] — Fixed ID' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[002C] — Fixed ID': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0030] — Slaying Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0030] — Slaying Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Animal Report Param Hook ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Animal Report Param Hook ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Helper —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Helper —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Previous Slot ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Previous Slot ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Default Slot ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Default Slot ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Next Slot ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Next Slot ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Selected Slot —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Selected Slot —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0000] — Selected Slot' Reason: User-defined values | Color: 0xEC8CF3
+2025-03-09 01:18:29 [INFO] Updating color for '[0000] — Selected Slot': Old (#DBEC22) -> New (#EC8CF3)
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Animal Report Param —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Animal Report Param —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0028] — Enemy State' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0028] — Enemy State': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[002C] — Fixed ID' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[002C] — Fixed ID': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0030] — Capture Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0030] — Capture Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Animal Fishing Report Param Hook ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Animal Fishing Report Param Hook ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Helper —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Helper —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Previous Slot ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Previous Slot ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Default Slot ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Default Slot ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Next Slot ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Next Slot ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Selected Slot —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Selected Slot —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0000] — Selected Slot' Reason: User-defined values | Color: 0xEC8CF3
+2025-03-09 01:18:29 [INFO] Updating color for '[0000] — Selected Slot': Old (#DBEC22) -> New (#EC8CF3)
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Animal Fishing Report Param —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Animal Fishing Report Param —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0028] — Enemy State' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0028] — Enemy State': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[002C] — Fixed ID' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[002C] — Fixed ID': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0030] — Capture Num' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0030] — Capture Num': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0038] — Min Size' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0038] — Min Size': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[003C] — Max Weight' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[003C] — Max Weight': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Save Independent —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Save Independent —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Palico Tickets Used Hook ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Palico Tickets Used Hook ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Palico Tickets Used —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Palico Tickets Used —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0000] — Palico Tickets Used' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0000] — Palico Tickets Used': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Hunter Tickets Used Hook ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Hunter Tickets Used Hook ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Hunter Tickets Used —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Hunter Tickets Used —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0000] — Hunter Tickets Used' Reason: Default editor foreground | Color: 0xD9C1C8
+2025-03-09 01:18:29 [DEBUG] Skipping '[0000] — Hunter Tickets Used': Color already set to #D9C1C8
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Table Debug —] ()->' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Table Debug —] ()->': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Enum Lists —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Enum Lists —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'listBool' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping 'listBool': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'listItemID' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping 'listItemID': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'listItemIDFixed' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping 'listItemIDFixed': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'listSlots' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping 'listSlots': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'listQuestType' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping 'listQuestType': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'listEnemyState' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping 'listEnemyState': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'listMissionID' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping 'listMissionID': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'listEnemyID' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping 'listEnemyID': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'listAccessoryID' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping 'listAccessoryID': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'listWeaponAttrType' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping 'listWeaponAttrType': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'listMissionType' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping 'listMissionType': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Symbols —] ()->' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Symbols —] ()->': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Modules —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Modules —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Process Base' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping 'Process Base': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Pointer —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Pointer —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Quest Director Base' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping 'Quest Director Base': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Player Manager Base' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping 'Player Manager Base': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Save Data Manager Base' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping 'Save Data Manager Base': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Teleporter —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Teleporter —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Transform Base' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping 'Transform Base': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Waypoint Base' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping 'Waypoint Base': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Saved Position Base' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping 'Saved Position Base': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Backup Position Base' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping 'Backup Position Base': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Debug Scripts —] ()->' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Debug Scripts —] ()->': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Memory Record Factory Helper —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Memory Record Factory Helper —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Memory Record Factory: Create "Pointer" Template ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Memory Record Factory: Create "Pointer" Template ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Memory Record Factory: Create "Multiplier" Template ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Memory Record Factory: Create "Multiplier" Template ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Memory Record Factory: Create "Conditional" Template ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Memory Record Factory: Create "Conditional" Template ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Scripts —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Scripts —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'On ... ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'On ... ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Type:' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping 'Type:': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Multiplier' Reason: Float Type | Color: 0x8A73FF
+2025-03-09 01:18:29 [DEBUG] Skipping 'Multiplier': Color already set to #8A73FF
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Debug —] ()->' Reason: Address Group Header | Color: 0x61CDEA
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Debug —] ()->': Color already set to #61CDEA
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[0000] — Value' Reason: Integer Type | Color: 0xDBEC22
+2025-03-09 01:18:29 [DEBUG] Skipping '[0000] — Value': Color already set to #DBEC22
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Module Helpers —] ()->' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Module Helpers —] ()->': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Logger Helper —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Logger Helper —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Level Helper —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Level Helper —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Logger: Set Log Level 'Debug' ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Logger: Set Log Level 'Debug' ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Logger: Set Log Level 'Info' ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Logger: Set Log Level 'Info' ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Logger: Set Log Level 'Warn' ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Logger: Set Log Level 'Warn' ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Logger: Set Log Level 'Error' ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Logger: Set Log Level 'Error' ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Logger: Set Log Level 'Fatal' ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Logger: Set Log Level 'Fatal' ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Formatter Helper —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Formatter Helper —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Logger: Log In Json Format ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Logger: Log In Json Format ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Logger: Log In Text Format ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Logger: Log In Text Format ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Teleporter Helper —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Teleporter Helper —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Teleporter: Toggle Smooth Teleport ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Teleporter: Toggle Smooth Teleport ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Teleporter: Delete Sub Records ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Teleporter: Delete Sub Records ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Teleporter: Create Memory Records ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Teleporter: Create Memory Records ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Teleporter: Write Saves To Table File ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Teleporter: Write Saves To Table File ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Teleporter: Read Saves From Table File ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Teleporter: Read Saves From Table File ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Table State Debug —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Table State Debug —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Utility: Toggle Compact Mode ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Utility: Toggle Compact Mode ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Utility: Toggle Signature Controls ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Utility: Toggle Signature Controls ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Utility: Remove All Table Files ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Utility: Remove All Table Files ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Utility: Debug Exposed Functions ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Utility: Debug Exposed Functions ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Utility: Set All Scripts To Async ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Utility: Set All Scripts To Async ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Utility: Set All Scripts To Not Async ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Utility: Set All Scripts To Not Async ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Table Helper —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Table Helper —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Get Setup Strings ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Get Setup Strings ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Helper: Print Game Modules ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Helper: Print Game Modules ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Form Helper —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Form Helper —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Form Manager: Log Themes ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Form Manager: Log Themes ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Form Manager: Reload Current Color State ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Form Manager: Reload Current Color State ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Form Manager: Reload Default Color State ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Form Manager: Reload Default Color State ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: '[— Table File Explorer Helper —]' Reason: Group Header | Color: 0xE1BAC5
+2025-03-09 01:18:29 [DEBUG] Skipping '[— Table File Explorer Helper —]': Color already set to #E1BAC5
+2025-03-09 01:18:29 [DEBUG] Determined Theme Color For Record: 'Table File Explorer: Toggle Form ()->' Reason: AutoAssembler Type | Color: 0xFFC369
+2025-03-09 01:18:29 [DEBUG] Skipping 'Table File Explorer: Toggle Form ()->': Color already set to #FFC369
+2025-03-09 01:18:29 [INFO] Color update complete: 8 updated, 581 skipped.
+2025-03-09 01:18:29 [INFO] Theme 'Theme.Bearded-Arc.Min' applied successfully.
+2025-03-09 01:18:29 [INFO] Set Teleporter Value Type To Single (ID: 4)
+2025-03-09 01:18:29 [INFO] Reading Saves from File - Data: {
+  [File] = Teleporter.Saves.txt,
+}
+2025-03-09 01:18:29 [INFO] Loaded Saves from File - Data: {
+  [File] = Teleporter.Saves.txt,
+}
+2025-03-09 01:18:29 [DEBUG] Found MonsterHunterWilds.exe with PID 6276. Attempting to attach...
+2025-03-09 01:18:29 [DEBUG] Process is already attached (PID: 6276). Skipping reattachment.
+2025-03-09 01:18:29 [DEBUG] Successfully attached to MonsterHunterWilds.exe with PID 6276
+2025-03-09 01:18:29 [DEBUG] Called TableSetup().
+2025-03-09 01:18:29 [DEBUG] Starting file hash verification...
+2025-03-09 01:18:29 [DEBUG] Retrieving file hash for: D:\SteamLibrary\steamapps\common\MonsterHunterWilds\MonsterHunterWilds.exe
+2025-03-09 01:18:30 [DEBUG] Calculated file hash: cf9de2ec9ce56455394f57c7366ba735
+2025-03-09 01:18:30 [DEBUG] Expected file hash: cf9de2ec9ce56455394f57c7366ba735
+2025-03-09 01:18:30 [DEBUG] File hash matched. The table 'should' work as expected.
+2025-03-09 01:18:30 [DEBUG] File hash verified successfully.
+2025-03-09 01:18:30 [DEBUG] Auto Attach Complete. Process: 'MonsterHunterWilds.exe' | PID: 6276 | Status: Success
+2025-03-09 01:18:30 [INFO] Starting auto-assembly for file: PlayerManagerHook.CEA
+2025-03-09 01:18:30 [INFO] Loading file: PlayerManagerHook.CEA
+2025-03-09 01:18:30 [INFO] Reading file: PlayerManagerHook.CEA
+2025-03-09 01:18:30 [WARN] File PlayerManagerHook.CEA not found in primary location, attempting table file...
+2025-03-09 01:18:30 [INFO] Reading table file: PlayerManagerHook.CEA
+2025-03-09 01:18:30 [INFO] File PlayerManagerHook.CEA loaded successfully
+2025-03-09 01:18:30 [DEBUG] State initialized for file: PlayerManagerHook.CEA | Current State: false
+2025-03-09 01:18:30 [DEBUG] Memory record provided: userdata: 00000000097ACD98
+2025-03-09 01:18:30 [INFO] Enabling the script; clearing disable information.
+2025-03-09 01:18:30 [INFO] State updated for file: PlayerManagerHook.CEA | Enabling: true
+2025-03-09 01:18:30 [DEBUG] Performing auto-assemble for PlayerManagerHook.CEA
+2025-03-09 01:18:32 [ERROR] Failed to assemble file PlayerManagerHook.CEA
+2025-03-09 01:18:32 [ERROR] Failed to assemble file PlayerManagerHook.CEA

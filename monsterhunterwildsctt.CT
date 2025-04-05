@@ -1,0 +1,1148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>17066</ID>
+      <Description>"&lt;--- Auto Attach"</Description>
+      <Color>4080FF</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+{$lua}
+if syntaxcheck then return end
+-----------------------
+OpenProcess("MonsterHunterWilds.exe")
+
+-----------------------
+
+{$asm}
+
+LuaCall(function cycleFullCompact(sender,force) local state = not(compactmenuitem.Caption == 'Compact View Mode'); if force~=nil then state = not force end; compactmenuitem.Caption = state and 'Compact View Mode' or 'Full View Mode'; getMainForm().Splitter1.Visible = state; getMainForm().Panel4.Visible    = state; getMainForm().Panel5.Visible    = state; end; function addCompactMenu() if compactmenualreadyexists then return end; local parent = getMainForm().Menu.Items; compactmenuitem = createMenuItem(parent); parent.add(compactmenuitem); compactmenuitem.Caption = 'Compact View Mode'; compactmenuitem.OnClick = cycleFullCompact; compactmenualreadyexists = 'yes'; end; addCompactMenu(); cycleFullCompact(nil,true))
+
+
+[DISABLE]
+
+
+LuaCall(cycleFullCompact(nil,false))
+
+
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>1</ID>
+          <Description>"Infinite Items [Hold Npad 0]"</Description>
+          <Color>00FF00</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : MonsterHunterWilds.exe (paused)
+  Version: 
+  Date   : 2025-02-28
+  Author : Silv3r
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(ItemOnTrashA,$process,0F B7 58 12 EB 74) // should be unique
+alloc(newmem,$1000,ItemOnTrashA)
+
+label(code)
+label(return)
+
+newmem:
+mov [rax+12],(int)999
+code:
+  movzx ebx,word ptr [rax+12]
+  jmp MonsterHunterWilds.exe+3873762
+  jmp return
+
+ItemOnTrashA:
+  jmp newmem
+  nop
+return:
+registersymbol(ItemOnTrashA)
+
+[DISABLE]
+
+ItemOnTrashA:
+  db 0F B7 58 12 EB 74
+
+unregistersymbol(*)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MonsterHunterWilds.exe+38736E8
+
+MonsterHunterWilds.exe+38736BD: 48 8B 88 80 00 00 00  - mov rcx,[rax+00000080]
+MonsterHunterWilds.exe+38736C4: 48 8B 49 10           - mov rcx,[rcx+10]
+MonsterHunterWilds.exe+38736C8: 48 63 80 D8 00 00 00  - movsxd  rax,dword ptr [rax+000000D8]
+MonsterHunterWilds.exe+38736CF: 48 8B 44 C1 20        - mov rax,[rcx+rax*8+20]
+MonsterHunterWilds.exe+38736D4: 48 8B 50 30           - mov rdx,[rax+30]
+MonsterHunterWilds.exe+38736D8: 48 89 F9              - mov rcx,rdi
+MonsterHunterWilds.exe+38736DB: 41 89 F0              - mov r8d,esi
+MonsterHunterWilds.exe+38736DE: E8 DD 40 F1 00        - call MonsterHunterWilds.exe+47877C0
+MonsterHunterWilds.exe+38736E3: 48 85 C0              - test rax,rax
+MonsterHunterWilds.exe+38736E6: 74 3E                 - je MonsterHunterWilds.exe+3873726
+// ---------- INJECTING HERE ----------
+MonsterHunterWilds.exe+38736E8: 0F B7 58 12           - movzx ebx,word ptr [rax+12]
+// ---------- DONE INJECTING  ----------
+MonsterHunterWilds.exe+38736EC: EB 74                 - jmp MonsterHunterWilds.exe+3873762
+MonsterHunterWilds.exe+38736EE: 48 8B 05 0B 21 AF 0F  - mov rax,[MonsterHunterWilds.exe+13365800]
+MonsterHunterWilds.exe+38736F5: 48 8B 88 80 00 00 00  - mov rcx,[rax+00000080]
+MonsterHunterWilds.exe+38736FC: 48 8B 49 10           - mov rcx,[rcx+10]
+MonsterHunterWilds.exe+3873700: 48 63 80 D8 00 00 00  - movsxd  rax,dword ptr [rax+000000D8]
+MonsterHunterWilds.exe+3873707: 48 8B 44 C1 20        - mov rax,[rcx+rax*8+20]
+MonsterHunterWilds.exe+387370C: 48 8B 50 30           - mov rdx,[rax+30]
+MonsterHunterWilds.exe+3873710: 48 89 F9              - mov rcx,rdi
+MonsterHunterWilds.exe+3873713: 41 89 F0              - mov r8d,esi
+MonsterHunterWilds.exe+3873716: E8 05 3A F1 00        - call MonsterHunterWilds.exe+4787120
+}
+</AssemblerScript>
+          <Hotkeys>
+            <Hotkey OnlyWhileDown="1">
+              <Action>Toggle Activation</Action>
+              <Keys>
+                <Key>96</Key>
+              </Keys>
+              <ID>0</ID>
+              <ActivateSound>Activate</ActivateSound>
+            </Hotkey>
+          </Hotkeys>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>17067</ID>
+              <Description>"Don't Enable Cheat Use Numpad 0"</Description>
+              <Color>0000FF</Color>
+              <GroupHeader>1</GroupHeader>
+              <Address/>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>17068</ID>
+              <Description>"Hold Npad 5 then Eat/Drink then releas it"</Description>
+              <Color>FF8080</Color>
+              <GroupHeader>1</GroupHeader>
+              <Address>0</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>17073</ID>
+          <Description>"Infinite All Items (Box and Inventory) [Npad 9]"</Description>
+          <Color>00FF00</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : MonsterHunterWilds.exe (paused)
+  Version: 
+  Date   : 2025-02-28
+  Author : Silv3r
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(ItemsOnSellB,$process,0F B7 58 12 EB 74) // should be unique
+alloc(newmem,$1000,ItemsOnSellB)
+
+label(code)
+label(return)
+
+newmem:
+mov [rax+12],(int)999
+code:
+  movzx ebx,word ptr [rax+12]
+  jmp MonsterHunterWilds.exe+3873762
+  jmp return
+
+ItemsOnSellB:
+  jmp newmem
+  nop
+return:
+registersymbol(ItemsOnSellB)
+
+[DISABLE]
+
+ItemsOnSellB:
+  db 0F B7 58 12 EB 74
+
+unregistersymbol(ItemsOnSellB)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MonsterHunterWilds.exe+38736E8
+
+MonsterHunterWilds.exe+38736BD: 48 8B 88 80 00 00 00  - mov rcx,[rax+00000080]
+MonsterHunterWilds.exe+38736C4: 48 8B 49 10           - mov rcx,[rcx+10]
+MonsterHunterWilds.exe+38736C8: 48 63 80 D8 00 00 00  - movsxd  rax,dword ptr [rax+000000D8]
+MonsterHunterWilds.exe+38736CF: 48 8B 44 C1 20        - mov rax,[rcx+rax*8+20]
+MonsterHunterWilds.exe+38736D4: 48 8B 50 30           - mov rdx,[rax+30]
+MonsterHunterWilds.exe+38736D8: 48 89 F9              - mov rcx,rdi
+MonsterHunterWilds.exe+38736DB: 41 89 F0              - mov r8d,esi
+MonsterHunterWilds.exe+38736DE: E8 DD 40 F1 00        - call MonsterHunterWilds.exe+47877C0
+MonsterHunterWilds.exe+38736E3: 48 85 C0              - test rax,rax
+MonsterHunterWilds.exe+38736E6: 74 3E                 - je MonsterHunterWilds.exe+3873726
+// ---------- INJECTING HERE ----------
+MonsterHunterWilds.exe+38736E8: 0F B7 58 12           - movzx ebx,word ptr [rax+12]
+// ---------- DONE INJECTING  ----------
+MonsterHunterWilds.exe+38736EC: EB 74                 - jmp MonsterHunterWilds.exe+3873762
+MonsterHunterWilds.exe+38736EE: 48 8B 05 0B 21 AF 0F  - mov rax,[MonsterHunterWilds.exe+13365800]
+MonsterHunterWilds.exe+38736F5: 48 8B 88 80 00 00 00  - mov rcx,[rax+00000080]
+MonsterHunterWilds.exe+38736FC: 48 8B 49 10           - mov rcx,[rcx+10]
+MonsterHunterWilds.exe+3873700: 48 63 80 D8 00 00 00  - movsxd  rax,dword ptr [rax+000000D8]
+MonsterHunterWilds.exe+3873707: 48 8B 44 C1 20        - mov rax,[rcx+rax*8+20]
+MonsterHunterWilds.exe+387370C: 48 8B 50 30           - mov rdx,[rax+30]
+MonsterHunterWilds.exe+3873710: 48 89 F9              - mov rcx,rdi
+MonsterHunterWilds.exe+3873713: 41 89 F0              - mov r8d,esi
+MonsterHunterWilds.exe+3873716: E8 05 3A F1 00        - call MonsterHunterWilds.exe+4787120
+}
+</AssemblerScript>
+          <Hotkeys>
+            <Hotkey OnlyWhileDown="1">
+              <Action>Toggle Activation</Action>
+              <Keys>
+                <Key>105</Key>
+              </Keys>
+              <ID>0</ID>
+              <ActivateSound>Activate</ActivateSound>
+            </Hotkey>
+          </Hotkeys>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>17075</ID>
+              <Description>"Don't Enable Cheat Use Numpad 9"</Description>
+              <Color>0000FF</Color>
+              <GroupHeader>1</GroupHeader>
+              <Address/>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>17074</ID>
+              <Description>"Hold Npad 9 then Eat/Drink/Sell/Buy/Transfer something"</Description>
+              <Color>FF8080</Color>
+              <GroupHeader>1</GroupHeader>
+              <Address/>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>17070</ID>
+          <Description>"Infinite Items on Sell (Npad +)"</Description>
+          <Color>00FF00</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : MonsterHunterWilds.exe (paused)
+  Version: 
+  Date   : 2025-02-28
+  Author : Silv3r
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(ItemsOnSellA,MonsterHunterWilds.exe,66 41 03 75 12) // should be unique
+alloc(newmem,$1000,ItemsOnSellA)
+
+label(code)
+label(return)
+
+newmem:
+mov [r13+12],(int)999
+code:
+  add si,[r13+12]
+  jmp return
+
+ItemsOnSellA:
+  jmp newmem
+return:
+registersymbol(ItemsOnSellA)
+
+[DISABLE]
+
+ItemsOnSellA:
+  db 66 41 03 75 12
+
+unregistersymbol(ItemsOnSellA)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MonsterHunterWilds.exe+47868F6
+
+MonsterHunterWilds.exe+47868CE: 74 4D                          - je MonsterHunterWilds.exe+478691D
+MonsterHunterWilds.exe+47868D0: 8B 44 24 3C                    - mov eax,[rsp+3C]
+MonsterHunterWilds.exe+47868D4: 48 B9 FC FF FF FF FF FF FF 7F  - mov rcx,7FFFFFFFFFFFFFFC
+MonsterHunterWilds.exe+47868DE: 48 8D 54 24 38                 - lea rdx,[rsp+38]
+MonsterHunterWilds.exe+47868E3: 48 21 D1                       - and rcx,rdx
+MonsterHunterWilds.exe+47868E6: 89 01                          - mov [rcx],eax
+MonsterHunterWilds.exe+47868E8: 0F B7 02                       - movzx eax,word ptr [rdx]
+MonsterHunterWilds.exe+47868EB: 66 89 46 10                    - mov [rsi+10],ax
+MonsterHunterWilds.exe+47868EF: EB 44                          - jmp MonsterHunterWilds.exe+4786935
+MonsterHunterWilds.exe+47868F1: 48 8B 74 24 20                 - mov rsi,[rsp+20]
+// ---------- INJECTING HERE ----------
+MonsterHunterWilds.exe+47868F6: 66 41 03 75 12                 - add si,[r13+12]
+// ---------- DONE INJECTING  ----------
+MonsterHunterWilds.exe+47868FB: 66 41 89 75 12                 - mov [r13+12],si
+MonsterHunterWilds.exe+4786900: 78 3C                          - js MonsterHunterWilds.exe+478693E
+MonsterHunterWilds.exe+4786902: 0F B7 C6                       - movzx eax,si
+MonsterHunterWilds.exe+4786905: 3D 10 27 00 00                 - cmp eax,00002710
+MonsterHunterWilds.exe+478690A: 73 3C                          - jae MonsterHunterWilds.exe+4786948
+MonsterHunterWilds.exe+478690C: 66 85 F6                       - test si,si
+MonsterHunterWilds.exe+478690F: 75 08                          - jne MonsterHunterWilds.exe+4786919
+MonsterHunterWilds.exe+4786911: 41 C7 45 10 00 00 00 00        - mov [r13+10],00000000
+MonsterHunterWilds.exe+4786919: 31 F6                          - xor esi,esi
+MonsterHunterWilds.exe+478691B: EB 38                          - jmp MonsterHunterWilds.exe+4786955
+}
+</AssemblerScript>
+          <Hotkeys>
+            <Hotkey>
+              <Action>Toggle Activation</Action>
+              <Keys>
+                <Key>107</Key>
+              </Keys>
+              <ID>0</ID>
+              <ActivateSound>Activate</ActivateSound>
+              <DeactivateSound>Deactivate</DeactivateSound>
+            </Hotkey>
+          </Hotkeys>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>17156</ID>
+              <Description>"Disable after use"</Description>
+              <Color>8000FF</Color>
+              <GroupHeader>1</GroupHeader>
+              <Address>0</Address>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>17157</ID>
+              <Description>"active cheat Sell something then deactive"</Description>
+              <Color>FF8080</Color>
+              <GroupHeader>1</GroupHeader>
+              <Address>0</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"Tests"</Description>
+      <Options moHideChildren="1"/>
+      <Color>C0C0C0</Color>
+      <GroupHeader>1</GroupHeader>
+      <Address/>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>0</ID>
+          <Description>"Infinite Items on Use"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>DC0BD8F2</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>2</ID>
+          <Description>"Infinite Items on Use"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : MonsterHunterWilds.exe (paused)
+  Version: 
+  Date   : 2025-02-28
+  Author : Silv3r
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(IteOnTrashAa,MonsterHunterWilds.exe,66 41 01 47 12) // should be unique
+alloc(newmem,$1000,IteOnTrashAa)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  add [r15+12],ax
+  jmp return
+
+IteOnTrashAa:
+  jmp newmem
+return:
+registersymbol(IteOnTrashAa)
+
+[DISABLE]
+
+IteOnTrashAa:
+  db 66 41 01 47 12
+
+unregistersymbol(IteOnTrashAa)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MonsterHunterWilds.exe+4785DF1
+
+MonsterHunterWilds.exe+4785DBD: 0F 84 D3 02 00 00        - je MonsterHunterWilds.exe+4786096
+MonsterHunterWilds.exe+4785DC3: 0F B7 80 8E 00 00 00     - movzx eax,word ptr [rax+0000008E]
+MonsterHunterWilds.exe+4785DCA: E9 B8 00 00 00           - jmp MonsterHunterWilds.exe+4785E87
+MonsterHunterWilds.exe+4785DCF: 0F B6 05 E5 34 BE 0E     - movzx eax,byte ptr [MonsterHunterWilds.exe+133692BB]
+MonsterHunterWilds.exe+4785DD6: C1 E0 18                 - shl eax,18
+MonsterHunterWilds.exe+4785DD9: 41 0F B7 F7              - movzx esi,r15w
+MonsterHunterWilds.exe+4785DDD: 09 C6                    - or esi,eax
+MonsterHunterWilds.exe+4785DDF: 48 8B 7C 24 30           - mov rdi,[rsp+30]
+MonsterHunterWilds.exe+4785DE4: E9 6D 02 00 00           - jmp MonsterHunterWilds.exe+4786056
+MonsterHunterWilds.exe+4785DE9: 0F B7 84 24 E0 00 00 00  - movzx eax,word ptr [rsp+000000E0]
+// ---------- INJECTING HERE ----------
+MonsterHunterWilds.exe+4785DF1: 66 41 01 47 12           - add [r15+12],ax
+// ---------- DONE INJECTING  ----------
+MonsterHunterWilds.exe+4785DF6: 48 8B 4C 24 28           - mov rcx,[rsp+28]
+MonsterHunterWilds.exe+4785DFB: 89 EA                    - mov edx,ebp
+MonsterHunterWilds.exe+4785DFD: E8 1E 77 AE 04           - call MonsterHunterWilds.exe+926D520
+MonsterHunterWilds.exe+4785E02: 85 C0                    - test eax,eax
+MonsterHunterWilds.exe+4785E04: 78 3A                    - js MonsterHunterWilds.exe+4785E40
+MonsterHunterWilds.exe+4785E06: 48 8B 0D B3 08 BF 0E     - mov rcx,[MonsterHunterWilds.exe+133766C0]
+MonsterHunterWilds.exe+4785E0D: 48 8B 49 50              - mov rcx,[rcx+50]
+MonsterHunterWilds.exe+4785E11: 48 8B 49 20              - mov rcx,[rcx+20]
+MonsterHunterWilds.exe+4785E15: 48 8B 49 10              - mov rcx,[rcx+10]
+MonsterHunterWilds.exe+4785E19: 48 8B 49 20              - mov rcx,[rcx+20]
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>3</ID>
+          <Description>"Infinite Items on Use"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : MonsterHunterWilds.exe (paused)
+  Version: 
+  Date   : 2025-02-28
+  Author : Silv3r
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(ItemOnTrashB,MonsterHunterWilds.exe,41 0F B7 4F 12) // should be unique
+alloc(newmem,$1000,ItemOnTrashB)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  movzx ecx,word ptr [r15+12]
+  jmp return
+
+ItemOnTrashB:
+  jmp newmem
+return:
+registersymbol(ItemOnTrashB)
+
+[DISABLE]
+
+ItemOnTrashB:
+  db 41 0F B7 4F 12
+
+unregistersymbol(ItemOnTrashB)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MonsterHunterWilds.exe+4785E47
+
+MonsterHunterWilds.exe+4785E20: 7E 1E                 - jle MonsterHunterWilds.exe+4785E40
+MonsterHunterWilds.exe+4785E22: 89 C0                 - mov eax,eax
+MonsterHunterWilds.exe+4785E24: 48 8B 44 C1 20        - mov rax,[rcx+rax*8+20]
+MonsterHunterWilds.exe+4785E29: 48 85 C0              - test rax,rax
+MonsterHunterWilds.exe+4785E2C: 48 8B 7C 24 30        - mov rdi,[rsp+30]
+MonsterHunterWilds.exe+4785E31: 0F 84 58 02 00 00     - je MonsterHunterWilds.exe+478608F
+MonsterHunterWilds.exe+4785E37: 0F B7 80 8E 00 00 00  - movzx eax,word ptr [rax+0000008E]
+MonsterHunterWilds.exe+4785E3E: EB 07                 - jmp MonsterHunterWilds.exe+4785E47
+MonsterHunterWilds.exe+4785E40: 31 C0                 - xor eax,eax
+MonsterHunterWilds.exe+4785E42: 48 8B 7C 24 30        - mov rdi,[rsp+30]
+// ---------- INJECTING HERE ----------
+MonsterHunterWilds.exe+4785E47: 41 0F B7 4F 12        - movzx ecx,word ptr [r15+12]
+// ---------- DONE INJECTING  ----------
+MonsterHunterWilds.exe+4785E4C: 66 85 C9              - test cx,cx
+MonsterHunterWilds.exe+4785E4F: 0F 88 C8 01 00 00     - js MonsterHunterWilds.exe+478601D
+MonsterHunterWilds.exe+4785E55: 66 39 C1              - cmp cx,ax
+MonsterHunterWilds.exe+4785E58: 0F 8E DC 01 00 00     - jng MonsterHunterWilds.exe+478603A
+MonsterHunterWilds.exe+4785E5E: 66 41 89 47 12        - mov [r15+12],ax
+MonsterHunterWilds.exe+4785E63: 0F B6 15 51 34 BE 0E  - movzx edx,byte ptr [MonsterHunterWilds.exe+133692BB]
+MonsterHunterWilds.exe+4785E6A: C1 E2 18              - shl edx,18
+MonsterHunterWilds.exe+4785E6D: 29 C1                 - sub ecx,eax
+MonsterHunterWilds.exe+4785E6F: 0F B7 C1              - movzx eax,cx
+MonsterHunterWilds.exe+4785E72: 8D 34 02              - lea esi,[rdx+rax]
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>4</ID>
+          <Description>"Infinite Items on Use"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : MonsterHunterWilds.exe (paused)
+  Version: 
+  Date   : 2025-02-28
+  Author : Silv3r
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(ItemOnTrashC,MonsterHunterWilds.exe,0F B7 68 12 48 8B 15 E3 9B BF 0E) // should be unique
+alloc(newmem,$1000,ItemOnTrashC)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  movzx ebp,word ptr [rax+12]
+  mov rdx,[MonsterHunterWilds.exe+1337E928]
+  jmp return
+
+ItemOnTrashC:
+  jmp newmem
+  nop 6
+return:
+registersymbol(ItemOnTrashC)
+
+[DISABLE]
+
+ItemOnTrashC:
+  db 0F B7 68 12 48 8B 15 E3 9B BF 0E
+
+unregistersymbol(ItemOnTrashC)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MonsterHunterWilds.exe+4784D3A
+
+MonsterHunterWilds.exe+4784D12: 8B 4C 24 78           - mov ecx,[rsp+78]
+MonsterHunterWilds.exe+4784D16: 49 39 CE              - cmp r14,rcx
+MonsterHunterWilds.exe+4784D19: 0F 83 8A 00 00 00     - jae MonsterHunterWilds.exe+4784DA9
+MonsterHunterWilds.exe+4784D1F: 84 C0                 - test al,al
+MonsterHunterWilds.exe+4784D21: 75 08                 - jne MonsterHunterWilds.exe+4784D2B
+MonsterHunterWilds.exe+4784D23: 41 B8 FF FF FF FF     - mov r8d,FFFFFFFF
+MonsterHunterWilds.exe+4784D29: EB 05                 - jmp MonsterHunterWilds.exe+4784D30
+MonsterHunterWilds.exe+4784D2B: 44 8B 44 24 58        - mov r8d,[rsp+58]
+MonsterHunterWilds.exe+4784D30: 48 8B 44 24 70        - mov rax,[rsp+70]
+MonsterHunterWilds.exe+4784D35: 4A 8B 44 F0 20        - mov rax,[rax+r14*8+20]
+// ---------- INJECTING HERE ----------
+MonsterHunterWilds.exe+4784D3A: 0F B7 68 12           - movzx ebp,word ptr [rax+12]
+// ---------- DONE INJECTING  ----------
+MonsterHunterWilds.exe+4784D3E: 48 8B 15 E3 9B BF 0E  - mov rdx,[MonsterHunterWilds.exe+1337E928]
+MonsterHunterWilds.exe+4784D45: 48 89 F1              - mov rcx,rsi
+MonsterHunterWilds.exe+4784D48: 49 89 D9              - mov r9,rbx
+MonsterHunterWilds.exe+4784D4B: E8 80 F4 CD 00        - call MonsterHunterWilds.exe+54641D0
+MonsterHunterWilds.exe+4784D50: 84 C0                 - test al,al
+MonsterHunterWilds.exe+4784D52: 74 14                 - je MonsterHunterWilds.exe+4784D68
+MonsterHunterWilds.exe+4784D54: 8B 44 24 5C           - mov eax,[rsp+5C]
+MonsterHunterWilds.exe+4784D58: 41 89 45 00           - mov [r13+00],eax
+MonsterHunterWilds.exe+4784D5C: 0F B7 44 24 58        - movzx eax,word ptr [rsp+58]
+MonsterHunterWilds.exe+4784D61: 66 41 89 47 10        - mov [r15+10],ax
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>17069</ID>
+          <Description>"Items On Sell"</Description>
+          <VariableType>2 Bytes</VariableType>
+          <Address>2A34A1DA2</Address>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>17071</ID>
+          <Description>"Items On Sell"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : MonsterHunterWilds.exe (paused)
+  Version: 
+  Date   : 2025-02-28
+  Author : Silv3r
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(ItemsOnSellAa,MonsterHunterWilds.exe,66 41 89 75 12) // should be unique
+alloc(newmem,$1000,ItemsOnSellAa)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [r13+12],si
+  jmp return
+
+ItemsOnSellAa:
+  jmp newmem
+return:
+registersymbol(ItemsOnSellAa)
+
+[DISABLE]
+
+ItemsOnSellAa:
+  db 66 41 89 75 12
+
+unregistersymbol(ItemsOnSellAa)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MonsterHunterWilds.exe+47868FB
+
+MonsterHunterWilds.exe+47868D0: 8B 44 24 3C                    - mov eax,[rsp+3C]
+MonsterHunterWilds.exe+47868D4: 48 B9 FC FF FF FF FF FF FF 7F  - mov rcx,7FFFFFFFFFFFFFFC
+MonsterHunterWilds.exe+47868DE: 48 8D 54 24 38                 - lea rdx,[rsp+38]
+MonsterHunterWilds.exe+47868E3: 48 21 D1                       - and rcx,rdx
+MonsterHunterWilds.exe+47868E6: 89 01                          - mov [rcx],eax
+MonsterHunterWilds.exe+47868E8: 0F B7 02                       - movzx eax,word ptr [rdx]
+MonsterHunterWilds.exe+47868EB: 66 89 46 10                    - mov [rsi+10],ax
+MonsterHunterWilds.exe+47868EF: EB 44                          - jmp MonsterHunterWilds.exe+4786935
+MonsterHunterWilds.exe+47868F1: 48 8B 74 24 20                 - mov rsi,[rsp+20]
+MonsterHunterWilds.exe+47868F6: 66 41 03 75 12                 - add si,[r13+12]
+// ---------- INJECTING HERE ----------
+MonsterHunterWilds.exe+47868FB: 66 41 89 75 12                 - mov [r13+12],si
+// ---------- DONE INJECTING  ----------
+MonsterHunterWilds.exe+4786900: 78 3C                          - js MonsterHunterWilds.exe+478693E
+MonsterHunterWilds.exe+4786902: 0F B7 C6                       - movzx eax,si
+MonsterHunterWilds.exe+4786905: 3D 10 27 00 00                 - cmp eax,00002710
+MonsterHunterWilds.exe+478690A: 73 3C                          - jae MonsterHunterWilds.exe+4786948
+MonsterHunterWilds.exe+478690C: 66 85 F6                       - test si,si
+MonsterHunterWilds.exe+478690F: 75 08                          - jne MonsterHunterWilds.exe+4786919
+MonsterHunterWilds.exe+4786911: 41 C7 45 10 00 00 00 00        - mov [r13+10],00000000
+MonsterHunterWilds.exe+4786919: 31 F6                          - xor esi,esi
+MonsterHunterWilds.exe+478691B: EB 38                          - jmp MonsterHunterWilds.exe+4786955
+MonsterHunterWilds.exe+478691D: 48 B8 FC FF FF FF FF FF FF 7F  - mov rax,7FFFFFFFFFFFFFFC
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>17149</ID>
+          <Description>"Stamina"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : MonsterHunterWilds.exe (paused)
+  Version: 
+  Date   : 2025-02-28
+  Author : Silv3r
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(StaminaZaa,MonsterHunterWilds.exe,C5 F8 11 43 10 EB 0A) // should be unique
+alloc(newmem,$1000,StaminaZaa)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  vmovups [rbx+10],xmm0
+  jmp return
+
+StaminaZaa:
+  jmp newmem
+return:
+registersymbol(StaminaZaa)
+
+[DISABLE]
+
+StaminaZaa:
+  db C5 F8 11 43 10
+
+unregistersymbol(StaminaZaa)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MonsterHunterWilds.exe+5FF2796
+
+MonsterHunterWilds.exe+5FF276B: E8 F0 5E 05 FA     - call MonsterHunterWilds.exe+48660
+MonsterHunterWilds.exe+5FF2770: C5 F9 6E C0        - vmovd xmm0,eax
+MonsterHunterWilds.exe+5FF2774: C5 CA 5D C0        - vminss xmm0,xmm6,xmm0
+MonsterHunterWilds.exe+5FF2778: C5 CA C2 CF 01     - vcmpltss xmm1,xmm6,xmm7
+MonsterHunterWilds.exe+5FF277D: C5 F0 55 C0        - vandnps xmm0,xmm1,xmm0
+MonsterHunterWilds.exe+5FF2781: C5 F9 7E C2        - vmovd edx,xmm0
+MonsterHunterWilds.exe+5FF2785: 48 8D 74 24 20     - lea rsi,[rsp+20]
+MonsterHunterWilds.exe+5FF278A: 48 89 F1           - mov rcx,rsi
+MonsterHunterWilds.exe+5FF278D: E8 7E EF ED 03     - call MonsterHunterWilds.exe+9ED1710
+MonsterHunterWilds.exe+5FF2792: C5 F8 10 06        - vmovups xmm0,[rsi]
+// ---------- INJECTING HERE ----------
+MonsterHunterWilds.exe+5FF2796: C5 F8 11 43 10     - vmovups [rbx+10],xmm0
+// ---------- DONE INJECTING  ----------
+MonsterHunterWilds.exe+5FF279B: EB 0A              - jmp MonsterHunterWilds.exe+5FF27A7
+MonsterHunterWilds.exe+5FF279D: C5 FA 10 40 30     - vmovss xmm0,[rax+30]
+MonsterHunterWilds.exe+5FF27A2: C5 FA 11 46 5C     - vmovss [rsi+5C],xmm0
+MonsterHunterWilds.exe+5FF27A7: 48 8B 4C 24 38     - mov rcx,[rsp+38]
+MonsterHunterWilds.exe+5FF27AC: 48 31 E1           - xor rcx,rsp
+MonsterHunterWilds.exe+5FF27AF: E8 DC 5C F9 03     - call MonsterHunterWilds.AK::SoundEngine::GetSpeakerAngles+4C0
+MonsterHunterWilds.exe+5FF27B4: C5 F8 28 74 24 40  - vmovaps xmm6,[rsp+40]
+MonsterHunterWilds.exe+5FF27BA: C5 F8 28 7C 24 50  - vmovaps xmm7,[rsp+50]
+MonsterHunterWilds.exe+5FF27C0: 48 83 C4 60        - add rsp,60
+MonsterHunterWilds.exe+5FF27C4: 5B                 - pop rbx
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>17150</ID>
+          <Description>"Stamina"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : MonsterHunterWilds.exe (paused)
+  Version: 
+  Date   : 2025-02-28
+  Author : Silv3r
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(StaminaZa,MonsterHunterWilds.exe,C5 F8 10 40 10 * * * * 48 8D 7C 24 20 48 89 F9 E8 0F) // should be unique
+alloc(newmem,$1000,StaminaZa)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  vmovups xmm0,[rax+10]
+  jmp return
+
+StaminaZa:
+  jmp newmem
+return:
+registersymbol(StaminaZa)
+
+[DISABLE]
+
+StaminaZa:
+  db C5 F8 10 40 10
+
+unregistersymbol(StaminaZa)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MonsterHunterWilds.exe+5FF273B
+
+MonsterHunterWilds.exe+5FF270B: C5 FA 5D 50 24     - vminss xmm2,xmm0,[rax+24]
+MonsterHunterWilds.exe+5FF2710: C5 FA C2 C1 01     - vcmpltss xmm0,xmm0,xmm1
+MonsterHunterWilds.exe+5FF2715: C4 E3 69 4A C1 00  - vblendvps xmm0,xmm2,xmm1,xmm0
+MonsterHunterWilds.exe+5FF271B: C4 E3 79 17 C2 00  - vextractps xmm2,xmm0,xmm0,00
+MonsterHunterWilds.exe+5FF2721: 48 8D 7C 24 20     - lea rdi,[rsp+20]
+MonsterHunterWilds.exe+5FF2726: 48 89 F9           - mov rcx,rdi
+MonsterHunterWilds.exe+5FF2729: E8 E2 EF ED 03     - call MonsterHunterWilds.exe+9ED1710
+MonsterHunterWilds.exe+5FF272E: C5 F8 10 07        - vmovups xmm0,[rdi]
+MonsterHunterWilds.exe+5FF2732: C5 F8 11 43 10     - vmovups [rbx+10],xmm0
+MonsterHunterWilds.exe+5FF2737: 48 8B 46 10        - mov rax,[rsi+10]
+// ---------- INJECTING HERE ----------
+MonsterHunterWilds.exe+5FF273B: C5 F8 10 40 10     - vmovups xmm0,[rax+10]
+// ---------- DONE INJECTING  ----------
+MonsterHunterWilds.exe+5FF2740: C5 F8 29 07        - vmovaps [rdi],xmm0
+MonsterHunterWilds.exe+5FF2744: 48 8D 7C 24 20     - lea rdi,[rsp+20]
+MonsterHunterWilds.exe+5FF2749: 48 89 F9           - mov rcx,rdi
+MonsterHunterWilds.exe+5FF274C: E8 0F 5F 05 FA     - call MonsterHunterWilds.exe+48660
+MonsterHunterWilds.exe+5FF2751: C5 F9 6E F0        - vmovd xmm6,eax
+MonsterHunterWilds.exe+5FF2755: 48 8B 5E 10        - mov rbx,[rsi+10]
+MonsterHunterWilds.exe+5FF2759: 48 8B 46 18        - mov rax,[rsi+18]
+MonsterHunterWilds.exe+5FF275D: C5 F8 10 40 10     - vmovups xmm0,[rax+10]
+MonsterHunterWilds.exe+5FF2762: C5 F8 29 07        - vmovaps [rdi],xmm0
+MonsterHunterWilds.exe+5FF2766: 48 8D 4C 24 20     - lea rcx,[rsp+20]
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>17151</ID>
+          <Description>"Stamina"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : MonsterHunterWilds.exe (paused)
+  Version: 
+  Date   : 2025-02-28
+  Author : Silv3r
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(StaminaZb,MonsterHunterWilds.exe,ED 00 00 00 48 8B 46 10 C5 F8 10 40 10) // should be unique
+alloc(newmem,$1000,StaminaZb)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  vmovups xmm0,[rax+10]
+  jmp return
+
+StaminaZb+08:
+  jmp newmem
+return:
+registersymbol(StaminaZb)
+
+[DISABLE]
+
+StaminaZb+08:
+  db C5 F8 10 40 10
+
+unregistersymbol(StaminaZb)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MonsterHunterWilds.exe+5FF1C23
+
+MonsterHunterWilds.exe+5FF1BF7: C5 F8 29 01        - vmovaps [rcx],xmm0
+MonsterHunterWilds.exe+5FF1BFB: E8 60 6A 05 FA     - call MonsterHunterWilds.exe+48660
+MonsterHunterWilds.exe+5FF1C00: C5 F9 6E C0        - vmovd xmm0,eax
+MonsterHunterWilds.exe+5FF1C04: C5 C2 59 D0        - vmulss xmm2,xmm7,xmm0
+MonsterHunterWilds.exe+5FF1C08: 48 89 F2           - mov rdx,rsi
+MonsterHunterWilds.exe+5FF1C0B: E8 C0 0B 00 00     - call MonsterHunterWilds.exe+5FF27D0
+MonsterHunterWilds.exe+5FF1C10: C5 FA 10 7E 70     - vmovss xmm7,[rsi+70]
+MonsterHunterWilds.exe+5FF1C15: 80 7E 7E 00        - cmp byte ptr [rsi+7E],00
+MonsterHunterWilds.exe+5FF1C19: 0F 85 ED 00 00 00  - jne MonsterHunterWilds.exe+5FF1D0C
+MonsterHunterWilds.exe+5FF1C1F: 48 8B 46 10        - mov rax,[rsi+10]
+// ---------- INJECTING HERE ----------
+MonsterHunterWilds.exe+5FF1C23: C5 F8 10 40 10     - vmovups xmm0,[rax+10]
+// ---------- DONE INJECTING  ----------
+MonsterHunterWilds.exe+5FF1C28: 48 8D 7C 24 20     - lea rdi,[rsp+20]
+MonsterHunterWilds.exe+5FF1C2D: C5 F8 29 07        - vmovaps [rdi],xmm0
+MonsterHunterWilds.exe+5FF1C31: 48 89 F9           - mov rcx,rdi
+MonsterHunterWilds.exe+5FF1C34: E8 27 6A 05 FA     - call MonsterHunterWilds.exe+48660
+MonsterHunterWilds.exe+5FF1C39: C5 F9 6E C0        - vmovd xmm0,eax
+MonsterHunterWilds.exe+5FF1C3D: C5 7A 5A C0        - vcvtss2sd xmm8,xmm0,xmm0
+MonsterHunterWilds.exe+5FF1C41: 48 8B 46 20        - mov rax,[rsi+20]
+MonsterHunterWilds.exe+5FF1C45: C5 F8 10 40 10     - vmovups xmm0,[rax+10]
+MonsterHunterWilds.exe+5FF1C4A: C5 F8 29 07        - vmovaps [rdi],xmm0
+MonsterHunterWilds.exe+5FF1C4E: 48 8D 7C 24 20     - lea rdi,[rsp+20]
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>17152</ID>
+          <Description>"Stamina"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : MonsterHunterWilds.exe (paused)
+  Version: 
+  Date   : 2025-02-28
+  Author : Silv3r
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(StaminaZc,MonsterHunterWilds.exe,C5 F8 10 40 10 48 8D 4C 24 30 * * * * E8 50) // should be unique
+alloc(newmem,$1000,StaminaZc)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  vmovups xmm0,[rax+10]
+  jmp return
+
+StaminaZc:
+  jmp newmem
+return:
+registersymbol(StaminaZc)
+
+[DISABLE]
+
+StaminaZc:
+  db C5 F8 10 40 10
+
+unregistersymbol(StaminaZc)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MonsterHunterWilds.exe+90924FD
+
+MonsterHunterWilds.exe+90924D4: 48 8B 02                 - mov rax,[rdx]
+MonsterHunterWilds.exe+90924D7: 48 8B 40 E0              - mov rax,[rax-20]
+MonsterHunterWilds.exe+90924DB: 48 89 F9                 - mov rcx,rdi
+MonsterHunterWilds.exe+90924DE: FF 10                    - call qword ptr [rax]
+MonsterHunterWilds.exe+90924E0: 48 8B 40 50              - mov rax,[rax+50]
+MonsterHunterWilds.exe+90924E4: 4C 8B 78 40              - mov r15,[rax+40]
+MonsterHunterWilds.exe+90924E8: 4D 85 FF                 - test r15,r15
+MonsterHunterWilds.exe+90924EB: 0F 84 6B 03 00 00        - je MonsterHunterWilds.exe+909285C
+MonsterHunterWilds.exe+90924F1: C5 FA 10 B6 20 03 00 00  - vmovss xmm6,[rsi+00000320]
+MonsterHunterWilds.exe+90924F9: 49 8B 46 10              - mov rax,[r14+10]
+// ---------- INJECTING HERE ----------
+MonsterHunterWilds.exe+90924FD: C5 F8 10 40 10           - vmovups xmm0,[rax+10]
+// ---------- DONE INJECTING  ----------
+MonsterHunterWilds.exe+9092502: 48 8D 4C 24 30           - lea rcx,[rsp+30]
+MonsterHunterWilds.exe+9092507: C5 F8 29 01              - vmovaps [rcx],xmm0
+MonsterHunterWilds.exe+909250B: E8 50 61 FB F6           - call MonsterHunterWilds.exe+48660
+MonsterHunterWilds.exe+9092510: C5 F9 6E C0              - vmovd xmm0,eax
+MonsterHunterWilds.exe+9092514: C5 F8 2E F0              - vucomiss xmm6,xmm0
+MonsterHunterWilds.exe+9092518: 75 02                    - jne MonsterHunterWilds.exe+909251C
+MonsterHunterWilds.exe+909251A: 7B 67                    - jnp MonsterHunterWilds.exe+9092583
+MonsterHunterWilds.exe+909251C: 48 8B 86 D0 02 00 00     - mov rax,[rsi+000002D0]
+MonsterHunterWilds.exe+9092523: 48 8B 48 10              - mov rcx,[rax+10]
+MonsterHunterWilds.exe+9092527: E8 A4 9F E0 00           - call MonsterHunterWilds.exe+9E9C4D0
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>17153</ID>
+          <Description>"Stamina"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : MonsterHunterWilds.exe (paused)
+  Version: 
+  Date   : 2025-02-28
+  Author : Silv3r
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(StaminaZd,MonsterHunterWilds.exe,C5 F8 10 40 10 C4 C1 78 29 04 24 4C 8D 64 24 30) // should be unique
+alloc(newmem,$1000,StaminaZd)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  vmovups xmm0,[rax+10]
+  jmp return
+
+StaminaZd:
+  jmp newmem
+return:
+registersymbol(StaminaZd)
+
+[DISABLE]
+
+StaminaZd:
+  db C5 F8 10 40 10
+
+unregistersymbol(StaminaZd)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MonsterHunterWilds.exe+9092684
+
+MonsterHunterWilds.exe+9092657: 49 8B 46 18        - mov rax,[r14+18]
+MonsterHunterWilds.exe+909265B: C5 F8 10 40 10     - vmovups xmm0,[rax+10]
+MonsterHunterWilds.exe+9092660: 4C 8D 64 24 30     - lea r12,[rsp+30]
+MonsterHunterWilds.exe+9092665: C4 C1 78 29 04 24  - vmovaps [r12],xmm0
+MonsterHunterWilds.exe+909266B: 4C 89 E1           - mov rcx,r12
+MonsterHunterWilds.exe+909266E: E8 ED 5F FB F6     - call MonsterHunterWilds.exe+48660
+MonsterHunterWilds.exe+9092673: C5 F9 6E C8        - vmovd xmm1,eax
+MonsterHunterWilds.exe+9092677: 49 8B 4D 10        - mov rcx,[r13+10]
+MonsterHunterWilds.exe+909267B: E8 20 1D E2 00     - call MonsterHunterWilds.exe+9EB43A0
+MonsterHunterWilds.exe+9092680: 49 8B 46 10        - mov rax,[r14+10]
+// ---------- INJECTING HERE ----------
+MonsterHunterWilds.exe+9092684: C5 F8 10 40 10     - vmovups xmm0,[rax+10]
+// ---------- DONE INJECTING  ----------
+MonsterHunterWilds.exe+9092689: C4 C1 78 29 04 24  - vmovaps [r12],xmm0
+MonsterHunterWilds.exe+909268F: 4C 8D 64 24 30     - lea r12,[rsp+30]
+MonsterHunterWilds.exe+9092694: 4C 89 E1           - mov rcx,r12
+MonsterHunterWilds.exe+9092697: E8 C4 5F FB F6     - call MonsterHunterWilds.exe+48660
+MonsterHunterWilds.exe+909269C: 89 86 20 03 00 00  - mov [rsi+00000320],eax
+MonsterHunterWilds.exe+90926A2: 49 8B 46 10        - mov rax,[r14+10]
+MonsterHunterWilds.exe+90926A6: C5 F8 10 40 10     - vmovups xmm0,[rax+10]
+MonsterHunterWilds.exe+90926AB: C4 C1 78 29 04 24  - vmovaps [r12],xmm0
+MonsterHunterWilds.exe+90926B1: 48 8D 4C 24 30     - lea rcx,[rsp+30]
+MonsterHunterWilds.exe+90926B6: E8 A5 5F FB F6     - call MonsterHunterWilds.exe+48660
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>17154</ID>
+          <Description>"Stamina"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : MonsterHunterWilds.exe (paused)
+  Version: 
+  Date   : 2025-02-28
+  Author : Silv3r
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(StaminaZe,MonsterHunterWilds.exe,00 00 49 8B 46 10 C5 F8 10 40 10 C4) // should be unique
+alloc(newmem,$1000,StaminaZe)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  vmovups xmm0,[rax+10]
+  jmp return
+
+StaminaZe+06:
+  jmp newmem
+return:
+registersymbol(StaminaZe)
+
+[DISABLE]
+
+StaminaZe+06:
+  db C5 F8 10 40 10
+
+unregistersymbol(StaminaZe)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MonsterHunterWilds.exe+90926A6
+
+MonsterHunterWilds.exe+9092677: 49 8B 4D 10              - mov rcx,[r13+10]
+MonsterHunterWilds.exe+909267B: E8 20 1D E2 00           - call MonsterHunterWilds.exe+9EB43A0
+MonsterHunterWilds.exe+9092680: 49 8B 46 10              - mov rax,[r14+10]
+MonsterHunterWilds.exe+9092684: C5 F8 10 40 10           - vmovups xmm0,[rax+10]
+MonsterHunterWilds.exe+9092689: C4 C1 78 29 04 24        - vmovaps [r12],xmm0
+MonsterHunterWilds.exe+909268F: 4C 8D 64 24 30           - lea r12,[rsp+30]
+MonsterHunterWilds.exe+9092694: 4C 89 E1                 - mov rcx,r12
+MonsterHunterWilds.exe+9092697: E8 C4 5F FB F6           - call MonsterHunterWilds.exe+48660
+MonsterHunterWilds.exe+909269C: 89 86 20 03 00 00        - mov [rsi+00000320],eax
+MonsterHunterWilds.exe+90926A2: 49 8B 46 10              - mov rax,[r14+10]
+// ---------- INJECTING HERE ----------
+MonsterHunterWilds.exe+90926A6: C5 F8 10 40 10           - vmovups xmm0,[rax+10]
+// ---------- DONE INJECTING  ----------
+MonsterHunterWilds.exe+90926AB: C4 C1 78 29 04 24        - vmovaps [r12],xmm0
+MonsterHunterWilds.exe+90926B1: 48 8D 4C 24 30           - lea rcx,[rsp+30]
+MonsterHunterWilds.exe+90926B6: E8 A5 5F FB F6           - call MonsterHunterWilds.exe+48660
+MonsterHunterWilds.exe+90926BB: C5 F9 6E C0              - vmovd xmm0,eax
+MonsterHunterWilds.exe+90926BF: C5 FA 10 0D 9D 97 8A 03  - vmovss xmm1,[MonsterHunterWilds.exe+C93BE64]
+MonsterHunterWilds.exe+90926C7: C5 F8 2E C8              - vucomiss xmm1,xmm0
+MonsterHunterWilds.exe+90926CB: 76 0E                    - jna MonsterHunterWilds.exe+90926DB
+MonsterHunterWilds.exe+90926CD: 48 8B 86 98 02 00 00     - mov rax,[rsi+00000298]
+MonsterHunterWilds.exe+90926D4: C7 40 10 00 00 A0 40     - mov [rax+10],40A00000
+MonsterHunterWilds.exe+90926DB: 48 8B 96 98 02 00 00     - mov rdx,[rsi+00000298]
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>17155</ID>
+          <Description>"Stamina"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : MonsterHunterWilds.exe (paused)
+  Version: 
+  Date   : 2025-02-28
+  Author : Silv3r
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(StaminaZf,MonsterHunterWilds.exe,C5 F8 10 40 10 4C 8D 6C) // should be unique
+alloc(newmem,$1000,StaminaZf)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  vmovups xmm0,[rax+10]
+  jmp return
+
+StaminaZf:
+  jmp newmem
+return:
+registersymbol(StaminaZf)
+
+[DISABLE]
+
+StaminaZf:
+  db C5 F8 10 40 10
+
+unregistersymbol(StaminaZf)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: MonsterHunterWilds.exe+9092706
+
+MonsterHunterWilds.exe+90926DB: 48 8B 96 98 02 00 00  - mov rdx,[rsi+00000298]
+MonsterHunterWilds.exe+90926E2: 48 89 F9              - mov rcx,rdi
+MonsterHunterWilds.exe+90926E5: 49 89 D8              - mov r8,rbx
+MonsterHunterWilds.exe+90926E8: E8 83 BB 0A F7        - call MonsterHunterWilds.exe+13E270
+MonsterHunterWilds.exe+90926ED: 48 89 F9              - mov rcx,rdi
+MonsterHunterWilds.exe+90926F0: 48 89 F2              - mov rdx,rsi
+MonsterHunterWilds.exe+90926F3: 49 89 D8              - mov r8,rbx
+MonsterHunterWilds.exe+90926F6: E8 D5 02 00 00        - call MonsterHunterWilds.exe+90929D0
+MonsterHunterWilds.exe+90926FB: 4C 8B A6 90 02 00 00  - mov r12,[rsi+00000290]
+MonsterHunterWilds.exe+9092702: 49 8B 46 10           - mov rax,[r14+10]
+// ---------- INJECTING HERE ----------
+MonsterHunterWilds.exe+9092706: C5 F8 10 40 10        - vmovups xmm0,[rax+10]
+// ---------- DONE INJECTING  ----------
+MonsterHunterWilds.exe+909270B: 4C 8D 6C 24 30        - lea r13,[rsp+30]
+MonsterHunterWilds.exe+9092710: C4 C1 78 29 45 00     - vmovaps [r13+00],xmm0
+MonsterHunterWilds.exe+9092716: 4C 89 E9              - mov rcx,r13
+MonsterHunterWilds.exe+9092719: E8 42 5F FB F6        - call MonsterHunterWilds.exe+48660
+MonsterHunterWilds.exe+909271E: C5 F9 6E F0           - vmovd xmm6,eax
+MonsterHunterWilds.exe+9092722: 49 8B 46 18           - mov rax,[r14+18]
+MonsterHunterWilds.exe+9092726: C5 F8 10 40 10        - vmovups xmm0,[rax+10]
+MonsterHunterWilds.exe+909272B: C4 C1 78 29 45 00     - vmovaps [r13+00],xmm0
+MonsterHunterWilds.exe+9092731: 4C 8D 6C 24 30        - lea r13,[rsp+30]
+MonsterHunterWilds.exe+9092736: 4C 89 E9              - mov rcx,r13
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>17088</ID>
+          <Description>"Group 6"</Description>
+          <GroupHeader>1</GroupHeader>
+          <Address>0</Address>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <LuaScript>function attchProc(procName)
+    local cticks = 0
+    local maxticks = 500
+    local clockTime = 100
+    if not getProcessIDFromProcessName(procName) then
+        messageDialog("Required Process is unavailable!", mtError, mbOK)
+        error()
+    else
+        while process ~= procName and cticks &lt;= maxticks do
+            openProcess(procName)
+            sleep(clockTime)
+            cticks = cticks + 1  -- Ensure cticks is incremented!
+        end
+    end
+end
+
+local procName = "MonsterHunterWilds.exe"
+if process ~= procName then
+    attchProc(procName)  -- Directly call the function for attaching
+end
+
+-----------------------------------------------  Second part below
+
+local list = getAddressList()
+
+function onOpenProcess1()
+    local mem1 = addresslist_getMemoryRecordByDescription(list, "&lt;--- Auto Attach") -- "Hack1" Your script description
+    mem1.Active = true
+end
+
+-- Function to trigger onOpenProcess1 after less then 1 sec
+function delayedActivation()
+    sleep(300)  -- Wait for less then 1 sec
+    onOpenProcess1()  -- Activate the function
+end
+
+-- Start delayedActivation in a separate thread
+createThread(delayedActivation)
+
+
+
+
+
+
+
+</LuaScript>
+</CheatTable>
