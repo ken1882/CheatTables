@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="46">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"Inf HP"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : WithTheNightMare.exe
+  Version: 
+  Date   : 2024-11-22
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_INF_HP,89 86 EC 01 00 00 48) // should be unique
+alloc(newmem,$1000,INJ_INF_HP)
+
+label(code)
+label(return)
+label(pt_hp)
+
+newmem:
+  mov [pt_hp],rsi
+  mov eax,A
+  jmp code
+
+pt_hp:
+  dq 0
+registersymbol(pt_hp)
+
+code:
+  mov [rsi+000001EC],eax
+  jmp return
+
+INJ_INF_HP:
+  jmp newmem
+  nop
+return:
+registersymbol(INJ_INF_HP)
+
+[DISABLE]
+
+INJ_INF_HP:
+  db 89 86 EC 01 00 00
+
+unregistersymbol(pt_hp)
+unregistersymbol(INJ_INF_HP)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 2AC08425503
+
+2AC084254D6: EB 22                          - jmp 2AC084254FA
+2AC084254D8: 48 63 86 B0 01 00 00           - movsxd  rax,dword ptr [rsi+000001B0]
+2AC084254DF: 83 F8 20                       - cmp eax,20
+2AC084254E2: 75 16                          - jne 2AC084254FA
+2AC084254E4: 48 63 86 D4 01 00 00           - movsxd  rax,dword ptr [rsi+000001D4]
+2AC084254EB: 83 F8 02                       - cmp eax,02
+2AC084254EE: 75 0A                          - jne 2AC084254FA
+2AC084254F0: 48 BF F9 FF FF FF FF FF FF FF  - mov rdi,FFFFFFFFFFFFFFF9
+2AC084254FA: 48 63 86 EC 01 00 00           - movsxd  rax,dword ptr [rsi+000001EC]
+2AC08425501: 03 C7                          - add eax,edi
+// ---------- INJECTING HERE ----------
+2AC08425503: 89 86 EC 01 00 00              - mov [rsi+000001EC],eax
+// ---------- DONE INJECTING  ----------
+2AC08425509: 48 63 86 B0 01 00 00           - movsxd  rax,dword ptr [rsi+000001B0]
+2AC08425510: 83 F8 18                       - cmp eax,18
+2AC08425513: 74 0C                          - je 2AC08425521
+2AC08425515: 48 63 86 B0 01 00 00           - movsxd  rax,dword ptr [rsi+000001B0]
+2AC0842551C: 83 F8 05                       - cmp eax,05
+2AC0842551F: 75 10                          - jne 2AC08425531
+2AC08425521: 48 63 86 D4 01 00 00           - movsxd  rax,dword ptr [rsi+000001D4]
+2AC08425528: 83 F8 01                       - cmp eax,01
+2AC0842552B: 0F 84 8E 00 00 00              - je 2AC084255BF
+2AC08425531: 48 63 86 B0 01 00 00           - movsxd  rax,dword ptr [rsi+000001B0]
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>5</ID>
+          <Description>"HP"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_hp</Address>
+          <Offsets>
+            <Offset>1EC</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>6</ID>
+          <Description>"Life"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_hp</Address>
+          <Offsets>
+            <Offset>1D4</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>9</ID>
+      <Description>"No description"</Description>
+      <VariableType>4 Bytes</VariableType>
+      <Address>26D12D5E840</Address>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <Comments>Info about this table:
+</Comments>
+</CheatTable>

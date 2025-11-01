@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<CheatTable CheatEngineTableVersion="45">
+<CheatTable CheatEngineTableVersion="46">
   <CheatEntries>
     <CheatEntry>
       <ID>2</ID>
-      <Description>"Inf HP"</Description>
+      <Description>"Inf HP (v1.1)"</Description>
       <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : WithTheNightMare.exe
@@ -101,6 +101,76 @@ dealloc(newmem)
           </Offsets>
         </CheatEntry>
       </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>10</ID>
+      <Description>"Inf Life (v2)"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : WithTheNightMare.exe
+  Version: 
+  Date   : 2025-06-22
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,02 00 00 41 FF D3 49 63 87 00 02 00 00 FF C8 41 89 87 00 02 00 00) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov eax,[r15+200]
+code:
+  mov [r15+00000200],eax
+  jmp return
+
+INJECT+0F:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT+0F:
+  db 41 89 87 00 02 00 00
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 26D5103104C
+
+26D51031022: 48 8D 4C D1 20                 - lea rcx,[rcx+rdx*8+20]
+26D51031027: 48 8B 11                       - mov rdx,[rcx]
+26D5103102A: 48 8B C8                       - mov rcx,rax
+26D5103102D: 83 38 00                       - cmp dword ptr [rax],00
+26D51031030: 48 8D 64 24 00                 - lea rsp,[rsp+00]
+26D51031035: 90                             - nop 
+26D51031036: 49 BB E0 6D 24 2D 6D 02 00 00  - mov r11,0000026D2D246DE0
+26D51031040: 41 FF D3                       - call r11
+26D51031043: 49 63 87 00 02 00 00           - movsxd  rax,dword ptr [r15+00000200]
+26D5103104A: FF C8                          - dec eax
+// ---------- INJECTING HERE ----------
+26D5103104C: 41 89 87 00 02 00 00           - mov [r15+00000200],eax
+// ---------- DONE INJECTING  ----------
+26D51031053: 49 8B 47 68                    - mov rax,[r15+68]
+26D51031057: 83 78 18 01                    - cmp dword ptr [rax+18],01
+26D5103105B: 0F 86 91 16 00 00              - jbe 26D510326F2
+26D51031061: 48 8B 40 28                    - mov rax,[rax+28]
+26D51031065: 49 8B 8F 80 00 00 00           - mov rcx,[r15+00000080]
+26D5103106C: 49 63 97 00 02 00 00           - movsxd  rdx,dword ptr [r15+00000200]
+26D51031073: 48 63 D2                       - movsxd  rdx,edx
+26D51031076: 39 51 18                       - cmp [rcx+18],edx
+26D51031079: 0F 86 6C 16 00 00              - jbe 26D510326EB
+26D5103107F: 48 8D 4C D1 20                 - lea rcx,[rcx+rdx*8+20]
+}
+</AssemblerScript>
     </CheatEntry>
   </CheatEntries>
   <UserdefinedSymbols/>

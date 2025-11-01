@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="46">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"No description"</Description>
+      <LastState Value="335" RealAddress="21515C00720"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>21515C00720</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1</ID>
+      <Description>"No description"</Description>
+      <LastState Value="335" RealAddress="2152FD97278"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>2152FD97278</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>2</ID>
+      <Description>"No description"</Description>
+      <LastState Value="335" RealAddress="2152FD97318"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>2152FD97318</Address>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>5</ID>
+      <Description>"Sword Never Deplete"</Description>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Nakara.exe
+  Version: 
+  Date   : 2025-09-23
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJECT,89 02 8B 54 24 74) // should be unique
+alloc(newmem,$1000,INJECT)
+
+label(code)
+label(return)
+
+newmem:
+  mov eax,14F
+code:
+  mov [rdx],eax
+  mov edx,[rsp+74]
+  jmp return
+
+INJECT:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT)
+
+[DISABLE]
+
+INJECT:
+  db 89 02 8B 54 24 74
+
+unregistersymbol(INJECT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: 2153343C30C
+
+2153343C2E2: 48 83 F8 00        - cmp rax,00
+2153343C2E6: 0F 84 06 00 00 00  - je 2153343C2F2
+2153343C2EC: 48 05 A0 05 00 00  - add rax,000005A0
+2153343C2F2: 48 8B D0           - mov rdx,rax
+2153343C2F5: 48 85 D2           - test rdx,rdx
+2153343C2F8: 0F 84 64 00 00 00  - je 2153343C362
+2153343C2FE: 8B 02              - mov eax,[rdx]
+2153343C300: 41 2B C5           - sub eax,r13d
+2153343C303: 48 85 D2           - test rdx,rdx
+2153343C306: 0F 84 33 00 00 00  - je 2153343C33F
+// ---------- INJECTING HERE ----------
+2153343C30C: 89 02              - mov [rdx],eax
+// ---------- DONE INJECTING  ----------
+2153343C30E: 8B 54 24 74        - mov edx,[rsp+74]
+2153343C312: 44 8B 6C 24 70     - mov r13d,[rsp+70]
+2153343C317: B9 00 00 00 00     - mov ecx,00000000
+2153343C31C: 3B CB              - cmp ecx,ebx
+2153343C31E: 0F 8D 14 00 00 00  - jnl 2153343C338
+2153343C324: 4C 8B 4C 24 60     - mov r9,[rsp+60]
+2153343C329: 49 8B 01           - mov rax,[r9]
+2153343C32C: 89 10              - mov [rax],edx
+2153343C32E: 83 C1 01           - add ecx,01
+2153343C331: 8B C1              - mov eax,ecx
+}
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+</CheatTable>

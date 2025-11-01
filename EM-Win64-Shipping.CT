@@ -1,0 +1,1230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="46">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>104290</ID>
+      <Description>"[ Activate ] - {Click here to add process automatically}"</Description>
+      <Options moHideChildren="1"/>
+      <LastState Activated="1"/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+{$lua}
+OpenProcess("EM-Win64-Shipping.exe")
+
+if getCEVersion() &lt; 7.4 then showMessage("If you are getting this message means your Cheat Engine software is outdated. Please update to the latest Cheat Engine version! Latest official public release version can be found at https://cheatengine.org/\nYour Cheat Engine Version : "..getCEVersion().."\nLatest Public Cheat Engine Version : 7.4") --[[MainForm.close()]]
+return end
+
+{$asm}
+
+luacall(function cycleFullCompact(sender,force); local state = not(compactmenuitem.Caption == 'Compact View Mode'); if force~=nil then state = not force end; compactmenuitem.Caption = state and 'Compact View Mode' or 'Full view Mode'; getMainForm().Splitter1.Visible = state; getMainForm().Panel4.Visible = state; getMainForm().Panel5.Visible = state; end; function addCompactMenu(); if compactmenualreadyexists then return end; local parent = getMainForm().Menu.Items; compactmenuitem = createMenuItem(parent); parent.add(compactmenuitem); compactmenuitem.Caption = 'Compact View Mode'; compactmenuitem.OnClick = cycleFullCompact; compactmenualreadyexists = 'yes'; end; addCompactMenu(); cycleFullCompact(nil,true))
+
+[DISABLE]
+
+luacall(cycleFullCompact(nil,false))
+
+
+
+
+
+
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>105298</ID>
+          <Description>"+++ SCRIPT +++ "</Description>
+          <Options moHideChildren="1"/>
+          <LastState Value="" Activated="1" RealAddress="00000000"/>
+          <Color>FF0000</Color>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>105327</ID>
+              <Description>"Game Data"</Description>
+              <LastState Activated="1"/>
+              <Color>FF0000</Color>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : EM-Win64-Shipping.exe
+  Version: 
+  Date   : 2025-10-28
+  Author : BabyGroot
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(pData,EM-Win64-Shipping.exe,48 8B 01 FF 90 B0 02 00 00 E8) // should be unique
+alloc(newmem,$1000,pData)
+
+alloc(pBase,8)
+registersymbol(pBase)
+
+label(code)
+label(return)
+
+pBase:
+dq
+
+newmem:
+
+code:
+  mov [pBase],rcx
+  mov rax,[rcx]
+  call qword ptr [rax+000002B0]
+  jmp return
+
+pData:
+  jmp newmem
+  nop 4
+return:
+registersymbol(pData pBase)
+
+[DISABLE]
+
+pData:
+  db 48 8B 01 FF 90 B0 02 00 00
+
+unregistersymbol(*)
+dealloc(*)
+
+{
+// ORIGINAL CODE - INJECTION POINT: EM-Win64-Shipping.exe+8F0148
+
+EM-Win64-Shipping.exe+8F0115: 48 8B CB                 - mov rcx,rbx
+EM-Win64-Shipping.exe+8F0118: E8 F3 A0 07 02           - call EM-Win64-Shipping.exe+296A210
+EM-Win64-Shipping.exe+8F011D: 48 8B CB                 - mov rcx,rbx
+EM-Win64-Shipping.exe+8F0120: E8 7B 9F 06 02           - call EM-Win64-Shipping.exe+295A0A0
+EM-Win64-Shipping.exe+8F0125: 48 8D 0D E4 A0 80 04     - lea rcx,[EM-Win64-Shipping.exe+50FA210]
+EM-Win64-Shipping.exe+8F012C: E8 BF 06 D0 01           - call EM-Win64-Shipping.exe+25F07F0
+EM-Win64-Shipping.exe+8F0131: F2 0F 10 0D D7 F3 1E 06  - movsd xmm1,[EM-Win64-Shipping.exe+6ADF510]
+EM-Win64-Shipping.exe+8F0139: 44 0F B6 C6              - movzx r8d,sil
+EM-Win64-Shipping.exe+8F013D: 48 8B 0D 3C 38 6E 06     - mov rcx,[GEngine]
+EM-Win64-Shipping.exe+8F0144: 66 0F 5A C9              - cvtpd2ps xmm1,xmm1
+// ---------- INJECTING HERE ----------
+EM-Win64-Shipping.exe+8F0148: 48 8B 01                 - mov rax,[rcx]
+// ---------- DONE INJECTING  ----------
+EM-Win64-Shipping.exe+8F014B: FF 90 B0 02 00 00        - call qword ptr [rax+000002B0]
+EM-Win64-Shipping.exe+8F0151: E8 DA 86 E9 02           - call EM-Win64-Shipping.exe+3788830
+EM-Win64-Shipping.exe+8F0156: 48 85 C0                 - test rax,rax
+EM-Win64-Shipping.exe+8F0159: 0F 84 80 00 00 00        - je EM-Win64-Shipping.exe+8F01DF
+EM-Win64-Shipping.exe+8F015F: E8 CC 86 E9 02           - call EM-Win64-Shipping.exe+3788830
+EM-Win64-Shipping.exe+8F0164: 48 8B C8                 - mov rcx,rax
+EM-Win64-Shipping.exe+8F0167: B2 02                    - mov dl,02
+EM-Win64-Shipping.exe+8F0169: E8 72 99 E9 02           - call EM-Win64-Shipping.exe+3789AE0
+EM-Win64-Shipping.exe+8F016E: 84 C0                    - test al,al
+EM-Win64-Shipping.exe+8F0170: 74 59                    - je EM-Win64-Shipping.exe+8F01CB
+}
+</AssemblerScript>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>105461</ID>
+              <Description>"Skill Level Max / Extra Range / No Cooldown"</Description>
+              <LastState Activated="1"/>
+              <Color>804000</Color>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>{ Game   : EM-Win64-Shipping.exe
+  Version: 
+  Date   : 2025-10-30
+  Author : BabyGroot
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(pRange,EM-Win64-Shipping.exe,F3 41 0F 10 8E D8 00 00 00) // should be unique
+alloc(newmem,$1000,pRange)
+
+label(code)
+label(return)
+
+newmem:
+  mov [r14+00000054],#20                     //SkillLevel             //Max Lv 20
+  mov [r14+000000D8],(float)999999999        //ExtraRangeModify
+  mov [r14+000000DC],(float)0                //SkillCd
+
+code:
+  movss xmm1,[r14+000000D8]
+  jmp return
+
+pRange:
+  jmp newmem
+  nop 4
+return:
+registersymbol(pRange)
+
+[DISABLE]
+
+pRange:
+  db F3 41 0F 10 8E D8 00 00 00
+
+unregistersymbol(pRange)
+dealloc(newmem)
+</AssemblerScript>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>105299</ID>
+          <Description>"+++ POINTER +++"</Description>
+          <Options moHideChildren="1"/>
+          <LastState Value="" Activated="1" RealAddress="00000000"/>
+          <Color>FF8000</Color>
+          <GroupHeader>1</GroupHeader>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>105328</ID>
+              <Description>"Game Data"</Description>
+              <Options moHideChildren="1" moManualExpandCollapse="1"/>
+              <LastState Value="" Activated="1" RealAddress="00000000"/>
+              <Color>FF8000</Color>
+              <GroupHeader>1</GroupHeader>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>105302</ID>
+                  <Description>"pBase - [ Color Silver Don't Chance ]"</Description>
+                  <LastState Value="00007FF71420CE08" RealAddress="14A8F2DF010"/>
+                  <ShowAsHex>1</ShowAsHex>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <Color>C0C0C0</Color>
+                  <VariableType>8 Bytes</VariableType>
+                  <Address>[pBase]</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>105329</ID>
+                  <Description>""</Description>
+                  <LastState Value="" RealAddress="00000000"/>
+                  <GroupHeader>1</GroupHeader>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>105330</ID>
+                  <Description>"Debug Server?"</Description>
+                  <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">0:No/Off/Disabled
+1:Yes/On/Enabled
+</DropDownList>
+                  <LastState Value="0" RealAddress="14A89007E98"/>
+                  <Color>808000</Color>
+                  <VariableType>Byte</VariableType>
+                  <Address>[pBase]+E18</Address>
+                  <Offsets>
+                    <Offset>368</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>105332</ID>
+                  <Description>"Show Debug Info?"</Description>
+                  <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">2:No/Off/Disabled
+4:Yes/On/Enabled
+</DropDownList>
+                  <LastState Value="2" RealAddress="14B4CAAD758"/>
+                  <Color>808000</Color>
+                  <VariableType>Byte</VariableType>
+                  <Address>[pBase]+E18</Address>
+                  <Offsets>
+                    <Offset>2A8</Offset>
+                    <Offset>330</Offset>
+                    <Offset>30</Offset>
+                    <Offset>0</Offset>
+                    <Offset>38</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>105421</ID>
+                  <Description>"Invincebal Active?"</Description>
+                  <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">0:No/Off/Disabled
+1:Yes/On/Enabled
+</DropDownList>
+                  <LastState Value="0" RealAddress="14BD27E8E9D"/>
+                  <Color>808000</Color>
+                  <VariableType>Byte</VariableType>
+                  <Address>[pBase]+E18</Address>
+                  <Offsets>
+                    <Offset>E7D</Offset>
+                    <Offset>320</Offset>
+                    <Offset>30</Offset>
+                    <Offset>0</Offset>
+                    <Offset>38</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>105334</ID>
+                  <Description>""</Description>
+                  <LastState Value="" RealAddress="00000000"/>
+                  <GroupHeader>1</GroupHeader>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>105415</ID>
+                  <Description>"Player Name"</Description>
+                  <LastState RealAddress="14C384348E0"/>
+                  <Color>4080FF</Color>
+                  <VariableType>String</VariableType>
+                  <Length>10</Length>
+                  <Unicode>1</Unicode>
+                  <CodePage>0</CodePage>
+                  <ZeroTerminate>1</ZeroTerminate>
+                  <Address>[pBase]+E18</Address>
+                  <Offsets>
+                    <Offset>0</Offset>
+                    <Offset>688</Offset>
+                    <Offset>2C0</Offset>
+                    <Offset>320</Offset>
+                    <Offset>30</Offset>
+                    <Offset>0</Offset>
+                    <Offset>38</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>105416</ID>
+                  <Description>"Player Level"</Description>
+                  <LastState Value="39" RealAddress="14A9E9F1088"/>
+                  <Color>0000FF</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>[pBase]+E18</Address>
+                  <Offsets>
+                    <Offset>698</Offset>
+                    <Offset>2C0</Offset>
+                    <Offset>320</Offset>
+                    <Offset>30</Offset>
+                    <Offset>0</Offset>
+                    <Offset>38</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>105408</ID>
+                  <Description>"Char Level"</Description>
+                  <LastState Value="50" RealAddress="14A9E9F1058"/>
+                  <Color>0000FF</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>[pBase]+E18</Address>
+                  <Offsets>
+                    <Offset>668</Offset>
+                    <Offset>2C0</Offset>
+                    <Offset>320</Offset>
+                    <Offset>30</Offset>
+                    <Offset>0</Offset>
+                    <Offset>38</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>105406</ID>
+                  <Description>"Char ID"</Description>
+                  <LastState Value="1501" RealAddress="14A9E9F1048"/>
+                  <Color>8080FF</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>[pBase]+E18</Address>
+                  <Offsets>
+                    <Offset>658</Offset>
+                    <Offset>2C0</Offset>
+                    <Offset>320</Offset>
+                    <Offset>30</Offset>
+                    <Offset>0</Offset>
+                    <Offset>38</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>105407</ID>
+                  <Description>"UID"</Description>
+                  <LastState Value="2000731196188" RealAddress="14A9E9F1050"/>
+                  <Color>8080FF</Color>
+                  <VariableType>8 Bytes</VariableType>
+                  <Address>[pBase]+E18</Address>
+                  <Offsets>
+                    <Offset>660</Offset>
+                    <Offset>2C0</Offset>
+                    <Offset>320</Offset>
+                    <Offset>30</Offset>
+                    <Offset>0</Offset>
+                    <Offset>38</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>105409</ID>
+                  <Description>"Melee Weapon ID"</Description>
+                  <LastState Value="10302" RealAddress="14A9E9F1060"/>
+                  <Color>8080FF</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>[pBase]+E18</Address>
+                  <Offsets>
+                    <Offset>670</Offset>
+                    <Offset>2C0</Offset>
+                    <Offset>320</Offset>
+                    <Offset>30</Offset>
+                    <Offset>0</Offset>
+                    <Offset>38</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>105410</ID>
+                  <Description>"Melee Weapon Level"</Description>
+                  <LastState Value="20" RealAddress="14A9E9F1064"/>
+                  <Color>0000FF</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>[pBase]+E18</Address>
+                  <Offsets>
+                    <Offset>674</Offset>
+                    <Offset>2C0</Offset>
+                    <Offset>320</Offset>
+                    <Offset>30</Offset>
+                    <Offset>0</Offset>
+                    <Offset>38</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>105411</ID>
+                  <Description>"Ranged Weapon ID"</Description>
+                  <LastState Value="20501" RealAddress="14A9E9F1068"/>
+                  <Color>8080FF</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>[pBase]+E18</Address>
+                  <Offsets>
+                    <Offset>678</Offset>
+                    <Offset>2C0</Offset>
+                    <Offset>320</Offset>
+                    <Offset>30</Offset>
+                    <Offset>0</Offset>
+                    <Offset>38</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>105412</ID>
+                  <Description>"Ranged Weapon Level"</Description>
+                  <LastState Value="20" RealAddress="14A9E9F106C"/>
+                  <Color>0000FF</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>[pBase]+E18</Address>
+                  <Offsets>
+                    <Offset>67C</Offset>
+                    <Offset>2C0</Offset>
+                    <Offset>320</Offset>
+                    <Offset>30</Offset>
+                    <Offset>0</Offset>
+                    <Offset>38</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>105413</ID>
+                  <Description>"Ultra Weapon ID"</Description>
+                  <LastState Value="0" RealAddress="14A9E9F1070"/>
+                  <Color>8080FF</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>[pBase]+E18</Address>
+                  <Offsets>
+                    <Offset>680</Offset>
+                    <Offset>2C0</Offset>
+                    <Offset>320</Offset>
+                    <Offset>30</Offset>
+                    <Offset>0</Offset>
+                    <Offset>38</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>105414</ID>
+                  <Description>"Ultra Weapon Level"</Description>
+                  <LastState Value="0" RealAddress="14A9E9F1074"/>
+                  <Color>0000FF</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>[pBase]+E18</Address>
+                  <Offsets>
+                    <Offset>684</Offset>
+                    <Offset>2C0</Offset>
+                    <Offset>320</Offset>
+                    <Offset>30</Offset>
+                    <Offset>0</Offset>
+                    <Offset>38</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>105417</ID>
+                  <Description>""</Description>
+                  <LastState Value="" RealAddress="00000000"/>
+                  <GroupHeader>1</GroupHeader>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>105404</ID>
+                  <Description>"Monster Num In Map"</Description>
+                  <LastState Value="0" RealAddress="14BD27EDCB8"/>
+                  <Color>0000FF</Color>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>[pBase]+E18</Address>
+                  <Offsets>
+                    <Offset>758</Offset>
+                    <Offset>300</Offset>
+                    <Offset>128</Offset>
+                    <Offset>78</Offset>
+                    <Offset>70</Offset>
+                    <Offset>0</Offset>
+                    <Offset>38</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>105422</ID>
+                  <Description>""</Description>
+                  <LastState Value="" RealAddress="00000000"/>
+                  <GroupHeader>1</GroupHeader>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>105333</ID>
+                  <Description>"CTD - [ Animation Speed ]"</Description>
+                  <LastState Value="1" RealAddress="14BD27E80E8"/>
+                  <Color>0000FF</Color>
+                  <VariableType>Float</VariableType>
+                  <Address>[pBase]+E18</Address>
+                  <Offsets>
+                    <Offset>C8</Offset>
+                    <Offset>320</Offset>
+                    <Offset>30</Offset>
+                    <Offset>0</Offset>
+                    <Offset>38</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>105386</ID>
+                  <Description>"Gravity Scale"</Description>
+                  <LastState Value="2.799999952" RealAddress="14AB511C190"/>
+                  <Color>0000FF</Color>
+                  <VariableType>Float</VariableType>
+                  <Address>[pBase]+E18</Address>
+                  <Offsets>
+                    <Offset>150</Offset>
+                    <Offset>308</Offset>
+                    <Offset>320</Offset>
+                    <Offset>30</Offset>
+                    <Offset>0</Offset>
+                    <Offset>38</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>105335</ID>
+                  <Description>"Player Slide Atttirbute Normal Walk Speed"</Description>
+                  <LastState Value="500" RealAddress="14BD27E8DD0"/>
+                  <Color>0000FF</Color>
+                  <VariableType>Float</VariableType>
+                  <Address>[pBase]+E18</Address>
+                  <Offsets>
+                    <Offset>DB0</Offset>
+                    <Offset>320</Offset>
+                    <Offset>30</Offset>
+                    <Offset>0</Offset>
+                    <Offset>38</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>105336</ID>
+                  <Description>"Player Slide Atttirbute Crouch Walk Speed"</Description>
+                  <LastState Value="160" RealAddress="14BD27E8DD4"/>
+                  <Color>0000FF</Color>
+                  <VariableType>Float</VariableType>
+                  <Address>[pBase]+E18</Address>
+                  <Offsets>
+                    <Offset>DB4</Offset>
+                    <Offset>320</Offset>
+                    <Offset>30</Offset>
+                    <Offset>0</Offset>
+                    <Offset>38</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>105350</ID>
+                  <Description>"Speed Rate"</Description>
+                  <LastState Value="0" RealAddress="14BD27E8E90"/>
+                  <Color>0000FF</Color>
+                  <VariableType>Float</VariableType>
+                  <Address>[pBase]+E18</Address>
+                  <Offsets>
+                    <Offset>E70</Offset>
+                    <Offset>320</Offset>
+                    <Offset>30</Offset>
+                    <Offset>0</Offset>
+                    <Offset>38</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>105351</ID>
+                  <Description>"Sprint Rate"</Description>
+                  <LastState Value="5" Activated="1" RealAddress="14BD27E8E94"/>
+                  <Color>0000FF</Color>
+                  <VariableType>Float</VariableType>
+                  <Address>[pBase]+E18</Address>
+                  <Offsets>
+                    <Offset>E74</Offset>
+                    <Offset>320</Offset>
+                    <Offset>30</Offset>
+                    <Offset>0</Offset>
+                    <Offset>38</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>105384</ID>
+                  <Description>"Exp Rate"</Description>
+                  <LastState Value="999" Activated="1" RealAddress="14B11FE2FB8"/>
+                  <Color>0000FF</Color>
+                  <VariableType>Float</VariableType>
+                  <Address>[pBase]+E18</Address>
+                  <Offsets>
+                    <Offset>878</Offset>
+                    <Offset>BD8</Offset>
+                    <Offset>320</Offset>
+                    <Offset>30</Offset>
+                    <Offset>0</Offset>
+                    <Offset>38</Offset>
+                  </Offsets>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>105341</ID>
+                  <Description>"← Melee Weapon"</Description>
+                  <Options moHideChildren="1" moManualExpandCollapse="1"/>
+                  <LastState Value="" Activated="1" RealAddress="00000000"/>
+                  <Color>800040</Color>
+                  <GroupHeader>1</GroupHeader>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>105340</ID>
+                      <Description>"Weapon ID"</Description>
+                      <LastState Value="10302" RealAddress="14B3AC98760"/>
+                      <Color>8080FF</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>[pBase]+E18</Address>
+                      <Offsets>
+                        <Offset>6E0</Offset>
+                        <Offset>A90</Offset>
+                        <Offset>320</Offset>
+                        <Offset>30</Offset>
+                        <Offset>0</Offset>
+                        <Offset>38</Offset>
+                      </Offsets>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>105342</ID>
+                      <Description>"[1] Equip ATKS"</Description>
+                      <LastState Value="999999" Activated="1" RealAddress="14B5FB3FD38"/>
+                      <Color>0000FF</Color>
+                      <VariableType>Float</VariableType>
+                      <Address>[pBase]+E18</Address>
+                      <Offsets>
+                        <Offset>8</Offset>
+                        <Offset>690</Offset>
+                        <Offset>A90</Offset>
+                        <Offset>320</Offset>
+                        <Offset>30</Offset>
+                        <Offset>0</Offset>
+                        <Offset>38</Offset>
+                      </Offsets>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>105343</ID>
+                      <Description>"[2] Equip ATKS"</Description>
+                      <LastState Value="999999" Activated="1" RealAddress="14B5FB3FD4C"/>
+                      <Color>0000FF</Color>
+                      <VariableType>Float</VariableType>
+                      <Address>[pBase]+E18</Address>
+                      <Offsets>
+                        <Offset>1C</Offset>
+                        <Offset>690</Offset>
+                        <Offset>A90</Offset>
+                        <Offset>320</Offset>
+                        <Offset>30</Offset>
+                        <Offset>0</Offset>
+                        <Offset>38</Offset>
+                      </Offsets>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>105387</ID>
+                  <Description>"← Ranged Weapon"</Description>
+                  <Options moHideChildren="1" moManualExpandCollapse="1"/>
+                  <LastState Value="" Activated="1" RealAddress="00000000"/>
+                  <Color>800040</Color>
+                  <GroupHeader>1</GroupHeader>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>105388</ID>
+                      <Description>"Weapon ID"</Description>
+                      <LastState Value="20501" RealAddress="14ABE8E2160"/>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>8080FF</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>[pBase]+E18</Address>
+                      <Offsets>
+                        <Offset>6E0</Offset>
+                        <Offset>A98</Offset>
+                        <Offset>320</Offset>
+                        <Offset>30</Offset>
+                        <Offset>0</Offset>
+                        <Offset>38</Offset>
+                      </Offsets>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>105389</ID>
+                      <Description>"[1] Equip ATKS"</Description>
+                      <LastState Value="999999" Activated="1" RealAddress="14B5FB357E8"/>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>0000FF</Color>
+                      <VariableType>Float</VariableType>
+                      <Address>[pBase]+E18</Address>
+                      <Offsets>
+                        <Offset>8</Offset>
+                        <Offset>690</Offset>
+                        <Offset>A98</Offset>
+                        <Offset>320</Offset>
+                        <Offset>30</Offset>
+                        <Offset>0</Offset>
+                        <Offset>38</Offset>
+                      </Offsets>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>105390</ID>
+                      <Description>"[2] Equip ATKS"</Description>
+                      <LastState Value="999999" Activated="1" RealAddress="14B5FB357FC"/>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>0000FF</Color>
+                      <VariableType>Float</VariableType>
+                      <Address>[pBase]+E18</Address>
+                      <Offsets>
+                        <Offset>1C</Offset>
+                        <Offset>690</Offset>
+                        <Offset>A98</Offset>
+                        <Offset>320</Offset>
+                        <Offset>30</Offset>
+                        <Offset>0</Offset>
+                        <Offset>38</Offset>
+                      </Offsets>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>105352</ID>
+                  <Description>"← Fight Attribute Set"</Description>
+                  <Options moHideChildren="1" moManualExpandCollapse="1"/>
+                  <LastState Value="" RealAddress="00000000"/>
+                  <Color>800040</Color>
+                  <GroupHeader>1</GroupHeader>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>105353</ID>
+                      <Description>"Total Kill Count"</Description>
+                      <LastState Value="0" RealAddress="14B6B0EE370"/>
+                      <Color>0000FF</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>[pBase]+E18</Address>
+                      <Offsets>
+                        <Offset>50</Offset>
+                        <Offset>2520</Offset>
+                        <Offset>320</Offset>
+                        <Offset>30</Offset>
+                        <Offset>0</Offset>
+                        <Offset>38</Offset>
+                      </Offsets>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>105354</ID>
+                      <Description>"Melee Kill Count"</Description>
+                      <LastState Value="0" RealAddress="14B6B0EE374"/>
+                      <Color>0000FF</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>[pBase]+E18</Address>
+                      <Offsets>
+                        <Offset>54</Offset>
+                        <Offset>2520</Offset>
+                        <Offset>320</Offset>
+                        <Offset>30</Offset>
+                        <Offset>0</Offset>
+                        <Offset>38</Offset>
+                      </Offsets>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>105355</ID>
+                      <Description>"Ranged Kill Count"</Description>
+                      <LastState Value="0" RealAddress="14B6B0EE378"/>
+                      <Color>0000FF</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>[pBase]+E18</Address>
+                      <Offsets>
+                        <Offset>58</Offset>
+                        <Offset>2520</Offset>
+                        <Offset>320</Offset>
+                        <Offset>30</Offset>
+                        <Offset>0</Offset>
+                        <Offset>38</Offset>
+                      </Offsets>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>105356</ID>
+                      <Description>"Skill Kill Count"</Description>
+                      <LastState Value="0" RealAddress="14B6B0EE37C"/>
+                      <Color>0000FF</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>[pBase]+E18</Address>
+                      <Offsets>
+                        <Offset>5C</Offset>
+                        <Offset>2520</Offset>
+                        <Offset>320</Offset>
+                        <Offset>30</Offset>
+                        <Offset>0</Offset>
+                        <Offset>38</Offset>
+                      </Offsets>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>105357</ID>
+                      <Description>"Summon Kill Count"</Description>
+                      <LastState Value="0" RealAddress="14B6B0EE380"/>
+                      <Color>0000FF</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>[pBase]+E18</Address>
+                      <Offsets>
+                        <Offset>60</Offset>
+                        <Offset>2520</Offset>
+                        <Offset>320</Offset>
+                        <Offset>30</Offset>
+                        <Offset>0</Offset>
+                        <Offset>38</Offset>
+                      </Offsets>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>105358</ID>
+                      <Description>"Support Kill Count"</Description>
+                      <LastState Value="0" RealAddress="14B6B0EE384"/>
+                      <Color>0000FF</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>[pBase]+E18</Address>
+                      <Offsets>
+                        <Offset>64</Offset>
+                        <Offset>2520</Offset>
+                        <Offset>320</Offset>
+                        <Offset>30</Offset>
+                        <Offset>0</Offset>
+                        <Offset>38</Offset>
+                      </Offsets>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>105359</ID>
+                      <Description>"Final Damage"</Description>
+                      <LastState Value="0" RealAddress="14B6B0EE388"/>
+                      <Color>0000FF</Color>
+                      <VariableType>Float</VariableType>
+                      <Address>[pBase]+E18</Address>
+                      <Offsets>
+                        <Offset>68</Offset>
+                        <Offset>2520</Offset>
+                        <Offset>320</Offset>
+                        <Offset>30</Offset>
+                        <Offset>0</Offset>
+                        <Offset>38</Offset>
+                      </Offsets>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>105360</ID>
+                      <Description>"Melee Damage"</Description>
+                      <LastState Value="0" RealAddress="14B6B0EE38C"/>
+                      <Color>0000FF</Color>
+                      <VariableType>Float</VariableType>
+                      <Address>[pBase]+E18</Address>
+                      <Offsets>
+                        <Offset>6C</Offset>
+                        <Offset>2520</Offset>
+                        <Offset>320</Offset>
+                        <Offset>30</Offset>
+                        <Offset>0</Offset>
+                        <Offset>38</Offset>
+                      </Offsets>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>105361</ID>
+                      <Description>"Ranged Damage"</Description>
+                      <LastState Value="0" RealAddress="14B6B0EE390"/>
+                      <Color>0000FF</Color>
+                      <VariableType>Float</VariableType>
+                      <Address>[pBase]+E18</Address>
+                      <Offsets>
+                        <Offset>70</Offset>
+                        <Offset>2520</Offset>
+                        <Offset>320</Offset>
+                        <Offset>30</Offset>
+                        <Offset>0</Offset>
+                        <Offset>38</Offset>
+                      </Offsets>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>105362</ID>
+                      <Description>"Skill Damage"</Description>
+                      <LastState Value="0" RealAddress="14B6B0EE394"/>
+                      <Color>0000FF</Color>
+                      <VariableType>Float</VariableType>
+                      <Address>[pBase]+E18</Address>
+                      <Offsets>
+                        <Offset>74</Offset>
+                        <Offset>2520</Offset>
+                        <Offset>320</Offset>
+                        <Offset>30</Offset>
+                        <Offset>0</Offset>
+                        <Offset>38</Offset>
+                      </Offsets>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>105363</ID>
+                      <Description>"Summon Damage"</Description>
+                      <LastState Value="0" RealAddress="14B6B0EE398"/>
+                      <Color>0000FF</Color>
+                      <VariableType>Float</VariableType>
+                      <Address>[pBase]+E18</Address>
+                      <Offsets>
+                        <Offset>78</Offset>
+                        <Offset>2520</Offset>
+                        <Offset>320</Offset>
+                        <Offset>30</Offset>
+                        <Offset>0</Offset>
+                        <Offset>38</Offset>
+                      </Offsets>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>105364</ID>
+                      <Description>"Support Damage"</Description>
+                      <LastState Value="0" RealAddress="14B6B0EE39C"/>
+                      <Color>0000FF</Color>
+                      <VariableType>Float</VariableType>
+                      <Address>[pBase]+E18</Address>
+                      <Offsets>
+                        <Offset>7C</Offset>
+                        <Offset>2520</Offset>
+                        <Offset>320</Offset>
+                        <Offset>30</Offset>
+                        <Offset>0</Offset>
+                        <Offset>38</Offset>
+                      </Offsets>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>105365</ID>
+                      <Description>"Taked Damage"</Description>
+                      <LastState Value="0" RealAddress="14B6B0EE3A0"/>
+                      <Color>0000FF</Color>
+                      <VariableType>Float</VariableType>
+                      <Address>[pBase]+E18</Address>
+                      <Offsets>
+                        <Offset>80</Offset>
+                        <Offset>2520</Offset>
+                        <Offset>320</Offset>
+                        <Offset>30</Offset>
+                        <Offset>0</Offset>
+                        <Offset>38</Offset>
+                      </Offsets>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>105366</ID>
+                      <Description>"Taked Shield Damage"</Description>
+                      <LastState Value="0" RealAddress="14B6B0EE3A4"/>
+                      <Color>0000FF</Color>
+                      <VariableType>Float</VariableType>
+                      <Address>[pBase]+E18</Address>
+                      <Offsets>
+                        <Offset>84</Offset>
+                        <Offset>2520</Offset>
+                        <Offset>320</Offset>
+                        <Offset>30</Offset>
+                        <Offset>0</Offset>
+                        <Offset>38</Offset>
+                      </Offsets>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>105367</ID>
+                      <Description>"Give Healing"</Description>
+                      <LastState Value="0" RealAddress="14B6B0EE3A8"/>
+                      <Color>0000FF</Color>
+                      <VariableType>Float</VariableType>
+                      <Address>[pBase]+E18</Address>
+                      <Offsets>
+                        <Offset>88</Offset>
+                        <Offset>2520</Offset>
+                        <Offset>320</Offset>
+                        <Offset>30</Offset>
+                        <Offset>0</Offset>
+                        <Offset>38</Offset>
+                      </Offsets>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>105368</ID>
+                      <Description>"Taked Heal"</Description>
+                      <LastState Value="0" RealAddress="14B6B0EE3AC"/>
+                      <Color>0000FF</Color>
+                      <VariableType>Float</VariableType>
+                      <Address>[pBase]+E18</Address>
+                      <Offsets>
+                        <Offset>8C</Offset>
+                        <Offset>2520</Offset>
+                        <Offset>320</Offset>
+                        <Offset>30</Offset>
+                        <Offset>0</Offset>
+                        <Offset>38</Offset>
+                      </Offsets>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>105369</ID>
+                      <Description>"Sp Consume"</Description>
+                      <LastState Value="0" RealAddress="14B6B0EE3B0"/>
+                      <Color>0000FF</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>[pBase]+E18</Address>
+                      <Offsets>
+                        <Offset>90</Offset>
+                        <Offset>2520</Offset>
+                        <Offset>320</Offset>
+                        <Offset>30</Offset>
+                        <Offset>0</Offset>
+                        <Offset>38</Offset>
+                      </Offsets>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>105370</ID>
+                      <Description>"Bullet Consume"</Description>
+                      <LastState Value="0" RealAddress="14B6B0EE3B4"/>
+                      <Color>0000FF</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>[pBase]+E18</Address>
+                      <Offsets>
+                        <Offset>94</Offset>
+                        <Offset>2520</Offset>
+                        <Offset>320</Offset>
+                        <Offset>30</Offset>
+                        <Offset>0</Offset>
+                        <Offset>38</Offset>
+                      </Offsets>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>105371</ID>
+                      <Description>"Max Damage"</Description>
+                      <LastState Value="0" RealAddress="14B6B0EE3B8"/>
+                      <Color>0000FF</Color>
+                      <VariableType>Float</VariableType>
+                      <Address>[pBase]+E18</Address>
+                      <Offsets>
+                        <Offset>98</Offset>
+                        <Offset>2520</Offset>
+                        <Offset>320</Offset>
+                        <Offset>30</Offset>
+                        <Offset>0</Offset>
+                        <Offset>38</Offset>
+                      </Offsets>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>105372</ID>
+                      <Description>"Bullet Jump Count"</Description>
+                      <LastState Value="0" RealAddress="14B6B0EE3BC"/>
+                      <Color>0000FF</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>[pBase]+E18</Address>
+                      <Offsets>
+                        <Offset>9C</Offset>
+                        <Offset>2520</Offset>
+                        <Offset>320</Offset>
+                        <Offset>30</Offset>
+                        <Offset>0</Offset>
+                        <Offset>38</Offset>
+                      </Offsets>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>105373</ID>
+                      <Description>"Fly Shoot Count"</Description>
+                      <LastState Value="0" RealAddress="14B6B0EE3C0"/>
+                      <Color>0000FF</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>[pBase]+E18</Address>
+                      <Offsets>
+                        <Offset>A0</Offset>
+                        <Offset>2520</Offset>
+                        <Offset>320</Offset>
+                        <Offset>30</Offset>
+                        <Offset>0</Offset>
+                        <Offset>38</Offset>
+                      </Offsets>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>105374</ID>
+                      <Description>"Max Combo Count"</Description>
+                      <LastState Value="0" RealAddress="14B6B0EE3C4"/>
+                      <Color>0000FF</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>[pBase]+E18</Address>
+                      <Offsets>
+                        <Offset>A4</Offset>
+                        <Offset>2520</Offset>
+                        <Offset>320</Offset>
+                        <Offset>30</Offset>
+                        <Offset>0</Offset>
+                        <Offset>38</Offset>
+                      </Offsets>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>105375</ID>
+                      <Description>"Chest Opened Count"</Description>
+                      <LastState Value="0" RealAddress="14B6B0EE3C8"/>
+                      <Color>0000FF</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>[pBase]+E18</Address>
+                      <Offsets>
+                        <Offset>A8</Offset>
+                        <Offset>2520</Offset>
+                        <Offset>320</Offset>
+                        <Offset>30</Offset>
+                        <Offset>0</Offset>
+                        <Offset>38</Offset>
+                      </Offsets>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>105376</ID>
+                      <Description>"Breakable Item Count"</Description>
+                      <LastState Value="0" RealAddress="14B6B0EE3CC"/>
+                      <Color>0000FF</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>[pBase]+E18</Address>
+                      <Offsets>
+                        <Offset>AC</Offset>
+                        <Offset>2520</Offset>
+                        <Offset>320</Offset>
+                        <Offset>30</Offset>
+                        <Offset>0</Offset>
+                        <Offset>38</Offset>
+                      </Offsets>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>105274</ID>
+      <Description>"============================"</Description>
+      <LastState Value="" RealAddress="00000000"/>
+      <GroupHeader>1</GroupHeader>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>104596</ID>
+      <Description>"[&lt;--CHECKBOX] NOTES"</Description>
+      <Options moHideChildren="1" moManualExpandCollapse="1"/>
+      <LastState Value="" RealAddress="00000000"/>
+      <Color>0080FF</Color>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>104601</ID>
+          <Description>"[&lt;--CHECKBOX] If You Like This Table, Don't Forget To Give A Thumbs Up On This Link"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <Color>0080FF</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$LUA}
+if syntaxcheck then return end
+[ENABLE]
+ShellExecute('https://fearlessrevolution.com/viewtopic.php?p=429775#p429775')
+{$asm}
+nop
+[DISABLE]
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>104602</ID>
+              <Description>"https://www.cheatengine.org/"</Description>
+              <LastState Value="" RealAddress="00000000"/>
+              <Color>008000</Color>
+              <GroupHeader>1</GroupHeader>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>105305</ID>
+          <Description>"====================="</Description>
+          <LastState Value="" RealAddress="00000000"/>
+          <GroupHeader>1</GroupHeader>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>105271</ID>
+          <Description>"[&lt;--CHECKBOX] Link Game"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <Color>0080FF</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$LUA}
+if syntaxcheck then return end
+[ENABLE]
+ShellExecute('https://duetnightabyss.dna-panstudio.com/#/home')
+{$asm}
+nop
+[DISABLE]
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>105272</ID>
+              <Description>"https://www.cheatengine.org/"</Description>
+              <LastState Value="" RealAddress="00000000"/>
+              <Color>008000</Color>
+              <GroupHeader>1</GroupHeader>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>105308</ID>
+          <Description>"====================="</Description>
+          <LastState Value="" RealAddress="00000000"/>
+          <GroupHeader>1</GroupHeader>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>104151</ID>
+          <Description>"[&lt;--CHECKBOX] Download Cheat Engine"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <Color>0080FF</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$LUA}
+if syntaxcheck then return end
+[ENABLE]
+ShellExecute('https://www.cheatengine.org/')
+ShellExecute('https://github.com/cheat-engine/cheat-engine')
+{$asm}
+nop
+[DISABLE]
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>104154</ID>
+              <Description>"https://www.cheatengine.org/"</Description>
+              <LastState Value="" RealAddress="00000000"/>
+              <Color>008000</Color>
+              <GroupHeader>1</GroupHeader>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>105306</ID>
+          <Description>"====================="</Description>
+          <LastState Value="" RealAddress="00000000"/>
+          <GroupHeader>1</GroupHeader>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>105294</ID>
+          <Description>"UE ver: 427.2"</Description>
+          <LastState Value="" RealAddress="00000000"/>
+          <Color>0000FF</Color>
+          <GroupHeader>1</GroupHeader>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>105423</ID>
+          <Description>"====================="</Description>
+          <LastState Value="" RealAddress="00000000"/>
+          <GroupHeader>1</GroupHeader>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>105424</ID>
+          <Description>"Game Version: OS_Windows_Product_1.0.29.1"</Description>
+          <LastState Value="" RealAddress="00000000"/>
+          <Color>0000FF</Color>
+          <GroupHeader>1</GroupHeader>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <LuaScript>getMainForm().caption = "Created By BabyGroot  ~ Enjoy you'r game :)"
+</LuaScript>
+</CheatTable>

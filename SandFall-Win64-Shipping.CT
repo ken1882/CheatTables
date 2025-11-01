@@ -1,0 +1,776 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="46">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>1337320459</ID>
+      <Description>"Enable 1.0"</Description>
+      <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
+      <LastState Activated="1"/>
+      <Color>0000FF</Color>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript Async="1">{ Game   : SandFallEos-Win64-Shipping.exe
+  Version: 
+  Date   : 2025-04-24
+  Author : cfemen
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+aobscanmodule(aobGetObjects,$process,48 83 EC 48 48 8D 44 24 58 48 89 54 24 58 48 89 44 24 38 48 8D 54 24 30)
+registersymbol(aobGetObjects)
+
+aobscanmodule(aobAppendString,$process,4C 8D 05 ?? ?? ?? ?? EB 16 48 8D)
+registersymbol(aobAppendString)
+
+label(_FName)
+registersymbol(_FName)
+
+
+aobAppendString+7+(DWORD)[aobAppendString+3]:
+_FName:
+
+
+aobscanmodule(ProcessEvent,$process,40 55 56 57 41 54 41 55 41 56 41 57 48 81 EC 10 01 00 00 48 8D 6C 24 30 48 89 9D 38 01 00 00)
+registersymbol(ProcessEvent)
+
+aobscanmodule(FNameFName,$process,48 89 5C 24 08 57 48 83 EC 30 48 8B D9 41 8B F8 33 C9 4C 8B DA 44 8B D1 4C 8B CA 48 85 D2 74 23)
+registersymbol(FNameFName)
+
+aobscanmodule(aobFEngineLoop,$process,48 8B 05 ?? ?? ?? ?? 48 8B 88 80 0A 00 00 48 8B 01)
+registersymbol(aobFEngineLoop)
+
+label(pGEngine)
+registersymbol(pGEngine)
+
+aobFEngineLoop+7+(DWORD)[aobFEngineLoop+3]:
+pGEngine:
+
+aobscanmodule(aobStaticFind,$process,48 8B C4 48 89 58 08 48 89 68 18 48 89 70 20 57 41 56 41 57 48 83 EC 60 48 83 FA FF 48 8B FA 48 8B E9 41 0F B6 F1 41 0F 94 C6 48 8D 48 D0 45 33 FF 48 83 FA FF 49 8B D0 49 0F 44 FF)
+registersymbol(aobStaticFind)
+
+aobscanmodule(aobProcessInternal,$process,48 89 5C 24 08 48 89 6C 24 10 48 89 74 24 18 57 41 56 41 57 48 83 EC 30 4C 8B 72 10 49 8B F8 48 8B 01 48 8B EA 45 33 C0 49 8B D6 48 8B D9 FF 90 70 02 00 00 33 F6) // should be unique
+alloc(newmem,$1000,aobProcessInternal)
+
+label(code)
+label(return)
+label(bFlags)
+registersymbol(bFlags)
+label(iXPAmount)
+registersymbol(iXPAmount)
+label(fMultiplier)
+registersymbol(fMultiplier)
+
+newmem:
+push rcx
+push rdx
+push r8
+push rbx
+sub rsp,78
+
+mov rbx,rcx
+
+cmp byte ptr[bFlags+5],1 // EasyKill?
+jne short @f
+
+xor rcx,rcx
+lea rdx,[rcx-1]
+mov r8,szEnemy
+mov r9d,1
+call aobStaticFind
+test rax,rax
+je short @f
+ test rax,rax
+ je short @f
+ mov rcx,rbx
+ mov rdx,rax
+ call _IsA
+ test al,al
+ je short @f
+ mov rax,[rbx+8F0]
+ movsd xmm0,[rax+168]
+ movsd xmm1,[fMaxHealth]
+ minsd xmm0,xmm1
+ movsd [rax+168],xmm0
+@@:
+
+xor rcx,rcx
+lea rdx,[rcx-1]
+mov r8,szClass
+mov r9d,1
+call aobStaticFind
+test rax,rax
+je Skip
+ mov rdx,[rbx+10]
+ mov rdx,[rdx+40]
+ cmp rdx,rax
+ jne Skip
+ cmp byte ptr[rbx+1181],1 // Ignore the Dummy Player
+ jne Skip
+ mov al,[bFlags] // Parry
+ test al,al
+ je short @f
+    mov byte ptr [rbx+B10],1
+ @@:
+ mov al,[bFlags+1] // Dodge
+ test al,al
+ je short @f
+    mov byte ptr [rbx+B11],1
+ @@:
+ mov al,[bFlags+4] // Jump
+ test al,al
+ je short @f
+    mov byte ptr [rbx+B12],1
+ @@:
+ mov al,[bFlags+2] // Health
+ mov byte ptr [rbx+CF8],al // IgnoreDamage
+ mov rax,[rbx+8F0] // stats
+ test rax,rax
+ je Skip
+  //cmp byte ptr[bFlags+2],1 // Health
+  //jne short @f
+   //mov rdx,(double)9999
+   //mov [rax+168],rdx
+  //@@:
+  cmp byte ptr[bFlags+3],1 // AP
+  jne short @f
+   mov rdx,(double)9
+   mov [rax+178],rdx
+  @@:
+  mov rdx,[rax+C8] // CharacterBaseStats
+  test rdx,rdx
+  je short Skip
+  movsd xmm0,[rdx+38] // PhyAttack
+  movsd xmm1,[rdx+50] // MagAttack
+  movsd xmm2,[fMultiplier]
+  mulsd xmm0,xmm2
+  mulsd xmm1,xmm2
+  mov rdx,[rax+118] // CharacterCurrentStats
+  test rdx,rdx
+  je short Skip
+  movsd [rdx+38],xmm0
+  movsd [rdx+50],xmm1
+
+Skip:
+add rsp,78
+pop rbx
+pop r8
+pop rdx
+pop rcx
+code:
+  mov [rsp+08],rbx
+  jmp return
+_IsA:
+// RCX = UObject*
+// RDX = Class*
+ mov rax,[rcx+10]
+ test rax,rax
+ je RetFalse
+  test rdx,rdx
+  je RetFalse
+  movsxd rcx,dword ptr[rdx+38]
+  add rdx,30
+  cmp rcx,[rax+38]
+  jg RetFalse
+   mov rax,[rax+30]
+   cmp [rax+rcx*8],rdx
+   jne RetFalse
+   mov al,1
+   ret
+ RetFalse:
+ xor al,al
+ ret
+
+iXPAmount:
+dd #100
+fMaxHealth:
+dq (double)1
+szClass:
+dw 'BP_jRPG_Character_Battle_Base_C',0
+szEnemy:
+dw 'BP_jRPG_Enemy_Battle_Base_C',0
+bFlags:
+db 0 // Parrying 0
+db 0 // Dodging 1
+db 0 // Health 2
+db 0 // AP 3
+db 0 // Jumping 4
+db 0 // EasyKills 5
+fMultiplier:
+dq (double)1
+
+aobProcessInternal:
+  jmp newmem
+return:
+registersymbol(aobProcessInternal)
+
+[DISABLE]
+
+aobProcessInternal:
+  db 48 89 5C 24 08
+
+unregistersymbol(aobProcessInternal)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: SandFallEos-Win64-Shipping.UObject::ProcessInternal
+
+SandFallEos-Win64-Shipping.UObject::ProcessEvent+463: 41 5E           - pop r14
+SandFallEos-Win64-Shipping.UObject::ProcessEvent+465: 41 5D           - pop r13
+SandFallEos-Win64-Shipping.UObject::ProcessEvent+467: 41 5C           - pop r12
+SandFallEos-Win64-Shipping.UObject::ProcessEvent+469: 5F              - pop rdi
+SandFallEos-Win64-Shipping.UObject::ProcessEvent+46A: 5E              - pop rsi
+SandFallEos-Win64-Shipping.UObject::ProcessEvent+46B: 5D              - pop rbp
+SandFallEos-Win64-Shipping.UObject::ProcessEvent+46C: C3              - ret 
+SandFallEos-Win64-Shipping.UObject::ProcessEvent+46D: CC              - int 3 
+SandFallEos-Win64-Shipping.exe+138DDBE: CC              - int 3 
+SandFallEos-Win64-Shipping.exe+138DDBF: CC              - int 3 
+// ---------- INJECTING HERE ----------
+SandFallEos-Win64-Shipping.UObject::ProcessInternal: 48 89 5C 24 08  - mov [rsp+08],rbx
+// ---------- DONE INJECTING  ----------
+SandFallEos-Win64-Shipping.UObject::ProcessInternal+5: 48 89 6C 24 10  - mov [rsp+10],rbp
+SandFallEos-Win64-Shipping.UObject::ProcessInternal+A: 48 89 74 24 18  - mov [rsp+18],rsi
+SandFallEos-Win64-Shipping.UObject::ProcessInternal+F: 57              - push rdi
+SandFallEos-Win64-Shipping.UObject::ProcessInternal+10: 41 56           - push r14
+SandFallEos-Win64-Shipping.UObject::ProcessInternal+12: 41 57           - push r15
+SandFallEos-Win64-Shipping.UObject::ProcessInternal+14: 48 83 EC 30     - sub rsp,30
+SandFallEos-Win64-Shipping.UObject::ProcessInternal+18: 4C 8B 72 10     - mov r14,[rdx+10]
+SandFallEos-Win64-Shipping.UObject::ProcessInternal+1C: 49 8B F8        - mov rdi,r8
+SandFallEos-Win64-Shipping.UObject::ProcessInternal+1F: 48 8B 01        - mov rax,[rcx]
+SandFallEos-Win64-Shipping.UObject::ProcessInternal+22: 48 8B EA        - mov rbp,rdx
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>1337320460</ID>
+          <Description>"Auto Parry"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+bFlags:
+db 1
+
+ 
+[DISABLE]
+bFlags:
+db 0
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337320461</ID>
+          <Description>"Auto Dodge"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+bFlags+1:
+db 1
+
+ 
+ 
+[DISABLE]
+bFlags+1:
+db 0
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337320546</ID>
+          <Description>"Auto Jump"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+bFlags+4:
+db 1
+
+ 
+ 
+[DISABLE]
+bFlags+4:
+db 0
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337320549</ID>
+          <Description>"Easy Kills"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+bFlags+5:
+db 1
+
+ 
+ 
+[DISABLE]
+bFlags+5:
+db 0
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337320556</ID>
+          <Description>"Outgoing Damage Scaling x?"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <Color>FF8000</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+fMultiplier:
+dq (double)2
+
+ 
+ 
+[DISABLE]
+fMultiplier:
+dq (double)1
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337320555</ID>
+              <Description>"x?"</Description>
+              <LastState Value="1" RealAddress="7FF610DF023A"/>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Double</VariableType>
+              <Address>fMultiplier</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337320462</ID>
+          <Description>"Ignore Damage"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+bFlags+2:
+db 1
+
+ 
+ 
+[DISABLE]
+bFlags+2:
+db 0
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337320463</ID>
+          <Description>"Inf. AP"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+bFlags+3:
+db 1
+
+ 
+ 
+[DISABLE]
+bFlags+3:
+db 0
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>88095</ID>
+          <Description>"Inf. Jumps"</Description>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : SandFallEos-Win64-Shipping.exe
+  Version: 
+  Date   : 2025-04-24
+  Author : cfemen
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+
+aobscanmodule(aobCharacter_CanJump,$process,8B 83 70 04 00 00 39) // should be unique
+alloc(newmem,$1000,aobCharacter_CanJump)
+
+label(code)
+label(return)
+
+newmem:
+
+code:
+  mov [rbx+470],#999
+  mov eax,[rbx+00000470]
+  jmp return
+
+aobCharacter_CanJump:
+  jmp newmem
+  nop
+return:
+registersymbol(aobCharacter_CanJump)
+
+[DISABLE]
+
+aobCharacter_CanJump:
+  db 8B 83 70 04 00 00
+
+unregistersymbol(aobCharacter_CanJump)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: SandFallEos-Win64-Shipping.ACharacter::CanJumpInternal_Implementation+B9
+
+SandFallEos-Win64-Shipping.ACharacter::CanJumpInternal_Implementation+93: 75 24                 - jne SandFallEos-Win64-Shipping.ACharacter::CanJumpInternal_Implementation+B9
+SandFallEos-Win64-Shipping.ACharacter::CanJumpInternal_Implementation+95: 48 8B 8B 20 03 00 00  - mov rcx,[rbx+00000320]
+SandFallEos-Win64-Shipping.ACharacter::CanJumpInternal_Implementation+9C: 48 8B 01              - mov rax,[rcx]
+SandFallEos-Win64-Shipping.ACharacter::CanJumpInternal_Implementation+9F: FF 90 F0 05 00 00     - call qword ptr [rax+000005F0]
+SandFallEos-Win64-Shipping.ACharacter::CanJumpInternal_Implementation+A5: 84 C0                 - test al,al
+SandFallEos-Win64-Shipping.ACharacter::CanJumpInternal_Implementation+A7: 74 10                 - je SandFallEos-Win64-Shipping.ACharacter::CanJumpInternal_Implementation+B9
+SandFallEos-Win64-Shipping.ACharacter::CanJumpInternal_Implementation+A9: 8B 83 74 04 00 00     - mov eax,[rbx+00000474]
+SandFallEos-Win64-Shipping.ACharacter::CanJumpInternal_Implementation+AF: FF C0                 - inc eax
+SandFallEos-Win64-Shipping.ACharacter::CanJumpInternal_Implementation+B1: 3B 83 70 04 00 00     - cmp eax,[rbx+00000470]
+SandFallEos-Win64-Shipping.ACharacter::CanJumpInternal_Implementation+B7: EB 0C                 - jmp SandFallEos-Win64-Shipping.ACharacter::CanJumpInternal_Implementation+C5
+// ---------- INJECTING HERE ----------
+SandFallEos-Win64-Shipping.ACharacter::CanJumpInternal_Implementation+B9: 8B 83 70 04 00 00     - mov eax,[rbx+00000470]
+// ---------- DONE INJECTING  ----------
+SandFallEos-Win64-Shipping.ACharacter::CanJumpInternal_Implementation+BF: 39 83 74 04 00 00     - cmp [rbx+00000474],eax
+SandFallEos-Win64-Shipping.ACharacter::CanJumpInternal_Implementation+C5: 0F 9C C0              - setl al
+SandFallEos-Win64-Shipping.ACharacter::CanJumpInternal_Implementation+C8: 84 C0                 - test al,al
+SandFallEos-Win64-Shipping.ACharacter::CanJumpInternal_Implementation+CA: 74 B8                 - je SandFallEos-Win64-Shipping.ACharacter::CanJumpInternal_Implementation+84
+SandFallEos-Win64-Shipping.ACharacter::CanJumpInternal_Implementation+CC: B0 01                 - mov al,01
+SandFallEos-Win64-Shipping.ACharacter::CanJumpInternal_Implementation+CE: 48 83 C4 20           - add rsp,20
+SandFallEos-Win64-Shipping.ACharacter::CanJumpInternal_Implementation+D2: 5B                    - pop rbx
+SandFallEos-Win64-Shipping.ACharacter::CanJumpInternal_Implementation+D3: C3                    - ret 
+SandFallEos-Win64-Shipping.exe+34960C4: CC                    - int 3 
+SandFallEos-Win64-Shipping.exe+34960C5: CC                    - int 3 
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337320547</ID>
+          <Description>"Get Character Stats:"</Description>
+          <LastState/>
+          <Color>FF8000</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$lua}
+if syntaxcheck then return end
+
+[ENABLE]
+function ResolveFName( FNamePool, FNameEntryID )
+    local NameIndex = FNameEntryID &amp; 0xFFFF
+    local BlockAddress = readPointer( FNamePool + ( ( ( FNameEntryID &gt;&gt; 0x10 ) + 2 ) * 8 ) ) or 0
+    local FNameEntry = BlockAddress + (NameIndex * 2)
+    return readString( FNameEntry + 2, ( readSmallInteger( FNameEntry ) &gt;&gt; 6 ))
+end
+
+function MemRec(Parent,Name,Ptr)
+    local StatRec = addList.createMemoryRecord()
+    StatRec.setDescription(Name)
+    StatRec.setAddress(Ptr)
+    StatRec.setType(2)
+    StatRec.appendToEntry(Parent)
+end
+
+addList = getAddressList()
+thisRec = addList.getMemoryRecordByID(1337320547)
+
+local Engine = getAddress("[pGEngine]")
+local process = getAddress("ProcessEvent")
+local Find = getAddress("aobStaticFind")
+local GetObjects = getAddress("aobGetObjects")
+local FPool = getAddress("_FName")
+
+local NameTable =
+{
+"MaxHealth",
+"MaxAP",
+"Physical Attack",
+"Magical Attack",
+"Accuracy",
+"Physical Defense",
+"Magical Defense",
+"Speed",
+"Critical Rate",
+"Mastery"
+}
+
+local GI = readPointer(Engine+0x10A8)
+local CharactersCollection = readPointer(GI+0x928)
+local Size = readInteger(GI+0x928+8)
+
+for i=0,Size-1 do
+ local Data = readPointer(CharactersCollection+0x8)
+ local ParentName = addList.createMemoryRecord()
+ local Name = ResolveFName(FPool,readInteger(Data+0x30))
+ ParentName.setDescription(Name)
+ ParentName.setAddress(0)
+ ParentName.setType(4)
+ ParentName.DontSave=true
+ ParentName.appendToEntry(thisRec)
+
+ MemRec(ParentName,"CurrentExperienceInLevel",Data+0x21C)
+ MemRec(ParentName,"MaxActionPoints",Data+0x220)
+ MemRec(ParentName,"LuminaMaxPointsFromLevel",Data+0x224)
+ MemRec(ParentName,"LuminaMaxPointsFromConsumables",Data+0x228)
+ MemRec(ParentName,"CurrentlyUsedLuminaPoints",Data+0x22C)
+
+ local pAttributes = readPointer(Data+0x5C8)
+
+ MemRec(ParentName,"Vitality",pAttributes+0x4)
+ MemRec(ParentName,"Vitality",pAttributes+0x4)
+ MemRec(ParentName,"Might",pAttributes+0x14)
+ MemRec(ParentName,"Agility",pAttributes+0x24)
+ MemRec(ParentName,"Defense",pAttributes+0x34)
+ MemRec(ParentName,"Luck",pAttributes+0x44)
+
+ local pStats=readPointer(Data+0x1C8)
+ for i=0,9 do
+        local Stat = addList.createMemoryRecord()
+        Stat.setDescription(NameTable[i+1])
+        Stat.setAddress(pStats+0x8)
+        Stat.setType(5)
+        Stat.appendToEntry(ParentName)
+        pStats=pStats+0x18
+    end
+ CharactersCollection=CharactersCollection+0x18
+end
+
+ 
+[DISABLE]
+
+if thisRec ~= nil then
+	while thisRec.Count &gt; 0 do
+	   thisRec.Child[0]:Delete()
+	end
+end
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337320550</ID>
+          <Description>"Add XP +?"</Description>
+          <LastState/>
+          <Color>808000</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$lua}
+if syntaxcheck then return end
+
+[ENABLE]
+function ResolveFName( FNamePool, FNameEntryID )
+    local NameIndex = FNameEntryID &amp; 0xFFFF
+    local BlockAddress = readPointer( FNamePool + ( ( ( FNameEntryID &gt;&gt; 0x10 ) + 2 ) * 8 ) ) or 0
+    local FNameEntry = BlockAddress + (NameIndex * 2)
+    return readString( FNameEntry + 2, ( readSmallInteger( FNameEntry ) &gt;&gt; 6 ))
+end
+
+function MemRec(Parent,Name,Ptr)
+    local StatRec = addList.createMemoryRecord()
+    StatRec.setDescription(Name)
+    StatRec.setAddress(Ptr)
+    StatRec.setType(2)
+    StatRec.appendToEntry(Parent)
+end
+
+
+local Engine = getAddress("[pGEngine]")
+local process = getAddress("ProcessEvent")
+local Find = getAddress("aobStaticFind")
+local GetObjects = getAddress("aobGetObjects")
+local FPool = getAddress("_FName")
+local iXP = getAddress("iXPAmount")
+iXP = readInteger(iXP)
+
+local GI = readPointer(Engine+0x10A8)
+local CharactersCollection = readPointer(GI+0x928)
+local Size = readInteger(GI+0x928+8)
+
+for i=0,Size-1 do
+ local Data = readPointer(CharactersCollection+0x8)
+ local func = executeCodeEx(0,nil,Find,0,readPointer(Data+0x10),{type = 4,value = "AddExperience"},1)
+ local p = allocateMemory(32)
+ writeInteger(p,iXP)
+ executeCodeEx(0,nil,process,Data,func,p)
+ deAlloc(p)
+ CharactersCollection=CharactersCollection+0x18
+end
+
+ 
+[DISABLE]
+
+
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>1337320507</ID>
+              <Description>"x?"</Description>
+              <LastState Value="100" RealAddress="7FF610DF01B0"/>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>iXPAmount</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337320545</ID>
+          <Description>"Inventory Reader"</Description>
+          <LastState/>
+          <Color>FF8000</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{$lua}
+if syntaxcheck then return end
+
+[ENABLE]
+function ResolveFName( FNamePool, FNameEntryID )
+    local NameIndex = FNameEntryID &amp; 0xFFFF
+    local BlockAddress = readPointer( FNamePool + ( ( ( FNameEntryID &gt;&gt; 0x10 ) + 2 ) * 8 ) ) or 0
+    local FNameEntry = BlockAddress + (NameIndex * 2)
+    return readString( FNameEntry + 2, ( readSmallInteger( FNameEntry ) &gt;&gt; 6 ))
+end
+
+function MemRec(Parent,Name,Ptr)
+    local StatRec = addList.createMemoryRecord()
+    StatRec.setDescription(Name)
+    StatRec.setAddress(Ptr)
+    StatRec.setType(2)
+    StatRec.appendToEntry(Parent)
+end
+
+addList = getAddressList()
+thisRec = addList.getMemoryRecordByID(1337320545)
+
+local Engine = getAddress("[pGEngine]")
+local process = getAddress("ProcessEvent")
+local Find = getAddress("aobStaticFind")
+local GetObjects = getAddress("aobGetObjects")
+local FPool = getAddress("_FName")
+
+local GI = readPointer(Engine+0x10A8)
+
+local Inventory = readPointer(GI+0x358)
+local Size = readInteger(GI+0x358+8)
+
+for i=0,Size-1 do
+ local szName = ResolveFName(FPool,readInteger(Inventory+8))
+ if szName ~= "None" then
+   MemRec(thisRec,szName,Inventory)
+ end
+ Inventory=Inventory+0x138
+end
+ 
+[DISABLE]
+
+if thisRec ~= nil then
+	while thisRec.Count &gt; 0 do
+	   thisRec.Child[0]:Delete()
+	end
+end
+
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337320543</ID>
+          <Description>"[Pointer] Gold:"</Description>
+          <LastState Value="7267" RealAddress="2361423A0F8"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pGengine</Address>
+          <Offsets>
+            <Offset>368</Offset>
+            <Offset>10A8</Offset>
+          </Offsets>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>1337320548</ID>
+          <Description>"[Pointer] IsInvisible To Enemies? (Set To 1 )"</Description>
+          <LastState Value="0" RealAddress="237E07DA9C0"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>Byte</VariableType>
+          <Address>[pgengine]+10A8</Address>
+          <Offsets>
+            <Offset>FC0</Offset>
+            <Offset>2D0</Offset>
+            <Offset>30</Offset>
+            <Offset>0</Offset>
+            <Offset>38</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>Change of mov rax,[rbx+000008F0]</Description>
+      <AddressString>7FF634330036</AddressString>
+      <Before>
+        <Byte>48</Byte>
+        <Byte>85</Byte>
+        <Byte>C0</Byte>
+        <Byte>74</Byte>
+        <Byte>0F</Byte>
+      </Before>
+      <Actual>
+        <Byte>48</Byte>
+        <Byte>8B</Byte>
+        <Byte>83</Byte>
+        <Byte>F0</Byte>
+        <Byte>08</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>F2</Byte>
+        <Byte>0F</Byte>
+        <Byte>10</Byte>
+        <Byte>80</Byte>
+        <Byte>68</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of movsd xmm0,[rax+00000168]</Description>
+      <AddressString>7FF63433003D</AddressString>
+      <Before>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+      </Before>
+      <Actual>
+        <Byte>F2</Byte>
+        <Byte>0F</Byte>
+        <Byte>10</Byte>
+        <Byte>80</Byte>
+        <Byte>68</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>31</Byte>
+        <Byte>C9</Byte>
+        <Byte>48</Byte>
+        <Byte>8D</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Change of movsd [rax+00000168],xmm0</Description>
+      <AddressString>7FF634330065</AddressString>
+      <Before>
+        <Byte>00</Byte>
+        <Byte>F2</Byte>
+        <Byte>0F</Byte>
+        <Byte>5D</Byte>
+        <Byte>C1</Byte>
+      </Before>
+      <Actual>
+        <Byte>F2</Byte>
+        <Byte>0F</Byte>
+        <Byte>11</Byte>
+        <Byte>80</Byte>
+        <Byte>68</Byte>
+        <Byte>01</Byte>
+        <Byte>00</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>48</Byte>
+        <Byte>31</Byte>
+        <Byte>C9</Byte>
+        <Byte>48</Byte>
+        <Byte>8D</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+</CheatTable>
