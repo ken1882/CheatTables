@@ -42,14 +42,14 @@ luacall(cycleFullCompact(nil,false))
               <ID>105328</ID>
               <Description>"Game Data"</Description>
               <Options moHideChildren="1" moManualExpandCollapse="1"/>
-              <LastState Value="" Activated="1" RealAddress="00000000"/>
+              <LastState Value="" RealAddress="00000000"/>
               <Color>FF8000</Color>
               <GroupHeader>1</GroupHeader>
               <CheatEntries>
                 <CheatEntry>
                   <ID>105302</ID>
                   <Description>"pBase - [ Color Silver Don't Chance ]"</Description>
-                  <LastState Value="00007FF734EECE08" RealAddress="1891B6C9070"/>
+                  <LastState Value="00007FF734EECE08" RealAddress="24ECA7F9070"/>
                   <ShowAsHex>1</ShowAsHex>
                   <ShowAsSigned>0</ShowAsSigned>
                   <Color>C0C0C0</Color>
@@ -68,7 +68,7 @@ luacall(cycleFullCompact(nil,false))
                   <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">0:No/Off/Disabled
 1:Yes/On/Enabled
 </DropDownList>
-                  <LastState Value="0" RealAddress="1891245CE48"/>
+                  <LastState Value="0" RealAddress="24EDF4CCE48"/>
                   <Color>808000</Color>
                   <VariableType>Byte</VariableType>
                   <Address>[pBase]+E18</Address>
@@ -82,7 +82,7 @@ luacall(cycleFullCompact(nil,false))
                   <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">2:No/Off/Disabled
 4:Yes/On/Enabled
 </DropDownList>
-                  <LastState Value="2" RealAddress="188BE5FD758"/>
+                  <LastState Value="2" RealAddress="24F382CEEF8"/>
                   <Color>808000</Color>
                   <VariableType>Byte</VariableType>
                   <Address>[pBase]+E18</Address>
@@ -100,7 +100,7 @@ luacall(cycleFullCompact(nil,false))
                   <DropDownList DescriptionOnly="1" DisplayValueAsItem="1">0:No/Off/Disabled
 1:Yes/On/Enabled
 </DropDownList>
-                  <LastState Value="0" RealAddress="1888A3E395D"/>
+                  <LastState Value="0" RealAddress="24EE8E90EBD"/>
                   <Color>808000</Color>
                   <VariableType>Byte</VariableType>
                   <Address>[pBase]+E18</Address>
@@ -121,7 +121,7 @@ luacall(cycleFullCompact(nil,false))
                 <CheatEntry>
                   <ID>105415</ID>
                   <Description>"Player Name"</Description>
-                  <LastState RealAddress="188B81D86F0"/>
+                  <LastState RealAddress="2518C5FBEC0"/>
                   <Color>4080FF</Color>
                   <VariableType>String</VariableType>
                   <Length>10</Length>
@@ -142,7 +142,7 @@ luacall(cycleFullCompact(nil,false))
                 <CheatEntry>
                   <ID>105416</ID>
                   <Description>"Player Level"</Description>
-                  <LastState Value="53" RealAddress="189BB37D6F8"/>
+                  <LastState Value="55" RealAddress="24F2A459778"/>
                   <Color>0000FF</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>[pBase]+E18</Address>
@@ -158,7 +158,7 @@ luacall(cycleFullCompact(nil,false))
                 <CheatEntry>
                   <ID>105408</ID>
                   <Description>"Char Level"</Description>
-                  <LastState Value="60" RealAddress="189BB37D6C8"/>
+                  <LastState Value="60" RealAddress="24F2A459748"/>
                   <Color>0000FF</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>[pBase]+E18</Address>
@@ -174,7 +174,7 @@ luacall(cycleFullCompact(nil,false))
                 <CheatEntry>
                   <ID>105406</ID>
                   <Description>"Char ID"</Description>
-                  <LastState Value="5301" RealAddress="189BB37D6B8"/>
+                  <LastState Value="1501" RealAddress="24F2A459738"/>
                   <Color>8080FF</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>[pBase]+E18</Address>
@@ -190,7 +190,7 @@ luacall(cycleFullCompact(nil,false))
                 <CheatEntry>
                   <ID>105407</ID>
                   <Description>"UID"</Description>
-                  <LastState Value="2000731196188" RealAddress="189BB37D6C0"/>
+                  <LastState Value="2000731196188" RealAddress="24F2A459740"/>
                   <Color>8080FF</Color>
                   <VariableType>8 Bytes</VariableType>
                   <Address>[pBase]+E18</Address>
@@ -206,7 +206,7 @@ luacall(cycleFullCompact(nil,false))
                 <CheatEntry>
                   <ID>105409</ID>
                   <Description>"Melee Weapon ID"</Description>
-                  <LastState Value="10204" RealAddress="189BB37D6D0"/>
+                  <LastState Value="10303" RealAddress="24F2A459750"/>
                   <Color>8080FF</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>[pBase]+E18</Address>
@@ -222,7 +222,7 @@ luacall(cycleFullCompact(nil,false))
                 <CheatEntry>
                   <ID>105410</ID>
                   <Description>"Melee Weapon Level"</Description>
-                  <LastState Value="30" RealAddress="189BB37D6D4"/>
+                  <LastState Value="30" RealAddress="24F2A459754"/>
                   <Color>0000FF</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>[pBase]+E18</Address>
@@ -238,7 +238,7 @@ luacall(cycleFullCompact(nil,false))
                 <CheatEntry>
                   <ID>105411</ID>
                   <Description>"Ranged Weapon ID"</Description>
-                  <LastState Value="20501" RealAddress="189BB37D6D8"/>
+                  <LastState Value="20501" RealAddress="24F2A459758"/>
                   <Color>8080FF</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>[pBase]+E18</Address>
@@ -254,7 +254,7 @@ luacall(cycleFullCompact(nil,false))
                 <CheatEntry>
                   <ID>105412</ID>
                   <Description>"Ranged Weapon Level"</Description>
-                  <LastState Value="20" RealAddress="189BB37D6DC"/>
+                  <LastState Value="50" RealAddress="24F2A45975C"/>
                   <Color>0000FF</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>[pBase]+E18</Address>
@@ -270,7 +270,7 @@ luacall(cycleFullCompact(nil,false))
                 <CheatEntry>
                   <ID>105413</ID>
                   <Description>"Ultra Weapon ID"</Description>
-                  <LastState Value="0" RealAddress="189BB37D6E0"/>
+                  <LastState Value="0" RealAddress="24F2A459760"/>
                   <Color>8080FF</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>[pBase]+E18</Address>
@@ -286,7 +286,7 @@ luacall(cycleFullCompact(nil,false))
                 <CheatEntry>
                   <ID>105414</ID>
                   <Description>"Ultra Weapon Level"</Description>
-                  <LastState Value="0" RealAddress="189BB37D6E4"/>
+                  <LastState Value="0" RealAddress="24F2A459764"/>
                   <Color>0000FF</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>[pBase]+E18</Address>
@@ -308,7 +308,7 @@ luacall(cycleFullCompact(nil,false))
                 <CheatEntry>
                   <ID>105404</ID>
                   <Description>"Monster Num In Map"</Description>
-                  <LastState Value="0" RealAddress="189910C3238"/>
+                  <LastState Value="186" RealAddress="24E933E0798"/>
                   <Color>0000FF</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>[pBase]+E18</Address>
@@ -331,7 +331,7 @@ luacall(cycleFullCompact(nil,false))
                 <CheatEntry>
                   <ID>105333</ID>
                   <Description>"CTD - [ Animation Speed ]"</Description>
-                  <LastState Value="1" RealAddress="1888A3E2BA8"/>
+                  <LastState Value="1" RealAddress="24EE8E90108"/>
                   <Color>0000FF</Color>
                   <VariableType>Float</VariableType>
                   <Address>[pBase]+E18</Address>
@@ -346,7 +346,7 @@ luacall(cycleFullCompact(nil,false))
                 <CheatEntry>
                   <ID>105386</ID>
                   <Description>"Gravity Scale"</Description>
-                  <LastState Value="2.799999952" RealAddress="188C21FC190"/>
+                  <LastState Value="2.799999952" RealAddress="250DB9BB1A0"/>
                   <Color>0000FF</Color>
                   <VariableType>Float</VariableType>
                   <Address>[pBase]+E18</Address>
@@ -362,7 +362,7 @@ luacall(cycleFullCompact(nil,false))
                 <CheatEntry>
                   <ID>105335</ID>
                   <Description>"Player Slide Atttirbute Normal Walk Speed"</Description>
-                  <LastState Value="500" RealAddress="1888A3E3890"/>
+                  <LastState Value="500" RealAddress="24EE8E90DF0"/>
                   <Color>0000FF</Color>
                   <VariableType>Float</VariableType>
                   <Address>[pBase]+E18</Address>
@@ -377,7 +377,7 @@ luacall(cycleFullCompact(nil,false))
                 <CheatEntry>
                   <ID>105336</ID>
                   <Description>"Player Slide Atttirbute Crouch Walk Speed"</Description>
-                  <LastState Value="160" RealAddress="1888A3E3894"/>
+                  <LastState Value="160" RealAddress="24EE8E90DF4"/>
                   <Color>0000FF</Color>
                   <VariableType>Float</VariableType>
                   <Address>[pBase]+E18</Address>
@@ -392,7 +392,7 @@ luacall(cycleFullCompact(nil,false))
                 <CheatEntry>
                   <ID>105350</ID>
                   <Description>"Speed Rate"</Description>
-                  <LastState Value="0" RealAddress="1888A3E3950"/>
+                  <LastState Value="1" RealAddress="24EE8E90EB0"/>
                   <Color>0000FF</Color>
                   <VariableType>Float</VariableType>
                   <Address>[pBase]+E18</Address>
@@ -407,7 +407,7 @@ luacall(cycleFullCompact(nil,false))
                 <CheatEntry>
                   <ID>105351</ID>
                   <Description>"Sprint Rate"</Description>
-                  <LastState Value="5" Activated="1" RealAddress="1888A3E3954"/>
+                  <LastState Value="5" Activated="1" RealAddress="24EE8E90EB4"/>
                   <Color>0000FF</Color>
                   <VariableType>Float</VariableType>
                   <Address>[pBase]+E18</Address>
@@ -422,7 +422,7 @@ luacall(cycleFullCompact(nil,false))
                 <CheatEntry>
                   <ID>105384</ID>
                   <Description>"Exp Rate"</Description>
-                  <LastState Value="999" Activated="1" RealAddress="18AECD3A278"/>
+                  <LastState Value="999" Activated="1" RealAddress="251C7E61638"/>
                   <Color>0000FF</Color>
                   <VariableType>Float</VariableType>
                   <Address>[pBase]+E18</Address>
@@ -446,7 +446,7 @@ luacall(cycleFullCompact(nil,false))
                     <CheatEntry>
                       <ID>105340</ID>
                       <Description>"Weapon ID"</Description>
-                      <LastState Value="10204" RealAddress="189CABB2160"/>
+                      <LastState Value="10303" RealAddress="251D06AFA20"/>
                       <Color>8080FF</Color>
                       <VariableType>4 Bytes</VariableType>
                       <Address>[pBase]+E18</Address>
@@ -462,7 +462,7 @@ luacall(cycleFullCompact(nil,false))
                     <CheatEntry>
                       <ID>105342</ID>
                       <Description>"[1] Equip ATKS"</Description>
-                      <LastState Value="411249184" Activated="1" RealAddress="188FA481B48"/>
+                      <LastState Value="123249184" Activated="1" RealAddress="25106842138"/>
                       <Color>0000FF</Color>
                       <VariableType>Float</VariableType>
                       <Address>[pBase]+E18</Address>
@@ -479,7 +479,7 @@ luacall(cycleFullCompact(nil,false))
                     <CheatEntry>
                       <ID>105343</ID>
                       <Description>"[2] Equip ATKS"</Description>
-                      <LastState Value="411249184" Activated="1" RealAddress="188FA481B5C"/>
+                      <LastState Value="123249184" Activated="1" RealAddress="2510684214C"/>
                       <Color>0000FF</Color>
                       <VariableType>Float</VariableType>
                       <Address>[pBase]+E18</Address>
@@ -506,7 +506,7 @@ luacall(cycleFullCompact(nil,false))
                     <CheatEntry>
                       <ID>105388</ID>
                       <Description>"Weapon ID"</Description>
-                      <LastState Value="20501" RealAddress="188B6AB5460"/>
+                      <LastState Value="20501" RealAddress="24E80323AE0"/>
                       <ShowAsSigned>0</ShowAsSigned>
                       <Color>8080FF</Color>
                       <VariableType>4 Bytes</VariableType>
@@ -523,7 +523,7 @@ luacall(cycleFullCompact(nil,false))
                     <CheatEntry>
                       <ID>105389</ID>
                       <Description>"[1] Equip ATKS"</Description>
-                      <LastState Value="528298816" Activated="1" RealAddress="188FA485298"/>
+                      <LastState Value="98816" Activated="1" RealAddress="2510684FFB8"/>
                       <ShowAsSigned>0</ShowAsSigned>
                       <Color>0000FF</Color>
                       <VariableType>Float</VariableType>
@@ -541,7 +541,7 @@ luacall(cycleFullCompact(nil,false))
                     <CheatEntry>
                       <ID>105390</ID>
                       <Description>"[2] Equip ATKS"</Description>
-                      <LastState Value="528298816" Activated="1" RealAddress="188FA4852AC"/>
+                      <LastState Value="98816" Activated="1" RealAddress="2510684FFCC"/>
                       <ShowAsSigned>0</ShowAsSigned>
                       <Color>0000FF</Color>
                       <VariableType>Float</VariableType>
@@ -550,6 +550,69 @@ luacall(cycleFullCompact(nil,false))
                         <Offset>1C</Offset>
                         <Offset>690</Offset>
                         <Offset>A98</Offset>
+                        <Offset>320</Offset>
+                        <Offset>30</Offset>
+                        <Offset>0</Offset>
+                        <Offset>38</Offset>
+                      </Offsets>
+                    </CheatEntry>
+                  </CheatEntries>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>105529</ID>
+                  <Description>"← Special Weapon"</Description>
+                  <Options moHideChildren="1" moManualExpandCollapse="1"/>
+                  <LastState Value="" Activated="1" RealAddress="00000000"/>
+                  <Color>800040</Color>
+                  <GroupHeader>1</GroupHeader>
+                  <CheatEntries>
+                    <CheatEntry>
+                      <ID>105530</ID>
+                      <Description>"Weapon ID"</Description>
+                      <LastState Value="150101" RealAddress="251851C7AA0"/>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>8080FF</Color>
+                      <VariableType>4 Bytes</VariableType>
+                      <Address>[pBase]+E18</Address>
+                      <Offsets>
+                        <Offset>6E0</Offset>
+                        <Offset>AA0</Offset>
+                        <Offset>320</Offset>
+                        <Offset>30</Offset>
+                        <Offset>0</Offset>
+                        <Offset>38</Offset>
+                      </Offsets>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>105531</ID>
+                      <Description>"[1] Equip ATKS"</Description>
+                      <LastState Value="4810999" Activated="1" RealAddress="2510684D678"/>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>0000FF</Color>
+                      <VariableType>Float</VariableType>
+                      <Address>[pBase]+E18</Address>
+                      <Offsets>
+                        <Offset>8</Offset>
+                        <Offset>690</Offset>
+                        <Offset>AA0</Offset>
+                        <Offset>320</Offset>
+                        <Offset>30</Offset>
+                        <Offset>0</Offset>
+                        <Offset>38</Offset>
+                      </Offsets>
+                    </CheatEntry>
+                    <CheatEntry>
+                      <ID>105532</ID>
+                      <Description>"[2] Equip ATKS"</Description>
+                      <LastState Value="4810999" Activated="1" RealAddress="2510684D68C"/>
+                      <ShowAsSigned>0</ShowAsSigned>
+                      <Color>0000FF</Color>
+                      <VariableType>Float</VariableType>
+                      <Address>[pBase]+E18</Address>
+                      <Offsets>
+                        <Offset>1C</Offset>
+                        <Offset>690</Offset>
+                        <Offset>AA0</Offset>
                         <Offset>320</Offset>
                         <Offset>30</Offset>
                         <Offset>0</Offset>
@@ -569,7 +632,7 @@ luacall(cycleFullCompact(nil,false))
                     <CheatEntry>
                       <ID>105353</ID>
                       <Description>"Total Kill Count"</Description>
-                      <LastState Value="0" RealAddress="188B5974CF0"/>
+                      <LastState Value="1240" RealAddress="24E8EDA3A90"/>
                       <Color>0000FF</Color>
                       <VariableType>4 Bytes</VariableType>
                       <Address>[pBase]+E18</Address>
@@ -585,7 +648,7 @@ luacall(cycleFullCompact(nil,false))
                     <CheatEntry>
                       <ID>105354</ID>
                       <Description>"Melee Kill Count"</Description>
-                      <LastState Value="0" RealAddress="188B5974CF4"/>
+                      <LastState Value="1240" RealAddress="24E8EDA3A94"/>
                       <Color>0000FF</Color>
                       <VariableType>4 Bytes</VariableType>
                       <Address>[pBase]+E18</Address>
@@ -601,7 +664,7 @@ luacall(cycleFullCompact(nil,false))
                     <CheatEntry>
                       <ID>105355</ID>
                       <Description>"Ranged Kill Count"</Description>
-                      <LastState Value="0" RealAddress="188B5974CF8"/>
+                      <LastState Value="0" RealAddress="24E8EDA3A98"/>
                       <Color>0000FF</Color>
                       <VariableType>4 Bytes</VariableType>
                       <Address>[pBase]+E18</Address>
@@ -617,7 +680,7 @@ luacall(cycleFullCompact(nil,false))
                     <CheatEntry>
                       <ID>105356</ID>
                       <Description>"Skill Kill Count"</Description>
-                      <LastState Value="0" RealAddress="188B5974CFC"/>
+                      <LastState Value="0" RealAddress="24E8EDA3A9C"/>
                       <Color>0000FF</Color>
                       <VariableType>4 Bytes</VariableType>
                       <Address>[pBase]+E18</Address>
@@ -633,7 +696,7 @@ luacall(cycleFullCompact(nil,false))
                     <CheatEntry>
                       <ID>105357</ID>
                       <Description>"Summon Kill Count"</Description>
-                      <LastState Value="0" RealAddress="188B5974D00"/>
+                      <LastState Value="0" RealAddress="24E8EDA3AA0"/>
                       <Color>0000FF</Color>
                       <VariableType>4 Bytes</VariableType>
                       <Address>[pBase]+E18</Address>
@@ -649,7 +712,7 @@ luacall(cycleFullCompact(nil,false))
                     <CheatEntry>
                       <ID>105358</ID>
                       <Description>"Support Kill Count"</Description>
-                      <LastState Value="0" RealAddress="188B5974D04"/>
+                      <LastState Value="0" RealAddress="24E8EDA3AA4"/>
                       <Color>0000FF</Color>
                       <VariableType>4 Bytes</VariableType>
                       <Address>[pBase]+E18</Address>
@@ -665,7 +728,7 @@ luacall(cycleFullCompact(nil,false))
                     <CheatEntry>
                       <ID>105359</ID>
                       <Description>"Final Damage"</Description>
-                      <LastState Value="0" RealAddress="188B5974D08"/>
+                      <LastState Value="1.209441485E11" RealAddress="24E8EDA3AA8"/>
                       <Color>0000FF</Color>
                       <VariableType>Float</VariableType>
                       <Address>[pBase]+E18</Address>
@@ -681,7 +744,7 @@ luacall(cycleFullCompact(nil,false))
                     <CheatEntry>
                       <ID>105360</ID>
                       <Description>"Melee Damage"</Description>
-                      <LastState Value="0" RealAddress="188B5974D0C"/>
+                      <LastState Value="1.209441485E11" RealAddress="24E8EDA3AAC"/>
                       <Color>0000FF</Color>
                       <VariableType>Float</VariableType>
                       <Address>[pBase]+E18</Address>
@@ -697,7 +760,7 @@ luacall(cycleFullCompact(nil,false))
                     <CheatEntry>
                       <ID>105361</ID>
                       <Description>"Ranged Damage"</Description>
-                      <LastState Value="0" RealAddress="188B5974D10"/>
+                      <LastState Value="0" RealAddress="24E8EDA3AB0"/>
                       <Color>0000FF</Color>
                       <VariableType>Float</VariableType>
                       <Address>[pBase]+E18</Address>
@@ -713,7 +776,7 @@ luacall(cycleFullCompact(nil,false))
                     <CheatEntry>
                       <ID>105362</ID>
                       <Description>"Skill Damage"</Description>
-                      <LastState Value="0" RealAddress="188B5974D14"/>
+                      <LastState Value="0" RealAddress="24E8EDA3AB4"/>
                       <Color>0000FF</Color>
                       <VariableType>Float</VariableType>
                       <Address>[pBase]+E18</Address>
@@ -729,7 +792,7 @@ luacall(cycleFullCompact(nil,false))
                     <CheatEntry>
                       <ID>105363</ID>
                       <Description>"Summon Damage"</Description>
-                      <LastState Value="0" RealAddress="188B5974D18"/>
+                      <LastState Value="0" RealAddress="24E8EDA3AB8"/>
                       <Color>0000FF</Color>
                       <VariableType>Float</VariableType>
                       <Address>[pBase]+E18</Address>
@@ -745,7 +808,7 @@ luacall(cycleFullCompact(nil,false))
                     <CheatEntry>
                       <ID>105364</ID>
                       <Description>"Support Damage"</Description>
-                      <LastState Value="0" RealAddress="188B5974D1C"/>
+                      <LastState Value="0" RealAddress="24E8EDA3ABC"/>
                       <Color>0000FF</Color>
                       <VariableType>Float</VariableType>
                       <Address>[pBase]+E18</Address>
@@ -761,7 +824,7 @@ luacall(cycleFullCompact(nil,false))
                     <CheatEntry>
                       <ID>105365</ID>
                       <Description>"Taked Damage"</Description>
-                      <LastState Value="0" RealAddress="188B5974D20"/>
+                      <LastState Value="289" RealAddress="24E8EDA3AC0"/>
                       <Color>0000FF</Color>
                       <VariableType>Float</VariableType>
                       <Address>[pBase]+E18</Address>
@@ -777,7 +840,7 @@ luacall(cycleFullCompact(nil,false))
                     <CheatEntry>
                       <ID>105366</ID>
                       <Description>"Taked Shield Damage"</Description>
-                      <LastState Value="0" RealAddress="188B5974D24"/>
+                      <LastState Value="289" RealAddress="24E8EDA3AC4"/>
                       <Color>0000FF</Color>
                       <VariableType>Float</VariableType>
                       <Address>[pBase]+E18</Address>
@@ -793,7 +856,7 @@ luacall(cycleFullCompact(nil,false))
                     <CheatEntry>
                       <ID>105367</ID>
                       <Description>"Give Healing"</Description>
-                      <LastState Value="0" RealAddress="188B5974D28"/>
+                      <LastState Value="0" RealAddress="24E8EDA3AC8"/>
                       <Color>0000FF</Color>
                       <VariableType>Float</VariableType>
                       <Address>[pBase]+E18</Address>
@@ -809,7 +872,7 @@ luacall(cycleFullCompact(nil,false))
                     <CheatEntry>
                       <ID>105368</ID>
                       <Description>"Taked Heal"</Description>
-                      <LastState Value="0" RealAddress="188B5974D2C"/>
+                      <LastState Value="396" RealAddress="24E8EDA3ACC"/>
                       <Color>0000FF</Color>
                       <VariableType>Float</VariableType>
                       <Address>[pBase]+E18</Address>
@@ -825,7 +888,7 @@ luacall(cycleFullCompact(nil,false))
                     <CheatEntry>
                       <ID>105369</ID>
                       <Description>"Sp Consume"</Description>
-                      <LastState Value="0" RealAddress="188B5974D30"/>
+                      <LastState Value="0" RealAddress="24E8EDA3AD0"/>
                       <Color>0000FF</Color>
                       <VariableType>4 Bytes</VariableType>
                       <Address>[pBase]+E18</Address>
@@ -841,7 +904,7 @@ luacall(cycleFullCompact(nil,false))
                     <CheatEntry>
                       <ID>105370</ID>
                       <Description>"Bullet Consume"</Description>
-                      <LastState Value="0" RealAddress="188B5974D34"/>
+                      <LastState Value="0" RealAddress="24E8EDA3AD4"/>
                       <Color>0000FF</Color>
                       <VariableType>4 Bytes</VariableType>
                       <Address>[pBase]+E18</Address>
@@ -857,7 +920,7 @@ luacall(cycleFullCompact(nil,false))
                     <CheatEntry>
                       <ID>105371</ID>
                       <Description>"Max Damage"</Description>
-                      <LastState Value="0" RealAddress="188B5974D38"/>
+                      <LastState Value="402294400" RealAddress="24E8EDA3AD8"/>
                       <Color>0000FF</Color>
                       <VariableType>Float</VariableType>
                       <Address>[pBase]+E18</Address>
@@ -873,7 +936,7 @@ luacall(cycleFullCompact(nil,false))
                     <CheatEntry>
                       <ID>105372</ID>
                       <Description>"Bullet Jump Count"</Description>
-                      <LastState Value="0" RealAddress="188B5974D3C"/>
+                      <LastState Value="2" RealAddress="24E8EDA3ADC"/>
                       <Color>0000FF</Color>
                       <VariableType>4 Bytes</VariableType>
                       <Address>[pBase]+E18</Address>
@@ -889,7 +952,7 @@ luacall(cycleFullCompact(nil,false))
                     <CheatEntry>
                       <ID>105373</ID>
                       <Description>"Fly Shoot Count"</Description>
-                      <LastState Value="0" RealAddress="188B5974D40"/>
+                      <LastState Value="1" RealAddress="24E8EDA3AE0"/>
                       <Color>0000FF</Color>
                       <VariableType>4 Bytes</VariableType>
                       <Address>[pBase]+E18</Address>
@@ -905,7 +968,7 @@ luacall(cycleFullCompact(nil,false))
                     <CheatEntry>
                       <ID>105374</ID>
                       <Description>"Max Combo Count"</Description>
-                      <LastState Value="0" RealAddress="188B5974D44"/>
+                      <LastState Value="14" RealAddress="24E8EDA3AE4"/>
                       <Color>0000FF</Color>
                       <VariableType>4 Bytes</VariableType>
                       <Address>[pBase]+E18</Address>
@@ -921,7 +984,7 @@ luacall(cycleFullCompact(nil,false))
                     <CheatEntry>
                       <ID>105375</ID>
                       <Description>"Chest Opened Count"</Description>
-                      <LastState Value="0" RealAddress="188B5974D48"/>
+                      <LastState Value="0" RealAddress="24E8EDA3AE8"/>
                       <Color>0000FF</Color>
                       <VariableType>4 Bytes</VariableType>
                       <Address>[pBase]+E18</Address>
@@ -937,7 +1000,7 @@ luacall(cycleFullCompact(nil,false))
                     <CheatEntry>
                       <ID>105376</ID>
                       <Description>"Breakable Item Count"</Description>
-                      <LastState Value="0" RealAddress="188B5974D4C"/>
+                      <LastState Value="21" RealAddress="24E8EDA3AEC"/>
                       <Color>0000FF</Color>
                       <VariableType>4 Bytes</VariableType>
                       <Address>[pBase]+E18</Address>
@@ -960,14 +1023,14 @@ luacall(cycleFullCompact(nil,false))
           <ID>105298</ID>
           <Description>"+++ SCRIPT +++ "</Description>
           <Options moHideChildren="1"/>
-          <LastState Value="" Activated="1" RealAddress="00000000"/>
+          <LastState Value="" RealAddress="00000000"/>
           <Color>FF0000</Color>
           <GroupHeader>1</GroupHeader>
           <CheatEntries>
             <CheatEntry>
               <ID>105327</ID>
               <Description>"Game Data"</Description>
-              <LastState Activated="1"/>
+              <LastState/>
               <Color>FF0000</Color>
               <VariableType>Auto Assembler Script</VariableType>
               <AssemblerScript>{ Game   : EM-Win64-Shipping.exe
@@ -1046,7 +1109,7 @@ EM-Win64-Shipping.exe+8F0170: 74 59                    - je EM-Win64-Shipping.ex
             <CheatEntry>
               <ID>105461</ID>
               <Description>"Skill Level Max / Extra Range / No Cooldown"</Description>
-              <LastState Activated="1"/>
+              <LastState/>
               <Color>804000</Color>
               <VariableType>Auto Assembler Script</VariableType>
               <AssemblerScript>{ Game   : EM-Win64-Shipping.exe
@@ -1129,7 +1192,6 @@ dealloc(newmem)
                 <CheatEntry>
                   <ID>105515</ID>
                   <Description>"Extra Range"</Description>
-                  <LastState Value="5" RealAddress="7FF72EF30030"/>
                   <ShowAsSigned>0</ShowAsSigned>
                   <VariableType>Float</VariableType>
                   <Address>val_exrange</Address>
@@ -1469,7 +1531,7 @@ nop
     <CheatEntry>
       <ID>105509</ID>
       <Description>"Player Speed"</Description>
-      <LastState Value="1" RealAddress="1888A3E2BA8"/>
+      <LastState Value="1" RealAddress="24EE8E90108"/>
       <ShowAsSigned>0</ShowAsSigned>
       <VariableType>Float</VariableType>
       <Address>"EM-Win64-Shipping.exe"+06FD7578</Address>
@@ -1485,7 +1547,7 @@ nop
     <CheatEntry>
       <ID>105514</ID>
       <Description>"Walk Speed"</Description>
-      <LastState Value="500" RealAddress="1888A3E3890"/>
+      <LastState Value="500" RealAddress="24EE8E90DF0"/>
       <ShowAsSigned>0</ShowAsSigned>
       <VariableType>Float</VariableType>
       <Address>"EM-Win64-Shipping.exe"+06FD7578</Address>
@@ -1501,7 +1563,7 @@ nop
     <CheatEntry>
       <ID>105511</ID>
       <Description>"Crouch Speed"</Description>
-      <LastState Value="160" RealAddress="1888A3E3894"/>
+      <LastState Value="160" RealAddress="24EE8E90DF4"/>
       <ShowAsSigned>0</ShowAsSigned>
       <VariableType>Float</VariableType>
       <Address>"EM-Win64-Shipping.exe"+06FD7578</Address>
@@ -1608,7 +1670,7 @@ dealloc(newmem)
       <ID>105517</ID>
       <Description>"Player Attributes (Encoded)"</Description>
       <Options moHideChildren="1" moDeactivateChildrenAsWell="1"/>
-      <LastState Activated="1"/>
+      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : EM-Win64-Shipping.exe
   Version: 
@@ -1696,7 +1758,6 @@ dealloc(newmem)
         <CheatEntry>
           <ID>105518</ID>
           <Description>"HP"</Description>
-          <LastState Value="0F7AACC3" RealAddress="188C9883968"/>
           <ShowAsHex>1</ShowAsHex>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
@@ -1708,7 +1769,6 @@ dealloc(newmem)
         <CheatEntry>
           <ID>105521</ID>
           <Description>"MHP"</Description>
-          <LastState Value="0F7AACC3" RealAddress="188C9883970"/>
           <ShowAsHex>1</ShowAsHex>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
@@ -1720,7 +1780,6 @@ dealloc(newmem)
         <CheatEntry>
           <ID>105520</ID>
           <Description>"Shield"</Description>
-          <LastState Value="0F7AA09E" RealAddress="188C98839E8"/>
           <ShowAsHex>1</ShowAsHex>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
@@ -1732,7 +1791,6 @@ dealloc(newmem)
         <CheatEntry>
           <ID>105522</ID>
           <Description>"Max Shield"</Description>
-          <LastState Value="0F7AA09E" RealAddress="188C98839F0"/>
           <ShowAsHex>1</ShowAsHex>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
@@ -1744,7 +1802,6 @@ dealloc(newmem)
         <CheatEntry>
           <ID>105519</ID>
           <Description>"SP"</Description>
-          <LastState Value="0F7AA83B" RealAddress="188C9883A28"/>
           <ShowAsHex>1</ShowAsHex>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
@@ -1756,7 +1813,6 @@ dealloc(newmem)
         <CheatEntry>
           <ID>105523</ID>
           <Description>"MSP"</Description>
-          <LastState Value="0F7AA83B" RealAddress="188C9883A30"/>
           <ShowAsHex>1</ShowAsHex>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>4 Bytes</VariableType>
@@ -1909,6 +1965,136 @@ dealloc(newmem)
 "EM-Win64-Shipping.exe"+201AC4A: C3                 - ret 
 }
 </AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>105528</ID>
+      <Description>"Mob Vaccum"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+
+aobscanmodule(vaccum,EM-Win64-Shipping.exe,0F 10 48 10 0F 11 8F C0 06 00 00) // injection signature (should be unique)
+alloc(newmem,$1000,vaccum)
+
+alloc(cordBase,8)       // global symbol: saved pointer (64-bit)
+alloc(offsets,16)       // global symbol: offset vector (4 floats: X, Y, Z, pad)
+registersymbol(cordBase)
+registersymbol(offsets)
+
+label(code)
+label(mob)
+label(return)
+
+cordBase:
+dq 0                   // initialize saved pointer (64-bit)
+
+offsets:
+dd (float)300              // offsets[0] = offset X (float)  -- change these values at runtime
+dd (float)300.0                // offsets[1] = offset Y (float)
+dd (float)0.0                 // offsets[2] = offset Z (float)
+dd (float)0                 // offsets[3] = padding
+
+newmem:
+// cmp [rdi+128],0
+    cmp [rdi+F8],1
+    jne mob
+    cmp [rdi+380],0 // skip team
+    jg code
+    cmp [rdi+58],0
+    jg code
+    cmp [rdi+74],0
+    jg code
+    mov [cordBase], rax      // save current rax pointer into cordBase (64-bit)
+mob:
+   cmp [rdi+558],0
+   je code
+    cmp [cordBase],0
+    je code
+
+      //teleport mobs logic
+    mov rdx, [cordBase]
+
+
+    cmp rax, rdx
+    je code
+
+
+     //  X
+    movss xmm0, dword ptr [rdx+0x10]
+    addss xmm0, dword ptr [offsets]
+    movss dword ptr [rax+0x10], xmm0
+
+   //  Y
+    movss xmm0, dword ptr [rdx+0x14]
+    addss xmm0, dword ptr [offsets+4]
+    movss dword ptr [rax+0x14], xmm0
+
+    //  Z
+    movss xmm0, dword ptr [rdx+0x18]
+    addss xmm0, dword ptr [offsets+8]
+    movss dword ptr [rax+0x18], xmm0
+
+code:
+    movups xmm1,[rax+0x10]
+    movups [rdi+000006C0],xmm1
+    jmp return
+
+vaccum:
+    jmp newmem
+    nop 6
+return:
+registersymbol(vaccum)
+
+[DISABLE]
+
+vaccum:
+    db 0F 10 48 10 0F 11 8F C0 06 00 00   // restore original bytes
+
+unregistersymbol(*)
+
+
+dealloc(*)
+
+
+{
+// ORIGINAL CODE - INJECTION POINT: EM-Win64-Shipping.exe+3E23BCB
+
+EM-Win64-Shipping.exe+3E23BA5: 48 85 C0              - test rax,rax
+EM-Win64-Shipping.exe+3E23BA8: 74 37                 - je EM-Win64-Shipping.exe+3E23BE1
+EM-Win64-Shipping.exe+3E23BAA: 48 8B 80 60 01 00 00  - mov rax,[rax+00000160]
+EM-Win64-Shipping.exe+3E23BB1: 48 85 C0              - test rax,rax
+EM-Win64-Shipping.exe+3E23BB4: 74 08                 - je EM-Win64-Shipping.exe+3E23BBE
+EM-Win64-Shipping.exe+3E23BB6: 48 05 C0 01 00 00     - add rax,000001C0
+EM-Win64-Shipping.exe+3E23BBC: EB 03                 - jmp EM-Win64-Shipping.exe+3E23BC1
+EM-Win64-Shipping.exe+3E23BBE: 49 8B C4              - mov rax,r12
+EM-Win64-Shipping.exe+3E23BC1: 0F 10 00              - movups xmm0,[rax]
+EM-Win64-Shipping.exe+3E23BC4: 0F 11 87 B0 06 00 00  - movups [rdi+000006B0],xmm0
+// ---------- INJECTING HERE ----------
+EM-Win64-Shipping.exe+3E23BCB: 0F 10 48 10           - movups xmm1,[rax+10]
+// ---------- DONE INJECTING  ----------
+EM-Win64-Shipping.exe+3E23BCF: 0F 11 8F C0 06 00 00  - movups [rdi+000006C0],xmm1
+EM-Win64-Shipping.exe+3E23BD6: 0F 10 40 20           - movups xmm0,[rax+20]
+EM-Win64-Shipping.exe+3E23BDA: 0F 11 87 D0 06 00 00  - movups [rdi+000006D0],xmm0
+EM-Win64-Shipping.exe+3E23BE1: 49 8B 56 20           - mov rdx,[r14+20]
+EM-Win64-Shipping.exe+3E23BE5: 48 8D 8F 98 02 00 00  - lea rcx,[rdi+00000298]
+EM-Win64-Shipping.exe+3E23BEC: E8 EF 3E 02 00        - call EM-Win64-Shipping.exe+3E47AE0
+EM-Win64-Shipping.exe+3E23BF1: 48 63 8F 90 02 00 00  - movsxd  rcx,dword ptr [rdi+00000290]
+EM-Win64-Shipping.exe+3E23BF8: 33 DB                 - xor ebx,ebx
+EM-Win64-Shipping.exe+3E23BFA: B8 01 00 00 00        - mov eax,00000001
+EM-Win64-Shipping.exe+3E23BFF: 44 8B CB              - mov r9d,ebx
+}
+
+
+</AssemblerScript>
+      <Hotkeys>
+        <Hotkey OnlyWhileDown="1">
+          <Action>Toggle Activation</Action>
+          <Keys>
+            <Key>107</Key>
+          </Keys>
+          <ID>0</ID>
+        </Hotkey>
+      </Hotkeys>
     </CheatEntry>
   </CheatEntries>
   <UserdefinedSymbols/>

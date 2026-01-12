@@ -2,30 +2,9 @@
 <CheatTable CheatEngineTableVersion="46">
   <CheatEntries>
     <CheatEntry>
-      <ID>0</ID>
-      <Description>"No description"</Description>
-      <LastState Value="335" RealAddress="21515C00720"/>
-      <VariableType>4 Bytes</VariableType>
-      <Address>21515C00720</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>1</ID>
-      <Description>"No description"</Description>
-      <LastState Value="335" RealAddress="2152FD97278"/>
-      <VariableType>4 Bytes</VariableType>
-      <Address>2152FD97278</Address>
-    </CheatEntry>
-    <CheatEntry>
-      <ID>2</ID>
-      <Description>"No description"</Description>
-      <LastState Value="335" RealAddress="2152FD97318"/>
-      <VariableType>4 Bytes</VariableType>
-      <Address>2152FD97318</Address>
-    </CheatEntry>
-    <CheatEntry>
       <ID>5</ID>
       <Description>"Sword Never Deplete"</Description>
-      <LastState Activated="1"/>
+      <LastState/>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>{ Game   : Nakara.exe
   Version: 
@@ -90,6 +69,204 @@ dealloc(newmem)
 2153343C32C: 89 10              - mov [rax],edx
 2153343C32E: 83 C1 01           - add ecx,01
 2153343C331: 8B C1              - mov eax,ecx
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>7</ID>
+      <Description>"Rings"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Nakara.exe
+  Version: 
+  Date   : 2026-01-06
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+//code from here to '[DISABLE]' will be used to enable the cheat
+
+
+ 
+ 
+aobscanmodule(INJ_RINGS,Nakara.exe,89 3C 98 FF 8D 20 42 00 00) // should be unique
+alloc(newmem,$1000,INJ_RINGS)
+
+label(code)
+label(return)
+label(Lck2)
+label(Lret)
+
+
+newmem:
+  push rcx
+  cmp r9,80
+  jne Lret
+  cmp r10,30
+  jne Lret
+  cmp r15,19
+  jne Lret
+  cmp r12,2
+  jne Lret
+  cmp rbx,3
+  jge Lck2
+  mov rcx,[rsp+18]
+  cmp rcx,3B
+  jne Lret
+  lea rcx,[rax+rbx*4]
+  mov [pt_rings],rcx
+  jmp Lret
+Lck2:
+  cmp rbx,6
+  jne Lret
+  mov rcx,[rsp+8]
+  cmp rcx,19
+  jne Lret
+  mov rcx,[rsp+40]
+  cmp rcx,5
+  jne Lret
+  lea rcx,[rax+rbx*4]
+  mov [pt_rings],rcx
+  jmp Lret
+Lret:
+  pop rcx
+  jmp code
+
+pt_rings:
+  dq 0
+registersymbol(pt_rings)
+
+code:
+  mov [rax+rbx*4],edi
+  dec [rbp+00004220]
+  jmp return
+
+INJ_RINGS:
+  jmp newmem
+  nop 4
+return:
+registersymbol(INJ_RINGS)
+
+[DISABLE]
+//code from here till the end of the code will be used to disable the cheat
+INJ_RINGS:
+  db 89 3C 98 FF 8D 20 42 00 00
+
+unregistersymbol(pt_rings)
+unregistersymbol(INJ_RINGS)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Nakara.exe+2242AD
+
+Nakara.exe+224287: 49 FF C5              - inc r13
+Nakara.exe+22428A: EB 08                 - jmp Nakara.exe+224294
+Nakara.exe+22428C: 41 8B 45 00           - mov eax,[r13+00]
+Nakara.exe+224290: 49 83 C5 04           - add r13,04
+Nakara.exe+224294: 48 63 D8              - movsxd  rbx,eax
+Nakara.exe+224297: 48 3B 5D A0           - cmp rbx,[rbp-60]
+Nakara.exe+22429B: 72 0C                 - jb Nakara.exe+2242A9
+Nakara.exe+22429D: 48 8D 0D D4 CA 4D 00  - lea rcx,[Nakara.exe+700D78]
+Nakara.exe+2242A4: E8 F7 80 21 00        - call Nakara.exe+43C3A0
+Nakara.exe+2242A9: 48 8B 45 90           - mov rax,[rbp-70]
+// ---------- INJECTING HERE ----------
+Nakara.exe+2242AD: 89 3C 98              - mov [rax+rbx*4],edi
+// ---------- DONE INJECTING  ----------
+Nakara.exe+2242B0: FF 8D 20 42 00 00     - dec [rbp+00004220]
+Nakara.exe+2242B6: E9 D4 E3 FF FF        - jmp Nakara.exe+22268F
+Nakara.exe+2242BB: 8B 9D 20 42 00 00     - mov ebx,[rbp+00004220]
+Nakara.exe+2242C1: FF CB                 - dec ebx
+Nakara.exe+2242C3: 81 FB 00 10 00 00     - cmp ebx,00001000
+Nakara.exe+2242C9: 72 12                 - jb Nakara.exe+2242DD
+Nakara.exe+2242CB: 48 8D 0D FE DA 4D 00  - lea rcx,[Nakara.exe+701DD0]
+Nakara.exe+2242D2: E8 C9 80 21 00        - call Nakara.exe+43C3A0
+Nakara.exe+2242D7: 41 B9 80 00 00 00     - mov r9d,00000080
+Nakara.exe+2242DD: 8B BC 9D 20 02 00 00  - mov edi,[rbp+rbx*4+00000220]
+}
+</AssemblerScript>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>8</ID>
+          <Description>"No description"</Description>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>4 Bytes</VariableType>
+          <Address>pt_rings</Address>
+          <Offsets>
+            <Offset>0</Offset>
+          </Offsets>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>10</ID>
+      <Description>"Rings2"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Nakara.exe
+  Version: 
+  Date   : 2026-01-06
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_RINGS2,Nakara.exe,FF 01 E9 AE 05 00 00) // should be unique
+alloc(newmem,$1000,INJ_RINGS2)
+
+label(code)
+label(return)
+
+newmem:
+  mov [rcx],FE
+code:
+  inc [rcx]
+  jmp Nakara.exe+228132
+  jmp return
+
+INJ_RINGS2:
+  jmp newmem
+  nop 2
+return:
+registersymbol(INJ_RINGS2)
+
+[DISABLE]
+
+INJ_RINGS2:
+  db FF 01 E9 AE 05 00 00
+
+unregistersymbol(INJ_RINGS2)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Nakara.exe+227B7D
+
+Nakara.exe+227B54: 41 8B 5D 00           - mov ebx,[r13+00]
+Nakara.exe+227B58: 49 83 C5 04           - add r13,04
+Nakara.exe+227B5C: 41 3B D9              - cmp ebx,r9d
+Nakara.exe+227B5F: 72 16                 - jb Nakara.exe+227B77
+Nakara.exe+227B61: 48 8D 0D 68 A2 4D 00  - lea rcx,[Nakara.exe+701DD0]
+Nakara.exe+227B68: E8 33 48 21 00        - call Nakara.exe+43C3A0
+Nakara.exe+227B6D: 45 33 DB              - xor r11d,r11d
+Nakara.exe+227B70: 4C 8D 05 89 84 DD FF  - lea r8,[Nakara.exe]
+Nakara.exe+227B77: 8B C3                 - mov eax,ebx
+Nakara.exe+227B79: 48 8B 0C C7           - mov rcx,[rdi+rax*8]
+// ---------- INJECTING HERE ----------
+Nakara.exe+227B7D: FF 01                 - inc [rcx]
+// ---------- DONE INJECTING  ----------
+Nakara.exe+227B7F: E9 AE 05 00 00        - jmp Nakara.exe+228132
+Nakara.exe+227B84: 41 83 FC 02           - cmp r12d,02
+Nakara.exe+227B88: 75 0A                 - jne Nakara.exe+227B94
+Nakara.exe+227B8A: 41 0F B6 5D 00        - movzx ebx,byte ptr [r13+00]
+Nakara.exe+227B8F: 49 FF C5              - inc r13
+Nakara.exe+227B92: EB 08                 - jmp Nakara.exe+227B9C
+Nakara.exe+227B94: 41 8B 5D 00           - mov ebx,[r13+00]
+Nakara.exe+227B98: 49 83 C5 04           - add r13,04
+Nakara.exe+227B9C: 81 FB 00 01 00 00     - cmp ebx,00000100
+Nakara.exe+227BA2: 72 16                 - jb Nakara.exe+227BBA
 }
 </AssemblerScript>
     </CheatEntry>
