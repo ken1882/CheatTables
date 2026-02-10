@@ -5,6 +5,7 @@
       <ID>356715</ID>
       <Description>"&lt;=== Auto attach to process  (For game version1.9)"</Description>
       <Options moDeactivateChildrenAsWell="1"/>
+      <LastState Activated="1"/>
       <Color>0000FF</Color>
       <VariableType>Auto Assembler Script</VariableType>
       <AssemblerScript>[ENABLE]
@@ -41,6 +42,7 @@ if monopipe~=nil then monopipe.Destroy() ; monopipe=nil end  -- mono disable
           <ID>795</ID>
           <Description>"Game Settings"</Description>
           <Options moHideChildren="1"/>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript Async="1">{  Game Executable   : Against the Storm.exe
    Author            : Tuuup!
@@ -148,6 +150,7 @@ Eremite.Model.Settings:GetGood+8: 48 89 4D F8                    - mov [rbp-08],
             <CheatEntry>
               <ID>455</ID>
               <Description>"base address settings"</Description>
+              <LastState Value="" RealAddress="00000000"/>
               <ShowAsSigned>1</ShowAsSigned>
               <GroupHeader>1</GroupHeader>
               <Address>gset</Address>
@@ -275,6 +278,7 @@ Eremite.Model.Settings:GetGood+8: 48 89 4D F8                    - mov [rbp-08],
                 <CheatEntry>
                   <ID>357132</ID>
                   <Description>"minFuelConsumptionRate"</Description>
+                  <Color>0000FF</Color>
                   <VariableType>Float</VariableType>
                   <Address>+2A0</Address>
                   <Offsets>
@@ -284,6 +288,7 @@ Eremite.Model.Settings:GetGood+8: 48 89 4D F8                    - mov [rbp-08],
                 <CheatEntry>
                   <ID>357133</ID>
                   <Description>"maxFuelConsumptionRate"</Description>
+                  <Color>0000FF</Color>
                   <VariableType>Float</VariableType>
                   <Address>+2A0</Address>
                   <Offsets>
@@ -311,6 +316,7 @@ Eremite.Model.Settings:GetGood+8: 48 89 4D F8                    - mov [rbp-08],
                 <CheatEntry>
                   <ID>357136</ID>
                   <Description>"minVillagerAbsoluteSpeed"</Description>
+                  <Color>00FF00</Color>
                   <VariableType>Float</VariableType>
                   <Address>+2A0</Address>
                   <Offsets>
@@ -320,6 +326,7 @@ Eremite.Model.Settings:GetGood+8: 48 89 4D F8                    - mov [rbp-08],
                 <CheatEntry>
                   <ID>357137</ID>
                   <Description>"maxVillagerAbsoluteSpeed"</Description>
+                  <Color>00FF00</Color>
                   <VariableType>Float</VariableType>
                   <Address>+2A0</Address>
                   <Offsets>
@@ -329,6 +336,7 @@ Eremite.Model.Settings:GetGood+8: 48 89 4D F8                    - mov [rbp-08],
                 <CheatEntry>
                   <ID>357138</ID>
                   <Description>"minVillagerBreakTimeRate"</Description>
+                  <Color>00FF00</Color>
                   <VariableType>Float</VariableType>
                   <Address>+2A0</Address>
                   <Offsets>
@@ -338,6 +346,7 @@ Eremite.Model.Settings:GetGood+8: 48 89 4D F8                    - mov [rbp-08],
                 <CheatEntry>
                   <ID>357139</ID>
                   <Description>"maxVillagerBreakTimeRate"</Description>
+                  <Color>00FF00</Color>
                   <VariableType>Float</VariableType>
                   <Address>+2A0</Address>
                   <Offsets>
@@ -347,6 +356,7 @@ Eremite.Model.Settings:GetGood+8: 48 89 4D F8                    - mov [rbp-08],
                 <CheatEntry>
                   <ID>357140</ID>
                   <Description>"minTraderIntervalRate"</Description>
+                  <Color>00FF00</Color>
                   <VariableType>Float</VariableType>
                   <Address>+2A0</Address>
                   <Offsets>
@@ -356,6 +366,7 @@ Eremite.Model.Settings:GetGood+8: 48 89 4D F8                    - mov [rbp-08],
                 <CheatEntry>
                   <ID>357141</ID>
                   <Description>"maxTraderIntervalRate"</Description>
+                  <Color>00FF00</Color>
                   <VariableType>Float</VariableType>
                   <Address>+2A0</Address>
                   <Offsets>
@@ -365,6 +376,7 @@ Eremite.Model.Settings:GetGood+8: 48 89 4D F8                    - mov [rbp-08],
                 <CheatEntry>
                   <ID>357142</ID>
                   <Description>"minNewcomersIntervalRate"</Description>
+                  <Color>00FF00</Color>
                   <VariableType>Float</VariableType>
                   <Address>+2A0</Address>
                   <Offsets>
@@ -374,6 +386,7 @@ Eremite.Model.Settings:GetGood+8: 48 89 4D F8                    - mov [rbp-08],
                 <CheatEntry>
                   <ID>357143</ID>
                   <Description>"maxNewcomersIntervalRate"</Description>
+                  <Color>00FF00</Color>
                   <VariableType>Float</VariableType>
                   <Address>+2A0</Address>
                   <Offsets>
@@ -383,6 +396,7 @@ Eremite.Model.Settings:GetGood+8: 48 89 4D F8                    - mov [rbp-08],
                 <CheatEntry>
                   <ID>357144</ID>
                   <Description>"minTradingSellValueRate"</Description>
+                  <Color>00FF00</Color>
                   <VariableType>Float</VariableType>
                   <Address>+2A0</Address>
                   <Offsets>
@@ -392,6 +406,7 @@ Eremite.Model.Settings:GetGood+8: 48 89 4D F8                    - mov [rbp-08],
                 <CheatEntry>
                   <ID>357145</ID>
                   <Description>"maxTradingSellValueRate"</Description>
+                  <Color>00FF00</Color>
                   <VariableType>Float</VariableType>
                   <Address>+2A0</Address>
                   <Offsets>
@@ -473,6 +488,7 @@ Eremite.Model.Settings:GetGood+8: 48 89 4D F8                    - mov [rbp-08],
                 <CheatEntry>
                   <ID>357154</ID>
                   <Description>"minMerchSlots"</Description>
+                  <Color>00FF00</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>+2A0</Address>
                   <Offsets>
@@ -482,6 +498,7 @@ Eremite.Model.Settings:GetGood+8: 48 89 4D F8                    - mov [rbp-08],
                 <CheatEntry>
                   <ID>357155</ID>
                   <Description>"maxMerchSlots"</Description>
+                  <Color>00FF00</Color>
                   <VariableType>4 Bytes</VariableType>
                   <Address>+2A0</Address>
                   <Offsets>
@@ -545,6 +562,7 @@ Eremite.Model.Settings:GetGood+8: 48 89 4D F8                    - mov [rbp-08],
                 <CheatEntry>
                   <ID>357162</ID>
                   <Description>"minHearthRange"</Description>
+                  <Color>00FF00</Color>
                   <VariableType>Float</VariableType>
                   <Address>+2A0</Address>
                   <Offsets>
@@ -554,6 +572,7 @@ Eremite.Model.Settings:GetGood+8: 48 89 4D F8                    - mov [rbp-08],
                 <CheatEntry>
                   <ID>357163</ID>
                   <Description>"maxHearthRange"</Description>
+                  <Color>00FF00</Color>
                   <VariableType>Float</VariableType>
                   <Address>+2A0</Address>
                   <Offsets>
@@ -604,6 +623,7 @@ Eremite.Model.Settings:GetGood+8: 48 89 4D F8                    - mov [rbp-08],
           <ID>594</ID>
           <Description>"Hearth burning time"</Description>
           <Options moHideChildren="1"/>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript Async="1">{  Game Executable   : Against the Storm.exe
    Author            : Tuuup!
@@ -710,6 +730,7 @@ Eremite.Buildings.Hearth:ClampBurningTime+74: C3                             - r
             <CheatEntry>
               <ID>595</ID>
               <Description>"base address"</Description>
+              <LastState Value="" RealAddress="00000000"/>
               <ShowAsSigned>1</ShowAsSigned>
               <GroupHeader>1</GroupHeader>
               <Address>hburn</Address>
@@ -760,6 +781,7 @@ Eremite.Buildings.Hearth:ClampBurningTime+74: C3                             - r
         <CheatEntry>
           <ID>612</ID>
           <Description>"Instant build? (still needs materials)"</Description>
+          <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{  Game Executable   : Against the Storm.exe
    Author            : Tuuup!
@@ -864,6 +886,7 @@ Eremite.Buildings.Building:CalculateProgress+ae: 49 BB 50 51 D6 3F 03 00 00 00  
           <ID>717</ID>
           <Description>"Meta pointers v2 (Embark points + more)"</Description>
           <Options moHideChildren="1"/>
+          <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript Async="1">{  Game Executable   : Against the Storm.exe
    Author            : Tuuup!
@@ -972,6 +995,7 @@ Eremite.Model.Meta.GoalsUnlockMetaRewardModel:OnConsume+3a: C3                  
               <ID>228</ID>
               <Description>"&lt;== Script Information"</Description>
               <Options moHideChildren="1"/>
+              <LastState/>
               <Color>0000FF</Color>
               <VariableType>Auto Assembler Script</VariableType>
               <AssemblerScript>[enable]
@@ -989,6 +1013,7 @@ return "nop"
             <CheatEntry>
               <ID>718</ID>
               <Description>"base address"</Description>
+              <LastState Value="" RealAddress="00000000"/>
               <ShowAsSigned>1</ShowAsSigned>
               <GroupHeader>1</GroupHeader>
               <Address>metas</Address>
@@ -1261,6 +1286,7 @@ return "nop"
                 <CheatEntry>
                   <ID>356813</ID>
                   <Description>"hearthSacraficeTimeBonusRate"</Description>
+                  <Color>00FF00</Color>
                   <VariableType>Float</VariableType>
                   <Address>+38</Address>
                   <Offsets>
@@ -1555,6 +1581,7 @@ return "nop"
         <CheatEntry>
           <ID>665</ID>
           <Description>"No charges lost Deposit v2"</Description>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{  Game Executable   : Against the Storm.exe
    Author            : Tuuup!
@@ -1651,6 +1678,7 @@ Eremite.MapObjects.ResourceDeposit:RemoveCharge+74: C3                          
         <CheatEntry>
           <ID>357028</ID>
           <Description>"No charges lost Lake /Pond"</Description>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{  Game Executable   : Against the Storm.exe
    Author            : Tuuup!
@@ -1749,6 +1777,7 @@ Eremite.MapObjects.Lake:RemoveCharge+74: C3                             - ret
         <CheatEntry>
           <ID>357112</ID>
           <Description>"No charges lost Mine"</Description>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{  Game Executable   : Against the Storm.exe
    Author            : Tuuup!
@@ -1847,6 +1876,7 @@ Eremite.MapObjects.Ore:RemoveMainCharge+d8: EB E1                          - jmp
         <CheatEntry>
           <ID>357109</ID>
           <Description>"No cost Building build"</Description>
+          <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{  Game Executable   : Against the Storm.exe
    Author            : Tuuup!
@@ -1956,6 +1986,7 @@ FloatExtensions:Approximately+2c: 66 90                          - nop 2
         <CheatEntry>
           <ID>357113</ID>
           <Description>"No Reroll Cost"</Description>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{  Game Executable   : Against the Storm.exe
    Author            : Tuuup!
@@ -2054,6 +2085,7 @@ Eremite.View.HUD.ReputationRewardsPopup:SetUpDesc+2f: 48 89 45 C0               
         <CheatEntry>
           <ID>357031</ID>
           <Description>"Relic Investigation time?"</Description>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{  Game Executable   : Against the Storm.exe
    Author            : Tuuup!
@@ -2153,6 +2185,7 @@ Eremite.Buildings.Relic:GetWorkTimeWith+e9: 48 8D 65 00                    - lea
           <ID>776</ID>
           <Description>"Reputation + more"</Description>
           <Options moHideChildren="1"/>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript Async="1">{  Game Executable   : Against the Storm.exe
    Author            : Tuuup!
@@ -2261,6 +2294,7 @@ Eremite.Services.StateService:get_GameObjectives+1b: C3                         
             <CheatEntry>
               <ID>777</ID>
               <Description>"base address"</Description>
+              <LastState Value="" RealAddress="00000000"/>
               <ShowAsSigned>1</ShowAsSigned>
               <GroupHeader>1</GroupHeader>
               <Address>rep</Address>
@@ -2401,6 +2435,7 @@ Eremite.Services.StateService:get_GameObjectives+1b: C3                         
                 <CheatEntry>
                   <ID>1337263648</ID>
                   <Description>"drizzleDuration"</Description>
+                  <Color>FF8000</Color>
                   <VariableType>Float</VariableType>
                   <Address>+48</Address>
                   <Offsets>
@@ -2411,6 +2446,7 @@ Eremite.Services.StateService:get_GameObjectives+1b: C3                         
                 <CheatEntry>
                   <ID>1337263649</ID>
                   <Description>"clearanceDuration"</Description>
+                  <Color>FF8000</Color>
                   <VariableType>Float</VariableType>
                   <Address>+48</Address>
                   <Offsets>
@@ -2421,6 +2457,7 @@ Eremite.Services.StateService:get_GameObjectives+1b: C3                         
                 <CheatEntry>
                   <ID>1337263650</ID>
                   <Description>"stormDuration"</Description>
+                  <Color>FF8000</Color>
                   <VariableType>Float</VariableType>
                   <Address>+48</Address>
                   <Offsets>
@@ -2492,6 +2529,7 @@ Eremite.Services.StateService:get_GameObjectives+1b: C3                         
                   <ID>356988</ID>
                   <Description>"Goods"</Description>
                   <Options moHideChildren="1" moManualExpandCollapse="1"/>
+                  <LastState Value="" RealAddress="00000000"/>
                   <GroupHeader>1</GroupHeader>
                   <CheatEntries>
                     <CheatEntry>
@@ -3293,6 +3331,7 @@ Eremite.Services.StateService:get_GameObjectives+1b: C3                         
                   <ID>357038</ID>
                   <Description>"Resolve?"</Description>
                   <Options moHideChildren="1" moManualExpandCollapse="1"/>
+                  <LastState Value="" RealAddress="00000000"/>
                   <GroupHeader>1</GroupHeader>
                   <CheatEntries>
                     <CheatEntry>
@@ -3337,6 +3376,7 @@ Eremite.Services.StateService:get_GameObjectives+1b: C3                         
                   <ID>357106</ID>
                   <Description>"Effects"</Description>
                   <Options moHideChildren="1" moManualExpandCollapse="1"/>
+                  <LastState Value="" RealAddress="00000000"/>
                   <GroupHeader>1</GroupHeader>
                   <CheatEntries>
                     <CheatEntry>
@@ -3972,6 +4012,7 @@ Eremite.Services.StateService:get_GameObjectives+1b: C3                         
                     <CheatEntry>
                       <ID>1337263615</ID>
                       <Description>"wildcardPicks"</Description>
+                      <Color>FFFFFF</Color>
                       <VariableType>4 Bytes</VariableType>
                       <Address>+48</Address>
                       <Offsets>
@@ -4139,6 +4180,7 @@ Eremite.Services.StateService:get_GameObjectives+1b: C3                         
           <ID>666</ID>
           <Description>"Selected deposit v2"</Description>
           <Options moHideChildren="1"/>
+          <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{  Game Executable   : Against the Storm.exe
    Author            : Tuuup!
@@ -4246,6 +4288,7 @@ Eremite.MapObjects.UI.DepositPanel:SetUpCharges+93: 48 8B 4D D8                 
             <CheatEntry>
               <ID>602</ID>
               <Description>"base address"</Description>
+              <LastState Value="" RealAddress="00000000"/>
               <ShowAsSigned>1</ShowAsSigned>
               <GroupHeader>1</GroupHeader>
               <Address>depo</Address>
@@ -4320,6 +4363,7 @@ Eremite.MapObjects.UI.DepositPanel:SetUpCharges+93: 48 8B 4D D8                 
           <ID>573</ID>
           <Description>"Selected race (press the arrow next to the portrait?) v2"</Description>
           <Options moHideChildren="1"/>
+          <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{  Game Executable   : Against the Storm.exe
    Author            : Tuuup!
@@ -4426,6 +4470,7 @@ Eremite.Characters.UI.RaceNeedTooltip:Show+a8: C3                             - 
             <CheatEntry>
               <ID>574</ID>
               <Description>"base address"</Description>
+              <LastState Value="" RealAddress="00000000"/>
               <ShowAsSigned>1</ShowAsSigned>
               <GroupHeader>1</GroupHeader>
               <Address>race</Address>
@@ -4650,6 +4695,78 @@ Eremite.Characters.UI.RaceNeedTooltip:Show+a8: C3                             - 
           </CheatEntries>
         </CheatEntry>
       </CheatEntries>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1337263695</ID>
+      <Description>"Fluffbeak Needn't Cares"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Against the Storm.exe
+  Version: 
+  Date   : 2026-01-31
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscan(INJ_PORO_STAT,F3 0F 11 6F 14 48 8B 7D) // should be unique
+alloc(newmem,$1000,INJ_PORO_STAT)
+
+label(code)
+label(return)
+
+newmem:
+  push rax
+  mov rax,(float)1.0
+  movd xmm5,rax
+  pop rax
+code:
+  movss [rdi+14],xmm5
+  jmp return
+
+INJ_PORO_STAT:
+  jmp newmem
+return:
+registersymbol(INJ_PORO_STAT)
+
+[DISABLE]
+
+INJ_PORO_STAT:
+  db F3 0F 11 6F 14
+
+unregistersymbol(INJ_PORO_STAT)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Eremite.Buildings.Poro:UpdateNeed+63
+
+Eremite.Buildings.Poro:UpdateNeed+38: 41 FF D3                       - call r11
+Eremite.Buildings.Poro:UpdateNeed+3b: F3 0F 5A C8                    - cvtss2sd xmm1,xmm0
+Eremite.Buildings.Poro:UpdateNeed+3f: F2 0F 10 45 D8                 - movsd xmm0,[rbp-28]
+Eremite.Buildings.Poro:UpdateNeed+44: F2 0F 58 C1                    - addsd xmm0,xmm1
+Eremite.Buildings.Poro:UpdateNeed+48: F2 0F 5A C0                    - cvtsd2ss xmm0,xmm0
+Eremite.Buildings.Poro:UpdateNeed+4c: 66 90                          - nop 2
+Eremite.Buildings.Poro:UpdateNeed+4e: 49 BB 60 47 59 43 EA 01 00 00  - mov r11,UnityEngine.Mathf:Clamp01
+Eremite.Buildings.Poro:UpdateNeed+58: 41 FF D3                       - call r11
+Eremite.Buildings.Poro:UpdateNeed+5b: F3 0F 5A C0                    - cvtss2sd xmm0,xmm0
+Eremite.Buildings.Poro:UpdateNeed+5f: F2 0F 5A E8                    - cvtsd2ss xmm5,xmm0
+// ---------- INJECTING HERE ----------
+Eremite.Buildings.Poro:UpdateNeed+63: F3 0F 11 6F 14                 - movss [rdi+14],xmm5
+// ---------- DONE INJECTING  ----------
+Eremite.Buildings.Poro:UpdateNeed+68: 48 8B 7D F8                    - mov rdi,[rbp-08]
+Eremite.Buildings.Poro:UpdateNeed+6c: 48 8D 65 00                    - lea rsp,[rbp+00]
+Eremite.Buildings.Poro:UpdateNeed+70: 5D                             - pop rbp
+Eremite.Buildings.Poro:UpdateNeed+71: C3                             - ret 
+1E9D0AAEBC2: 00 00                          - add [rax],al
+1E9D0AAEBC4: 00 00                          - add [rax],al
+1E9D0AAEBC6: 00 00                          - add [rax],al
+1E9D0AAEBC8: 01 04 02                       - add [rdx+rax],eax
+1E9D0AAEBCB: 05 04 03 01 50                 - add eax,50010304
+1E9D0AAEBD0: 00 00                          - add [rax],al
+}
+</AssemblerScript>
     </CheatEntry>
   </CheatEntries>
   <UserdefinedSymbols/>
