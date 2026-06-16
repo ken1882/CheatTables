@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<CheatTable CheatEngineTableVersion="45">
+<CheatTable CheatEngineTableVersion="46">
   <CheatEntries>
     <CheatEntry>
       <ID>211</ID>
       <Description>"Cheats"</Description>
       <Options moHideChildren="1"/>
+      <LastState Value="" Activated="1" RealAddress="00000000"/>
       <Color>FF0000</Color>
       <GroupHeader>1</GroupHeader>
       <CheatEntries>
         <CheatEntry>
           <ID>36</ID>
           <Description>"200 Influence with Estates"</Description>
+          <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : foundation.exe
   Version: 
@@ -82,319 +84,10 @@ foundation.exe+92BD3D: F3 0F 10 92 10 01 00 00     - movss xmm2,[rdx+00000110]
 </AssemblerScript>
         </CheatEntry>
         <CheatEntry>
-          <ID>283</ID>
-          <Description>"Super Strong Soldiers"</Description>
-          <VariableType>Auto Assembler Script</VariableType>
-          <AssemblerScript>{ Game   : Foundation - 1.10.2.9
-  Version: 
-  Date   : 2025-02-08
-  Author : M0D0
-
-  This script does blah blah blah
-}
-
-[ENABLE]
-
-aobscanmodule(SoldierInject,foundation.exe,48 8B 81 48 01 00 00 8B) // should be unique
-alloc(newmem,$1000,SoldierInject)
-
-label(code)
-label(return)
-
-newmem:
-
-  mov eax, (float)1.0
-  mov [rcx+00000144],eax
-  push rbx
-  mov rax,[rcx+00000148]
-  mov rbx,[rax+8]
-  test rbx,0
-  jne code
-  mov ebx,(float)1000.0
-  mov [rax+1C],ebx
-  pop rbx
-code:
-  mov rax,[rcx+00000148]
-  jmp return
-
-SoldierInject:
-  jmp newmem
-  nop 2
-return:
-registersymbol(SoldierInject)
-
-[DISABLE]
-
-SoldierInject:
-  db 48 8B 81 48 01 00 00
-
-unregistersymbol(SoldierInject)
-dealloc(newmem)
-
-{
-// ORIGINAL CODE - INJECTION POINT: foundation.exe+E44C0C
-
-foundation.exe+E44BEF: 48 8B 88 48 01 00 00  - mov rcx,[rax+00000148]
-foundation.exe+E44BF6: E9 A5 DD 03 00        - jmp foundation.exe+E829A0
-foundation.exe+E44BFB: CC                    - int 3 
-foundation.exe+E44BFC: CC                    - int 3 
-foundation.exe+E44BFD: CC                    - int 3 
-foundation.exe+E44BFE: CC                    - int 3 
-foundation.exe+E44BFF: CC                    - int 3 
-foundation.exe+E44C00: 48 8B 81 50 01 00 00  - mov rax,[rcx+00000150]
-foundation.exe+E44C07: 48 85 C0              - test rax,rax
-foundation.exe+E44C0A: 75 07                 - jne foundation.exe+E44C13
-// ---------- INJECTING HERE ----------
-foundation.exe+E44C0C: 48 8B 81 48 01 00 00  - mov rax,[rcx+00000148]
-// ---------- DONE INJECTING  ----------
-foundation.exe+E44C13: 8B 40 10              - mov eax,[rax+10]
-foundation.exe+E44C16: C3                    - ret 
-foundation.exe+E44C17: CC                    - int 3 
-foundation.exe+E44C18: CC                    - int 3 
-foundation.exe+E44C19: CC                    - int 3 
-foundation.exe+E44C1A: CC                    - int 3 
-foundation.exe+E44C1B: CC                    - int 3 
-foundation.exe+E44C1C: CC                    - int 3 
-foundation.exe+E44C1D: CC                    - int 3 
-foundation.exe+E44C1E: CC                    - int 3 
-}
-</AssemblerScript>
-        </CheatEntry>
-        <CheatEntry>
-          <ID>123</ID>
-          <Description>"Fast Build"</Description>
-          <VariableType>Auto Assembler Script</VariableType>
-          <AssemblerScript>{ Game   : Foundation - 1.10.0.3.1211
-  Version: 
-  Date   : 2024-12-13
-  Author : M0D0
-
-  This script does blah blah blah
-}
-
-[ENABLE]
-
-aobscanmodule(fastBuild,foundation.exe,8B 4F 58 8B 47 5C) // should be unique
-alloc(newmem,$1000,fastBuild)
-
-label(code)
-label(return)
-
-newmem:
-  mov eax,[r13+5C]
-  mov [r13+58],eax
-code:
-  mov ecx,[rdi+58]
-  mov eax,[rdi+5C]
-  jmp return
-
-fastBuild:
-  jmp newmem
-  nop
-return:
-registersymbol(fastBuild)
-
-[DISABLE]
-
-fastBuild:
-  db 8B 4F 58 8B 47 5C
-
-unregistersymbol(fastBuild)
-dealloc(newmem)
-
-{
-// ORIGINAL CODE - INJECTION POINT: foundation.exe+10D41CE
-
-foundation.exe+10D41AF: 48 8B 01              - mov rax,[rcx]
-foundation.exe+10D41B2: 48 8B D3              - mov rdx,rbx
-foundation.exe+10D41B5: 45 33 C9              - xor r9d,r9d
-foundation.exe+10D41B8: 4D 85 C0              - test r8,r8
-foundation.exe+10D41BB: 49 0F 44 D1           - cmove rdx,r9
-foundation.exe+10D41BF: FF 50 68              - call qword ptr [rax+68]
-foundation.exe+10D41C2: 48 8B 03              - mov rax,[rbx]
-foundation.exe+10D41C5: 48 8B CB              - mov rcx,rbx
-foundation.exe+10D41C8: FF 50 30              - call qword ptr [rax+30]
-foundation.exe+10D41CB: 01 47 58              - add [rdi+58],eax
-// ---------- INJECTING HERE ----------
-foundation.exe+10D41CE: 8B 4F 58              - mov ecx,[rdi+58]
-// ---------- DONE INJECTING  ----------
-foundation.exe+10D41D1: 8B 47 5C              - mov eax,[rdi+5C]
-foundation.exe+10D41D4: 3B C8                 - cmp ecx,eax
-foundation.exe+10D41D6: 75 11                 - jne foundation.exe+10D41E9
-foundation.exe+10D41D8: 48 8D 4F 10           - lea rcx,[rdi+10]
-foundation.exe+10D41DC: E8 2F 6F 00 FF        - call foundation.AK::WriteBytesCount::Reserve+3340
-foundation.exe+10D41E1: 8B 47 5C              - mov eax,[rdi+5C]
-foundation.exe+10D41E4: 8B 4F 58              - mov ecx,[rdi+58]
-foundation.exe+10D41E7: 3B C8                 - cmp ecx,eax
-foundation.exe+10D41E9: 0F 86 C5 00 00 00     - jbe foundation.exe+10D42B4
-foundation.exe+10D41EF: 4C 8D 05 D2 45 A1 01  - lea r8,[foundation.exe+2AE87C8]
-}
-</AssemblerScript>
-        </CheatEntry>
-        <CheatEntry>
-          <ID>126</ID>
-          <Description>"Fast Job Lvl Up"</Description>
-          <VariableType>Auto Assembler Script</VariableType>
-          <AssemblerScript>{ Game   : Foundation - 1.10.0.6.1220
-  Version: 
-  Date   : 2024-12-27
-  Author : M0D0
-
-  This script does blah blah blah
-}
-
-[ENABLE]
-
-aobscanmodule(JobProgression,foundation.exe,F3 0F 11 89 90 00 00 00 48 8B) // should be unique
-alloc(newmem,$1000,JobProgression)
-
-label(code)
-label(return)
-
-newmem:
-  mov r9,(float)8024
-  mov [rcx+00000090],r9
-  movss xmm1,[rcx+00000090]
-  xor r9,r9
-code:
-  jmp return
-
-JobProgression:
-  jmp newmem
-  nop 3
-return:
-registersymbol(JobProgression)
-
-[DISABLE]
-
-JobProgression:
-  db F3 0F 11 89 90 00 00 00
-
-unregistersymbol(JobProgression)
-dealloc(newmem)
-
-{
-// ORIGINAL CODE - INJECTION POINT: foundation.exe+D7FEF0
-
-foundation.exe+D7FEDA: C3                          - ret 
-foundation.exe+D7FEDB: CC                          - int 3 
-foundation.exe+D7FEDC: CC                          - int 3 
-foundation.exe+D7FEDD: CC                          - int 3 
-foundation.exe+D7FEDE: CC                          - int 3 
-foundation.exe+D7FEDF: CC                          - int 3 
-foundation.exe+D7FEE0: 40 53                       - push rbx
-foundation.exe+D7FEE2: 48 83 EC 20                 - sub rsp,20
-foundation.exe+D7FEE6: 48 8B 81 88 00 00 00        - mov rax,[rcx+00000088]
-foundation.exe+D7FEED: 45 33 C9                    - xor r9d,r9d
-// ---------- INJECTING HERE ----------
-foundation.exe+D7FEF0: F3 0F 11 89 90 00 00 00     - movss [rcx+00000090],xmm1
-// ---------- DONE INJECTING  ----------
-foundation.exe+D7FEF8: 48 8B D9                    - mov rbx,rcx
-foundation.exe+D7FEFB: F3 0F 5E 89 AC 00 00 00     - divss xmm1,[rcx+000000AC]
-foundation.exe+D7FF03: 48 8B 90 C0 00 00 00        - mov rdx,[rax+000000C0]
-foundation.exe+D7FF0A: 48 8B 42 58                 - mov rax,[rdx+58]
-foundation.exe+D7FF0E: 48 8B 52 60                 - mov rdx,[rdx+60]
-foundation.exe+D7FF12: 48 3B C2                    - cmp rax,rdx
-foundation.exe+D7FF15: 74 29                       - je foundation.exe+D7FF40
-foundation.exe+D7FF17: 66 0F 1F 84 00 00 00 00 00  - nop word ptr [rax+rax+00000000]
-foundation.exe+D7FF20: 48 8B 08                    - mov rcx,[rax]
-foundation.exe+D7FF23: 0F 57 C0                    - xorps xmm0,xmm0
-}
-</AssemblerScript>
-        </CheatEntry>
-        <CheatEntry>
-          <ID>155</ID>
-          <Description>"Faster Villagers"</Description>
-          <Options moHideChildren="1"/>
-          <VariableType>Auto Assembler Script</VariableType>
-          <AssemblerScript>{ Game   : Foundation - 1.10.2.0
-  Version: 
-  Date   : 2025-01-31
-  Author : M0D0
-
-  This script does blah blah blah
-}
-
-[ENABLE]
-
-aobscanmodule(moveSpeed,foundation.exe,48 8D 95 80 04 00 00 48 8B) // should be unique
-alloc(newmem,$1000,moveSpeed)
-registersymbol(moveSpeedValue)
-label(moveSpeedValue)
-label(code)
-label(return)
-
-newmem:
-  movss xmm1,[rbp+00000484]
-  movss xmm0,[rbp+00000480]
-  mulss xmm0,[moveSpeedValue]
-  mulss xmm1,[moveSpeedValue]
-  movss [rbp+00000484],xmm1
-  movss [rbp+00000480],xmm0
-code:
-  lea rdx,[rbp+00000480]
-  jmp return
-
-moveSpeedValue:
-  dq (float)2
-
-
-moveSpeed:
-  jmp newmem
-  nop 2
-return:
-registersymbol(moveSpeed)
-
-[DISABLE]
-
-moveSpeed:
-  db 48 8D 95 80 04 00 00
-
-unregistersymbol(moveSpeed, moveSpeedValue)
-dealloc(newmem)
-
-{
-// ORIGINAL CODE - INJECTION POINT: foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0CC
-
-foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0A0: F3 0F 11 B5 84 04 00 00  - movss [rbp+00000484],xmm6
-foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0A8: F3 0F 10 05 F0 0E EC 01  - movss xmm0,[foundation.EvtCMouseEvent::`vftable'+1E30]
-foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0B0: 0F 54 F8                 - andps xmm7,xmm0
-foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0B3: F3 0F 10 0D AD 0E EC 01  - movss xmm1,[foundation.EvtCMouseEvent::`vftable'+1DF8]
-foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0BB: 0F 2F F9                 - comiss xmm7,xmm1
-foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0BE: 73 08                    - jae "foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf"+F0C8
-foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0C0: 0F 54 F0                 - andps xmm6,xmm0
-foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0C3: 0F 2F F1                 - comiss xmm6,xmm1
-foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0C6: 72 45                    - jb "foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf"+F10D
-foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0C8: 41 0F 28 D6              - movaps xmm2,xmm14
-// ---------- INJECTING HERE ----------
-foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0CC: 48 8D 95 80 04 00 00     - lea rdx,[rbp+00000480]
-// ---------- DONE INJECTING  ----------
-foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0D3: 48 8B CB                 - mov rcx,rbx
-foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0D6: E8 C5 46 FE FF           - call "foundation.GamCQuadTree&lt;PlaCCompMovable * __ptr64&gt;::move"+130
-foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0DB: F3 0F 10 8D 84 04 00 00  - movss xmm1,[rbp+00000484]
-foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0E3: F3 0F 59 C9              - mulss xmm1,xmm1
-foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0E7: F3 0F 10 85 80 04 00 00  - movss xmm0,[rbp+00000480]
-foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0EF: F3 0F 59 C0              - mulss xmm0,xmm0
-foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0F3: F3 0F 58 C8              - addss xmm1,xmm0
-foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0F7: F3 0F 51 C9              - sqrtss xmm1,xmm1
-foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0FB: F3 45 0F 5E D6           - divss xmm10,xmm14
-foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F100: F3 41 0F 59 CA           - mulss xmm1,xmm10
-}
-</AssemblerScript>
-          <CheatEntries>
-            <CheatEntry>
-              <ID>150</ID>
-              <Description>"Villager Speed Modifier  (x2 seems to be the safe speed)"</Description>
-              <ShowAsSigned>0</ShowAsSigned>
-              <VariableType>Float</VariableType>
-              <Address>moveSpeedValue</Address>
-            </CheatEntry>
-          </CheatEntries>
-        </CheatEntry>
-        <CheatEntry>
           <ID>108</ID>
           <Description>"Boost Production"</Description>
           <Options moHideChildren="1"/>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : foundation.exe
   Version: 
@@ -477,6 +170,7 @@ foundation.exe+863E0C: FF 50 68                 - call qword ptr [rax+68]
             <CheatEntry>
               <ID>109</ID>
               <Description>"Production Output"</Description>
+              <LastState Value="50" RealAddress="7FF6BA5A0020"/>
               <ShowAsSigned>0</ShowAsSigned>
               <VariableType>4 Bytes</VariableType>
               <Address>iWorkPlaceProd</Address>
@@ -486,6 +180,7 @@ foundation.exe+863E0C: FF 50 68                 - call qword ptr [rax+68]
         <CheatEntry>
           <ID>295</ID>
           <Description>"Boost Production Speed"</Description>
+          <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : Foundation - 1.10.2.9
   Version: 
@@ -558,13 +253,13 @@ foundation.exe+B24AC9: 48 8B 6C 24 50              - mov rbp,[rsp+50]
 </AssemblerScript>
         </CheatEntry>
         <CheatEntry>
-          <ID>25</ID>
-          <Description>"Immigration every day"</Description>
-          <Options moHideChildren="1"/>
+          <ID>123</ID>
+          <Description>"Fast Build"</Description>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
-          <AssemblerScript>{ Game   : foundation.exe
+          <AssemblerScript>{ Game   : Foundation - 1.10.0.3.1211
   Version: 
-  Date   : 2023-08-13
+  Date   : 2024-12-13
   Author : M0D0
 
   This script does blah blah blah
@@ -572,14 +267,318 @@ foundation.exe+B24AC9: 48 8B 6C 24 50              - mov rbp,[rsp+50]
 
 [ENABLE]
 
-aobscanmodule(immigration,foundation.exe,83 B9 28 01 00 00 00 75 20) // should be unique
+aobscanmodule(fastBuild,foundation.exe,8B 47 58 3B 47 5C) // should be unique
+alloc(newmem,$1000,fastBuild)
+
+label(code)
+label(return)
+
+newmem:
+  mov eax,[r13+5C]
+  mov [r13+58],eax
+code:
+  mov eax,[rdi+58]
+  cmp eax,[rdi+5C]
+  jmp return
+
+fastBuild:
+  jmp newmem
+  nop
+return:
+registersymbol(fastBuild)
+
+[DISABLE]
+
+fastBuild:
+  db 8B 47 58 3B 47 5C
+
+unregistersymbol(fastBuild)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: foundation.exe+B0771D
+
+foundation.exe+B076FF: 48 8B D3              - mov rdx,rbx
+foundation.exe+B07702: 33 C0                 - xor eax,eax
+foundation.exe+B07704: 4D 85 C0              - test r8,r8
+foundation.exe+B07707: 48 0F 44 D0           - cmove rdx,rax
+foundation.exe+B0770B: 48 8B 01              - mov rax,[rcx]
+foundation.exe+B0770E: FF 50 68              - call qword ptr [rax+68]
+foundation.exe+B07711: 48 8B 03              - mov rax,[rbx]
+foundation.exe+B07714: 48 8B CB              - mov rcx,rbx
+foundation.exe+B07717: FF 50 30              - call qword ptr [rax+30]
+foundation.exe+B0771A: 01 47 58              - add [rdi+58],eax
+// ---------- INJECTING HERE ----------
+foundation.exe+B0771D: 8B 47 58              - mov eax,[rdi+58]
+// ---------- DONE INJECTING  ----------
+foundation.exe+B07720: 3B 47 5C              - cmp eax,[rdi+5C]
+foundation.exe+B07723: 75 09                 - jne foundation.exe+B0772E
+foundation.exe+B07725: 48 8D 4F 10           - lea rcx,[rdi+10]
+foundation.exe+B07729: E8 52 A3 5D FF        - call foundation.AK::WriteBytesCount::Reserve+36B0
+foundation.exe+B0772E: 8B 47 5C              - mov eax,[rdi+5C]
+foundation.exe+B07731: 39 47 58              - cmp [rdi+58],eax
+foundation.exe+B07734: 0F 86 C3 00 00 00     - jbe foundation.exe+B077FD
+foundation.exe+B0773A: 4C 8D 05 6F 01 DA 01  - lea r8,[foundation.exe+28A78B0]
+foundation.exe+B07741: BA 00 04 00 00        - mov edx,00000400
+foundation.exe+B07746: 48 8D 4C 24 30        - lea rcx,[rsp+30]
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>126</ID>
+          <Description>"Fast Job Lvl Up"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Foundation - 1.10.0.6.1220
+  Version: 
+  Date   : 2024-12-27
+  Author : M0D0
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(JobProgression,foundation.exe,F3 0F 11 89 90 00 00 00 48 8B) // should be unique
+alloc(newmem,$1000,JobProgression)
+
+label(code)
+label(return)
+
+newmem:
+  mov r9,(float)8024
+  mov [rcx+00000090],r9
+  movss xmm1,[rcx+00000090]
+  xor r9,r9
+code:
+  jmp return
+
+JobProgression:
+  jmp newmem
+  nop 3
+return:
+registersymbol(JobProgression)
+
+[DISABLE]
+
+JobProgression:
+  db F3 0F 11 89 90 00 00 00
+
+unregistersymbol(JobProgression)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: foundation.exe+D7FEF0
+
+foundation.exe+D7FEDA: C3                          - ret 
+foundation.exe+D7FEDB: CC                          - int 3 
+foundation.exe+D7FEDC: CC                          - int 3 
+foundation.exe+D7FEDD: CC                          - int 3 
+foundation.exe+D7FEDE: CC                          - int 3 
+foundation.exe+D7FEDF: CC                          - int 3 
+foundation.exe+D7FEE0: 40 53                       - push rbx
+foundation.exe+D7FEE2: 48 83 EC 20                 - sub rsp,20
+foundation.exe+D7FEE6: 48 8B 81 88 00 00 00        - mov rax,[rcx+00000088]
+foundation.exe+D7FEED: 45 33 C9                    - xor r9d,r9d
+// ---------- INJECTING HERE ----------
+foundation.exe+D7FEF0: F3 0F 11 89 90 00 00 00     - movss [rcx+00000090],xmm1
+// ---------- DONE INJECTING  ----------
+foundation.exe+D7FEF8: 48 8B D9                    - mov rbx,rcx
+foundation.exe+D7FEFB: F3 0F 5E 89 AC 00 00 00     - divss xmm1,[rcx+000000AC]
+foundation.exe+D7FF03: 48 8B 90 C0 00 00 00        - mov rdx,[rax+000000C0]
+foundation.exe+D7FF0A: 48 8B 42 58                 - mov rax,[rdx+58]
+foundation.exe+D7FF0E: 48 8B 52 60                 - mov rdx,[rdx+60]
+foundation.exe+D7FF12: 48 3B C2                    - cmp rax,rdx
+foundation.exe+D7FF15: 74 29                       - je foundation.exe+D7FF40
+foundation.exe+D7FF17: 66 0F 1F 84 00 00 00 00 00  - nop word ptr [rax+rax+00000000]
+foundation.exe+D7FF20: 48 8B 08                    - mov rcx,[rax]
+foundation.exe+D7FF23: 0F 57 C0                    - xorps xmm0,xmm0
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>155</ID>
+          <Description>"Faster Villagers"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Foundation - 1.10.2.0
+  Version: 
+  Date   : 2025-01-31
+  Author : M0D0
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(moveSpeed,foundation.exe,48 8D 95 80 04 00 00 48 8B) // should be unique
+alloc(newmem,$1000,moveSpeed)
+registersymbol(moveSpeedValue)
+label(moveSpeedValue)
+label(code)
+label(return)
+
+newmem:
+  movss xmm1,[rbp+00000484]
+  movss xmm0,[rbp+00000480]
+  mulss xmm0,[moveSpeedValue]
+  mulss xmm1,[moveSpeedValue]
+  movss [rbp+00000484],xmm1
+  movss [rbp+00000480],xmm0
+code:
+  lea rdx,[rbp+00000480]
+  jmp return
+
+moveSpeedValue:
+  dq (float)2
+
+
+moveSpeed:
+  jmp newmem
+  nop 2
+return:
+registersymbol(moveSpeed)
+
+[DISABLE]
+
+moveSpeed:
+  db 48 8D 95 80 04 00 00
+
+unregistersymbol(moveSpeed, moveSpeedValue)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0CC
+
+foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0A0: F3 0F 11 B5 84 04 00 00  - movss [rbp+00000484],xmm6
+foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0A8: F3 0F 10 05 F0 0E EC 01  - movss xmm0,[foundation.EvtCMouseEvent::`vftable'+1E30]
+foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0B0: 0F 54 F8                 - andps xmm7,xmm0
+foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0B3: F3 0F 10 0D AD 0E EC 01  - movss xmm1,[foundation.EvtCMouseEvent::`vftable'+1DF8]
+foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0BB: 0F 2F F9                 - comiss xmm7,xmm1
+foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0BE: 73 08                    - jae "foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf"+F0C8
+foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0C0: 0F 54 F0                 - andps xmm6,xmm0
+foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0C3: 0F 2F F1                 - comiss xmm6,xmm1
+foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0C6: 72 45                    - jb "foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf"+F10D
+foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0C8: 41 0F 28 D6              - movaps xmm2,xmm14
+// ---------- INJECTING HERE ----------
+foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0CC: 48 8D 95 80 04 00 00     - lea rdx,[rbp+00000480]
+// ---------- DONE INJECTING  ----------
+foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0D3: 48 8B CB                 - mov rcx,rbx
+foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0D6: E8 C5 46 FE FF           - call "foundation.GamCQuadTree&lt;PlaCCompMovable * __ptr64&gt;::move"+130
+foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0DB: F3 0F 10 8D 84 04 00 00  - movss xmm1,[rbp+00000484]
+foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0E3: F3 0F 59 C9              - mulss xmm1,xmm1
+foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0E7: F3 0F 10 85 80 04 00 00  - movss xmm0,[rbp+00000480]
+foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0EF: F3 0F 59 C0              - mulss xmm0,xmm0
+foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0F3: F3 0F 58 C8              - addss xmm1,xmm0
+foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0F7: F3 0F 51 C9              - sqrtss xmm1,xmm1
+foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F0FB: F3 45 0F 5E D6           - divss xmm10,xmm14
+foundation.GamCQuadTreeNode&lt;PlaCCompMovable * __ptr64&gt;::setAsLeaf+F100: F3 41 0F 59 CA           - mulss xmm1,xmm10
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>150</ID>
+              <Description>"Villager Speed Modifier  (x2 seems to be the safe speed)"</Description>
+              <LastState Value="0" RealAddress="7FF6BA5B003C"/>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>Float</VariableType>
+              <Address>moveSpeedValue</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>58</ID>
+          <Description>"Get Money [Activate, Purchase something, deactivate]"</Description>
+          <LastState/>
+          <Color>4080FF</Color>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[ENABLE]
+
+aobscanmodule(invert,foundation.exe,0F 4C FD 2B C7) // should be unique
+alloc(newmem,$1000,invert)
+
+label(code)
+label(return)
+
+newmem:
+  cmovl edi,ebp
+  test edi, edi
+  jns mms
+  sub eax,edi
+  jmp code
+mms:
+  add eax,edi
+  mov eax,#500000
+code:
+  jmp return
+
+invert:
+  jmp newmem
+return:
+registersymbol(invert)
+
+[DISABLE]
+
+invert:
+  db 0F 4C FD 2B C7
+
+unregistersymbol(invert)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: foundation.exe+9F34C1
+
+foundation.exe+9F349E: 74 7A           - je foundation.exe+9F351A
+foundation.exe+9F34A0: 48 8B 43 60     - mov rax,[rbx+60]
+foundation.exe+9F34A4: 48 8D 4B 60     - lea rcx,[rbx+60]
+foundation.exe+9F34A8: 44 8B 44 24 50  - mov r8d,[rsp+50]
+foundation.exe+9F34AD: 4A 8B 14 C0     - mov rdx,[rax+r8*8]
+foundation.exe+9F34B1: 4E 8D 0C C0     - lea r9,[rax+r8*8]
+foundation.exe+9F34B5: 48 89 7C 24 58  - mov [rsp+58],rdi
+foundation.exe+9F34BA: 8B 42 18        - mov eax,[rdx+18]
+foundation.exe+9F34BD: 3B E8           - cmp ebp,eax
+foundation.exe+9F34BF: 8B F8           - mov edi,eax
+// ---------- INJECTING HERE ----------
+foundation.exe+9F34C1: 0F 4C FD        - cmovl edi,ebp
+// ---------- DONE INJECTING  ----------
+foundation.exe+9F34C4: 2B C7           - sub eax,edi
+foundation.exe+9F34C6: 75 1B           - jne foundation.exe+9F34E3
+foundation.exe+9F34C8: 38 43 5C        - cmp [rbx+5C],al
+foundation.exe+9F34CB: 00 16           - add [rsi],dl
+foundation.exe+9F34CD: 4C 8D 44 24 20  - lea r8,[rsp+20]
+foundation.exe+9F34D2: 4C 89 4C 24 20  - mov [rsp+20],r9
+foundation.exe+9F34D7: 48 8D 54 24 28  - lea rdx,[rsp+28]
+foundation.exe+9F34DC: E8 4F 4E F5 FF  - call foundation.exe+948330
+foundation.exe+9F34E1: EB 03           - jmp foundation.exe+9F34E6
+foundation.exe+9F34E3: 89 42 18        - mov [rdx+18],eax
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>25</ID>
+          <Description>"Immigration every day"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : foundation.exe
+  Version:
+  Date   : 2026-05-02
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(immigration,foundation.exe,83 B9 28 01 00 00 00 75) // should be unique
 alloc(newmem,$1000,immigration)
 
 label(code)
 label(return)
 
 newmem:
-  mov [rcx+00000128],00
+  mov [rcx+00000128],0
 code:
   cmp dword ptr [rcx+00000128],00
   jmp return
@@ -599,46 +598,305 @@ unregistersymbol(immigration)
 dealloc(newmem)
 
 {
-// ORIGINAL CODE - INJECTION POINT: foundation.exe+9E9AF4
+// ORIGINAL CODE - INJECTION POINT: foundation.exe+9CE894
 
-foundation.exe+9E9ACD: E8 FE 45 02 00        - call foundation.exe+A0E0D0
-foundation.exe+9E9AD2: 48 8B 03              - mov rax,[rbx]
-foundation.exe+9E9AD5: C6 80 E0 00 00 00 00  - mov byte ptr [rax+000000E0],00
-foundation.exe+9E9ADC: 48 8B 0B              - mov rcx,[rbx]
-foundation.exe+9E9ADF: 8B 81 28 01 00 00     - mov eax,[rcx+00000128]
-foundation.exe+9E9AE5: 85 C0                 - test eax,eax
-foundation.exe+9E9AE7: 74 0B                 - je foundation.exe+9E9AF4
-foundation.exe+9E9AE9: FF C8                 - dec eax
-foundation.exe+9E9AEB: 89 81 28 01 00 00     - mov [rcx+00000128],eax
-foundation.exe+9E9AF1: 48 8B 0B              - mov rcx,[rbx]
+foundation.exe+9CE86D: E8 7E 6E 03 00        - call foundation.exe+A056F0
+foundation.exe+9CE872: 48 8B 03              - mov rax,[rbx]
+foundation.exe+9CE875: C6 80 E0 00 00 00 00  - mov byte ptr [rax+000000E0],00
+foundation.exe+9CE87C: 48 8B 0B              - mov rcx,[rbx]
+foundation.exe+9CE87F: 8B 81 28 01 00 00     - mov eax,[rcx+00000128]
+foundation.exe+9CE885: 85 C0                 - test eax,eax
+foundation.exe+9CE887: 74 08                 - je foundation.exe+9CE891
+foundation.exe+9CE889: FF C8                 - dec eax
+foundation.exe+9CE88B: 89 81 28 01 00 00     - mov [rcx+00000128],eax
+foundation.exe+9CE891: 48 8B 0B              - mov rcx,[rbx]
 // ---------- INJECTING HERE ----------
-foundation.exe+9E9AF4: 83 B9 28 01 00 00 00  - cmp dword ptr [rcx+00000128],00
+foundation.exe+9CE894: 83 B9 28 01 00 00 00  - cmp dword ptr [rcx+00000128],00
 // ---------- DONE INJECTING  ----------
-foundation.exe+9E9AFB: 75 20                 - jne foundation.exe+9E9B1D
-foundation.exe+9E9AFD: 45 33 C0              - xor r8d,r8d
-foundation.exe+9E9B00: 33 D2                 - xor edx,edx
-foundation.exe+9E9B02: E8 C9 45 02 00        - call foundation.exe+A0E0D0
-foundation.exe+9E9B07: 48 8B 13              - mov rdx,[rbx]
-foundation.exe+9E9B0A: 48 8B 82 40 01 00 00  - mov rax,[rdx+00000140]
-foundation.exe+9E9B11: 8B 48 58              - mov ecx,[rax+58]
-foundation.exe+9E9B14: 89 8A 28 01 00 00     - mov [rdx+00000128],ecx
-foundation.exe+9E9B1A: 48 8B 0B              - mov rcx,[rbx]
-foundation.exe+9E9B1D: 48 81 C1 90 00 00 00  - add rcx,00000090
+foundation.exe+9CE89B: 75 1D                 - jne foundation.exe+9CE8BA
+foundation.exe+9CE89D: 45 33 C0              - xor r8d,r8d
+foundation.exe+9CE8A0: 33 D2                 - xor edx,edx
+foundation.exe+9CE8A2: E8 49 6E 03 00        - call foundation.exe+A056F0
+foundation.exe+9CE8A7: 48 8B 13              - mov rdx,[rbx]
+foundation.exe+9CE8AA: 48 8B 82 40 01 00 00  - mov rax,[rdx+00000140]
+foundation.exe+9CE8B1: 8B 48 58              - mov ecx,[rax+58]
+foundation.exe+9CE8B4: 89 8A 28 01 00 00     - mov [rdx+00000128],ecx
+foundation.exe+9CE8BA: 48 8B 0B              - mov rcx,[rbx]
+foundation.exe+9CE8BD: 48 81 C1 90 00 00 00  - add rcx,00000090
 }
 </AssemblerScript>
           <CheatEntries>
             <CheatEntry>
               <ID>157</ID>
               <Description>"Must have immigration factor above Nil"</Description>
+              <LastState Value="" RealAddress="00000000"/>
               <Color>0000FF</Color>
               <GroupHeader>1</GroupHeader>
             </CheatEntry>
           </CheatEntries>
         </CheatEntry>
         <CheatEntry>
+          <ID>133</ID>
+          <Description>"Increase starting Temporary Storage [Place village center, activate, select village center, deactivate]"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Foundation - 1.10.0.6.1220
+  Version: 
+  Date   : 2025-01-01
+  Author : M0D0
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INJECT_StorageValue,foundation.exe,48 8B C8 8B 56 18 E8) // should be unique
+alloc(newmem,$1000,INJECT_StorageValue)
+registersymbol(StorageValueStart)
+label(StorageValueStart)
+label(code)
+label(return)
+
+newmem:
+  mov edx,[StorageValueStart]
+  mov [rsi+18],edx
+code:
+  mov rcx,rax
+  jmp return
+
+StorageValueStart:
+ dd #5000
+
+INJECT_StorageValue:
+  jmp newmem
+  nop
+return:
+registersymbol(INJECT_StorageValue)
+
+[DISABLE]
+
+INJECT_StorageValue:
+  db 48 8B C8 8B 56 18
+
+unregistersymbol(INJECT_StorageValue)
+unregistersymbol(StorageValueStart)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D735
+
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D705: 66 66 66 0F 1F 84 00 00 00 00 00  - nop word ptr [rax+rax+00000000]
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D710: 4C 8B 00                          - mov r8,[rax]
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D713: 49 39 90 08 01 00 00              - cmp [r8+00000108],rdx
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D71A: 0F 84 2F 01 00 00                 - je "foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf"+D84F
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D720: 48 83 C0 08                       - add rax,08
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D724: 48 3B C1                          - cmp rax,rcx
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D727: 75 E7                             - jne "foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf"+D710
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D729: 48 8D 56 10                       - lea rdx,[rsi+10]
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D72D: 48 8B CD                          - mov rcx,rbp
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D730: E8 DB A7 FC FF                    - call "foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf"+1C70
+// ---------- INJECTING HERE ----------
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D735: 48 8B C8                          - mov rcx,rax
+// ---------- DONE INJECTING  ----------
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D738: 8B 56 18                          - mov edx,[rsi+18]
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D73B: E8 70 BC F8 FF                    - call foundation.exe+8ACDF0
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D740: 48 83 C3 08                       - add rbx,08
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D744: 48 3B DF                          - cmp rbx,rdi
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D747: 0F 85 73 FF FF FF                 - jne "foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf"+D6C0
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D74D: 80 BD 78 01 00 00 00              - cmp byte ptr [rbp+00000178],00
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D754: 4C 89 74 24 58                    - mov [rsp+58],r14
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D759: 0F 85 1A 01 00 00                 - jne "foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf"+D879
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D75F: 48 8B 9D A8 00 00 00              - mov rbx,[rbp+000000A8]
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D766: 48 3B 9D B0 00 00 00              - cmp rbx,[rbp+000000B0]
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>134</ID>
+              <Description>"Storage Capacity"</Description>
+              <LastState Value="2299531251" RealAddress="7FF6BA5C0011"/>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>StorageValueStart</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>69</ID>
+          <Description>"Inf. Items: Select building and resource to apply effect [Granary,Market Stalls, Warehouse]"</Description>
+          <Options moHideChildren="1"/>
+          <LastState/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : foundation.exe
+  Version: 
+  Date   : 2023-08-13
+  Author : M0D0
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(maxStorage,foundation.exe,8B 5A 18 81 FB FF FF FF 7F) // should be unique
+alloc(newmem,$1000,maxStorage)
+registersymbol(storageValue)
+label(storageValue)
+
+label(code)
+label(return)
+
+newmem:
+  mov ebx,[storageValue]
+  mov [rdx+18],ebx
+
+code:
+  mov ebx,[rdx+18]
+  cmp ebx,7FFFFFFF
+  jmp return
+
+storageValue:
+  dd #99999 //#2147483647
+
+maxStorage:
+  jmp newmem
+  nop 4
+return:
+registersymbol(maxStorage)
+
+[DISABLE]
+
+maxStorage:
+  db 8B 5A 18 81 FB FF FF FF 7F
+
+unregistersymbol(maxStorage)
+unregistersymbol(storageValue)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+4722
+
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+46F4: BA D3 00 00 00           - mov edx,000000D3
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+46F9: 4C 8D 05 10 84 63 01     - lea r8,[foundation.exe+1CDC9C0]
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+4700: 48 8D 0D 69 82 63 01     - lea rcx,[foundation.exe+1CDC820]
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+4707: E8 84 5C A5 FF           - call foundation.exe+FA240
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+470C: 33 C0                    - xor eax,eax
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+470E: 48 81 C4 20 04 00 00     - add rsp,00000420
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+4715: 5F                       - pop rdi
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+4716: C3                       - ret 
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+4717: 48 8B 12                 - mov rdx,[rdx]
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+471A: 48 89 9C 24 30 04 00 00  - mov [rsp+00000430],rbx
+// ---------- INJECTING HERE ----------
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+4722: 8B 5A 18                 - mov ebx,[rdx+18]
+// ---------- DONE INJECTING  ----------
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+4725: 81 FB FF FF FF 7F        - cmp ebx,7FFFFFFF
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+472B: 75 13                    - jne "foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf"+4740
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+472D: 8B C3                    - mov eax,ebx
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+472F: 48 8B 9C 24 30 04 00 00  - mov rbx,[rsp+00000430]
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+4737: 48 81 C4 20 04 00 00     - add rsp,00000420
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+473E: 5F                       - pop rdi
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+473F: C3                       - ret 
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+4740: 48 8B 8F 90 01 00 00     - mov rcx,[rdi+00000190]
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+4747: 48 83 C2 10              - add rdx,10
+foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+474B: 45 33 C0                 - xor r8d,r8d
+}
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>127</ID>
+              <Description>"Inventory Size"</Description>
+              <LastState Value="12842824" RealAddress="7FF6BA570017"/>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>storageValue</Address>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>283</ID>
+          <Description>"Super Strong Soldiers"</Description>
+          <LastState Activated="1"/>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>{ Game   : Foundation - 1.10.2.9
+  Version: 
+  Date   : 2025-02-08
+  Author : M0D0
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(SoldierInject,foundation.exe,48 8B 81 48 01 00 00 8B) // should be unique
+alloc(newmem,$1000,SoldierInject)
+
+label(code)
+label(return)
+
+newmem:
+
+  mov eax, (float)1.0
+  mov [rcx+00000144],eax
+  push rbx
+  mov rax,[rcx+00000148]
+  mov rbx,[rax+8]
+  test rbx,0
+  jne code
+  mov ebx,(float)1000.0
+  mov [rax+1C],ebx
+  pop rbx
+code:
+  mov rax,[rcx+00000148]
+  jmp return
+
+SoldierInject:
+  jmp newmem
+  nop 2
+return:
+registersymbol(SoldierInject)
+
+[DISABLE]
+
+SoldierInject:
+  db 48 8B 81 48 01 00 00
+
+unregistersymbol(SoldierInject)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: foundation.exe+E44C0C
+
+foundation.exe+E44BEF: 48 8B 88 48 01 00 00  - mov rcx,[rax+00000148]
+foundation.exe+E44BF6: E9 A5 DD 03 00        - jmp foundation.exe+E829A0
+foundation.exe+E44BFB: CC                    - int 3 
+foundation.exe+E44BFC: CC                    - int 3 
+foundation.exe+E44BFD: CC                    - int 3 
+foundation.exe+E44BFE: CC                    - int 3 
+foundation.exe+E44BFF: CC                    - int 3 
+foundation.exe+E44C00: 48 8B 81 50 01 00 00  - mov rax,[rcx+00000150]
+foundation.exe+E44C07: 48 85 C0              - test rax,rax
+foundation.exe+E44C0A: 75 07                 - jne foundation.exe+E44C13
+// ---------- INJECTING HERE ----------
+foundation.exe+E44C0C: 48 8B 81 48 01 00 00  - mov rax,[rcx+00000148]
+// ---------- DONE INJECTING  ----------
+foundation.exe+E44C13: 8B 40 10              - mov eax,[rax+10]
+foundation.exe+E44C16: C3                    - ret 
+foundation.exe+E44C17: CC                    - int 3 
+foundation.exe+E44C18: CC                    - int 3 
+foundation.exe+E44C19: CC                    - int 3 
+foundation.exe+E44C1A: CC                    - int 3 
+foundation.exe+E44C1B: CC                    - int 3 
+foundation.exe+E44C1C: CC                    - int 3 
+foundation.exe+E44C1D: CC                    - int 3 
+foundation.exe+E44C1E: CC                    - int 3 
+}
+</AssemblerScript>
+        </CheatEntry>
+        <CheatEntry>
           <ID>269</ID>
           <Description>"Taxes? Awesome, I love Taxes! (Change Taxation to apply Happiness Boost)"</Description>
           <Options moHideChildren="1"/>
+          <LastState Activated="1"/>
           <Color>000080</Color>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : Foundation - 1.10.2.9
@@ -720,296 +978,65 @@ foundation.GamCQuadTreeNode&lt;PlaCCompRoadNode * __ptr64&gt;::moveItems+810A: 8
             <CheatEntry>
               <ID>270</ID>
               <Description>"Value"</Description>
+              <LastState Value="500" RealAddress="171200609F8"/>
               <VariableType>Float</VariableType>
               <Address>[taxationBP]+88</Address>
             </CheatEntry>
             <CheatEntry>
               <ID>271</ID>
               <Description>"IsDecaying"</Description>
+              <LastState Value="0" RealAddress="171200609FC"/>
               <VariableType>Byte</VariableType>
               <Address>[taxationBP]+8C</Address>
             </CheatEntry>
             <CheatEntry>
               <ID>272</ID>
               <Description>"TimeBeforeDecayingSeconds"</Description>
+              <LastState Value="120" RealAddress="17120060A00"/>
               <VariableType>Float</VariableType>
               <Address>[taxationBP]+90</Address>
             </CheatEntry>
             <CheatEntry>
               <ID>273</ID>
               <Description>"DecayingRatePerMinute"</Description>
+              <LastState Value="500" RealAddress="17120060A04"/>
               <VariableType>Float</VariableType>
               <Address>[taxationBP]+94</Address>
             </CheatEntry>
             <CheatEntry>
               <ID>274</ID>
               <Description>"IsCumulative"</Description>
+              <LastState Value="1" RealAddress="17120060A08"/>
               <VariableType>Byte</VariableType>
               <Address>[taxationBP]+98</Address>
             </CheatEntry>
             <CheatEntry>
               <ID>275</ID>
               <Description>"IsSolvable"</Description>
+              <LastState Value="0" RealAddress="17120060A09"/>
               <VariableType>Byte</VariableType>
               <Address>[taxationBP]+99</Address>
             </CheatEntry>
             <CheatEntry>
               <ID>276</ID>
               <Description>"RemovedOnDecayed"</Description>
+              <LastState Value="0" RealAddress="17120060A0A"/>
               <VariableType>Byte</VariableType>
               <Address>[taxationBP]+9A</Address>
             </CheatEntry>
             <CheatEntry>
               <ID>277</ID>
               <Description>"IsHidden"</Description>
+              <LastState Value="0" RealAddress="17120060A0B"/>
               <VariableType>Byte</VariableType>
               <Address>[taxationBP]+9B</Address>
             </CheatEntry>
             <CheatEntry>
               <ID>278</ID>
               <Description>"HideOnTarget"</Description>
+              <LastState Value="0" RealAddress="17120060A0C"/>
               <VariableType>Byte</VariableType>
               <Address>[taxationBP]+9C</Address>
-            </CheatEntry>
-          </CheatEntries>
-        </CheatEntry>
-        <CheatEntry>
-          <ID>58</ID>
-          <Description>"Get Money [Activate, Purchase something, deactivate]"</Description>
-          <Color>4080FF</Color>
-          <VariableType>Auto Assembler Script</VariableType>
-          <AssemblerScript>[ENABLE]
-
-aobscanmodule(invert,foundation.exe,0F 4C FD 2B C7) // should be unique
-alloc(newmem,$1000,invert)
-
-label(code)
-label(return)
-
-newmem:
-  cmovl edi,ebp
-  test edi, edi
-  jns mms
-  sub eax,edi
-  jmp code
-mms:
-  add eax,edi
-  mov eax,#500000
-code:
-  jmp return
-
-invert:
-  jmp newmem
-return:
-registersymbol(invert)
-
-[DISABLE]
-
-invert:
-  db 0F 4C FD 2B C7
-
-unregistersymbol(invert)
-dealloc(newmem)
-
-{
-// ORIGINAL CODE - INJECTION POINT: foundation.exe+9F34C1
-
-foundation.exe+9F349E: 74 7A           - je foundation.exe+9F351A
-foundation.exe+9F34A0: 48 8B 43 60     - mov rax,[rbx+60]
-foundation.exe+9F34A4: 48 8D 4B 60     - lea rcx,[rbx+60]
-foundation.exe+9F34A8: 44 8B 44 24 50  - mov r8d,[rsp+50]
-foundation.exe+9F34AD: 4A 8B 14 C0     - mov rdx,[rax+r8*8]
-foundation.exe+9F34B1: 4E 8D 0C C0     - lea r9,[rax+r8*8]
-foundation.exe+9F34B5: 48 89 7C 24 58  - mov [rsp+58],rdi
-foundation.exe+9F34BA: 8B 42 18        - mov eax,[rdx+18]
-foundation.exe+9F34BD: 3B E8           - cmp ebp,eax
-foundation.exe+9F34BF: 8B F8           - mov edi,eax
-// ---------- INJECTING HERE ----------
-foundation.exe+9F34C1: 0F 4C FD        - cmovl edi,ebp
-// ---------- DONE INJECTING  ----------
-foundation.exe+9F34C4: 2B C7           - sub eax,edi
-foundation.exe+9F34C6: 75 1B           - jne foundation.exe+9F34E3
-foundation.exe+9F34C8: 38 43 5C        - cmp [rbx+5C],al
-foundation.exe+9F34CB: 00 16           - add [rsi],dl
-foundation.exe+9F34CD: 4C 8D 44 24 20  - lea r8,[rsp+20]
-foundation.exe+9F34D2: 4C 89 4C 24 20  - mov [rsp+20],r9
-foundation.exe+9F34D7: 48 8D 54 24 28  - lea rdx,[rsp+28]
-foundation.exe+9F34DC: E8 4F 4E F5 FF  - call foundation.exe+948330
-foundation.exe+9F34E1: EB 03           - jmp foundation.exe+9F34E6
-foundation.exe+9F34E3: 89 42 18        - mov [rdx+18],eax
-}
-</AssemblerScript>
-        </CheatEntry>
-        <CheatEntry>
-          <ID>133</ID>
-          <Description>"Increase starting Temporary Storage [Place village center, activate, select village center, deactivate]"</Description>
-          <Options moHideChildren="1"/>
-          <VariableType>Auto Assembler Script</VariableType>
-          <AssemblerScript>{ Game   : Foundation - 1.10.0.6.1220
-  Version: 
-  Date   : 2025-01-01
-  Author : M0D0
-
-  This script does blah blah blah
-}
-
-[ENABLE]
-
-aobscanmodule(INJECT_StorageValue,foundation.exe,48 8B C8 8B 56 18 E8) // should be unique
-alloc(newmem,$1000,INJECT_StorageValue)
-registersymbol(StorageValueStart)
-label(StorageValueStart)
-label(code)
-label(return)
-
-newmem:
-  mov edx,[StorageValueStart]
-  mov [rsi+18],edx
-code:
-  mov rcx,rax
-  jmp return
-
-StorageValueStart:
- dd #5000
-
-INJECT_StorageValue:
-  jmp newmem
-  nop
-return:
-registersymbol(INJECT_StorageValue)
-
-[DISABLE]
-
-INJECT_StorageValue:
-  db 48 8B C8 8B 56 18
-
-unregistersymbol(INJECT_StorageValue)
-unregistersymbol(StorageValueStart)
-dealloc(newmem)
-
-{
-// ORIGINAL CODE - INJECTION POINT: foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D735
-
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D705: 66 66 66 0F 1F 84 00 00 00 00 00  - nop word ptr [rax+rax+00000000]
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D710: 4C 8B 00                          - mov r8,[rax]
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D713: 49 39 90 08 01 00 00              - cmp [r8+00000108],rdx
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D71A: 0F 84 2F 01 00 00                 - je "foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf"+D84F
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D720: 48 83 C0 08                       - add rax,08
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D724: 48 3B C1                          - cmp rax,rcx
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D727: 75 E7                             - jne "foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf"+D710
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D729: 48 8D 56 10                       - lea rdx,[rsi+10]
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D72D: 48 8B CD                          - mov rcx,rbp
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D730: E8 DB A7 FC FF                    - call "foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf"+1C70
-// ---------- INJECTING HERE ----------
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D735: 48 8B C8                          - mov rcx,rax
-// ---------- DONE INJECTING  ----------
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D738: 8B 56 18                          - mov edx,[rsi+18]
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D73B: E8 70 BC F8 FF                    - call foundation.exe+8ACDF0
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D740: 48 83 C3 08                       - add rbx,08
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D744: 48 3B DF                          - cmp rbx,rdi
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D747: 0F 85 73 FF FF FF                 - jne "foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf"+D6C0
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D74D: 80 BD 78 01 00 00 00              - cmp byte ptr [rbp+00000178],00
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D754: 4C 89 74 24 58                    - mov [rsp+58],r14
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D759: 0F 85 1A 01 00 00                 - jne "foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf"+D879
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D75F: 48 8B 9D A8 00 00 00              - mov rbx,[rbp+000000A8]
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::setAsLeaf+D766: 48 3B 9D B0 00 00 00              - cmp rbx,[rbp+000000B0]
-}
-</AssemblerScript>
-          <CheatEntries>
-            <CheatEntry>
-              <ID>134</ID>
-              <Description>"Storage Capacity"</Description>
-              <ShowAsSigned>0</ShowAsSigned>
-              <VariableType>4 Bytes</VariableType>
-              <Address>StorageValueStart</Address>
-            </CheatEntry>
-          </CheatEntries>
-        </CheatEntry>
-        <CheatEntry>
-          <ID>69</ID>
-          <Description>"Inf. Items: Select building and resource to apply effect [Granary,Market Stalls, Warehouse]"</Description>
-          <Options moHideChildren="1"/>
-          <VariableType>Auto Assembler Script</VariableType>
-          <AssemblerScript>{ Game   : foundation.exe
-  Version: 
-  Date   : 2023-08-13
-  Author : M0D0
-
-  This script does blah blah blah
-}
-
-[ENABLE]
-
-aobscanmodule(maxStorage,foundation.exe,8B 5A 18 81 FB FF FF FF 7F) // should be unique
-alloc(newmem,$1000,maxStorage)
-registersymbol(storageValue)
-label(storageValue)
-
-label(code)
-label(return)
-
-newmem:
-  mov ebx,[storageValue]
-  mov [rdx+18],ebx
-
-code:
-  mov ebx,[rdx+18]
-  cmp ebx,7FFFFFFF
-  jmp return
-
-storageValue:
-  dd #99999 //#2147483647
-
-maxStorage:
-  jmp newmem
-  nop 4
-return:
-registersymbol(maxStorage)
-
-[DISABLE]
-
-maxStorage:
-  db 8B 5A 18 81 FB FF FF FF 7F
-
-unregistersymbol(maxStorage)
-unregistersymbol(storageValue)
-dealloc(newmem)
-
-{
-// ORIGINAL CODE - INJECTION POINT: foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+4722
-
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+46F4: BA D3 00 00 00           - mov edx,000000D3
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+46F9: 4C 8D 05 10 84 63 01     - lea r8,[foundation.exe+1CDC9C0]
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+4700: 48 8D 0D 69 82 63 01     - lea rcx,[foundation.exe+1CDC820]
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+4707: E8 84 5C A5 FF           - call foundation.exe+FA240
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+470C: 33 C0                    - xor eax,eax
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+470E: 48 81 C4 20 04 00 00     - add rsp,00000420
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+4715: 5F                       - pop rdi
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+4716: C3                       - ret 
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+4717: 48 8B 12                 - mov rdx,[rdx]
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+471A: 48 89 9C 24 30 04 00 00  - mov [rsp+00000430],rbx
-// ---------- INJECTING HERE ----------
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+4722: 8B 5A 18                 - mov ebx,[rdx+18]
-// ---------- DONE INJECTING  ----------
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+4725: 81 FB FF FF FF 7F        - cmp ebx,7FFFFFFF
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+472B: 75 13                    - jne "foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf"+4740
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+472D: 8B C3                    - mov eax,ebx
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+472F: 48 8B 9C 24 30 04 00 00  - mov rbx,[rsp+00000430]
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+4737: 48 81 C4 20 04 00 00     - add rsp,00000420
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+473E: 5F                       - pop rdi
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+473F: C3                       - ret 
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+4740: 48 8B 8F 90 01 00 00     - mov rcx,[rdi+00000190]
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+4747: 48 83 C2 10              - add rdx,10
-foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+474B: 45 33 C0                 - xor r8d,r8d
-}
-</AssemblerScript>
-          <CheatEntries>
-            <CheatEntry>
-              <ID>127</ID>
-              <Description>"Inventory Size"</Description>
-              <ShowAsSigned>0</ShowAsSigned>
-              <VariableType>4 Bytes</VariableType>
-              <Address>storageValue</Address>
             </CheatEntry>
           </CheatEntries>
         </CheatEntry>
@@ -1019,12 +1046,14 @@ foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+4
       <ID>210</ID>
       <Description>"Game Rules | Building Information"</Description>
       <Options moHideChildren="1"/>
+      <LastState Value="" Activated="1" RealAddress="00000000"/>
       <GroupHeader>1</GroupHeader>
       <CheatEntries>
         <CheatEntry>
           <ID>215</ID>
           <Description>"Change Workplace Settings [Select Building, Changes only apply to buildings built afterwards]"</Description>
           <Options moHideChildren="1"/>
+          <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : Foundation - 1.10.2.9
   Version: 
@@ -1036,7 +1065,7 @@ foundation.GamCQuadTreeNode&lt;PlaSShapeQuadTreeItem * __ptr64&gt;::createLeaf+4
 
 [ENABLE]
 
-aobscanmodule(selectWorkplace,foundation.exe,48 8B 95 B0 00 00 00 48 8B CF FF 90) // should be unique
+aobscanmodule(selectWorkplace,foundation.exe,48 8B 95 D0 00 00 00 48 8B CF) // should be unique
 alloc(newmem,$1000,selectWorkplace)
 label(selectedWorkplace)
 registersymbol(selectedWorkplace)
@@ -1046,7 +1075,7 @@ label(return)
 newmem:
   mov [selectedWorkplace],rdi
 code:
-  mov rdx,[rbp+000000B0]
+  mov rdx,[rbp+000000D0]
   jmp return
 
 selectedWorkplace:
@@ -1061,38 +1090,39 @@ registersymbol(selectWorkplace)
 [DISABLE]
 
 selectWorkplace:
-  db 48 8B 95 B0 00 00 00
+  db 48 8B 95 D0 00 00 00
 
 unregistersymbol(selectWorkplace, selectedWorkplace)
 dealloc(newmem)
 
-{
-// ORIGINAL CODE - INJECTION POINT: foundation.exe+9B9FD4
 
-foundation.exe+9B9FAF: 44 8B B4 24 90 00 00 00  - mov r14d,[rsp+00000090]
-foundation.exe+9B9FB7: 48 8B DF                 - mov rbx,rdi
-foundation.exe+9B9FBA: 48 85 FF                 - test rdi,rdi
-foundation.exe+9B9FBD: 0F 84 B4 00 00 00        - je foundation.exe+9BA077
-foundation.exe+9B9FC3: 48 85 F6                 - test rsi,rsi
-foundation.exe+9B9FC6: 74 06                    - je foundation.exe+9B9FCE
-foundation.exe+9B9FC8: 4C 8B 46 28              - mov r8,[rsi+28]
-foundation.exe+9B9FCC: EB 03                    - jmp foundation.exe+9B9FD1
-foundation.exe+9B9FCE: 4D 8B C4                 - mov r8,r12
-foundation.exe+9B9FD1: 48 8B 07                 - mov rax,[rdi]
+{
+// ORIGINAL CODE - INJECTION POINT: foundation.exe+6EB145
+
+foundation.exe+6EB118: 48 89 45 D0              - mov [rbp-30],rax
+foundation.exe+6EB11C: 48 8D 4D 60              - lea rcx,[rbp+60]
+foundation.exe+6EB120: E8 FB 43 D8 FF           - call foundation.exe+46F520
+foundation.exe+6EB125: 90                       - nop
+foundation.exe+6EB126: 48 8D 55 60              - lea rdx,[rbp+60]
+foundation.exe+6EB12A: 48 8B 8D 40 01 00 00     - mov rcx,[rbp+00000140]
+foundation.exe+6EB131: 48 8B 49 48              - mov rcx,[rcx+48]
+foundation.exe+6EB135: E8 46 7A D0 FF           - call foundation.GenCOctreeNode&lt;GenSFbxVertexOctreeConfig&gt;::~GenCOctreeNode&lt;GenSFbxVertexOctreeConfig&gt;+D280
+foundation.exe+6EB13A: 4E 8D 24 A5 00 00 00 00  - lea r12,[r12*4+00000000]
+foundation.exe+6EB142: 4D 8B C4                 - mov r8,r12
 // ---------- INJECTING HERE ----------
-foundation.exe+9B9FD4: 48 8B 95 B0 00 00 00     - mov rdx,[rbp+000000B0]
+foundation.exe+6EB145: 48 8B 95 D0 00 00 00     - mov rdx,[rbp+000000D0]
 // ---------- DONE INJECTING  ----------
-foundation.exe+9B9FDB: 48 8B CF                 - mov rcx,rdi
-foundation.exe+9B9FDE: FF 90 A8 00 00 00        - call qword ptr [rax+000000A8]
-foundation.exe+9B9FE4: 48 8B CD                 - mov rcx,rbp
-foundation.exe+9B9FE7: E8 44 43 19 00           - call foundation.exe+B4E330
-foundation.exe+9B9FEC: 84 C0                    - test al,al
-foundation.exe+9B9FEE: 0F 84 83 00 00 00        - je foundation.exe+9BA077
-foundation.exe+9B9FF4: 49 8B B7 A0 00 00 00     - mov rsi,[r15+000000A0]
-foundation.exe+9B9FFB: 83 7E 7C 00              - cmp dword ptr [rsi+7C],00
-foundation.exe+9B9FFF: 74 76                    - je foundation.exe+9BA077
-foundation.exe+9BA001: E8 4A 03 7E FF           - call "foundation.EnumCount&lt;enum GamEProceduralValueType&gt;"+3090
-}
+foundation.exe+6EB14C: 48 8B CF                 - mov rcx,rdi
+foundation.exe+6EB14F: E8 48 A9 E7 01           - call foundation.ImDrawList::_TryMergeDrawCmds+E40C
+foundation.exe+6EB154: 48 8D 4D E0              - lea rcx,[rbp-20]
+foundation.exe+6EB158: E8 C3 43 D8 FF           - call foundation.exe+46F520
+foundation.exe+6EB15D: 90                       - nop
+foundation.exe+6EB15E: 48 8D 55 E0              - lea rdx,[rbp-20]
+foundation.exe+6EB162: 48 8B 85 40 01 00 00     - mov rax,[rbp+00000140]
+foundation.exe+6EB169: 48 8B 48 40              - mov rcx,[rax+40]
+foundation.exe+6EB16D: E8 0E 7A D0 FF           - call foundation.GenCOctreeNode&lt;GenSFbxVertexOctreeConfig&gt;::~GenCOctreeNode&lt;GenSFbxVertexOctreeConfig&gt;+D280
+foundation.exe+6EB172: 4D 8B C4                 - mov r8,r12
+
 </AssemblerScript>
           <CheatEntries>
             <CheatEntry>
@@ -1155,6 +1185,7 @@ foundation.exe+9BA001: E8 4A 03 7E FF           - call "foundation.EnumCount&lt;
           <ID>194</ID>
           <Description>"Trading Shenanigans"</Description>
           <Options moHideChildren="1"/>
+          <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : Foundation - 1.10.2.9
   Version: 
@@ -1296,6 +1327,7 @@ foundation.exe+A00BE1: CC                    - int 3
         <CheatEntry>
           <ID>226</ID>
           <Description>"Storage Capacity"</Description>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : Foundation - 1.10.2.9
   Version: 
@@ -1371,6 +1403,7 @@ foundation.exe+BA6ADE: 66 90                 - nop 2
           <ID>166</ID>
           <Description>"Get Immigration Settings"</Description>
           <Options moHideChildren="1"/>
+          <LastState/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript>{ Game   : Foundation - 1.10.2.8
   Version: 
@@ -1458,6 +1491,7 @@ foundation.exe+DC6311: 41 03 C7              - add eax,r15d
               <ID>184</ID>
               <Description>"Immigration NIL [Dont change]"</Description>
               <Options moHideChildren="1"/>
+              <LastState Value="" RealAddress="00000000"/>
               <Color>0000FF</Color>
               <GroupHeader>1</GroupHeader>
               <CheatEntries>
@@ -1494,6 +1528,7 @@ foundation.exe+DC6311: 41 03 C7              - add eax,r15d
               <ID>186</ID>
               <Description>"Immigration LOW"</Description>
               <Options moHideChildren="1"/>
+              <LastState Value="" RealAddress="00000000"/>
               <GroupHeader>1</GroupHeader>
               <CheatEntries>
                 <CheatEntry>
@@ -1529,6 +1564,7 @@ foundation.exe+DC6311: 41 03 C7              - add eax,r15d
               <ID>189</ID>
               <Description>"Immigration AVERAGE"</Description>
               <Options moHideChildren="1"/>
+              <LastState Value="" RealAddress="00000000"/>
               <GroupHeader>1</GroupHeader>
               <CheatEntries>
                 <CheatEntry>
@@ -1564,6 +1600,7 @@ foundation.exe+DC6311: 41 03 C7              - add eax,r15d
               <ID>188</ID>
               <Description>"Immigration HIGH"</Description>
               <Options moHideChildren="1"/>
+              <LastState Value="" RealAddress="00000000"/>
               <GroupHeader>1</GroupHeader>
               <CheatEntries>
                 <CheatEntry>
@@ -1599,6 +1636,7 @@ foundation.exe+DC6311: 41 03 C7              - add eax,r15d
               <ID>187</ID>
               <Description>"Immigration MAXIMUM"</Description>
               <Options moHideChildren="1"/>
+              <LastState Value="" RealAddress="00000000"/>
               <GroupHeader>1</GroupHeader>
               <CheatEntries>
                 <CheatEntry>
@@ -1636,11 +1674,13 @@ foundation.exe+DC6311: 41 03 C7              - add eax,r15d
           <ID>247</ID>
           <Description>"Game Balancing"</Description>
           <Options moHideChildren="1"/>
+          <LastState Value="" RealAddress="00000000"/>
           <GroupHeader>1</GroupHeader>
           <CheatEntries>
             <CheatEntry>
               <ID>229</ID>
               <Description>"Only Activate shortly! Dont use often."</Description>
+              <LastState/>
               <Color>000080</Color>
               <VariableType>Auto Assembler Script</VariableType>
               <AssemblerScript>{ Game   : Foundation - 1.10.2.9
@@ -1828,8 +1868,88 @@ foundation.exe+111B5F9: F2 48 0F 2A C1                 - cvtsi2sd xmm0,rcx
         </CheatEntry>
       </CheatEntries>
     </CheatEntry>
+    <CheatEntry>
+      <ID>297</ID>
+      <Description>"No upkeep"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : foundation.exe
+  Version: 
+  Date   : 2026-05-03
+  Author : Compeador
+
+  This script does blah blah blah
+}
+
+[ENABLE]
+
+aobscanmodule(INF_COIN,foundation.exe,89 42 18 49 8B 06) // should be unique
+alloc(newmem,$1000,INF_COIN)
+
+label(code)
+label(return)
+
+newmem:
+  cmp r15,1
+  jne code
+  cmp [rdx+18],eax
+  jbe code
+  mov eax,[rdx+18]
+code:
+  mov [rdx+18],eax
+  mov rax,[r14]
+  jmp return
+
+INF_COIN:
+  jmp newmem
+  nop
+return:
+registersymbol(INF_COIN)
+
+[DISABLE]
+
+INF_COIN:
+  db 89 42 18 49 8B 06
+
+unregistersymbol(INF_COIN)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: foundation.exe+9DB252
+
+foundation.exe+9DB22F: 2B C7           - sub eax,edi
+foundation.exe+9DB231: 75 1F           - jne foundation.exe+9DB252
+foundation.exe+9DB233: 38 43 5C        - cmp [rbx+5C],al
+foundation.exe+9DB236: 74 1A           - je foundation.exe+9DB252
+foundation.exe+9DB238: 4C 89 44 24 20  - mov [rsp+20],r8
+foundation.exe+9DB23D: 48 8D 54 24 28  - lea rdx,[rsp+28]
+foundation.exe+9DB242: 4C 8D 44 24 20  - lea r8,[rsp+20]
+foundation.exe+9DB247: 48 8D 4B 60     - lea rcx,[rbx+60]
+foundation.exe+9DB24B: E8 00 41 8B FF  - call foundation.RpiIShader::getErrorLog+5940
+foundation.exe+9DB250: EB 03           - jmp foundation.exe+9DB255
+// ---------- INJECTING HERE ----------
+foundation.exe+9DB252: 89 42 18        - mov [rdx+18],eax
+// ---------- DONE INJECTING  ----------
+foundation.exe+9DB255: 49 8B 06        - mov rax,[r14]
+foundation.exe+9DB258: 44 8B C7        - mov r8d,edi
+foundation.exe+9DB25B: 48 8B D6        - mov rdx,rsi
+foundation.exe+9DB25E: 49 8B CE        - mov rcx,r14
+foundation.exe+9DB261: FF 50 60        - call qword ptr [rax+60]
+foundation.exe+9DB264: 48 8D 4B 30     - lea rcx,[rbx+30]
+foundation.exe+9DB268: 44 8B C7        - mov r8d,edi
+foundation.exe+9DB26B: 48 8B D6        - mov rdx,rsi
+foundation.exe+9DB26E: E8 5D BC 02 00  - call foundation.exe+A06ED0
+foundation.exe+9DB273: F7 DF           - neg edi
+}
+</AssemblerScript>
+    </CheatEntry>
   </CheatEntries>
-  <UserdefinedSymbols/>
+  <UserdefinedSymbols>
+    <SymbolEntry>
+      <Name>speedhack_wantedspeed</Name>
+      <Address>170C4EA0000</Address>
+    </SymbolEntry>
+  </UserdefinedSymbols>
   <Structures StructVersion="2">
     <Structure Name="PlaCDataResourceQuantityPair" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
       <Elements>
@@ -18448,9 +18568,9 @@ foundation.exe+111B5F9: F2 48 0F 2A C1                 - cvtsi2sd xmm0,rcx
             </Elements>
           </Structure>
         </Element>
-        <Element Offset="104" Vartype="4 Bytes" Bytesize="4" RLECount="9" OffsetHex="00000068" DisplayMethod="unsigned integer"/>
+        <Element Offset="104" Vartype="4 Bytes" Bytesize="4" RLECount="8" OffsetHex="00000068" DisplayMethod="unsigned integer"/>
         <Element Offset="136" Vartype="Float" Bytesize="4" OffsetHex="00000088" Description="possible float to input" DisplayMethod="signed integer"/>
-        <Element Offset="140" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000008C" DisplayMethod="unsigned integer"/>
+        <Element Offset="136" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="00000088" DisplayMethod="unsigned integer"/>
         <Element Offset="144" Vartype="Pointer" Bytesize="8" OffsetHex="00000090" Description="Pointer to instance of PlaCCompVillager" DisplayMethod="unsigned integer">
           <Structure Name="Autocreated from 276D888A310" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
             <Elements>
@@ -26589,8 +26709,8 @@ foundation.exe+111B5F9: F2 48 0F 2A C1                 - cvtsi2sd xmm0,rcx
         <Element Offset="153" Vartype="Byte" Bytesize="1" OffsetHex="00000099" Description="IsSolvable" DisplayMethod="hexadecimal"/>
         <Element Offset="154" Vartype="Byte" Bytesize="1" OffsetHex="0000009A" Description="RemovedOnDecayed" DisplayMethod="hexadecimal"/>
         <Element Offset="155" Vartype="Byte" Bytesize="1" OffsetHex="0000009B" Description="IsHidden" DisplayMethod="hexadecimal"/>
-        <Element Offset="156" Vartype="Double" Bytesize="8" OffsetHex="0000009C" DisplayMethod="unsigned integer"/>
         <Element Offset="156" Vartype="Byte" Bytesize="1" OffsetHex="0000009C" Description="HideOnTarget" DisplayMethod="hexadecimal"/>
+        <Element Offset="156" Vartype="Double" Bytesize="8" OffsetHex="0000009C" DisplayMethod="unsigned integer"/>
         <Element Offset="164" Vartype="4 Bytes" Bytesize="4" OffsetHex="000000A4" DisplayMethod="unsigned integer"/>
         <Element Offset="168" Vartype="4 Bytes" Bytesize="4" RLECount="2" OffsetHex="000000A8" DisplayMethod="hexadecimal"/>
         <Element Offset="176" Vartype="Pointer" Bytesize="8" OffsetHex="000000B0" DisplayMethod="unsigned integer"/>
