@@ -5,7 +5,7 @@
       <ID>1351</ID>
       <Description>"Working"</Description>
       <Options moActivateChildrenAsWell="1" moDeactivateChildrenAsWell="1"/>
-      <LastState Value="" RealAddress="00000000"/>
+      <LastState Value="" Activated="1" RealAddress="00000000"/>
       <GroupHeader>1</GroupHeader>
       <CheatEntries>
         <CheatEntry>
@@ -81,7 +81,7 @@ Dwarf Fortress.exe+FBE57: 48 89 44 24 50           - mov [rsp+50],rax
         <CheatEntry>
           <ID>966</ID>
           <Description>"Embark Max Skills When Viewed"</Description>
-          <LastState/>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript Async="1">[ENABLE]
 aobscanmodule(embarkMaxSkills,$process,83 ?? ?? ?? 00 7E ?? ?? 63 ?? ?? ?? 00 00)
@@ -141,7 +141,7 @@ Dwarf Fortress.exe+CF4D0D: 48 8B D6              - mov rdx,rsi
         <CheatEntry>
           <ID>964</ID>
           <Description>"Embark Ignore Skill Limit"</Description>
-          <LastState/>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript Async="1">[ENABLE]
 aobscanmodule(embarkSkillLimit,$process,83 ?? ?? ?? 05 0F 8D)
@@ -223,7 +223,7 @@ Dwarf Fortress.exe+CFB99B: 48 8B 08                 - mov rcx,[rax]
         <CheatEntry>
           <ID>201</ID>
           <Description>"Always Craft Masterpiece"</Description>
-          <LastState/>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript Async="1">[ENABLE]
 aobscanmodule(quality,$process,83 FA ?? 7C ?? BB 04 00 00 00 EB)
@@ -272,7 +272,7 @@ Dwarf Fortress.exe+8A7353: BB 02 00 00 00        - mov ebx,00000002
         <CheatEntry>
           <ID>552</ID>
           <Description>"Always Engrave Masterpiece"</Description>
-          <LastState/>
+          <LastState Activated="1"/>
           <VariableType>Auto Assembler Script</VariableType>
           <AssemblerScript Async="1">[ENABLE]
 aobscanmodule(engrave,$process,66 83 ?? ?? 05 0F 85 ?? ?? ?? ?? 83 3D)
@@ -12010,6 +12010,7 @@ Dwarf Fortress.exe+FFACF5: 48 85 C0                 - test rax,rax
         <CheatEntry>
           <ID>612</ID>
           <Description>"Static String"</Description>
+          <LastState RealAddress="7FF6398F6C60"/>
           <ShowAsSigned>0</ShowAsSigned>
           <VariableType>String</VariableType>
           <Length>13</Length>
@@ -15969,6 +15970,94 @@ Dwarf Fortress.exe+105CE6C: 48 89 85 C0 00 00 00  - mov [rbp+000000C0],rax
 Dwarf Fortress.exe+105CE73: 81 48 10 00 40 00 00  - or [rax+10],00004000
 }
 </AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1353</ID>
+      <Description>"Fast Experience"</Description>
+      <LastState/>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>{ Game   : Dwarf Fortress.exe
+  Version: 
+  Date   : 2026-06-18
+  Author : Compeador
+  Description : 
+
+  &lt;Optional info&gt;
+}
+
+[ENABLE]
+
+aobscanmodule(INJ_EXP,Dwarf Fortress.exe,45 89 4A 08 41 8D 40 05 6B C8 64 44 3B C9) // should be unique
+alloc(newmem,$1000,INJ_EXP)
+
+label(code)
+label(return)
+
+newmem:
+  cmp r9d,dword ptr [r10+8]
+  jb code
+  push rbx
+  mov ebx,r9d
+  sub ebx,dword ptr [r10+8]
+  add ebx,ebx
+  add ebx,ebx
+  add ebx,ebx
+  add r9d,ebx
+  pop rbx
+code:
+  mov [r10+08],r9d
+  lea eax,[r8+05]
+  jmp return
+
+INJ_EXP:
+  jmp newmem
+  nop 3
+return:
+registersymbol(INJ_EXP)
+
+[DISABLE]
+
+INJ_EXP:
+  db 45 89 4A 08 41 8D 40 05
+
+unregistersymbol(INJ_EXP)
+dealloc(newmem)
+
+{
+// ORIGINAL CODE - INJECTION POINT: Dwarf Fortress.exe+10DF3CE
+
+Dwarf Fortress.exe+10DF3AC: 8B C1                    - mov eax,ecx
+Dwarf Fortress.exe+10DF3AE: 41 0F 4E C1              - cmovle eax,r9d
+Dwarf Fortress.exe+10DF3B2: 2B C8                    - sub ecx,eax
+Dwarf Fortress.exe+10DF3B4: 41 89 4A 10              - mov [r10+10],ecx
+Dwarf Fortress.exe+10DF3B8: 41 2B D8                 - sub ebx,r8d
+Dwarf Fortress.exe+10DF3BB: 85 DB                    - test ebx,ebx
+Dwarf Fortress.exe+10DF3BD: 0F 8E 0B 01 00 00        - jng "Dwarf Fortress.exe"+10DF4CE
+Dwarf Fortress.exe+10DF3C3: 45 8B 4A 08              - mov r9d,[r10+08]
+Dwarf Fortress.exe+10DF3C7: 45 8B 42 04              - mov r8d,[r10+04]
+Dwarf Fortress.exe+10DF3CB: 44 03 CB                 - add r9d,ebx
+// ---------- INJECTING HERE ----------
+Dwarf Fortress.exe+10DF3CE: 45 89 4A 08              - mov [r10+08],r9d
+// ---------- DONE INJECTING  ----------
+Dwarf Fortress.exe+10DF3D2: 41 8D 40 05              - lea eax,[r8+05]
+Dwarf Fortress.exe+10DF3D6: 6B C8 64                 - imul ecx,eax,64
+Dwarf Fortress.exe+10DF3D9: 44 3B C9                 - cmp r9d,ecx
+Dwarf Fortress.exe+10DF3DC: 7C 53                    - jl "Dwarf Fortress.exe"+10DF431
+Dwarf Fortress.exe+10DF3DE: 41 BB 01 00 00 00        - mov r11d,00000001
+Dwarf Fortress.exe+10DF3E4: 0F 1F 40 00              - nop dword ptr [rax+00]
+Dwarf Fortress.exe+10DF3E8: 0F 1F 84 00 00 00 00 00  - nop dword ptr [rax+rax+00000000]
+Dwarf Fortress.exe+10DF3F0: 41 8B C8                 - mov ecx,r8d
+Dwarf Fortress.exe+10DF3F3: 40 0F B6 FF              - movzx edi,dil
+Dwarf Fortress.exe+10DF3F7: B8 FB FF FF FF           - mov eax,FFFFFFFB
+}
+</AssemblerScript>
+    </CheatEntry>
+    <CheatEntry>
+      <ID>1352</ID>
+      <Description>"No description"</Description>
+      <LastState Value="9" RealAddress="1CCC044D8C8"/>
+      <VariableType>4 Bytes</VariableType>
+      <Address>1CCC044D8C8</Address>
     </CheatEntry>
   </CheatEntries>
   <UserdefinedSymbols/>
